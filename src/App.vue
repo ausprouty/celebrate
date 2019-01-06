@@ -1,8 +1,10 @@
 <template>
   <div id="app">
     <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+      <router-link to="/">
+        <img class="menu_icon" alt="Home" src="../src/assets/header1.png">
+      </router-link>
+      <br>
     </div>
     <router-view/>
   </div>
@@ -18,6 +20,7 @@
 }
 #nav {
   padding: 30px;
+  text-align: left;
 }
 
 #nav a {
@@ -27,5 +30,9 @@
 
 #nav a.router-link-exact-active {
   color: #42b983;
+}
+
+img.menu_icon {
+  height: 64px;
 }
 </style>

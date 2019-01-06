@@ -1,5 +1,5 @@
 <template>
-  <h1>Here is where we select country or language</h1>
+  <h1>This is where we ask for feedback</h1>
 </template>
 
 <script>
