@@ -2,8 +2,9 @@
   <router-link class="event-link" :to="{ name: 'language', params: { country: location.code } }">
     <div class="event-card -shadow">
       <h4 class="title">{{location.name}}</h4>
-      <Flag/>
+      <BaseFlag/>
       {{location.image}}
+      <BaseIcon name="users"/>
     </div>
   </router-link>
 </template>
