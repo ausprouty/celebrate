@@ -1,10 +1,9 @@
 <template>
   <router-link class="event-link" :to="{ name: 'language', params: { country: location.code } }">
     <div class="event-card -shadow">
-      <h4 class="title">{{location.name}}</h4>
-      <img v-bind:src="location.image">
-      {{location.image}}
-      <BaseIcon name="users"/>
+      <img v-bind:src="location.image" class="flag">
+      
+      <span class="country">{{location.country}}</span>
     </div>
   </router-link>
 </template>
@@ -16,8 +15,8 @@ export default {
       location: {
         code: 'AU',
         english: 'Australia',
-        name: 'Australia',
-        image: 'src/assets/country/AU.png'
+        country: 'Australia',
+        image: '/country/AU.png'
       }
     }
   }
@@ -27,6 +26,7 @@ export default {
 <style scoped>
 .event-card {
   padding: 20px;
+  width: 100%;
   margin-bottom: 24px;
   transition: all 0.2s linear;
   cursor: pointer;
@@ -43,5 +43,17 @@ export default {
   color: black;
   text-decoration: none;
   font-weight: 100;
+}
+img.flag {
+  width: 100px;
+  padding-right: 50px;
+}
+.country {
+  vertical-align: top;
+  font-size: 24px;
+}
+
+div.break {
+  display: inline;
 }
 </style>
