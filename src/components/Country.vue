@@ -2,7 +2,7 @@
   <router-link class="event-link" :to="{ name: 'language', params: { country: location.code } }">
     <div class="event-card -shadow">
       <h4 class="title">{{location.name}}</h4>
-      <BaseFlag/>
+      <img v-bind:src="location.image">
       {{location.image}}
       <BaseIcon name="users"/>
     </div>
@@ -17,7 +17,7 @@ export default {
         code: 'AU',
         english: 'Australia',
         name: 'Australia',
-        image: 'assets/country/AU.png'
+        image: 'src/assets/country/AU.png'
       }
     }
   }
