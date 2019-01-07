@@ -1,15 +1,17 @@
-import Vue from "vue";
-import App from "./App.vue";
-import router from "./router";
-import store from "./store";
-import "./registerServiceWorker";
+import Vue from 'vue'
+import App from './App.vue'
+import router from './router'
+import store from './store'
+import './registerServiceWorker'
+import Flag from '@/components/Flag.vue'
 
-Vue.config.productionTip = false;
+Vue.component('Flag', Flag)
+Vue.config.productionTip = false
 
 new Vue({
   router,
   store,
   render: function(h) {
-    return h(App);
+    return h(App)
   }
-}).$mount("#app");
+}).$mount('#app')

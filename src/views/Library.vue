@@ -1,5 +1,5 @@
 <template>
-  <h1>Library</h1>
+  <h1>Library for {{country}} in {{language}}</h1>
 </template>
 
 <script>

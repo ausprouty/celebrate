@@ -1,5 +1,5 @@
 <template>
-    <h1>These are the supported countries</h1>
+    <h1>This is my not found page</h1>
 </template>
 
 <script>

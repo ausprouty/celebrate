@@ -1,16 +1,19 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/Home.vue'
-import Country from './views/Country.vue'
+import Countries from './views/Countries.vue'
+import Country from './components/Country.vue'
 import Language from './views/Languages.vue'
 import Library from './views/Library.vue'
 import Series from './views/Series.vue'
 import Topic from './views/Topic.vue'
 import Feedback from './views/Feedback.vue'
+import NotFoundComponent from './views/NotFound.vue'
 
 Vue.use(Router)
 
 export default new Router({
+  mode: 'history',
   routes: [
     {
       path: '/',
@@ -19,13 +22,19 @@ export default new Router({
     },
     {
       path: '/country',
-      name: 'countries',
+      name: 'country',
       component: Country
     },
     {
-      path: '/language',
-      name: 'languages',
-      component: Language
+      path: '/countries',
+      name: 'countries',
+      component: Countries
+    },
+    {
+      path: '/language/:country/',
+      name: 'language',
+      component: Language,
+      props: true
     },
     {
       path: '/library/:country/:language',
@@ -49,6 +58,10 @@ export default new Router({
       path: '/feedback',
       name: 'Feedback',
       component: Feedback
+    },
+    {
+      path: '*',
+      component: NotFoundComponent
     }
   ]
 })

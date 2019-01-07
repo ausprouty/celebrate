@@ -1,5 +1,5 @@
 <template>
-    <h1>This is my discussion outline</h1>
+    <h1>This is my discussion outline for {{ topic}}</h1>
 </template>
 
 <script>
