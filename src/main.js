@@ -23,6 +23,8 @@ requireComponent.keys().forEach(fileName => {
   Vue.component(componentName, componentConfig.default || componentConfig)
 })
 Vue.config.productionTip = false
+Vue.prototype.$country = 'AU'
+Vue.prototype.$language = 'eng'
 new Vue({
   router,
   store,

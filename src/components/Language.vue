@@ -1,5 +1,8 @@
 <template>
-  <router-link class="event-link" :to="{ name: 'library', params: { folder: language.folder }}">
+  <router-link
+    class="event-link"
+    :to="{ name: 'library', params: { country: country.id, folder: language.folder }}"
+  >
     <div class="event-card -shadow">
       <div class="language">
         <span class="bold">{{language.name}}</span>
@@ -9,20 +12,19 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 export default {
   props: {
     language: Object
-  }
+  },
+  computed: mapState(['country'])
 }
 </script>
 
 <style scoped>
-
-
 div.language {
   width: 100%;
   font-size: 24px;
-
 }
 .language {
   text-align: left;

@@ -37,7 +37,7 @@ export default new Router({
       props: true
     },
     {
-      path: '/library/:folder',
+      path: '/library/:country/:folder',
       name: 'library',
       component: Library,
       props: true

@@ -4,7 +4,13 @@ import Vuex from "vuex";
 Vue.use(Vuex);
 
 export default new Vuex.Store({
-  state: {},
+  state: {
+    country: {id: "ES"},
+    language: {id: "eng"},
+    library:{},
+    book:{},
+
+  },
   mutations: {},
   actions: {}
 });

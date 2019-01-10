@@ -14,9 +14,9 @@ export default {
     return apiClient.get('/content/countries.json')
   },
   getLanguages(country) {
-    return apiClient.get('/content/' + country + '/language.json')
+    return apiClient.get('/content/' + country + '/languages.json')
   },
-  getLibrary(folder) {
-    return apiClient.get('/library-' + id)
+  getLibrary(country, folder) {
+    return apiClient.get('/content/' + country + '/' + folder + '/library.json')
   }
 }
