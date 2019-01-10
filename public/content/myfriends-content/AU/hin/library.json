@@ -1,0 +1,27 @@
+[
+		{
+			"title": "जिंदगी के मसले",
+			"link": "myfriends/issues.html",
+			"image": "issues.png"
+		},
+		{
+			"title": "मूल बातचीत",
+			"link": "myfriends/basics.html",
+			"image": "basics.png"
+		},
+		{
+			"title": "लाइव समुदाय",
+			"link": "myfriends/community.html",
+			"image": "community.png"
+		},
+		{
+			"title": "पहला चरणप्रभाव",
+			"link": "firststeps/index.html",
+			"image": "firststeps.png"
+		},
+		{
+			"title": "के बारे में",
+			"link": "myfriends/about.html",
+			"image": "about.jpg"
+		}
+		]

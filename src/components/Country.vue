@@ -1,59 +1,41 @@
 <template>
-  <router-link class="event-link" :to="{ name: 'language', params: { country: location.code } }">
+  <router-link class="event-link" :to="{ name: 'language', params: { country: country.code } }">
     <div class="event-card -shadow">
-      <img v-bind:src="location.image" class="flag">
-      
-      <span class="country">{{location.country}}</span>
+      <img v-bind:src="country.image" class="flag">
+      <div class="country">
+        <span class="bold">{{country.name}}</span>
+        <br>
+        {{country.english}}
+      </div>
     </div>
   </router-link>
 </template>
 
 <script>
 export default {
-  data() {
-    return {
-      location: {
-        code: 'AU',
-        english: 'Australia',
-        country: 'Australia',
-        image: '/country/AU.png'
-      }
-    }
+  props: {
+    country: Object
   }
 }
 </script>
 
 <style scoped>
-.event-card {
-  padding: 20px;
-  width: 100%;
-  margin-bottom: 24px;
-  transition: all 0.2s linear;
-  cursor: pointer;
-}
-.event-card:hover {
-  transform: scale(1.01);
-  box-shadow: 0 3px 12px 0 rgba(0, 0, 0, 0.2), 0 1px 15px 0 rgba(0, 0, 0, 0.19);
-}
-.event-card > .title {
-  margin: 0;
-}
-
-.event-link {
-  color: black;
-  text-decoration: none;
-  font-weight: 100;
-}
 img.flag {
-  width: 100px;
-  padding-right: 50px;
+  width: 25%;
+}
+div.country {
+  vertical-align: top;
+  width: 70%;
+  font-size: 24px;
+  float: right;
 }
 .country {
-  vertical-align: top;
-  font-size: 24px;
+  text-align: left;
 }
-
 div.break {
   display: inline;
+}
+.bold {
+  font-weight: bold;
 }
 </style>

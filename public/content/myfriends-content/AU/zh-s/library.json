@@ -1,0 +1,32 @@
+[
+		{
+			"title": "生活问题",
+			"link": "myfriends/issues.html",
+			"image": "issues.png"
+		},
+		{
+			"title": "基本对话",
+			"link": "myfriends/basics.html",
+			"image": "basics.png"
+		},
+		{
+			"title": "生活的社区",
+			"link": "myfriends/community.html",
+			"image": "community.png"
+		},
+		{
+			"title": "第一步",
+			"link": "firststeps/index.html",
+			"image": "firststeps.png"
+		},
+		{
+			"title": "罗盘",
+			"link": "compass/index.html",
+			"image": "compass.jpg"
+		},
+		{
+			"title": "关于",
+			"link": "myfriends/about.html",
+			"image": "about.jpg"
+		}
+		]

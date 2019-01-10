@@ -1,0 +1,13 @@
+[
+		{
+			"folder": "eng-US",
+			"iso": "eng",
+			"name": "English",
+			"bible": "text",
+			"life-issues": "swiss",
+			"images": "menu-europe",
+			"nt": "1257",
+			"ot": "1257",
+			"rldir": "ltr"
+		}
+		]

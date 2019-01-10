@@ -1,0 +1,27 @@
+[
+		{
+			"title": "Problemas da vida",
+			"link": "myfriends/issues.html",
+			"image": "issues.png"
+		},
+		{
+			"title": "Conversas Básicas",
+			"link": "myfriends/basics.html",
+			"image": "basics.png"
+		},
+		{
+			"title": "Comunidade",
+			"link": "myfriends/community.html",
+			"image": "community.png"
+		},
+		{
+			"title": "Primeiros passos",
+			"link": "firststeps/index.html",
+			"image": "firststeps.png"
+		},
+		{
+			"title": "Sobre",
+			"link": "myfriends/about.html",
+			"image": "about.jpg"
+		}
+		]

@@ -1,0 +1,32 @@
+[
+		{
+			"title": "Temas de la vida",
+			"link": "myfriends/issues.html",
+			"image": "issues.png"
+		},
+		{
+			"title": "Conversaciones Básicas",
+			"link": "myfriends/basics.html",
+			"image": "basics.png"
+		},
+		{
+			"title": "Comunidad vivo",
+			"link": "myfriends/community.html",
+			"image": "community.png"
+		},
+		{
+			"title": "Primeros pasos",
+			"link": "firststeps/index.html",
+			"image": "firststeps.png"
+		},
+		{
+			"title": "Brújula",
+			"link": "compass/index.html",
+			"image": "compass.jpg"
+		},
+		{
+			"title": "Acerca de",
+			"link": "myfriends/about.html",
+			"image": "about.jpg"
+		}
+		]

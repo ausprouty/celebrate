@@ -1,0 +1,27 @@
+[
+		{
+			"title": "jindagee ke masale",
+			"link": "myfriends/issues.html",
+			"image": "issues.png"
+		},
+		{
+			"title": "mool baatacheet",
+			"link": "myfriends/basics.html",
+			"image": "basics.png"
+		},
+		{
+			"title": "Laiv samudaay",
+			"link": "myfriends/community.html",
+			"image": "community.png"
+		},
+		{
+			"title": "Phlaa chrnprbhaav",
+			"link": "firststeps/index.html",
+			"image": "firststeps.png"
+		},
+		{
+			"title": "ke baare mein",
+			"link": "myfriends/about.html",
+			"image": "about.jpg"
+		}
+		]
