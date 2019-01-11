@@ -1,9 +1,9 @@
 <template>
-  <router-link class="event-link" :to="{ name: 'topic', params: { series: book.link } }">
+  <router-link class="event-link" :to="{ name: topic, params: { series: book.link } }">
     <div class="event-card -shadow">
-      <img v-bind:src="book.image" class="book">
+      <img v-bind:src="'/img/menu/' + book.image" class="book">
       <div class="book">
-        <span class="bold">{{book.title}}</span>
+        <span class="bold">{{book.title}} {{bookmark.country}}</span>
       </div>
     </div>
   </router-link>
@@ -15,7 +15,17 @@ export default {
   props: {
     book: Object
   },
-  computed: mapState(['bookmark'])
+  computed: {
+    localComputed() {
+      console.log('book')
+      console.log(book)
+      // var correctImage = '/menu/' + this.book.image
+      var correctImage = 'xxx'
+      console.log(correctImage)
+      return correctImage
+    },
+    ...mapState(['bookmark'])
+  }
 }
 </script>
 
