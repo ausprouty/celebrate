@@ -1,27 +1,27 @@
 [
-		{
-			"title": "የኛ ጉዳይ",
-			"link": "myfriends/issues.html",
-			"image": "issues.png"
-		},
-		{
-			"title": "መሰረታዊ ውይዪቶች",
-			"link": "myfriends/basics.html",
-			"image": "basics.png"
-		},
-		{
-			"title": "ህብረተሰቡ ውስ መኖር",
-			"link": "myfriends/community.html",
-			"image": "community.png"
-		},
-		{
-			"title": "የመጀመሪያ እርምጃ",
-			"link": "firststeps/index.html",
-			"image": "firststeps.png"
-		},
-		{
-			"title": "ስለ",
-			"link": "myfriends/about.html",
-			"image": "about.jpg"
-		}
-		]
+  {
+    "title": "የኛ ጉዳይ",
+    "link": "myfriends/issues.html",
+    "image": "issues.jpg"
+  },
+  {
+    "title": "መሰረታዊ ውይዪቶች",
+    "link": "myfriends/basics.html",
+    "image": "basics.jpg"
+  },
+  {
+    "title": "ህብረተሰቡ ውስ መኖር",
+    "link": "myfriends/community.html",
+    "image": "community.jpg"
+  },
+  {
+    "title": "የመጀመሪያ እርምጃ",
+    "link": "firststeps/index.html",
+    "image": "firststeps.jpg"
+  },
+  {
+    "title": "ስለ",
+    "link": "myfriends/about.html",
+    "image": "about.jpg"
+  }
+]

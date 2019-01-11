@@ -1,7 +1,7 @@
 <template>
   <router-link class="event-link" :to="{ name: topic, params: { series: book.link } }">
     <div class="event-card -shadow">
-      <img v-bind:src="'/img/menu/' + book.image" class="book">
+      <img v-bind:src="imgDir.library + book.image" class="book">
       <div class="book">
         <span class="bold">{{book.title}} {{bookmark.country}}</span>
       </div>
@@ -24,7 +24,7 @@ export default {
       console.log(correctImage)
       return correctImage
     },
-    ...mapState(['bookmark'])
+    ...mapState(['bookmark', 'imgDir'])
   }
 }
 </script>

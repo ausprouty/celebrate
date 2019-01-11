@@ -5,6 +5,11 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    imgDir: {
+       library:'/img/libary/menu-europe/',
+       country: '/img/country/',
+       icon: '/img/icon/'
+    },
     bookmark: {
       country: '',
       language: '',
