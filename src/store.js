@@ -1,16 +1,27 @@
-import Vue from "vue";
-import Vuex from "vuex";
+import Vue from 'vue'
+import Vuex from 'vuex'
 
-Vue.use(Vuex);
+Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    country: {id: "ES"},
-    language: {id: "eng"},
-    library:{},
-    book:{},
-
+    bookmark: {
+      country: '',
+      language: '',
+      library: '',
+      book: '',
+      page: ''
+    }
   },
-  mutations: {},
-  actions: {}
-});
+  mutations: {
+    SET_BOOKMARK(state, bookmark) {
+      console.log(bookmark)
+      state.bookmark = bookmark
+    }
+  },
+  actions: {
+    setBookmark({ commit }, bookmark) {
+      commit('SET_BOOKMARK', bookmark)
+    }
+  }
+})

@@ -10,10 +10,12 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 export default {
   props: {
     book: Object
-  }
+  },
+  computed: mapState(['bookmark'])
 }
 </script>
 
@@ -27,8 +29,7 @@ div.book {
   font-size: 24px;
   float: right;
 }
-.book{
+.book {
   text-align: left;
 }
-
 </style>

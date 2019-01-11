@@ -1,7 +1,7 @@
 <template>
   <router-link
     class="event-link"
-    :to="{ name: 'library', params: { country: country.id, folder: language.folder }}"
+    :to="{ name: 'library', params: { country: bookmark.country, folder: language.folder }}"
   >
     <div class="event-card -shadow">
       <div class="language">
@@ -17,7 +17,7 @@ export default {
   props: {
     language: Object
   },
-  computed: mapState(['country'])
+  computed: mapState(['bookmark'])
 }
 </script>
 
