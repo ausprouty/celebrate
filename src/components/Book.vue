@@ -1,12 +1,12 @@
 <template>
-  <router-link class="event-link" :to="{ name: topic, params: { series: book.link } }">
+  <div class="event-link" v-on:click="updateBookmark(book)">
     <div class="event-card -shadow">
       <img v-bind:src="imgDir.library + book.image" class="book">
       <div class="book">
-        <span class="bold">{{book.title}} {{bookmark.country}}</span>
+        <span class="bold">{{book.title}}</span>
       </div>
     </div>
-  </router-link>
+  </div>
 </template>
 
 <script>
@@ -15,17 +15,30 @@ export default {
   props: {
     book: Object
   },
-  computed: {
-    localComputed() {
-      console.log('book')
-      console.log(book)
-      // var correctImage = '/menu/' + this.book.image
-      var correctImage = 'xxx'
-      console.log(correctImage)
-      return correctImage
-    },
-    ...mapState(['bookmark', 'imgDir'])
+  computed: mapState(['bookmark', 'imgDir']),
+  methods: {
+    updateBookmark: function(book) {
+      this.$store
+        .dispatch('updateBookmark', ['book', book])
+        .then(() => {
+          console.log('Library saved results with bookmark value')
+          console.log(this.bookmark)
+          this.$router.push({
+            name: 'series',
+            params: {
+              folder: this.bookmark.language.folder,
+              series: this.bookmark.book
+            }
+          })
+        })
+        .catch(() => {
+          console.log('There was a problem storing language')
+        })
+    }
   }
+}
+</script>
+
 }
 </script>
 
