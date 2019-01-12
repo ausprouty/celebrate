@@ -6,9 +6,9 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     imgDir: {
-       library:'/img/libary/menu-europe/',
-       country: '/img/country/',
-       icon: '/img/icon/'
+      library: '/img/libary/menu-europe/',
+      country: '/img/country/',
+      icon: '/img/icon/'
     },
     bookmark: {
       country: '',
@@ -19,14 +19,22 @@ export default new Vuex.Store({
     }
   },
   mutations: {
-    SET_BOOKMARK(state, bookmark) {
+    NEW_BOOKMARK(state, country) {
+      console.log(country)
+      state.bookmark = {}
+      state.bookmark.country = country
+    },
+    UPDATE_BOOKMARK(state, bookmark) {
       console.log(bookmark)
       state.bookmark = bookmark
     }
   },
   actions: {
-    setBookmark({ commit }, bookmark) {
-      commit('SET_BOOKMARK', bookmark)
+    newBookmark({ commit }, country) {
+      commit('NEW_BOOKMARK', country)
+    },
+    updateBookmark({ commit }, bookmark) {
+      commit('UPDATE_BOOKMARK', bookmark)
     }
   }
 })

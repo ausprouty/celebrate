@@ -31,8 +31,8 @@ export default new Router({
       component: Countries
     },
     {
-      path: '/language/:country/',
-      name: 'language',
+      path: '/languages/:country/',
+      name: 'languages',
       component: Language,
       props: true
     },

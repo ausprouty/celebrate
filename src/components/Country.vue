@@ -1,5 +1,5 @@
 <template>
-  <router-link class="event-link" :to="{ name: 'language', params: { country: country.code } }">
+  <div class="event-link" v-on:click="newBookmark(country)">
     <div class="event-card -shadow">
       <img v-bind:src="country.image" class="flag">
       <div class="country">
@@ -8,13 +8,30 @@
         {{country.english}}
       </div>
     </div>
-  </router-link>
+  </div>
 </template>
 
 <script>
 export default {
   props: {
     country: Object
+  },
+  methods: {
+    newBookmark: function(country) {
+      console.log('New Bookmark')
+      console.log(country.code)
+      this.$store
+        .dispatch('newBookmark', country)
+        .then(() => {
+          this.$router.push({
+            name: 'languages',
+            params: { country: country.code }
+          })
+        })
+        .catch(() => {
+          console.log('There was a problem storing country')
+        })
+    }
   }
 }
 </script>

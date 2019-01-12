@@ -23,9 +23,6 @@ export default {
       .then(response => {
         console.log(response.data) // For now, logs out the response
         this.languages = response.data
-        var bookmark = {}
-        bookmark.country = this.country
-        this.$store.dispatch('setBookmark', bookmark)
       })
       .catch(error => {
         console.log('There was an error:', error.response) // Logs out the error
