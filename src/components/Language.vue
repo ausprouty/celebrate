@@ -17,16 +17,17 @@ export default {
   computed: mapState(['bookmark']),
   methods: {
     updateBookmark: function(language) {
-      console.log('update Bookmark with')
-      console.log(language)
       this.$store
         .dispatch('updateBookmark', ['language', language])
         .then(() => {
+          console.log('results saved with bookmark value')
+         /console.log(this.bookmark)
+          console.log('that was value')
           this.$router.push({
             name: 'library',
             params: {
               country: this.bookmark.country.code,
-              language: this.bookmark.language.folder
+              folder: this.bookmark.language.folder
             }
           })
         })
