@@ -1,32 +1,45 @@
 [
 		{
+			"id": 1,
 			"book" : "issues",
 			"title": "የኛ ጉዳይ",
-			"link": "myfriends/issues.html",
-			"image": "issues.jpg"
+			"link": "myfriends/issues",
+			"image": "issues.jpg",
+			"format": "series",
+			"instructions": ""
 		},
-		{
+		{ 
+		    "id": 2,
 			"book" : "basics",
 			"title": "መሰረታዊ ውይዪቶች",
-			"link": "myfriends/basics.html",
-			"image": "basics.jpg"
+			"link": "myfriends/basics",
+			"image": "basics.jpg",
+			"format": "series",
+			"instructions": ""			
 		},
 		{
+			"id": 3,
 			"book" : "community",
 			"title": "ህብረተሰቡ ውስ መኖር",
-			"link": "myfriends/community.html",
-			"image": "community.jpg"
+			"link": "myfriends/community",
+			"image": "community.jpg",
+			"format": "page"
 		},
 		{
+			"id": 4,
 			"book" : "firststeps",
 			"title": "የመጀመሪያ እርምጃ",
-			"link": "firststeps/index.html",
-			"image": "firststeps.jpg"
+			"link": "firststeps/index",
+			"image": "firststeps.jpg",
+			"format": "series",
+			"instructions": ""
 		},
 		{
+			"id": 6,
 			"book" : "about",
 			"title": "ስለ",
-			"link": "myfriends/about.html",
-			"image": "about.jpg"
+			"link": "myfriends/about",
+			"image": "about.jpg",
+			"format": "page"
 		}
 		]

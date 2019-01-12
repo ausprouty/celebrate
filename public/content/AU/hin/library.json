@@ -1,32 +1,45 @@
 [
 		{
+			"id": 1,
 			"book" : "issues",
 			"title": "जिंदगी के मसले",
-			"link": "myfriends/issues.html",
-			"image": "issues.jpg"
+			"link": "myfriends/issues",
+			"image": "issues.jpg",
+			"format": "series",
+			"instructions": ""
 		},
-		{
+		{ 
+		    "id": 2,
 			"book" : "basics",
 			"title": "मूल बातचीत",
-			"link": "myfriends/basics.html",
-			"image": "basics.jpg"
+			"link": "myfriends/basics",
+			"image": "basics.jpg",
+			"format": "series",
+			"instructions": ""			
 		},
 		{
+			"id": 3,
 			"book" : "community",
 			"title": "लाइव समुदाय",
-			"link": "myfriends/community.html",
-			"image": "community.jpg"
+			"link": "myfriends/community",
+			"image": "community.jpg",
+			"format": "page"
 		},
 		{
+			"id": 4,
 			"book" : "firststeps",
 			"title": "पहला चरणप्रभाव",
-			"link": "firststeps/index.html",
-			"image": "firststeps.jpg"
+			"link": "firststeps/index",
+			"image": "firststeps.jpg",
+			"format": "series",
+			"instructions": ""
 		},
 		{
+			"id": 6,
 			"book" : "about",
 			"title": "के बारे में",
-			"link": "myfriends/about.html",
-			"image": "about.jpg"
+			"link": "myfriends/about",
+			"image": "about.jpg",
+			"format": "page"
 		}
 		]

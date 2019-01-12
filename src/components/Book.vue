@@ -27,7 +27,7 @@ export default {
             name: 'series',
             params: {
               folder: this.bookmark.language.folder,
-              series: this.bookmark.book.link
+              series: this.bookmark.book.book
             }
           })
         })
