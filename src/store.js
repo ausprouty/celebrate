@@ -6,28 +6,25 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     imgDir: {
-      library: '/img/libary/menu-europe/',
-      country: '/img/country/',
+      library: '/img/library/',
+      country: '/img/',
       icon: '/img/icon/'
     },
-    bookmark: {
-      country: '',
-      language: '',
-      library: '',
-      book: '',
-      page: ''
-    }
+    bookmark: localStorage.getItem('bookmark')
+      ? JSON.parse(localStorage.getItem('bookmark'))
+      : {}
   },
   mutations: {
     NEW_BOOKMARK(state, country) {
       console.log(country)
       state.bookmark = {}
       state.bookmark.country = country
+      localStorage.setItem('bookmark', JSON.stringify(state.bookmark))
     },
     UPDATE_BOOKMARK(state, [mark, value]) {
       console.log('mark is ' + mark)
       console.log('value is ')
-      console.log(value);
+      console.log(value)
       switch (mark) {
         case 'language':
           state.bookmark.language = value
@@ -42,6 +39,7 @@ export default new Vuex.Store({
           state.bookmark.page = value
           break
       }
+      localStorage.setItem('bookmark', JSON.stringify(state.bookmark))
     }
   },
   actions: {
@@ -49,8 +47,8 @@ export default new Vuex.Store({
       commit('NEW_BOOKMARK', country)
     },
     updateBookmark({ commit }, [mark, value]) {
-      console.log ('updateBookmark with')
-      console.log (value);
+      console.log('updateBookmark with')
+      console.log(value)
       commit('UPDATE_BOOKMARK', [mark, value])
     }
   }

@@ -1,7 +1,7 @@
 <template>
   <div class="event-link" v-on:click="newBookmark(country)">
     <div class="event-card -shadow">
-      <img v-bind:src="country.image" class="flag">
+      <img v-bind:src="imgDir.country  + country.image" class="flag">
       <div class="country">
         <span class="bold">{{country.name}}</span>
         <br>
@@ -12,10 +12,12 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 export default {
   props: {
     country: Object
   },
+  computed: mapState(['bookmark', 'imgDir']),
   methods: {
     newBookmark: function(country) {
       console.log('New Bookmark')

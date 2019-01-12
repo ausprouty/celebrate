@@ -1,30 +1,35 @@
 [
 		{
+			"book" : "issues",
 			"title": "Temas de la vida",
 			"link": "myfriends/issues.html",
-			"image": "issues.png"
+			"image": "issues.jpg"
 		},
 		{
+			"book" : "basics",
 			"title": "Conversaciones Básicas",
 			"link": "myfriends/basics.html",
-			"image": "basics.png"
+			"image": "basics.jpg"
 		},
 		{
+			"book" : "community",
 			"title": "Comunidad vivo",
 			"link": "myfriends/community.html",
-			"image": "community.png"
+			"image": "community.jpg"
 		},
 		{
+			"book" : "firststeps",
 			"title": "Primeros pasos",
 			"link": "firststeps/index.html",
-			"image": "firststeps.png"
+			"image": "firststeps.jpg"
 		},
-		{
+		{   "book" : "compass",
 			"title": "Brújula",
 			"link": "compass/index.html",
 			"image": "compass.jpg"
 		},
 		{
+			"book" : "about",
 			"title": "Acerca de",
 			"link": "myfriends/about.html",
 			"image": "about.jpg"

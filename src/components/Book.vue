@@ -1,7 +1,7 @@
 <template>
   <div class="event-link" v-on:click="updateBookmark(book)">
     <div class="event-card -shadow">
-      <img v-bind:src="imgDir.library + book.image" class="book">
+      <img v-bind:src="imgDir.library + bookmark.language.images + '/' + book.image" class="book">
       <div class="book">
         <span class="bold">{{book.title}}</span>
       </div>
@@ -27,7 +27,7 @@ export default {
             name: 'series',
             params: {
               folder: this.bookmark.language.folder,
-              series: this.bookmark.book
+              series: this.bookmark.book.link
             }
           })
         })
@@ -38,10 +38,6 @@ export default {
   }
 }
 </script>
-
-}
-</script>
-
 <style scoped>
 img.book {
   width: 25%;

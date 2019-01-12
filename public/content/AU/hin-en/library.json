@@ -1,25 +1,30 @@
 [
 		{
+			"book" : "issues",
 			"title": "jindagee ke masale",
 			"link": "myfriends/issues.html",
-			"image": "issues.png"
+			"image": "issues.jpg"
 		},
 		{
+			"book" : "basics",
 			"title": "mool baatacheet",
 			"link": "myfriends/basics.html",
-			"image": "basics.png"
+			"image": "basics.jpg"
 		},
 		{
+			"book" : "community",
 			"title": "Laiv samudaay",
 			"link": "myfriends/community.html",
-			"image": "community.png"
+			"image": "community.jpg"
 		},
 		{
+			"book" : "firststeps",
 			"title": "Phlaa chrnprbhaav",
 			"link": "firststeps/index.html",
-			"image": "firststeps.png"
+			"image": "firststeps.jpg"
 		},
 		{
+			"book" : "about",
 			"title": "ke baare mein",
 			"link": "myfriends/about.html",
 			"image": "about.jpg"

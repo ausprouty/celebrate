@@ -1,25 +1,30 @@
 [
 		{
+			"book" : "issues",
 			"title": "जिंदगी के मसले",
 			"link": "myfriends/issues.html",
-			"image": "issues.png"
+			"image": "issues.jpg"
 		},
 		{
+			"book" : "basics",
 			"title": "मूल बातचीत",
 			"link": "myfriends/basics.html",
-			"image": "basics.png"
+			"image": "basics.jpg"
 		},
 		{
+			"book" : "community",
 			"title": "लाइव समुदाय",
 			"link": "myfriends/community.html",
-			"image": "community.png"
+			"image": "community.jpg"
 		},
 		{
+			"book" : "firststeps",
 			"title": "पहला चरणप्रभाव",
 			"link": "firststeps/index.html",
-			"image": "firststeps.png"
+			"image": "firststeps.jpg"
 		},
 		{
+			"book" : "about",
 			"title": "के बारे में",
 			"link": "myfriends/about.html",
 			"image": "about.jpg"

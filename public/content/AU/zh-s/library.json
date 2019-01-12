@@ -1,30 +1,35 @@
 [
 		{
+			"book" : "issues",
 			"title": "生活问题",
 			"link": "myfriends/issues.html",
-			"image": "issues.png"
+			"image": "issues.jpg"
 		},
 		{
+			"book" : "basics",
 			"title": "基本对话",
 			"link": "myfriends/basics.html",
-			"image": "basics.png"
+			"image": "basics.jpg"
 		},
 		{
+			"book" : "community",
 			"title": "生活的社区",
 			"link": "myfriends/community.html",
-			"image": "community.png"
+			"image": "community.jpg"
 		},
 		{
+			"book" : "firststeps",
 			"title": "第一步",
 			"link": "firststeps/index.html",
-			"image": "firststeps.png"
+			"image": "firststeps.jpg"
 		},
-		{
+		{   "book" : "compass",
 			"title": "罗盘",
 			"link": "compass/index.html",
 			"image": "compass.jpg"
 		},
 		{
+			"book" : "about",
 			"title": "关于",
 			"link": "myfriends/about.html",
 			"image": "about.jpg"

@@ -3,14 +3,14 @@
 		"english": "Australia",
 		"name": "Australia",
 		"index": "index-AU",
-		"image": "/img/country/AU.png"
+		"image": "/country/AU.png"
 	},
 	{
 		"code": "ES",
 		"english": "Spain",
 		"name": "España",
 		"index": "index-ES",
-		"image": "/img/country/ES.png"
+		"image": "/country/ES.png"
 	
 	},
 	{
@@ -18,7 +18,7 @@
 		"english": "Germany",
 		"name": "Deutschland",
 		"index": "index-DE",
-		"image": "/img/country/DE.png"
+		"image": "/country/DE.png"
 	},
 	
 	{
@@ -26,20 +26,20 @@
 		"english": "Switzeland",
 		"name": "Schweizerische",
 		"index": "index-CH",
-		"image": "/img/country/CH.png"
+		"image": "/country/CH.png"
 	},
 	{
 		"code": "US",
 		"english": "United States",
 		"name": "United States",
 		"index": "index-US",
-		"image": "/img/country/US.png"
+		"image": "/country/US.png"
 	},
 	{
 		"code": "CN",
 		"english": "China",
 		"name": "中华人民共和国",
 		"index": "index-CN",
-		"image": "/img/country/CN.png"
+		"image": "/country/CN.png"
 	}
 ]
