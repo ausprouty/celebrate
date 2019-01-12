@@ -1,16 +1,36 @@
-data(){
-    return{
-      languages:[]
-    }
+<template>
+  <router-link
+    class="event-link"
+    :to="{ name: 'library', params: { country: bookmark.country, folder: language.folder }}"
+  >
+    <div class="event-card -shadow">
+      <div class="language">
+        <span class="bold">{{language.name}}</span>
+      </div>
+    </div>
+  </router-link>
+</template>
+
+<script>
+import { mapState } from 'vuex'
+export default {
+  props: {
+    language: Object
   },
-  created() {
-    axios
-      .get('http://localhost:3001/index-' + country)  // Does a get request
-      .then(response => {
-        console.log(response.data) // For now, logs out the response
-        this.languages = response.data
-      })
-      .catch(error => {
-        console.log('There was an error:', error.response) // Logs out the error
-      })
-  }
+  computed: mapState(['bookmark'])
+}
+</script>
+
+<style scoped>
+div.language {
+  width: 100%;
+  font-size: 24px;
+}
+.language {
+  text-align: left;
+}
+
+.bold {
+  font-weight: bold;
+}
+</style>

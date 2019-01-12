@@ -24,17 +24,34 @@ export default new Vuex.Store({
       state.bookmark = {}
       state.bookmark.country = country
     },
-    UPDATE_BOOKMARK(state, bookmark) {
-      console.log(bookmark)
-      state.bookmark = bookmark
+    UPDATE_BOOKMARK(state, [mark, value]) {
+      console.log('mark is ' + mark)
+      console.log('value is ')
+      console.log(value);
+      switch (mark) {
+        case 'language':
+          state.bookmark.language = value
+          break
+        case 'library':
+          state.bookmark.library = value
+          break
+        case 'book':
+          state.bookmark.book = value
+          break
+        case 'page':
+          state.bookmark.page = value
+          break
+      }
     }
   },
   actions: {
     newBookmark({ commit }, country) {
       commit('NEW_BOOKMARK', country)
     },
-    updateBookmark({ commit }, bookmark) {
-      commit('UPDATE_BOOKMARK', bookmark)
+    updateBookmark({ commit }, [mark, value]) {
+      console.log ('updateBookmark with')
+      console.log (value);
+      commit('UPDATE_BOOKMARK', [mark, value])
     }
   }
 })
