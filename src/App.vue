@@ -240,9 +240,9 @@ select::ms-expand {
   opacity: 0;
 }
 .event-card {
-  padding: 20px;
+  padding: 10px;
   width: 100%;
-  margin-bottom: 24px;
+  margin-bottom: 12px;
   transition: all 0.2s linear;
   cursor: pointer;
 }

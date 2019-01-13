@@ -40,6 +40,13 @@ export default {
 </script>
 
 <style scoped>
+.event-card {
+  padding: 10px;
+  width: 100%;
+  margin-bottom: 12px;
+  transition: all 0.2s linear;
+  cursor: pointer;
+}
 div.language {
   width: 100%;
   font-size: 24px;
