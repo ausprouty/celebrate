@@ -17,16 +17,6 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'home',
-      component: Home
-    },
-    {
-      path: '/country',
-      name: 'country',
-      component: Country
-    },
-    {
-      path: '/countries',
       name: 'countries',
       component: Countries
     },
@@ -59,6 +49,7 @@ export default new Router({
       name: 'Feedback',
       component: Feedback
     },
+    
     {
       path: '*',
       component: NotFoundComponent
