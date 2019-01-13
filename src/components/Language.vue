@@ -54,7 +54,6 @@ div.language {
 .language {
   text-align: left;
 }
-
 .bold {
   font-weight: bold;
 }
