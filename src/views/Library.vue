@@ -22,8 +22,10 @@ export default {
   created() {
     DataService.getLibrary(this.country, this.folder)
       .then(response => {
+        console.log('library in Library.Vue')
         console.log(response.data) // For now, logs out the response
         this.library = response.data
+
       })
       .catch(error => {
         console.log('There was an error:', error.response) // Logs out the error

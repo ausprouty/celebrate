@@ -1,9 +1,9 @@
 <template>
   <div class="event-link" v-on:click="updateBookmark(chapter)">
     <div class="event-card -shadow">
-      <img v-bind:src="imgDir.library + bookmark.language.images + '/' + chapter.image" class="chapter">
       <div class="chapter">
-        <span class="bold">{{chapter.title}}</span>
+        <div class="bold">{{chapter.title}}</div>
+        <div class="bold">{{chapter.description}}</div>
       </div>
     </div>
   </div>
@@ -34,7 +34,14 @@ export default {
         .catch(() => {
           console.log('There was a problem storing language')
         })
+    },
+    showVariables: function(chapter) {
+      console.log('chapter')
+      console.log(chapter)
     }
+  },
+  beforeMount() {
+    this.showVariables(chapter)
   }
 }
 </script>

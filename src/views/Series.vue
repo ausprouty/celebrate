@@ -1,7 +1,8 @@
 <template>
   <div>
-    <h1>This is the index page for {{this.series.series}} series</h1>
-    <Chapter v-for="chapter in chapters" :key="chapter.id" :series="chapter"/>
+    <h2>{{bookmark.book.title}}</h2>
+    <p>{{bookmark.book.instructions}}</p>
+    <Chapter v-for="chapter in chapters" :key="chapter.id" :chapter="chapter"/>
   </div>
 </template>
 
@@ -18,7 +19,7 @@ export default {
   data() {
     return {
       seriesDetails: [],
-      chapters:[]
+      chapters: []
     }
   },
   created() {
@@ -30,19 +31,17 @@ export default {
     )
       .then(response => {
         console.log(response.data) // For nseriesDetailsow, logs out the response
-        this.seriesDetails = response.data[0]
+        this.seriesDetails = response.data
         console.log('this.seriesDetails')
         console.log(this.seriesDetails)
-        
-        var chapters = this.seriesDetails.chapters
-        console.log('chapters')
-        console.log(chapters)
+
+        this.chapters = this.seriesDetails.chapters
+        console.log('chapters in Series.Vue')
+        console.log(this.chapters)
       })
       .catch(error => {
         console.log('There was an error:', error.response) // Logs out the error
       })
   }
-}
-</script>
 }
 </script>
