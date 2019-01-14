@@ -23,13 +23,23 @@ export default {
         .then(() => {
           console.log('Library saved results with bookmark value')
           console.log(this.bookmark)
-          this.$router.push({
-            name: 'series',
-            params: {
-              folder: this.bookmark.language.folder,
-              series: this.bookmark.book.book
-            }
-          })
+          if (this.bookmark.book.format == 'series') {
+            this.$router.push({
+              name: 'series',
+              params: {
+                folder: this.bookmark.language.folder,
+                series: this.bookmark.book.book
+              }
+            })
+          } else {
+            this.$router.push({
+              name: 'topic',
+              params: {
+                folder: this.bookmark.language.folder,
+                series: this.bookmark.book.book
+              }
+            })
+          }
         })
         .catch(() => {
           console.log('There was a problem storing language')
