@@ -1,8 +1,8 @@
 <template>
-<div>
-  <h1>Library for {{folder}} in {{country}}  </h1>
-  <Book v-for="book in library" :key="book.title" :book="book"/>
-</div>
+  <div>
+    <h1>Library for {{folder}} in {{country}}</h1>
+    <Book v-for="book in library" :key="book.title" :book="book"/>
+  </div>
 </template>
 
 
@@ -10,7 +10,7 @@
 import Book from '@/components/Book.vue'
 import DataService from '@/services/DataService.js'
 export default {
-   props: ['country', 'folder'],
+  props: ['country', 'folder'],
   components: {
     Book
   },

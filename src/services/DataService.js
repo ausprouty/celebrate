@@ -17,12 +17,18 @@ export default {
     return apiClient.get('/content/' + country + '/languages.json')
   },
   getLibrary(country, language) {
-    return apiClient.get('/content/' + country + '/' + language + '/library.json')
+    return apiClient.get(
+      '/content/' + country + '/' + language + '/library.json'
+    )
   },
-  getSeries(country, language, folder, series) {
-    return apiClient.get('/content/' + country + '/' + language + folder + '/' + series + '-chapters.json')
+  getSeries(country, language, folder, index) {
+    return apiClient.get(
+      '/content/' + country + '/' + language + '/' + folder + '/' + index
+    )
   },
   getPage(country, language, folder, page) {
-    return apiClient.get('/content/' + country + '/' + language + folder + '/' + page + '.html')
+    return apiClient.get(
+      '/content/' + country + '/' + language + folder + '/' + page + '.html'
+    )
   }
 }

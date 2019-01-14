@@ -1,5 +1,8 @@
 <template>
-  <h1>This is the index page for {{series}} series</h1>
+  <div>
+    <h1>This is the index page for {{this.series.series}} series</h1>
+    <Chapter v-for="chapter in chapters" :key="chapter.id" :series="chapter"/>
+  </div>
 </template>
 
 <script>
@@ -14,14 +17,26 @@ export default {
   },
   data() {
     return {
-      library: []
+      seriesDetails: [],
+      chapters:[]
     }
   },
   created() {
-    DataService.getSeries(bookmark.country.code, bookmark.language.folder, 'folder', 'series')
+    DataService.getSeries(
+      this.bookmark.country.code,
+      this.bookmark.language.folder,
+      this.bookmark.book.folder,
+      this.bookmark.book.index
+    )
       .then(response => {
-        console.log(response.data) // For now, logs out the response
-        this.library = response.data
+        console.log(response.data) // For nseriesDetailsow, logs out the response
+        this.seriesDetails = response.data[0]
+        console.log('this.seriesDetails')
+        console.log(this.seriesDetails)
+        
+        var chapters = this.seriesDetails.chapters
+        console.log('chapters')
+        console.log(chapters)
       })
       .catch(error => {
         console.log('There was an error:', error.response) // Logs out the error
