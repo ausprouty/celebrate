@@ -4,7 +4,7 @@
 			"book" : "issues",
 			"title": "Lebensthemen",
 			"folder": "myfriends",
-			"index": "principle-chapters.json"
+			"index": "principle-chapters.json",
 			"image": "issues.jpg",
 			"format": "series",
 			"instructions": ""
@@ -14,7 +14,7 @@
 			"book" : "basics",
 			"title": "Basics",
 			"folder": "myfriends",
-			"index": "basics-chapters.json"
+			"index": "basics-chapters.json",
 			"image": "basics.jpg",
 			"format": "series",
 			"instructions": ""			
@@ -33,7 +33,7 @@
 			"book" : "firststeps",
 			"title": "Erste Schritte",
 			"folder": "first_steps",
-			"index": "first_steps-chapters.json"
+			"index": "first_steps-chapters.json",
 			"image": "firststeps.jpg",
 			"format": "series",
 			"instructions": ""
@@ -43,7 +43,7 @@
 			"book" : "compass",
 			"title": "SHINE Student Group",
 			"folder": "compass",
-			"index": "compass-chapters.json"
+			"index": "compass-chapters.json",
 			"image": "compass.jpg",
 			"format": "series",
 			"instructions": ""

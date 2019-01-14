@@ -1,0 +1,74 @@
+[{		
+	"series" :"first_steps",
+	"language" : "fra",
+	"description":"First Steps est une ressource pour vous aider à comprendre et à se développer dans ce que signifie être un disciple du Christ. Ces séances nous aideront à découvrir ensemble et appliquer quelques-uns des principes de base de ce que signifie suivre le Christ et partager avec d&#39;autres lui.",
+	"chapters": [
+		{"id": 1, 
+			"title": "Intro", 
+			"description": "Relier les gens à Jésus et l&#39;autre",
+			"count":"1",
+			"filename":"step1" 
+		},
+		{"id": 2, 
+			"title": "Assurance", 
+			"description":"Comment une personne qui a reçu Jésus peut savoir avec certitude que nous allons passer l&#39;éternité avec Dieu?" ,
+			"count":"2",
+			"filename":"step2" 
+		},
+		{"id": 3,
+			"title": "Vivre l&#39;amour et le pardon de Dieu",
+			"description": "Comment pouvons-nous vivre en permanence une relation étroite avec Dieu?",
+			"count":"3",
+			"filename":"step3" 
+		},
+			{"id": 4, 
+			"title": "Partage A propos de Jésus avec les autres", 
+			"description": "Si avoir une relation avec Jésus est si bonnes nouvelles, comment pouvons-nous dire aux autres de ces bonnes nouvelles?",
+			"count":"4",
+			"filename":"step4" 
+		},
+		{"id": 5, 
+			"title": "Grandir Spirituellement",
+			"description": "Comment pouvons-nous continuer à croître en relation avec Jésus?",
+			"count":"5",
+			"filename":"step5" 
+		},
+		{"id": 6, 
+			"title": "Qui est le Saint-Esprit?", 
+			"description": "Qui nous aide à comprendre et découvrir les choses que nous avons parlé au cours des dernières semaines?",
+			"count":"6",
+			"filename":"step6" 
+		},
+		{"id": 7, 
+			"title": "Vivre dans la puissance de Dieu", 
+			"description": "Comment vivons-nous la vie chrétienne quand il peut sembler difficile à certains moments?" ,
+			"count":"7",
+			"filename":"step7" 
+		},
+		{"id": 8, 
+			"title": "Satisfait?", 
+			"description": "" ,
+			"count":"",
+			"filename":"satisfied" 
+		},
+		{"id": 9, 
+			"title": "Et après", 
+			"description": "" ,
+			"count":"",
+			"filename":"next" 
+		},
+		{"id": 998, 
+			"title": "Sur", 
+			"description": "" ,
+			"count":"",
+			"filename":"intro" 
+		},
+		{"id": 999, 
+			"title": "Conseils", 
+			"description": "" ,
+			"count":"",
+			"filename":"tips" 
+		}
+
+	]
+}]

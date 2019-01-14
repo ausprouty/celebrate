@@ -1,0 +1,50 @@
+[{		
+	"series" :"principles",
+	"language" : "zh-s",
+	"description":"|principles-text|",
+	"chapters": [
+		
+		{"id": 1,
+			"title" :  "1. 神听到我了吗？ ",
+			"description" :"",
+			"verses" : "马太福音 7:7-11",
+			"count": 1,
+			"filename" : "principle201"
+		},
+		{"id": 2,
+			"title" :  "2. 重新开始 ",
+			"description" :"",
+			"verses" : "路加福音 19:1-10",
+			"count": 2,
+			"filename" : "principle202"
+		},
+		{"id": 3,
+			"title" :  "3. 有焦点的生活 ",
+			"description" :"",
+			"verses" : "马太福音 22:34-37",
+			"count": 3,
+			"filename" : "principle203"
+		},
+		{"id": 4,
+			"title" :  "4. 有意义的生活",
+			"description" :"",
+			"verses" : "约翰福音 7:37-39",
+			"count": 4,
+			"filename" : "principle204"
+		},
+		{"id": 5,
+			"title" :  "5. 无忧无虑 ",
+			"description" :"",
+			"verses" : "马太福音 6:24-33",
+			"count": 5,
+			"filename" : "principle205"
+		},
+		{"id": 6,
+			"title" :  "6. 充充足足 ",
+			"description" :"",
+			"verses" : "马可福音 6:34-44",
+			"count": 6,
+			"filename" : "principle206"
+		}
+]
+}]
