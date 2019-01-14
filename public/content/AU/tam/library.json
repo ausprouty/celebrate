@@ -3,7 +3,8 @@
 			"id": 1,
 			"book" : "issues",
 			"title": "வாழ்க்கை பிரச்சனைகள்",
-			"link": "myfriends/issues",
+			"folder": "myfriends",
+			"index": "principle-chapters.json"
 			"image": "issues.jpg",
 			"format": "series",
 			"instructions": ""
@@ -12,7 +13,8 @@
 		    "id": 2,
 			"book" : "basics",
 			"title": "அடிப்படை உரையாடல்கள்",
-			"link": "myfriends/basics",
+			"folder": "myfriends",
+			"index": "basics-chapters.json"
 			"image": "basics.jpg",
 			"format": "series",
 			"instructions": ""			
@@ -21,7 +23,8 @@
 			"id": 3,
 			"book" : "community",
 			"title": "சமுதாயமாக வாழ்வது",
-			"link": "myfriends/community",
+			"folder": "myfriends",
+			"page": "community",
 			"image": "community.jpg",
 			"format": "page"
 		},
@@ -29,7 +32,8 @@
 			"id": 4,
 			"book" : "firststeps",
 			"title": "முதல் கட்டம்",
-			"link": "firststeps/index",
+			"folder": "first_steps",
+			"index": "first_steps-chapters.json"
 			"image": "firststeps.jpg",
 			"format": "series",
 			"instructions": ""
@@ -38,7 +42,8 @@
 			"id": 6,
 			"book" : "about",
 			"title": "பற்றி",
-			"link": "myfriends/about",
+			"folder": "myfriends",
+			"page": "community",
 			"image": "about.jpg",
 			"format": "page"
 		}

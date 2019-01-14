@@ -2,7 +2,7 @@
 		{
 			"id": 1,
 			"book" : "issues",
-			"title": "زندگی کے مسائل",
+			"title": "jindagee ke masale",
 			"folder": "myfriends",
 			"index": "principle-chapters.json"
 			"image": "issues.jpg",
@@ -12,7 +12,7 @@
 		{ 
 		    "id": 2,
 			"book" : "basics",
-			"title": "بنیادی گفتگو",
+			"title": "mool baatacheet",
 			"folder": "myfriends",
 			"index": "basics-chapters.json"
 			"image": "basics.jpg",
@@ -22,7 +22,7 @@
 		{
 			"id": 3,
 			"book" : "community",
-			"title": "زِندہ معاشرہ",
+			"title": "Laiv samudaay",
 			"folder": "myfriends",
 			"page": "community",
 			"image": "community.jpg",
@@ -31,7 +31,7 @@
 		{
 			"id": 4,
 			"book" : "firststeps",
-			"title": "پہلا قدم",
+			"title": "Phlaa chrnprbhaav",
 			"folder": "first_steps",
 			"index": "first_steps-chapters.json"
 			"image": "firststeps.jpg",
@@ -41,7 +41,7 @@
 		{
 			"id": 6,
 			"book" : "about",
-			"title": "کی بابت",
+			"title": "ke baare mein",
 			"folder": "myfriends",
 			"page": "community",
 			"image": "about.jpg",

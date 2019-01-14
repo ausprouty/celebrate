@@ -4,6 +4,8 @@
 
 <script>
 import { mapState } from 'vuex'
+import Chapter from '@/components/Chapter.vue'
+import DataService from '@/services/DataService.js'
 export default {
   props: ['folder', 'series'],
   computed: mapState(['bookmark', 'imgDir']),
@@ -16,7 +18,7 @@ export default {
     }
   },
   created() {
-    DataService.getSeries(bookmark.country.code, bookmark.language.folder, bookmark..folder, this.series))
+    DataService.getSeries(bookmark.country.code, bookmark.language.folder, 'folder', 'series')
       .then(response => {
         console.log(response.data) // For now, logs out the response
         this.library = response.data

@@ -20,9 +20,9 @@ export default {
     return apiClient.get('/content/' + country + '/' + language + '/library.json')
   },
   getSeries(country, language, folder, series) {
-    return apiClient.get('/'/content/' + country + '/' + language + folder + '/' + series + '-chapters.json')
+    return apiClient.get('/content/' + country + '/' + language + folder + '/' + series + '-chapters.json')
   },
   getPage(country, language, folder, page) {
-    return apiClient.get('/'/content/' + country + '/' + language + folder + '/' + page + '.html')
+    return apiClient.get('/content/' + country + '/' + language + folder + '/' + page + '.html')
   }
 }
