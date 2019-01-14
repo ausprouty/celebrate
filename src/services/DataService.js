@@ -16,7 +16,13 @@ export default {
   getLanguages(country) {
     return apiClient.get('/content/' + country + '/languages.json')
   },
-  getLibrary(country, folder) {
-    return apiClient.get('/content/' + country + '/' + folder + '/library.json')
+  getLibrary(country, language) {
+    return apiClient.get('/content/' + country + '/' + language + '/library.json')
+  },
+  getSeries(country, language, folder, series) {
+    return apiClient.get('/'/content/' + country + '/' + language + folder + '/' + series + '-chapters.json')
+  },
+  getPage(country, language, folder, page) {
+    return apiClient.get('/'/content/' + country + '/' + language + folder + '/' + page + '.html')
   }
 }

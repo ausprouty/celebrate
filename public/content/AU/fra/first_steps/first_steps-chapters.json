@@ -1,7 +1,6 @@
 [{		
 	"series" :"first_steps",
 	"language" : "fra",
-	"rldir": "ltr",
 	"description":"First Steps est une ressource pour vous aider à comprendre et à se développer dans ce que signifie être un disciple du Christ. Ces séances nous aideront à découvrir ensemble et appliquer quelques-uns des principes de base de ce que signifie suivre le Christ et partager avec d&#39;autres lui.",
 	"chapters": [
 		{"id": 1, 

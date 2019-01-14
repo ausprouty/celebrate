@@ -1,7 +1,6 @@
 [{		
 	"series" :"first_steps",
 	"language" : "hin-en",
-	"rldir": "ltr",
 	"description":"[hl-102]",
 	"chapters": [
 		{"id": 1, 

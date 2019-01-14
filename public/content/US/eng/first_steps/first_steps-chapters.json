@@ -1,7 +1,6 @@
 [{		
 	"series" :"first_steps",
 	"language" : "eng",
-	"rldir": "ltr",
 	"description":"First Steps is a resource to help you understand and grow in what it means to be a follower of Christ. These sessions will help us to discover together and apply a few of the basic principles of what it means to follow Christ and share him with others.",
 	"chapters": [
 		{"id": 1, 

@@ -1,7 +1,6 @@
 [{		
 	"series" :"principles",
 	"language" : "arb",
-	"rldir": "rtl",
 	"description":"|principles-text|",
 	"chapters": [
 		

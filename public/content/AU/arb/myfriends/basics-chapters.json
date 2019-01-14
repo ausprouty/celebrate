@@ -1,7 +1,6 @@
 [{		
 	"series" :"basics",
 	"language" : "arb",
-	"rldir": "rtl",
 	"description":"",
 	"chapters": [
 	{"id": 1,
