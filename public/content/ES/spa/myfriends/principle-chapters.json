@@ -1,0 +1,51 @@
+[{		
+	"series" :"principles",
+	"language" : "spa",
+	"rldir": "ltr",
+	"description":"|principles-text|",
+	"chapters": [
+		
+		{"id": 1,
+			"title" :  "1. ¿DIOS ME ESCUCHA?",
+			"description" :"",
+			"verses" : "Matthew 7:7-11",
+			"count": 1,
+			"filename" : "principle201"
+		},
+		{"id": 2,
+			"title" :  "2. UN NUEVO COMIENZO",
+			"description" :"",
+			"verses" : "Luke 19:1-10",
+			"count": 2,
+			"filename" : "principle202"
+		},
+		{"id": 3,
+			"title" :  "3. VIVIENDO CON ENFOQUE",
+			"description" :"",
+			"verses" : "Matthew 22:34-37",
+			"count": 3,
+			"filename" : "principle203"
+		},
+		{"id": 4,
+			"title" :  "4. VIDA CON PROPÓSITO",
+			"description" :"",
+			"verses" : "John 7:37-39",
+			"count": 4,
+			"filename" : "principle204"
+		},
+		{"id": 5,
+			"title" :  "5. SIN PREOCUPACIONES",
+			"description" :"",
+			"verses" : "Matthew 6:24-33",
+			"count": 5,
+			"filename" : "principle205"
+		},
+		{"id": 6,
+			"title" :  "6. MAS QUE SUFICIENTE",
+			"description" :"",
+			"verses" : "Mark 6:34-44",
+			"count": 6,
+			"filename" : "principle206"
+		}
+]
+}]

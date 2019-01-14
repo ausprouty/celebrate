@@ -1,0 +1,86 @@
+[{		
+	"series" :"basics",
+	"language" : "gaz",
+	"rldir": "ltr",
+	"description":"",
+	"chapters": [
+	{"id": 1,
+		"title": "Iddoo Dhaabaa",
+		"desciption": "",
+		"count": 1,
+		"filename": "basics101"
+	},
+	{"id": 2,
+		"title": "Filannoo",
+		"desciption": "",
+		"count": 2,
+		"filename": "basics102"
+	},
+	{"id": 3,
+		"title": "Lolaa Bishaanii",
+		"desciption": "",
+		"count": 3,
+		"filename": "basics103"
+	},
+	{"id": 4,
+		"title": "Wantoota Kudhan",
+		"desciption": "",
+		"count": 4,
+		"filename": "basics104"
+	},
+	{"id": 5,
+		"title": "Kakuu Haaraa",
+		"desciption": "",
+		"count": 5,
+		"filename": "basics105"
+	},
+	{"id": 6,
+		"title": "Tajaajilaa",
+		"desciption": "",
+		"count": 6,
+		"filename": "basics106"
+	},
+	{"id": 7,
+		"title": "Mul'ii",
+		"desciption": "",
+		"count": 7,
+		"filename": "basics107"
+	},
+	{"id": 8,
+		"title": "Waaqayyo Wajjin Dubbachuu",
+		"desciption": "",
+		"count": 8,
+		"filename": "basics108"
+	},
+	{"id": 9,
+		"title": "Ogeessa moo Gowwaa",
+		"desciption": "",
+		"count": 9,
+		"filename": "basics109"
+	},
+	{"id": 10,
+		"title": "Jireeyna Haaraa",
+		"desciption": "",
+		"count": 10,
+		"filename": "basics110"
+	},
+	{"id": 11,
+		"title": "Waaqayyoon Beekuu",
+		"desciption": "",
+		"count": "",
+		"filename": "gospel"
+	},
+	{"id": 12,
+		"title": "Ayyaanessuu",
+		"desciption": "",
+		"count": "",
+		"filename": "celebrate"
+	},
+	{"id": 13,
+		"title": "Hawaasummaan Jiraadhu",
+		"desciption": "",
+		"count": "",
+		"filename": "community"
+	}
+  ]
+}]

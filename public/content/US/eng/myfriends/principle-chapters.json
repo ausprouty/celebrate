@@ -1,0 +1,51 @@
+[{		
+	"series" :"principles",
+	"language" : "eng",
+	"rldir": "ltr",
+	"description":"|principles-text|",
+	"chapters": [
+		
+		{"id": 1,
+			"title" :  "1. DOES GOD HEAR ME? ",
+			"description" :"",
+			"verses" : "Matthew 7:7-11",
+			"count": 1,
+			"filename" : "principle201"
+		},
+		{"id": 2,
+			"title" :  "2. WILL GOD ACCEPT ME?",
+			"description" :"",
+			"verses" : "Luke 19:1-10",
+			"count": 2,
+			"filename" : "principle202"
+		},
+		{"id": 3,
+			"title" :  "3. WHAT ARE LIFE‘S PRIORITIES?",
+			"description" :"",
+			"verses" : "Matthew 22:34-37",
+			"count": 3,
+			"filename" : "principle203"
+		},
+		{"id": 4,
+			"title" :  "4. HOW DO I LIVE A PURPOSEFUL LIFE?",
+			"description" :"",
+			"verses" : "John 7:37-39",
+			"count": 4,
+			"filename" : "principle204"
+		},
+		{"id": 5,
+			"title" :  "5. HOW CAN I WORRY LESS?",
+			"description" :"",
+			"verses" : "Matthew 6:24-33",
+			"count": 5,
+			"filename" : "principle205"
+		},
+		{"id": 6,
+			"title" :  "6. DOES GOD PROVIDE FOR ME?",
+			"description" :"",
+			"verses" : "Mark 6:34-44",
+			"count": 6,
+			"filename" : "principle206"
+		}
+]
+}]

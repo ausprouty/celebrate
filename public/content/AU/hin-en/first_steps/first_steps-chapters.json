@@ -1,0 +1,75 @@
+[{		
+	"series" :"first_steps",
+	"language" : "hin-en",
+	"rldir": "ltr",
+	"description":"[hl-102]",
+	"chapters": [
+		{"id": 1, 
+			"title": "[hl-101]", 
+			"description": "[hl-202]",
+			"count":"1",
+			"filename":"step1" 
+		},
+		{"id": 2, 
+			"title": "[hl-129]", 
+			"description":"[hl-134]" ,
+			"count":"2",
+			"filename":"step2" 
+		},
+		{"id": 3,
+			"title": "[hl-152]",
+			"description": "[hl-153]",
+			"count":"3",
+			"filename":"step3" 
+		},
+			{"id": 4, 
+			"title": "[hl-162]", 
+			"description": "[hl-163]",
+			"count":"4",
+			"filename":"step4" 
+		},
+		{"id": 5, 
+			"title": "[hl-168]",
+			"description": "[hl-169]",
+			"count":"5",
+			"filename":"step5" 
+		},
+		{"id": 6, 
+			"title": "[hl-174]", 
+			"description": "[hl-175]",
+			"count":"6",
+			"filename":"step6" 
+		},
+		{"id": 7, 
+			"title": "[hl-187]", 
+			"description": "[hl-188]" ,
+			"count":"7",
+			"filename":"step7" 
+		},
+		{"id": 8, 
+			"title": "[hl-218]", 
+			"description": "" ,
+			"count":"",
+			"filename":"satisfied" 
+		},
+		{"id": 9, 
+			"title": "[hl-217]", 
+			"description": "" ,
+			"count":"",
+			"filename":"next" 
+		},
+		{"id": 998, 
+			"title": "ke baare mein", 
+			"description": "" ,
+			"count":"",
+			"filename":"intro" 
+		},
+		{"id": 999, 
+			"title": "[hl-213]", 
+			"description": "" ,
+			"count":"",
+			"filename":"tips" 
+		}
+
+	]
+}]

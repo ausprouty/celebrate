@@ -33,7 +33,7 @@ export default {
             })
           } else {
             this.$router.push({
-              name: 'topic',
+              name: 'page',
               params: {
                 folder: this.bookmark.language.folder,
                 series: this.bookmark.book.book

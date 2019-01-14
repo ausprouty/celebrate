@@ -1,0 +1,86 @@
+[{		
+	"series" :"basics",
+	"language" : "fra",
+	"rldir": "ltr",
+	"description":"",
+	"chapters": [
+	{"id": 1,
+		"title": "Le jardin",
+		"desciption": "",
+		"count": 1,
+		"filename": "basics101"
+	},
+	{"id": 2,
+		"title": "Le choix",
+		"desciption": "",
+		"count": 2,
+		"filename": "basics102"
+	},
+	{"id": 3,
+		"title": "Une inondation",
+		"desciption": "",
+		"count": 3,
+		"filename": "basics103"
+	},
+	{"id": 4,
+		"title": "Dix choses",
+		"desciption": "",
+		"count": 4,
+		"filename": "basics104"
+	},
+	{"id": 5,
+		"title": "Un nouvel accord",
+		"desciption": "",
+		"count": 5,
+		"filename": "basics105"
+	},
+	{"id": 6,
+		"title": "Le serviteur",
+		"desciption": "",
+		"count": 6,
+		"filename": "basics106"
+	},
+	{"id": 7,
+		"title": "Une vidéo",
+		"desciption": "",
+		"count": 7,
+		"filename": "basics107"
+	},
+	{"id": 8,
+		"title": "Parler avec Dieu",
+		"desciption": "",
+		"count": 8,
+		"filename": "basics108"
+	},
+	{"id": 9,
+		"title": "Sage ou fou?",
+		"desciption": "",
+		"count": 9,
+		"filename": "basics109"
+	},
+	{"id": 10,
+		"title": "Nouvelle vie",
+		"desciption": "",
+		"count": 10,
+		"filename": "basics110"
+	},
+	{"id": 11,
+		"title": "Connaître Dieu",
+		"desciption": "",
+		"count": "",
+		"filename": "gospel"
+	},
+	{"id": 12,
+		"title": "Célébrer",
+		"desciption": "",
+		"count": "",
+		"filename": "celebrate"
+	},
+	{"id": 13,
+		"title": "Communauté",
+		"desciption": "",
+		"count": "",
+		"filename": "community"
+	}
+  ]
+}]

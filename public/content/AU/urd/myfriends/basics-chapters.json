@@ -1,0 +1,86 @@
+[{		
+	"series" :"basics",
+	"language" : "urd",
+	"rldir": "ltr",
+	"description":"",
+	"chapters": [
+	{"id": 1,
+		"title": "باغ",
+		"desciption": "",
+		"count": 1,
+		"filename": "basics101"
+	},
+	{"id": 2,
+		"title": "انتخاب",
+		"desciption": "",
+		"count": 2,
+		"filename": "basics102"
+	},
+	{"id": 3,
+		"title": "سیلاب",
+		"desciption": "",
+		"count": 3,
+		"filename": "basics103"
+	},
+	{"id": 4,
+		"title": "دس چیزیں",
+		"desciption": "",
+		"count": 4,
+		"filename": "basics104"
+	},
+	{"id": 5,
+		"title": "ایک نیا معاہدہ",
+		"desciption": "",
+		"count": 5,
+		"filename": "basics105"
+	},
+	{"id": 6,
+		"title": "خادم",
+		"desciption": "",
+		"count": 6,
+		"filename": "basics106"
+	},
+	{"id": 7,
+		"title": "ویڈیو",
+		"desciption": "",
+		"count": 7,
+		"filename": "basics107"
+	},
+	{"id": 8,
+		"title": "خُدا کی بابت گفتگو کرنا",
+		"desciption": "",
+		"count": 8,
+		"filename": "basics108"
+	},
+	{"id": 9,
+		"title": "عقل مند اور بےوقوف؟",
+		"desciption": "",
+		"count": 9,
+		"filename": "basics109"
+	},
+	{"id": 10,
+		"title": "نئی زندگی",
+		"desciption": "",
+		"count": 10,
+		"filename": "basics110"
+	},
+	{"id": 11,
+		"title": "خُدا کو جاننا",
+		"desciption": "",
+		"count": "",
+		"filename": "gospel"
+	},
+	{"id": 12,
+		"title": "عمل کرنا",
+		"desciption": "",
+		"count": "",
+		"filename": "celebrate"
+	},
+	{"id": 13,
+		"title": "زِندہ معاشرہ",
+		"desciption": "",
+		"count": "",
+		"filename": "community"
+	}
+  ]
+}]

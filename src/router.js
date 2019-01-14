@@ -1,12 +1,10 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from './views/Home.vue'
 import Countries from './views/Countries.vue'
-import Country from './components/Country.vue'
 import Language from './views/Languages.vue'
 import Library from './views/Library.vue'
 import Series from './views/Series.vue'
-import Topic from './views/Topic.vue'
+import Page from './views/Page.vue'
 import Feedback from './views/Feedback.vue'
 import NotFoundComponent from './views/NotFound.vue'
 
@@ -39,9 +37,9 @@ export default new Router({
       props: true
     },
     {
-      path: '/topic/:folder/:series/:topic',
-      name: 'topic',
-      component: Topic,
+      path: '/page/:folder/:series/:topic',
+      name: 'page',
+      component: Page,
       props: true
     },
     {

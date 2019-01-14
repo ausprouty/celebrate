@@ -1,0 +1,75 @@
+[{		
+	"series" :"first_steps",
+	"language" : "spa",
+	"rldir": "ltr",
+	"description":"First Steps es un recurso para ayudar a entender y crecer en lo que significa ser un seguidor de Cristo. Estas sesiones nos ayudarán a descubrir juntos y aplicar algunos de los principios básicos de lo que significa seguir a Cristo y compartirlo con los demás.",
+	"chapters": [
+		{"id": 1, 
+			"title": "Introducción", 
+			"description": "Conectar a la gente a Jesús y entre sí",
+			"count":"1",
+			"filename":"step1" 
+		},
+		{"id": 2, 
+			"title": "Certeza", 
+			"description":"¿Cómo puede alguien que ha recibido a Jesús saber con seguridad que pasará la eternidad con Dios?" ,
+			"count":"2",
+			"filename":"step2" 
+		},
+		{"id": 3,
+			"title": "Experimentar el amor y el perdón de Dios",
+			"description": "¿Cómo podemos experimentar constantemente una relación íntima con Dios?",
+			"count":"3",
+			"filename":"step3" 
+		},
+			{"id": 4, 
+			"title": "El compartir a Jesús con otros", 
+			"description": "Si el tener una relación con Jesús es algo tan bueno, ¿cómo podemos compartir esto con otros?",
+			"count":"4",
+			"filename":"step4" 
+		},
+		{"id": 5, 
+			"title": "El crecimiento espiritual",
+			"description": "¿Cómo podemos continuar creciendo en nuestra relación con Jesús?",
+			"count":"5",
+			"filename":"step5" 
+		},
+		{"id": 6, 
+			"title": "¿Quién es el Espíritu Santo?", 
+			"description": "¿Quién nos ayuda a entender y experimentar las cosas sobre las cuales hemos hablado a lo largo de las últimas semanas?",
+			"count":"6",
+			"filename":"step6" 
+		},
+		{"id": 7, 
+			"title": "El vivir en el poder de Dios", 
+			"description": "¿Cómo vivimos la vida cristiana cuando puede parecer tan difícil a veces?" ,
+			"count":"7",
+			"filename":"step7" 
+		},
+		{"id": 8, 
+			"title": "¿Satisfecho?", 
+			"description": "" ,
+			"count":"",
+			"filename":"satisfied" 
+		},
+		{"id": 9, 
+			"title": "Que sigue", 
+			"description": "" ,
+			"count":"",
+			"filename":"next" 
+		},
+		{"id": 998, 
+			"title": "Acerca de", 
+			"description": "" ,
+			"count":"",
+			"filename":"intro" 
+		},
+		{"id": 999, 
+			"title": "Sugerencias ", 
+			"description": "" ,
+			"count":"",
+			"filename":"tips" 
+		}
+
+	]
+}]
