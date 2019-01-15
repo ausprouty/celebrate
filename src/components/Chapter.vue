@@ -26,10 +26,10 @@ export default {
           this.$router.push({
             name: 'page',
             params: {
-              country: this.bookmark.country.iso,
-              language: this.bookmark.language.folder,
-              series: this.bookmark.chapter.chapter,
-              page: this.chapter.filename
+              countryISO: this.bookmark.country.iso,
+              languageISO: this.bookmark.language.folder,
+              bookNAME: this.bookmark.book.chapter,
+              pageFILE: this.chapter.filename
             }
           })
         })

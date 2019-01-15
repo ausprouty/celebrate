@@ -19,25 +19,25 @@ export default new Router({
       component: Countries
     },
     {
-      path: '/languages/:country/',
+      path: '/languages/:countryISO/',
       name: 'languages',
       component: Language,
       props: true
     },
     {
-      path: '/library/:country/:language',
+      path: '/library/:countryISO/:languageISO',
       name: 'library',
       component: Library,
       props: true
     },
     {
-      path: '/series/:country/:language/:series/',
+      path: '/series/:countryISO/:languageISO/:bookNAME/',
       name: 'series',
       component: Series,
       props: true
     },
     {
-      path: '/page/:country/:language/:series/:page',
+      path: '/page/:countryISO/:languageISO/:bookNAME/:pageFile',
       name: 'page',
       component: Page,
       props: true
@@ -47,7 +47,7 @@ export default new Router({
       name: 'Feedback',
       component: Feedback
     },
-    
+
     {
       path: '*',
       component: NotFoundComponent

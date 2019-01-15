@@ -9,7 +9,7 @@
 import { mapState } from 'vuex'
 import DataService from '@/services/DataService.js'
 export default {
-  props: ['country', 'langauge', 'series', 'page'],
+  props: ['countryISO', 'langaugeISO', 'bookNAME', 'pageFILE'],
   computed: mapState(['bookmark', 'imgDir']),
    data() {
     return {

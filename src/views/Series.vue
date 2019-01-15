@@ -11,7 +11,7 @@ import { mapState } from 'vuex'
 import Chapter from '@/components/Chapter.vue'
 import DataService from '@/services/DataService.js'
 export default {
-  props: ['country','language', 'series'],
+  props: ['countryISO','languageISO', 'bookNAME'],
   computed: mapState(['bookmark', 'imgDir']),
   components: {
     Chapter
