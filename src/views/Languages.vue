@@ -10,7 +10,7 @@ import Language from '@/components/Language.vue'
 import DataService from '@/services/DataService.js'
 import { mapState } from 'vuex'
 export default {
-  props: ['countryISO'],
+  props: ['countryCODE'],
   components: {
     Language
   },
@@ -21,7 +21,7 @@ export default {
     }
   },
   created() {
-    DataService.getLanguages(this.countryISO)
+    DataService.getLanguages(this.countryCODE)
       .then(response => {
         console.log(response.data) // For now, logs out the response
         this.languages = response.data
@@ -34,7 +34,7 @@ export default {
                 name: 'library',
                 params: {
                   country: this.bookmark.country.code,
-                  folder: this.bookmark.language.folder
+                  folder: this.bookmark.language.iso
                 }
               })
             })
@@ -47,11 +47,9 @@ export default {
         console.log('There was an error:', error.response) // Logs out the error
       })
   },
-  beforeCreate: function() {
+  created: function() {
     var route = {}
-    route.country = 'AU'
-    console.log('before create in Languages show route.country')
-    console.log(route.country)
+    route.country = this.countryCODE
     this.$store.dispatch('checkBookmark', { route })
   }
 }

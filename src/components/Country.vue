@@ -27,7 +27,7 @@ export default {
         .then(() => {
           this.$router.push({
             name: 'languages',
-            params: { countryISO: country.code }
+            params: { countryCODE: country.code }
           })
         })
         .catch(() => {

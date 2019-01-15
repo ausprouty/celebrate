@@ -28,7 +28,7 @@ export default {
               name: 'series',
               params: {
                 country:this.bookmark.country.iso,
-                folder: this.bookmark.language.folder,
+                folder: this.bookmark.language.iso,
                 series: this.bookmark.book.book
               }
             })
@@ -36,7 +36,7 @@ export default {
             this.$router.push({
               name: 'page',
               params: {
-                folder: this.bookmark.language.folder,
+                folder: this.bookmark.language.iso,
                 series: this.bookmark.book.book
               }
             })

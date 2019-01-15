@@ -26,8 +26,8 @@ export default {
           this.$router.push({
             name: 'library',
             params: {
-              countryISO: this.bookmark.country.code,
-              languageISO: this.bookmark.language.folder
+              countryCODE: this.bookmark.country.code,
+              languageISO: this.bookmark.language.iso
             }
           })
         })
@@ -36,7 +36,6 @@ export default {
         })
     }
   }
-  
 }
 </script>
 

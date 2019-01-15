@@ -11,7 +11,7 @@ import { mapState } from 'vuex'
 import Chapter from '@/components/Chapter.vue'
 import DataService from '@/services/DataService.js'
 export default {
-  props: ['countryISO','languageISO', 'bookNAME'],
+  props: ['countryCODE', 'languageISO', 'bookNAME'],
   computed: mapState(['bookmark', 'imgDir']),
   components: {
     Chapter
@@ -23,9 +23,14 @@ export default {
     }
   },
   created() {
+    var route = {}
+    route.country = this.countryCODE
+    route.language = this.languageISO
+    route.book = this.bookNAME
+    this.$store.dispatch('checkBookmark', { route })
     DataService.getSeries(
       this.bookmark.country.code,
-      this.bookmark.language.folder,
+      this.bookmark.language.iso,
       this.bookmark.book.folder,
       this.bookmark.book.index
     )

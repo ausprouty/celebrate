@@ -10,7 +10,7 @@
 import Book from '@/components/Book.vue'
 import DataService from '@/services/DataService.js'
 export default {
-  props: ['countryISO', 'languageISO'],
+  props: ['countryCODE', 'languageISO'],
   components: {
     Book
   },
@@ -20,12 +20,15 @@ export default {
     }
   },
   created() {
-    DataService.getLibrary(this.countryISO, this.languageISO)
+    var route = {}
+    route.country = this.countryCODE
+    route.language = this.languageISO
+    this.$store.dispatch('checkBookmark', { route })
+    DataService.getLibrary(this.countryCODE, this.languageISO)
       .then(response => {
         console.log('library in Library.Vue')
         console.log(response.data) // For now, logs out the response
         this.library = response.data
-
       })
       .catch(error => {
         console.log('There was an error:', error.response) // Logs out the error

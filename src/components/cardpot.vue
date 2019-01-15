@@ -26,7 +26,7 @@ export default {
           this.$router.push({
             name: 'series',
             params: {
-              folder: this.bookmark.language.folder,
+              folder: this.bookmark.language.iso,
               series: this.bookmark.book.link
             }
           })

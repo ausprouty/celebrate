@@ -55,8 +55,10 @@ export default new Vuex.Store({
       commit('UPDATE_BOOKMARK', [mark, value])
     },
     checkBookmark({ commit }, { route }) {
-      console.log('checkBookmark shows route as')
-      console.log(route)
+      console.log('Store.js shows route as')
+      console.log(route.country)
+      console.log('Store.js shows bookmark as')
+      console.log(this.state.bookmark.country.code)
     }
   }
 })

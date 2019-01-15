@@ -9,20 +9,25 @@
 import { mapState } from 'vuex'
 import DataService from '@/services/DataService.js'
 export default {
-  props: ['countryISO', 'langaugeISO', 'bookNAME', 'pageFILE'],
+  props: ['countryCODE', 'langaugeISO', 'bookNAME', 'pageFILENAME'],
   computed: mapState(['bookmark', 'imgDir']),
-   data() {
+  data() {
     return {
       pageText: ''
     }
   },
   created() {
-    DataService.page(this.country, this.language, this.series, this.page)
+    var route = {}
+    route.country = this.countryCODE
+    route.language = this.languageISO
+    route.book = this.bookNAME
+    route.page = this.pageFILENAME
+    this.$store.dispatch('checkBookmark', { route })
+    DataService.page(this.countryCODE, this.languageISO, this.bookNAME, this.pageFILENAME)
       .then(response => {
         console.log('page in Page.Vue')
         console.log(response.data) // For now, logs out the response
         this.pageText = response.data
-
       })
       .catch(error => {
         console.log('There was an error:', error.response) // Logs out the error
@@ -31,5 +36,4 @@ export default {
 }
 </script>
 <style>
-
 </style>
