@@ -46,6 +46,13 @@ export default {
       .catch(error => {
         console.log('There was an error:', error.response) // Logs out the error
       })
+  },
+  beforeCreate: function() {
+    var route = []
+    route['country'] = 'AU'
+     console.log('before create in Languages')
+    console.log(route)
+    this.$store.dispatch('checkBookmark', [route])
   }
 }
 </script>

@@ -35,6 +35,9 @@ export default new Vuex.Store({
         case 'book':
           state.bookmark.book = value
           break
+        case 'chapter':
+          state.bookmark.chapter = value
+          break
         case 'page':
           state.bookmark.page = value
           break
@@ -50,6 +53,15 @@ export default new Vuex.Store({
       console.log('updateBookmark with')
       console.log(value)
       commit('UPDATE_BOOKMARK', [mark, value])
+    },
+    checkBookmark({ commit }, {route}) {
+      console.log ('checkBookmark')
+      console.log (route.country)
+      route.forEach(function(entry) {
+       console.log('entry')
+       console.log(entry)
+     //   console.log(value)
+      })
     }
   }
 })

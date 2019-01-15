@@ -2,7 +2,7 @@
   <div class="event-link" v-on:click="updateBookmark(chapter)">
     <div class="event-card -shadow">
       <div class="chapter">
-        <div class="bold">{{chapter.title}}</div>
+        <div class="bold">{{chapter.title}} aa</div>
         <div class="bold">{{chapter.description}}</div>
       </div>
     </div>
@@ -21,27 +21,22 @@ export default {
       this.$store
         .dispatch('updateBookmark', ['chapter', chapter])
         .then(() => {
-          console.log('Library saved results with bookmark value')
+          console.log('Chapter saved results with bookmark value')
           console.log(this.bookmark)
           this.$router.push({
-            name: 'series',
+            name: 'page',
             params: {
-              folder: this.bookmark.language.folder,
-              series: this.bookmark.chapter.chapter
+              country: this.bookmark.country.iso,
+              language: this.bookmark.language.folder,
+              series: this.bookmark.chapter.chapter,
+              page: this.chapter.filename
             }
           })
         })
         .catch(() => {
-          console.log('There was a problem storing language')
+          console.log('There was a problem storing chapter')
         })
-    },
-    showVariables: function(chapter) {
-      console.log('chapter')
-      console.log(chapter)
     }
-  },
-  beforeMount() {
-    this.showVariables(chapter)
   }
 }
 </script>
@@ -51,9 +46,8 @@ img.chapter {
 }
 div.chapter {
   vertical-align: top;
-  width: 70%;
-  font-size: 24px;
-  float: right;
+  width: 90%;
+  font-size: 16px;
 }
 .chapter {
   text-align: left;

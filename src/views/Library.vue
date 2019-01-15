@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Library for {{folder}} in {{country}}</h1>
+    <h1>Library for {{language}} in {{country}}</h1>
     <Book v-for="book in library" :key="book.title" :book="book"/>
   </div>
 </template>
@@ -10,7 +10,7 @@
 import Book from '@/components/Book.vue'
 import DataService from '@/services/DataService.js'
 export default {
-  props: ['country', 'folder'],
+  props: ['country', 'language'],
   components: {
     Book
   },
@@ -20,7 +20,7 @@ export default {
     }
   },
   created() {
-    DataService.getLibrary(this.country, this.folder)
+    DataService.getLibrary(this.country, this.language)
       .then(response => {
         console.log('library in Library.Vue')
         console.log(response.data) // For now, logs out the response

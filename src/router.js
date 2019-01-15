@@ -25,19 +25,19 @@ export default new Router({
       props: true
     },
     {
-      path: '/library/:country/:folder',
+      path: '/library/:country/:language',
       name: 'library',
       component: Library,
       props: true
     },
     {
-      path: '/series/:folder/:series/',
+      path: '/series/:country/:language/:series/',
       name: 'series',
       component: Series,
       props: true
     },
     {
-      path: '/page/:folder/:series/:topic',
+      path: '/page/:country/:language/:series/:page',
       name: 'page',
       component: Page,
       props: true

@@ -21,13 +21,13 @@ export default {
         .dispatch('updateBookmark', ['language', language])
         .then(() => {
           console.log('results saved with bookmark value')
-         console.log(this.bookmark)
+          console.log(this.bookmark)
           console.log('that was value')
           this.$router.push({
             name: 'library',
             params: {
               country: this.bookmark.country.code,
-              folder: this.bookmark.language.folder
+              language: this.bookmark.language.folder
             }
           })
         })
@@ -36,6 +36,7 @@ export default {
         })
     }
   }
+  
 }
 </script>
 
