@@ -27,7 +27,7 @@ export default {
     route.country = this.countryCODE
     route.language = this.languageISO
     route.book = this.bookNAME
-    this.$store.dispatch('checkBookmark', { route })
+    this.$store.dispatch('checkBookmark', route)
     DataService.getSeries(
       this.bookmark.country.code,
       this.bookmark.language.iso,

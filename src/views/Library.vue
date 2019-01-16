@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Library for {{language}} in {{country}}</h1>
+    <h1>Library for {{languageISO}} in {{countryCODE}}</h1>
     <Book v-for="book in library" :key="book.title" :book="book"/>
   </div>
 </template>
@@ -23,7 +23,9 @@ export default {
     var route = {}
     route.country = this.countryCODE
     route.language = this.languageISO
-    this.$store.dispatch('checkBookmark', { route })
+    console.log ('route in Library is')
+    console.log (route)
+    this.$store.dispatch('checkBookmark', route )
     DataService.getLibrary(this.countryCODE, this.languageISO)
       .then(response => {
         console.log('library in Library.Vue')

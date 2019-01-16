@@ -21,6 +21,11 @@ export default {
     }
   },
   created() {
+    var route = {}
+    route.country = this.countryCODE
+    console.log('route from Languages.vue')
+    console.log(route)
+    this.$store.dispatch('checkBookmark', route)
     DataService.getLanguages(this.countryCODE)
       .then(response => {
         console.log(response.data) // For now, logs out the response
@@ -46,11 +51,6 @@ export default {
       .catch(error => {
         console.log('There was an error:', error.response) // Logs out the error
       })
-  },
-  created: function() {
-    var route = {}
-    route.country = this.countryCODE
-    this.$store.dispatch('checkBookmark', { route })
   }
 }
 </script>

@@ -20,8 +20,8 @@ export default {
   computed: mapState(['bookmark', 'imgDir']),
   methods: {
     newBookmark: function(country) {
-      console.log('New Bookmark')
-      console.log(country.code)
+      console.log('New Bookmark for ')
+      console.log(country)
       this.$store
         .dispatch('newBookmark', country)
         .then(() => {

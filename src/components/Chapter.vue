@@ -2,7 +2,7 @@
   <div class="event-link" v-on:click="updateBookmark(chapter)">
     <div class="event-card -shadow">
       <div class="chapter">
-        <div class="bold">{{chapter.title}} aa</div>
+        <div class="bold">{{chapter.title}} </div>
         <div class="bold">{{chapter.description}}</div>
       </div>
     </div>
