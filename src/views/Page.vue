@@ -1,7 +1,9 @@
 <template>
   <div>
     <h1>This is my discussion outline for {{page}}</h1>
-    <p><span v-html="pageText"></span></p>
+    <p>
+      <span v-html="pageText"></span>
+    </p>
   </div>
 </template>
 
@@ -52,4 +54,5 @@ export default {
 }
 </script>
 <style>
+
 </style>
