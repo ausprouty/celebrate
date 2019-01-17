@@ -27,7 +27,7 @@ export default {
       '/content/' + country + '/' + language + '/' + folder + '/' + index
     )
   },
-  getPage(country, language, folder, page) {
+  getPage(country, language, folder,page) {
     return apiClient.get(
       '/content/' +
         country +
@@ -37,7 +37,6 @@ export default {
         folder +
         '/' +
         page +
-        '.html'
-    )
+        '.html')
   }
 }

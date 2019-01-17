@@ -7,9 +7,9 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     imgDir: {
-      library: '/img/library/',
-      country: '/img/',
-      icon: '/img/icon/'
+      library: '/images/library/',
+      country: '/images/',
+      icon: '/images/icon/'
     },
     bookmark: localStorage.getItem('bookmark')
       ? JSON.parse(localStorage.getItem('bookmark'))

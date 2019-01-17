@@ -2,7 +2,7 @@
   <div class="event-link" v-on:click="updateBookmark(chapter)">
     <div class="event-card -shadow">
       <div class="chapter">
-        <div class="bold">{{chapter.title}} </div>
+        <div class="bold">{{chapter.title}}</div>
         <div class="bold">{{chapter.description}}</div>
       </div>
     </div>
@@ -18,19 +18,23 @@ export default {
   computed: mapState(['bookmark', 'imgDir']),
   methods: {
     updateBookmark: function(chapter) {
+      console.log ('chapter in Chapter.Vue for update Bookmark')
+      console.log (chapter)
       this.$store
         .dispatch('updateBookmark', ['chapter', chapter])
         .then(() => {
           console.log('Chapter saved results with bookmark value')
           console.log(this.bookmark)
+          var params = {
+            countryCODE: this.bookmark.country.code,
+            languageISO: this.bookmark.language.iso,
+            bookNAME: this.bookmark.book.book,
+            pageFILENAME: this.chapter.filename
+          }
+          console.log(params)
           this.$router.push({
             name: 'page',
-            params: {
-              countryCODE: this.bookmark.country.iso,
-              languageISO: this.bookmark.language.iso,
-              bookNAME: this.bookmark.book.chapter,
-              pageFILENAME: this.chapter.filename
-            }
+            params
           })
         })
         .catch(() => {
