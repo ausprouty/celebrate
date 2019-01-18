@@ -8,6 +8,7 @@
 </template>
 
 <script>
+import styles from '@/assets/myfriends.css'
 import { mapState } from 'vuex'
 import DataService from '@/services/DataService.js'
 export default {
@@ -54,5 +55,4 @@ export default {
 }
 </script>
 <style>
-
 </style>
