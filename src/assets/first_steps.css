@@ -2,38 +2,7 @@
   direction: rtl;
   text-align: right;
 }
-img.logo{
-padding-right: 10px;
-height:50px;
-}
-img.list-image{
-height:30px;
-}
-img.lesson-icon{
-height:30px;
-width:30px;
-}
-img.point{
-padding-right: 10px;
-height:15px;
-width:15px;
-}
-img.large_point{
-padding-right: 10px;
-height:30px;
-}
-img.read{
-height:30px;
-padding-right: 10px;
-}
-img.rtl{
-padding-right: 0px;
-padding-left: 10px;
-}
-img.next{
-width:"100%";
-max-width:300px;
-}
+
 
 .top{
 padding-top: 20px;
@@ -305,3 +274,33 @@ sup.versenum{
 color:#1ca0a6;
 font-size:55%;
 }
+/* sorted */
+img.lesson-icon{
+  height:30px;
+  width:30px;
+  }
+  img.lesson-point{
+    padding-right: 10px;
+    height:15px;
+    width:15px;
+    }
+img.lesson-point-large{
+  padding-right: 10px;
+  height:30px;
+  }
+  
+  
+  
+  
+  img.read{
+  height:30px;
+  padding-right: 10px;
+  }
+  img.rtl{
+  padding-right: 0px;
+  padding-left: 10px;
+  }
+  img.next{
+  width:"100%";
+  max-width:300px;
+  }
