@@ -29,7 +29,8 @@ body {
 }
 #app {
   box-sizing: border-box;
-  width: 500px;
+  width: 100%;
+  max-width: 640px;
   padding: 0 20px 20px;
   margin: 0 auto;
 }
@@ -241,7 +242,7 @@ select::ms-expand {
 }
 .event-card {
   padding: 10px;
-  width: 100%;
+  width: 95%;
   margin-bottom: 12px;
   transition: all 0.2s linear;
   cursor: pointer;

@@ -2,8 +2,8 @@
   <div class="event-link" v-on:click="updateBookmark(chapter)">
     <div class="event-card -shadow">
       <div class="chapter">
-        <div class="bold">{{chapter.title}}</div>
-        <div class="bold">{{chapter.description}}</div>
+        <div class="chapter-title">{{chapter.title}}</div>
+        <div class="chapter-description">{{chapter.description}}</div>
       </div>
     </div>
   </div>
@@ -18,8 +18,8 @@ export default {
   computed: mapState(['bookmark', 'imgDir']),
   methods: {
     updateBookmark: function(chapter) {
-      console.log ('chapter in Chapter.Vue for update Bookmark')
-      console.log (chapter)
+      console.log('chapter in Chapter.Vue for update Bookmark')
+      console.log(chapter)
       this.$store
         .dispatch('updateBookmark', ['chapter', chapter])
         .then(() => {
@@ -55,5 +55,15 @@ div.chapter {
 }
 .chapter {
   text-align: left;
+}
+div.chapter-title {
+  font-size: 16 pt;
+  font-weight: bold;
+  color: red;
+}
+div.chapter-description {
+  font-size: 12 pt;
+  font-weight: normal;
+  margin-right: 10 px;
 }
 </style>
