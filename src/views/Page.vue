@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import styles from '@/assets/myfriends.css'
+import styles from '@/assets/first_steps.css'
 import { mapState } from 'vuex'
 import DataService from '@/services/DataService.js'
 export default {

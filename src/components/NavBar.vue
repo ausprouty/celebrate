@@ -2,7 +2,7 @@
     <div id="nav">
         
         <router-link to="/">
-            <img class="menu_icon" alt="Home" src="@/assets/header1.png">
+            <img class="menu_icon" alt="Home" src="@/assets/header1.png"/>
         </router-link>
         
     </div>

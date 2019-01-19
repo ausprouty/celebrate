@@ -1,0 +1,307 @@
+.rtl {
+  direction: rtl;
+  text-align: right;
+}
+img.logo{
+padding-right: 10px;
+height:50px;
+}
+img.list-image{
+height:30px;
+}
+img.lesson-icon{
+height:30px;
+width:30px;
+}
+img.point{
+padding-right: 10px;
+height:15px;
+width:15px;
+}
+img.large_point{
+padding-right: 10px;
+height:30px;
+}
+img.read{
+height:30px;
+padding-right: 10px;
+}
+img.rtl{
+padding-right: 0px;
+padding-left: 10px;
+}
+img.next{
+width:"100%";
+max-width:300px;
+}
+
+.top{
+padding-top: 20px;
+
+}
+p.read{
+text-align:left;
+margin-bottom: 24px;
+font-size:1.2em;
+line-height:1.4;
+}
+p.rtl{
+text-align:right;
+
+}
+ul.firststeps{
+list-style:none;
+padding: 0;
+margin:0;
+}
+ul.nodot{
+list-style:none;
+padding: 0;
+margin:0;
+}
+li.firststeps{
+padding-left:16px;
+}
+li.back:before,
+li.up:before,
+li.forward:before
+{
+content:'•';
+padding-right: 8px;
+color:black;
+font-size:24px;
+}
+li.rtl.back:before,
+li.rtl.up:before,
+li.rtl.forward:before
+{
+content:'•';
+padding-left: 8px;
+font-size:24px;
+}
+li.back:before{
+color:#f0555a;
+}
+li.up:before{
+color:#f38832;
+}
+li.forward:before{
+color:#1ca0a6;
+}
+ul.table-view-cell{
+list-style: none;
+}
+
+/*colours{
+yellow: #ffc80f
+red: #f0555a
+orange: #f38832
+blue: #1ca0a6
+}
+*/
+.back_color{
+color:#f0555a;
+}
+.up_color{
+color:#1ca0a6;
+}
+.forward_color{
+color:#f38832;
+}
+h1.first_steps{
+font-family: "Times New Roman", serif;
+font-size: 2em;
+color: #3d5864;
+}
+div.firststeps.readmore{
+margin-top:40px;
+}
+
+h2.first_steps{
+color: #376e8a;
+font-size: 2em;
+margin-left:0px;
+}
+h2.lookback{
+color: #f0555a;
+}
+.bible{
+
+color:#376e8a;
+color:#000;
+}
+.bible_container{
+padding-top: 15px;
+padding-bottom: 30px;
+background-color: #efefef;
+padding-left: 10px;
+padding-right: 10px;
+}
+h2.lookup{
+color: #f38832;
+}
+h2.lookforward{
+color: #1ca0a6;
+}
+p.table-view{
+padding-left:5px;
+padding-right:5px;
+background-color: #efefef;
+}
+
+a.table-link {
+background-color: #efefef;
+}
+
+
+.italics{
+font-style: italic;
+}
+.yellow{
+color: #f38832;
+}
+.conclusion,
+.key,
+.notes,
+.pray,
+.read,
+.bold,
+.statement
+{
+font-weight: bold;
+}
+.conclusion{
+padding-top:15px;
+font-size: 2em;
+
+}
+.fancy {
+padding-top:15px;
+line-height: 0.5;
+text-align: left;
+margin-left:85px;
+}
+.rtl.fancy {
+padding-top:15px;
+line-height: 0.5;
+text-align: right;
+margin-right:85px;
+}
+.fancy span {
+display: inline-block;
+position: relative;  
+}
+.fancy span:before,
+.fancy span:after {
+content: "";
+position: absolute;
+height: 5px;
+top: 0;
+width: 70px;
+}
+.lookback.fancy  span:before,
+.fancy.lookback span:after{
+border-bottom: 10px solid #f0555a;
+}
+.fancy.lookup span:before,
+.fancy.lookup span:after{
+border-bottom: 10px solid #f38832;
+}
+.fancy.lookforward span:before,
+.fancy.lookforward span:after{
+border-bottom: 10px solid #1ca0a6;
+}
+.fancy span:before {
+right: 100%;
+margin-right: 15px;
+}
+.fancy span:after {
+left: 100%;
+margin-left: 15px;
+}
+.conclusion_text{
+font-style: italic;
+}
+div.note_back{
+padding-top:25px;
+padding-bottom:25px;
+}
+
+div.note_up{
+padding-top:25px;
+padding-bottom:25px;
+}
+
+div.note_forward{
+padding-top:15px;
+padding-bottom:75px;
+padding-left:15px;
+padding-right:15px;
+}
+
+div.answer_forward{
+padding-top:15px;
+padding-bottom:15px;
+padding-left:30px;
+padding-right:30px;
+}
+div.resources-page{
+background-color: #efefef;
+}
+
+div.resource-heading{
+margin-top: 5px;
+background-color: #ffc80f;
+background-color: #1ca0a6;
+margin-bottom: 40px;
+
+}
+div.content{
+padding-left:5px;
+padding-right:5px;
+}
+div.firststeps{
+font-size :18px;
+color:#1ca0a6;
+font-weight:bold;
+line-height: 30px;
+margin-left:55px;
+bottom:10px;
+
+}
+div.rtl.firststeps{
+margin-right:55px;
+}
+p.rtl{
+direction:rtl;
+}
+label{
+font-weight:bold;
+}
+.rtl.heb-verse{
+direction:ltr;
+unicode-bidi: embed;
+}
+.nonlocal{
+color:#1ca0a6;
+}
+.local{
+color:#000000;
+}
+.versenum,
+{
+vertical-align: super;
+font-size:55%;
+color:#1ca0a6;
+padding-left:0px;
+padding-right:3px;
+font-variant-position:super;
+
+
+}
+
+sup,
+sup.versenum{
+color:#1ca0a6;
+font-size:55%;
+}
