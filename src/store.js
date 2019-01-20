@@ -8,8 +8,9 @@ export default new Vuex.Store({
   state: {
     imgDir: {
       library: '/images/library/',
-      country: '/images/',
-      icon: '/images/icon/'
+      country: '/images/country/',
+      icon: '/images/icon/',
+      root: '/images/'
     },
     bookmark: localStorage.getItem('bookmark')
       ? JSON.parse(localStorage.getItem('bookmark'))
@@ -78,7 +79,7 @@ export default new Vuex.Store({
       //console.log('Passed Country check')
       //console.log(route.language + ' is route langauge')
       if (route.language) {
-       // console.log('this.state.bookmark')
+        // console.log('this.state.bookmark')
         //console.log(this.state.bookmark)
         var currentLanguage = ''
         if (typeof this.state.bookmark.language != 'undefined') {
@@ -93,7 +94,7 @@ export default new Vuex.Store({
                 value = response.data[i]
               }
             }
-           // console.log('updating bookmark')
+            // console.log('updating bookmark')
             commit('UPDATE_BOOKMARK', ['language', value])
           })
         }
@@ -110,11 +111,11 @@ export default new Vuex.Store({
         }
         if (route.book != currentBook) {
           console.log('colecting libary with ')
-          console.log(route.country + '  '+ route.language)
+          console.log(route.country + '  ' + route.language)
           DataService.getLibrary(route.country, route.language).then(
             response => {
               var value = {}
-              console.log (response.data)
+              console.log(response.data)
               var length = response.data.length
               for (var i = 0; i < length; i++) {
                 if (response.data[i].book == route.book) {

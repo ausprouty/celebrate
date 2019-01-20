@@ -1,5 +1,6 @@
 <template>
   <div>
+    <img v-bind:src="imgDir.root  +'languages.jpg'" class="app-img-header">
     <h1>Choose Language</h1>
     <Language v-for="language in languages" :key="language.iso" :language="language"/>
   </div>
@@ -14,7 +15,7 @@ export default {
   components: {
     Language
   },
-  computed: mapState(['bookmark']),
+  computed: mapState(['bookmark', 'imgDir']),
   data() {
     return {
       languages: []

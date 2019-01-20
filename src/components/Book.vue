@@ -1,6 +1,6 @@
 <template>
-  <div class="event-link" v-on:click="updateBookmark(book)">
-    <div class="event-card -shadow">
+  <div class="app-link" v-on:click="updateBookmark(book)">
+    <div class="app-card -shadow">
       <img v-bind:src="imgDir.library + bookmark.language.images + '/' + book.image" class="book">
       <div class="book">
         <span class="bold">{{book.title}}</span>
@@ -27,7 +27,7 @@ export default {
             this.$router.push({
               name: 'series',
               params: {
-                countryCODE:this.bookmark.country.code,
+                countryCODE: this.bookmark.country.code,
                 languageISO: this.bookmark.language.iso,
                 bookNAME: this.bookmark.book.book
               }

@@ -1,6 +1,6 @@
 <template>
-  <div class="event-link" v-on:click="updateBookmark(chapter)">
-    <div class="event-card -shadow">
+  <div class="app-link" v-on:click="updateBookmark(chapter)">
+    <div class="app-card -shadow">
       <div class="chapter">
         <div class="chapter-title">{{chapter.title}}</div>
         <div class="chapter-description">{{chapter.description}}</div>

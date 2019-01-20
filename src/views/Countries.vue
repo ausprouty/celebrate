@@ -1,17 +1,20 @@
 <template>
   <div>
-    <h2>Select Country</h2>
+    <img v-bind:src="imgDir.country  +'world.jpg'" class="app-img-header">
+    <h1>Select Country</h1>
     <Country v-for="country in countries" :key="country.code" :country="country"/>
   </div>
 </template>
 
 <script>
+import { mapState } from 'vuex'
 import Country from '@/components/Country.vue'
 import DataService from '@/services/DataService.js'
 export default {
   components: {
     Country
   },
+  computed: mapState(['bookmark', 'imgDir']),
   data() {
     return {
       countries: []

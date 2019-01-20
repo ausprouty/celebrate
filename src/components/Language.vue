@@ -1,6 +1,6 @@
 <template>
-  <div class="event-link" v-on:click="updateBookmark(language)">
-    <div class="event-card -shadow">
+  <div class="app-link" v-on:click="updateBookmark(language)">
+    <div class="app-card -shadow">
       <div class="language">
         <span class="bold">{{language.name}}</span>
       </div>
@@ -40,7 +40,7 @@ export default {
 </script>
 
 <style scoped>
-.event-card {
+.app-card {
   padding: 10px;
   width: 100%;
   margin-bottom: 12px;
@@ -49,7 +49,7 @@ export default {
 }
 div.language {
   width: 100%;
-  font-size: 24px;
+  font-size: 18px;
 }
 .language {
   text-align: left;

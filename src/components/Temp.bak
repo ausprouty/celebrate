@@ -1,6 +1,6 @@
 <template>
-  //<router-link class="event-link" :to="{ name: 'language', params: { country: country.code } }">
-    <div class="event-card -shadow">
+  //<router-link class="app-link" :to="{ name: 'language', params: { country: country.code } }">
+    <div class="app-card -shadow">
       <img v-bind:src="country.image" class="flag">
       <div class="country">
         <span class="bold">{{country.name}}</span>

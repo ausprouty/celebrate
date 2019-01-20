@@ -59,8 +59,9 @@ h6 {
   font-family: 'Montserrat', sans-serif;
 }
 h1 {
-  font-size: 36px;
+  font-size: 24px;
   font-weight: 700;
+  color: red;
 }
 h2 {
   font-size: 24px;
@@ -240,22 +241,24 @@ select:focus::ms-value {
 select::ms-expand {
   opacity: 0;
 }
-.event-card {
+.app-card {
   padding: 10px;
   width: 95%;
   margin-bottom: 12px;
   transition: all 0.2s linear;
   cursor: pointer;
 }
-.event-card:hover {
+.app-card:hover {
   transform: scale(1.01);
   box-shadow: 0 3px 12px 0 rgba(0, 0, 0, 0.2), 0 1px 15px 0 rgba(0, 0, 0, 0.19);
 }
-.event-card > .title {
+.app-card > .title {
   margin: 0;
 }
-
-.event-link {
+img.app-img-header {
+  width: 100%;
+}
+.app-link {
   color: black;
   text-decoration: none;
   font-weight: 100;

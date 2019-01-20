@@ -1,11 +1,11 @@
 <template>
-  <div class="event-link" v-on:click="newBookmark(country)">
-    <div class="event-card -shadow">
+  <div class="app-link" v-on:click="newBookmark(country)">
+    <div class="country-card -shadow">
       <img v-bind:src="imgDir.country  + country.image" class="flag">
-      <div class="country">
-        <span class="bold">{{country.name}}</span>
-        <br>
-        {{country.english}}
+      <div class="country-names">
+        <span class="country-name">{{country.name}}</span>
+        <br/>
+         <span class="country-name-english">{{country.english}}</span>
       </div>
     </div>
   </div>
@@ -39,22 +39,37 @@ export default {
 </script>
 
 <style scoped>
-img.flag {
-  width: 25%;
-}
-div.country {
-  vertical-align: top;
-  width: 70%;
-  font-size: 24px;
-  float: right;
-}
-.country {
-  text-align: left;
-}
+
 div.break {
   display: inline;
 }
-.bold {
-  font-weight: bold;
+
+.country-card {
+  cursor: pointer;
+  margin-bottom: 12px;
+  padding: 10px;
+  text-align: left;
+  transition: all 0.2s linear;
+  width: 95%;
 }
+div.country-names {
+  float: right;
+  font-size: 18px;
+  vertical-align: top;
+  width: 70%;
+}
+.country-name{
+  font-weight:bold;
+  line-height: 20px;
+}
+.country-name-english{
+  font-weight:normal;
+  line-height: 20px;
+}
+
+img.flag {
+  width: 25%;
+}
+
+
 </style>
