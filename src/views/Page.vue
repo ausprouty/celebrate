@@ -1,6 +1,7 @@
 <template>
   <div>
-    <h1>This is my discussion outline for {{page}}</h1>
+    <link rel="stylesheet" v-bind:href="'/css/' + this.bookmark.book.style">
+    <h1>{{bookmark.chapter.title}}</h1>
     <p>
       <span v-html="pageText"></span>
     </p>
@@ -8,12 +9,11 @@
 </template>
 
 <script>
-import styles from '@/assets/first_steps.css'
 import { mapState } from 'vuex'
 import DataService from '@/services/DataService.js'
 export default {
   props: ['countryCODE', 'languageISO', 'bookNAME', 'pageFILENAME'],
-  computed: mapState(['bookmark', 'imgDir']),
+  computed: mapState(['bookmark', 'appDir', 'cssURL']),
   data() {
     return {
       pageText: ''
@@ -21,6 +21,7 @@ export default {
   },
   created() {
     console.log('I am in Page.Vue')
+
     var route = {}
     route.country = this.countryCODE
     route.language = this.languageISO
@@ -54,5 +55,5 @@ export default {
   }
 }
 </script>
-<style>
+<style >
 </style>

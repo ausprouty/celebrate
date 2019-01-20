@@ -5,6 +5,7 @@
 			"title": "Problèmes de vie",
 			"folder": "myfriends",
 			"index": "principle-chapters.json",
+			"style": "AU-myfriends.css",
 			"image": "issues.jpg",
 			"format": "series",
 			"instructions": ""
@@ -15,6 +16,7 @@
 			"title": "Conversations de base",
 			"folder": "myfriends",
 			"index": "basics-chapters.json",
+			"style": "AU-myfriends.css",
 			"image": "basics.jpg",
 			"format": "series",
 			"instructions": ""			
@@ -25,6 +27,7 @@
 			"title": "Communauté",
 			"folder": "myfriends",
 			"page": "community",
+			"style": "AU-myfriends.css",
 			"image": "community.jpg",
 			"format": "page"
 		},
@@ -34,6 +37,7 @@
 			"title": "Premiers pas",
 			"folder": "first_steps",
 			"index": "first_steps-chapters.json",
+			"style": "AU-fsteps.css",
 			"image": "firststeps.jpg",
 			"format": "series",
 			"instructions": ""
@@ -44,6 +48,7 @@
 			"title": "Sur",
 			"folder": "myfriends",
 			"page": "community",
+			"style": "AU-myfriends.css",
 			"image": "about.jpg",
 			"format": "page"
 		}

@@ -1,7 +1,7 @@
 <template>
   <div class="app-link" v-on:click="newBookmark(country)">
     <div class="country-card -shadow">
-      <img v-bind:src="imgDir.country  + country.image" class="flag">
+      <img v-bind:src="appDir.country  + country.image" class="flag">
       <div class="country-names">
         <span class="country-name">{{country.name}}</span>
         <br/>
@@ -17,7 +17,7 @@ export default {
   props: {
     country: Object
   },
-  computed: mapState(['bookmark', 'imgDir']),
+  computed: mapState(['bookmark', 'appDir']),
   methods: {
     newBookmark: function(country) {
       console.log('New Bookmark for ')

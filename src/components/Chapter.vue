@@ -15,7 +15,7 @@ export default {
   props: {
     chapter: Object
   },
-  computed: mapState(['bookmark', 'imgDir']),
+  computed: mapState(['bookmark', 'appDir']),
   methods: {
     updateBookmark: function(chapter) {
       console.log('chapter in Chapter.Vue for update Bookmark')

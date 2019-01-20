@@ -6,10 +6,13 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    imgDir: {
-      library: '/images/library/',
+    baseURL: `http://localhost:8080`,
+    cssURL: `http://localhost:8080/css/`,
+    appDir: {
+      css: '/css/',
       country: '/images/country/',
       icon: '/images/icon/',
+      library: '/images/library/',
       root: '/images/'
     },
     bookmark: localStorage.getItem('bookmark')

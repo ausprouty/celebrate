@@ -5,6 +5,7 @@
 			"title": "生活问题",
 			"folder": "myfriends",
 			"index": "principle-chapters.json",
+			"style": "AU-myfriends.css",
 			"image": "issues.jpg",
 			"format": "series",
 			"instructions": ""
@@ -15,6 +16,7 @@
 			"title": "基本对话",
 			"folder": "myfriends",
 			"index": "basics-chapters.json",
+			"style": "AU-myfriends.css",
 			"image": "basics.jpg",
 			"format": "series",
 			"instructions": ""			
@@ -25,6 +27,7 @@
 			"title": "生活的社区",
 			"folder": "myfriends",
 			"page": "community",
+			"style": "AU-myfriends.css",
 			"image": "community.jpg",
 			"format": "page"
 		},
@@ -34,6 +37,7 @@
 			"title": "第一步",
 			"folder": "first_steps",
 			"index": "first_steps-chapters.json",
+			"style": "AU-fsteps.css",
 			"image": "firststeps.jpg",
 			"format": "series",
 			"instructions": ""
@@ -44,6 +48,7 @@
 			"title": "罗盘",
 			"folder": "compass",
 			"index": "compass-chapters.json",
+			"style": "AU-compass.css",
 			"image": "compass.jpg",
 			"format": "series",
 			"instructions": ""
@@ -54,6 +59,7 @@
 			"title": "关于",
 			"folder": "myfriends",
 			"page": "community",
+			"style": "AU-myfriends.css",
 			"image": "about.jpg",
 			"format": "page"
 		}

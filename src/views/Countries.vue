@@ -1,6 +1,6 @@
 <template>
   <div>
-    <img v-bind:src="imgDir.country  +'world.jpg'" class="app-img-header">
+    <img v-bind:src="appDir.country  +'world.jpg'" class="app-img-header">
     <h1>Select Country</h1>
     <Country v-for="country in countries" :key="country.code" :country="country"/>
   </div>
@@ -14,7 +14,7 @@ export default {
   components: {
     Country
   },
-  computed: mapState(['bookmark', 'imgDir']),
+  computed: mapState(['bookmark', 'appDir']),
   data() {
     return {
       countries: []

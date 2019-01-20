@@ -2,7 +2,7 @@
   <div class="app-link" v-on:click="updateBookmark(book)">
     <div class="app-card -shadow">
       <img
-        v-bind:src="imgDir.library + bookmark.language.image_dir + '/' + book.image"
+        v-bind:src="appDir.library + bookmark.language.image_dir + '/' + book.image"
         class="book"
       >
       <div class="book">
@@ -18,7 +18,7 @@ export default {
   props: {
     book: Object
   },
-  computed: mapState(['bookmark', 'imgDir']),
+  computed: mapState(['bookmark', 'appDir']),
   methods: {
     updateBookmark: function(book) {
       this.$store

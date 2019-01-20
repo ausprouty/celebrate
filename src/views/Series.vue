@@ -1,6 +1,6 @@
 <template>
   <div>
-    <img v-bind:src="imgDir.library + bookmark.language.image_dir + '/' + bookmark.book.image" class="app-img-header">
+    <img v-bind:src="appDir.library + bookmark.language.image_dir + '/' + bookmark.book.image" class="app-img-header">
     <h1>{{bookmark.book.title}}</h1>
     <p>{{bookmark.book.instructions}}</p>
     <Chapter v-for="chapter in chapters" :key="chapter.id" :chapter="chapter"/>
@@ -13,7 +13,7 @@ import Chapter from '@/components/Chapter.vue'
 import DataService from '@/services/DataService.js'
 export default {
   props: ['countryCODE', 'languageISO', 'bookNAME'],
-  computed: mapState(['bookmark', 'imgDir']),
+  computed: mapState(['bookmark', 'appDir']),
   components: {
     Chapter
   },
