@@ -1,6 +1,7 @@
 <template>
   <div>
-    <h2>{{bookmark.book.title}}</h2>
+    <img v-bind:src="imgDir.library + bookmark.language.image_dir + '/' + bookmark.book.image" class="app-img-header">
+    <h1>{{bookmark.book.title}}</h1>
     <p>{{bookmark.book.instructions}}</p>
     <Chapter v-for="chapter in chapters" :key="chapter.id" :chapter="chapter"/>
   </div>

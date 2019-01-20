@@ -5,7 +5,7 @@
 			"name": "አማርኛ (Amharic)",
 			"bible": "text",
 			"life-issues": "australia",
-			"images": "menu-ethiopian",
+			"image_dir": "menu-ethiopian",
 			"nt": "1676",
 			"ot": "1676",
 			"rldir": "ltr"
@@ -16,7 +16,7 @@
 			"name": "عربى (Arabic)",
 			"bible": "text",
 			"life-issues": "australia",
-			"images": "menu-middle_east",
+			"image_dir": "menu-middle_east",
 			"nt": "1213",
 			"ot": "1213",
 			"rldir": "rtl"
@@ -27,7 +27,7 @@
 			"name": "Deutsch (German)",
 			"bible": "text",
 			"life-issues": "australia",
-			"images": "menu-europe",
+			"image_dir": "menu-europe",
 			"nt": "1227",
 			"ot": "1229",
 			"rldir": "ltr"
@@ -38,7 +38,7 @@
 			"name": "English",
 			"bible": "text",
 			"life-issues": "australia",
-			"images": "menu-europe",
+			"image_dir": "menu-europe",
 			"nt": "1257",
 			"ot": "1257",
 			"rldir": "ltr"
@@ -49,7 +49,7 @@
 			"name": "Français (French)",
 			"bible": "text",
 			"life-issues": "australia",
-			"images": "menu-europe",
+			"image_dir": "menu-europe",
 			"nt": "1289",
 			"ot": "1289",
 			"rldir": "ltr"
@@ -60,7 +60,7 @@
 			"name": "Afaan Oromoo (Oromo)",
 			"bible": "text",
 			"life-issues": "australia",
-			"images": "menu-ethiopian",
+			"image_dir": "menu-ethiopian",
 			"nt": "local",
 			"ot": "local",
 			"rldir": "ltr"
@@ -71,7 +71,7 @@
 			"name": "हिंदी (Hindi)",
 			"bible": "text",
 			"life-issues": "australia",
-			"images": "menu-india",
+			"image_dir": "menu-india",
 			"nt": "1298",
 			"ot": "1298",
 			"rldir": "ltr"
@@ -82,7 +82,7 @@
 			"name": "Hindi - Romanized",
 			"bible": "text",
 			"life-issues": "australia",
-			"images": "menu-india",
+			"image_dir": "menu-india",
 			"nt": "1298",
 			"ot": "1298",
 			"rldir": "ltr"
@@ -93,7 +93,7 @@
 			"name": "Português (Portugese)",
 			"bible": "text",
 			"life-issues": "australia",
-			"images": "menu-europe",
+			"image_dir": "menu-europe",
 			"nt": "1330",
 			"ot": "1330",
 			"rldir": "ltr"
@@ -104,7 +104,7 @@
 			"name": "Español - América Latina (Spanish - Latin America)",
 			"bible": "text",
 			"life-issues": "australia",
-			"images": "menu-europe",
+			"image_dir": "menu-europe",
 			"nt": "1284",
 			"ot": "1284",
 			"rldir": "ltr"
@@ -115,7 +115,7 @@
 			"name": "தமிழ் (Tamil)",
 			"bible": "text",
 			"life-issues": "australia",
-			"images": "menu-india",
+			"image_dir": "menu-india",
 			"nt": "1346",
 			"ot": "1346",
 			"rldir": "ltr"
@@ -126,7 +126,7 @@
 			"name": "اُردُو‬ (Urdu)",
 			"bible": "text",
 			"life-issues": "australia",
-			"images": "menu-middle_east",
+			"image_dir": "menu-middle_east",
 			"nt": "1353",
 			"ot": "1353",
 			"rldir": "ltr"
@@ -138,7 +138,7 @@
 			"name": "简体中文(Chinese)",
 			"bible": "text",
 			"life-issues": "australia",
-			"images": "menu-china",
+			"image_dir": "menu-china",
 			"nt": "1358",
 			"ot": "1359",
 			"rldir": "ltr"

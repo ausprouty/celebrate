@@ -1,7 +1,10 @@
 <template>
   <div class="app-link" v-on:click="updateBookmark(book)">
     <div class="app-card -shadow">
-      <img v-bind:src="imgDir.library + bookmark.language.images + '/' + book.image" class="book">
+      <img
+        v-bind:src="imgDir.library + bookmark.language.image_dir + '/' + book.image"
+        class="book"
+      >
       <div class="book">
         <span class="bold">{{book.title}}</span>
       </div>
@@ -56,7 +59,7 @@ img.book {
 div.book {
   vertical-align: top;
   width: 70%;
-  font-size: 24px;
+  font-size: 18px;
   float: right;
 }
 .book {

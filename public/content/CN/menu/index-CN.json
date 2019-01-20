@@ -1,13 +1,13 @@
 [
-		{
-			"folder": "zhs-CH",
-			"iso": "zh-s",
-			"name": "简体中文",
-			"bible": "reference",
-			"life-issues": "swiss",
-			"images": "menu-china",
-			"nt": "",
-			"ot": "",
-			"rldir": "ltr"
-		}
-    ]
+  {
+    "folder": "zhs-CH",
+    "iso": "zh-s",
+    "name": "简体中文",
+    "bible": "reference",
+    "life-issues": "swiss",
+    "image_dir": "menu-china",
+    "nt": "",
+    "ot": "",
+    "rldir": "ltr"
+  }
+]

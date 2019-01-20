@@ -59,11 +59,12 @@ div.chapter {
 div.chapter-title {
   font-size: 16 pt;
   font-weight: bold;
-  color: red;
+  color: black;
 }
 div.chapter-description {
   font-size: 12 pt;
   font-weight: normal;
   margin-right: 10 px;
+   color: gray;
 }
 </style>

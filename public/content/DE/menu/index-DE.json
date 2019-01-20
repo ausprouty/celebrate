@@ -1,12 +1,13 @@
-[{
-			"folder": "deu2-DE",
-			"iso": "deu",
-			"name": "Deutsch - Shine ",
-			"bible": "text",
-			"life-issues": "swiss",
-			"images": "menu-europe",
-			"nt": "1227",
-			"ot": "1229",
-			"rldir": "ltr"
-		}
-	]
+[
+  {
+    "folder": "deu2-DE",
+    "iso": "deu",
+    "name": "Deutsch - Shine ",
+    "bible": "text",
+    "life-issues": "swiss",
+    "image_dir": "menu-europe",
+    "nt": "1227",
+    "ot": "1229",
+    "rldir": "ltr"
+  }
+]
