@@ -191,17 +191,17 @@ margin-left: 15px;
 .conclusion_text{
 font-style: italic;
 }
-div.note_back{
+div.fstep-note-back{
 padding-top:25px;
 padding-bottom:25px;
 }
 
-div.note_up{
+div.fstep-note-up{
 padding-top:25px;
 padding-bottom:25px;
 }
 
-div.note_forward{
+div.fstep-note-forward{
 padding-top:15px;
 padding-bottom:75px;
 padding-left:15px;
@@ -275,11 +275,11 @@ color:#1ca0a6;
 font-size:55%;
 }
 /* sorted */
-img.lesson-icon{
+img.fsteps-lesson-icon{
   height:30px;
   width:30px;
   }
-  img.lesson-point{
+  img.fsteps-lesson-point{
     padding-right: 10px;
     height:15px;
     width:15px;
