@@ -63,6 +63,9 @@ green #1ca0a6
 	padding-right:3px;
 	font-variant-position:super;
 }
+a.fsteps-readmore{
+	color: var(--color-up);
+}
 div.fsteps{
 	font-size :18px;
 	color:#1ca0a6;
@@ -123,9 +126,14 @@ div.fsteps.readmore{
 div.rtl.fstep{
 	margin-right:55px;
 }
+
+h1{
+	color:black;
+}
 h1.fsteps{
 	font-size: 2em;
 	color: #3d5864;
+
 }
 h2.fsteps{
 	color: #376e8a;
@@ -152,10 +160,12 @@ img.fsteps-lesson-point{
 }
 img.lesson-point-large{
   padding-right: 10px;
-  height:30px;
+	height:30px;
+	width:30px;
 }
 img.fsteps-read{
-  height:30px;
+	height:30px;
+	width:30px;
   padding-right: 10px;
 }
 img.fsteps-rtl{
