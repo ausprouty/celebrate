@@ -5,15 +5,16 @@ orange: #f38832
 green #1ca0a6
 }
 */
-
-
-
+:root {
+  --color-back: #f0555a;
+  --color-up:  #f38832;
+  --color-forward: #1ca0a6;
+}
 
 .fsteps-bible{
-	color:#376e8a;
 	color:#000;
 }
-.fsteps-bible_container{
+.fsteps-bible-container{
 	padding-top: 15px;
 	padding-bottom: 30px;
 	background-color: #efefef;
@@ -36,33 +37,33 @@ green #1ca0a6
 
 }
 .fsteps-color-back{
-	color:#f0555a;
-}
-.fsteps-color-up{
-	color:#1ca0a6;
+	color: var(--color-back);
 }
 .fsteps-color-forward{
-	color:#f38832;
+	color:var(--color-forward);
+}
+.fsteps-color-up{
+	color:var(--color-up);;
 }
 .fsteps-color-yellow{
 	color: #f38832;
 }
-.text-conclusion{
+.fsteps-text-conclusion{
 	font-style: italic;
 }
 .fsteps-top{
 	padding-top: 20px;
 
 }
-.versenum{
+.fsteps-versenum{
 	vertical-align: super;
 	font-size:55%;
-	color:#1ca0a6;
+	color: var(--color-foward);
 	padding-left:0px;
 	padding-right:3px;
 	font-variant-position:super;
 }
-div.fstep{
+div.fsteps{
 	font-size :18px;
 	color:#1ca0a6;
 	font-weight:bold;
@@ -71,17 +72,44 @@ div.fstep{
 	bottom:10px;
 
 }
-div.fstep-note-back{
+div.fsteps-lesson-section-lookback{
+  font-size: 24px;
+  line-height: 24px;
+  margin-left:30px;
+  position:absolute;
+  color: var(--color-back);
+  display:inline;
+  
+}
+div.fsteps-lesson-section-lookup{
+  font-size: 24px;
+  line-height: 24px;
+  margin-left:30px;
+  position:absolute;
+  color: var(--color-up);
+  display:inline;
+  
+}
+div.fsteps-lesson-section-lookforward{
+  font-size: 24px;
+  line-height: 24px;
+  margin-left:30px;
+  position:absolute;
+  color: var(--color-forward);
+  display:inline;
+  
+}
+div.fsteps-note-back{
 	padding-top:25px;
 	padding-bottom:25px;
 }
 
-div.fstep-note-up{
+div.fsteps-note-up{
 	padding-top:25px;
 	padding-bottom:25px;
 }
 
-div.fstep-note-forward{
+div.fsteps-note-forward{
 	padding-top:15px;
 	padding-bottom:75px;
 	padding-left:15px;
@@ -96,7 +124,6 @@ div.rtl.fstep{
 	margin-right:55px;
 }
 h1.fsteps{
-	font-family: "Times New Roman", serif;
 	font-size: 2em;
 	color: #3d5864;
 }
@@ -178,7 +205,7 @@ ol.fsteps-ol-forward{
   color:#1ca0a6;
   padding-left:30px;
 }
-p.read{
+p.fsteps-read{
 	text-align:left;
 	margin-bottom: 24px;
 	font-size:1.2em;

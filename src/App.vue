@@ -124,12 +124,12 @@ small {
   background: linear-gradient(to right, #16c0b0, #84cf6a);
   color: #fff;
 }
-.rtl.heb-verse{
-	direction:ltr;
-	unicode-bidi: embed;
+.rtl.heb-verse {
+  direction: ltr;
+  unicode-bidi: embed;
 }
-.italics{
-	font-style: italic;
+.italics {
+  font-style: italic;
 }
 button,
 label,
@@ -174,8 +174,8 @@ label {
   color: rgba(0, 0, 0, 0.5);
   font-weight: 700;
 }
-p.rtl{
-	direction:rtl;
+p.rtl {
+  direction: rtl;
 }
 input,
 textarea {
@@ -273,7 +273,7 @@ img.app-img-header {
   text-decoration: none;
   font-weight: 100;
 }
-label{
-	font-weight:bold;
+label {
+  font-weight: bold;
 }
 </style>
