@@ -16,6 +16,13 @@ export default {
 </script>
 
 <style>
+:root {
+  --color-black:purple;
+  --color-red: green;
+  --color-blue: orange;
+  --color-background: rgb(228, 194, 131);
+  --color-version: rgb(110, 107, 241);
+}
 html {
   -webkit-text-size-adjust: 100%;
   -webkit-font-smoothing: antialiased;
@@ -276,4 +283,10 @@ img.app-img-header {
 label {
   font-weight: bold;
 }
+p.version{
+  text-align: right;
+  color: var(--color-version);
+  font-size: 10pt;
+}
+
 </style>
