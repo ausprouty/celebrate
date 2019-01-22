@@ -4,7 +4,7 @@
       <img v-bind:src="country.image" class="flag">
       <div class="country">
         <span class="bold">{{country.name}}</span>
-        <br>
+        <br />
         {{country.english}}
       </div>
     </div>
