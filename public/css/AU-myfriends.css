@@ -63,15 +63,15 @@ h1{
 }
 sup,
   .versenum {
-    color: var(--color-blue);
-    font-size: 75%;
-    line-height: 0;
-    position: relative;
-    vertical-align: baseline;
+color: var(--color-blue);
+font-size: 75%;
+line-height: 0;
+position: relative;
+vertical-align: baseline;
   }
   sup,
   .versenum {
-    top: -0.5em;
+top: -0.5em;
   }
 
 div.myfriends-lesson-section {

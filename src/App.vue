@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <NavBar/>
-    <router-view/>
+<NavBar/>
+<router-view/>
   </div>
 </template>
 
@@ -10,7 +10,7 @@ import NavBar from '@/components/NavBar.vue'
 
 export default {
   components: {
-    NavBar
+NavBar
   }
 }
 </script>
@@ -238,8 +238,8 @@ select {
   padding: 0 24px 0 10px;
   vertical-align: middle;
   background: #fff
-    url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'%3E%3Cpath fill='%23343a40' d='M2 0L0 2h4zm0 5L0 3h4z'/%3E%3C/svg%3E")
-    no-repeat right 12px center;
+url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'%3E%3Cpath fill='%23343a40' d='M2 0L0 2h4zm0 5L0 3h4z'/%3E%3C/svg%3E")
+no-repeat right 12px center;
   background-size: 8px 10px;
   border: solid 1px rgba(0, 0, 0, 0.4);
   border-radius: 0;

@@ -1,13 +1,13 @@
 <template>
   <div class="app-link" v-on:click="newBookmark(country)">
-    <div class="country-card -shadow">
-      <img v-bind:src="appDir.country  + country.image" class="flag">
-      <div class="country-names">
-        <span class="country-name">{{country.name}}</span>
-        <br/>
-         <span class="country-name-english">{{country.english}}</span>
-      </div>
-    </div>
+<div class="country-card -shadow">
+  <img v-bind:src="appDir.country  + country.image" class="flag">
+  <div class="country-names">
+<span class="country-name">{{country.name}}</span>
+<br/>
+ <span class="country-name-english">{{country.english}}</span>
+  </div>
+</div>
   </div>
 </template>
 
@@ -15,25 +15,25 @@
 import { mapState } from 'vuex'
 export default {
   props: {
-    country: Object
+country: Object
   },
   computed: mapState(['bookmark', 'appDir']),
   methods: {
-    newBookmark: function(country) {
-      console.log('New Bookmark for ')
-      console.log(country)
-      this.$store
-        .dispatch('newBookmark', country)
-        .then(() => {
-          this.$router.push({
-            name: 'languages',
-            params: { countryCODE: country.code }
-          })
-        })
-        .catch(() => {
-          console.log('There was a problem storing country')
-        })
-    }
+newBookmark: function(country) {
+  console.log('New Bookmark for ')
+  console.log(country)
+  this.$store
+.dispatch('newBookmark', country)
+.then(() => {
+  this.$router.push({
+name: 'languages',
+params: { countryCODE: country.code }
+  })
+})
+.catch(() => {
+  console.log('There was a problem storing country')
+})
+}
   }
 }
 </script>

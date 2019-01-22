@@ -13,44 +13,44 @@ Vue.use(Router)
 export default new Router({
   mode: 'history',
   routes: [
-    {
-      path: '/',
-      name: 'countries',
-      component: Countries
-    },
-    {
-      path: '/languages/:countryCODE/',
-      name: 'languages',
-      component: Language,
-      props: true
-    },
-    {
-      path: '/library/:countryCODE/:languageISO',
-      name: 'library',
-      component: Library,
-      props: true
-    },
-    {
-      path: '/series/:countryCODE/:languageISO/:bookNAME/',
-      name: 'series',
-      component: Series,
-      props: true
-    },
-    {
-      path: '/page/:countryCODE/:languageISO/:bookNAME/:pageFILENAME',
-      name: 'page',
-      component: Page,
-      props: true
-    },
-    {
-      path: '/feedback',
-      name: 'Feedback',
-      component: Feedback
-    },
+{
+  path: '/',
+  name: 'countries',
+  component: Countries
+},
+{
+  path: '/languages/:countryCODE/',
+  name: 'languages',
+  component: Language,
+  props: true
+},
+{
+  path: '/library/:countryCODE/:languageISO',
+  name: 'library',
+  component: Library,
+  props: true
+},
+{
+  path: '/series/:countryCODE/:languageISO/:bookNAME/',
+  name: 'series',
+  component: Series,
+  props: true
+},
+{
+  path: '/page/:countryCODE/:languageISO/:bookNAME/:pageFILENAME',
+  name: 'page',
+  component: Page,
+  props: true
+},
+{
+  path: '/feedback',
+  name: 'Feedback',
+  component: Feedback
+},
 
-    {
-      path: '*',
-      component: NotFoundComponent
-    }
+{
+  path: '*',
+  component: NotFoundComponent
+}
   ]
 })

@@ -1,11 +1,11 @@
 <template>
   <div class="app-link" v-on:click="updateBookmark(chapter)">
-    <div class="app-card -shadow">
-      <div class="chapter">
-        <div class="chapter-title">{{chapter.title}}</div>
-        <div class="chapter-description">{{chapter.description}}</div>
-      </div>
-    </div>
+<div class="app-card -shadow">
+  <div class="chapter">
+<div class="chapter-title">{{chapter.title}}</div>
+<div class="chapter-description">{{chapter.description}}</div>
+  </div>
+</div>
   </div>
 </template>
 
@@ -13,34 +13,34 @@
 import { mapState } from 'vuex'
 export default {
   props: {
-    chapter: Object
+chapter: Object
   },
   computed: mapState(['bookmark', 'appDir']),
   methods: {
-    updateBookmark: function(chapter) {
-      console.log('chapter in Chapter.Vue for update Bookmark')
-      console.log(chapter)
-      this.$store
-        .dispatch('updateBookmark', ['chapter', chapter])
-        .then(() => {
-          console.log('Chapter saved results with bookmark value')
-          console.log(this.bookmark)
-          var params = {
-            countryCODE: this.bookmark.country.code,
-            languageISO: this.bookmark.language.iso,
-            bookNAME: this.bookmark.book.book,
-            pageFILENAME: this.chapter.filename
-          }
-          console.log(params)
-          this.$router.push({
-            name: 'page',
-            params
-          })
-        })
-        .catch(() => {
-          console.log('There was a problem storing chapter')
-        })
-    }
+updateBookmark: function(chapter) {
+  console.log('chapter in Chapter.Vue for update Bookmark')
+  console.log(chapter)
+  this.$store
+.dispatch('updateBookmark', ['chapter', chapter])
+.then(() => {
+  console.log('Chapter saved results with bookmark value')
+  console.log(this.bookmark)
+  var params = {
+countryCODE: this.bookmark.country.code,
+languageISO: this.bookmark.language.iso,
+bookNAME: this.bookmark.book.book,
+pageFILENAME: this.chapter.filename
+  }
+  console.log(params)
+  this.$router.push({
+name: 'page',
+params
+  })
+})
+.catch(() => {
+  console.log('There was a problem storing chapter')
+})
+}
   }
 }
 </script>

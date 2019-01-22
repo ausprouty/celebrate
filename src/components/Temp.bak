@@ -1,20 +1,20 @@
 <template>
   //<router-link class="app-link" :to="{ name: 'language', params: { country: country.code } }">
-    <div class="app-card -shadow">
-      <img v-bind:src="country.image" class="flag">
-      <div class="country">
-        <span class="bold">{{country.name}}</span>
-        <br />
-        {{country.english}}
-      </div>
-    </div>
+<div class="app-card -shadow">
+  <img v-bind:src="country.image" class="flag">
+  <div class="country">
+<span class="bold">{{country.name}}</span>
+<br />
+{{country.english}}
+  </div>
+</div>
 //  </router-link>
 </template>
 
 <script>
 export default {
   props: {
-    country: Object
+country: Object
   }
 }
 </script>
@@ -44,22 +44,22 @@ div.break {
 script>
 export default {
   props: {
-    country: Object
+country: Object
   },
   methods: {
-    updateBookmark1: function(bookmark) {
-      console.log ('Updatng')
-      this.$store
-        .dispatch('updateBookmark', this.bookmark)
-        .then(() => {
-          this.$router.push({
-            name: 'languages',
-            params: { country: this.bookmark.country.id }
-          })
-        })
-        .catch(() => {
-          console.log('There was a problem storing country')
-        })
-    },
+updateBookmark1: function(bookmark) {
+  console.log ('Updatng')
+  this.$store
+.dispatch('updateBookmark', this.bookmark)
+.then(() => {
+  this.$router.push({
+name: 'languages',
+params: { country: this.bookmark.country.id }
+  })
+})
+.catch(() => {
+  console.log('There was a problem storing country')
+})
+},
   }
 }

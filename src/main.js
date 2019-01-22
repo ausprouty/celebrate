@@ -17,7 +17,7 @@ requireComponent.keys().forEach(fileName => {
   const componentConfig = requireComponent(fileName)
 
   const componentName = upperFirst(
-    camelCase(fileName.replace(/^\.\/(.*)\.\w+$/, '$1'))
+camelCase(fileName.replace(/^\.\/(.*)\.\w+$/, '$1'))
   )
 
   Vue.component(componentName, componentConfig.default || componentConfig)
@@ -29,6 +29,6 @@ new Vue({
   router,
   store,
   render: function(h) {
-    return h(App)
+return h(App)
   }
 }).$mount('#app')
