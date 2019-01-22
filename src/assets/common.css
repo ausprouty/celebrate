@@ -156,7 +156,7 @@
   img.opening-image {
     width: 97%;
   }
-  // used in first-steps with small icons
+  /* used in first-steps with small icons*/
   img.point {
     height: 15px;
     padding-right: 10px;
@@ -322,7 +322,6 @@
     padding-left: px;
     padding-right: 5px;
     text-align: center;
-  }text-align: left;
   }
   
   sup,
