@@ -155,7 +155,7 @@ padding-left: 40px;
 }
 
 a.readmore,
-a.bible_readmore {
+a.bible-readmore {
 text-transform: uppercase;
 text-align: center;
 margin-bottom: 0;
