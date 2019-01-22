@@ -1,51 +1,51 @@
 [
-  {
+{
 "code": "AU",
 "english": "Australia",
 "name": "Australia",
 "index": "index-AU",
 "image": "AU.png"
-  },
-  {
+},
+{
 "code": "ES",
 "english": "Spain",
 "name": "España",
 "index": "index-ES",
 "image": "ES.png"
-  },
-  {
+},
+{
 "code": "DE",
 "english": "Germany",
 "name": "Deutschland",
 "index": "index-DE",
 "image": "DE.png"
-  },
+},
 
-  {
+{
 "code": "CH",
 "english": "Switzeland",
 "name": "Schweizerische",
 "index": "index-CH",
 "image": "CH.png"
-  },
-  {
+},
+{
 "code": "US",
 "english": "United States",
 "name": "United States",
 "index": "index-US",
 "image": "US.png"
-  },
-  {
+},
+{
 "code": "CN",
 "english": "China",
 "name": "中华人民共和国",
 "index": "index-CN",
 "image": "CN.png"
-  },
-  {
+},
+{
 "code": "ZZ",
 "name": "Other",
 "index": "index-AU",
 "image": "UN.jpg"
-  }
+}
 ]

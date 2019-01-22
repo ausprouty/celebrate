@@ -1,9 +1,9 @@
 <template>
-  <div id="nav">
+<div id="nav">
 <router-link to="/">
-  <img class="nav-icon" alt="Home" src="@/assets/header1.png" />
+<img class="nav-icon" alt="Home" src="@/assets/header1.png" />
 </router-link>
-  </div>
+</div>
 </template>
 
 <script>
@@ -12,13 +12,13 @@ export default {}
 
 <style>
 .nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: 60px;
+display: flex;
+justify-content: space-between;
+align-items: center;
+height: 60px;
 }
 img.nav-icon {
-  width: 95%;
-  max-width: 650px;
+width: 95%;
+max-width: 650px;
 }
 </style>

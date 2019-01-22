@@ -1,5 +1,5 @@
 <template>
-  <h1>Here is where we select country or language</h1>
+<h1>Here is where we select country or language</h1>
 </template>
 
 <script>

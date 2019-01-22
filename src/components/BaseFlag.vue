@@ -1,5 +1,5 @@
 <template>
-  <div>Flag</div>
+<div>Flag</div>
 </template>
 
 <script>

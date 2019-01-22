@@ -6,9 +6,9 @@ green #1ca0a6
 }
 */
 :root {
-  --color-back: #f0555a;
-  --color-up:  #f38832;
-  --color-forward: #1ca0a6;
+--color-back: #f0555a;
+--color-up:#f38832;
+--color-forward: #1ca0a6;
 }
 
 .fsteps-bible{
@@ -76,31 +76,31 @@ bottom:10px;
 
 }
 div.fsteps-lesson-section-lookback{
-  font-size: 24px;
-  line-height: 24px;
-  margin-left:30px;
-  position:absolute;
-  color: var(--color-back);
-  display:inline;
-  
+font-size: 24px;
+line-height: 24px;
+margin-left:30px;
+position:absolute;
+color: var(--color-back);
+display:inline;
+
 }
 div.fsteps-lesson-section-lookup{
-  font-size: 24px;
-  line-height: 24px;
-  margin-left:30px;
-  position:absolute;
-  color: var(--color-up);
-  display:inline;
-  
+font-size: 24px;
+line-height: 24px;
+margin-left:30px;
+position:absolute;
+color: var(--color-up);
+display:inline;
+
 }
 div.fsteps-lesson-section-lookforward{
-  font-size: 24px;
-  line-height: 24px;
-  margin-left:30px;
-  position:absolute;
-  color: var(--color-forward);
-  display:inline;
-  
+font-size: 24px;
+line-height: 24px;
+margin-left:30px;
+position:absolute;
+color: var(--color-forward);
+display:inline;
+
 }
 div.fsteps-note-back{
 padding-top:25px;
@@ -150,8 +150,8 @@ h2.fsteps-lookforward{
 color: #1ca0a6;
 }
 img.fsteps-lesson-icon{
-  height:30px;
-  width:30px;
+height:30px;
+width:30px;
 }
 img.fsteps-lesson-point{
 padding-right: 10px;
@@ -159,22 +159,22 @@ height:15px;
 width:15px;
 }
 img.lesson-point-large{
-  padding-right: 10px;
+padding-right: 10px;
 height:30px;
 width:30px;
 }
 img.fsteps-read{
 height:30px;
 width:30px;
-  padding-right: 10px;
+padding-right: 10px;
 }
 img.fsteps-rtl{
-  padding-right: 0px;
-  padding-left: 10px;
+padding-right: 0px;
+padding-left: 10px;
 }
 img.fsteps-next{
-  width:"100%";
-  max-width:300px;
+width:"100%";
+max-width:300px;
 }
 li.fsteps{
 padding-left:16px;
@@ -204,16 +204,16 @@ li.forward:before{
 color:#1ca0a6;
 }
 ol.fsteps-ol-back{
-  color:#f0555a;
-  padding-left:30px;
+color:#f0555a;
+padding-left:30px;
 }
 ol.fsteps-ol-up{
-  color:#f38832;
-  padding-left:30px;
-  }
+color:#f38832;
+padding-left:30px;
+}
 ol.fsteps-ol-forward{
-  color:#1ca0a6;
-  padding-left:30px;
+color:#1ca0a6;
+padding-left:30px;
 }
 p.fsteps-read{
 text-align:left;
