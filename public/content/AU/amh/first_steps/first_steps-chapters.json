@@ -1,74 +1,74 @@
-{		
-	"series" :"first_steps",
-	"language" : "amh",
-	"description":"የመጀመርያ እርምጃ የምለው ጽሑፍ የክርስቶስ ተከታይ መሆን ማለት ምን እንደ ሆነ እንድንረዳ እና እንድናድግበት የምረዳን ነው:: እንኚ ክፍሎች ክርስቶስን የመከተል መሰረት አውቀን እንድንኖርበት እና ለሌሎችም እንድንካፈል ያግዙናል::",
-	"chapters": [
-		{"id": 1, 
-			"title": "መግቢያ", 
-			"description": "ሰዎችን ከኢየሱስ እና ከርስ በርሳቸው ጋር ማገናኘት",
-			"count":"1",
-			"filename":"step1" 
-		},
-		{"id": 2, 
-			"title": "ማረጋገጫ", 
-			"description":"ኢየሱስን የተቀበለ ሰው ከእግዝአብሔር ጋር ለዘላለም እንደሚኖር እንዴት ማወቅ ይችላል?" ,
-			"count":"2",
-			"filename":"step2" 
-		},
-		{"id": 3,
-			"title": "የእግዝአብሔር ፍቅርና ምህረት መለማመድ",
-			"description": "ከእግዝአብሔር ጋር ጥሩ እና ቀጣይነት ያለው ግንኙነት እንዴት መለማመድ እንችላለን?",
-			"count":"3",
-			"filename":"step3" 
-		},
-			{"id": 4, 
-			"title": "ስለ ኢየሱስ ለሌሎች ማካፈል", 
-			"description": "ኢየሱስን ተቀብለው ከሆነ እሰዮ ነው:: ይህንን የምስራች ግን እንዴት ለሌሎች መንገር እንችላለን?",
-			"count":"4",
-			"filename":"step4" 
-		},
-		{"id": 5, 
-			"title": "በመንፈስ ማደግ",
-			"description": "ከኢየሱስ ጋር ባለን ግንኙነት ማደግን እንዴት ማስቀጠል እንችላለን?",
-			"count":"5",
-			"filename":"step5" 
-		},
-		{"id": 6, 
-			"title": "መንፈስ ቅዱስ ማነው?", 
-			"description": "ባለፉት ሳምንታት ስንወያይ የነበረው እንዲገባንና በሱ እንድንኖር ያገዘን ማነው?",
-			"count":"6",
-			"filename":"step6" 
-		},
-		{"id": 7, 
-			"title": "በእግዝአብሔር ኃይል ውስጥ መኖር", 
-			"description": "በጣም አስቸጋሪ በሆነው ሁኔታ ውስጥ የክርስትናን ህይወት እንዴት መኖር እንችላለን?" ,
-			"count":"7",
-			"filename":"step7" 
-		},
-		{"id": 8, 
-			"title": "ረክተዋል?", 
-			"description": "" ,
-			"count":"",
-			"filename":"satisfied" 
-		},
-		{"id": 9, 
-			"title": "ቀጥሎ ምንድን ነው", 
-			"description": "" ,
-			"count":"",
-			"filename":"next" 
-		},
-		{"id": 998, 
-			"title": "ስለ", 
-			"description": "" ,
-			"count":"",
-			"filename":"intro" 
-		},
-		{"id": 999, 
-			"title": "ዋናው", 
-			"description": "" ,
-			"count":"",
-			"filename":"tips" 
-		}
+{
+"series" :"first_steps",
+"language" : "amh",
+"description":"የመጀመርያ እርምጃ የምለው ጽሑፍ የክርስቶስ ተከታይ መሆን ማለት ምን እንደ ሆነ እንድንረዳ እና እንድናድግበት የምረዳን ነው:: እንኚ ክፍሎች ክርስቶስን የመከተል መሰረት አውቀን እንድንኖርበት እና ለሌሎችም እንድንካፈል ያግዙናል::",
+"chapters": [
+{"id": 1, 
+"title": "መግቢያ", 
+"description": "ሰዎችን ከኢየሱስ እና ከርስ በርሳቸው ጋር ማገናኘት",
+"count":"1",
+"filename":"step1" 
+},
+{"id": 2, 
+"title": "ማረጋገጫ", 
+"description":"ኢየሱስን የተቀበለ ሰው ከእግዝአብሔር ጋር ለዘላለም እንደሚኖር እንዴት ማወቅ ይችላል?" ,
+"count":"2",
+"filename":"step2" 
+},
+{"id": 3,
+"title": "የእግዝአብሔር ፍቅርና ምህረት መለማመድ",
+"description": "ከእግዝአብሔር ጋር ጥሩ እና ቀጣይነት ያለው ግንኙነት እንዴት መለማመድ እንችላለን?",
+"count":"3",
+"filename":"step3" 
+},
+{"id": 4, 
+"title": "ስለ ኢየሱስ ለሌሎች ማካፈል", 
+"description": "ኢየሱስን ተቀብለው ከሆነ እሰዮ ነው:: ይህንን የምስራች ግን እንዴት ለሌሎች መንገር እንችላለን?",
+"count":"4",
+"filename":"step4" 
+},
+{"id": 5, 
+"title": "በመንፈስ ማደግ",
+"description": "ከኢየሱስ ጋር ባለን ግንኙነት ማደግን እንዴት ማስቀጠል እንችላለን?",
+"count":"5",
+"filename":"step5" 
+},
+{"id": 6, 
+"title": "መንፈስ ቅዱስ ማነው?", 
+"description": "ባለፉት ሳምንታት ስንወያይ የነበረው እንዲገባንና በሱ እንድንኖር ያገዘን ማነው?",
+"count":"6",
+"filename":"step6" 
+},
+{"id": 7, 
+"title": "በእግዝአብሔር ኃይል ውስጥ መኖር", 
+"description": "በጣም አስቸጋሪ በሆነው ሁኔታ ውስጥ የክርስትናን ህይወት እንዴት መኖር እንችላለን?" ,
+"count":"7",
+"filename":"step7" 
+},
+{"id": 8, 
+"title": "ረክተዋል?", 
+"description": "" ,
+"count":"",
+"filename":"satisfied" 
+},
+{"id": 9, 
+"title": "ቀጥሎ ምንድን ነው", 
+"description": "" ,
+"count":"",
+"filename":"next" 
+},
+{"id": 998, 
+"title": "ስለ", 
+"description": "" ,
+"count":"",
+"filename":"intro" 
+},
+{"id": 999, 
+"title": "ዋናው", 
+"description": "" ,
+"count":"",
+"filename":"tips" 
+}
 
-	]
+]
 }

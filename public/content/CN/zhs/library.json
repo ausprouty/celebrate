@@ -1,54 +1,54 @@
 [
-		{
-			"id": 1,
-			"book" : "issues",
-			"title": "生活问题",
-			"link": "myfriends/issues",
-			"image": "issues.jpg",
-			"format": "series",
-			"instructions": ""
-		},
-		{ 
-		    "id": 2,
-			"book" : "basics",
-			"title": "基本对话",
-			"link": "myfriends/basics",
-			"image": "basics.jpg",
-			"format": "series",
-			"instructions": ""			
-		},
-		{
-			"id": 3,
-			"book" : "community",
-			"title": "生活的社区",
-			"link": "myfriends/community",
-			"image": "community.jpg",
-			"format": "page"
-		},
-		{
-			"id": 4,
-			"book" : "firststeps",
-			"title": "第一步",
-			"link": "firststeps/index",
-			"image": "firststeps.jpg",
-			"format": "series",
-			"instructions": ""
-		},
-		{   
-			"id": 5,
-			"book" : "compass",
-			"title": "罗盘",
-			"link": "compass/index",
-			"image": "compass.jpg",
-			"format": "series",
-			"instructions": ""
-		},
-		{
-			"id": 6,
-			"book" : "about",
-			"title": "关于",
-			"link": "myfriends/about",
-			"image": "about.jpg",
-			"format": "page"
-		}
-		]
+{
+"id": 1,
+"book" : "issues",
+"title": "生活问题",
+"link": "myfriends/issues",
+"image": "issues.jpg",
+"format": "series",
+"instructions": ""
+},
+{ 
+    "id": 2,
+"book" : "basics",
+"title": "基本对话",
+"link": "myfriends/basics",
+"image": "basics.jpg",
+"format": "series",
+"instructions": ""
+},
+{
+"id": 3,
+"book" : "community",
+"title": "生活的社区",
+"link": "myfriends/community",
+"image": "community.jpg",
+"format": "page"
+},
+{
+"id": 4,
+"book" : "firststeps",
+"title": "第一步",
+"link": "firststeps/index",
+"image": "firststeps.jpg",
+"format": "series",
+"instructions": ""
+},
+{   
+"id": 5,
+"book" : "compass",
+"title": "罗盘",
+"link": "compass/index",
+"image": "compass.jpg",
+"format": "series",
+"instructions": ""
+},
+{
+"id": 6,
+"book" : "about",
+"title": "关于",
+"link": "myfriends/about",
+"image": "about.jpg",
+"format": "page"
+}
+]

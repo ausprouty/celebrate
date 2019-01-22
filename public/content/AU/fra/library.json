@@ -1,55 +1,55 @@
 [
-		{
-			"id": 1,
-			"book" : "issues",
-			"title": "Problèmes de vie",
-			"folder": "myfriends",
-			"index": "principle-chapters.json",
-			"style": "AU-myfriends.css",
-			"image": "issues.jpg",
-			"format": "series",
-			"instructions": ""
-		},
-		{ 
-		    "id": 2,
-			"book" : "basics",
-			"title": "Conversations de base",
-			"folder": "myfriends",
-			"index": "basics-chapters.json",
-			"style": "AU-myfriends.css",
-			"image": "basics.jpg",
-			"format": "series",
-			"instructions": ""			
-		},
-		{
-			"id": 3,
-			"book" : "community",
-			"title": "Communauté",
-			"folder": "myfriends",
-			"page": "community",
-			"style": "AU-myfriends.css",
-			"image": "community.jpg",
-			"format": "page"
-		},
-		{
-			"id": 4,
-			"book" : "firststeps",
-			"title": "Premiers pas",
-			"folder": "first_steps",
-			"index": "first_steps-chapters.json",
-			"style": "AU-fsteps.css",
-			"image": "firststeps.jpg",
-			"format": "series",
-			"instructions": ""
-		},
-		{
-			"id": 6,
-			"book" : "about",
-			"title": "Sur",
-			"folder": "myfriends",
-			"page": "community",
-			"style": "AU-myfriends.css",
-			"image": "about.jpg",
-			"format": "page"
-		}
-		]
+{
+"id": 1,
+"book" : "issues",
+"title": "Problèmes de vie",
+"folder": "myfriends",
+"index": "principle-chapters.json",
+"style": "AU-myfriends.css",
+"image": "issues.jpg",
+"format": "series",
+"instructions": ""
+},
+{ 
+    "id": 2,
+"book" : "basics",
+"title": "Conversations de base",
+"folder": "myfriends",
+"index": "basics-chapters.json",
+"style": "AU-myfriends.css",
+"image": "basics.jpg",
+"format": "series",
+"instructions": ""
+},
+{
+"id": 3,
+"book" : "community",
+"title": "Communauté",
+"folder": "myfriends",
+"page": "community",
+"style": "AU-myfriends.css",
+"image": "community.jpg",
+"format": "page"
+},
+{
+"id": 4,
+"book" : "firststeps",
+"title": "Premiers pas",
+"folder": "first_steps",
+"index": "first_steps-chapters.json",
+"style": "AU-fsteps.css",
+"image": "firststeps.jpg",
+"format": "series",
+"instructions": ""
+},
+{
+"id": 6,
+"book" : "about",
+"title": "Sur",
+"folder": "myfriends",
+"page": "community",
+"style": "AU-myfriends.css",
+"image": "about.jpg",
+"format": "page"
+}
+]
