@@ -1,169 +1,191 @@
-{		
-	"series" :"principles",
-	"language" : "eng",
-	"description":"|principles-text|",
-	"chapters": [
-		
-		{"id": 1,
-			"title" :  "1. HOW IMPORTANT IS MONEY?",
-			"description" :"",
-			"verses" : "Luke 18:18-30",
-			"count": 1,
-			"filename" : "principle201"
-		},
-		{"id": 2,
-			"title" :  "2. HOW TO BE FREE FROM COMPARING",
-			"description" :"",
-			"verses" : "Luke 18:9-17",
-			"count": 2,
-			"filename" : "principle202"
-		},
-		{"id": 3,
-			"title" :  "3. RECONCILIATION",
-			"description" :"",
-			"verses" : "Matthew 18:21-35",
-			"count": 3,
-			"filename" : "principle203"
-		},
-		{"id": 4,
-			"title" :  "4. HOW WE SHOULD TREAT OTHERS",
-			"description" :"",
-			"verses" : "Luke 10:29-37",
-			"count": 4,
-			"filename" : "principle204"
-		},
-		{"id": 5,
-			"title" :  "5. FREEDOM FROM JUDGMENT",
-			"description" :"",
-			"verses" : "John 8:3-11",
-			"count": 5,
-			"filename" : "principle205"
-		},
-		{"id": 6,
-			"title" :  "6. FORGIVENESS",
-			"description" :"",
-			"verses" : "Matthew 18:21-35",
-			"count": 6,
-			"filename" : "principle206"
-		},
-		{"id": 7,
-			"title" :  "7. HOW TO TREAT YOUR ENEMIES",
-			"description" :"",
-			"verses" : "Luke 6:27-36",
-			"count": 7,
-			"filename" : "principle207"
-		},
-		{"id": 8,
-			"title" :  "8. HOW TO HANDLE CONFLICT",
-			"description" :"",
-			"verses" : "Matthew 5:21-26",
-			"count": 8,
-			"filename" : "principle208"
-		},
-		{"id": 9,
-			"title" :  "9. THE POOR",
-			"description" :"",
-			"verses" : "Matthew 25:33-46",
-			"count": 9,
-			"filename" : "principle209"
-		},
-		{"id": 10,
-			"title" :  "10. WHAT MATTERS IN YOUR LIFE?",
-			"description" :"",
-			"verses" : "Matthew 6:19-33",
-			"count": 10,
-			"filename" : "principle210"
-		},
-		{"id": 11,
-			"title" :  "11. I’M ALREADY GOOD ENOUGH",
-			"description" :"",
-			"verses" : "Luke 18:9-14",
-			"count": 11,
-			"filename" : "principle211"
-		},
-		{"id": 12,
-			"title" :  "12. SELF",
-			"description" :"",
-			"verses" : "Mark 10:18-27",
-			"count": 12,
-			"filename" : "principle212"
-		},
-		{"id": 13,
-			"title" :  "13. INVESTING WISELY",
-			"description" :"",
-			"verses" : "Matthew 25:14-30",
-			"count": 13,
-			"filename" : "principle213"
-		},
-		{"id": 14,
-			"title" :  "14. THE WORDS WE SPEAK",
-			"description" :"",
-			"verses" : "Matthew 15:1-20",
-			"count": 14,
-			"filename" : "principle214"
-		},
-		{"id": 15,
-			"title" :  "15. WHAT WE HAVE",
-			"description" :"",
-			"verses" : "Luke 16:19-31",
-			"count": 15,
-			"filename" : "principle215"
-		},
-		{"id": 16,
-			"title" :  "16. WHO IS OUR MASTER?",
-			"description" :"",
-			"verses" : "Luke 16:1-15",
-			"count": 16,
-			"filename" : "principle216"
-		},
-		{"id": 17,
-			"title" :  "17. SHOULD WE STRESS?",
-			"description" :"",
-			"verses" : "Matthew 6:25-34",
-			"count": 17,
-			"filename" : "principle217"
-		},
-		{"id": 18,
-			"title" :  "18. ACCEPTANCE",
-			"description" :"",
-			"verses" : "Luke 15:11-32",
-			"count": 18,
-			"filename" : "principle218"
-		},
-		{"id": 19,
-			"title" :  "19. WHAT I TALK ABOUT MATTERS",
-			"description" :"",
-			"verses" : "Matthew 12:33-37",
-			"count": 19,
-			"filename" : "principle219"
-		},
-		{"id": 20,
-			"title" :  "20. HOW TO BE FREE FROM COMPARING",
-			"description" :"",
-			"verses" : "Matthew 7:24-27",
-			"count": 20,
-			"filename" : "principle220"
-		},
-		{"id": 21,
-			"title" :  "21. WHATS YOUR RESPONSE TO GOD?",
-			"description" :"",
-			"verses" : "Matthew 13:1-9",
-			"count": 21,
-			"filename" : "principle221"
-		},
-		{"id": 22,
-			"title" :  "22. WHAT IS FAITH LIKE?",
-			"description" :"",
-			"verses" : "Mark 4:26-34",
-			"count": 22,
-			"filename" : "principle222"
-		},
-		{"id": 23,
-			"title" :  "23. WHAT AM I MADE FOR?",
-			"description" :"",
-			"verses" : "Mark 4:26-34",
-			"count": 23,
-			"filename" : "principle223"
-		}
-]
+{
+  "series": "principles",
+  "language": "eng",
+  "description": "|principles-text|",
+  "chapters": [
+    {
+      "id": 1,
+      "title": "1. HOW IMPORTANT IS MONEY?",
+      "description": "",
+      "verses": "Luke 18:18-30",
+      "count": 1,
+      "filename": "principle201"
+    },
+    {
+      "id": 2,
+      "title": "2. HOW TO BE FREE FROM COMPARING",
+      "description": "",
+      "verses": "Luke 18:9-17",
+      "count": 2,
+      "filename": "principle202"
+    },
+    {
+      "id": 3,
+      "title": "3. RECONCILIATION",
+      "description": "",
+      "verses": "Matthew 18:21-35",
+      "count": 3,
+      "filename": "principle203"
+    },
+    {
+      "id": 4,
+      "title": "4. HOW WE SHOULD TREAT OTHERS",
+      "description": "",
+      "verses": "Luke 10:29-37",
+      "count": 4,
+      "filename": "principle204"
+    },
+    {
+      "id": 5,
+      "title": "5. FREEDOM FROM JUDGMENT",
+      "description": "",
+      "verses": "John 8:3-11",
+      "count": 5,
+      "filename": "principle205"
+    },
+    {
+      "id": 6,
+      "title": "6. FORGIVENESS",
+      "description": "",
+      "verses": "Matthew 18:21-35",
+      "count": 6,
+      "filename": "principle206"
+    },
+    {
+      "id": 7,
+      "title": "7. HOW TO TREAT YOUR ENEMIES",
+      "description": "",
+      "verses": "Luke 6:27-36",
+      "count": 7,
+      "filename": "principle207"
+    },
+    {
+      "id": 8,
+      "title": "8. HOW TO HANDLE CONFLICT",
+      "description": "",
+      "verses": "Matthew 5:21-26",
+      "count": 8,
+      "filename": "principle208"
+    },
+    {
+      "id": 9,
+      "title": "9. THE POOR",
+      "description": "",
+      "verses": "Matthew 25:33-46",
+      "count": 9,
+      "filename": "principle209"
+    },
+    {
+      "id": 10,
+      "title": "10. WHAT MATTERS IN YOUR LIFE?",
+      "description": "",
+      "verses": "Matthew 6:19-33",
+      "count": 10,
+      "filename": "principle210"
+    },
+    {
+      "id": 11,
+      "title": "11. I’M ALREADY GOOD ENOUGH",
+      "description": "",
+      "verses": "Luke 18:9-14",
+      "count": 11,
+      "filename": "principle211"
+    },
+    {
+      "id": 12,
+      "title": "12. SELF",
+      "description": "",
+      "verses": "Mark 10:18-27",
+      "count": 12,
+      "filename": "principle212"
+    },
+    {
+      "id": 13,
+      "title": "13. INVESTING WISELY",
+      "description": "",
+      "verses": "Matthew 25:14-30",
+      "count": 13,
+      "filename": "principle213"
+    },
+    {
+      "id": 14,
+      "title": "14. THE WORDS WE SPEAK",
+      "description": "",
+      "verses": "Matthew 15:1-20",
+      "count": 14,
+      "filename": "principle214"
+    },
+    {
+      "id": 15,
+      "title": "15. WHAT WE HAVE",
+      "description": "",
+      "verses": "Luke 16:19-31",
+      "count": 15,
+      "filename": "principle215"
+    },
+    {
+      "id": 16,
+      "title": "16. WHO IS OUR MASTER?",
+      "description": "",
+      "verses": "Luke 16:1-15",
+      "count": 16,
+      "filename": "principle216"
+    },
+    {
+      "id": 17,
+      "title": "17. SHOULD WE STRESS?",
+      "description": "",
+      "verses": "Matthew 6:25-34",
+      "count": 17,
+      "filename": "principle217"
+    },
+    {
+      "id": 18,
+      "title": "18. ACCEPTANCE",
+      "description": "",
+      "verses": "Luke 15:11-32",
+      "count": 18,
+      "filename": "principle218"
+    },
+    {
+      "id": 19,
+      "title": "19. WHAT I TALK ABOUT MATTERS",
+      "description": "",
+      "verses": "Matthew 12:33-37",
+      "count": 19,
+      "filename": "principle219"
+    },
+    {
+      "id": 20,
+      "title": "20. HOW TO BE FREE FROM COMPARING",
+      "description": "",
+      "verses": "Matthew 7:24-27",
+      "count": 20,
+      "filename": "principle220"
+    },
+    {
+      "id": 21,
+      "title": "21. WHATS YOUR RESPONSE TO GOD?",
+      "description": "",
+      "verses": "Matthew 13:1-9",
+      "count": 21,
+      "filename": "principle221"
+    },
+    {
+      "id": 22,
+      "title": "22. WHAT IS FAITH LIKE?",
+      "description": "",
+      "verses": "Mark 4:26-34",
+      "count": 22,
+      "filename": "principle222"
+    },
+    {
+      "id": 23,
+      "title": "23. WHAT AM I MADE FOR?",
+      "description": "",
+      "verses": "Mark 4:26-34",
+      "count": 23,
+      "filename": "principle223"
+    }
+  ]
 }
