@@ -1,17 +1,4 @@
-.bible {
-    padding-left: 5px;
-    line-height: 25px;
-    margin-left: 10px;
-    margin-right: 10px;
-    padding-bottom: 20px;
-    padding-right: 5px;
-    padding-top: 20px;
-  }
-  .bible_text {
-    font-style: italic;
-    font-weight: bold;
-    padding-left: 40px;
-  }
+
   /* are these common?*/
   .bold,
   .conclusion,
@@ -70,27 +57,7 @@
     display: block;
   }
   
-  a {
-    background: transparent;
-    color: #de1e25;
-  }
-  a:active,
-  a:hover {
-    outline: 0;
-  }
- 
-  a.readmore
-   {
-    background-color: #de1e25;
-    border-color: #de1e25;
-    border: 1;
-    color: #fff;
-    height: auto;
-    margin-bottom: 0;
-    padding: 6px 10px;
-    text-align: center;
-    text-transform: uppercase;
-  }
+  
  
   /* should this be a js property? */
   button {
@@ -134,27 +101,7 @@
     padding-left: 10px;
     padding-top: 20px;
   }
-   div.lesson-section {
-    margin-bottom: 30px;
-    margin-top: 30px;
-    position: relative;
-  }
-  div.lesson-section-words {
-    bottom: 0;
-    color: #000;
-    font-size: 30px;
-    line-height: 30px;
-    margin-left: 45px;
-    position: absolute;
-  }
-  div.lesson-section-words-rtl {
-    bottom: 0;
-    color: #000;
-    font-size: 30px;
-    line-height: 30px;
-    margin-right: 65px;
-    position: absolute;
-  }
+   
 
   div.opening-image {
     margin-bottom: 30px;
@@ -225,17 +172,7 @@
   img.site-title {
     max-height: 40px;
   }
-  img.study {
-    height: 30px;
-    margin-right: 20px;
-    vertical-align: middle;
-    width: 30px;
-  }
-  img.study-rtl {
-    height: 30px;
-    margin-left: 20px;
-    vertical-align: middle;
-  }
+  
   h2 {
     color: black;
     font-size: 24px;
@@ -370,13 +307,8 @@
     font-size: 1.2em;
     line-height: 1.4;
   }
-  p.reference {
-    padding-top: 20px;
-    color: #de1e25;
-    font-size: 20px;
-    padding-bottom: 20px;
-  }
-    p.rtl, {
+  
+  p.rtl, {
     padding-left: 0px;
     padding-right: 20px;
   }

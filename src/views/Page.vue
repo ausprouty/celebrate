@@ -5,6 +5,9 @@
     <p>
       <span v-html="pageText"></span>
     </p>
+    <div class = "version">
+      <p class = "version"> Version 1.01</p>
+    </div>
   </div>
 </template>
 

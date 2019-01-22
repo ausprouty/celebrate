@@ -1,6 +1,9 @@
 <template>
   <div>
     <Book v-for="book in library" :key="book.title" :book="book"/>
+    <div class = "version">
+      Version 1.01
+    </div>
   </div>
 </template>
 

@@ -3,6 +3,9 @@
     <img v-bind:src="appDir.country  +'world.jpg'" class="app-img-header">
     <h1>Select Country</h1>
     <Country v-for="country in countries" :key="country.code" :country="country"/>
+    <div class = "version">
+      Version 1.01
+    </div>
   </div>
 </template>
 
