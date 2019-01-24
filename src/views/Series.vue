@@ -2,7 +2,8 @@
   <div>
     <img v-bind:src="appDir.library + bookmark.language.image_dir + '/' + bookmark.book.image" class="app-img-header">
     <h1>{{bookmark.book.title}}</h1>
-    <p>{{bookmark.book.instructions}}</p>
+    <p>{{this.seriesDetails.description}}</p>
+  
     <Chapter v-for="chapter in chapters" :key="chapter.id" :chapter="chapter"/>
     <div class = "version">
       Version 1.01
