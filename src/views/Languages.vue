@@ -3,9 +3,9 @@
 <img v-bind:src="appDir.root+'languages.jpg'" class="app-img-header">
 <h1>Choose Language</h1>
 <Language v-for="language in languages" :key="language.iso" :language="language"/>
-<div class = "version">
-Version 1.01
-</div>
+<div class="version">
+      <p class="version">Version 1.01</p>
+    </div>
 </div>
 </template>
 

@@ -1,12 +1,18 @@
 <template>
   <div>
     <link rel="stylesheet" v-bind:href="'/css/' + this.bookmark.book.style">
-    <a href="/">
-      <img
-        v-bind:src="appDir.library + bookmark.language.image_dir + '/' + bookmark.book.image"
-        class="app-img-header"
-      >
-    </a>
+    <div class="app-link" v-on:click="updateBookmark()">
+      <div class="app-card -shadow">
+        <img
+          v-bind:src="appDir.library + bookmark.language.image_dir + '/' + bookmark.book.image"
+          class="book"
+        >
+        <div class="book">
+          <span class="bold">{{bookmark.book.title}}</span>
+        </div>
+      </div>
+    </div>
+
     <h1 v-if="bookmark.chapter.count">{{bookmark.chapter.count}}. {{bookmark.chapter.title}}</h1>
     <h1 v-else>{{bookmark.chapter.title}}</h1>
     <p>
@@ -27,6 +33,28 @@ export default {
   data() {
     return {
       pageText: ''
+    }
+  }, 
+  methods: {
+    updateBookmark: function() {
+      this.$store
+        .dispatch('updateBookmark', ['book', this.bookmark.book])
+        .then(() => {
+          console.log('results saved with bookmark value')
+          console.log(this.bookmark)
+          console.log('that was value')
+          this.$router.push({
+            name: 'series',
+            params: {
+              countryCODE: this.bookmark.country.code,
+              languageISO: this.bookmark.language.iso,
+              bookNAME: this.bookmark.book.book
+            }
+          })
+        })
+        .catch(() => {
+          console.log('There was a problem storing language')
+        })
     }
   },
   created() {

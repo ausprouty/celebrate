@@ -5,8 +5,8 @@
     <p>{{this.seriesDetails.description}}</p>
   
     <Chapter v-for="chapter in chapters" :key="chapter.id" :chapter="chapter"/>
-    <div class = "version">
-      Version 1.01
+    <div class="version">
+      <p class="version">Version 1.01</p>
     </div>
   </div>
 </template>
