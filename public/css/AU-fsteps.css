@@ -225,23 +225,10 @@ p.rtl{
 text-align:right;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 sup,
 sup.versenum{
-color:#1ca0a6;
-font-size:55%;
-}
-/
+    color:#1ca0a6;
+    font-size:55%;
+    padding-right:2px;
+     padding-left: 3px;
+    }

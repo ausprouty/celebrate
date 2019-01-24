@@ -1,24 +1,23 @@
 :root {
---color-black:purple;
---color-red: green;
---color-blue: orange;
---color-background: rgb(228, 194, 131);
---color-version: rgb(110, 107, 241);
+--color-black:black;
+--color-red: #de1e25;
+--color-blue: #1ca0a6;
+--color-background:#efefef;
+--color-version: blue;
 }
-.myfriends-bible {
-background-color: var(--color-background);
-padding-left: 10px;
-line-height: 25px;
-margin-left: 0px;
-margin-right: 0px;
-padding-bottom: 20px;
-padding-right: 10px;
-padding-top: 20px;
+div.bible {
+    background-color: var(--color-background);
+    padding-left: 10px;
+    line-height: 25px;
+    margin-left: 0px;
+    margin-right: 0px;
+    padding-bottom: 20px;
+    padding-right: 10px;
+    padding-top: 20px;
 }
-.bible_text {
-font-style: italic;
-font-weight: bold;
-padding-left: 40px;
+p.bible{
+    padding-bottom: 10px;
+    padding-top: 0px;
 }
 .gospel_text {
 padding-bottom: 10px;
@@ -66,6 +65,8 @@ sup,
 color: var(--color-blue);
 font-size: 75%;
 line-height: 0;
+padding-right:2px;
+padding-left: 3px;
 position: relative;
 vertical-align: baseline;
 }
