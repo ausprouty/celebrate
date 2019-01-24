@@ -1,15 +1,19 @@
 <template>
   <div>
     <link rel="stylesheet" v-bind:href="'/css/' + this.bookmark.book.style">
-    <a href = '/'>
-     <img v-bind:src="appDir.library + bookmark.language.image_dir + '/' + bookmark.book.image" class="app-img-header">
-   </a>
-    <h1>{{bookmark.chapter.count}}. {{bookmark.chapter.title}}</h1>
+    <a href="/">
+      <img
+        v-bind:src="appDir.library + bookmark.language.image_dir + '/' + bookmark.book.image"
+        class="app-img-header"
+      >
+    </a>
+    <h1 v-if="bookmark.chapter.count">{{bookmark.chapter.count}}. {{bookmark.chapter.title}}</h1>
+    <h1 v-else>{{bookmark.chapter.title}}</h1>
     <p>
       <span v-html="pageText"></span>
     </p>
-    <div class = "version">
-      <p class = "version"> Version 1.01</p>
+    <div class="version">
+      <p class="version">Version 1.01</p>
     </div>
   </div>
 </template>
