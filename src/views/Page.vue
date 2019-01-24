@@ -1,7 +1,10 @@
 <template>
   <div>
     <link rel="stylesheet" v-bind:href="'/css/' + this.bookmark.book.style">
-    <h1>{{bookmark.chapter.title}}</h1>
+    <a href = '/'>
+     <img v-bind:src="appDir.library + bookmark.language.image_dir + '/' + bookmark.book.image" class="app-img-header">
+   </a>
+    <h1>{{bookmark.chapter.count}}. {{bookmark.chapter.title}}</h1>
     <p>
       <span v-html="pageText"></span>
     </p>
