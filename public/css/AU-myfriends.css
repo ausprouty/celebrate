@@ -5,6 +5,7 @@
 --color-background:#efefef;
 --color-version: blue;
 }
+div.myfriends-bible,
 div.bible {
     background-color: var(--color-background);
     padding-left: 10px;
