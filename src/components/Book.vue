@@ -1,5 +1,5 @@
 <template>
-  <div class="app-link" v-on:click="updateBookmark(book)">
+  <div class="app-link" v-on:click="showPage(book)">
     <div class="app-card -shadow">
       <img
         v-bind:src="appDir.library + bookmark.language.image_dir + '/' + book.image"
@@ -20,34 +20,28 @@ export default {
   },
   computed: mapState(['bookmark', 'appDir']),
   methods: {
-    updateBookmark: function(book) {
-      this.$store
-        .dispatch('updateBookmark', ['book', book])
-        .then(() => {
-          console.log('Library saved results with bookmark value')
-          console.log(this.bookmark)
-          if (this.bookmark.book.format == 'series') {
-            this.$router.push({
-              name: 'series',
-              params: {
-                countryCODE: this.bookmark.country.code,
-                languageISO: this.bookmark.language.iso,
-                bookNAME: this.bookmark.book.book
-              }
-            })
-          } else {
-            this.$router.push({
-              name: 'page',
-              params: {
-                folder: this.bookmark.language.iso,
-                series: this.bookmark.book.book
-              }
-            })
+    showPage: function(book) {
+      console.log('book')
+      console.log(book)
+      localStorage.setItem('lastPage', 'library/country/language')
+      if (book.format == 'series') {
+        this.$router.push({
+          name: 'series',
+          params: {
+            countryCODE: this.bookmark.country.code,
+            languageISO: this.bookmark.language.iso,
+            bookNAME: this.book.book
           }
         })
-        .catch(() => {
-          console.log('There was a problem storing language')
+      } else {
+        this.$router.push({
+          name: 'page',
+          params: {
+            folder: this.bookmark.language.iso,
+            series: this.book.book
+          }
         })
+      }
     }
   }
 }

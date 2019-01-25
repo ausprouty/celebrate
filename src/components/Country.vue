@@ -1,5 +1,5 @@
 <template>
-  <div class="app-link" v-on:click="newBookmark(country)">
+  <div class="app-link" v-on:click="showPage(country)">
     <div class="country-card -shadow">
       <img v-bind:src="appDir.country+ country.image" class="flag">
       <div class="country-names">
@@ -19,20 +19,12 @@ export default {
   },
   computed: mapState(['bookmark', 'appDir']),
   methods: {
-    newBookmark: function(country) {
-      console.log('New Bookmark for ')
-      console.log(country)
-      this.$store
-        .dispatch('newBookmark', country)
-        .then(() => {
-          this.$router.push({
-            name: 'languages',
-            params: { countryCODE: country.code }
-          })
-        })
-        .catch(() => {
-          console.log('There was a problem storing country')
-        })
+    showPage: function(country) {
+      localStorage.setItem('lastPage', 'countries')
+      this.$router.push({
+        name: 'languages',
+        params: { countryCODE: country.code }
+      })
     }
   }
 }
@@ -44,7 +36,7 @@ div.break {
 }
 
 .country-card {
-  background-color:#efefef;
+  background-color: #efefef;
   cursor: pointer;
   margin-bottom: 12px;
   padding: 10px;

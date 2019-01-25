@@ -22,6 +22,9 @@ export default {
     }
   },
   created() {
+      /* Update bookmark based on this route (for people to select URL from another source)
+       Bookmark stores current Country and Library and all specialized info for that library
+    */
     var route = {}
     route.country = this.countryCODE
     route.language = this.languageISO

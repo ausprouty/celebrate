@@ -1,9 +1,12 @@
 <template>
   <div>
-    <img v-bind:src="appDir.library + bookmark.language.image_dir + '/' + bookmark.book.image" class="app-img-header">
+    <img
+      v-bind:src="appDir.library + bookmark.language.image_dir + '/' + bookmark.book.image"
+      class="app-img-header"
+    >
     <h1>{{bookmark.book.title}}</h1>
     <p>{{this.seriesDetails.description}}</p>
-  
+
     <Chapter v-for="chapter in chapters" :key="chapter.id" :chapter="chapter"/>
     <div class="version">
       <p class="version">Version 1.01</p>
@@ -33,6 +36,8 @@ export default {
     route.language = this.languageISO
     route.book = this.bookNAME
     this.$store.dispatch('checkBookmark', route)
+    console.log('bookmark in Series.vue')
+    console.log(this.bookmark)
     DataService.getSeries(
       this.bookmark.country.code,
       this.bookmark.language.iso,

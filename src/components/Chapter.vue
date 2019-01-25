@@ -1,5 +1,5 @@
 <template>
-  <div class="app-link" v-on:click="updateBookmark(chapter)">
+  <div class="app-link" v-on:click="showPage(chapter)">
     <div class="app-card -shadow">
       <div class="chapter">
         <div v-if = chapter.count class="chapter-title">{{chapter.count}}. {{chapter.title}}</div>
@@ -18,29 +18,19 @@ export default {
   },
   computed: mapState(['bookmark', 'appDir']),
   methods: {
-    updateBookmark: function(chapter) {
-      console.log('chapter in Chapter.Vue for update Bookmark')
-      console.log(chapter)
-      this.$store
-        .dispatch('updateBookmark', ['chapter', chapter])
-        .then(() => {
-          console.log('Chapter saved results with bookmark value')
-          console.log(this.bookmark)
-          var params = {
-            countryCODE: this.bookmark.country.code,
-            languageISO: this.bookmark.language.iso,
-            bookNAME: this.bookmark.book.book,
-            pageFILENAME: this.chapter.filename
-          }
-          console.log(params)
-          this.$router.push({
-            name: 'page',
-            params
-          })
-        })
-        .catch(() => {
-          console.log('There was a problem storing chapter')
-        })
+    showPage: function(chapter) {
+      localStorage.setItem('lastPage', 'language/' + this.chapter.filename)
+      var params = {
+        countryCODE: this.bookmark.country.code,
+        languageISO: this.bookmark.language.iso,
+        bookNAME: this.bookmark.book.book,
+        pageFILENAME: this.chapter.filename
+      }
+      console.log(params)
+      this.$router.push({
+        name: 'page',
+        params
+      })
     }
   }
 }
