@@ -35,14 +35,20 @@ export default new Vuex.Store({
         case 'language':
           state.bookmark.language = value
           state.bookmark.series = {}
+          state.bookmark.book = {}
           state.bookmark.page = {}
           break
         case 'library':
           state.bookmark.library = value
+          state.bookmark.book = {}
           state.bookmark.series = {}
           state.bookmark.page = {}
           break
-
+        case 'book':
+          state.bookmark.book = value
+          state.bookmark.series = {}
+          state.bookmark.page = {}
+          break
         case 'series':
           state.bookmark.series = value
           state.bookmark.page = {}
@@ -108,33 +114,79 @@ export default new Vuex.Store({
           })
         }
       }
-      /* SERIES
-        if route.seriesis not the same as bookmark 
+      /* BOOK
+        if route.book is not the same as bookmark 
+        update book and erase all bookmark below*/
+      if (route.book) {
+        var currentBook = ''
+        if (typeof this.state.bookmark.book != 'undefined') {
+          currentSeries = this.state.bookmark.series.book
+        }
+        if (route.book != currentBook) {
+          var library = this.state.bookmark.library
+          var length = library.length
+          for (var i = 0; i < length; i++) {
+            if (library[i].book == route.book) {
+              var value = library[i]
+            }
+          }
+          console.log('updating bookmar with BOOK value')
+          console.log(value)
+
+          commit('UPDATE_BOOKMARK', ['book', value])
+        }
+      }
+      /* Series
+        if route.book is not the same as bookmark 
         update book and erase all bookmark below*/
       if (route.series) {
         var currentSeries = ''
         if (typeof this.state.bookmark.series != 'undefined') {
-          currentSeries = this.state.bookmark.series.book
+          currentSeries = this.state.bookmark.series //this.state.bookmark.series.book
         }
         if (route.series != currentSeries) {
+          var folder = this.state.bookmark.book.folder
+          var index = this.state.bookmark.book.index
           DataService.getSeries(
             route.country,
             route.language,
             folder,
             index
           ).then(response => {
-            var value = {}
-            console.log(response.data)
-            var length = response.data.length
-            for (var i = 0; i < length; i++) {
-              if (response.data[i].series == route.series) {
-                value = response.data[i]
-              }
-            }
-            console.log('updating bookmark with value')
+            var value = response.data
+
+            console.log('updating bookmark with SERIES value')
             console.log(value)
             commit('UPDATE_BOOKMARK', ['series', value])
           })
+        }
+      }
+      /* Page
+      if route.page is not the same as bookmark 
+      update book and erase all bookmark below*/
+      if (route.page) {
+        console.log(' route.page is ' + route.page)
+        value = ''
+        var currentPage = ''
+        if (typeof this.state.bookmark.page != 'undefined') {
+          currentPage = '9' //this.state.bookmark.series.book
+        }
+        if (route.page != currentPage) {
+          console.log('we have a new page')
+          var chapters = {}
+          chapters = this.state.bookmark.series
+          console.log('chapters')
+          console.log(chapters)
+
+          var length = chapters.length
+          for (var i = 0; i < length; i++) {
+            if (chapters[i].book == route.page) {
+              var value = chapters[i]
+            }
+          }
+          console.log('updating bookmark with PAGE value')
+          console.log(value)
+          commit('UPDATE_BOOKMARK', ['page', value])
         }
       }
     }

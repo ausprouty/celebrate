@@ -35,6 +35,9 @@ export default {
     route.country = this.countryCODE
     route.language = this.languageISO
     route.book = this.bookNAME
+    route.series = this.bookNAME
+    console.log('route in Series.vue')
+     console.log(route)
     this.$store.dispatch('checkBookmark', route)
     console.log('bookmark in Series.vue')
     console.log(this.bookmark)

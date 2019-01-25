@@ -34,7 +34,7 @@ export default {
     return {
       pageText: ''
     }
-  }, 
+  },
   methods: {
     updateBookmark: function() {
       this.$store
@@ -64,6 +64,7 @@ export default {
     route.country = this.countryCODE
     route.language = this.languageISO
     route.book = this.bookNAME
+    route.series = this.bookNAME
     route.page = this.pageFILENAME
     this.$store.dispatch('checkBookmark', route)
     console.log('sending to dataservice from Page.Vue')
@@ -83,8 +84,8 @@ export default {
       this.pageFILENAME
     )
       .then(response => {
-        console.log('page in Page.Vue')
-        console.log(response.data) // For now, logs out the response
+        //  console.log('page in Page.Vue')
+        // console.log(response.data) // For now, logs out the response
         this.pageText = response.data
       })
       .catch(error => {
