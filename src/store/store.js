@@ -69,6 +69,7 @@ export default new Vuex.Store({
       dispatch('CheckBookmarkCountry', route)
       dispatch('CheckBookmarkLanguageLibrary', route)
       dispatch('CheckBookmarkSeries', route)
+      dispatch('CheckBookmarkBook', route)
       dispatch('CheckBookmarkPage', route)
       console.log(this.state.bookmark)
       console.log('above is state bookmark at finished checking')
@@ -92,10 +93,10 @@ export default new Vuex.Store({
       if (typeof this.state.bookmark.country.code != 'undefined') {
         currentCountry = this.state.bookmark.country.code
       }
-      console.log('currentCountry in CheckBookmarkCountry(')
-      console.log(currentCountry)
-      console.log('route')
-      console.log(route)
+  //    console.log('currentCountry in CheckBookmarkCountry(')
+  //    console.log(currentCountry)
+   //   console.log('route')
+  //   console.log(route)
 
       if (route.country != currentCountry) {
         DataService.getCountries().then(response => {
@@ -106,8 +107,8 @@ export default new Vuex.Store({
               value = response.data[i]
             }
           }
-          console.log('Country value')
-          console.log(value)
+     //     console.log('Country value')
+     //     console.log(value)
           commit('NEW_BOOKMARK', value)
         })
       }
@@ -118,7 +119,7 @@ export default new Vuex.Store({
       /* LANGUAGE AND LIBRARY
      if route.language is not the same as bookmark 
       update language and erase all bookmark below*/
-      console.log ('starting CheckBookmarkLanguageLibrary')
+      console.log('starting CheckBookmarkLanguageLibrary')
       if (route.language) {
         var currentLanguage = ''
         if (typeof this.state.bookmark.language != 'undefined') {
@@ -149,11 +150,12 @@ export default new Vuex.Store({
     /* BOOK
 if route.book is not the same as bookmark 
 update book and erase all bookmark below*/
-    CheckBookmarkLanguageBook({ commit }, route) {
+    CheckBookmarkBook({ commit }, route) {
+      console.log ('checking book')
       if (route.book) {
         var currentBook = ''
         if (typeof this.state.bookmark.book != 'undefined') {
-          currentSeries = this.state.bookmark.series.book
+          currentBook = this.state.bookmark.series.book
         }
         if (route.book != currentBook) {
           var library = this.state.bookmark.library
@@ -176,30 +178,25 @@ update book and erase all bookmark below*/
     if route.book is not the same as bookmark 
     update book and erase all bookmark below*/
     CheckBookmarkSeries({ commit }, route) {
-      console.log ('starting check bookmark series with route')
-      console.log(route)
+  //    console.log('starting check bookmark series with route')
+  //    console.log(route)
       if (route.series) {
         var currentSeries = ''
         if (typeof this.state.bookmark.series != 'undefined') {
           currentSeries = this.state.bookmark.series //this.state.bookmark.series.book
         }
-        console.log ('currentSeries  is ' + currentSeries)
         if (route.series != currentSeries) {
           var library = this.state.bookmark.library
-          console.log ('library is')
-          console.log (library)
           var length = library.length
           for (var i = 0; i < length; i++) {
             if (library[i].format == 'series') {
-              console.log ('This is a series')
-              console.log (library[i])
               if (library[i].book == route.series) {
                 var value = library[i]
               }
             }
           }
-          console.log ('Here is my folder and index values')
-          console.log (value)
+          console.log('Here is my folder and index values')
+          console.log(value)
           var folder = value.folder
           var index = value.index
           DataService.getSeries(

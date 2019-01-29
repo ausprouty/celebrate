@@ -5,7 +5,7 @@
       class="app-img-header"
     >
     <h1>{{bookmark.book.title}}</h1>
-    <p>{{this.seriesDetails.description}}</p>
+    <p>{{this.series.description}}</p>
 
     <Chapter v-for="chapter in chapters" :key="chapter.id" :chapter="chapter"/>
     <div class="version">
@@ -26,7 +26,7 @@ export default {
   },
   data() {
     return {
-      seriesDetails: [],
+      series: [],
       chapters: []
     }
   },
@@ -41,13 +41,8 @@ export default {
     this.$store
       .dispatch('checkBookmark', route)
       .then(response => {
-        console.log('response.data')
-        console.log(response.data) // For nseriesDetailsow, logs out the response
-        this.seriesDetails = response.data.bookmark.series
-        console.log('this.seriesDetails')
-        console.log(this.seriesDetails)
-
-        this.chapters = this.seriesDetails.chapters
+        this.series = this.bookmark.series
+        this.chapters = this.series.chapters
         console.log('chapters in Series.Vue')
         console.log(this.chapters)
       })
