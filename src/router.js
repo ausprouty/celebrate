@@ -19,7 +19,7 @@ export default new Router({
       component: Countries
     },
     {
-      path: '/languages/:countryCODE/',
+      path: '/languages/:countryCODE',
       name: 'languages',
       component: Language,
       props: true
@@ -31,7 +31,7 @@ export default new Router({
       props: true
     },
     {
-      path: '/series/:countryCODE/:languageISO/:bookNAME/',
+      path: '/series/:countryCODE/:languageISO/:bookNAME',
       name: 'series',
       component: Series,
       props: true

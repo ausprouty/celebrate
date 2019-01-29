@@ -30,15 +30,16 @@ html {
 }
 body {
   margin: 0;
+  width: 95%;
   font-family: 'Open Sans', sans-serif;
   font-size: 16px;
   line-height: 1.5;
 }
 #app {
   box-sizing: border-box;
-  width: 100%;
+  width: 90%;
   max-width: 640px;
-  padding: 0 20px 20px;
+  padding: 0px 0px 0px 0px;
   margin: 0 auto;
 }
 hr {

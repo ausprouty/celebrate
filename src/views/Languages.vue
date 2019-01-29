@@ -38,7 +38,7 @@ export default {
     console.log('Entered Languages.vue')
     this.$store
       .dispatch('checkBookmark', route)
-      .then(responseBookmark => {
+      .then(responseUnused => {
         console.log('about to get languages for ' + this.countryCODE)
         DataService.getLanguages(this.countryCODE).then(response => {
           console.log('response from getLanguages for ' + this.countryCODE)

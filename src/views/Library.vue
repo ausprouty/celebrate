@@ -1,12 +1,9 @@
 <template>
   <div>
-        <a v-bind:href ="'/languages/' + this.bookmark.country.code" >
-        <img
-          v-bind:src="appDir.library + this.bookmark.language.image_dir + '/journey.jpg'"
-          class="app-img-header">
-           <img v-bind:src="appDir.root+'backbar.png'" class="app-img-header">
-           </a>
-        
+    <a v-bind:href="'/languages/' + this.country.code">
+      <img v-bind:src="appDir.library + this.image_dir + '/journey.jpg'" class="app-img-header">
+      <img v-bind:src="appDir.root+'backbar.png'" class="app-img-header">
+    </a>
 
     <Book v-for="book in library" :key="book.title" :book="book"/>
     <div class="version">
@@ -19,7 +16,6 @@
 <script>
 import Book from '@/components/Book.vue'
 import { mapState } from 'vuex'
-import DataService from '@/services/DataService.js'
 export default {
   props: ['countryCODE', 'languageISO'],
   computed: mapState(['bookmark', 'appDir', 'cssURL']),
@@ -28,7 +24,9 @@ export default {
   },
   data() {
     return {
-      library: []
+      library: [],
+      country: {},
+      image_dir: ''
     }
   },
   created() {
@@ -43,12 +41,18 @@ export default {
     this.$store
       .dispatch('checkBookmark', route)
       .then(responseBookmark => {
-        console.log('responseBookmark in Library')
-        console.log(responseBookmark)
+        //console.log('responseBookmark in Library')
+        //console.log(responseBookmark)
         this.library = responseBookmark.library
+        //console.log('library')
+        // console.log(this.library)
+        this.country = responseBookmark.country
+        this.image_dir = responseBookmark.language.image_dir
+        //console.log('imgdir')
+        // console.log(this.image_dir)
       })
       .catch(error => {
-        console.log('There was an error:', error.response) // Logs out the error
+        console.log('There was an error in Library View:', error.response) // Logs out the error
       })
   }
 }

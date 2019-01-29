@@ -1,6 +1,7 @@
 import axios from 'axios'
 
 const apiClient = axios.create({
+  // baseURL: `http://prototype.myfriends.network`,
   baseURL: `http://localhost:8080`,
 
   withCredentials: false, // This is the default
