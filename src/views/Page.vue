@@ -14,7 +14,7 @@
     </div>
 
     <h1 v-if="bookmark.page.count">{{bookmark.page.count}}. {{bookmark.page.title}}</h1>
-    <h1 v-else>{{bookmark.chapter.title}}</h1>
+    <h1 v-else>{{bookmark.page.title}}</h1>
     <p>
       <span v-html="pageText"></span>
     </p>
@@ -44,6 +44,7 @@ export default {
     route.book = this.bookNAME
     route.series = this.bookNAME
     route.page = this.pageFILENAME
+    console.log(route)
     this.$store.dispatch('checkBookmark', route)
     console.log('sending to dataservice from Page.Vue')
     console.log(

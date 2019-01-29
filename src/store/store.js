@@ -93,10 +93,10 @@ export default new Vuex.Store({
       if (typeof this.state.bookmark.country.code != 'undefined') {
         currentCountry = this.state.bookmark.country.code
       }
-  //    console.log('currentCountry in CheckBookmarkCountry(')
-  //    console.log(currentCountry)
-   //   console.log('route')
-  //   console.log(route)
+      //    console.log('currentCountry in CheckBookmarkCountry(')
+      //    console.log(currentCountry)
+      //   console.log('route')
+      //   console.log(route)
 
       if (route.country != currentCountry) {
         DataService.getCountries().then(response => {
@@ -107,8 +107,8 @@ export default new Vuex.Store({
               value = response.data[i]
             }
           }
-     //     console.log('Country value')
-     //     console.log(value)
+          //     console.log('Country value')
+          //     console.log(value)
           commit('NEW_BOOKMARK', value)
         })
       }
@@ -119,7 +119,7 @@ export default new Vuex.Store({
       /* LANGUAGE AND LIBRARY
      if route.language is not the same as bookmark 
       update language and erase all bookmark below*/
-      console.log('starting CheckBookmarkLanguageLibrary')
+      //  console.log('starting CheckBookmarkLanguageLibrary')
       if (route.language) {
         var currentLanguage = ''
         if (typeof this.state.bookmark.language != 'undefined') {
@@ -151,7 +151,7 @@ export default new Vuex.Store({
 if route.book is not the same as bookmark 
 update book and erase all bookmark below*/
     CheckBookmarkBook({ commit }, route) {
-      console.log ('checking book')
+      //console.log ('checking book')
       if (route.book) {
         var currentBook = ''
         if (typeof this.state.bookmark.book != 'undefined') {
@@ -178,39 +178,45 @@ update book and erase all bookmark below*/
     if route.book is not the same as bookmark 
     update book and erase all bookmark below*/
     CheckBookmarkSeries({ commit }, route) {
-  //    console.log('starting check bookmark series with route')
-  //    console.log(route)
+      //    console.log('starting check bookmark series with route')
+      //    console.log(route)
       if (route.series) {
         var currentSeries = ''
         if (typeof this.state.bookmark.series != 'undefined') {
           currentSeries = this.state.bookmark.series //this.state.bookmark.series.book
         }
         if (route.series != currentSeries) {
+          console.log('new series')
+          var value = {}
           var library = this.state.bookmark.library
           var length = library.length
           for (var i = 0; i < length; i++) {
             if (library[i].format == 'series') {
               if (library[i].book == route.series) {
-                var value = library[i]
+                value = library[i]
               }
             }
           }
           console.log('Here is my folder and index values')
           console.log(value)
-          var folder = value.folder
-          var index = value.index
-          DataService.getSeries(
-            route.country,
-            route.language,
-            folder,
-            index
-          ).then(response => {
-            var value = response.data
+          if (value.folder) {
+            var folder = value.folder
+            var index = value.index
+            DataService.getSeries(
+              route.country,
+              route.language,
+              folder,
+              index
+            ).then(response => {
+              var value = response.data
 
-            //console.log('updating bookmark with SERIES value')
-            // console.log(value)
+              //console.log('updating bookmark with SERIES value')
+              // console.log(value)
+              commit('UPDATE_BOOKMARK', ['series', value])
+            })
+          } else {
             commit('UPDATE_BOOKMARK', ['series', value])
-          })
+          }
         }
       }
       console.log('finishing CheckBookmarkSeries')
@@ -221,31 +227,36 @@ update book and erase all bookmark below*/
       update book and erase all bookmark below*/
     CheckBookmarkPage({ commit }, route) {
       console.log(' route in check bookmark page')
-      console.log(route);
+      console.log(route)
       value = ''
       if (route.page) {
         console.log(' route.page is ' + route.page)
         value = ''
         var currentPage = ''
         if (typeof this.state.bookmark.page != 'undefined') {
-          currentPage = '9' //this.state.bookmark.series.book
+          currentPage = this.state.bookmark.page
         }
         if (route.page != currentPage) {
-         // console.log('we have a new page')
-          var chapters = {}
-          chapters = this.state.bookmark.series.chapters
-         // console.log('chapters')
-         // console.log(chapters)
-          var length = chapters.length
-          for (var i = 0; i < length; i++) {
-            if (chapters[i].filename == route.page) {
-              var value = chapters[i]
+          // console.log('we have a new page')
+          if (typeof this.state.bookmark.series.chapters != 'undefined') {
+            var chapters = {}
+            chapters = this.state.bookmark.series.chapters
+            // console.log('chapters')
+            // console.log(chapters)
+            var length = chapters.length
+            for (var i = 0; i < length; i++) {
+              if (chapters[i].filename == route.page) {
+                var value = chapters[i]
+              }
             }
           }
-         // console.log ('value for page')
-        //  console.log (value)
-          // console.log('updating bookmark with PAGE value')
-          //console.log(value)
+          else{
+            var value = this.state.bookmark.book
+          }
+          // console.log ('value for page')
+          //  console.log (value)
+           console.log('updating bookmark with PAGE value')
+          console.log(value)
           commit('UPDATE_BOOKMARK', ['page', value])
         }
       }
