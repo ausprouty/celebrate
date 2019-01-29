@@ -13,7 +13,7 @@
       </div>
     </div>
 
-    <h1 v-if="bookmark.chapter.count">{{bookmark.chapter.count}}. {{bookmark.chapter.title}}</h1>
+    <h1 v-if="bookmark.page.count">{{bookmark.page.count}}. {{bookmark.page.title}}</h1>
     <h1 v-else>{{bookmark.chapter.title}}</h1>
     <p>
       <span v-html="pageText"></span>
@@ -35,31 +35,9 @@ export default {
       pageText: ''
     }
   },
-  methods: {
-    updateBookmark: function() {
-      this.$store
-        .dispatch('updateBookmark', ['book', this.bookmark.book])
-        .then(() => {
-          console.log('results saved with bookmark value')
-          console.log(this.bookmark)
-          console.log('that was value')
-          this.$router.push({
-            name: 'series',
-            params: {
-              countryCODE: this.bookmark.country.code,
-              languageISO: this.bookmark.language.iso,
-              bookNAME: this.bookmark.book.book
-            }
-          })
-        })
-        .catch(() => {
-          console.log('There was a problem storing language')
-        })
-    }
-  },
+
   created() {
     console.log('I am in Page.Vue')
-
     var route = {}
     route.country = this.countryCODE
     route.language = this.languageISO

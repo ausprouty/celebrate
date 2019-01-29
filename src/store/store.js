@@ -219,7 +219,10 @@ update book and erase all bookmark below*/
     /* Page
       if route.page is not the same as bookmark 
       update book and erase all bookmark below*/
-    CheckBookmarkPage(route) {
+    CheckBookmarkPage({ commit }, route) {
+      console.log(' route in check bookmark page')
+      console.log(route);
+      value = ''
       if (route.page) {
         console.log(' route.page is ' + route.page)
         value = ''
@@ -228,17 +231,19 @@ update book and erase all bookmark below*/
           currentPage = '9' //this.state.bookmark.series.book
         }
         if (route.page != currentPage) {
-          console.log('we have a new page')
+         // console.log('we have a new page')
           var chapters = {}
-          chapters = this.state.bookmark.series
-          // console.log('chapters')
-          // console.log(chapters)
+          chapters = this.state.bookmark.series.chapters
+         // console.log('chapters')
+         // console.log(chapters)
           var length = chapters.length
           for (var i = 0; i < length; i++) {
-            if (chapters[i].book == route.page) {
+            if (chapters[i].filename == route.page) {
               var value = chapters[i]
             }
           }
+         // console.log ('value for page')
+        //  console.log (value)
           // console.log('updating bookmark with PAGE value')
           //console.log(value)
           commit('UPDATE_BOOKMARK', ['page', value])
