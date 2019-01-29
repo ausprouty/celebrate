@@ -176,14 +176,32 @@ update book and erase all bookmark below*/
     if route.book is not the same as bookmark 
     update book and erase all bookmark below*/
     CheckBookmarkSeries({ commit }, route) {
+      console.log ('starting check bookmark series with route')
+      console.log(route)
       if (route.series) {
         var currentSeries = ''
         if (typeof this.state.bookmark.series != 'undefined') {
           currentSeries = this.state.bookmark.series //this.state.bookmark.series.book
         }
+        console.log ('currentSeries  is ' + currentSeries)
         if (route.series != currentSeries) {
-          var folder = this.state.bookmark.book.folder
-          var index = this.state.bookmark.book.index
+          var library = this.state.bookmark.library
+          console.log ('library is')
+          console.log (library)
+          var length = library.length
+          for (var i = 0; i < length; i++) {
+            if (library[i].format == 'series') {
+              console.log ('This is a series')
+              console.log (library[i])
+              if (library[i].book == route.series) {
+                var value = library[i]
+              }
+            }
+          }
+          console.log ('Here is my folder and index values')
+          console.log (value)
+          var folder = value.folder
+          var index = value.index
           DataService.getSeries(
             route.country,
             route.language,

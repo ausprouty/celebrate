@@ -30,7 +30,7 @@ export default {
       chapters: []
     }
   },
-  beforeCreate() {
+  created() {
     var route = {}
     route.country = this.countryCODE
     route.language = this.languageISO
