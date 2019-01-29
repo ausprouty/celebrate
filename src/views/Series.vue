@@ -30,26 +30,20 @@ export default {
       chapters: []
     }
   },
-  created() {
+  beforeCreate() {
     var route = {}
     route.country = this.countryCODE
     route.language = this.languageISO
     route.book = this.bookNAME
     route.series = this.bookNAME
     console.log('route in Series.vue')
-     console.log(route)
-    this.$store.dispatch('checkBookmark', route)
-    console.log('bookmark in Series.vue')
-    console.log(this.bookmark)
-    DataService.getSeries(
-      this.bookmark.country.code,
-      this.bookmark.language.iso,
-      this.bookmark.book.folder,
-      this.bookmark.book.index
-    )
+    console.log(route)
+    this.$store
+      .dispatch('checkBookmark', route)
       .then(response => {
+        console.log('response.data')
         console.log(response.data) // For nseriesDetailsow, logs out the response
-        this.seriesDetails = response.data
+        this.seriesDetails = response.data.bookmark.series
         console.log('this.seriesDetails')
         console.log(this.seriesDetails)
 

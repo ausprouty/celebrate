@@ -32,33 +32,38 @@ export default {
     */
     var route = {}
     route.country = this.countryCODE
-    this.$store.dispatch('checkBookmark', route)
-    DataService.getLanguages(this.countryCODE)
-      .then(response => {
-      //  console.log('getLanguages for ' + this.countryCODE)
-      //  console.log(response.data) // For now, logs out the response
-      //  console.log('length is ' + response.data.length)
-        this.languages = response.data
-        if (response.data.length === 1) {
-          var language = response.data[0]
-      //    console.log('language is ')
-      //    console.log(language)
-          this.$store
-            .dispatch('updateBookmark', ['language', language])
-            .then(() => {
-      //        console.log('language_iso is ' + language.iso)
-              this.$router.push({
-                name: 'library',
-                params: {
-                  countryCODE: this.countryCODE,
-                  languageISO: language.iso
-                }
+    console.log('Entered Languages.vue')
+    this.$store
+      .dispatch('checkBookmark', route)
+      .then(responseBookmark => {
+        console.log('about to get languages for ' + this.countryCODE)
+        DataService.getLanguages(this.countryCODE)
+        .then(response => {
+          console.log('response from getLanguages for ' + this.countryCODE)
+          console.log(response.data) // For now, logs out the response
+          //  console.log('length is ' + response.data.length)
+          this.languages = response.data
+          if (response.data.length === 1) {
+            var language = response.data[0]
+            //    console.log('language is ')
+            //    console.log(language)
+            this.$store
+              .dispatch('updateBookmark', ['language', language])
+              .then(() => {
+                //        console.log('language_iso is ' + language.iso)
+                this.$router.push({
+                  name: 'library',
+                  params: {
+                    countryCODE: this.countryCODE,
+                    languageISO: language.iso
+                  }
+                })
               })
-            })
-            .catch(() => {
-              console.log('There was a problem storing language')
-            })
-        }
+              .catch(() => {
+                console.log('There was a problem storing language')
+              })
+          }
+        })
       })
       .catch(error => {
         console.log('There was an error:', error.response) // Logs out the error

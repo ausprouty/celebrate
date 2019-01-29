@@ -66,11 +66,13 @@ export default new Vuex.Store({
     checkBookmark({ dispatch, commit }, route) {
       console.log('Store.js shows route as')
       console.log(route)
-      dispatch('CheckBookmarkCountry',  route )
-      dispatch('CheckBookmarkLanguageLibrary',  route )
-      dispatch('CheckBookmarkSeries',  route )
-      dispatch('CheckBookmarkPage',  route )
-      console.log('finished checking')
+      dispatch('CheckBookmarkCountry', route)
+      dispatch('CheckBookmarkLanguageLibrary', route)
+      dispatch('CheckBookmarkSeries', route)
+      dispatch('CheckBookmarkPage', route)
+      console.log(this.state.bookmark)
+      console.log('above is state bookmark at finished checking')
+      return this.state.bookmark
     },
     ZcheckBookmark({ commit }, route) {
       console.log('Store.js shows route as')
@@ -110,11 +112,13 @@ export default new Vuex.Store({
         })
       }
       console.log('finishing CheckBookmarkCountry')
+      return this.state.bookmark
     },
     CheckBookmarkLanguageLibrary({ commit }, route) {
       /* LANGUAGE AND LIBRARY
      if route.language is not the same as bookmark 
       update language and erase all bookmark below*/
+      console.log ('starting CheckBookmarkLanguageLibrary')
       if (route.language) {
         var currentLanguage = ''
         if (typeof this.state.bookmark.language != 'undefined') {
@@ -140,6 +144,7 @@ export default new Vuex.Store({
         }
       }
       console.log('finishing CheckBookmarkLanguageLibrary')
+      return this.state.bookmark
     },
     /* BOOK
 if route.book is not the same as bookmark 
@@ -165,6 +170,7 @@ update book and erase all bookmark below*/
         }
       }
       console.log('finishing CheckBookmarkBook')
+      return this.state.bookmark
     },
     /* Series
     if route.book is not the same as bookmark 
@@ -193,6 +199,7 @@ update book and erase all bookmark below*/
         }
       }
       console.log('finishing CheckBookmarkSeries')
+      return this.state.bookmark
     },
     /* Page
       if route.page is not the same as bookmark 
@@ -221,8 +228,9 @@ update book and erase all bookmark below*/
           //console.log(value)
           commit('UPDATE_BOOKMARK', ['page', value])
         }
-        console.log('finishing CheckBookmarkPage')
       }
+      console.log('finishing CheckBookmarkPage')
+      return this.state.bookmark
     }
   }
 })
