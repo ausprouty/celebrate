@@ -1,6 +1,7 @@
 <template>
   <div>
-    <img v-bind:src="appDir.root+'languages.jpg'" class="app-img-header">
+    <a href = "/">
+    <img v-bind:src="appDir.root+'languages.jpg'" class="app-img-header"></a>
     <h1>Choose Language</h1>
     <Language v-for="language in languages" :key="language.iso" :language="language"/>
     <div class="version">

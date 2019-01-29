@@ -1,7 +1,7 @@
 <template>
   <div>
     <link rel="stylesheet" v-bind:href="'/css/' + this.bookmark.book.style">
-    <div class="app-link" v-on:click="updateBookmark()">
+    <div class="app-link" v-on:click="goBack()">
       <div class="app-card -shadow">
         <img
           v-bind:src="appDir.library + bookmark.language.image_dir + '/' + bookmark.book.image"
@@ -33,6 +33,11 @@ export default {
   data() {
     return {
       pageText: ''
+    }
+  },
+  methods: {
+    goBack() {
+      window.history.back()
     }
   },
 

@@ -1,9 +1,14 @@
 <template>
   <div>
-    <img
-      v-bind:src="appDir.library + bookmark.language.image_dir + '/' + bookmark.book.image"
-      class="app-img-header"
-    >
+    <link rel="stylesheet" v-bind:href="'/css/' + this.bookmark.book.style">
+    <div class="app-link" v-on:click="goBack()">
+      <div class="app-card -shadow">
+        <img
+          v-bind:src="appDir.library + bookmark.language.image_dir + '/' + bookmark.book.image"
+          class="app-img-header"
+        >
+      </div>
+    </div>
     <h1>{{bookmark.book.title}}</h1>
     <p>{{this.series.description}}</p>
 
@@ -30,21 +35,28 @@ export default {
       chapters: []
     }
   },
+  methods: {
+    goBack() {
+      window.history.back()
+    }
+  },
   created() {
     var route = {}
     route.country = this.countryCODE
     route.language = this.languageISO
-    route.book = this.bookNAME
+    route.book = this.bookNAME // we need book to get style sheet
     route.series = this.bookNAME
     console.log('route in Series.vue')
     console.log(route)
     this.$store
       .dispatch('checkBookmark', route)
-      .then(response => {
-        this.series = this.bookmark.series
-        this.chapters = this.series.chapters
+      .then(myBookmark => {
+        console.log('response in Series Vu from dispatch')
+        console.log(myBookmark)
+        var series = myBookmark.series
+        var chapters = series.chapters
         console.log('chapters in Series.Vue')
-        console.log(this.chapters)
+        console.log(chapters)
       })
       .catch(error => {
         console.log('There was an error:', error.response) // Logs out the error
