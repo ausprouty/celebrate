@@ -53,8 +53,8 @@ export default {
       .then(myBookmark => {
         console.log('response in Series Vu from dispatch')
         console.log(myBookmark)
-        var series = myBookmark.series
-        var chapters = series.chapters
+        this.series = myBookmark.series
+        this.chapters = this.series.chapters
         console.log('chapters in Series.Vue')
         console.log(chapters)
       })
