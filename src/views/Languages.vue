@@ -1,7 +1,9 @@
 <template>
   <div>
-    <a href = "/">
-    <img v-bind:src="appDir.root+'languages.jpg'" class="app-img-header"></a>
+    <a href="/">
+      <img v-bind:src="appDir.root+'languages.jpg'" class="app-img-header">
+      <img v-bind:src="appDir.root+'backbar.png'" class="app-img-header">
+    </a>
     <h1>Choose Language</h1>
     <Language v-for="language in languages" :key="language.iso" :language="language"/>
     <div class="version">
@@ -38,8 +40,7 @@ export default {
       .dispatch('checkBookmark', route)
       .then(responseBookmark => {
         console.log('about to get languages for ' + this.countryCODE)
-        DataService.getLanguages(this.countryCODE)
-        .then(response => {
+        DataService.getLanguages(this.countryCODE).then(response => {
           console.log('response from getLanguages for ' + this.countryCODE)
           console.log(response.data) // For now, logs out the response
           //  console.log('length is ' + response.data.length)

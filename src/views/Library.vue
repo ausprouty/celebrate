@@ -3,7 +3,9 @@
         <a v-bind:href ="'/languages/' + this.bookmark.country.code" >
         <img
           v-bind:src="appDir.library + this.bookmark.language.image_dir + '/journey.jpg'"
-          class="app-img-header"></a>
+          class="app-img-header">
+           <img v-bind:src="appDir.root+'backbar.png'" class="app-img-header">
+           </a>
         
 
     <Book v-for="book in library" :key="book.title" :book="book"/>
@@ -41,8 +43,8 @@ export default {
     this.$store
       .dispatch('checkBookmark', route)
       .then(responseBookmark => {
-        console.log ('responseBookmark in Library')
-        console.log (responseBookmark)
+        console.log('responseBookmark in Library')
+        console.log(responseBookmark)
         this.library = responseBookmark.library
       })
       .catch(error => {

@@ -7,9 +7,11 @@
           v-bind:src="appDir.library + bookmark.language.image_dir + '/' + bookmark.book.image"
           class="book"
         >
+       
         <div class="book">
           <span class="bold">{{bookmark.book.title}}</span>
         </div>
+          <img v-bind:src="appDir.root+'backbar.png'" class="app-img-header">
       </div>
     </div>
 

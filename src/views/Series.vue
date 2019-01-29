@@ -7,6 +7,7 @@
           v-bind:src="appDir.library + bookmark.language.image_dir + '/' + bookmark.book.image"
           class="app-img-header"
         >
+        <img v-bind:src="appDir.root+'backbar.png'" class="app-img-header">
       </div>
     </div>
     <h1>{{bookmark.book.title}}</h1>
@@ -46,17 +47,17 @@ export default {
     route.language = this.languageISO
     route.book = this.bookNAME // we need book to get style sheet
     route.series = this.bookNAME
-    console.log('route in Series.vue')
-    console.log(route)
+    //console.log('route in Series.vue')
+    //console.log(route)
     this.$store
       .dispatch('checkBookmark', route)
       .then(myBookmark => {
-        console.log('response in Series Vu from dispatch')
-        console.log(myBookmark)
+        //console.log('response in Series Vu from dispatch')
+       // console.log(myBookmark)
         this.series = myBookmark.series
         this.chapters = this.series.chapters
-        console.log('chapters in Series.Vue')
-        console.log(chapters)
+       // console.log('chapters in Series.Vue')
+        //console.log(chapters)
       })
       .catch(error => {
         console.log('There was an error:', error.response) // Logs out the error
