@@ -171,7 +171,9 @@ update book and erase all bookmark below*/
       if (route.book) {
         var currentBook = ''
         if (typeof this.state.bookmark.book != 'undefined') {
-          currentBook = this.state.bookmark.series.book
+          if (typeof this.state.bookmark.book.series != 'undefined') {
+            currentBook = this.state.bookmark.series.book
+          }
         }
         var value = {}
         if (route.book != currentBook) {
