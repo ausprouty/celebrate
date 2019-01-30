@@ -47,12 +47,13 @@ export default {
     this.$store
       .dispatch('checkBookmark', route)
       .then(response => {
-        false
-        true
+        this.loading = false
+        this.loaded = true
+        console.log (response.data)
       })
       .catch(error => {
-        console.log('There was an error in  bookmarkLanguage:', error.response) // Logs out the error
-        this.error = err.toString()
+        console.log('There was an error in  bookmark Library:', error.response) // Logs out the error
+        this.error = error.toString()
       })
   }
 }
