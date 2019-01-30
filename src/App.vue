@@ -7,6 +7,7 @@
 
  <script>
 import NavBar from '@/components/NavBar.vue'
+import DataService from '@/services/DataService.js'
 
 export default {
   components: {

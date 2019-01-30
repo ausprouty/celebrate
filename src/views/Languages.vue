@@ -1,13 +1,17 @@
 <template>
   <div>
-    <a href="/">
-      <img v-bind:src="appDir.root+'languages.jpg'" class="app-img-header">
-      <img v-bind:src="appDir.root+'backbar.png'" class="app-img-header">
-    </a>
-    <h1>Choose Language</h1>
-    <Language v-for="language in languages" :key="language.iso" :language="language"/>
-    <div class="version">
-      <p class="version">Version 1.01</p>
+    <div class="loading" v-if="loading">Loading...</div>
+    <div class="error" v-if="error">There was an error...</div>
+    <div class="content" v-if="loaded">
+      <a href="/">
+        <img v-bind:src="appDir.root+'languages.jpg'" class="app-img-header">
+        <img v-bind:src="appDir.root+'backbar.png'" class="app-img-header">
+      </a>
+      <h1>Choose Language</h1>
+      <Language v-for="language in languages" :key="language.iso" :language="language"/>
+      <div class="version">
+        <p class="version">Version 1.01</p>
+      </div>
     </div>
   </div>
 </template>
@@ -24,7 +28,10 @@ export default {
   computed: mapState(['bookmark', 'appDir']),
   data() {
     return {
-      languages: []
+      languages: [],
+      loading: false,
+      loaded: null,
+      error: null
     }
   },
   created() {
@@ -33,6 +40,8 @@ export default {
 
       If there is only one language for this country we then push through to its library
     */
+    this.error = this.loaded = null
+    this.loading = true
     var route = {}
     route.country = this.countryCODE
     console.log('Entered Languages.vue')
@@ -65,9 +74,12 @@ export default {
                 console.log('There was a problem storing language')
               })
           }
+          this.loaded = true
+          this.loading = false
         })
       })
       .catch(error => {
+        this.error = true
         console.log('There was an error:', error.response) // Logs out the error
       })
   }

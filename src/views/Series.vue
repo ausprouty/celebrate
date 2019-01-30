@@ -23,10 +23,10 @@
 <script>
 import { mapState } from 'vuex'
 import Chapter from '@/components/Chapter.vue'
-import DataService from '@/services/DataService.js'
+import BookmarkService from '@/services/Bookmark.js'
 export default {
   props: ['countryCODE', 'languageISO', 'bookNAME'],
-  computed: mapState(['bookmark', 'appDir']),
+  computed: mapState(['appDir']),
   components: {
     Chapter
   },
@@ -47,10 +47,7 @@ export default {
     route.language = this.languageISO
     route.book = this.bookNAME // we need book to get style sheet
     route.series = this.bookNAME
-    //console.log('route in Series.vue')
-    //console.log(route)
-    this.$store
-      .dispatch('checkBookmark', route)
+    BookmarkService(route)
       .then(myBookmark => {
         console.log('response in Series Vu from dispatch')
         console.log(myBookmark)

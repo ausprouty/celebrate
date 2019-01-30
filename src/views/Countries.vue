@@ -17,7 +17,7 @@ export default {
   components: {
     Country
   },
-  computed: mapState(['bookmark', 'appDir']),
+  computed: mapState(['appDir']),
   data() {
     return {
       countries: []
@@ -30,7 +30,7 @@ export default {
         this.countries = response.data
       })
       .catch(error => {
-        console.log('There was an error:', error.response) // Logs out the error
+        console.log('There was an error in Countries.vue:', error.response) // Logs out the error
       })
   }
 }
