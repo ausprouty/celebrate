@@ -52,7 +52,7 @@ export default {
         DataService.getLanguages(this.countryCODE).then(response => {
           console.log('response from getLanguages for ' + this.countryCODE)
           console.log(response.data) // For now, logs out the response
-          //  console.log('length is ' + response.data.length)
+           console.log('length is ' + response.data.length)
           this.languages = response.data
           if (response.data.length === 1) {
             var language = response.data[0]
@@ -60,7 +60,7 @@ export default {
             //    console.log(language)
             this.$store
               .dispatch('updateBookmark', ['language', language])
-              .then(() => {
+              .then(responseUnused => {
                 //        console.log('language_iso is ' + language.iso)
                 this.$router.push({
                   name: 'library',
