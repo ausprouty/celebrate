@@ -1,5 +1,4 @@
 export const state = {
-  
   appDir: {
     css: '/css/',
     country: '/images/country/',
@@ -7,3 +6,4 @@ export const state = {
     library: '/images/library/',
     root: '/images/'
   }
+}

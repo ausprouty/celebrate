@@ -117,6 +117,7 @@ export default new Vuex.Store({
       update language and erase all bookmark below*/
       //  console.log('starting CheckBookmarkLanguageLibrary')
       if (route.language) {
+        var value = {}
         console.log('have route in CheckBookmarkLanguageLIBRARY')
         var currentLanguage = ''
         if (typeof this.state.bookmark.language != 'undefined') {
@@ -125,7 +126,7 @@ export default new Vuex.Store({
         if (route.language != currentLanguage) {
           console.log('looking for new language of ' + route.language)
           DataService.getLanguages(route.country).then(response => {
-            var value = {}
+           
             var length = response.data.length
             for (var i = 0; i < length; i++) {
               if (response.data[i].iso == route.language) {
@@ -136,19 +137,20 @@ export default new Vuex.Store({
             DataService.getLibrary(route.country, route.language).then(
               response => {
                 value = response.data
-                console.log('library is ')
-                console.log(value)
+                //console.log('library is ')
+                //console.log(value)
                 commit('SET_BOOKMARK', ['library', value])
               }
             )
           })
         }
         if (typeof this.state.bookmark.library == 'undefined') {
+         // console.log (route)
           DataService.getLibrary(route.country, route.language).then(
             response => {
               value = response.data
-              console.log('library is ')
-              console.log(value)
+              //console.log('library is ')
+              //console.log(value)
               commit('SET_BOOKMARK', ['library', value])
             }
           )

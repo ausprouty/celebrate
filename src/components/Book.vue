@@ -1,10 +1,7 @@
 <template>
   <div class="app-link" v-on:click="showPage(book)">
     <div class="app-card -shadow">
-      <img
-        v-bind:src="appDir.library + bookmark.language.image_dir + '/' + book.image"
-        class="book"
-      >
+      <img v-bind:src="appDir.library  + this.bookmark.language.image_dir + '/' +book.image" class="book">
       <div class="book">
         <span class="bold">{{book.title}}</span>
       </div>
