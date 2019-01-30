@@ -7,7 +7,7 @@
       <div class="app-link" v-on:click="goBack()">
         <div class="app-card -shadow">
           <img
-            v-bind:src="appDir.library + bookmark.language.image_dir + '/' + bookmark.book.image"
+            v-bind:src="appDir.library + this.bookmark.language.image_dir + '/' + this.bookmark.book.image"
             class="app-img-header"
           >
           <img v-bind:src="appDir.root+'backbar.png'" class="app-img-header">
@@ -16,11 +16,7 @@
       <h1>{{bookmark.book.title}}</h1>
       <div v-if="this.bookmark.series.description">{{this.bookmark.series.description}}</div>
 
-      <Chapter
-        v-for="chapter in this.bookmark.series.chapters"
-        :key="chapter.id"
-        :chapter="chapter"
-      />
+      <Chapter v-for="chapter in chapters" :key="chapter.id" :chapter="chapter"/>
       <div class="version">
         <p class="version">Version 1.01</p>
       </div>
@@ -31,6 +27,7 @@
 <script>
 import { mapState } from 'vuex'
 import Chapter from '@/components/Chapter.vue'
+import DataService from '@/services/DataService.js'
 export default {
   props: ['countryCODE', 'languageISO', 'bookNAME'],
   computed: mapState(['bookmark', 'appDir']),
@@ -39,6 +36,8 @@ export default {
   },
   data() {
     return {
+      seriesDetails: [],
+      chapters: [],
       loading: false,
       loaded: null,
       error: null
@@ -58,17 +57,30 @@ export default {
     route.book = this.bookNAME // we need book to get style sheet
     route.series = this.bookNAME
     this.$store.dispatch('checkBookmark', route).then(response => {
-      this.loading = false
-      this.loaded = true
-      console.log('response from checkBookmark in Series.vue')
-      console.log(response)
-    })
-    // .catch(error => {
-    //  this.loading = false
-    //   console.log('There was an error in  bookmark Library:', error.response) // Logs out the error
-    //  this.error = error.toString()
+      DataService.getSeries(
+        this.bookmark.country.code,
+        this.bookmark.language.iso,
+        this.bookmark.book.folder,
+        this.bookmark.book.index
+      )
+        .then(response => {
+          console.log(response.data) // For nseriesDetailsow, logs out the response
+          this.seriesDetails = response.data
+          console.log('this.seriesDetails')
+          console.log(this.seriesDetails)
 
-    //  })
+          this.chapters = this.seriesDetails.chapters
+          console.log('chapters in Series.Vue')
+          console.log(this.chapters)
+          this.loading = false
+          this.loaded = true
+        })
+        .catch(error => {
+          this.loading = false
+          console.log('There was an error:', error.response) // Logs out the error
+          this.error = error.toString()
+        })
+    })
   }
 }
 </script>

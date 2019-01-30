@@ -85,7 +85,7 @@ export default new Vuex.Store({
       dispatch('CheckBookmarkBook', route)
       dispatch('CheckBookmarkPage', route)
       console.log(this.state.bookmark)
-      console.log('above is state bookmark at finished checking')
+      console.log('ABOVE is state bookmark at finished checking')
       localStorage.setItem('bookmark', JSON.stringify(this.state.bookmark))
       return this.state.bookmark
     },
