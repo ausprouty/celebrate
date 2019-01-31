@@ -12,10 +12,8 @@ export default new Vuex.Store({
       library: '/images/library/',
       root: '/images/'
     },
-    //  baseURL: `http://prototype.myfriends.network/`,
-    //  cssURL: `http://prototype.myfriends.network/css/`,
-    baseURL: `http://localhost:8080/`,
-    cssURL: `http://localhost:8080/css/`,
+    baseURL: './',
+    cssURL: './css/',
     bookmark: localStorage.getItem('bookmark')
       ? JSON.parse(localStorage.getItem('bookmark'))
       : {}
@@ -126,7 +124,6 @@ export default new Vuex.Store({
         if (route.language != currentLanguage) {
           console.log('looking for new language of ' + route.language)
           DataService.getLanguages(route.country).then(response => {
-           
             var length = response.data.length
             for (var i = 0; i < length; i++) {
               if (response.data[i].iso == route.language) {
@@ -145,7 +142,7 @@ export default new Vuex.Store({
           })
         }
         if (typeof this.state.bookmark.library == 'undefined') {
-         // console.log (route)
+          // console.log (route)
           DataService.getLibrary(route.country, route.language).then(
             response => {
               value = response.data
@@ -289,12 +286,12 @@ update book and erase all bookmark below*/
             console.log('updating bookmark with PAGE value')
             console.log(value)
             commit('SET_BOOKMARK', ['page', value])
-          }
-          else{ // it is a basic page from the library
-             console.log ('This is a basic page')
-             value = {}
-             value.title = ''
-             commit('SET_BOOKMARK', ['page', value])
+          } else {
+            // it is a basic page from the library
+            console.log('This is a basic page')
+            value = {}
+            value.title = ''
+            commit('SET_BOOKMARK', ['page', value])
           }
         }
       } else {
