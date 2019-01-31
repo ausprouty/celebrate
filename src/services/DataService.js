@@ -2,7 +2,8 @@ import axios from 'axios'
 
 const apiClient = axios.create({
   // baseURL: `http://prototype.myfriends.network`,
-  baseURL: `http://localhost:8080`,
+ // baseURL: `http://localhost:8080`,
+ baseURL: '/',
 
   withCredentials: false, // This is the default
   headers: {
@@ -13,10 +14,10 @@ const apiClient = axios.create({
 
 export default {
   getCountries() {
-    return apiClient.get('/content/countries.json')
+    return apiClient.get('content/countries.json')
   },
   getLanguages(country) {
-    return apiClient.get('/content/' + country + '/languages.json')
+    return apiClient.get('content/' + country + '/languages.json')
   },
 
   getLibrary(country, language) {
@@ -26,12 +27,12 @@ export default {
   },
   getSeries(country, language, folder, index) {
     return apiClient.get(
-      '/content/' + country + '/' + language + '/' + folder + '/' + index
+      'content/' + country + '/' + language + '/' + folder + '/' + index
     )
   },
   getPage(country, language, folder, page) {
     return apiClient.get(
-      '/content/' +
+      'content/' +
         country +
         '/' +
         language +

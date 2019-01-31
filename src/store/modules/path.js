@@ -4,6 +4,6 @@ export const state = {
     country: '/images/country/',
     icon: '/images/icon/',
     library: '/images/library/',
-    root: '/images/'
+    root: '/images/and more'
   }
 }
