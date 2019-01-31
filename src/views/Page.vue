@@ -1,27 +1,31 @@
 <template>
   <div>
-    <link rel="stylesheet" v-bind:href="'/css/' + this.bookmark.book.style">
-    <div class="app-link" v-on:click="goBack()">
-      <div class="app-card -shadow">
-        <img
-          v-bind:src="appDir.library + bookmark.language.image_dir + '/' + bookmark.book.image"
-          class="book"
-        >
-       
-        <div class="book">
-          <span class="bold">{{bookmark.book.title}}</span>
-        </div>
-          <img v-bind:src="appDir.root+'backbar.png'" class="app-img-header">
-      </div>
-    </div>
+    <div class="loading" v-if="loading">Loading...</div>
+    <div class="error" v-if="error">There was an error...</div>
+    <div class="content" v-if="loaded">
+      <link rel="stylesheet" v-bind:href="'/css/' + this.bookmark.book.style">
+      <div class="app-link" v-on:click="goBack()">
+        <div class="app-card -shadow">
+          <img
+            v-bind:src="appDir.library + this.bookmark.language.image_dir + '/' + this.bookmark.book.image"
+            class="book"
+          >
 
-    <h1 v-if="bookmark.page.count">{{bookmark.page.count}}. {{bookmark.page.title}}</h1>
-    <h1 v-else>{{bookmark.page.title}}</h1>
-    <p>
-      <span v-html="pageText"></span>
-    </p>
-    <div class="version">
-      <p class="version">Version 1.01</p>
+          <div class="book">
+            <span class="bold">{{this.bookmark.book.title}}</span>
+          </div>
+          <img v-bind:src="appDir.root+'backbar.png'" class="app-img-header">
+        </div>
+      </div>
+
+      <h1 v-if="this.bookmark.page.count">{{this.bookmark.page.count}}. {{this.bookmark.page.title}}</h1>
+      <h1 v-else>{{this.bookmark.page.title}}</h1>
+      <p>
+        <span v-html="pageText"></span>
+      </p>
+      <div class="version">
+        <p class="version">Version 1.01</p>
+      </div>
     </div>
   </div>
 </template>
@@ -34,7 +38,10 @@ export default {
   computed: mapState(['bookmark', 'appDir', 'cssURL']),
   data() {
     return {
-      pageText: ''
+      pageText: '',
+      loading: false,
+      loaded: null,
+      error: null
     }
   },
   methods: {
@@ -45,12 +52,15 @@ export default {
 
   created() {
     console.log('I am in Page.Vue')
+    this.error = this.loaded = null
+    this.loading = true
     var route = {}
     route.country = this.countryCODE
     route.language = this.languageISO
     route.book = this.bookNAME
     route.series = this.bookNAME
     route.page = this.pageFILENAME
+    console.log('This is the route I sending to checkBookmark from Page.vue')
     console.log(route)
     this.$store.dispatch('checkBookmark', route)
     console.log('sending to dataservice from Page.Vue')
@@ -73,9 +83,13 @@ export default {
         //  console.log('page in Page.Vue')
         // console.log(response.data) // For now, logs out the response
         this.pageText = response.data
+        this.loading = false
+        this.loaded = true
       })
       .catch(error => {
+        this.loading = false
         console.log('There was an error:', error.response) // Logs out the error
+        this.error = error.toString()
       })
   }
 }

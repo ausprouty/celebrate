@@ -256,7 +256,7 @@ update book and erase all bookmark below*/
       if route.page is not the same as bookmark 
       update book and erase all bookmark below*/
     CheckBookmarkPage({ commit }, route) {
-      console.log(' route in check bookmark page')
+      console.log(' route in check bookmark PAGE')
       console.log(route)
       var value = {}
       if (route.page) {
@@ -269,6 +269,7 @@ update book and erase all bookmark below*/
         if (route.page != currentPage) {
           // console.log('we have a new page')
           if (typeof this.state.bookmark.series != 'undefined') {
+            // the page is part of a series
             if (typeof this.state.bookmark.series.chapters != 'undefined') {
               var chapters = {}
               chapters = this.state.bookmark.series.chapters
@@ -288,6 +289,12 @@ update book and erase all bookmark below*/
             console.log('updating bookmark with PAGE value')
             console.log(value)
             commit('SET_BOOKMARK', ['page', value])
+          }
+          else{ // it is a basic page from the library
+             console.log ('This is a basic page')
+             value = {}
+             value.title = ''
+             commit('SET_BOOKMARK', ['page', value])
           }
         }
       } else {
