@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="loading" v-if="loading">Loading...</div>
+    <div class="loading" v-if="loadinG">Loading...</div>
     <div class="error" v-if="error">There was an error...</div>
     <div class="content" v-if="loaded">
       <a href="/">
@@ -28,6 +28,7 @@ export default {
   computed: mapState(['bookmark', 'appDir']),
   data() {
     return {
+      loadinG: false,
       languages: [],
       loading: false,
       loaded: null,
@@ -37,51 +38,31 @@ export default {
   created() {
     /* Update bookmark based on this route (for people to select URL from another source)
        Bookmark stores current Country and all specialized info for that country
-
-      If there is only one language for this country we then push through to its library
+      If there is only one language for this country we then go back to country
     */
     this.error = this.loaded = null
     this.loading = true
     var route = {}
     route.country = this.countryCODE
     console.log('Entered Languages.vue')
-    this.$store
-      .dispatch('checkBookmark', route)
-      .then(responseUnused => {
-        console.log('about to get languages for ' + this.countryCODE)
-        DataService.getLanguages(this.countryCODE).then(response => {
-          console.log('response from getLanguages for ' + this.countryCODE)
-          console.log(response.data) // For now, logs out the response
-           console.log('length is ' + response.data.length)
+    this.$store.dispatch('checkBookmark', route).then(responseUnused => {
+      console.log('about to get languages for ' + this.countryCODE)
+      DataService.getLanguages(this.countryCODE)
+        .then(response => {
           this.languages = response.data
           if (response.data.length === 1) {
-            var language = response.data[0]
-            //    console.log('language is ')
-            //    console.log(language)
-            this.$store
-              .dispatch('updateBookmark', ['language', language])
-              .then(responseUnused => {
-                //        console.log('language_iso is ' + language.iso)
-                this.$router.push({
-                  name: 'library',
-                  params: {
-                    countryCODE: this.countryCODE,
-                    languageISO: language.iso
-                  }
-                })
-              })
-              .catch(() => {
-                console.log('There was a problem storing language')
-              })
+            this.$router.push({
+              name: 'countries'
+            })
+          } else {
+            this.loaded = true
+            this.loading = false
           }
-          this.loaded = true
-          this.loading = false
         })
-      })
-      .catch(error => {
-        this.error = true
-        console.log('There was an error:', error.response) // Logs out the error
-      })
+        .catch(() => {
+          console.log('There was a problem finding language')
+        })
+    })
   }
 }
 </script>

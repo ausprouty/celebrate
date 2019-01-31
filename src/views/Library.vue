@@ -1,10 +1,10 @@
 <template>
   <div>
-    <div class="loading" v-if="loading">Loading...</div>
+    <div class="loading" v-if="loadinG">Loading...</div>
     <div class="error" v-if="error">There was an error...</div>
     <div class="content" v-if="loaded">
       <a v-bind:href="'/languages/' + this.bookmark.country.code">
-        <img v-bind:src="appDir.library +  this.bookmark.language.image_dir +'/journey.jpg'" class="app-img-header">
+        <img v-bind:src="appDir.library +  this.image_dir +'/journey.jpg'" class="app-img-header">
         <img v-bind:src="appDir.root+'backbar.png'" class="app-img-header">
       </a>
 
@@ -23,13 +23,15 @@ import { mapState } from 'vuex'
 import DataService from '@/services/DataService.js'
 export default {
   props: ['countryCODE', 'languageISO'],
-  computed: mapState(['bookmark', 'appDir', 'cssURL']),
+  computed: mapState(['bookmark', 'appDir', 'cssURL', 'standard']),
   components: {
     Book
   },
   data() {
     return {
       library: [],
+      image_dir: '',
+      loadinG: false,
       loading: false,
       loaded: null,
       error: null
@@ -48,6 +50,13 @@ export default {
           this.library = response.data
           this.loading = false
           this.loaded = true
+          if (typeof this.bookmark.language != 'undefined') {
+            console.log('USING BOOKMARK')
+            this.image_dir = this.bookmark.language.image_dir
+          } else {
+            console.log('USING STANDARD')
+            this.image_dir = this.standard.image_dir
+          }
         })
         .catch(error => {
           console.log(

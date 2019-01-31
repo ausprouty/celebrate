@@ -38,6 +38,7 @@ export default {
     return {
       seriesDetails: [],
       chapters: [],
+      loadinG: false,
       loading: false,
       loaded: null,
       error: null

@@ -13,6 +13,7 @@
 
 <script>
 import { mapState } from 'vuex'
+import DataService from '@/services/DataService.js'
 export default {
   props: {
     country: Object
@@ -21,9 +22,33 @@ export default {
   methods: {
     showPage: function(country) {
       localStorage.setItem('lastPage', 'countries')
-      this.$router.push({
-        name: 'languages',
-        params: { countryCODE: country.code }
+      DataService.getLanguages(country.code).then(response => {
+        console.log('response from getLanguages for ' + country)
+        console.log(response.data) // For now, logs out the response
+        console.log('length is ' + response.data.length)
+        this.languages = response.data
+        if (response.data.length === 1) {
+          var language = response.data[0]
+          //    console.log('language is ')
+          //    console.log(language)
+          this.$store
+            .dispatch('updateBookmark', ['language', language])
+            .then(responseUnused => {
+              //        console.log('language_iso is ' + language.iso)
+              this.$router.push({
+                name: 'library',
+                params: {
+                  countryCODE: country.code,
+                  languageISO: language.iso
+                }
+              })
+            })
+        } else {
+          this.$router.push({
+            name: 'languages',
+            params: { countryCODE: country.code }
+          })
+        }
       })
     }
   }

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="loading" v-if="loading">Loading...</div>
+    <div class="loading" v-if="loadinG">Loading...</div>
     <div class="error" v-if="error">There was an error...</div>
     <div class="content" v-if="loaded">
       <link rel="stylesheet" v-bind:href="'/css/' + this.bookmark.book.style">
@@ -39,6 +39,7 @@ export default {
   data() {
     return {
       pageText: '',
+        loadinG: false,
       loading: false,
       loaded: null,
       error: null
