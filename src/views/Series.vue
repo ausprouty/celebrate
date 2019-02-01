@@ -1,16 +1,17 @@
 <template>
   <div>
-    <div class="loading" v-if="loading">Loading...</div>
+     <NavBar/>
+    <div class="loading" v-if="loadinG">Loading...</div>
     <div class="error" v-if="error">There was an error...</div>
     <div class="content" v-if="loaded">
+      <div v-bind:class = "this.dir">
       <link rel="stylesheet" v-bind:href="'/css/' + this.bookmark.book.style">
-      <div class="app-link" v-on:click="goBack()">
+      <div class="app-link" >
         <div class="app-card -shadow">
           <img
             v-bind:src="appDir.library + this.bookmark.language.image_dir + '/' + this.bookmark.book.image"
             class="app-img-header"
           >
-          <img v-bind:src="appDir.root+'backbar.png'" class="app-img-header">
         </div>
       </div>
       <h1>{{bookmark.book.title}}</h1>
@@ -22,33 +23,33 @@
       </div>
     </div>
   </div>
+  </div>
 </template>
 
 <script>
 import { mapState } from 'vuex'
 import Chapter from '@/components/Chapter.vue'
 import DataService from '@/services/DataService.js'
+import NavBar from '@/components/NavBarBack.vue'
 export default {
   props: ['countryCODE', 'languageISO', 'bookNAME'],
   computed: mapState(['bookmark', 'appDir']),
   components: {
-    Chapter
+    Chapter,
+    NavBar
   },
   data() {
     return {
       seriesDetails: [],
       chapters: [],
+      dir: 'ltr',
       loadinG: false,
       loading: false,
       loaded: null,
       error: null
     }
   },
-  methods: {
-    goBack() {
-      window.history.back()
-    }
-  },
+  
   created() {
     this.error = this.loaded = null
     this.loading = true

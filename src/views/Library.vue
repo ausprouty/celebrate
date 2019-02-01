@@ -1,11 +1,12 @@
 <template>
   <div>
+     <NavBar/>
     <div class="loading" v-if="loadinG">Loading...</div>
     <div class="error" v-if="error">There was an error...</div>
     <div class="content" v-if="loaded">
       <a v-bind:href="'/languages/' + this.bookmark.country.code">
         <img v-bind:src="appDir.library +  this.image_dir +'/journey.jpg'" class="app-img-header">
-        <img v-bind:src="appDir.root+'backbar.png'" class="app-img-header">
+    
       </a>
 
       <Book v-for="book in library" :key="book.title" :book="book"/>
@@ -20,12 +21,14 @@
 <script>
 import Book from '@/components/Book.vue'
 import { mapState } from 'vuex'
+import NavBar from '@/components/NavBarHamburger.vue'
 import DataService from '@/services/DataService.js'
 export default {
   props: ['countryCODE', 'languageISO'],
   computed: mapState(['bookmark', 'appDir', 'cssURL', 'standard']),
   components: {
-    Book
+    Book,
+    NavBar
   },
   data() {
     return {

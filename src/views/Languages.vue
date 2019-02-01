@@ -1,12 +1,13 @@
 <template>
   <div>
+     <NavBar/>
     <div class="loading" v-if="loadinG">Loading...</div>
     <div class="error" v-if="error">There was an error...</div>
     <div class="content" v-if="loaded">
-      <a href="/">
+     
         <img v-bind:src="appDir.root+'languages.jpg'" class="app-img-header">
-        <img v-bind:src="appDir.root+'backbar.png'" class="app-img-header">
-      </a>
+       
+     
       <h1>Choose Language</h1>
       <Language v-for="language in languages" :key="language.iso" :language="language"/>
       <div class="version">
@@ -18,12 +19,14 @@
 
 <script>
 import Language from '@/components/Language.vue'
+import NavBar from '@/components/NavBarHamburger.vue'
 import DataService from '@/services/DataService.js'
 import { mapState } from 'vuex'
 export default {
   props: ['countryCODE'],
   components: {
-    Language
+    Language,
+    NavBar
   },
   computed: mapState(['bookmark', 'appDir']),
   data() {

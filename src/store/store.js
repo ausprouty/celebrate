@@ -15,13 +15,13 @@ export default new Vuex.Store({
     baseURL: './',
     cssURL: './css/',
     standard: {
-        image_dir: 'menu-europe',
-        rldir: 'ltr',
-        css: ''
+      image_dir: 'menu-europe',
+      rldir: 'ltr',
+      css: ''
     },
     bookmark: localStorage.getItem('bookmark')
       ? JSON.parse(localStorage.getItem('bookmark'))
-      : standardBookmark
+      : {}
   },
   mutations: {
     NEW_BOOKMARK(state, value) {

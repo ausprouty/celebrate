@@ -1,10 +1,11 @@
 <template>
   <div>
+    <NavBar/>
     <div class="loading" v-if="loadinG">Loading...</div>
     <div class="error" v-if="error">There was an error...</div>
     <div class="content" v-if="loaded">
       <link rel="stylesheet" v-bind:href="'/css/' + this.bookmark.book.style">
-      <div class="app-link" v-on:click="goBack()">
+      <div class="app-link">
         <div class="app-card -shadow">
           <img
             v-bind:src="appDir.library + this.bookmark.language.image_dir + '/' + this.bookmark.book.image"
@@ -14,7 +15,6 @@
           <div class="book">
             <span class="bold">{{this.bookmark.book.title}}</span>
           </div>
-          <img v-bind:src="appDir.root+'backbar.png'" class="app-img-header">
         </div>
       </div>
 
@@ -33,21 +33,20 @@
 <script>
 import { mapState } from 'vuex'
 import DataService from '@/services/DataService.js'
+import NavBar from '@/components/NavBarBack.vue'
 export default {
   props: ['countryCODE', 'languageISO', 'bookNAME', 'pageFILENAME'],
+  components: {
+    NavBar
+  },
   computed: mapState(['bookmark', 'appDir', 'cssURL']),
   data() {
     return {
       pageText: '',
-        loadinG: false,
+      loadinG: false,
       loading: false,
       loaded: null,
       error: null
-    }
-  },
-  methods: {
-    goBack() {
-      window.history.back()
     }
   },
 

@@ -1,5 +1,6 @@
 <template>
   <div>
+    <NavBar/>
     <img v-bind:src="appDir.country+'world.jpg'" class="app-img-header">
     <h1>Select Country</h1>
     <Country v-for="country in countries" :key="country.code" :country="country"/>
@@ -11,11 +12,13 @@
 
 <script>
 import { mapState } from 'vuex'
+import NavBar from '@/components/NavBarFront.vue'
 import Country from '@/components/Country.vue'
 import DataService from '@/services/DataService.js'
 export default {
   components: {
-    Country
+    Country,
+    NavBar
   },
   computed: mapState(['appDir']),
   data() {

@@ -1,7 +1,7 @@
 <template>
   <div class="app-link" v-on:click="showPage(book)">
     <div class="app-card -shadow">
-      <img v-bind:src="appDir.library  + this.bookmark.language.image_dir + '/' +book.image" class="book">
+      <img v-bind:src="appDir.library  + this.image_dir  + '/' +book.image" class="book">
       <div class="book">
         <span class="bold">{{book.title}}</span>
       </div>
@@ -15,7 +15,21 @@ export default {
   props: {
     book: Object
   },
-  computed: mapState(['bookmark', 'appDir']),
+  computed: mapState(['bookmark', 'standard','appDir']),
+  data() {
+    return {
+      image_dir: ''
+    }
+  },
+  created() {
+    if (typeof this.bookmark.language != 'undefined') {
+      console.log('USING BOOKMARK')
+      this.image_dir = this.bookmark.language.image_dir
+    } else {
+      console.log('USING STANDARD')
+      this.image_dir = this.standard.image_dir
+    }
+  },
   methods: {
     showPage: function(book) {
       console.log('book')

@@ -35,6 +35,9 @@ font-style: italic;
 font-weight: bold;
 padding-left: 35px;
 }
+.rtl{
+    direction:rtl;
+}
 
 a {
 background: transparent;

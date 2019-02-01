@@ -1,19 +1,10 @@
 <template>
   <div id="app">
-    <NavBar/>
     <router-view/>
   </div>
 </template>
 
  <script>
-import NavBar from '@/components/NavBar.vue'
-import DataService from '@/services/DataService.js'
-
-export default {
-  components: {
-    NavBar
-  }
-}
 </script>
 
 <style>
@@ -23,6 +14,16 @@ export default {
   --color-blue: orange;
   --color-background: rgb(228, 194, 131);
   --color-version: rgb(110, 107, 241);
+}
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 60px;
+}
+img.nav-icon {
+  width: 95%;
+  max-width: 650px;
 }
 html {
   -webkit-text-size-adjust: 100%;
