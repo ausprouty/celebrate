@@ -33,6 +33,9 @@ export default new Vuex.Store({
     },
     SET_BOOKMARK(state, [mark, value]) {
       switch (mark) {
+        case 'country':
+          state.bookmark.country = value
+          break
         case 'language':
           state.bookmark.language = value
           break
@@ -108,7 +111,7 @@ export default new Vuex.Store({
               value = response.data[i]
             }
           }
-          commit('NEW_BOOKMARK', value)
+          commit('SET_BOOKMARK', ['country', value])
         })
       }
       console.log('finishing CheckBookmarkCountry')

@@ -18,6 +18,12 @@ export default {
   props: {
     country: Object
   },
+  data: function() {
+    return {
+      saving: false,
+      bMark: this.$store.state.bookmark
+    }
+  },
   computed: mapState(['bookmark', 'appDir']),
   methods: {
     showPage: function(country) {
