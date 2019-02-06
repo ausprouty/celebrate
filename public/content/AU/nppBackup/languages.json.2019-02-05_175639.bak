@@ -1,6 +1,5 @@
 [
   {
-  "id":0,
 "folder": "amh",
 "iso": "amh",
 "name": "አማርኛ (Amharic)",
@@ -12,7 +11,6 @@
 "rldir": "ltr"
   },
   {
-  "id":1,
 "folder": "arb",
 "iso": "arb",
 "name": "عربى (Arabic)",
@@ -24,7 +22,6 @@
 "rldir": "rtl"
   },
   {
-  "id":2,
 "folder": "deu",
 "iso": "deu",
 "name": "Deutsch (German)",
@@ -36,7 +33,6 @@
 "rldir": "ltr"
   },
   {
-  "id":3,
 "folder": "eng",
 "iso": "eng",
 "name": "English",
@@ -48,7 +44,6 @@
 "rldir": "ltr"
   },
   {
-  "id":4,
 "folder": "fra",
 "iso": "fra",
 "name": "Français (French)",
@@ -60,7 +55,6 @@
 "rldir": "ltr"
   },
   {
-  "id":5,
 "folder": "gaz",
 "iso": "gaz",
 "name": "Afaan Oromoo (Oromo)",
@@ -72,7 +66,6 @@
 "rldir": "ltr"
   },
   {
-  "id":6,
 "folder": "hin",
 "iso": "hin",
 "name": "हिंदी (Hindi)",
@@ -84,7 +77,6 @@
 "rldir": "ltr"
   },
   {
-  "id":7,
 "folder": "hinr",
 "iso": "hin-en",
 "name": "Hindi - Romanized",
@@ -96,7 +88,6 @@
 "rldir": "ltr"
   },
   {
-  "id":8,
 "folder": "por",
 "iso": "por",
 "name": "Português (Portugese)",
@@ -108,7 +99,6 @@
 "rldir": "ltr"
   },
   {
-  "id":9,
 "folder": "spa",
 "iso": "spa",
 "name": "Español - América Latina (Spanish - Latin America)",
@@ -120,7 +110,6 @@
 "rldir": "ltr"
   },
   {
-  "id":10,
 "folder": "tam",
 "iso": "tam",
 "name": "தமிழ் (Tamil)",
@@ -132,7 +121,6 @@
 "rldir": "ltr"
   },
   {
-  "id":11,
 "folder": "urd",
 "iso": "urd",
 "name": "اُردُو‬ (Urdu)",
@@ -144,7 +132,6 @@
 "rldir": "ltr"
   },
   {
-  "id":12,
 "folder": "zhs",
 
 "iso": "zh-s",

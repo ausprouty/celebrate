@@ -1,12 +1,11 @@
 <template>
   <div>
-     <NavBar/>
+    <NavBar/>
     <div class="loading" v-if="loadinG">Loading...</div>
     <div class="error" v-if="error">There was an error...</div>
     <div class="content" v-if="loaded">
       <a v-bind:href="'/languages/' + this.bookmark.country.code">
         <img v-bind:src="appDir.library +  this.image_dir +'/journey.jpg'" class="app-img-header">
-    
       </a>
 
       <Book v-for="book in library" :key="book.title" :book="book"/>
@@ -32,7 +31,19 @@ export default {
   },
   data() {
     return {
-      library: [],
+      library: [
+        {
+          id: '',
+          book: '',
+          title: '',
+          folder: '',
+          index: '',
+          style: 'AU-myfriends.css',
+          image: 'issues.jpg',
+          format: 'series',
+          instructions: ''
+        }
+      ],
       image_dir: '',
       loadinG: false,
       loading: false,

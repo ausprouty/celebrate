@@ -1,28 +1,28 @@
 <template>
   <div>
-     <NavBar/>
+    <NavBar/>
     <div class="loading" v-if="loadinG">Loading...</div>
     <div class="error" v-if="error">There was an error...</div>
     <div class="content" v-if="loaded">
-      <div v-bind:class = "this.dir">
-      <link rel="stylesheet" v-bind:href="'/css/' + this.bookmark.book.style">
-      <div class="app-link" >
-        <div class="app-card -shadow">
-          <img
-            v-bind:src="appDir.library + this.bookmark.language.image_dir + '/' + this.bookmark.book.image"
-            class="app-img-header"
-          >
+      <div v-bind:class="this.dir">
+        <link rel="stylesheet" v-bind:href="'/css/' + this.bookmark.book.style">
+        <div class="app-link">
+          <div class="app-card -shadow">
+            <img
+              v-bind:src="appDir.library + this.bookmark.language.image_dir + '/' + this.bookmark.book.image"
+              class="app-img-header"
+            >
+          </div>
+        </div>
+        <h1>{{bookmark.book.title}}</h1>
+        <div v-if="this.bookmark.series.description">{{this.bookmark.series.description}}</div>
+
+        <Chapter v-for="chapter in chapters" :key="chapter.id" :chapter="chapter"/>
+        <div class="version">
+          <p class="version">Version 1.01</p>
         </div>
       </div>
-      <h1>{{bookmark.book.title}}</h1>
-      <div v-if="this.bookmark.series.description">{{this.bookmark.series.description}}</div>
-
-      <Chapter v-for="chapter in chapters" :key="chapter.id" :chapter="chapter"/>
-      <div class="version">
-        <p class="version">Version 1.01</p>
-      </div>
     </div>
-  </div>
   </div>
 </template>
 
@@ -40,8 +40,20 @@ export default {
   },
   data() {
     return {
-      seriesDetails: [],
-      chapters: [],
+      seriesDetails: {
+        series: '',
+        language: '',
+        description: ''
+      },
+      chapters: [
+        {
+          id: '',
+          title: '',
+          desciption: '',
+          count: '',
+          filename: ''
+        }
+      ],
       dir: 'ltr',
       loadinG: false,
       loading: false,
@@ -49,7 +61,7 @@ export default {
       error: null
     }
   },
-  
+
   created() {
     this.error = this.loaded = null
     this.loading = true

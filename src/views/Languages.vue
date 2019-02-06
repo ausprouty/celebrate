@@ -1,13 +1,11 @@
 <template>
   <div>
-     <NavBar/>
+    <NavBar/>
     <div class="loading" v-if="loadinG">Loading...</div>
     <div class="error" v-if="error">There was an error...</div>
     <div class="content" v-if="loaded">
-     
-        <img v-bind:src="appDir.root+'languages.jpg'" class="app-img-header">
-       
-     
+      <img v-bind:src="appDir.root+'languages.jpg'" class="app-img-header">
+
       <h1>Choose Language</h1>
       <Language v-for="language in languages" :key="language.iso" :language="language"/>
       <div class="version">
@@ -32,7 +30,17 @@ export default {
   data() {
     return {
       loadinG: false,
-      languages: [],
+      language: [],
+      languages: [
+        {
+          id: '',
+          folder: '',
+          iso: '',
+          name: '',
+          image_dir: '',
+          rldir: 'ltr'
+        }
+      ],
       loading: false,
       loaded: null,
       error: null

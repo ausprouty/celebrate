@@ -180,6 +180,12 @@ button:-moz-focusring,
 [type='submit']:-moz-focusring {
   outline: 2px solid #39b982;
 }
+button{
+  margin-bottom: 20px;
+  background-color: red;
+  color:white;
+  font-weight: bold;
+}
 label {
   color: rgba(0, 0, 0, 0.5);
   font-weight: 700;
