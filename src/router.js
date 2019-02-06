@@ -5,7 +5,7 @@ import Language from './views/Languages.vue'
 import Library from './views/Library.vue'
 import Series from './views/Series.vue'
 import Page from './views/Page.vue'
-import AdminCountry from './views/AdminCountry.vue'
+import AdminCountries from './views/AdminCountries.vue'
 import AdminLanguage from './views/AdminLanguage.vue'
 import AdminLibrary from './views/AdminLibrary.vue'
 import AdminSeries from './views/AdminSeries.vue'
@@ -47,9 +47,9 @@ export default new Router({
       props: true
     },
     {
-      path: '/admin/country/:countryCODE',
+      path: '/admin/countries',
       name: 'adminCountry',
-      component: AdminCountry
+      component: AdminCountries
     },
     {
       path: '/admin/language/:countryCODE',
