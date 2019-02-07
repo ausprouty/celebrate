@@ -31,8 +31,7 @@
 </template>
 
 <script>
-import { Editor, Viewer } from '../src/index.js'
-
+//import { Editor, Viewer } from 'src/toast/src/index.js'
 const eventListenr = [
   'onEditorLoad',
   'onEditorFocus',

@@ -1,4 +1,4 @@
-<<template>
+<template>
   <div>
     <NavBar/>
     <div class="loading" v-if="loadinG">Loading...</div>
@@ -20,12 +20,9 @@
 
       <h1 v-if="this.bookmark.page.count">{{this.bookmark.page.count}}. {{this.bookmark.page.title}}</h1>
       <h1 v-else>{{this.bookmark.page.title}}</h1>
-
-         <div class="form">
-              <span>Title:</span>
-          
-              <editor v-model = "pageText" />
-      </div>
+      <p>
+        <span v-html="pageText"></span>
+      </p>
       <div class="version">
         <p class="version">Version 1.01</p>
       </div>
@@ -33,19 +30,15 @@
   </div>
 </template>
 
+
 <script>
 import { mapState } from 'vuex'
 import DataService from '@/services/DataService.js'
 import NavBar from '@/components/NavBarAdmin.vue'
-import 'tui-editor/dist/tui-editor.css';
-import 'tui-editor/dist/tui-editor-contents.css';
-import 'codemirror/lib/codemirror.css';
-import Editor from '@toast-ui/vue-editor/src/editor.vue'
 export default {
   props: ['countryCODE', 'languageISO', 'bookNAME', 'pageFILENAME'],
   components: {
-    NavBar,
-    'editor': Editor
+    NavBar
   },
   computed: mapState(['bookmark', 'appDir', 'cssURL']),
   data() {

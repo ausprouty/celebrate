@@ -1,157 +1,135 @@
-<p><strong>Articles:</strong></p>
-<ul>
-  <li>
-    <a
-      href="https://thelife.com/5-benefits-of-memorizing-scripture"
-      target="_blank"
-      >5 Benefits of Memorizing Scripture</a
-    >
-    - TheLife.com article
-  </li>
-  <li>
-    <a href="https://thelife.com/customize-your-quiet-time" target="_blank"
-      >Customize Your Quiet Time</a
-    >
-    - TheLife.com article
-  </li>
-  <li>
-    Life Lessons (Bible Studies) -
-    <a
-      href="http://powertochange.com/discover/life_lessons_faq/"
-      target="_blank"
-      >How do I start?</a
-    >
-    - Frequently Asked Questions (FAQ)
-  </li>
-  <li>
-    <a
-      href="https://thelife.com/how-to-have-an-inductive-bible-study"
-      target="_blank"
-      >How to Have an Inductive Bible Study</a
-    ><a
-      href="http://powertochange.com/experience/spiritual-growth/inductivestudy/"
-      target="_blank"
-    ></a
-    >&nbsp;- TheLife.com article
-  </li>
-  <li>
-    <a href="https://thelife.com/make-friends-with-the-bible" target="_blank"
-      >Make Friends with the Bible</a
-    >
-    - TheLife.com article
-  </li>
-  <li>
-    <a href="https://thelife.com/the-bibles-story" target="_blank"
-      >The Bible's Story: God's Love Restoring Relationship</a
-    >
-    - TheLife.com article
-  </li>
-  <li>
-    <a
-      href="https://thelife.com/the-life-changing-power-of-memorizing-scripture"
-      target="_blank"
-      >The Life-Changing Power of Memorizing Scripture</a
-    >
-    - TheLife.com article
-  </li>
-  <li>
-    A large list of our<a
-      href="http://powertochange.com/discover/ll_list/"
-      target="_blank"
-    >
-      Life Lessons</a
-    >
-    (Studies) - a study coach is assigned to you to help you
-  </li>
-</ul>
-<p><strong>Sites:</strong><br /></p>
-<p><strong>Online Bibles</strong></p>
-<ul>
-  <li>
-    Online Bible -
-    <a href="http://www.biblegateway.com/" target="_blank">Bible Gateway</a> -
-    site
-  </li>
-  <li>
-    Online Bible -
-    <a href="http://www.youversion.com/bible/john.1.kjv" target="_blank"
-      >YouVersion</a
-    >
-    - site
-  </li>
-  <li>
-    Hard Copy Bibles -
-    <a href="http://bibles4free.com/id47.html" target="_">Frtarget="_blank"ee Bibles</a> - for
-    people who ask for a Bible
-  </li>
-</ul>
-<p><strong>Reading Plans</strong></p>
-<ul>
-  <li>
-    <a
-      href="http://www.biblegateway.com/resources/readingplans/"
-      target="_blank"
-      >Reading Plan</a
-    >
-    - Bible Gateway -site
-  </li>
-  <li>
-    <a href="http://www.youversion.com/reading-plans" target="_blank"
-      >Reading Plan</a
-    >&nbsp;- YouVersion - site
-  </li>
-  <li>
-    <a href="https://thebibleproject.com/reading-plan/" target="_blank"
-      >Read Through the Bible with Us</a
-    >
-    - The Bible Project - site&nbsp;(<strong>new</strong>)
-  </li>
-</ul>
-<p><strong>Studies</strong></p>
-<ul>
-  <li>
-    Bible Studies -
-    <a
-      href="http://www.backtothebible.org/index.php/Bible-Studies.html"
-      target="_blank"
-      >Back to the Bible</a
-    >
-    - site
-  </li>
-  <li>
-    <a href="https://www.biblicaltraining.org/" target="_blank"
-      >Biblical Training</a
-    >&nbsp;- biblicaltraining.org
-  </li>
-  <li>
-    <a href="https://discoveryseries.org/" target="_blank">Christian Courses</a
-    >&nbsp;- discoveryseries.org
-  </li>
-  <li>
-    <a href="http://www.versebyverseministry.org/" target="_blank"
-      >Verse by Verse Ministries</a
-    >
-    - Studies, Answers, Devotionals
-  </li>
-</ul>
-<p><strong>Videos:</strong></p>
-<ul>
-  <li>
-    <a href="https://vimeo.com/124362954" target="_blank"
-      >How should we approach God's Word</a
-    >
-    - Rod Bergen - vimeo - (1:20 min)
-  </li>
-  <li>
-    <a href="https://thebibleproject.com/explore/" target="_blank"
-      >The Bible Project</a
-    >
-    - animated videos that make the Bible accessible to everyone,
-    everywhere.&nbsp; By topic or books within the Bible
-    <p><br /></p>
-    <p><br /></p>
-    <p>
-      <strong><br /></strong>
-    </p>
-  </li>
-</ul>
+<template>
+  <div class="container">
+    <h1>Toast UI Markdown Editor + Vue</h1>
+    <editor
+      ref="tuiEditor"
+      v-model="editorText"
+      :options="editorOptions"
+      :html="editorHtml"
+      :mode="editorMode"
+      :previewStyle="editorPreviewStyle"
+      @load="onEditorLoad"
+      @focus="onEditorFocus"
+      @blur="onEditorBlur"
+      @change="onEditorChange"
+      @stateChange="onEditorStateChange"
+    />
+    <div>
+      <h3>Props Test Buttons</h3>
+      <button @click="changeText">changeText</button>
+      <button @click="changeHtml">changeHtml</button>
+      <button @click="changeMode">changeMode</button>
+      <button @click="changePreviewStyle">changePreviewStyle</button>
+    </div>
+    <div>
+      <h3>Function Test Buttons</h3>
+      <button v-for="method in methodNames" :key="method" @click="methodInvoke(method)">{{ method }}</button>
+      <p>Function Result : {{ message }}</p>
+    </div>
+    <viewer class="viewer" :value="viewerText"/>
+  </div>
+</template>
+
+<script>
+import { Editor, Viewer } from '../src/index.js'
+
+const eventListenr = [
+  'onEditorLoad',
+  'onEditorFocus',
+  'onEditorBlur',
+  'onEditorChange',
+  'onEditorStateChange'
+].reduce((methods, methodName) => {
+  methods[methodName] = function() {
+    // eslint-disable-next-line no-console
+    console.log(`[editor] ${methodName}`)
+  }
+
+  return methods
+}, {})
+
+export default {
+  components: {
+    Editor,
+    Viewer
+  },
+  data() {
+    return {
+      message: '',
+      methodNames: [
+        'focus',
+        'getValue',
+        'getHtml',
+        'getSelectedText',
+        'moveCursorToStart',
+        'moveCursorToEnd',
+        'reset'
+      ],
+      viewerText: '# TOAST UI Markdown Viewer + Vue\n This is Viewer.',
+      editorText: 'This is initialValue.',
+      editorOptions: {
+        hideModeSwitch: false,
+        toolbarItems: [
+          'heading',
+          'bold',
+          'italic',
+          'strike',
+          'divider',
+          'hr',
+          'quote',
+          'divider',
+          'ul',
+          'ol',
+          'task',
+          'indent',
+          'outdent',
+          'divider',
+          'table',
+          'image',
+          'link',
+          'divider',
+          'code',
+          'codeblock'
+        ]
+      },
+      editorHeight: '200px',
+      editorHtml: '',
+      editorMode: 'markdown',
+      editorVisible: true,
+      editorPreviewStyle: 'vertical'
+    }
+  },
+  methods: Object.assign(eventListenr, {
+    methodInvoke(methodName) {
+      this.message = this.$refs.tuiEditor.invoke(methodName)
+    },
+    changeText() {
+      this.editorText += 'hihi'
+    },
+    changeHtml() {
+      this.editorHtml = '<h1>Hi</h1>'
+    },
+    changeMode() {
+      this.editorMode = this.editorMode === 'wysiwyg' ? 'markdown' : 'wysiwyg'
+    },
+    changePreviewStyle() {
+      this.editorPreviewStyle =
+        this.editorPreviewStyle === 'tab' ? 'vertical' : 'tab'
+    }
+  })
+}
+</script>
+
+<style>
+@import 'https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.41.0/codemirror.css';
+@import 'https://uicdn.toast.com/tui-editor/latest/tui-editor-contents.css';
+@import 'https://uicdn.toast.com/tui-editor/latest/tui-editor.css';
+@import 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/github.min.css';
+
+.container {
+  width: 960px;
+}
+.viewer {
+  background-color: lightpink;
+}
+</style>

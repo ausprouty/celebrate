@@ -9,11 +9,14 @@
   },
   "dependencies": {
     "@toast-ui/vue-editor": "^1.0.3",
+    "ajv": "^6.0.0",
     "axios": "^0.18.0",
     "lodash": "^4.17.11",
     "register-service-worker": "^1.5.2",
     "vue": "^2.5.22",
     "vue-router": "^3.0.1",
+    "vue-trumbowyg": "^3.4.1",
+    "vue-wysiwyg": "^1.7.2",
     "vuex": "^3.1.0"
   },
   "devDependencies": {

@@ -10,7 +10,7 @@ import Language from './views/Languages.vue'
 import Library from './views/Library.vue'
 import Series from './views/Series.vue'
 import Page from './views/Page.vue'
-import Toast from './views/Toast.vue'
+
 
 import NotFoundComponent from './views/NotFound.vue'
 
@@ -73,11 +73,7 @@ export default new Router({
       name: 'adminPage',
       component: AdminPage
     },
-    {
-      path: '/toast',
-      name: 'toast',
-      component: Toast
-    },
+    
 
     {
       path: '*',
