@@ -1,15 +1,17 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Countries from './views/Countries.vue'
-import Language from './views/Languages.vue'
-import Library from './views/Library.vue'
-import Series from './views/Series.vue'
-import Page from './views/Page.vue'
 import AdminCountries from './views/AdminCountries.vue'
 import AdminLanguage from './views/AdminLanguage.vue'
 import AdminLibrary from './views/AdminLibrary.vue'
 import AdminSeries from './views/AdminSeries.vue'
 import AdminPage from './views/AdminPage.vue'
+import Countries from './views/Countries.vue'
+import Language from './views/Languages.vue'
+import Library from './views/Library.vue'
+import Series from './views/Series.vue'
+import Page from './views/Page.vue',
+import Toast from './views/Toast.vue',
+
 import NotFoundComponent from './views/NotFound.vue'
 
 Vue.use(Router)
@@ -70,6 +72,11 @@ export default new Router({
       path: '/admin/page/:countryCODE/:languageISO/:bookNAME/:pageFILENAME',
       name: 'adminPage',
       component: AdminPage
+    },
+    {
+      path: '/toast',
+      name: 'toast',
+      component: toast
     },
 
     {

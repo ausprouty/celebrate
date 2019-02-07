@@ -24,13 +24,7 @@
          <div class="form">
               <span>Title:</span>
           
-              <span>Description:</span>
-              <input
-                type="text"
-                class="form-control mb-2"
-                placeholder="Description"
-                v-model="pageText"
-              >
+              <editor v-model = "pageText" />
       </div>
       <div class="version">
         <p class="version">Version 1.01</p>
@@ -43,10 +37,15 @@
 import { mapState } from 'vuex'
 import DataService from '@/services/DataService.js'
 import NavBar from '@/components/NavBarAdmin.vue'
+import 'tui-editor/dist/tui-editor.css';
+import 'tui-editor/dist/tui-editor-contents.css';
+import 'codemirror/lib/codemirror.css';
+import Editor from '@toast-ui/vue-editor/src/editor.vue'
 export default {
   props: ['countryCODE', 'languageISO', 'bookNAME', 'pageFILENAME'],
   components: {
-    NavBar
+    NavBar,
+    'editor': Editor
   },
   computed: mapState(['bookmark', 'appDir', 'cssURL']),
   data() {
