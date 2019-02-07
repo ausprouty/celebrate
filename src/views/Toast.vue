@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <h1>ðŸžðŸ“Toast UI Markdown Editor + Vue</h1>
+    <h1>Toast UI Markdown Editor + Vue</h1>
     <editor
       ref="tuiEditor"
       v-model="editorText"
