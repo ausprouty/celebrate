@@ -10,7 +10,7 @@ import Language from './views/Languages.vue'
 import Library from './views/Library.vue'
 import Series from './views/Series.vue'
 import Page from './views/Page.vue'
-
+import CKEditor from './views/CKEditor.vue'
 
 import NotFoundComponent from './views/NotFound.vue'
 
@@ -56,25 +56,33 @@ export default new Router({
     {
       path: '/admin/language/:countryCODE',
       name: 'adminLanguage',
-      component: AdminLanguage
+      component: AdminLanguage,
+      props: true
     },
     {
       path: '/admin/library/:countryCODE/:languageISO',
       name: 'adminLibrary',
-      component: AdminLibrary
+      component: AdminLibrary,
+      props: true
     },
     {
       path: '/admin/series/:countryCODE/:languageISO/:bookNAME',
       name: 'adminSeries',
-      component: AdminSeries
+      component: AdminSeries,
+      props: true
     },
     {
       path: '/admin/page/:countryCODE/:languageISO/:bookNAME/:pageFILENAME',
       name: 'adminPage',
-      component: AdminPage
+      component: AdminPage,
+      props: true
     },
-    
-
+    {
+      path: '/edit/page/:countryCODE/:languageISO/:bookNAME/:pageFILENAME',
+      name: 'edit',
+      component: CKEditor,
+      props: true
+    },
     {
       path: '*',
       component: NotFoundComponent

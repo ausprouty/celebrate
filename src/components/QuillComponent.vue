@@ -1,0 +1,1 @@
+Vue.component('editor', require('./components/Editor'));
