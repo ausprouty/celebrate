@@ -78,7 +78,7 @@ export default new Router({
       props: true
     },
     {
-      path: '/edit/page/:countryCODE/:languageISO/:bookNAME/:pageFILENAME',
+      path: '/edit',
       name: 'edit',
       component: CKEditor,
       props: true

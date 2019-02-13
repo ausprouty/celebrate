@@ -6,9 +6,6 @@ import './registerServiceWorker'
 
 import upperFirst from 'lodash/upperFirst'
 import camelCase from 'lodash/camelCase'
-import CKEDITOR from 'ckeditor'
-
-
 
 const requireComponent = require.context(
   './components',
@@ -28,7 +25,7 @@ requireComponent.keys().forEach(fileName => {
 Vue.config.productionTip = false
 Vue.prototype.$country = 'AU'
 Vue.prototype.$language = 'eng'
-Vue.use(CKEDITOR)
+
 new Vue({
   router,
   store,
