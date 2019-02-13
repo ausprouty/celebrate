@@ -3,8 +3,8 @@
     <vue-ckeditor v-model="content"></vue-ckeditor>
   </div>
 </template>
-
 <script>
+
 var CKEDITOR_BASEPATH = 'src/assets/js/ckedit/'
 import CKEDITOR from 'ckeditor'
 import VueCkeditor from 'vueckeditor'
@@ -19,7 +19,7 @@ export default {
     }
   },
   created() {
-    console.log('I am in CKEditor.Vue')
+    
   }
 }
 </script>

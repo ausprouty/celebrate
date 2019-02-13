@@ -20,6 +20,7 @@
     "save": "^2.3.3",
     "tinymce": "^5.0.0",
     "vue": "^2.5.22",
+    "vue-quill-editor": "^3.0.6",
     "vue-router": "^3.0.2",
     "vue2-editor": "^2.6.6",
     "vueckeditor": "^0.1.4",
