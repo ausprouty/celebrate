@@ -4,22 +4,18 @@
   </div>
 </template>
 <script>
-
-  import './ckeditor'
-
-  import VueCkeditor from 'vueckeditor'
-  export default {
-    components: {
-      VueCkeditor
-    },
-    data() {
-      return {
-        content: 'Hi Bob! How are you?'
-      }
-    },
-
-    created() {
-
+import 'ckeditor'
+import VueCkeditor from 'vueckeditor'
+export default {
+  components: {
+    VueCkeditor
+  },
+  data() {
+    return {
+      content: 'Hi Bob! How are you?'
     }
-  }
+  },
+
+  created() {}
+}
 </script>
