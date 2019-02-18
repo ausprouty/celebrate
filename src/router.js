@@ -10,7 +10,7 @@ import Language from './views/Languages.vue'
 import Library from './views/Library.vue'
 import Series from './views/Series.vue'
 import Page from './views/Page.vue'
-import Editor from './views/EditorQuill.vue'
+import Editor from './views/Editor.vue'
 
 import NotFoundComponent from './views/NotFound.vue'
 

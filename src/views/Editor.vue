@@ -37,10 +37,10 @@ export default {
             [{ size: ['small', false, 'large', 'huge'] }],
             [{ header: [1, 2, 3, 4, 5, 6, false] }],
             [{ font: [] }],
-            [{ color: [] }, { background: [] }],
             [{ align: [] }],
             ['clean'],
-            ['link', 'image']
+            ['link', 'image'],
+            ['raw']
           ],
           syntax: {
             highlight: text => hljs.highlightAuto(text).value
