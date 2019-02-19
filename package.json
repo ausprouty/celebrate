@@ -41,5 +41,8 @@
     "eslint-plugin-prettier": "^3.0.1",
     "eslint-plugin-vue": "^5.1.0",
     "vue-template-compiler": "^2.5.22"
+  },
+  "resolve": {
+    "ckeditor": "ckeditor.js"
   }
 }

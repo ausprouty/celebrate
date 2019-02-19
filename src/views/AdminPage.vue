@@ -22,7 +22,7 @@
       <h1 v-else>{{this.bookmark.page.title}}</h1>
       <p>
         <button @click="setEditorContent">Set Editor Contents</button>
-        <vue-editor v-model="htmlText"></vue-editor>
+        <vue-ckeditor v-model="htmlText" language="en"></vue-ckeditor>
       </p>
       <div class="version">
         <p class="version">Version 1.01</p>
@@ -36,12 +36,13 @@
 import { mapState } from 'vuex'
 import DataService from '@/services/DataService.js'
 import NavBar from '@/components/NavBarAdmin.vue'
-import { VueEditor } from 'vue2-editor'
+import './ckeditor/index.js'
+import VueCkeditor from 'vueckeditor'
 export default {
   props: ['countryCODE', 'languageISO', 'bookNAME', 'pageFILENAME'],
   components: {
     NavBar,
-    VueEditor
+    VueCkeditor
   },
   computed: mapState(['bookmark', 'appDir', 'cssURL']),
   data() {
@@ -68,7 +69,7 @@ export default {
         this.htmlText = response.data
       })
     },
-    setEditorContent: function (){
+    setEditorContent: function() {
       this.htmlText = `<html>
   <div class="lesson-section">
     <img class="lesson-icon" src="/images/compass/sharing-life.png" />

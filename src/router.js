@@ -10,7 +10,6 @@ import Language from './views/Languages.vue'
 import Library from './views/Library.vue'
 import Series from './views/Series.vue'
 import Page from './views/Page.vue'
-import Editor from './views/Editor.vue'
 import Hello from './views/HelloWorld.vue'
 
 import NotFoundComponent from './views/NotFound.vue'
@@ -78,12 +77,7 @@ export default new Router({
       component: AdminPage,
       props: true
     },
-    {
-      path: '/edit',
-      name: 'edit',
-      component: Editor,
-      props: true
-    },
+  
     {
       path: '/hello',
       name: 'hello',

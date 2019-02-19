@@ -4,8 +4,9 @@
   </div>
 </template>
 <script>
-import 'ckeditor'
+import './ckeditor/index.js'
 import VueCkeditor from 'vueckeditor'
+
 export default {
   components: {
     VueCkeditor
