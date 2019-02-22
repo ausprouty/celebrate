@@ -1,4 +1,5 @@
 window.CKEDITOR_BASEPATH = `/node_modules/ckeditor/`
+
 // Load your custom config.js file for CKEditor.
 require(`!file-loader?context=${__dirname}&outputPath=node_modules/ckeditor/&name=[path][name].[ext]!./config.js`)
 require(`!file-loader?context=${__dirname}&outputPath=node_modules/ckeditor/&name=[path][name].[ext]!./styles.js`)
@@ -11,7 +12,7 @@ require.context(
   '!file-loader?name=[path][name].[ext]!ckeditor/plugins/',
   true,
   // plugins|needed|by|ckeditor|whatever plugin your need
-  /^\.\/((wsc|scayt|copyformatiing|tableselection|link|image)(\/(?!lang\/)[^/]+)*)?[^/]*$/
+  /^\.\/((wsc|scayt|copyformatting|tableselection|link|image|div)(\/(?!lang\/)[^/]+)*)?[^/]*$/
 )
 
 // Load lang files from plugins.
@@ -21,7 +22,7 @@ require.context(
   '!file-loader?name=[path][name].[ext]!ckeditor/plugins/',
   true,
   // plugins|needed|by|ckeditor|here is the same
-  /^\.\/(wsc|scayt|copyformatiing|tableselection|link|image)\/(.*\/)*lang\/(en|es)\.js$/
+  /^\.\/(wsc|scayt|copyformatting|tableselection|link|image|div)\/(.*\/)*lang\/(en|es)\.js$/
 )
 
 // Load CKEditor lang files.

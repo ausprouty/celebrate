@@ -1,31 +1,25 @@
 <template>
   <div>
       this is my file
-    <vue-ckeditor
-      v-model="content"
-      :config="config"
-      @blur="onBlur($event)"
-      @focus="onFocus($event)"
-      @contentDom="onContentDom($event)"
-      @dialogDefinition="onDialogDefinition($event)"
-      @fileUploadRequest="onFileUploadRequest($event)"
-      @fileUploadResponse="onFileUploadResponse($event)"
-    />
+    <vue-ckeditor v-model="content" language="en"></vue-ckeditor>
   </div>
 </template>
 
 <script>
-import Ckeditor from 'ckeditor'
-import VueCkeditor from 'vue-ckeditor2'
+import './ckeditor/index.js'
+import VueCkeditor from 'vueckeditor'
 
 export default {
   components: { VueCkeditor },
   data() {
     return {
-      content: '',
+      content: 'hi',
+      toolbar: [
+          ['Italic', 'Bold','Underline', 'Strike', 'Subscript', 'Superscript']
+        ],
       config: {
         toolbar: [
-          ['Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript']
+          ['Italic', 'Bold','Underline', 'Strike', 'Subscript', 'Superscript']
         ],
         height: 300
       }
