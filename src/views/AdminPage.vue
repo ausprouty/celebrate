@@ -108,71 +108,71 @@ export default {
     <p class="reference">Lukas 15, 11-32</p>
     <div class="bible">
       <p class="bible">
-        <sup class="versenum">11</sup>Jesus fuhr fort: »Ein Mann hatte zwei
-        Söhne.<sup class="versenum">12</sup>Der jüngere sagte zu ihm: ›Vater,
+        <sup>11</sup>Jesus fuhr fort: »Ein Mann hatte zwei
+        Söhne.<sup>12</sup>Der jüngere sagte zu ihm: ›Vater,
         gib mir den Anteil am Erbe, der mir zusteht!‹ Da teilte der Vater das
-        Vermögen unter die beiden auf.<sup class="versenum">&nbsp;13</sup>Wenige
+        Vermögen unter die beiden auf.<sup>&nbsp;13</sup>Wenige
         Tage später hatte der jüngere Sohn seinen ganzen Anteil verkauft und zog
         mit dem Erlös in ein fernes Land. Dort lebte er in Saus und Braus und
         brachte sein Vermögen durch.
       </p>
       <p class="bible">
-        <sup class="versenum">14</sup>Als er alles aufgebraucht hatte, wurde
+        <sup>14</sup>Als er alles aufgebraucht hatte, wurde
         jenes Land von einer großen Hungersnot heimgesucht. Da geriet auch er in
-        Schwierigkeiten.<sup class="versenum">15</sup>In seiner Not wandte er
+        Schwierigkeiten.<sup>15</sup>In seiner Not wandte er
         sich an einen Bürger des Landes, und dieser schickte ihn zum
-        Schweinehüten auf seine Felder.<sup class="versenum">16</sup>Er wäre
+        Schweinehüten auf seine Felder.<sup>16</sup>Er wäre
         froh gewesen, wenn er seinen Hunger mit den Schoten, die die Schweine
         fraßen, hätte stillen dürfen, doch selbst davon wollte ihm keiner etwas
         geben.
       </p>
       <p class="bible">
-        <sup class="versenum">17</sup>Jetzt kam er zur Besinnung. Er sagte sich:
+        <sup>17</sup>Jetzt kam er zur Besinnung. Er sagte sich:
         ›Wie viele Tagelöhner hat mein Vater, und alle haben mehr als genug zu
-        essen! Ich dagegen komme hier vor Hunger um.<sup class="versenum">
+        essen! Ich dagegen komme hier vor Hunger um.<sup>
           &nbsp;18
         </sup>Ich will mich aufmachen und zu meinem Vater gehen und zu ihm
-        sagen: Vater, ich habe mich gegen den Himmel und gegen dich versündigt;<sup class="versenum">
+        sagen: Vater, ich habe mich gegen den Himmel und gegen dich versündigt;<sup>
           &nbsp;19
         </sup>ich bin es nicht mehr wert, dein Sohn genannt zu werden. Mach mich
         zu einem deiner Tagelöhner!‹
       </p>
       <p class="bible">
-        <sup class="versenum">20</sup>So machte er sich auf den Weg zu seinem
+        <sup>20</sup>So machte er sich auf den Weg zu seinem
         Vater. Dieser sah ihn schon von weitem kommen; voller Mitleid lief er
-        ihm entgegen, fiel ihm um den Hals und küsste ihn.<sup class="versenum">
+        ihm entgegen, fiel ihm um den Hals und küsste ihn.<sup>
           &nbsp;21
         </sup>›Vater‹, sagte der Sohn zu ihm, ›ich habe mich gegen den Himmel
         und gegen dich versündigt; ich bin es nicht mehr wert, dein Sohn genannt
-        zu werden.‹<sup class="versenum">22</sup>Doch der Vater befahl seinen
+        zu werden.‹<sup>22</sup>Doch der Vater befahl seinen
         Dienern: ›Schnell, holt das beste Gewand und zieht es ihm an, steckt ihm
-        einen Ring an den Finger und bringt ihm ein Paar Sandalen!<sup class="versenum">
+        einen Ring an den Finger und bringt ihm ein Paar Sandalen!<sup>
           &nbsp;23
         </sup>Holt das Mastkalb und schlachtet es; wir wollen ein Fest feiern
-        und fröhlich sein.<sup class="versenum">24</sup>Denn mein Sohn war tot,
+        und fröhlich sein.<sup>24</sup>Denn mein Sohn war tot,
         und nun lebt er wieder; er war verloren, und nun ist er wiedergefunden.‹
         Und sie begannen zu feiern.
       </p>
       <p class="bible">
-        <sup class="versenum">25</sup>Der ältere Sohn war auf dem Feld gewesen.
+        <sup>25</sup>Der ältere Sohn war auf dem Feld gewesen.
         Als er jetzt zurückkam, hörte er schon von weitem den Lärm von Musik und
-        Tanz.<sup class="versenum">26</sup>Er rief einen Knecht und erkundigte
-        sich, was das zu bedeuten habe.<sup class="versenum">&nbsp;27</sup>›Dein
+        Tanz.<sup>26</sup>Er rief einen Knecht und erkundigte
+        sich, was das zu bedeuten habe.<sup>&nbsp;27</sup>›Dein
         Bruder ist zurückgekommen‹, lautete die Antwort, ›und dein Vater hat das
-        Mastkalb schlachten lassen, weil er ihn wohlbehalten wiederhat.‹<sup class="versenum">
+        Mastkalb schlachten lassen, weil er ihn wohlbehalten wiederhat.‹<sup>
           28
         </sup>Der ältere Bruder wurde zornig und wollte nicht ins Haus
-        hineingehen. Da kam sein Vater heraus und redete ihm gut zu.<sup class="versenum">
+        hineingehen. Da kam sein Vater heraus und redete ihm gut zu.<sup>
           29
         </sup>Aber er hielt seinem Vater vor: ›So viele Jahre diene ich dir
         jetzt schon und habe mich nie deinen Anordnungen widersetzt. Und doch
         hast du mir nie auch nur einen Ziegenbock gegeben, sodass ich mit meinen
-        Freunden hätte feiern können!<sup class="versenum">30</sup>Und nun kommt
+        Freunden hätte feiern können!<sup>30</sup>Und nun kommt
         dieser Mensch da zurück, dein Sohn, der dein Vermögen mit Huren
-        durchgebracht hat, und du lässt das Mastkalb für ihn schlachten!‹ –<sup class="versenum">
+        durchgebracht hat, und du lässt das Mastkalb für ihn schlachten!‹ –<sup>
           &nbsp;31
         </sup>›Kind‹, sagte der Vater zu ihm, ›du bist immer bei mir, und alles,
-        was mir gehört, gehört auch dir.<sup class="versenum">32</sup>Aber jetzt
+        was mir gehört, gehört auch dir.<sup>32</sup>Aber jetzt
         mussten wir doch feiern und uns freuen; denn dieser hier, dein Bruder,
         war tot, und nun lebt er wieder; er war verloren, und nun ist er
         wiedergefunden.‹«
@@ -344,20 +344,23 @@ export default {
     route.page = this.$route.params.pageFILENAME
     console.log('This is the route I sending to checkBookmark from Page.vue')
     console.log(route)
-    this.$store.dispatch('checkBookmark', route)
-    DataService.getPage(
-      this.$route.params.countryCODE,
-      this.$route.params.languageISO,
-      this.bookmark.book.folder,
-      this.$route.params.pageFILENAME
-    )
+    this.$store
+      .dispatch('checkBookmark', route)
       .then(response => {
-        //  console.log('page in Page.Vue')
-        // console.log(response.data) // For now, logs out the response
-        this.pageText = response.data
-        this.loading = false
-        this.loaded = true
+        DataService.getPage(
+          this.$route.params.countryCODE,
+          this.$route.params.languageISO,
+          this.bookmark.book.folder,
+          this.$route.params.pageFILENAME
+        ).then(response => {
+          //  console.log('page in Page.Vue')
+          // console.log(response.data) // For now, logs out the response
+          this.pageText = response.data
+          this.loading = false
+          this.loaded = true
+        })
       })
+
       .catch(error => {
         this.loading = false
         console.log('There was an error:', error.response) // Logs out the error
