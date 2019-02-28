@@ -42,5 +42,8 @@ export default {
         page +
         '.html'
     )
+  },
+  getMembers(){
+    return apiClient.get ('http://localhost:8000/myfriends/MembersApi.php')
   }
 }

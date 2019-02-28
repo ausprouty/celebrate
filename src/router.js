@@ -11,6 +11,8 @@ import Library from './views/Library.vue'
 import Series from './views/Series.vue'
 import Page from './views/Page.vue'
 import Hello from './views/CKEditor4.vue'
+import Users from './views/Users.vue'
+import Members from './views/Members.vue'
 
 import NotFoundComponent from './views/NotFound.vue'
 
@@ -77,7 +79,19 @@ export default new Router({
       component: AdminPage,
       props: true
     },
-  
+    {
+      path: '/users',
+      name: 'users',
+      component: Users,
+      props: true
+    },
+    {
+      path: '/members',
+      name: 'members',
+      component: Members,
+      props: true
+    },
+
     {
       path: '/hello',
       name: 'hello',

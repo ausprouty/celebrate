@@ -25,9 +25,8 @@ requireComponent.keys().forEach(fileName => {
 Vue.config.productionTip = false
 Vue.prototype.$country = 'AU'
 Vue.prototype.$language = 'eng'
-// Vue.prototype.CKEDITOR_BASEPATH = 'src/assets/js/ckedit/'
 
-new Vue({
+var app = new Vue({
   router,
   store,
   render: function(h) {

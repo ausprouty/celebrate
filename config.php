@@ -1,6 +1,6 @@
 <?php
 
-$host = "localhost:8306";    /* Host name */
+$host = "localhost";    /* Host name */
 $user = "vuejs";         /* User */
 $password = "ViewJs2019";         /* Password */
 $dbname = "vuejs";   /* Database name */
