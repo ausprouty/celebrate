@@ -13,6 +13,7 @@ import Page from './views/Page.vue'
 import Hello from './views/CKEditor4.vue'
 import Users from './views/Users.vue'
 import Members from './views/Members.vue'
+import MembersAdd from './views/MembersAdd.vue'
 
 import NotFoundComponent from './views/NotFound.vue'
 
@@ -89,6 +90,12 @@ export default new Router({
       path: '/members',
       name: 'members',
       component: Members,
+      props: true
+    },
+    {
+      path: '/add',
+      name: 'add',
+      component: MembersAdd,
       props: true
     },
 

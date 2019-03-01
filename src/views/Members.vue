@@ -1,6 +1,8 @@
 <template>
   <div class="container">
-    <h1 class="page-header text-center">https://www.sourcecodester.com/tutorials/php/11853/vuejs-fetch-data-mysql-database-using-php.html</h1>
+    <h1
+      class="page-header text-center"
+    >https://www.sourcecodester.com/tutorials/php/11853/vuejs-fetch-data-mysql-database-using-php.html</h1>
     <div id="ourmembers">
       <div class="col-md-8 col-md-offset-2">
         <div class="row">
@@ -77,3 +79,49 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.myModal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.modalContainer {
+  width: 555px;
+  background: #ffffff;
+  margin: auto;
+  margin-top: 50px;
+}
+
+.modalHeader {
+  padding: 10px;
+  background: #008cba;
+  color: #ffffff;
+  height: 50px;
+  font-size: 20px;
+  padding-left: 15px;
+}
+
+.modalBody {
+  padding: 40px;
+}
+
+.modalFooter {
+  height: 36px;
+}
+
+.footerBtn {
+  margin-right: 10px;
+  margin-top: -9px;
+}
+
+.closeBtn {
+  background: #008cba;
+  color: #ffffff;
+  border: none;
+}
+</style>

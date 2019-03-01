@@ -1,9 +1,10 @@
 import axios from 'axios'
 
+
 const apiClient = axios.create({
   // baseURL: `http://prototype.myfriends.network`,
- // baseURL: `http://localhost:8080`,
- baseURL: '/',
+  // baseURL: `http://localhost:8080`,
+  baseURL: '/',
 
   withCredentials: false, // This is the default
   headers: {
@@ -43,7 +44,18 @@ export default {
         '.html'
     )
   },
-  getMembers(){
-    return apiClient.get ('http://localhost:8000/myfriends/MembersApi.php')
+  getMembers() {
+    return apiClient.get('http://localhost:8000/myfriends/MembersApi.php')
+  },
+  saveMember(memForm) {
+    console.log('in dataservice')
+    // Display the key/value pairs
+    for (var pair of memForm.entries()) {
+      console.log(pair[0] + ', ' + pair[1])
+    }
+    return apiClient.post(
+      'http://localhost:8000/myfriends/MembersApi.php?crud=create',
+      memForm
+    )
   }
 }

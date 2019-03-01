@@ -2,10 +2,13 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store/store'
+import Vuelidate from 'vuelidate'
 import './registerServiceWorker'
 
 import upperFirst from 'lodash/upperFirst'
 import camelCase from 'lodash/camelCase'
+
+Vue.use(Vuelidate)
 
 const requireComponent = require.context(
   './components',
@@ -26,7 +29,7 @@ Vue.config.productionTip = false
 Vue.prototype.$country = 'AU'
 Vue.prototype.$language = 'eng'
 
-var app = new Vue({
+var vm = new Vue({
   router,
   store,
   render: function(h) {
