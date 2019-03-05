@@ -1,6 +1,5 @@
 import axios from 'axios'
 
-
 const apiClient = axios.create({
   // baseURL: `http://prototype.myfriends.network`,
   // baseURL: `http://localhost:8080`,
@@ -48,13 +47,25 @@ export default {
     return apiClient.get('http://localhost:8000/myfriends/MembersApi.php')
   },
   saveMember(memForm) {
-    console.log('in dataservice')
+    //console.log('in dataservice')
     // Display the key/value pairs
-    for (var pair of memForm.entries()) {
-      console.log(pair[0] + ', ' + pair[1])
-    }
+    //for (var pair of memForm.entries()) {
+    //  console.log(pair[0] + ', ' + pair[1])
+    //}
     return apiClient.post(
       'http://localhost:8000/myfriends/MembersApi.php?crud=create',
+      memForm
+    )
+  },
+  updateMember(memForm) {
+    return apiClient.post(
+      'http://localhost:8000/myfriends/MembersApi.php?crud=update',
+      memForm
+    )
+  },
+  deleteMember(memForm) {
+    return apiClient.post(
+      'http://localhost:8000/myfriends/MembersApi.php?crud=delete',
       memForm
     )
   }

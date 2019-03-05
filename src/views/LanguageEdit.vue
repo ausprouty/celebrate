@@ -105,7 +105,7 @@ export default {
     this.languages = []
     var route = {}
     route.country = this.$route.params.countryCODE
-    console.log('Entered AdminLanguages.vue')
+    console.log('Entered LanguageEdits.vue')
     console.log(this.$route.params.countryCODE)
     this.$store.dispatch('checkBookmark', route).then(responseUnused => {
       console.log('about to get languages for ' + route.country)

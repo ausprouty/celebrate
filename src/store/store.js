@@ -12,12 +12,28 @@ export default new Vuex.Store({
       library: '/images/library/',
       root: '/images/'
     },
+    revision: '1.1',
     baseURL: './',
     cssURL: './css/',
     standard: {
       image_dir: 'menu-europe',
       rldir: 'ltr',
       css: ''
+    },
+    content: {
+      recnum: '',
+      version: '1.1',
+      edit_date: '',
+      edit_uid: '',
+      publish_uid: '',
+      publish_date: '',
+      language_iso: '',
+      country_iso: '',
+      section: '',
+      filetype: '',
+      title: '',
+      filename: '',
+      text: ''
     },
     bookmark: localStorage.getItem('bookmark')
       ? JSON.parse(localStorage.getItem('bookmark'))

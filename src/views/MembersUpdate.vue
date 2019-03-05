@@ -9,7 +9,7 @@
             <h2>
               Member List
               <button class="btn btn-primary pull-right" @click="showAddModal = true">
-                <span class="glyphicon glyphicon-plus"></span> Add Member
+                <span class="glyphicon glyphicon-plus"></span> Member
               </button>
             </h2>
           </div>
@@ -42,10 +42,16 @@
               <td>{{ member.firstname }}</td>
               <td>{{ member.lastname }}</td>
               <td>
-                <button class="btn btn-success">
+                <button
+                  class="btn btn-success"
+                  @click="showEditModal = true; selectMember(member);"
+                >
                   <span class="glyphicon glyphicon-edit"></span> Edit
                 </button>
-                <button class="btn btn-danger">
+                <button
+                  class="btn btn-danger"
+                  @click="showDeleteModal = true; selectMember(member);"
+                >
                   <span class="glyphicon glyphicon-trash"></span> Delete
                 </button>
               </td>
@@ -84,6 +90,61 @@
         </div>
       </div>
     </div>
+    <!-- Edit Modal -->
+    <div class="myModal" v-if="showEditModal">
+      <div class="modalContainer">
+        <div class="editHeader">
+          <span class="headerTitle">Edit Member</span>
+          <button class="closeEditBtn pull-right" @click="showEditModal = false">&times;</button>
+        </div>
+        <div class="modalBody">
+          <div class="form-group">
+            <label>Firstname:</label>
+            <input type="text" class="form-control" v-model="clickMember.firstname">
+          </div>
+          <div class="form-group">
+            <label>Lastname:</label>
+            <input type="text" class="form-control" v-model="clickMember.lastname">
+          </div>
+        </div>
+        <hr>
+        <div class="modalFooter">
+          <div class="footerBtn pull-right">
+            <button class="btn btn-default" @click="showEditModal = false">
+              <span class="glyphicon glyphicon-remove"></span> Cancel
+            </button>
+            <button class="btn btn-success" @click="showEditModal = false; updateMember();">
+              <span class="glyphicon glyphicon-check"></span> Save
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Delete Modal -->
+    <div class="myModal" v-if="showDeleteModal">
+      <div class="modalContainer">
+        <div class="deleteHeader">
+          <span class="headerTitle">Delete Member</span>
+          <button class="closeDelBtn pull-right" @click="showDeleteModal = false">&times;</button>
+        </div>
+        <div class="modalBody">
+          <h5 class="text-center">Are you sure you want to Delete</h5>
+          <h2 class="text-center">{{clickMember.firstname}} {{clickMember.lastname}}</h2>
+        </div>
+        <hr>
+        <div class="modalFooter">
+          <div class="footerBtn pull-right">
+            <button class="btn btn-default" @click="showDeleteModal = false">
+              <span class="glyphicon glyphicon-remove"></span> Cancel
+            </button>
+            <button class="btn btn-danger" @click="showDeleteModal = false; deleteMember(); ">
+              <span class="glyphicon glyphicon-trash"></span> Yes
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 <script>
@@ -93,30 +154,13 @@ export default {
   data() {
     return {
       showAddModal: false,
+      showEditModal: false,
+      showDeleteModal: false,
       errorMessage: false,
       successMessage: false,
-      newMember: {},
-
       members: [],
-      member: [],
-      Xmembers: [
-        {
-          0: '1',
-          1: 'neovic',
-          2: 'devierte',
-          memid: '1',
-          firstname: 'DataNeovic',
-          lastname: 'Datea Devierte'
-        },
-        {
-          0: '2',
-          1: 'gemalyn',
-          2: 'cepe',
-          memid: '2',
-          firstname: 'DataGemalyn',
-          lastname: 'DataCepe'
-        }
-      ]
+      newMember: { firstname: '', lastname: '' },
+      clickMember: {}
     }
   },
   created() {
@@ -134,31 +178,14 @@ export default {
     getAllMembers() {
       DataService.getMembers()
         .then(response => {
-          console.log('response.data.members')
-          console.log(response.data.members)
           this.members = response.data.members
         })
         .catch(() => {
           console.log('There was a problem finding members')
         })
     },
-    toFormData(obj) {
-      var form_data = new FormData()
-      for (var key in obj) {
-        form_data.append(key, obj[key])
-      }
-      console.log('form_data')
-      // Display the key/value pairs
-      for (var pair of form_data.entries()) {
-        console.log(pair[0] + ', ' + pair[1])
-      }
-      return form_data
-    },
     saveMember() {
-     
       var memForm = this.toFormData(this.newMember)
-      console.log('memForm')
-      console.log(memForm)
       var ref = this
       DataService.saveMember(memForm).then(function(response) {
         console.log(response)
@@ -166,11 +193,55 @@ export default {
         if (response.data.error) {
           ref.errorMessage = response.data.message
         } else {
-          // this.successMessage = response.data.message
+          ref.successMessage = response.data.message
           ref.getAllMembers()
         }
       })
     },
+    updateMember() {
+      var memForm = this.toFormData(this.clickMember)
+      var ref = this
+      DataService.updateMember(memForm).then(function(response) {
+        //console.log(response);
+        ref.clickMember = {}
+        if (response.data.error) {
+          ref.errorMessage = response.data.message
+        } else {
+          ref.successMessage = response.data.message
+          ref.getAllMembers()
+        }
+      })
+    },
+    deleteMember() {
+      var memForm = this.toFormData(this.clickMember)
+      var ref = this
+      DataService.deleteMember(memForm).then(function(response) {
+        //console.log(response);
+        ref.clickMember = {}
+        if (response.data.error) {
+          ref.errorMessage = response.data.message
+        } else {
+          ref.successMessage = response.data.message
+          ref.getAllMembers()
+        }
+      })
+    },
+    selectMember(member) {
+      this.clickMember = member
+    },
+    toFormData(obj) {
+      var form_data = new FormData()
+      for (var key in obj) {
+        form_data.append(key, obj[key])
+      }
+
+      // Display the key/value pairs
+      // for (var pair of form_data.entries()) {
+      //   console.log(pair[0] + ', ' + pair[1])
+      // }
+      return form_data
+    },
+
     clearMessage() {
       this.errorMessage = ''
       this.successMessage = ''
@@ -219,6 +290,35 @@ export default {
 
 .closeBtn {
   background: #008cba;
+  color: #ffffff;
+  border: none;
+}
+.editHeader {
+  padding: 10px;
+  background: #4caf50;
+  color: #ffffff;
+  height: 50px;
+  font-size: 20px;
+  padding-left: 15px;
+}
+
+.deleteHeader {
+  padding: 10px;
+  background: #f44336;
+  color: #ffffff;
+  height: 50px;
+  font-size: 20px;
+  padding-left: 15px;
+}
+
+.closeEditBtn {
+  background: #4caf50;
+  color: #ffffff;
+  border: none;
+}
+
+.closeDelBtn {
+  background: #f44336;
   color: #ffffff;
   border: none;
 }

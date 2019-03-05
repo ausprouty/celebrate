@@ -1,19 +1,21 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import AdminCountries from './views/AdminCountries.vue'
-import AdminLanguage from './views/AdminLanguage.vue'
-import AdminLibrary from './views/AdminLibrary.vue'
-import AdminSeries from './views/AdminSeries.vue'
-import AdminPage from './views/AdminPage.vue'
 import Countries from './views/Countries.vue'
+import CountriesEdit from './views/CountriesEdit.vue'
 import Language from './views/Languages.vue'
+import LanguageEdit from './views/LanguageEdit.vue'
 import Library from './views/Library.vue'
+import LibraryEdit from './views/LibraryEdit.vue'
 import Series from './views/Series.vue'
+import SeriesEdit from './views/SeriesEdit.vue'
 import Page from './views/Page.vue'
+import PageEdit from './views/PageEdit.vue'
+
 import Hello from './views/CKEditor4.vue'
 import Users from './views/Users.vue'
 import Members from './views/Members.vue'
 import MembersAdd from './views/MembersAdd.vue'
+import MembersUpdate from './views/MembersUpdate.vue'
 
 import NotFoundComponent from './views/NotFound.vue'
 
@@ -52,32 +54,32 @@ export default new Router({
       props: true
     },
     {
-      path: '/admin/countries',
-      name: 'adminCountry',
-      component: AdminCountries
+      path: '/edit/countries',
+      name: 'editCountries',
+      component: CountriesEdit
     },
     {
-      path: '/admin/language/:countryCODE',
-      name: 'adminLanguage',
-      component: AdminLanguage,
+      path: '/edit/language/:countryCODE',
+      name: 'editLanguage',
+      component: LanguageEdit,
       props: true
     },
     {
-      path: '/admin/library/:countryCODE/:languageISO',
-      name: 'adminLibrary',
-      component: AdminLibrary,
+      path: '/edit/library/:countryCODE/:languageISO',
+      name: 'editLibrary',
+      component: LibraryEdit,
       props: true
     },
     {
-      path: '/admin/series/:countryCODE/:languageISO/:bookNAME',
-      name: 'adminSeries',
-      component: AdminSeries,
+      path: '/edit/series/:countryCODE/:languageISO/:bookNAME',
+      name: 'editSeries',
+      component: SeriesEdit,
       props: true
     },
     {
-      path: '/admin/page/:countryCODE/:languageISO/:bookNAME/:pageFILENAME',
-      name: 'adminPage',
-      component: AdminPage,
+      path: '/edit/page/:countryCODE/:languageISO/:bookNAME/:pageFILENAME',
+      name: 'editPage',
+      component: PageEdit,
       props: true
     },
     {
@@ -96,6 +98,12 @@ export default new Router({
       path: '/add',
       name: 'add',
       component: MembersAdd,
+      props: true
+    },
+    {
+      path: '/update',
+      name: 'update',
+      component: MembersUpdate,
       props: true
     },
 
