@@ -74,7 +74,7 @@
 
 <script>
 import NavBar from '@/components/NavBarAdmin.vue'
-import DataService from '@/services/DataService.js'
+import ContentService from '@/services/ContentService.js'
 //import Route from '../router.js'
 import { mapState } from 'vuex'
 export default {
@@ -128,7 +128,7 @@ export default {
     route.language = this.$route.params.languageISO
     this.$store.dispatch('checkBookmark', route).then(response => {
       // it is safer to get data each time tha rely on bookmark
-      DataService.getLibrary(route.country, route.language)
+      ContentService.getLibrary(route.country, route.language)
         .then(response => {
           this.library = response.data
           if (typeof this.bookmark.language != 'undefined') {

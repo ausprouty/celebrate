@@ -15,6 +15,9 @@
   --color-background: rgb(228, 194, 131);
   --color-version: rgb(110, 107, 241);
 }
+.preview{
+  background-color: orange;
+}
 .nav {
   display: flex;
   justify-content: space-between;

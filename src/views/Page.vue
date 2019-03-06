@@ -32,7 +32,7 @@
 
 <script>
 import { mapState } from 'vuex'
-import DataService from '@/services/DataService.js'
+import ContentService from '@/services/ContentService.js'
 import NavBar from '@/components/NavBarBack.vue'
 export default {
   props: ['countryCODE', 'languageISO', 'bookNAME', 'pageFILENAME'],
@@ -73,7 +73,7 @@ export default {
         ',' +
         this.pageFILENAME
     )
-    DataService.getPage(
+    ContentService.getPage(
       this.countryCODE,
       this.languageISO,
       this.bookmark.book.folder,

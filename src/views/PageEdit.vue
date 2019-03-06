@@ -34,7 +34,7 @@
 
 <script>
 import { mapState } from 'vuex'
-import DataService from '@/services/DataService.js'
+import ContentService from '@/services/ContentService.js'
 import NavBar from '@/components/NavBarAdmin.vue'
 import './ckeditor/index.js'
 import VueCkeditor from 'vueckeditor'
@@ -58,7 +58,7 @@ export default {
   methods: {
     XsetEditorContent: function() {
       console.log('I tried to update text')
-      DataService.getPage(
+      ContentService.getPage(
         this.$route.params.countryCODE,
         this.$route.params.languageISO,
         this.bookmark.book.folder,
@@ -347,7 +347,7 @@ export default {
     this.$store
       .dispatch('checkBookmark', route)
       .then(response => {
-        DataService.getPage(
+        ContentService.getPage(
           this.$route.params.countryCODE,
           this.$route.params.languageISO,
           this.bookmark.book.folder,

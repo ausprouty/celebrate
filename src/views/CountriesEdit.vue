@@ -59,7 +59,7 @@
 
 <script>
 import NavBar from '@/components/NavBarAdmin.vue'
-import DataService from '@/services/DataService.js'
+import ContentService from '@/services/ContentService.js'
 import EditService from '@/services/EditService.js'
 //import Route from '../router.js'
 import { mapState } from 'vuex'
@@ -122,7 +122,10 @@ export default {
           ref.errorMessage = response.data.message
         } else {
           // this.successMessage = response.data.message
-          ref.getCountries()
+          //ref.getCountries()
+          ref.$router.push({
+            name: 'previewCountries'
+          })
         }
       })
     },
@@ -152,7 +155,7 @@ export default {
           console.log('response')
           console.log(response.data)
           if (response.data.content == 'none') {
-            DataService.getCountries().then(response => {
+            ContentService.getCountries().then(response => {
               console.log('lookig for old data')
               ref.countries = response.data
               ref.loaded = true
@@ -173,7 +176,7 @@ export default {
             ref.loaded = true
             ref.loading = false
             this.countries = ref.content.countries
-            console.log (ref.content.countries)
+            console.log(ref.content.countries)
           }
         })
         .catch(() => {

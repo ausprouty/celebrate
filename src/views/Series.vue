@@ -29,7 +29,7 @@
 <script>
 import { mapState } from 'vuex'
 import Chapter from '@/components/Chapter.vue'
-import DataService from '@/services/DataService.js'
+import ContentService from '@/services/ContentService.js'
 import NavBar from '@/components/NavBarBack.vue'
 export default {
   props: ['countryCODE', 'languageISO', 'bookNAME'],
@@ -71,7 +71,7 @@ export default {
     route.book = this.bookNAME // we need book to get style sheet
     route.series = this.bookNAME
     this.$store.dispatch('checkBookmark', route).then(response => {
-      DataService.getSeries(
+      ContentService.getSeries(
         this.bookmark.country.code,
         this.bookmark.language.iso,
         this.bookmark.book.folder,

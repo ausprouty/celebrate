@@ -2,12 +2,18 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Countries from './views/Countries.vue'
 import CountriesEdit from './views/CountriesEdit.vue'
+import CountriesPreview from './views/CountriesPreview.vue'
+
 import Language from './views/Languages.vue'
-import LanguageEdit from './views/LanguageEdit.vue'
+import LanguageEdit from './views/LanguagesEdit.vue'
+import LanguagesPreview from './views/LanguagesPreview.vue'
+
 import Library from './views/Library.vue'
 import LibraryEdit from './views/LibraryEdit.vue'
+
 import Series from './views/Series.vue'
 import SeriesEdit from './views/SeriesEdit.vue'
+
 import Page from './views/Page.vue'
 import PageEdit from './views/PageEdit.vue'
 
@@ -80,6 +86,17 @@ export default new Router({
       path: '/edit/page/:countryCODE/:languageISO/:bookNAME/:pageFILENAME',
       name: 'editPage',
       component: PageEdit,
+      props: true
+    },
+    {
+      path: '/preview/countries',
+      name: 'previewCountries',
+      component: CountriesPreview
+    },
+    {
+      path: '/preview/language/:countryCODE',
+      name: 'previewLanguages',
+      component: LanguagesPreview,
       props: true
     },
     {

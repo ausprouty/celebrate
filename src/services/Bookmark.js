@@ -1,8 +1,8 @@
-import DataService from '@/services/DataService.js'
+import ContentService from '@/services/ContentService.js'
 export default {
   bookmarkCountry(route) {
     console.log('I came into bookmarkCountry')
-    DataService.getCountries()
+    ContentService.getCountries()
       .then(response => {
         var value = {}
         console.log('coutnries')
@@ -22,7 +22,7 @@ export default {
   },
   bookmarkLanguage(route) {
     console.log('I camt into bookmarkLANGUAGE')
-    DataService.getLanguages(route.country).then(response => {
+    ContentService.getLanguages(route.country).then(response => {
       var value = {}
       var length = response.data.length
       for (var i = 0; i < length; i++) {
@@ -36,7 +36,7 @@ export default {
   },
   bookmarkLibrary(route) {
     console.log('I camt into bookmarkLIBRARY')
-    DataService.getLibrary(route.country, route.language).then(response => {
+    ContentService.getLibrary(route.country, route.language).then(response => {
       var value = response.data
       console.log('finishing bookmarkLibrary')
       return value
@@ -67,12 +67,15 @@ export default {
     if (value.folder) {
       var folder = value.folder
       var index = value.index
-      DataService.getSeries(route.country, route.language, folder, index).then(
-        response => {
-          var value = response.data
-          return value
-        }
-      )
+      ContentService.getSeries(
+        route.country,
+        route.language,
+        folder,
+        index
+      ).then(response => {
+        var value = response.data
+        return value
+      })
     }
   },
   bookmarkPage(route, bookmark) {

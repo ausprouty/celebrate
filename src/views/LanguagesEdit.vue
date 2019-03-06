@@ -53,7 +53,7 @@
 
 <script>
 import NavBar from '@/components/NavBarAdmin.vue'
-import DataService from '@/services/DataService.js'
+import ContentService from '@/services/ContentService.js'
 //import Route from '../router.js'
 import { mapState } from 'vuex'
 export default {
@@ -109,13 +109,9 @@ export default {
     console.log(this.$route.params.countryCODE)
     this.$store.dispatch('checkBookmark', route).then(responseUnused => {
       console.log('about to get languages for ' + route.country)
-      DataService.getLanguages(route.country)
+      ContentService.getLanguages(route.country)
         .then(response => {
-          console.log('response data')
-          console.log(response.data)
           this.languages = response.data
-          console.log('languages')
-          console.log(this.languages)
           this.loaded = true
           this.loading = false
         })

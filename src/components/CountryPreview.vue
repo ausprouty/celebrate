@@ -13,7 +13,7 @@
 
 <script>
 import { mapState } from 'vuex'
-import ContentService from '@/services/ContentService.js'
+import EditService from '@/services/EditService.js'
 export default {
   props: {
     country: Object
@@ -27,22 +27,23 @@ export default {
   computed: mapState(['bookmark', 'appDir']),
   methods: {
     showPage: function(country) {
+      var ref = this
       localStorage.setItem('lastPage', 'countries')
-      ContentService.getLanguages(country.code).then(response => {
+      EditService.getLanguages(country.code).then(response => {
         console.log('response from getLanguages for ' + country)
         console.log(response.data) // For now, logs out the response
         console.log('length is ' + response.data.length)
-        this.languages = response.data
+        ref.languages = response.data
         if (response.data.length === 1) {
           var language = response.data[0]
           //    console.log('language is ')
           //    console.log(language)
-          this.$store
+          ref.$store
             .dispatch('updateBookmark', ['language', language])
             .then(responseUnused => {
               //        console.log('language_iso is ' + language.iso)
-              this.$router.push({
-                name: 'library',
+              ref.$router.push({
+                name: 'previewlibrary',
                 params: {
                   countryCODE: country.code,
                   languageISO: language.iso
@@ -50,8 +51,8 @@ export default {
               })
             })
         } else {
-          this.$router.push({
-            name: 'languages',
+          ref.$router.push({
+            name: 'previewLanguages',
             params: { countryCODE: country.code }
           })
         }

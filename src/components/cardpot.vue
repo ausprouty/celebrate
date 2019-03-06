@@ -22,7 +22,7 @@
 
 <script>
 import Book from '@/components/Book.vue'
-import DataService from '@/services/DataService.js'
+import ContentService from '@/services/ContentService.js'
 import BookmarkService from '@/services/Bookmark.js'
 import { mapState } from 'vuex'
 export default {
@@ -57,7 +57,7 @@ export default {
       route.language = this.languageISO
       var myBookmark = {}
 
-      DataService.getCountries()
+      ContentService.getCountries()
         .then(response => {
           myBookmark.country = {}
           var length = response.data.length
@@ -72,7 +72,7 @@ export default {
           this.error = err.toString()
         })
 
-      DataService.getLanguages(route.country)
+      ContentService.getLanguages(route.country)
         .then(response => {
           myBookmark.language = {}
           var length = response.data.length
@@ -90,7 +90,7 @@ export default {
           this.error = err.toString()
         })
 
-      DataService.getLibrary(route.country, route.language)
+      ContentService.getLibrary(route.country, route.language)
         .then(response => {
           myBookmark.library = response.data
         })
@@ -138,7 +138,7 @@ created() {
       route.language = this.languageISO
       var myBookmark = {}
 
-      DataService.getCountries()
+      ContentService.getCountries()
         .then(response => {
           myBookmark.country = {}
           var length = response.data.length
@@ -147,7 +147,7 @@ created() {
               myBookmark.country = response.data[i]
             }
           }
-          DataService.getLanguages(route.country).then(response => {
+          ContentService.getLanguages(route.country).then(response => {
             myBookmark.language = {}
             var length = response.data.length
             for (var i = 0; i < length; i++) {
@@ -155,7 +155,7 @@ created() {
                 myBookmark.language = response.data[i]
               }
             }
-            DataService.getLibrary(route.country, route.language).then(
+            ContentService.getLibrary(route.country, route.language).then(
               response => {
                 myBookmark.library = response.data
                 this.bookmark = myBookmark

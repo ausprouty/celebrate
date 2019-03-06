@@ -14,7 +14,7 @@
 import { mapState } from 'vuex'
 import NavBar from '@/components/NavBarFront.vue'
 import Country from '@/components/Country.vue'
-import DataService from '@/services/DataService.js'
+import ContentService from '@/services/ContentService.js'
 export default {
   components: {
     Country,
@@ -27,7 +27,7 @@ export default {
     }
   },
   created() {
-    DataService.getCountries()
+    ContentService.getCountries()
       .then(response => {
         console.log(response.data) // For now, logs out the response
         this.countries = response.data

@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import DataService from '@/services/DataService.js'
+import ContentService from '@/services/ContentService.js'
 Vue.use(Vuex)
 
 export default new Vuex.Store({
@@ -119,7 +119,7 @@ export default new Vuex.Store({
         }
       }
       if (route.country != currentCountry) {
-        DataService.getCountries().then(response => {
+        ContentService.getCountries().then(response => {
           var value = {}
           var length = response.data.length
           for (var i = 0; i < length; i++) {
@@ -147,7 +147,7 @@ export default new Vuex.Store({
         }
         if (route.language != currentLanguage) {
           console.log('looking for new language of ' + route.language)
-          DataService.getLanguages(route.country).then(response => {
+          ContentService.getLanguages(route.country).then(response => {
             var length = response.data.length
             for (var i = 0; i < length; i++) {
               if (response.data[i].iso == route.language) {
@@ -155,7 +155,7 @@ export default new Vuex.Store({
               }
             }
             commit('SET_BOOKMARK', ['language', value])
-            DataService.getLibrary(route.country, route.language).then(
+            ContentService.getLibrary(route.country, route.language).then(
               response => {
                 value = response.data
                 //console.log('library is ')
@@ -167,7 +167,7 @@ export default new Vuex.Store({
         }
         if (typeof this.state.bookmark.library == 'undefined') {
           // console.log (route)
-          DataService.getLibrary(route.country, route.language).then(
+          ContentService.getLibrary(route.country, route.language).then(
             response => {
               value = response.data
               //console.log('library is ')
@@ -250,7 +250,7 @@ update book and erase all bookmark below*/
           if (value.folder) {
             var folder = value.folder
             var index = value.index
-            DataService.getSeries(
+            ContentService.getSeries(
               route.country,
               route.language,
               folder,

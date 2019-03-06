@@ -41,7 +41,7 @@
   </div>
 </template>
 <script>
-import DataService from '@/services/DataService.js'
+import ContentService from '@/services/ContentService.js'
 import NavBar from '@/components/NavBarAdmin.vue'
 export default {
   data() {
@@ -69,7 +69,7 @@ export default {
     }
   },
   created() {
-    DataService.getMembers()
+    ContentService.getMembers()
       .then(response => {
         this.members = response.data.members
       })

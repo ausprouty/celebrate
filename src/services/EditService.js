@@ -22,6 +22,7 @@ export default {
       revision: revision
     }
     var contentForm = this.toFormData(params)
+    console.log ('about to post to with ContentApi.php?crud=languages')
     return apiClient.post('ContentApi.php?crud=languages', contentForm)
   },
   getLibrary(country, language, revision) {

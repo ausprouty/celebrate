@@ -87,7 +87,7 @@
   </div>
 </template>
 <script>
-import DataService from '@/services/DataService.js'
+import ContentService from '@/services/ContentService.js'
 import NavBar from '@/components/NavBarAdmin.vue'
 export default {
   data() {
@@ -120,7 +120,7 @@ export default {
     }
   },
   created() {
-    DataService.getMembers()
+    ContentService.getMembers()
       .then(response => {
         console.log('response.data.members')
         console.log(response.data.members)
@@ -132,7 +132,7 @@ export default {
   },
   methods: {
     getAllMembers() {
-      DataService.getMembers()
+      ContentService.getMembers()
         .then(response => {
           console.log('response.data.members')
           console.log(response.data.members)
@@ -160,7 +160,7 @@ export default {
       console.log('memForm')
       console.log(memForm)
       var ref = this
-      DataService.saveMember(memForm).then(function(response) {
+      ContentService.saveMember(memForm).then(function(response) {
         console.log(response)
         ref.newMember = { firstname: '', lastname: '' }
         if (response.data.error) {

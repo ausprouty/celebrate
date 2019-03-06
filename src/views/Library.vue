@@ -21,7 +21,7 @@
 import Book from '@/components/Book.vue'
 import { mapState } from 'vuex'
 import NavBar from '@/components/NavBarHamburger.vue'
-import DataService from '@/services/DataService.js'
+import ContentService from '@/services/ContentService.js'
 export default {
   props: ['countryCODE', 'languageISO'],
   computed: mapState(['bookmark', 'appDir', 'cssURL', 'standard']),
@@ -59,7 +59,7 @@ export default {
     route.language = this.languageISO
     this.$store.dispatch('checkBookmark', route).then(response => {
       // it is safer to get data each time tha rely on bookmark
-      DataService.getLibrary(this.countryCODE, this.languageISO)
+      ContentService.getLibrary(this.countryCODE, this.languageISO)
         .then(response => {
           this.library = response.data
           this.loading = false
