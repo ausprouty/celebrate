@@ -27,7 +27,15 @@ export default {
   },
   getSeries(country, language, folder, index) {
     return apiClient.get(
-      'content/' + country + '/' + language + '/' + folder + '/' + index
+      'content/' +
+        country +
+        '/' +
+        language +
+        '/' +
+        folder +
+        '/' +
+        index +
+        '.json'
     )
   },
   getPage(country, language, folder, page) {

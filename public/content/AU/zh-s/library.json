@@ -1,66 +1,66 @@
 [
-{
-"id": 1,
-"book" : "issues",
-"title": "生活问题",
-"folder": "myfriends",
-"index": "principle-chapters.json",
-"style": "AU-myfriends.css",
-"image": "issues.jpg",
-"format": "series",
-"instructions": ""
-},
-{ 
+  {
+    "id": 1,
+    "book": "issues",
+    "title": "生活问题",
+    "folder": "myfriends",
+    "index": "principle-chapters",
+    "style": "AU-myfriends.css",
+    "image": "issues.jpg",
+    "format": "series",
+    "instructions": ""
+  },
+  {
     "id": 2,
-"book" : "basics",
-"title": "基本对话",
-"folder": "myfriends",
-"index": "basics-chapters.json",
-"style": "AU-myfriends.css",
-"image": "basics.jpg",
-"format": "series",
-"instructions": ""
-},
-{
-"id": 3,
-"book" : "community",
-"title": "生活的社区",
-"folder": "myfriends",
-"page": "community",
-"style": "AU-myfriends.css",
-"image": "community.jpg",
-"format": "page"
-},
-{
-"id": 4,
-"book" : "firststeps",
-"title": "第一步",
-"folder": "first_steps",
-"index": "first_steps-chapters.json",
-"style": "AU-fsteps.css",
-"image": "firststeps.jpg",
-"format": "series",
-"instructions": ""
-},
-{   
-"id": 5,
-"book" : "compass",
-"title": "罗盘",
-"folder": "compass",
-"index": "compass-chapters.json",
-"style": "AU-compass.css",
-"image": "compass.jpg",
-"format": "series",
-"instructions": ""
-},
-{
-"id": 6,
-"book" : "about",
-"title": "关于",
-"folder": "myfriends",
-"page": "community",
-"style": "AU-myfriends.css",
-"image": "about.jpg",
-"format": "page"
-}
+    "book": "basics",
+    "title": "基本对话",
+    "folder": "myfriends",
+    "index": "basics-chapters.json",
+    "style": "AU-myfriends.css",
+    "image": "basics.jpg",
+    "format": "series",
+    "instructions": ""
+  },
+  {
+    "id": 3,
+    "book": "community",
+    "title": "生活的社区",
+    "folder": "myfriends",
+    "page": "community",
+    "style": "AU-myfriends.css",
+    "image": "community.jpg",
+    "format": "page"
+  },
+  {
+    "id": 4,
+    "book": "firststeps",
+    "title": "第一步",
+    "folder": "first_steps",
+    "index": "first_steps-chapters.json",
+    "style": "AU-fsteps.css",
+    "image": "firststeps.jpg",
+    "format": "series",
+    "instructions": ""
+  },
+  {
+    "id": 5,
+    "book": "compass",
+    "title": "罗盘",
+    "folder": "compass",
+    "index": "compass-chapters.json",
+    "style": "AU-compass.css",
+    "image": "compass.jpg",
+    "format": "series",
+    "instructions": ""
+  },
+  {
+    "id": 6,
+    "book": "about",
+    "title": "关于",
+    "folder": "myfriends",
+    "page": "community",
+    "style": "AU-myfriends.css",
+    "image": "about.jpg",
+    "format": "page"
+  }
 ]

@@ -22,7 +22,7 @@ export default {
       revision: revision
     }
     var contentForm = this.toFormData(params)
-    console.log ('about to post to with ContentApi.php?crud=languages')
+    console.log('about to post to with ContentApi.php?crud=languages')
     return apiClient.post('ContentApi.php?crud=languages', contentForm)
   },
   getLibrary(country, language, revision) {
@@ -35,6 +35,7 @@ export default {
     return apiClient.post('ContentApi.php?crud=library', contentForm)
   },
   getSeries(country, language, folder, index, revision) {
+    console.log('EditService is looking for series with these params')
     var params = {
       country: country,
       language: language,
@@ -42,6 +43,7 @@ export default {
       index: index,
       revision: revision
     }
+    console.log(params)
     var contentForm = this.toFormData(params)
     return apiClient.post('ContentApi.php?crud=series', contentForm)
   },

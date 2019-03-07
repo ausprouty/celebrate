@@ -69,13 +69,14 @@
         </div>
       </div>
     </div>
+    <button class="button" @click="saveForm">Save</button>
   </div>
 </template>
 
 <script>
 import NavBar from '@/components/NavBarAdmin.vue'
 import ContentService from '@/services/ContentService.js'
-//import Route from '../router.js'
+import EditService from '@/services/EditService.js'
 import { mapState } from 'vuex'
 export default {
   components: {
@@ -100,7 +101,22 @@ export default {
       image_dir: 'menu-europe',
       loading: false,
       loaded: null,
-      error: null
+      error: null,
+      content: {
+        recnum: '',
+        version: '',
+        edit_date: '',
+        edit_uid: '',
+        publish_uid: '',
+        publish_date: '',
+        language_iso: '',
+        country_iso: '',
+        folder: '',
+        filetype: '',
+        title: '',
+        filename: '',
+        text: ''
+      }
     }
   },
   methods: {
@@ -118,6 +134,46 @@ export default {
     },
     deleteBookForm(index) {
       this.library.splice(index, 1)
+    },
+    saveForm() {
+      console.log(this.content)
+      this.content.text = JSON.stringify(this.library)
+      this.content.filename = 'library'
+      this.content.filetype = 'json'
+      this.content.country_iso = this.$route.params.countryCODE
+      this.content.language_iso = this.$route.params.languageISO
+      var contentForm = this.toFormData(this.content)
+      var ref = this
+      EditService.createContent(contentForm).then(function(response) {
+        if (response.data.error) {
+          ref.errorMessage = response.data.message
+        } else {
+          // this.successMessage = response.data.message
+          //ref.getCountries()
+          ref.$router.push({
+            name: 'previewLibrary',
+            params: {
+              countryCODE: ref.$route.params.countryCODE,
+              languageISO: ref.$route.params.languageISO
+            }
+          })
+        }
+      })
+    },
+    toFormData(obj) {
+      this.content.edit_date = ''
+      this.content.edit_uid = ''
+      var form_data = new FormData()
+      for (var key in obj) {
+        form_data.append(key, obj[key])
+      }
+      this.content.text = ''
+      console.log('form_data')
+      // Display the key/value pairs
+      for (var pair of form_data.entries()) {
+        console.log(pair[0] + ', ' + pair[1])
+      }
+      return form_data
     }
   },
   created() {
@@ -126,91 +182,115 @@ export default {
     var route = {}
     route.country = this.$route.params.countryCODE
     route.language = this.$route.params.languageISO
-    this.$store.dispatch('checkBookmark', route).then(response => {
-      // it is safer to get data each time tha rely on bookmark
-      ContentService.getLibrary(route.country, route.language)
-        .then(response => {
-          this.library = response.data
-          if (typeof this.bookmark.language != 'undefined') {
-            console.log('USING BOOKMARK')
-            console.log(this.bookmark.language)
-            this.image_dir = this.bookmark.language.image_dir
-            console.log(this.image_dir)
-          } else {
-            console.log('USING STANDARD')
-            this.image_dir = this.standard.image_dir
-          }
-          this.loading = false
-          this.loaded = true
-        })
-        .catch(error => {
-          this.library = [
-            {
-              id: 1,
-              book: 'issues',
-              title: 'Life Issues',
-              folder: 'myfriends',
-              index: 'principle-chapters.json',
-              style: 'AU-myfriends.css',
-              image: 'issues.jpg',
-              format: 'series'
-            },
-            {
-              id: 2,
-              book: 'basics',
-              title: 'Basic Conversations',
-              folder: 'myfriends',
-              index: 'basics-chapters.json',
-              style: 'AU-myfriends.css',
-              image: 'basics.jpg',
-              format: 'series'
-            },
-            {
-              id: 3,
-              book: 'community',
-              title: 'Live Community',
-              folder: 'myfriends',
-              page: 'community',
-              style: 'AU-myfriends.css',
-              image: 'community.jpg',
-              format: 'page'
-            },
-            {
-              id: 4,
-              book: 'firststeps',
-              title: 'First Steps',
-              folder: 'first_steps',
-              index: 'first_steps-chapters.json',
-              style: 'AU-fsteps.css',
-              image: 'firststeps.jpg',
-              format: 'series'
-            },
-            {
-              id: 5,
-              book: 'compass',
-              title: 'Compass',
-              folder: 'compass',
-              index: 'compass-chapters.json',
-              style: 'AU-compass.css',
-              image: 'compass.jpg',
-              format: 'series'
-            },
-            {
-              id: 6,
-              book: 'about',
-              title: 'About MyFriends',
-              folder: 'myfriends',
-              page: 'community',
-              style: 'AU-myfriends.css',
-              image: 'about.jpg',
-              format: 'page'
-            }
-          ]
-          this.image_dir = this.standard.image_dir
-          this.loading = false
-          this.loaded = true
-        })
-    })
+    var ref = this
+    this.$store.dispatch('checkBookmark', route)
+    EditService.getLibrary(route.country, route.language, this.revision).then(
+      response => {
+        console.log('response from edit service')
+        console.log(response.data)
+        if (!response.data.content) {
+          console.log('I am going to content for library')
+          ContentService.getLibrary(route.country, route.language)
+            .then(response => {
+              ref.library = response.data
+              if (typeof ref.bookmark.language != 'undefined') {
+                console.log('USING BOOKMARK')
+                console.log(ref.bookmark.language)
+                this.image_dir = ref.bookmark.language.image_dir
+                console.log(ref.image_dir)
+              } else {
+                console.log('USING STANDARD')
+                ref.image_dir = ref.standard.image_dir
+              }
+              ref.loading = false
+              ref.loaded = true
+            })
+            .catch(error => {
+              ref.library = [
+                {
+                  id: 1,
+                  book: 'issues',
+                  title: 'Life Issues',
+                  folder: 'myfriends',
+                  index: 'principle-chapters',
+                  style: 'AU-myfriends.css',
+                  image: 'issues.jpg',
+                  format: 'series'
+                },
+                {
+                  id: 2,
+                  book: 'basics',
+                  title: 'Basic Conversations',
+                  folder: 'myfriends',
+                  index: 'basics-chapters.json',
+                  style: 'AU-myfriends.css',
+                  image: 'basics.jpg',
+                  format: 'series'
+                },
+                {
+                  id: 3,
+                  book: 'community',
+                  title: 'Live Community',
+                  folder: 'myfriends',
+                  page: 'community',
+                  style: 'AU-myfriends.css',
+                  image: 'community.jpg',
+                  format: 'page'
+                },
+                {
+                  id: 4,
+                  book: 'firststeps',
+                  title: 'First Steps',
+                  folder: 'first_steps',
+                  index: 'first_steps-chapters.json',
+                  style: 'AU-fsteps.css',
+                  image: 'firststeps.jpg',
+                  format: 'series'
+                },
+                {
+                  id: 5,
+                  book: 'compass',
+                  title: 'Compass',
+                  folder: 'compass',
+                  index: 'compass-chapters.json',
+                  style: 'AU-compass.css',
+                  image: 'compass.jpg',
+                  format: 'series'
+                },
+                {
+                  id: 6,
+                  book: 'about',
+                  title: 'About MyFriends',
+                  folder: 'myfriends',
+                  page: 'community',
+                  style: 'AU-myfriends.css',
+                  image: 'about.jpg',
+                  format: 'page'
+                }
+              ]
+              ref.image_dir = ref.standard.image_dir
+              ref.loading = false
+              ref.loaded = true
+            })
+        } else {
+          ref.content.recnum = ''
+          ref.content.version = ''
+          ref.content.publish_uid = response.data.content.publish_uid
+          ref.content.publish_date = response.data.content.publish_date
+          ref.content.language_iso = route.language
+          ref.content.country_iso = route.country
+          ref.content.folder = ''
+          ref.content.filetype = 'json'
+          ref.content.title = ''
+          ref.content.filename = 'library'
+          ref.content.library = JSON.parse(response.data.content.text)
+          ref.loaded = true
+          ref.loading = false
+          ref.library = ref.content.library
+          console.log(ref.content.library)
+        }
+      }
+    )
   }
 }
 </script>

@@ -29,7 +29,7 @@ export default new Vuex.Store({
       publish_date: '',
       language_iso: '',
       country_iso: '',
-      section: '',
+      folder: '',
       filetype: '',
       title: '',
       filename: '',

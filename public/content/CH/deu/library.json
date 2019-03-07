@@ -4,7 +4,7 @@
     "book": "issues",
     "title": "Lebensthemen",
     "folder": "myfriends",
-    "index": "principle-chapters.json",
+    "index": "principle-chapters",
     "style": "AU-myfriends.css",
     "image": "issues.jpg",
     "format": "series",

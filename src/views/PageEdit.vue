@@ -28,6 +28,7 @@
         <p class="version">Version 1.01</p>
       </div>
     </div>
+    <button class="button" @click="saveForm">Save</button>
   </div>
 </template>
 
@@ -35,6 +36,7 @@
 <script>
 import { mapState } from 'vuex'
 import ContentService from '@/services/ContentService.js'
+import EditService from '@/services/EditService.js'
 import NavBar from '@/components/NavBarAdmin.vue'
 import './ckeditor/index.js'
 import VueCkeditor from 'vueckeditor'
@@ -52,7 +54,22 @@ export default {
       loading: false,
       loaded: null,
       error: null,
-      htmlText: null
+      htmlText: null,
+      content: {
+        recnum: '',
+        version: '',
+        edit_date: '',
+        edit_uid: '',
+        publish_uid: '',
+        publish_date: '',
+        language_iso: '',
+        country_iso: '',
+        folder: '',
+        filetype: '',
+        title: '',
+        filename: '',
+        text: ''
+      }
     }
   },
   methods: {
@@ -68,6 +85,46 @@ export default {
         console.log(response.data) // For now, logs out the response
         this.htmlText = response.data
       })
+    },
+    saveForm() {
+      console.log(this.content)
+      this.content.text = JSON.stringify(this.countries)
+      this.content.filename = 'countries'
+      this.content.filetype = 'json'
+      var contentForm = this.toFormData(this.content)
+      var ref = this
+      EditService.createContent(contentForm).then(function(response) {
+        if (response.data.error) {
+          ref.errorMessage = response.data.message
+        } else {
+          // this.successMessage = response.data.message
+          //ref.getCountries()
+          ref.$router.push({
+            name: 'previewPage',
+            params: {
+              countryCODE: this.$route.params.countryCODE,
+              languageISO: this.$route.params.languageISO,
+              bookNAME: this.$route.params.bookNAME,
+              pageFILENAME: this.$route.params.pageFILENAME
+            }
+          })
+        }
+      })
+    },
+    toFormData(obj) {
+      this.content.edit_date = ''
+      this.content.edit_uid = ''
+      var form_data = new FormData()
+      for (var key in obj) {
+        form_data.append(key, obj[key])
+      }
+      this.content.text = ''
+      console.log('form_data')
+      // Display the key/value pairs
+      for (var pair of form_data.entries()) {
+        console.log(pair[0] + ', ' + pair[1])
+      }
+      return form_data
     },
     setEditorContent: function() {
       this.htmlText = `<html>

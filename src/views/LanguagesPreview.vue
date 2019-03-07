@@ -12,12 +12,13 @@
         <p class="version">Version 1.01</p>
       </div>
     </div>
+    <button class="button" @click="editLanguages">Edit</button>
   </div>
 </template>
 
 <script>
-import Language from '@/components/Language.vue'
-import NavBar from '@/components/NavBarHamburger.vue'
+import Language from '@/components/LanguagePreview.vue'
+import NavBar from '@/components/NavBarAdmin.vue'
 import ContentService from '@/services/ContentService.js'
 import EditService from '@/services/EditService.js'
 import { mapState } from 'vuex'
@@ -47,6 +48,19 @@ export default {
       error: null
     }
   },
+  methods: {
+    editLanguages() {
+      this.$router.push({
+        name: 'editLanguages',
+        params: {
+          countryCODE: this.countryCODE
+        }
+      })
+    },
+    goBack() {
+      window.history.back()
+    }
+  },
   created() {
     /* Update bookmark based on this route (for people to select URL from another source)
        Bookmark stores current Country and all specialized info for that country
@@ -63,14 +77,14 @@ export default {
       EditService.getLanguages(ref.countryCODE)
         .then(response => {
           console.log(response)
-          if (!response) {
+          if (!response.data.content) {
             ContentService.getLanguages(route.country).then(response => {
               this.languages = response.data
               this.loaded = true
               this.loading = false
             })
           } else {
-            ref.languages = response.data
+            ref.languages = JSON.parse(response.data.content.text)
             this.loaded = true
             this.loading = false
           }

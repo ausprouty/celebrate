@@ -43,7 +43,7 @@ export default {
             .then(responseUnused => {
               //        console.log('language_iso is ' + language.iso)
               ref.$router.push({
-                name: 'previewlibrary',
+                name: 'previewLibrary',
                 params: {
                   countryCODE: country.code,
                   languageISO: language.iso

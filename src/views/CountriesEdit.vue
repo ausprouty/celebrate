@@ -51,7 +51,7 @@
             </div>
           </div>
         </div>
-        <button class="button" @click="saveCountryForm">Save</button>
+        <button class="button" @click="saveForm">Save</button>
       </div>
     </div>
   </div>
@@ -61,7 +61,6 @@
 import NavBar from '@/components/NavBarAdmin.vue'
 import ContentService from '@/services/ContentService.js'
 import EditService from '@/services/EditService.js'
-//import Route from '../router.js'
 import { mapState } from 'vuex'
 export default {
   components: {
@@ -90,7 +89,7 @@ export default {
         publish_date: '',
         language_iso: '',
         country_iso: '',
-        section: '',
+        folder: '',
         filetype: '',
         title: '',
         filename: '',
@@ -110,7 +109,7 @@ export default {
         index: ''
       })
     },
-    saveCountryForm() {
+    saveForm() {
       console.log(this.content)
       this.content.text = JSON.stringify(this.countries)
       this.content.filename = 'countries'
@@ -168,7 +167,7 @@ export default {
             ref.content.publish_date = response.data.content.publish_date
             ref.content.language_iso = ''
             ref.content.country_iso = ''
-            ref.content.section = ''
+            ref.content.folder = ''
             ref.content.filetype = 'json'
             ref.content.title = ''
             ref.content.filename = 'countries'

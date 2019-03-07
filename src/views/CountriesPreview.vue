@@ -1,5 +1,5 @@
 <template>
-  <div class = "preview">
+  <div class="preview">
     <NavBar/>
     <img v-bind:src="appDir.country+'world.jpg'" class="app-img-header">
     <h1>Select Country (Preview Mode)</h1>
@@ -13,7 +13,7 @@
 
 <script>
 import { mapState } from 'vuex'
-import NavBar from '@/components/NavBarFront.vue'
+import NavBar from '@/components/NavBarAdmin.vue'
 import Country from '@/components/CountryPreview.vue'
 import EditService from '@/services/EditService.js'
 export default {
@@ -34,7 +34,7 @@ export default {
         publish_date: '',
         language_iso: '',
         country_iso: '',
-        section: '',
+        folder: '',
         filetype: '',
         title: '',
         filename: '',
@@ -47,6 +47,9 @@ export default {
       this.$router.push({
         name: 'editCountries'
       })
+    },
+    goBack() {
+      window.history.back()
     }
   },
   created() {
@@ -59,7 +62,7 @@ export default {
         ref.content.publish_date = response.data.content.publish_date
         ref.content.language_iso = ''
         ref.content.country_iso = ''
-        ref.content.section = ''
+        ref.content.folder = ''
         ref.content.filetype = 'json'
         ref.content.title = ''
         ref.content.filename = 'countries'

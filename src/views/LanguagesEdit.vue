@@ -48,13 +48,14 @@
         </div>
       </div>
     </div>
+    <button class="button" @click="saveForm">Save</button>
   </div>
 </template>
 
 <script>
 import NavBar from '@/components/NavBarAdmin.vue'
 import ContentService from '@/services/ContentService.js'
-//import Route from '../router.js'
+import EditService from '@/services/EditService.js'
 import { mapState } from 'vuex'
 export default {
   props: ['countryCODE'],
@@ -77,7 +78,22 @@ export default {
       ],
       loading: false,
       loaded: null,
-      error: null
+      error: null,
+      content: {
+        recnum: '',
+        version: '',
+        edit_date: '',
+        edit_uid: '',
+        publish_uid: '',
+        publish_date: '',
+        language_iso: '',
+        country_iso: '',
+        folder: '',
+        filetype: '',
+        title: '',
+        filename: '',
+        text: ''
+      }
     }
   },
   methods: {
@@ -93,6 +109,44 @@ export default {
     },
     deleteLanguageForm(index) {
       this.languages.splice(index, 1)
+    },
+    saveForm() {
+      console.log(this.content)
+      this.content.text = JSON.stringify(this.languages)
+      this.content.filename = 'languages'
+      this.content.filetype = 'json'
+      this.content.country_iso = this.$route.params.countryCODE
+      var contentForm = this.toFormData(this.content)
+      var ref = this
+      EditService.createContent(contentForm).then(function(response) {
+        if (response.data.error) {
+          ref.errorMessage = response.data.message
+        } else {
+          // this.successMessage = response.data.message
+          //ref.getCountries()
+          ref.$router.push({
+            name: 'previewLanguages',
+            params: {
+              countryCODE: ref.$route.params.countryCODE
+            }
+          })
+        }
+      })
+    },
+    toFormData(obj) {
+      this.content.edit_date = ''
+      this.content.edit_uid = ''
+      var form_data = new FormData()
+      for (var key in obj) {
+        form_data.append(key, obj[key])
+      }
+      this.content.text = ''
+      console.log('form_data')
+      // Display the key/value pairs
+      for (var pair of form_data.entries()) {
+        console.log(pair[0] + ', ' + pair[1])
+      }
+      return form_data
     }
   },
   created() {
