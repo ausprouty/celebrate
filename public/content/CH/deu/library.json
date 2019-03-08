@@ -37,7 +37,7 @@
     "book": "compass",
     "title": "SHINE Student Group",
     "folder": "compass",
-    "index": "compass-chapters.json",
+    "index": "compass-chapters",
     "style": "AU-compass.css",
     "image": "compass.jpg",
     "format": "series",

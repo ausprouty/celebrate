@@ -242,7 +242,7 @@ export default {
                   book: 'firststeps',
                   title: 'First Steps',
                   folder: 'first_steps',
-                  index: 'first_steps-chapters.json',
+                  index: 'first_steps-chapters',
                   style: 'AU-fsteps.css',
                   image: 'firststeps.jpg',
                   format: 'series'
@@ -252,7 +252,7 @@ export default {
                   book: 'compass',
                   title: 'Compass',
                   folder: 'compass',
-                  index: 'compass-chapters.json',
+                  index: 'compass-chapters',
                   style: 'AU-compass.css',
                   image: 'compass.jpg',
                   format: 'series'

@@ -78,8 +78,28 @@ export default {
       window.history.back()
     }
   },
-
   created() {
+    var ref = this
+    ref.version = 1
+    ref.version = 1
+    var route = {}
+    route.country = this.$route.params.countryCODE
+    route.language = this.$route.params.languageISO
+    route.book = this.$route.params.bookNAME // we need book to get style sheet
+    route.series = this.$route.params.bookNAME
+    this.$store.dispatch('checkBookmark', route)
+    EditService.getSeries(
+      ref.bookmark.country.code,
+      ref.bookmark.language.iso,
+      ref.bookmark.book.folder,
+      ref.bookmark.book.index,
+      ref.version
+    ).then(response => {
+      console.log('response from edit service')
+      console.log(response)
+    })
+  },
+  createdx() {
     this.error = this.loaded = null
     this.loading = true
     var route = {}
@@ -91,9 +111,9 @@ export default {
     route.series = this.$route.params.bookNAME
     this.$store
       .dispatch('checkBookmark', route)
-      .then(response => {
+      .then(unusedresponse => {
         console.log('I am checking edit service')
-        EditService.getSeries(
+        return EditService.getSeries(
           ref.bookmark.country.code,
           ref.bookmark.language.iso,
           ref.bookmark.book.folder,
@@ -103,8 +123,8 @@ export default {
       })
       .then(response => {
         console.log('response from edit service')
-        console.log(response)
-        if (!response) {
+        console.log(response.data)
+        if (!response.data) {
           console.log('I am going to content for series')
           ContentService.getSeries(
             ref.bookmark.country.code,
@@ -130,6 +150,7 @@ export default {
               ref.error = error.toString()
             })
         } else {
+          ref.content = ''
           ref.content.recnum = ''
           ref.content.version = ''
           ref.content.publish_uid = response.data.content.publish_uid
