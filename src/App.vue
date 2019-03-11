@@ -9,14 +9,15 @@
 
 <style>
 :root {
+  --color-red: red;
   --color-black: purple;
   --color-red: green;
   --color-blue: orange;
   --color-background: rgb(228, 194, 131);
   --color-version: rgb(110, 107, 241);
 }
-.preview{
-  background-color: orange;
+.preview {
+  background-color: white;
 }
 .nav {
   display: flex;
@@ -183,10 +184,10 @@ button:-moz-focusring,
 [type='submit']:-moz-focusring {
   outline: 2px solid #39b982;
 }
-button{
+button {
   margin-bottom: 20px;
   background-color: red;
-  color:white;
+  color: white;
   font-weight: bold;
 }
 label {
@@ -270,11 +271,15 @@ select:focus::ms-value {
 select::ms-expand {
   opacity: 0;
 }
-.app-card {
+
+.menu-card {
+  margin-left: 12px;
   padding: 10px;
-  width: 95%;
-  background-color: #efefef;
-  margin-bottom: 12px;
+  width: 50%;
+  background-color: red;
+  text-align: left;
+  color:white;
+  margin-bottom: 5px;
   transition: all 0.2s linear;
   cursor: pointer;
 }
