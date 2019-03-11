@@ -119,7 +119,7 @@ export default new Vuex.Store({
         }
       }
       if (route.country != currentCountry) {
-        ContentService.getCountries().then(response => {
+        ContentService.getCountries(route.revision).then(response => {
           var value = {}
           var length = response.data.length
           for (var i = 0; i < length; i++) {
@@ -147,34 +147,40 @@ export default new Vuex.Store({
         }
         if (route.language != currentLanguage) {
           console.log('looking for new language of ' + route.language)
-          ContentService.getLanguages(route.country).then(response => {
-            var length = response.data.length
-            for (var i = 0; i < length; i++) {
-              if (response.data[i].iso == route.language) {
-                value = response.data[i]
+          ContentService.getLanguages(route.country, route.revision).then(
+            response => {
+              var length = response.data.length
+              for (var i = 0; i < length; i++) {
+                if (response.data[i].iso == route.language) {
+                  value = response.data[i]
+                }
               }
-            }
-            commit('SET_BOOKMARK', ['language', value])
-            ContentService.getLibrary(route.country, route.language).then(
-              response => {
+              commit('SET_BOOKMARK', ['language', value])
+              ContentService.getLibrary(
+                route.country,
+                route.language,
+                route.revision
+              ).then(response => {
                 value = response.data
                 //console.log('library is ')
                 //console.log(value)
                 commit('SET_BOOKMARK', ['library', value])
-              }
-            )
-          })
+              })
+            }
+          )
         }
         if (typeof this.state.bookmark.library == 'undefined') {
           // console.log (route)
-          ContentService.getLibrary(route.country, route.language).then(
-            response => {
-              value = response.data
-              //console.log('library is ')
-              //console.log(value)
-              commit('SET_BOOKMARK', ['library', value])
-            }
-          )
+          ContentService.getLibrary(
+            route.country,
+            route.language,
+            route.revision
+          ).then(response => {
+            value = response.data
+            //console.log('library is ')
+            //console.log(value)
+            commit('SET_BOOKMARK', ['library', value])
+          })
         }
       }
       if (!route.language) {
@@ -254,7 +260,8 @@ update book and erase all bookmark below*/
               route.country,
               route.language,
               folder,
-              index
+              index,
+              route.revision
             ).then(response => {
               var value = response.data
 

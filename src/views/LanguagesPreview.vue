@@ -20,7 +20,6 @@
 import Language from '@/components/LanguagePreview.vue'
 import NavBar from '@/components/NavBarAdmin.vue'
 import ContentService from '@/services/ContentService.js'
-import EditService from '@/services/EditService.js'
 import { mapState } from 'vuex'
 export default {
   props: ['countryCODE'],
@@ -74,7 +73,7 @@ export default {
     console.log('Entered Languages.vue')
     this.$store.dispatch('checkBookmark', route).then(responseUnused => {
       console.log('about to get languages for ' + this.countryCODE)
-      EditService.getLanguages(ref.countryCODE)
+      ContentService.getLanguages(ref.countryCODE)
         .then(response => {
           console.log(response)
           if (!response.data.content) {

@@ -12,8 +12,8 @@
 </template>
 
 <script>
+import ContentService from '@/services/ContentService.js'
 import { mapState } from 'vuex'
-import EditService from '@/services/EditService.js'
 export default {
   props: {
     country: Object
@@ -29,7 +29,7 @@ export default {
     showPage: function(country) {
       var ref = this
       localStorage.setItem('lastPage', 'countries')
-      EditService.getLanguages(country.code).then(response => {
+      ContentService.getLanguages(country.code, 'latest').then(response => {
         console.log('response from getLanguages for ' + country)
         console.log(response.data) // For now, logs out the response
         console.log('length is ' + response.data.length)

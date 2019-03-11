@@ -60,7 +60,6 @@
 <script>
 import NavBar from '@/components/NavBarAdmin.vue'
 import ContentService from '@/services/ContentService.js'
-import EditService from '@/services/EditService.js'
 import { mapState } from 'vuex'
 export default {
   components: {
@@ -116,7 +115,7 @@ export default {
       this.content.filetype = 'json'
       var contentForm = this.toFormData(this.content)
       var ref = this
-      EditService.createContent(contentForm).then(function(response) {
+      ContentService.createContent(contentForm).then(function(response) {
         if (response.data.error) {
           ref.errorMessage = response.data.message
         } else {
@@ -143,13 +142,14 @@ export default {
       }
       return form_data
     },
+
     getCountries() {
       this.error = this.loaded = null
       this.loading = true
       this.countries = []
       var ref = this
       console.log('about to get countries ')
-      EditService.getCountries(this.revision)
+      ContentService.getCountries(this.revision)
         .then(response => {
           console.log('response')
           console.log(response.data)

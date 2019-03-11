@@ -23,7 +23,6 @@ import Book from '@/components/BookPreview.vue'
 import { mapState } from 'vuex'
 import NavBar from '@/components/NavBarAdmin.vue'
 import ContentService from '@/services/ContentService.js'
-import EditService from '@/services/EditService.js'
 export default {
   props: ['countryCODE', 'languageISO'],
   computed: mapState(['bookmark', 'appDir', 'cssURL', 'standard']),
@@ -75,7 +74,7 @@ export default {
     route.country = this.countryCODE
     route.language = this.languageISO
     this.$store.dispatch('checkBookmark', route)
-    EditService.getLibrary(route.country, route.language, this.revision)
+    ContentService.getLibrary(route.country, route.language, this.revision)
       .then(response => {
         console.log('response from edit service')
         console.log(response.data)

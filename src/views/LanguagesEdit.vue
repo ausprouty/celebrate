@@ -55,7 +55,6 @@
 <script>
 import NavBar from '@/components/NavBarAdmin.vue'
 import ContentService from '@/services/ContentService.js'
-import EditService from '@/services/EditService.js'
 import { mapState } from 'vuex'
 export default {
   props: ['countryCODE'],
@@ -118,7 +117,7 @@ export default {
       this.content.country_iso = this.$route.params.countryCODE
       var contentForm = this.toFormData(this.content)
       var ref = this
-      EditService.createContent(contentForm).then(function(response) {
+      ContentService.createContent(contentForm).then(function(response) {
         if (response.data.error) {
           ref.errorMessage = response.data.message
         } else {

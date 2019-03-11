@@ -31,6 +31,23 @@ Vue.config.productionTip = false
 Vue.prototype.$country = 'AU'
 Vue.prototype.$language = 'eng'
 
+Vue.mixin({
+  methods: {
+    toFormData(obj) {
+      var form_data = new FormData()
+      for (var key in obj) {
+        form_data.append(key, obj[key])
+      }
+      console.log('form_data from mixin')
+      // Display the key/value pairs
+      for (var pair of form_data.entries()) {
+        console.log(pair[0] + ', ' + pair[1])
+      }
+      return form_data
+    }
+  }
+})
+
 var vm = new Vue({
   router,
   store,

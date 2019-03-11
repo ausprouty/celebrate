@@ -35,7 +35,7 @@ export default {
     return apiClient.post('ContentApi.php?crud=library', contentForm)
   },
   getSeries(country, language, folder, index, revision) {
-    console.log('EditService is looking for series with these params')
+    console.log('ContentService is looking for series with these params')
     var params = {
       country: country,
       language: language,
@@ -72,11 +72,11 @@ export default {
     for (var key in obj) {
       form_data.append(key, obj[key])
     }
-    console.log('form_data')
+    //console.log('form_data')
     // Display the key/value pairs
-    for (var pair of form_data.entries()) {
-      console.log(pair[0] + ', ' + pair[1])
-    }
+    // for (var pair of form_data.entries()) {
+    //   console.log(pair[0] + ', ' + pair[1])
+    // }
     return form_data
   }
 }

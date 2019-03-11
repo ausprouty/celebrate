@@ -31,7 +31,6 @@
 import { mapState } from 'vuex'
 import Chapter from '@/components/ChapterPreview.vue'
 import ContentService from '@/services/ContentService.js'
-import EditService from '@/services/EditService.js'
 import NavBar from '@/components/NavBarAdmin.vue'
 export default {
   props: ['countryCODE', 'languageISO', 'bookNAME'],
@@ -78,7 +77,7 @@ export default {
       window.history.back()
     }
   },
-  created() {
+  createdXX() {
     var ref = this
     ref.version = 1
     ref.version = 1
@@ -88,18 +87,18 @@ export default {
     route.book = this.$route.params.bookNAME // we need book to get style sheet
     route.series = this.$route.params.bookNAME
     this.$store.dispatch('checkBookmark', route)
-    EditService.getSeries(
-      ref.bookmark.country.code,
-      ref.bookmark.language.iso,
-      ref.bookmark.book.folder,
-      ref.bookmark.book.index,
+    ContentService.getSeries(
+      'AU',
+      'eng',
+      'myfriends',
+      'basics-chapters',
       ref.version
     ).then(response => {
       console.log('response from edit service')
       console.log(response)
     })
   },
-  createdx() {
+  created() {
     this.error = this.loaded = null
     this.loading = true
     var route = {}
@@ -113,7 +112,7 @@ export default {
       .dispatch('checkBookmark', route)
       .then(unusedresponse => {
         console.log('I am checking edit service')
-        return EditService.getSeries(
+        return ContentService.getSeries(
           ref.bookmark.country.code,
           ref.bookmark.language.iso,
           ref.bookmark.book.folder,

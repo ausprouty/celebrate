@@ -14,8 +14,9 @@
 <script>
 import { mapState } from 'vuex'
 import NavBar from '@/components/NavBarAdmin.vue'
+import ContentService from '@/services/ContentService.js'
 import Country from '@/components/CountryPreview.vue'
-import EditService from '@/services/EditService.js'
+
 export default {
   components: {
     Country,
@@ -50,34 +51,52 @@ export default {
     },
     goBack() {
       window.history.back()
+    },
+    toFormData(obj) {
+      var form_data = new FormData()
+      for (var key in obj) {
+        form_data.append(key, obj[key])
+      }
+      console.log('form_data')
+      // Display the key/value pairs
+      for (var pair of form_data.entries()) {
+        console.log(pair[0] + ', ' + pair[1])
+      }
+      return form_data
     }
   },
-  created() {
+  async created() {
     var ref = this
-    EditService.getCountries()
-      .then(response => {
-        ref.content.recnum = ''
-        ref.content.version = ''
-        ref.content.publish_uid = response.data.content.publish_uid
-        ref.content.publish_date = response.data.content.publish_date
-        ref.content.language_iso = ''
-        ref.content.country_iso = ''
-        ref.content.folder = ''
-        ref.content.filetype = 'json'
-        ref.content.title = ''
-        ref.content.filename = 'countries'
-        ref.content.countries = JSON.parse(response.data.content.text)
-        ref.loaded = true
-        ref.loading = false
-        this.countries = ref.content.countries
-        console.log(ref.content.countries)
-      })
-      .catch(error => {
-        console.log(
-          'There was an error in CountriesPreview.vue:',
-          error.response
-        ) // Logs out the error
-      })
+    console.log('going to getCountries')
+    let promise = ContentService.getCountries('latest')
+    let response = await promise
+    console.log('in Countries Preview response from getCountries')
+    console.log(response)
+    var text = JSON.parse(response.data.content.text)
+    var d = new Date()
+    var now = d.getTime()
+    var uid = 1
+    var publish_uid = uid
+    var publish_date = now
+    if (typeof response.data.content.publish_uid !== 'undefined') {
+      publish_uid = response.data.content.publish_uid
+      publish_date = response.data.content.publish_date
+    }
+    ref.content = {}
+    ref.content.recnum = ''
+    ref.content.version = ''
+    ref.content.publish_uid = publish_uid
+    ref.content.publish_date = publish_date
+    ref.content.language_iso = ''
+    ref.content.country_iso = ''
+    ref.content.folder = ''
+    ref.content.filetype = 'json'
+    ref.content.title = ''
+    ref.content.filename = 'countries'
+    ref.content.countries = text
+    ref.loading = false
+    ref.countries = text
+    console.log(ref.content.countries)
   }
 }
 </script>

@@ -53,7 +53,6 @@
 import { mapState } from 'vuex'
 import Chapter from '@/components/Chapter.vue'
 import ContentService from '@/services/ContentService.js'
-import EditService from '@/services/EditService.js'
 import NavBar from '@/components/NavBarAdmin.vue'
 export default {
   props: ['countryCODE', 'languageISO', 'bookNAME'],
@@ -124,7 +123,7 @@ export default {
       this.content.section = this.$route.params.bookNAME
       var contentForm = this.toFormData(this.content)
       var ref = this
-      EditService.createContent(contentForm).then(function(response) {
+      ContentService.createContent(contentForm).then(function(response) {
         if (response.data.error) {
           ref.errorMessage = response.data.message
         } else {
