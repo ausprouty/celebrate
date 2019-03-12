@@ -78,13 +78,11 @@ sup,
 .versenum {
 top: -0.5em;
 }
-div.lesson,
 div.lesson {
 margin-bottom: 30px;
 margin-top: 30px;
 position: relative;
 }
-div.lesson-words,
 div.lesson-words {
 bottom: 0;
 color:var(--color-black);
@@ -101,7 +99,7 @@ line-height: 30px;
 margin-right: 65px;
 position: absolute;
 }
-h1. {
+h1 {
 color:var(--color-red);
 display: inline;
 font-weight: bold;
@@ -123,7 +121,6 @@ width: 30px;
 li.ltr{
 color:var(--color-red);
 }
-p.reference,
 p.reference {
 padding-top: 20px;
 color: var(--color-red);
