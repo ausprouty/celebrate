@@ -181,8 +181,9 @@ export default {
     var route = {}
     route.country = this.$route.params.countryCODE
     route.language = this.$route.params.languageISO
+    route.revison = 'latest'
     var ref = this
-    this.$store.dispatch('checkBookmark', route, 'latest')
+    this.$store.dispatch('checkBookmark', route)
     ContentService.getLibrary(
       route.country,
       route.language,

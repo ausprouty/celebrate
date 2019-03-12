@@ -86,7 +86,8 @@ export default {
     route.language = this.$route.params.languageISO
     route.book = this.$route.params.bookNAME // we need book to get style sheet
     route.series = this.$route.params.bookNAME
-    this.$store.dispatch('checkBookmark', route, 'latest')
+    route.revision = 'latest'
+    this.$store.dispatch('checkBookmark', route)
     ContentService.getSeries(
       'AU',
       'eng',

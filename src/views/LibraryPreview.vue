@@ -73,7 +73,8 @@ export default {
     var ref = this
     route.country = this.countryCODE
     route.language = this.languageISO
-    this.$store.dispatch('checkBookmark', route, 'latest')
+    route.revison = 'latest'
+    this.$store.dispatch('checkBookmark', route)
     ContentService.getLibrary(route.country, route.language, this.revision)
       .then(response => {
         console.log('response from edit service')

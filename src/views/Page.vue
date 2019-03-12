@@ -60,9 +60,10 @@ export default {
     route.book = this.bookNAME
     route.series = this.bookNAME
     route.page = this.pageFILENAME
+    route.revison = 'current'
     console.log('This is the route I sending to checkBookmark from Page.vue')
     console.log(route)
-    this.$store.dispatch('checkBookmark', route, 'current')
+    this.$store.dispatch('checkBookmark', route)
     console.log('sending to dataservice from Page.Vue')
     console.log(
       this.countryCODE +

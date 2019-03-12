@@ -57,7 +57,8 @@ export default {
     var route = {}
     route.country = this.countryCODE
     route.language = this.languageISO
-    this.$store.dispatch('checkBookmark', route, 'current').then(response => {
+    route.revison = 'current'
+    this.$store.dispatch('checkBookmark', route).then(response => {
       // it is safer to get data each time tha rely on bookmark
       ContentService.getLibrary(this.countryCODE, this.languageISO)
         .then(response => {

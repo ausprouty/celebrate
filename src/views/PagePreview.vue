@@ -77,8 +77,8 @@ export default {
     route.book = this.bookNAME
     route.series = this.bookNAME
     route.page = this.pageFILENAME
-
-    this.$store.dispatch('checkBookmark', route, 'latest')
+    route.revison = 'latest'
+    this.$store.dispatch('checkBookmark', route)
     var ref = this
     ContentService.getPage(
       this.countryCODE,
