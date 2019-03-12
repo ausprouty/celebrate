@@ -281,6 +281,48 @@ export default {
 
     return response
   },
+  async getPage(country, language, folder, page, revision = 'current') {
+    console.log('CONTENT SERVICE -' + revision + ' is revision')
+    console.log('CONTENT SERVICE - entered get page')
+    if (revision != 'current') {
+      console.log('CONTENT SERVICE - not current revision')
+      let response = await this.getPageData(
+        country,
+        language,
+        folder,
+        page,
+        revision
+      )
+      console.log('CONTENT SERVICE - returned from looking for data')
+      if (!response.data) {
+        let response = await this.getPageContent(
+          country,
+          language,
+          folder,
+          page,
+          revision
+        )
+        console.log('CONTENT SERVICE - response from content because no data')
+        console.log(response)
+        return response
+      } else {
+        console.log('CONTENT SERVICE - response from data in ContentServie')
+        console.log(response.data.content)
+        return response
+      }
+    } else {
+      let response = await this.getPageContent(
+        country,
+        language,
+        folder,
+        page,
+        revision
+      )
+      console.log('CONTENT SERVICE - response from content as requested')
+      console.log(response)
+      return response
+    }
+  },
 
   async getPageContent(country, language, folder, page, revision) {
     return apiClient.get(

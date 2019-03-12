@@ -41,12 +41,12 @@ a.bible-readmore{
     text-align: center;
     text-transform: uppercase;
 }
-div.lesson-section {
+div.lesson {
     margin-bottom: 30px;
     margin-top: 30px;
     position: relative;
 }
-div.lesson-section-words {
+div.lesson-words {
     bottom: 0;
     color:var(--color-black);
     font-size: 30px;
@@ -54,7 +54,7 @@ div.lesson-section-words {
     margin-left: 45px;
     position: absolute;
 }
-div.lesson-section-words-rtl {
+div.lesson-words-rtl {
     bottom: 0;
     color: var(--color-black);
     font-size: 30px;

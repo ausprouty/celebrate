@@ -5,7 +5,7 @@
 --color-background:#efefef;
 --color-version: blue;
 }
-div.myfriends-bible,
+div.bible,
 div.bible {
     background-color: var(--color-background);
     padding-left: 10px;
@@ -48,7 +48,7 @@ a:hover {
 outline: 0;
 }
 
-a.myfriends-bible-readmore
+a.bible-readmore
  {
 background-color:var(--color-red);
 border-color: var(--color-red);
@@ -78,14 +78,14 @@ sup,
 .versenum {
 top: -0.5em;
 }
-div.lesson-section,
-div.myfriends-lesson-section {
+div.lesson,
+div.lesson {
 margin-bottom: 30px;
 margin-top: 30px;
 position: relative;
 }
-div.lesson-section-words,
-div.myfriends-lesson-section-words {
+div.lesson-words,
+div.lesson-words {
 bottom: 0;
 color:var(--color-black);
 font-size: 30px;
@@ -93,7 +93,7 @@ line-height: 30px;
 margin-left: 45px;
 position: absolute;
 }
-div.myfriends-lesson-section-words-rtl {
+div.lesson-words-rtl {
 bottom: 0;
 color: var(--color-black);
 font-size: 30px;
@@ -101,29 +101,29 @@ line-height: 30px;
 margin-right: 65px;
 position: absolute;
 }
-h1.myfriends {
+h1. {
 color:var(--color-red);
 display: inline;
 font-weight: bold;
 padding-left: 25px;
 text-align: center;
 }
-img.myfriends-lesson-icon {
+img.lesson-icon {
 height: 30px;
 margin-right: 20px;
 vertical-align: middle;
 width: 30px;
 }
-img.myfriend-lesson-rtl-icon {
+img.lesson-rtl-icon {
 height: 30px;
 margin-left: 20px;
 vertical-align: middle;
 width: 30px;
 }
-li.myfriends-ltr{
+li.ltr{
 color:var(--color-red);
 }
-p.myfriends-reference,
+p.reference,
 p.reference {
 padding-top: 20px;
 color: var(--color-red);

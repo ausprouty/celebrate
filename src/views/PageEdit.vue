@@ -127,9 +127,9 @@ export default {
     },
     setEditorContent: function() {
       this.htmlText = `<html>
-  <div class="lesson-section">
+  <div class="lesson">
     <img class="lesson-icon" src="/images/compass/sharing-life.png" />
-    <div class="lesson-section-words">RÜCKBLICK</div>
+    <div class="lesson-words">RÜCKBLICK</div>
   </div>
   <ol class="ltr">
     <li>Was hast du diese Woche mit Gott erlebt?</li>
@@ -147,9 +147,9 @@ export default {
     ▶ Gemeinsam beten, dass ihr heute neue Aspekte von Gott kennen lernen dürft
     und eure Freundschaft zu Gott stärker und tiefer wird.
   </p>
-  <div class="lesson-section">
+  <div class="lesson">
     <img class="lesson-icon" src="/images/compass/bible-study.png" />
-    <div class="lesson-section-words">BIBELSTUDIUM</div>
+    <div class="lesson-words">BIBELSTUDIUM</div>
   </div>
   <ol class="ltr" start="4">
     <li>Alle lesen den Text leise für sich.</li>
@@ -263,9 +263,9 @@ export default {
   </ol>
   <br />
   <br />
-  <div class="lesson-section">
+  <div class="lesson">
     <img class="lesson-icon" src="/images/compass/challenges.png" />
-    <div class="lesson-section-words">SPEZIFISCHE FRAGEN UND PRAXIS</div>
+    <div class="lesson-words">SPEZIFISCHE FRAGEN UND PRAXIS</div>
   </div>
   <ol start="10">
     <li>
@@ -302,9 +302,9 @@ export default {
     die Gottes Liebe zu euch ausdrücken und lasst euch von Got-tes Gnade
     berühren! (Z.B. „Good Good Father”).
   </p>
-  <div class="lesson-section">
+  <div class="lesson">
     <img class="lesson-icon" src="/images/compass/background.png" />
-    <div class="lesson-section-words">KOMMENTAR ZUM BIBELTEXT</div>
+    <div class="lesson-words">KOMMENTAR ZUM BIBELTEXT</div>
   </div>
   <p>
     Jesus erzählte diese Geschichte, um uns etwas über das Herz des Va-ters im

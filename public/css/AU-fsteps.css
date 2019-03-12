@@ -11,10 +11,10 @@ green #1ca0a6
 --color-forward: #1ca0a6;
 }
 
-.fsteps-bible{
+.bible{
 color:#000;
 }
-.fsteps-bible-container{
+.bible-container{
 padding-top: 15px;
 padding-bottom: 30px;
 background-color: #efefef;
@@ -36,26 +36,26 @@ padding-top:15px;
 font-size: 2em;
 
 }
-.fsteps-color-back{
+.color-back{
 color: var(--color-back);
 }
-.fsteps-color-forward{
+.color-forward{
 color:var(--color-forward);
 }
-.fsteps-color-up{
+.color-up{
 color:var(--color-up);;
 }
-.fsteps-color-yellow{
+.color-yellow{
 color: #f38832;
 }
-.fsteps-text-conclusion{
+.text-conclusion{
 font-style: italic;
 }
-.fsteps-top{
+.top{
 padding-top: 20px;
 
 }
-.fsteps-versenum{
+.versenum{
 vertical-align: super;
 font-size:55%;
 color: var(--color-foward);
@@ -63,7 +63,7 @@ padding-left:0px;
 padding-right:3px;
 font-variant-position:super;
 }
-a.fsteps-readmore{
+a.readmore{
 color: var(--color-up);
 }
 div.fsteps{
@@ -75,7 +75,7 @@ margin-left:55px;
 bottom:10px;
 
 }
-div.fsteps-lesson-section-lookback{
+div.lesson-lookback{
 font-size: 24px;
 line-height: 24px;
 margin-left:30px;
@@ -84,7 +84,7 @@ color: var(--color-back);
 display:inline;
 
 }
-div.fsteps-lesson-section-lookup{
+div.lesson-lookup{
 font-size: 24px;
 line-height: 24px;
 margin-left:30px;
@@ -93,7 +93,7 @@ color: var(--color-up);
 display:inline;
 
 }
-div.fsteps-lesson-section-lookforward{
+div.lesson-lookforward{
 font-size: 24px;
 line-height: 24px;
 margin-left:30px;
@@ -102,17 +102,17 @@ color: var(--color-forward);
 display:inline;
 
 }
-div.fsteps-note-back{
+div.note-back{
 padding-top:25px;
 padding-bottom:25px;
 }
 
-div.fsteps-note-up{
+div.note-up{
 padding-top:25px;
 padding-bottom:25px;
 }
 
-div.fsteps-note-forward{
+div.note-forward{
 padding-top:15px;
 padding-bottom:75px;
 padding-left:15px;
@@ -140,20 +140,20 @@ color: #376e8a;
 font-size: 2em;
 margin-left:0px;
 }
-h2.fsteps-lookback{
+h2.lookback{
 color: #f0555a;
 }
-h2.fsteps-lookup{
+h2.lookup{
 color: #f38832;
 }
-h2.fsteps-lookforward{
+h2.lookforward{
 color: #1ca0a6;
 }
-img.fsteps-lesson-icon{
+img.lesson-icon{
 height:30px;
 width:30px;
 }
-img.fsteps-lesson-point{
+img.lesson-point{
 padding-right: 10px;
 height:15px;
 width:15px;
@@ -163,16 +163,16 @@ padding-right: 10px;
 height:30px;
 width:30px;
 }
-img.fsteps-read{
+img.read{
 height:30px;
 width:30px;
 padding-right: 10px;
 }
-img.fsteps-rtl{
+img.rtl{
 padding-right: 0px;
 padding-left: 10px;
 }
-img.fsteps-next{
+img.next{
 width:"100%";
 max-width:300px;
 }
@@ -203,19 +203,19 @@ color:#f38832;
 li.forward:before{
 color:#1ca0a6;
 }
-ol.fsteps-ol-back{
+ol.ol-back{
 color:#f0555a;
 padding-left:30px;
 }
-ol.fsteps-ol-up{
+ol.ol-up{
 color:#f38832;
 padding-left:30px;
 }
-ol.fsteps-ol-forward{
+ol.ol-forward{
 color:#1ca0a6;
 padding-left:30px;
 }
-p.fsteps-read{
+p.read{
 text-align:left;
 margin-bottom: 24px;
 font-size:1.2em;
