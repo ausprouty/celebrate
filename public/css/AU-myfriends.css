@@ -82,8 +82,9 @@ div.lesson {
 margin-bottom: 30px;
 margin-top: 30px;
 position: relative;
+text-align:left;
 }
-div.lesson-words {
+div.lesson-subtitle {
 bottom: 0;
 color:var(--color-black);
 font-size: 30px;
@@ -91,7 +92,7 @@ line-height: 30px;
 margin-left: 45px;
 position: absolute;
 }
-div.lesson-words-rtl {
+div.lesson-subtitle-rtl {
 bottom: 0;
 color: var(--color-black);
 font-size: 30px;
@@ -111,6 +112,7 @@ height: 30px;
 margin-right: 20px;
 vertical-align: middle;
 width: 30px;
+
 }
 img.lesson-rtl-icon {
 height: 30px;

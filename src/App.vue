@@ -9,7 +9,6 @@
 
 <style>
 :root {
-
   --color-black: purple;
   --color-red: red;
   --color-blue: blue;
@@ -286,13 +285,19 @@ select::ms-expand {
 .app-card > .title {
   margin: 0;
 }
+li {
+  text-align: left;
+}
+div.bible {
+  text-align: left;
+}
 .menu-card {
   margin-left: 12px;
   padding: 10px;
   width: 50%;
   background-color: red;
   text-align: left;
-  color:white;
+  color: white;
   margin-bottom: 5px;
   transition: all 0.2s linear;
   cursor: pointer;
