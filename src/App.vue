@@ -271,7 +271,21 @@ select:focus::ms-value {
 select::ms-expand {
   opacity: 0;
 }
-
+.app-card {
+  padding: 10px;
+  width: 95%;
+  background-color: #efefef;
+  margin-bottom: 12px;
+  transition: all 0.2s linear;
+  cursor: pointer;
+}
+.app-card:hover {
+  transform: scale(1.01);
+  box-shadow: 0 3px 12px 0 rgba(0, 0, 0, 0.2), 0 1px 15px 0 rgba(0, 0, 0, 0.19);
+}
+.app-card > .title {
+  margin: 0;
+}
 .menu-card {
   margin-left: 12px;
   padding: 10px;
@@ -282,13 +296,6 @@ select::ms-expand {
   margin-bottom: 5px;
   transition: all 0.2s linear;
   cursor: pointer;
-}
-.app-card:hover {
-  transform: scale(1.01);
-  box-shadow: 0 3px 12px 0 rgba(0, 0, 0, 0.2), 0 1px 15px 0 rgba(0, 0, 0, 0.19);
-}
-.app-card > .title {
-  margin: 0;
 }
 img.app-img-header {
   width: 100%;
