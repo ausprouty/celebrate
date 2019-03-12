@@ -56,24 +56,26 @@ export default {
     var route = {}
     route.country = this.countryCODE
     console.log('Entered Languages.vue')
-    this.$store.dispatch('checkBookmark', route).then(responseUnused => {
-      console.log('about to get languages for ' + this.countryCODE)
-      ContentService.getLanguages(this.countryCODE)
-        .then(response => {
-          this.languages = response.data
-          if (response.data.length === 1) {
-            this.$router.push({
-              name: 'countries'
-            })
-          } else {
-            this.loaded = true
-            this.loading = false
-          }
-        })
-        .catch(() => {
-          console.log('There was a problem finding language')
-        })
-    })
+    this.$store
+      .dispatch('checkBookmark', route, 'current')
+      .then(responseUnused => {
+        console.log('about to get languages for ' + this.countryCODE)
+        ContentService.getLanguages(this.countryCODE)
+          .then(response => {
+            this.languages = JSON.parse(response.data.content.text)
+            if (response.data.length === 1) {
+              this.$router.push({
+                name: 'countries'
+              })
+            } else {
+              this.loaded = true
+              this.loading = false
+            }
+          })
+          .catch(() => {
+            console.log('There was a problem finding language')
+          })
+      })
   }
 }
 </script>

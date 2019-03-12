@@ -22,7 +22,7 @@ export default {
     }
   },
   created() {
-    if (typeof this.bookmark.language != 'undefined') {
+    if (typeof this.bookmark.language.image_dir != 'undefined') {
       console.log('USING BOOKMARK')
       this.image_dir = this.bookmark.language.image_dir
     } else {

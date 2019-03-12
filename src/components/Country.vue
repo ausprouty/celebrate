@@ -28,7 +28,7 @@ export default {
   methods: {
     showPage: function(country) {
       localStorage.setItem('lastPage', 'countries')
-      ContentService.getLanguages(country.code).then(response => {
+      ContentService.getLanguages(country.code, 'current').then(response => {
         console.log('response from getLanguages for ' + country)
         console.log(response.data) // For now, logs out the response
         console.log('length is ' + response.data.length)

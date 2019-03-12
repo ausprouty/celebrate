@@ -164,7 +164,7 @@ export default {
     route.language = this.$route.params.languageISO
     route.book = this.$route.params.bookNAME // we need book to get style sheet
     route.series = this.$route.params.bookNAME
-    this.$store.dispatch('checkBookmark', route).then(response => {
+    this.$store.dispatch('checkBookmark', route, 'latest').then(response => {
       ContentService.getSeries(
         route.country,
         route.language,

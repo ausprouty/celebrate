@@ -62,7 +62,7 @@ export default {
     route.page = this.pageFILENAME
     console.log('This is the route I sending to checkBookmark from Page.vue')
     console.log(route)
-    this.$store.dispatch('checkBookmark', route)
+    this.$store.dispatch('checkBookmark', route, 'current')
     console.log('sending to dataservice from Page.Vue')
     console.log(
       this.countryCODE +

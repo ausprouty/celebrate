@@ -401,7 +401,7 @@ export default {
     console.log('This is the route I sending to checkBookmark from Page.vue')
     console.log(route)
     this.$store
-      .dispatch('checkBookmark', route)
+      .dispatch('checkBookmark', route, 'latest')
       .then(response => {
         ContentService.getPage(
           this.$route.params.countryCODE,

@@ -86,7 +86,7 @@ export default {
     route.language = this.$route.params.languageISO
     route.book = this.$route.params.bookNAME // we need book to get style sheet
     route.series = this.$route.params.bookNAME
-    this.$store.dispatch('checkBookmark', route)
+    this.$store.dispatch('checkBookmark', route, 'latest')
     ContentService.getSeries(
       'AU',
       'eng',
@@ -109,7 +109,7 @@ export default {
     route.book = this.$route.params.bookNAME // we need book to get style sheet
     route.series = this.$route.params.bookNAME
     this.$store
-      .dispatch('checkBookmark', route)
+      .dispatch('checkBookmark', route, 'latest')
       .then(unusedresponse => {
         console.log('I am checking edit service')
         return ContentService.getSeries(

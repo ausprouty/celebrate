@@ -27,10 +27,10 @@ export default {
     }
   },
   created() {
-    ContentService.getCountries()
+    ContentService.getCountries('current')
       .then(response => {
-        console.log(response.data) // For now, logs out the response
-        this.countries = response.data
+        console.log(response.data.content.text) // For now, logs out the response
+        this.countries = JSON.parse(response.data.content.text)
       })
       .catch(error => {
         console.log('There was an error in Countries.vue:', error.response) // Logs out the error

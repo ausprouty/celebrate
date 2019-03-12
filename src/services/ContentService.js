@@ -80,18 +80,171 @@ export default {
 
     return response
   },
-
+  async getLanguages(country, revision = 'current') {
+    console.log(revision + ' is revision')
+    console.log('entered get countries')
+    if (revision != 'current') {
+      console.log('not current revision')
+      let promise = this.getLanguagesData(country, revision)
+      let response = await promise
+      console.log('returned from looking for data')
+      if (!response.data) {
+        let promise = this.getLanguagesContent(country)
+        let response = await promise
+        console.log('response from content because no data')
+        console.log(response)
+        return response
+      } else {
+        console.log('response from data in ContentServie')
+        console.log(response.data.content)
+        return response
+      }
+    } else {
+      let promise = this.getLanguagesContent(country)
+      let response = await promise
+      console.log('response from content as requested')
+      console.log(response)
+      return response
+    }
+  },
   async getLanguagesContent(country, revision) {
-    return apiClient.get('content/' + country + '/languages.json')
+    let promise = apiClient.get('content/' + country + '/languages.json')
+    let res = await promise
+    var response = {}
+    response.data = {}
+    response.data.content = {}
+    response.data.content.text = JSON.stringify(res.data)
+    console.log('data obtained')
+    console.log(response)
+    return response
+  },
+  async getLanguagesData(country, revision) {
+    var params = {
+      country: country,
+      revision: revision
+    }
+    var contentForm = this.toFormData(params)
+    console.log('about to post to with ContentApi.php?crud=languages')
+    var promise = await apiMYSQL.post(
+      'ContentApi.php?crud=languages',
+      contentForm
+    )
+    var response = promise
+    console.log('response')
+    console.log(response)
+
+    return response
+  },
+
+  async getLibrary(country, language, revision = 'current') {
+    console.log(revision + ' is revision')
+    console.log('entered get countries')
+    if (revision != 'current') {
+      console.log('not current revision')
+      let promise = this.getLibraryData(country, language, revision)
+      let response = await promise
+      console.log('returned from looking for data')
+      if (!response.data) {
+        let promise = this.getLanguagesContent(country, language, revision)
+        let response = await promise
+        console.log('response from content because no data')
+        console.log(response)
+        return response
+      } else {
+        console.log('response from data in ContentServie')
+        console.log(response.data.content)
+        return response
+      }
+    } else {
+      let promise = this.getLibraryContent(country, language, revision)
+      let response = await promise
+      console.log('response from content as requested')
+      console.log(response)
+      return response
+    }
   },
 
   async getLibraryContent(country, language, revision) {
-    return apiClient.get(
+    let promise = apiClient.get(
       '/content/' + country + '/' + language + '/library.json'
     )
+    let res = await promise
+    var response = {}
+    response.data = {}
+    response.data.content = {}
+    response.data.content.text = JSON.stringify(res.data)
+    console.log('data obtained')
+    console.log(response)
+    return response
   },
-  getSeriesContent(country, language, folder, index, revision) {
-    return apiClient.get(
+  async getLibraryData(country, language, revision) {
+    var params = {
+      country: country,
+      language: language,
+      revision: revision
+    }
+    var contentForm = this.toFormData(params)
+    console.log('contentForm obtained')
+    console.log(contentForm)
+    var promise = await apiMYSQL.post(
+      'ContentApi.php?crud=library',
+      contentForm
+    )
+    var response = promise
+    console.log('response')
+    console.log(response)
+
+    return response
+  },
+
+  async getSeries(country, language, folder, index, revision = 'current') {
+    console.log(revision + ' is revision')
+    console.log('entered get countries')
+    if (revision != 'current') {
+      console.log('not current revision')
+      let promise = this.getSeriesData(
+        country,
+        language,
+        folder,
+        index,
+        revision
+      )
+      let response = await promise
+      console.log('returned from looking for data')
+      if (!response.data) {
+        let promise = this.getSeriesContent(
+          country,
+          language,
+          folder,
+          index,
+          revision
+        )
+        let response = await promise
+        console.log('response from content because no data')
+        console.log(response)
+        return response
+      } else {
+        console.log('response from data in ContentServie')
+        console.log(response.data.content)
+        return response
+      }
+    } else {
+      let promise = this.getSeriesContent(
+        country,
+        language,
+        folder,
+        index,
+        revision
+      )
+      let response = await promise
+      console.log('response from content as requested')
+      console.log(response)
+      return response
+    }
+  },
+
+  async getSeriesContent(country, language, folder, index, revision) {
+    let promise = apiClient.get(
       'content/' +
         country +
         '/' +
@@ -102,8 +255,37 @@ export default {
         index +
         '.json'
     )
+    let res = await promise
+    var response = {}
+    response.data = {}
+    response.data.content = {}
+    response.data.content.text = JSON.stringify(res.data)
+    console.log('data obtained')
+    console.log(response)
+    return response
   },
-  getPageContent(country, language, folder, page, revision) {
+  async getSeriesData(country, language, folder, index, revision) {
+    console.log('ContentService is looking for series with these params')
+    var params = {
+      country: country,
+      language: language,
+      folder: folder,
+      index: index,
+      revision: revision
+    }
+    console.log(params)
+    var contentForm = this.toFormData(params)
+    console.log('contentForm obtained')
+    console.log(contentForm)
+    var promise = await apiMYSQL.post('ContentApi.php?crud=series', contentForm)
+    var response = promise
+    console.log('response')
+    console.log(response)
+
+    return response
+  },
+
+  async getPageContent(country, language, folder, page, revision) {
     return apiClient.get(
       'content/' +
         country +
@@ -117,38 +299,7 @@ export default {
     )
   },
 
-  getLanguagesData(country, revision) {
-    var params = {
-      country: country,
-      revision: revision
-    }
-    var contentForm = this.toFormData(params)
-    console.log('about to post to with ContentApi.php?crud=languages')
-    return apiMYSQL.post('ContentApi.php?crud=languages', contentForm)
-  },
-  getLibraryData(country, language, revision) {
-    var params = {
-      country: country,
-      language: language,
-      revision: revision
-    }
-    var contentForm = this.toFormData(params)
-    return apiMYSQL.post('ContentApi.php?crud=library', contentForm)
-  },
-  getSeriesData(country, language, folder, index, revision) {
-    console.log('ContentService is looking for series with these params')
-    var params = {
-      country: country,
-      language: language,
-      folder: folder,
-      index: index,
-      revision: revision
-    }
-    console.log(params)
-    var contentForm = this.toFormData(params)
-    return apiMYSQL.post('ContentApi.php?crud=series', contentForm)
-  },
-  getPageData(country, language, folder, page, revision) {
+  async getPageData(country, language, folder, page, revision) {
     var params = {
       country: country,
       language: language,
@@ -159,7 +310,7 @@ export default {
     var contentForm = this.toFormData(params)
     return apiMYSQL.post('ContentApi.php?crud=page', contentForm)
   },
-  createContentData(contentForm) {
+  async createContentData(contentForm) {
     return apiMYSQL.post('ContentApi.php?crud=create', contentForm)
   },
   toFormData(obj) {

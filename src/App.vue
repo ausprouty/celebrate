@@ -9,10 +9,10 @@
 
 <style>
 :root {
-  --color-red: red;
+
   --color-black: purple;
-  --color-red: green;
-  --color-blue: orange;
+  --color-red: red;
+  --color-blue: blue;
   --color-background: rgb(228, 194, 131);
   --color-version: rgb(110, 107, 241);
 }

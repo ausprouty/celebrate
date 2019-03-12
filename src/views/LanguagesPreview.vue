@@ -71,7 +71,7 @@ export default {
     var ref = this
     route.country = this.countryCODE
     console.log('Entered Languages.vue')
-    this.$store.dispatch('checkBookmark', route).then(responseUnused => {
+    this.$store.dispatch('checkBookmark', route, 'latest').then(responseUnused => {
       console.log('about to get languages for ' + this.countryCODE)
       ContentService.getLanguages(ref.countryCODE)
         .then(response => {
