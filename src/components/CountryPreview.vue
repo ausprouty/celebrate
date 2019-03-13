@@ -30,8 +30,10 @@ export default {
       var ref = this
       localStorage.setItem('lastPage', 'countries')
       ContentService.getLanguages(country.code, 'latest').then(response => {
-        console.log('response from getLanguages for ' + country)
-        console.log(response.data) // For now, logs out the response
+        console.log(
+          'COUNTRY PREVIEW - response from getLanguages for ' + country.code
+        )
+        console.log(response) // For now, logs out the response
         console.log('length is ' + response.data.length)
         ref.languages = response.data
         if (response.data.length === 1) {

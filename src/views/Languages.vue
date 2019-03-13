@@ -55,7 +55,8 @@ export default {
     this.loading = true
     var route = {}
     route.country = this.countryCODE
-    console.log('Entered Languages.vue')
+    console.log('LANGUAGES.vue -- entered with route')
+    console.log(route)
     this.$store
       .dispatch('checkBookmark', route, 'current')
       .then(responseUnused => {

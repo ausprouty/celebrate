@@ -6,6 +6,9 @@
     --color-background:#efefef;
     --color-version: rgb(110, 107, 241);
 }
+p {
+    text-align:left;
+}
 
 div.bible {
     background-color: var(--color-background);

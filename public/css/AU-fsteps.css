@@ -10,6 +10,9 @@ green #1ca0a6
 --color-up:#f38832;
 --color-forward: #1ca0a6;
 }
+p{
+    text-align: left;
+}
 
 .bible{
 color:#000;
@@ -30,6 +33,7 @@ padding-right: 10px;
 .statement
 {
 font-weight: bold;
+text-align: left;
 }
 .conclusion{
 padding-top:15px;
@@ -50,6 +54,7 @@ color: #f38832;
 }
 .text-conclusion{
 font-style: italic;
+text-align: left
 }
 .top{
 padding-top: 20px;
@@ -75,6 +80,12 @@ margin-left:55px;
 bottom:10px;
 
 }
+div.lesson {
+    margin-bottom: 30px;
+    margin-top: 30px;
+    position: relative;
+    text-align:left;
+}
 div.lesson-lookback{
 font-size: 24px;
 line-height: 24px;
@@ -82,6 +93,7 @@ margin-left:30px;
 position:absolute;
 color: var(--color-back);
 display:inline;
+text-align:left;
 
 }
 div.lesson-lookup{
@@ -91,6 +103,7 @@ margin-left:30px;
 position:absolute;
 color: var(--color-up);
 display:inline;
+text-align:left;
 
 }
 div.lesson-lookforward{
@@ -100,17 +113,11 @@ margin-left:30px;
 position:absolute;
 color: var(--color-forward);
 display:inline;
+text-align:left;
 
 }
-div.note-back{
-padding-top:25px;
-padding-bottom:25px;
-}
 
-div.note-up{
-padding-top:25px;
-padding-bottom:25px;
-}
+
 
 div.note-forward{
 padding-top:15px;
@@ -123,19 +130,16 @@ margin-top:40px;
 }
 
 
-div.rtl.fstep{
+div.rtl{
 margin-right:55px;
 }
 
 h1{
 color:black;
+display:none;
 }
-h1.fsteps{
-font-size: 2em;
-color: #3d5864;
 
-}
-h2.fsteps{
+h2{
 color: #376e8a;
 font-size: 2em;
 margin-left:0px;
@@ -176,7 +180,7 @@ img.next{
 width:"100%";
 max-width:300px;
 }
-li.fsteps{
+li{
 padding-left:16px;
 }
 li.back:before,

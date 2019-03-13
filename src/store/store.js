@@ -99,7 +99,7 @@ export default new Vuex.Store({
       commit('SET_BOOKMARK', [mark, value])
     },
     async checkBookmark({ dispatch, commit }, route) {
-      console.log('STORE BOOKMARK -  Store.js shows route as')
+      console.log('STORE BOOKMARK -  route is')
       console.log(route)
       dispatch('CheckBookmarkCountry', route)
       dispatch('CheckBookmarkLanguageLibrary', route)
@@ -114,17 +114,24 @@ export default new Vuex.Store({
     async CheckBookmarkCountry({ commit }, route) {
       var currentCountry = ''
       if (typeof this.state.bookmark.country != 'undefined') {
+        console.log('STORE BOOKMARK -  bookmark.country is not undefined')
         if (typeof this.state.bookmark.country.code != 'undefined') {
           currentCountry = this.state.bookmark.country.code
         }
       }
       if (route.country != currentCountry) {
-        ContentService.getCountries(route.revision).then(response => {
+        console.log('STORE BOOKMARK -  route.country is not currentCountry')
+        ContentService.getCountries(route.revision).then(res => {
+          var response = JSON.parse(res.data.content.text)
+          console.log(
+            'STORE BOOKMARK -  response  after parse from getCountries'
+          )
+          console.log(response)
           var value = {}
-          var length = response.data.length
+          var length = response.length
           for (var i = 0; i < length; i++) {
-            if (response.data[i].code == route.country) {
-              value = response.data[i]
+            if (response[i].code == route.country) {
+              value = response[i]
             }
           }
           commit('SET_BOOKMARK', ['country', value])
