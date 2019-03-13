@@ -15,7 +15,7 @@ export default {
   props: {
     book: Object
   },
-  computed: mapState(['bookmark', 'standard','appDir']),
+  computed: mapState(['bookmark', 'standard', 'appDir']),
   data() {
     return {
       image_dir: ''
@@ -23,20 +23,20 @@ export default {
   },
   created() {
     if (typeof this.bookmark.language != 'undefined') {
-      console.log('USING BOOKMARK')
+      console.log('BOOK  PREVIEW -using bookmark')
       this.image_dir = this.bookmark.language.image_dir
     } else {
-      console.log('USING STANDARD')
+      console.log('BOOK  PREVIEW -using standard directory')
       this.image_dir = this.standard.image_dir
     }
   },
   methods: {
     showPage: function(book) {
-      console.log('book')
+      console.log('BOOK  PREVIEW - book')
       console.log(book)
       localStorage.setItem('lastPage', 'library/country/language')
       if (book.format == 'series') {
-        console.log('this is a series')
+        console.log('BOOK  PREVIEW - this is a series')
         this.$router.push({
           name: 'previewSeries',
           params: {
@@ -46,7 +46,7 @@ export default {
           }
         })
       } else {
-        console.log('this is a NOT a series')
+        console.log('BOOK  PREVIEW - this is a NOT a series')
         this.$router.push({
           name: 'previewPage',
           params: {

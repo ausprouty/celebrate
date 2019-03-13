@@ -7,6 +7,7 @@
       <a v-bind:href="'/languages/' + this.bookmark.country.code">
         <img v-bind:src="appDir.library +  this.image_dir +'/journey.jpg'" class="app-img-header">
       </a>
+      <p> {{this.image_dir}} image directory </p>
 
       <Book v-for="book in library" :key="book.title" :book="book"/>
       <div class="version">
@@ -77,20 +78,20 @@ export default {
     this.$store.dispatch('checkBookmark', route)
     ContentService.getLibrary(route.country, route.language, this.revision)
       .then(response => {
-        console.log('response from edit service')
+        console.log('LIBRARY PREVIEW - response from edit service')
         console.log(response.data)
         if (!response.data.content) {
-          console.log('I am going to content for library')
+          console.log('LIBRARY PREVIEW - I am going to content for library')
           ContentService.getLibrary(route.country, route.language).then(
             response => {
-              ref.library = response.data
+              ref.library = JSON.parse(response.text.data)
               if (typeof ref.bookmark.language != 'undefined') {
-                console.log('USING BOOKMARK')
-                console.log(ref.bookmark.language)
-                this.image_dir = ref.bookmark.language.image_dir
+                console.log('LIBRARY PREVIEW - using bookmark')
+                console.log(ref.bookmark.language.image_dir)
+                ref.image_dir = ref.bookmark.language.image_dir
                 console.log(ref.image_dir)
               } else {
-                console.log('USING STANDARD')
+                console.log('LIBRARY PREVIEW -using standard directory')
                 ref.image_dir = ref.standard.image_dir
               }
               ref.loading = false
@@ -98,15 +99,16 @@ export default {
             }
           )
         } else {
-          console.log('putting edited content into library')
+          console.log('LIBRARY PREVIEW - putting edited content into library')
           ref.library = JSON.parse(response.data.content.text)
+          ref.image_dir = ref.bookmark.language.image_dir
           console.log(ref.library)
           ref.loading = false
           ref.loaded = true
         }
       })
       .catch(error => {
-        console.log('There was an error in  bookmark Library:', error.response) // Logs out the error
+        console.log('LIBRARY PREVIEW - There was an error in  bookmark Library:', error.response) // Logs out the error
         this.error = error.toString()
       })
   }

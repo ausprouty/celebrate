@@ -29,21 +29,24 @@ export default {
     showPage: function(country) {
       var ref = this
       localStorage.setItem('lastPage', 'countries')
-      ContentService.getLanguages(country.code, 'latest').then(response => {
+      ContentService.getLanguages(country.code, 'latest').then(res => {
         console.log(
           'COUNTRY PREVIEW - response from getLanguages for ' + country.code
         )
-        console.log(response) // For now, logs out the response
-        console.log('length is ' + response.data.length)
-        ref.languages = response.data
-        if (response.data.length === 1) {
-          var language = response.data[0]
-          //    console.log('language is ')
+        console.log(res) // For now, logs out the response
+
+        var response = JSON.parse(res.content.text)
+        console.log('COUNTRY PREVIEW - response after parse')
+        console.log (response)
+        console.log('COUNTRY PREVIEW - length is ' + response.length)
+        if (response.length === 1) {
+          var language = response[0]
+          //     console.log('COUNTRY PREVIEW - language is ')
           //    console.log(language)
           ref.$store
             .dispatch('updateBookmark', ['language', language])
             .then(responseUnused => {
-              //        console.log('language_iso is ' + language.iso)
+              //         console.log('COUNTRY PREVIEW - language_iso is ' + language.iso)
               ref.$router.push({
                 name: 'previewLibrary',
                 params: {
