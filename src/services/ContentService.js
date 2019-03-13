@@ -240,16 +240,13 @@ export default {
   },
 
   async getSeriesContent(country, language, folder, index, revision) {
+    var indexname = index
+    var bound = index.indexOf('.json')
+    if (bound == -1) {
+      indexname = index + '.json'
+    }
     let res = await apiClient.get(
-      'content/' +
-        country +
-        '/' +
-        language +
-        '/' +
-        folder +
-        '/' +
-        index +
-        '.json'
+      'content/' + country + '/' + language + '/' + folder + '/' + indexname
     )
     var response = {}
     response.data = {}

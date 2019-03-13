@@ -123,7 +123,7 @@ export default {
       this.content.section = this.$route.params.bookNAME
       var contentForm = this.toFormData(this.content)
       var ref = this
-      ContentService.createContent(contentForm).then(function(response) {
+      ContentService.createContentData(contentForm).then(function(response) {
         if (response.data.error) {
           ref.errorMessage = response.data.message
         } else {
