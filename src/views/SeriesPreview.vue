@@ -95,7 +95,7 @@ export default {
       'basics-chapters',
       ref.version
     ).then(response => {
-      console.log('response from edit service')
+      console.log('SERIES PREVIEW -response from edit service')
       console.log(response)
     })
   },
@@ -104,7 +104,7 @@ export default {
     this.loading = true
     var route = {}
     var ref = this
-    ref.version = 1
+    ref.version = 'latest'
     route.country = this.$route.params.countryCODE
     route.language = this.$route.params.languageISO
     route.book = this.$route.params.bookNAME // we need book to get style sheet
@@ -112,7 +112,7 @@ export default {
     this.$store
       .dispatch('checkBookmark', route, 'latest')
       .then(unusedresponse => {
-        console.log('I am checking edit service')
+        console.log('SERIES PREVIEW -I am checking edit service')
         return ContentService.getSeries(
           ref.bookmark.country.code,
           ref.bookmark.language.iso,
@@ -122,10 +122,10 @@ export default {
         )
       })
       .then(response => {
-        console.log('response from edit service')
+        console.log('SERIES PREVIEW -response from edit service')
         console.log(response.data)
         if (!response.data) {
-          console.log('I am going to content for series')
+          console.log('SERIES PREVIEW -I am going to content for series')
           ContentService.getSeries(
             ref.bookmark.country.code,
             ref.bookmark.language.iso,
@@ -135,31 +135,31 @@ export default {
             .then(response => {
               console.log(response.data) // For nseriesDetailsow, logs out the response
               this.seriesDetails = response.data
-              console.log('this.seriesDetails')
+              console.log('SERIES PREVIEW -this.seriesDetails')
               console.log(ref.seriesDetails)
 
               ref.chapters = ref.seriesDetails.chapters
-              console.log('chapters in Series.Vue')
+              console.log('SERIES PREVIEW -chapters in Series.Vue')
               console.log(ref.chapters)
               ref.loading = false
               ref.loaded = true
             })
             .catch(error => {
               ref.loading = false
-              console.log('There was an error:', error.response) // Logs out the error
+              console.log('SERIES PREVIEW -There was an error:', error.response) // Logs out the error
               ref.error = error.toString()
             })
         } else {
-          ref.content = ''
-          ref.content.recnum = ''
-          ref.content.version = ''
+          ref.content = null
+          ref.content.recnum = null
+          ref.content.version = null
           ref.content.publish_uid = response.data.content.publish_uid
           ref.content.publish_date = response.data.content.publish_date
           ref.content.language_iso = route.language
           ref.content.country_iso = route.country
           ref.content.folder = ref.bookmark.book.folder
           ref.content.filetype = 'json'
-          ref.content.title = ''
+          ref.content.title = null
           ref.content.filename = 'library'
 
           ref.content.series = JSON.parse(response.data.content.text)

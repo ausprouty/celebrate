@@ -1,11 +1,11 @@
 import ContentService from '@/services/ContentService.js'
 export default {
   bookmarkCountry(route) {
-    console.log('I came into bookmarkCountry')
+    console.log('BOOKMARK.js - I came into bookmarkCountry')
     ContentService.getCountries()
       .then(response => {
         var value = {}
-        console.log('coutnries')
+        console.log('BOOKMARK.js -coutnries')
         console.log(response.data)
         var length = response.data.length
         for (var i = 0; i < length; i++) {
@@ -13,15 +13,18 @@ export default {
             value = response.data[i]
           }
         }
-        console.log('finishing bookmarkCountry')
+        console.log('BOOKMARK.js - finishing bookmarkCountry')
         return value
       })
       .catch(error => {
-        console.log('There was an error in  bookmarkCountry:', error.response) // Logs out the error
+        console.log(
+          'BOOKMARK.js -There was an error in  bookmarkCountry:',
+          error.response
+        ) // Logs out the error
       })
   },
   bookmarkLanguage(route) {
-    console.log('I camt into bookmarkLANGUAGE')
+    console.log('BOOKMARK.js - I camt into bookmarkLANGUAGE')
     ContentService.getLanguages(route.country).then(response => {
       var value = {}
       var length = response.data.length
@@ -30,15 +33,15 @@ export default {
           value = response.data[i]
         }
       }
-      console.log('finishing bookmarkCountry')
+      console.log('BOOKMARK.js -finishing bookmarkCountry')
       return value
     })
   },
   bookmarkLibrary(route) {
-    console.log('I camt into bookmarkLIBRARY')
+    console.log('BOOKMARK.js -I camt into bookmarkLIBRARY')
     ContentService.getLibrary(route.country, route.language).then(response => {
       var value = response.data
-      console.log('finishing bookmarkLibrary')
+      console.log('BOOKMARK.js -finishing bookmarkLibrary')
       return value
     })
   },
@@ -46,7 +49,7 @@ export default {
     var length = library.length
     for (var i = 0; i < length; i++) {
       if (library[i].book == route.book) {
-        //console.log('I found book in library')
+        //console.log('BOOKMARK.js -I found book in library')
         //console.log(library[i])
         return library[i]
       }
@@ -62,7 +65,9 @@ export default {
         }
       }
     }
-    console.log('Here is my folder and index values')
+    console.log(
+      'BOOKMARK.js - bookmarkSeries Here is my folder and index values'
+    )
     console.log(value)
     if (value.folder) {
       var folder = value.folder
@@ -74,6 +79,8 @@ export default {
         index
       ).then(response => {
         var value = response.data
+        console.log('BOOKMARK.js - bookmarkSeries my response')
+        console.log(value)
         return value
       })
     }
@@ -95,7 +102,7 @@ export default {
     return value
   },
   bookmark(route) {
-    console.log('Bookmark.js shows route as')
+    console.log('BOOKMARK.js -Bookmark.js shows route as')
     console.log(route)
     var bookmark = {}
     bookmark.country = this.bookmarkCountry(route)
@@ -112,7 +119,7 @@ export default {
     if (route.page) {
       bookmark.page = this.bookmarkPage(route, bookmark)
     }
-    console.log('Bookmark from Bookmark.js')
+    console.log('BOOKMARK.js -Bookmark from Bookmark.js')
     console.log(bookmark)
     localStorage.setItem('bookmark', JSON.stringify(bookmark))
     return bookmark

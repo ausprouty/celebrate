@@ -194,8 +194,8 @@ export default {
   },
 
   async getSeries(country, language, folder, index, revision = 'current') {
-    console.log(revision + ' is revision')
-    console.log('CONTENT SERVICE - entered get series')
+    console.log('CONTENT SERVICE - revision is ' + revision)
+    console.log('CONTENT SERVICE - entered getSeries')
     if (revision != 'current') {
       console.log('CONTENT SERVICE - not current revision')
       let response = await this.getSeriesData(
@@ -207,7 +207,7 @@ export default {
       )
 
       console.log('CONTENT SERVICE - returned from looking for data')
-      if (!response.data) {
+      if (!response.data.content) {
         let response = await this.getSeriesContent(
           country,
           language,
@@ -215,7 +215,6 @@ export default {
           index,
           revision
         )
-
         console.log('CONTENT SERVICE - response from content because no data')
         console.log(response)
         return response
@@ -269,11 +268,11 @@ export default {
     }
     console.log(params)
     var contentForm = this.toFormData(params)
-    console.log('CONTENT SERVICE - contentForm obtained')
+    console.log('CONTENT SERVICE - getSeriesData contentForm')
     console.log(contentForm)
     var promise = await apiMYSQL.post('ContentApi.php?crud=series', contentForm)
     var response = promise
-    console.log('CONTENT SERVICE - response')
+    console.log('CONTENT SERVICE - getSeriesData response')
     console.log(response)
 
     return response
