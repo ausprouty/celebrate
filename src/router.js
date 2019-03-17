@@ -27,8 +27,6 @@ import MembersAdd from './views/MembersAdd.vue'
 import MembersUpdate from './views/MembersUpdate.vue'
 
 import NotFoundComponent from './views/NotFound.vue'
-import Menu from './components/NavDropdown.vue'
-import Cat from './components/NavCat.vue'
 
 Vue.use(Router)
 
@@ -122,18 +120,7 @@ export default new Router({
       component: PagePreview,
       props: true
     },
-    {
-      path: '/menu',
-      name: 'menu',
-      component: Menu,
-      props: true
-    },
-    {
-      path: '/cat',
-      name: 'cat',
-      component: Cat,
-      props: true
-    },
+
     {
       path: '/users',
       name: 'users',

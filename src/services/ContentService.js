@@ -26,22 +26,28 @@ export default {
     console.log(revision + ' is revision')
     console.log('CONTENT SERVICE - entered get countries')
     if (revision != 'current') {
-      console.log('CONTENT SERVICE - not current revision')
+      console.log('CONTENT SERVICE - getCountries not current revision')
       let response = await this.getCountriesData(revision)
-      console.log('CONTENT SERVICE - returned from looking for data')
+      console.log(
+        'CONTENT SERVICE - getCountries returned from looking for data'
+      )
       if (!response.data) {
         let response = await this.getCountriesContent()
-        console.log('CONTENT SERVICE - response from content because no data')
+        console.log(
+          'CONTENT SERVICE - getCountries  response from content because no data'
+        )
         console.log(response)
         return response
       } else {
-        console.log('CONTENT SERVICE - response from data in ContentServie')
+        console.log('CONTENT SERVICE - getCountries response from data ')
         console.log(response.data.content)
         return response
       }
     } else {
       let response = await this.getCountriesContent()
-      console.log('CONTENT SERVICE - response from content as requested')
+      console.log(
+        'CONTENT SERVICE - getCountries response from content as requested'
+      )
       console.log(response)
       return response
     }
@@ -57,18 +63,20 @@ export default {
     return response
   },
   async getCountriesData(revision) {
-    console.log('CONTENT SERVICE - attempted getting countries data')
+    console.log(
+      'CONTENT SERVICE - getCountriesData attempted getting countries DATA'
+    )
     var params = {
       revision: revision
     }
     var contentForm = this.toFormData(params)
-    console.log('CONTENT SERVICE - contentForm obtained')
+    console.log('CONTENT SERVICE - getCountriesData contentForm obtained')
     console.log(contentForm)
     var response = await apiMYSQL.post(
       'ContentApi.php?crud=countries',
       contentForm
     )
-    console.log('CONTENT SERVICE - response')
+    console.log('CONTENT SERVICE -  getCountriesData response')
     console.log(response)
 
     return response
@@ -77,16 +85,21 @@ export default {
     console.log('CONTENT SERVICE - entered get languages')
     console.log('CONTENT SERVICE - ' + revision + ' is revision')
     if (revision != 'current') {
-      console.log('CONTENT SERVICE - not current revision')
+      console.log('CONTENT SERVICE -getLanguages  not current revision')
       let response = await this.getLanguagesData(country, revision)
-      console.log('CONTENT SERVICE - returned from looking for data')
+      console.log(
+        'CONTENT SERVICE - getLanguages returned from looking for data'
+      )
+      console.log (response)
       if (!response.data) {
         let response = await this.getLanguagesContent(country, revision)
-        console.log('CONTENT SERVICE - response from content because no data')
+        console.log(
+          'CONTENT SERVICE - getLanguages response from content because no data'
+        )
         console.log(response)
         return response
       } else {
-        console.log('CONTENT SERVICE - response from data in ContentServie')
+        console.log('CONTENT SERVICE - getLanguages response from data')
         console.log(response.data.content)
         return response.data
       }
@@ -105,7 +118,7 @@ export default {
     response.data = {}
     response.data.content = {}
     response.data.content.text = JSON.stringify(res.data)
-    console.log('CONTENT SERVICE - data obtained from getLanguagesContent')
+    console.log('CONTENT SERVICE - getLanguagesContent data obtained')
     console.log(response)
     return response
   },
@@ -116,14 +129,13 @@ export default {
     }
     var contentForm = this.toFormData(params)
     console.log(
-      'CONTENT SERVICE - about to post to with ContentApi.php?crud=languages'
+      'CONTENT SERVICE -  getLanguagesData about to post to ContentApi.php?crud=languages'
     )
-    var promise = await apiMYSQL.post(
+    var response = await apiMYSQL.post(
       'ContentApi.php?crud=languages',
       contentForm
     )
-    var response = promise
-    console.log('CONTENT SERVICE - response')
+    console.log('CONTENT SERVICE -  getLanguagesData response')
     console.log(response)
 
     return response

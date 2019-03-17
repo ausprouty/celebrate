@@ -2,7 +2,7 @@ window.CKEDITOR.editorConfig = function(config) {
   // Define changes to default configuration here.
   // For complete reference see:
   // http://docs.ckeditor.com/#!/api/CKEDITOR.config
-  config.uiColor = '#04DC6E'
+  config.uiColor = '#efefef'
   config.toolbarGroups = [
     { name: 'styles', groups: ['styles'] },
     { name: 'basicstyles', groups: ['basicstyles', 'cleanup'] },

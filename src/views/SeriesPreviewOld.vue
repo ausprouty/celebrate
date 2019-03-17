@@ -77,6 +77,28 @@ export default {
       window.history.back()
     }
   },
+  createdXX() {
+    var ref = this
+    ref.version = 1
+    ref.version = 1
+    var route = {}
+    route.country = this.$route.params.countryCODE
+    route.language = this.$route.params.languageISO
+    route.book = this.$route.params.bookNAME // we need book to get style sheet
+    route.series = this.$route.params.bookNAME
+    route.revision = 'latest'
+    this.$store.dispatch('checkBookmark', route)
+    ContentService.getSeries(
+      'AU',
+      'eng',
+      'myfriends',
+      'basics-chapters',
+      ref.version
+    ).then(response => {
+      console.log('SERIES PREVIEW -response from edit service')
+      console.log(response)
+    })
+  },
   created() {
     this.error = this.loaded = null
     this.loading = true
@@ -113,6 +135,6 @@ export default {
         })
     })
   }
-}
 
+}
 </script>

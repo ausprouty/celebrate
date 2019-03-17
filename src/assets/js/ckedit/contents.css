@@ -12,9 +12,11 @@ body
 
 	/* Text color */
 	color: #333;
+	color:deeppink;
 
 	/* Remove the background color to make it transparent. */
 	background-color: #fff;
+	background-color:green;
 
 	margin: 20px;
 }

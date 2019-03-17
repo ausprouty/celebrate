@@ -47,7 +47,7 @@ export default {
     }
   },
   created() {
-    console.log('this.menu')
+    console.log('NAV this.menu')
     console.log(this.menu)
     if (this.bookmark.country) {
       this.menu[1].show = true

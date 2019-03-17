@@ -1,5 +1,5 @@
 <template>
-  <div class="preview">>
+  <div class="preview">
     <NavBar/>
     <div class="loading" v-if="loadinG">Loading...</div>
     <div class="error" v-if="error">There was an error...</div>
@@ -10,7 +10,7 @@
           <img
             v-bind:src="appDir.library + this.bookmark.language.image_dir + '/' + this.bookmark.book.image"
             class="book"
-          >
+          />
 
           <div class="book">
             <span class="bold">{{this.bookmark.book.title}}</span>
