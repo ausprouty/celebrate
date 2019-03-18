@@ -119,7 +119,7 @@ export default new Vuex.Store({
         }
       }
       if (route.country != currentCountry) {
-        ContentService.getCountries(route.revision).then(response => {
+        ContentService.getCountries(route.version).then(response => {
           var value = {}
           var length = response.data.length
           for (var i = 0; i < length; i++) {
@@ -149,7 +149,7 @@ export default new Vuex.Store({
           console.log('STORE -  looking for new language of ' + route.language)
           let response = await ContentService.getLanguages(
             route.country,
-            route.revision
+            route.version
           )
           console.log('STORE -  response of language')
           console.log(response)
@@ -163,7 +163,7 @@ export default new Vuex.Store({
           response = await ContentService.getLibrary(
             route.country,
             route.language,
-            route.revision
+            route.version
           )
           value = response.data
           //console.log('library is ')
@@ -176,7 +176,7 @@ export default new Vuex.Store({
           let response = await ContentService.getLibrary(
             route.country,
             route.language,
-            route.revision
+            route.version
           )
           value = response.data
           //console.log('library is ')
@@ -262,7 +262,7 @@ update book and erase all bookmark below*/
               route.language,
               folder,
               index,
-              route.revision
+              route.version
             ).then(response => {
               var value = response.data
 

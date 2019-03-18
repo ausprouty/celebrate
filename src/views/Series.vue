@@ -70,13 +70,14 @@ export default {
     route.language = this.languageISO
     route.book = this.bookNAME // we need book to get style sheet
     route.series = this.bookNAME
-    route.revison = 'current'
+    route.version = 'current'
     this.$store.dispatch('checkBookmark', route).then(response => {
       ContentService.getSeries(
         this.bookmark.country.code,
         this.bookmark.language.iso,
         this.bookmark.book.folder,
-        this.bookmark.book.index
+        this.bookmark.book.index,
+        route.version
       )
         .then(response => {
           console.log(response.data) // For nseriesDetailsow, logs out the response

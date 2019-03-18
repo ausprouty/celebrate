@@ -10,7 +10,7 @@
           <img
             v-bind:src="appDir.library + this.bookmark.language.image_dir + '/' + this.bookmark.book.image"
             class="book"
-          />
+          >
 
           <div class="book">
             <span class="bold">{{this.bookmark.book.title}}</span>
@@ -77,14 +77,15 @@ export default {
     route.book = this.bookNAME
     route.series = this.bookNAME
     route.page = this.pageFILENAME
-    route.revison = 'latest'
+    route.version = 'latest'
     this.$store.dispatch('checkBookmark', route)
     var ref = this
     ContentService.getPage(
       this.countryCODE,
       this.languageISO,
       this.bookmark.book.folder,
-      this.pageFILENAME
+      this.pageFILENAME,
+      route.version
     )
       .then(response => {
         ref.pageText = response.data

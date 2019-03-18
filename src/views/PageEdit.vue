@@ -73,9 +73,14 @@ export default {
   methods: {
     saveForm() {
       console.log(this.content)
-      this.content.text = JSON.stringify(this.countries)
-      this.content.filename = 'countries'
-      this.content.filetype = 'json'
+      this.content.text = JSON.stringify(this.htmlText)
+      this.content.country_iso = this.$route.params.countryCODE
+      this.content.language_iso = this.$route.params.languageISO
+      this.content.folder = this.$route.params.bookNAME
+      this.content.filename = this.$route.params.pageFILENAME
+      this.content.filetype = 'html'
+      console.log('PAGE EDIT - content')
+      console.log(this.content)
       var contentForm = this.toFormData(this.content)
       var ref = this
       ContentService.createContentData(contentForm).then(function(response) {
@@ -87,10 +92,10 @@ export default {
           ref.$router.push({
             name: 'previewPage',
             params: {
-              countryCODE: this.$route.params.countryCODE,
-              languageISO: this.$route.params.languageISO,
-              bookNAME: this.$route.params.bookNAME,
-              pageFILENAME: this.$route.params.pageFILENAME
+              countryCODE: ref.$route.params.countryCODE,
+              languageISO: ref.$route.params.languageISO,
+              bookNAME: ref.$route.params.bookNAME,
+              pageFILENAME: ref.$route.params.pageFILENAME
             }
           })
         }
@@ -156,7 +161,8 @@ export default {
           ref.$route.params.countryCODE,
           ref.$route.params.languageISO,
           ref.bookmark.book.folder,
-          ref.$route.params.pageFILENAME
+          ref.$route.params.pageFILENAME,
+          'latest'
         ).then(response => {
           console.log('PAGE EDIT - response from ContentService.getPage')
           //

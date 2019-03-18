@@ -92,7 +92,8 @@ export default {
         this.bookmark.country.code,
         this.bookmark.language.iso,
         this.bookmark.book.folder,
-        this.bookmark.book.index
+        this.bookmark.book.index,
+        ref.version
       )
         .then(response => {
           console.log(response.data) // For nseriesDetailsow, logs out the response

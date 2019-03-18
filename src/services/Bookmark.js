@@ -2,7 +2,7 @@ import ContentService from '@/services/ContentService.js'
 export default {
   bookmarkCountry(route) {
     console.log('BOOKMARK.js - I came into bookmarkCountry')
-    ContentService.getCountries()
+    ContentService.getCountries(route.version)
       .then(response => {
         var value = {}
         console.log('BOOKMARK.js -coutnries')
@@ -25,7 +25,7 @@ export default {
   },
   bookmarkLanguage(route) {
     console.log('BOOKMARK.js - I camt into bookmarkLANGUAGE')
-    ContentService.getLanguages(route.country).then(response => {
+    ContentService.getLanguages(route.country, route.version).then(response => {
       var value = {}
       var length = response.data.length
       for (var i = 0; i < length; i++) {
@@ -39,7 +39,11 @@ export default {
   },
   bookmarkLibrary(route) {
     console.log('BOOKMARK.js -I camt into bookmarkLIBRARY')
-    ContentService.getLibrary(route.country, route.language).then(response => {
+    ContentService.getLibrary(
+      route.country,
+      route.language,
+      route.version
+    ).then(response => {
       var value = response.data
       console.log('BOOKMARK.js -finishing bookmarkLibrary')
       return value
@@ -76,7 +80,8 @@ export default {
         route.country,
         route.language,
         folder,
-        index
+        index,
+        route.version
       ).then(response => {
         var value = response.data
         console.log('BOOKMARK.js - bookmarkSeries my response')

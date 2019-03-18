@@ -158,7 +158,7 @@ export default {
     this.languages = []
     var route = {}
     route.country = this.$route.params.countryCODE
-    route.revision = 'latest'
+    route.version = 'latest'
     console.log('Entered LanguageEdits.vue')
     console.log(this.$route.params.countryCODE)
     this.$store.dispatch('checkBookmark', route).then(responseUnused => {

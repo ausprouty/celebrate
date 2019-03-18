@@ -57,7 +57,7 @@ export default {
     var route = {}
     route.country = this.countryCODE
     route.language = this.languageISO
-    route.revison = 'current'
+    route.version = 'current'
     this.$store.dispatch('checkBookmark', route).then(response => {
       console.log ('GETTING LIBRARY DATA')
       // it is safer to get data each time tha rely on bookmark

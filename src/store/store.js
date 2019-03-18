@@ -121,7 +121,7 @@ export default new Vuex.Store({
       }
       if (route.country != currentCountry) {
         console.log('STORE -  route.country is not currentCountry')
-        ContentService.getCountries(route.revision).then(res => {
+        ContentService.getCountries(route.version).then(res => {
           var response = JSON.parse(res.data.content.text)
           console.log('STORE -  response  after parse from getCountries')
           console.log(response)
@@ -152,7 +152,7 @@ export default new Vuex.Store({
         }
         if (route.language != currentLanguage) {
           console.log('STORE - looking for new language of ' + route.language)
-          ContentService.getLanguages(route.country, route.revision).then(
+          ContentService.getLanguages(route.country, route.version).then(
             res => {
               console.log('STORE - this is response from getLanguages')
               console.log(res)
@@ -175,7 +175,7 @@ export default new Vuex.Store({
               ContentService.getLibrary(
                 route.country,
                 route.language,
-                route.revision
+                route.version
               ).then(response => {
                 value = JSON.parse(response.data.content.text)
                 console.log('STORE - library is ')
@@ -191,7 +191,7 @@ export default new Vuex.Store({
           ContentService.getLibrary(
             route.country,
             route.language,
-            route.revision
+            route.version
           ).then(response => {
             value = response.data
             //console.log('STORE - library is ')
@@ -272,6 +272,8 @@ update book and erase all bookmark below*/
           }
           console.log('STORE -  Here is my folder and index values')
           console.log(value)
+          console.log('STORE -  Here is my route values')
+          console.log(route)
           if (value.folder) {
             var folder = value.folder
             var index = value.index
@@ -280,7 +282,7 @@ update book and erase all bookmark below*/
               route.language,
               folder,
               index,
-              route.revision
+              route.version
             ).then(response => {
               console.log(
                 'STORE - CheckBookmarkSeries data returned from Content Service'

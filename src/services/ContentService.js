@@ -90,7 +90,7 @@ export default {
       console.log(
         'CONTENT SERVICE - getLanguages returned from looking for data'
       )
-      console.log (response)
+      console.log(response)
       if (!response.data) {
         let response = await this.getLanguagesContent(country, revision)
         console.log(
@@ -205,7 +205,7 @@ export default {
     return response
   },
 
-  async getSeries(country, language, folder, index, revision = 'current') {
+  async getSeries(country, language, folder, index, revision) {
     console.log('CONTENT SERVICE - revision is ' + revision)
     console.log('CONTENT SERVICE - entered getSeries')
     if (revision != 'current') {
@@ -290,10 +290,10 @@ export default {
     return response
   },
   async getPage(country, language, folder, page, revision = 'current') {
-    console.log('CONTENT SERVICE -' + revision + ' is revision')
-    console.log('CONTENT SERVICE - entered get page')
+    console.log('CONTENT SERVICE -getPage ' + revision + ' is revision')
+
     if (revision != 'current') {
-      console.log('CONTENT SERVICE - not current revision')
+      console.log('CONTENT SERVICE -getPage  not current revision')
       let response = await this.getPageData(
         country,
         language,
@@ -301,7 +301,7 @@ export default {
         page,
         revision
       )
-      console.log('CONTENT SERVICE - returned from looking for data')
+      console.log('CONTENT SERVICE -getPage  returned from looking for data')
       if (!response.data) {
         let response = await this.getPageContent(
           country,
@@ -310,11 +310,15 @@ export default {
           page,
           revision
         )
-        console.log('CONTENT SERVICE - response from content because no data')
+        console.log(
+          'CONTENT SERVICE -getPage  response from content because no data'
+        )
         console.log(response)
         return response
       } else {
-        console.log('CONTENT SERVICE - response from data in ContentServie')
+        console.log(
+          'CONTENT SERVICE -getPage response from data in ContentServie'
+        )
         console.log(response.data.content)
         return response
       }
@@ -326,7 +330,7 @@ export default {
         page,
         revision
       )
-      console.log('CONTENT SERVICE - response from content as requested')
+      console.log('CONTENT SERVICE -getPage response from content as requested')
       console.log(response)
       return response
     }

@@ -120,7 +120,7 @@ export default {
       this.content.filetype = 'json'
       this.content.country_iso = this.$route.params.countryCODE
       this.content.language_iso = this.$route.params.languageISO
-      this.content.section = this.$route.params.bookNAME
+      this.content.folder = this.$route.params.bookNAME
       var contentForm = this.toFormData(this.content)
       var ref = this
       ContentService.createContentData(contentForm).then(function(response) {
@@ -164,13 +164,14 @@ export default {
     route.language = this.$route.params.languageISO
     route.book = this.$route.params.bookNAME // we need book to get style sheet
     route.series = this.$route.params.bookNAME
-    route.revison = 'latest'
+    route.version = 'latest'
     this.$store.dispatch('checkBookmark', route).then(response => {
       ContentService.getSeries(
         route.country,
         route.language,
         this.bookmark.book.folder,
-        this.bookmark.book.index
+        this.bookmark.book.index,
+        route.version
       )
         .then(response => {
           console.log(response.data) // For nseriesDetailsow, logs out the response

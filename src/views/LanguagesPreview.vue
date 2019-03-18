@@ -70,7 +70,7 @@ export default {
     var route = {}
     var ref = this
     route.country = this.countryCODE
-    route.revison = 'latest'
+    route.version = 'latest'
     console.log('Entered Languages.vue')
     this.$store.dispatch('checkBookmark', route).then(responseUnused => {
       console.log('about to get languages for ' + this.countryCODE)
