@@ -135,12 +135,13 @@ export default {
     console.log(this.$route.params.countryCODE)
     this.$store.dispatch('checkBookmark', route).then(responseUnused => {
       console.log('about to get languages for ' + route.country)
-      ContentService.getLanguages(route.country)
+      ContentService.getLanguages(route.country, route.version)
         .then(response => {
           console.log('LANGUAGES SORT -  response data')
-          console.log(response.data)
-          if (response.data.content.text) {
-            this.languages = JSON.parse(response.data.content.text)
+          console.log(response)
+          if (response.content.text) {
+            console.log('LANGUAGES SORT -  response.content.text exists')
+            this.languages = JSON.parse(response.content.text)
           } else {
             this.languages = response.data
           }

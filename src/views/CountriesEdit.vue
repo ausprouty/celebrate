@@ -149,7 +149,7 @@ export default {
       this.countries = []
       var ref = this
       console.log('about to get countries ')
-      ContentService.getCountries(this.revision)
+      ContentService.getCountries('latest')
         .then(response => {
           console.log('response')
           console.log(response.data)

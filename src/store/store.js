@@ -122,7 +122,7 @@ export default new Vuex.Store({
       if (route.country != currentCountry) {
         console.log('STORE -  route.country is not currentCountry')
         ContentService.getCountries(route.version).then(res => {
-          var response = JSON.parse(res.data.content.text)
+          var response = JSON.parse(res.content.text)
           console.log('STORE -  response  after parse from getCountries')
           console.log(response)
           var value = {}
@@ -156,7 +156,7 @@ export default new Vuex.Store({
             res => {
               console.log('STORE - this is response from getLanguages')
               console.log(res)
-              var response = JSON.parse(res.data.content.text)
+              var response = JSON.parse(res.content.text)
               console.log('STORE - this is parsed response from getLanguages')
               console.log(response)
               var length = response.length
