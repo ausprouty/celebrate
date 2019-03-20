@@ -1,11 +1,11 @@
 <template>
   <div class="app-link" v-on:click="showPage(country)">
-    <div class="country-card -shadow">
+    <div class="shadow-card -shadow">
       <img v-bind:src="appDir.country+ country.image" class="flag">
-      <div class="country-names">
-        <span class="country-name">{{country.name}}</span>
+      <div class="card-names">
+        <span class="card-name">{{country.name}}</span>
         <br>
-        <span class="country-name-english">{{country.english}}</span>
+        <span class="card-name-english">{{country.english}}</span>
       </div>
     </div>
   </div>
@@ -37,7 +37,7 @@ export default {
 
         var response = JSON.parse(res.content.text)
         console.log('COUNTRY PREVIEW - response after parse')
-        console.log (response)
+        console.log(response)
         console.log('COUNTRY PREVIEW - length is ' + response.length)
         if (response.length === 1) {
           var language = response[0]
@@ -72,7 +72,7 @@ div.break {
   display: inline;
 }
 
-.country-card {
+.shadow-card {
   background-color: #efefef;
   cursor: pointer;
   margin-bottom: 12px;
@@ -81,17 +81,17 @@ div.break {
   transition: all 0.2s linear;
   width: 95%;
 }
-div.country-names {
+div.card-names {
   float: right;
   font-size: 18px;
   vertical-align: top;
   width: 70%;
 }
-.country-name {
+.card-name {
   font-weight: bold;
   line-height: 20px;
 }
-.country-name-english {
+.card-name-english {
   font-weight: normal;
   line-height: 20px;
 }

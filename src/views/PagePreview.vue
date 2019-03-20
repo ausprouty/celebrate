@@ -88,13 +88,21 @@ export default {
       route.version
     )
       .then(response => {
-        ref.pageText = response.data
+        console.log('PAGE PREVIEW - response from getPage')
+        console.log(response)
+        if (!response.data.content.text) {
+          ref.pageText = response.data
+        } else {
+          console.log('PAGE PREVIEW - Text is from DATA')
+          console.log(response.data.content.text)
+          ref.pageText = response.data.content.text
+        }
         ref.loading = false
         ref.loaded = true
       })
       .catch(error => {
         ref.loading = false
-        console.log('There was an error:', error.response) // Logs out the error
+        console.log('There was an error in PagePreview:', error.response) // Logs out the error
         ref.error = error.toString()
       })
   }

@@ -8,7 +8,7 @@ export default new Vuex.Store({
     appDir: {
       css: '/css/',
       country: '/images/country/',
-      icon: '/images/icon/',
+      icons: '/images/icons/',
       library: '/images/library/',
       root: '/images/'
     },

@@ -73,10 +73,10 @@ export default {
   methods: {
     saveForm() {
       console.log(this.content)
-      this.content.text = JSON.stringify(this.htmlText)
+      this.content.text = this.htmlText
       this.content.country_iso = this.$route.params.countryCODE
       this.content.language_iso = this.$route.params.languageISO
-      this.content.folder = this.$route.params.bookNAME
+      this.content.folder = this.bookmark.book.folder
       this.content.filename = this.$route.params.pageFILENAME
       this.content.filetype = 'html'
       console.log('PAGE EDIT - content')
@@ -165,11 +165,12 @@ export default {
           'latest'
         ).then(response => {
           console.log('PAGE EDIT - response from ContentService.getPage')
-          //
-          var text = response.data
-          //  console.log('page in Page.Vue')
-          // console.log(response.data) // For now, logs out the response
-          ref.htmlText = text
+          console.log(response)
+          if (!response.data.content.text) {
+            ref.htmlText = response.data
+          } else {
+            ref.htmlText = response.data.content.text
+          }
           ref.loading = false
           ref.loaded = true
         })

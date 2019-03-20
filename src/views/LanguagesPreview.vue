@@ -13,6 +13,8 @@
       </div>
     </div>
     <button class="button" @click="editLanguages">Edit</button>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <button class="button" @click="sortLanguages">Sort</button>
   </div>
 </template>
 
@@ -51,6 +53,14 @@ export default {
     editLanguages() {
       this.$router.push({
         name: 'editLanguages',
+        params: {
+          countryCODE: this.countryCODE
+        }
+      })
+    },
+    sortLanguages() {
+      this.$router.push({
+        name: 'sortLanguages',
         params: {
           countryCODE: this.countryCODE
         }

@@ -7,6 +7,8 @@
     <div class="version">
       <p class="version">Version 1.01</p>
       <button class="button" @click="editCountries">Edit</button>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <button class="button" @click="sortCountries">Sort</button>
     </div>
   </div>
 </template>
@@ -47,6 +49,11 @@ export default {
     editCountries() {
       this.$router.push({
         name: 'editCountries'
+      })
+    },
+    sortCountries() {
+      this.$router.push({
+        name: 'sortCountries'
       })
     },
     goBack() {

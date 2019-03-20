@@ -22,31 +22,31 @@ const apiMYSQL = axios.create({
 })
 // I want to export a JSON.stringified of response.data.content.text
 export default {
-  async getCountries(revision = 'current') {
-    console.log(revision + ' is revision')
+  async getCountries(version = 'current') {
+    console.log(version + ' is version')
     console.log('CONTENT SERVICE - entered get countries')
-    if (revision != 'current') {
-      console.log('CONTENT SERVICE - getCountries not current revision')
-      let response = await this.getCountriesData(revision)
+    if (version != 'current') {
+      console.log('CONTENT SERVICE - getCountries not current version')
+      let response = await this.getCountriesData(version)
       console.log(
         'CONTENT SERVICE - getCountries returned from looking for data'
       )
       if (!response.data) {
         let response = await this.getCountriesContent()
         console.log(
-          'CONTENT SERVICE - getCountries  response from content because no data'
+          'CONTENT SERVICE - getCountries  response from CONTENT because no data'
         )
         console.log(response)
         return response
       } else {
-        console.log('CONTENT SERVICE - getCountries response from data ')
+        console.log('CONTENT SERVICE - getCountries response from DATA ')
         console.log(response.data.content)
         return response
       }
     } else {
       let response = await this.getCountriesContent()
       console.log(
-        'CONTENT SERVICE - getCountries response from content as requested'
+        'CONTENT SERVICE - getCountries response from CONTENT as requested'
       )
       console.log(response)
       return response
@@ -62,12 +62,12 @@ export default {
     console.log(response)
     return response
   },
-  async getCountriesData(revision) {
+  async getCountriesData(version) {
     console.log(
       'CONTENT SERVICE - getCountriesData attempted getting countries DATA'
     )
     var params = {
-      revision: revision
+      version: version
     }
     var contentForm = this.toFormData(params)
     console.log('CONTENT SERVICE - getCountriesData contentForm obtained')
@@ -81,38 +81,38 @@ export default {
 
     return response
   },
-  async getLanguages(country, revision = 'current') {
+  async getLanguages(country, version = 'current') {
     console.log('CONTENT SERVICE - entered get languages')
-    console.log('CONTENT SERVICE - ' + revision + ' is revision')
-    if (revision != 'current') {
-      console.log('CONTENT SERVICE -getLanguages  not current revision')
-      let response = await this.getLanguagesData(country, revision)
+    console.log('CONTENT SERVICE - ' + version + ' is version')
+    if (version != 'current') {
+      console.log('CONTENT SERVICE -getLanguages  not current version')
+      let response = await this.getLanguagesData(country, version)
       console.log(
         'CONTENT SERVICE - getLanguages returned from looking for data'
       )
       console.log(response)
       if (!response.data) {
-        let response = await this.getLanguagesContent(country, revision)
+        let response = await this.getLanguagesContent(country, version)
         console.log(
-          'CONTENT SERVICE - getLanguages response from content because no data'
+          'CONTENT SERVICE - getLanguages response from CONTENT because no data'
         )
         console.log(response)
         return response
       } else {
-        console.log('CONTENT SERVICE - getLanguages response from data')
+        console.log('CONTENT SERVICE - getLanguages response from DATA')
         console.log(response.data.content)
         return response.data
       }
     } else {
-      let response = await this.getLanguagesContent(country, revision)
+      let response = await this.getLanguagesContent(country, version)
       console.log(
-        'CONTENT SERVICE - language response from content as requested'
+        'CONTENT SERVICE - language response from CONTENT as requested'
       )
       console.log(response)
       return response
     }
   },
-  async getLanguagesContent(country, revision) {
+  async getLanguagesContent(country, version) {
     let res = await apiClient.get('content/' + country + '/languages.json')
     var response = {}
     response.data = {}
@@ -122,10 +122,10 @@ export default {
     console.log(response)
     return response
   },
-  async getLanguagesData(country, revision) {
+  async getLanguagesData(country, version) {
     var params = {
       country: country,
-      revision: revision
+      version: version
     }
     var contentForm = this.toFormData(params)
     console.log(
@@ -141,39 +141,39 @@ export default {
     return response
   },
 
-  async getLibrary(country, language, revision = 'current') {
-    console.log('CONTENT SERVICE -' + revision + ' is revision')
+  async getLibrary(country, language, version = 'current') {
+    console.log('CONTENT SERVICE -' + version + ' is version')
     console.log('CONTENT SERVICE - entered get library')
-    if (revision != 'current') {
-      console.log('CONTENT SERVICE - not current revision')
-      let response = await this.getLibraryData(country, language, revision)
+    if (version != 'current') {
+      console.log('CONTENT SERVICE - not current version')
+      let response = await this.getLibraryData(country, language, version)
 
       console.log('CONTENT SERVICE - returned from looking for data')
       if (!response.data) {
         let response = await this.getLanguagesContent(
           country,
           language,
-          revision
+          version
         )
 
-        console.log('CONTENT SERVICE - response from content because no data')
+        console.log('CONTENT SERVICE - response from CONTENT because no data')
         console.log(response)
         return response
       } else {
-        console.log('CONTENT SERVICE - response from data in ContentServie')
+        console.log('CONTENT SERVICE - response from DATA in ContentServie')
         console.log(response.data.content)
         return response
       }
     } else {
-      let response = await this.getLibraryContent(country, language, revision)
+      let response = await this.getLibraryContent(country, language, version)
 
-      console.log('CONTENT SERVICE - response from content as requested')
+      console.log('CONTENT SERVICE - response from CONTENT as requested')
       console.log(response)
       return response
     }
   },
 
-  async getLibraryContent(country, language, revision) {
+  async getLibraryContent(country, language, version) {
     let res = await apiClient.get(
       '/content/' + country + '/' + language + '/library.json'
     )
@@ -185,11 +185,11 @@ export default {
     console.log(response)
     return response
   },
-  async getLibraryData(country, language, revision) {
+  async getLibraryData(country, language, version) {
     var params = {
       country: country,
       language: language,
-      revision: revision
+      version: version
     }
     var contentForm = this.toFormData(params)
     console.log('CONTENT SERVICE - contentForm obtained')
@@ -205,33 +205,37 @@ export default {
     return response
   },
 
-  async getSeries(country, language, folder, index, revision) {
-    console.log('CONTENT SERVICE - revision is ' + revision)
+  async getSeries(country, language, folder, index, version) {
+    console.log('CONTENT SERVICE - version is ' + version)
     console.log('CONTENT SERVICE - entered getSeries')
-    if (revision != 'current') {
-      console.log('CONTENT SERVICE - not current revision')
+    if (version != 'current') {
+      console.log('CONTENT SERVICE - not current version')
       let response = await this.getSeriesData(
         country,
         language,
         folder,
         index,
-        revision
+        version
       )
 
-      console.log('CONTENT SERVICE - returned from looking for data')
+      console.log('CONTENT SERVICE -getSeries  returned from looking for data')
       if (!response.data.content) {
         let response = await this.getSeriesContent(
           country,
           language,
           folder,
           index,
-          revision
+          version
         )
-        console.log('CONTENT SERVICE - response from content because no data')
+        console.log(
+          'CONTENT SERVICE -getSeries response from CONTENT because no data'
+        )
         console.log(response)
         return response
       } else {
-        console.log('CONTENT SERVICE - response from data in ContentServie')
+        console.log(
+          'CONTENT SERVICE -getSeries response from DATA in ContentServie'
+        )
         console.log(response.data.content)
         return response
       }
@@ -241,16 +245,16 @@ export default {
         language,
         folder,
         index,
-        revision
+        version
       )
 
-      console.log('CONTENT SERVICE - response from content as requested')
+      console.log('CONTENT SERVICE - response from CONTENT as requested')
       console.log(response)
       return response
     }
   },
 
-  async getSeriesContent(country, language, folder, index, revision) {
+  async getSeriesContent(country, language, folder, index, version) {
     var indexname = index
     var bound = index.indexOf('.json')
     if (bound == -1) {
@@ -267,7 +271,7 @@ export default {
     console.log(response)
     return response
   },
-  async getSeriesData(country, language, folder, index, revision) {
+  async getSeriesData(country, language, folder, index, version) {
     console.log(
       'CONTENT SERVICE - ContentService is looking for series with these params'
     )
@@ -276,7 +280,7 @@ export default {
       language: language,
       folder: folder,
       index: index,
-      revision: revision
+      version: version
     }
     console.log(params)
     var contentForm = this.toFormData(params)
@@ -289,17 +293,17 @@ export default {
 
     return response
   },
-  async getPage(country, language, folder, page, revision = 'current') {
-    console.log('CONTENT SERVICE -getPage ' + revision + ' is revision')
+  async getPage(country, language, folder, page, version = 'current') {
+    console.log('CONTENT SERVICE -getPage ' + version + ' is version')
 
-    if (revision != 'current') {
-      console.log('CONTENT SERVICE -getPage  not current revision')
+    if (version != 'current') {
+      console.log('CONTENT SERVICE -getPage  not current version')
       let response = await this.getPageData(
         country,
         language,
         folder,
         page,
-        revision
+        version
       )
       console.log('CONTENT SERVICE -getPage  returned from looking for data')
       if (!response.data) {
@@ -308,17 +312,15 @@ export default {
           language,
           folder,
           page,
-          revision
+          version
         )
         console.log(
-          'CONTENT SERVICE -getPage  response from content because no data'
+          'CONTENT SERVICE -getPage  response from CONTENT because no data'
         )
         console.log(response)
         return response
       } else {
-        console.log(
-          'CONTENT SERVICE -getPage response from data in ContentServie'
-        )
+        console.log('CONTENT SERVICE -getPage response from DATA')
         console.log(response.data.content)
         return response
       }
@@ -328,15 +330,15 @@ export default {
         language,
         folder,
         page,
-        revision
+        version
       )
-      console.log('CONTENT SERVICE -getPage response from content as requested')
+      console.log('CONTENT SERVICE -getPage response from CONTENT as requested')
       console.log(response)
       return response
     }
   },
 
-  async getPageContent(country, language, folder, page, revision) {
+  async getPageContent(country, language, folder, page, version) {
     return apiClient.get(
       'content/' +
         country +
@@ -350,13 +352,13 @@ export default {
     )
   },
 
-  async getPageData(country, language, folder, page, revision) {
+  async getPageData(country, language, folder, page, version) {
     var params = {
       country: country,
       language: language,
       folder: folder,
       page: page,
-      revision: revision
+      version: version
     }
     var contentForm = this.toFormData(params)
     return apiMYSQL.post('ContentApi.php?crud=page', contentForm)

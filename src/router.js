@@ -3,10 +3,12 @@ import Router from 'vue-router'
 import Countries from './views/Countries.vue'
 import CountriesEdit from './views/CountriesEdit.vue'
 import CountriesPreview from './views/CountriesPreview.vue'
+import CountriesSort from './views/CountriesSort.vue'
 
 import Language from './views/Languages.vue'
 import LanguageEdit from './views/LanguagesEdit.vue'
 import LanguagesPreview from './views/LanguagesPreview.vue'
+import LanguagesSort from './views/LanguagesSort.vue'
 
 import Library from './views/Library.vue'
 import LibraryEdit from './views/LibraryEdit.vue'
@@ -118,6 +120,17 @@ export default new Router({
       path: '/preview/page/:countryCODE/:languageISO/:bookNAME/:pageFILENAME',
       name: 'previewPage',
       component: PagePreview,
+      props: true
+    },
+    {
+      path: '/sort/countries',
+      name: 'sortCountries',
+      component: CountriesSort
+    },
+    {
+      path: '/sort/language/:countryCODE',
+      name: 'sortLanguages',
+      component: LanguagesSort,
       props: true
     },
 

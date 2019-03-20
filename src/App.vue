@@ -189,6 +189,10 @@ button {
   color: white;
   font-weight: bold;
 }
+img.sortable{
+  height: 30px;
+  width: 30px;
+}
 label {
   color: rgba(0, 0, 0, 0.5);
   font-weight: 700;
