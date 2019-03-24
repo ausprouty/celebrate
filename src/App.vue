@@ -103,6 +103,25 @@ strong {
 small {
   font-size: 80%;
 }
+.shadow-card {
+  background-color: #efefef;
+  cursor: pointer;
+  margin-bottom: 12px;
+  padding: 10px;
+  text-align: left;
+  transition: all 0.2s linear;
+  width: 95%;
+}
+div.card-names {
+  float: right;
+  font-size: 18px;
+  vertical-align: top;
+  width: 70%;
+}
+.card-name {
+  font-weight: bold;
+  line-height: 20px;
+}
 .eyebrow {
   font-size: 20px;
 }

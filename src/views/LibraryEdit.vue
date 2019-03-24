@@ -143,6 +143,9 @@ export default {
       this.content.language_iso = this.$route.params.languageISO
       var contentForm = this.toFormData(this.content)
       var ref = this
+       // clear bookmark because we are editing details
+      this.$store.dispatch('newBookmark', 'clear')
+      //
       ContentService.createContentData(contentForm).then(function(response) {
         if (response.data.error) {
           ref.errorMessage = response.data.message
@@ -184,115 +187,95 @@ export default {
     route.version = 'latest'
     var ref = this
     this.$store.dispatch('checkBookmark', route)
-    ContentService.getLibrary(
-      route.country,
-      route.language,
-      this.revision
-    ).then(response => {
-      console.log('response from edit service')
-      console.log(response.data)
-      if (!response.data.content) {
-        console.log('I am going to content for library')
-        ContentService.getLibrary(route.country, route.language)
-          .then(response => {
-            ref.library = response.data
-            if (typeof ref.bookmark.language != 'undefined') {
-              console.log('USING BOOKMARK')
-              console.log(ref.bookmark.language)
-              this.image_dir = ref.bookmark.language.image_dir
-              console.log(ref.image_dir)
-            } else {
-              console.log('USING STANDARD')
-              ref.image_dir = ref.standard.image_dir
-            }
-            ref.loading = false
-            ref.loaded = true
-          })
-          .catch(error => {
-            ref.library = [
-              {
-                id: 1,
-                book: 'issues',
-                title: 'Life Issues',
-                folder: 'myfriends',
-                index: 'principle-chapters',
-                style: 'AU-myfriends.css',
-                image: 'issues.jpg',
-                format: 'series'
-              },
-              {
-                id: 2,
-                book: 'basics',
-                title: 'Basic Conversations',
-                folder: 'myfriends',
-                index: 'basics-chapters.json',
-                style: 'AU-myfriends.css',
-                image: 'basics.jpg',
-                format: 'series'
-              },
-              {
-                id: 3,
-                book: 'community',
-                title: 'Live Community',
-                folder: 'myfriends',
-                page: 'community',
-                style: 'AU-myfriends.css',
-                image: 'community.jpg',
-                format: 'page'
-              },
-              {
-                id: 4,
-                book: 'firststeps',
-                title: 'First Steps',
-                folder: 'first_steps',
-                index: 'first_steps-chapters',
-                style: 'AU-fsteps.css',
-                image: 'firststeps.jpg',
-                format: 'series'
-              },
-              {
-                id: 5,
-                book: 'compass',
-                title: 'Compass',
-                folder: 'compass',
-                index: 'compass-chapters',
-                style: 'AU-compass.css',
-                image: 'compass.jpg',
-                format: 'series'
-              },
-              {
-                id: 6,
-                book: 'about',
-                title: 'About MyFriends',
-                folder: 'myfriends',
-                page: 'community',
-                style: 'AU-myfriends.css',
-                image: 'about.jpg',
-                format: 'page'
-              }
-            ]
-            ref.image_dir = ref.standard.image_dir
-            ref.loading = false
-            ref.loaded = true
-          })
-      } else {
-        ref.content.recnum = ''
-        ref.content.version = ''
-        ref.content.publish_uid = response.data.content.publish_uid
-        ref.content.publish_date = response.data.content.publish_date
-        ref.content.language_iso = route.language
-        ref.content.country_iso = route.country
-        ref.content.folder = ''
-        ref.content.filetype = 'json'
-        ref.content.title = ''
-        ref.content.filename = 'library'
-        ref.content.library = JSON.parse(response.data.content.text)
-        ref.loaded = true
+    ContentService.getLibrary(route.country, route.language, route.version)
+      .then(response => {
+        console.log('LIBRARY PREVIEW - response from edit service')
+        console.log(response)
+        if (response.content.text) {
+          ref.content.recnum = ''
+          ref.content.version = ''
+          ref.content.publish_uid = response.data.content.publish_uid
+          ref.content.publish_date = response.data.content.publish_date
+          ref.content.language_iso = route.language
+          ref.content.country_iso = route.country
+          ref.content.folder = ''
+          ref.content.filetype = 'json'
+          ref.content.title = ''
+          ref.content.filename = 'library'
+          ref.content.library = JSON.parse(response.data.content.text)
+          ref.loaded = true
+          ref.loading = false
+          ref.library = ref.content.library
+          console.log(ref.content.library)
+        }
+      })
+      .catch(error => {
+        ref.library = [
+          {
+            id: 1,
+            book: 'issues',
+            title: 'Life Issues',
+            folder: 'myfriends',
+            index: 'principle-chapters',
+            style: 'AU-myfriends.css',
+            image: 'issues.jpg',
+            format: 'series'
+          },
+          {
+            id: 2,
+            book: 'basics',
+            title: 'Basic Conversations',
+            folder: 'myfriends',
+            index: 'basics-chapters.json',
+            style: 'AU-myfriends.css',
+            image: 'basics.jpg',
+            format: 'series'
+          },
+          {
+            id: 3,
+            book: 'community',
+            title: 'Live Community',
+            folder: 'myfriends',
+            page: 'community',
+            style: 'AU-myfriends.css',
+            image: 'community.jpg',
+            format: 'page'
+          },
+          {
+            id: 4,
+            book: 'firststeps',
+            title: 'First Steps',
+            folder: 'first_steps',
+            index: 'first_steps-chapters',
+            style: 'AU-fsteps.css',
+            image: 'firststeps.jpg',
+            format: 'series'
+          },
+          {
+            id: 5,
+            book: 'compass',
+            title: 'Compass',
+            folder: 'compass',
+            index: 'compass-chapters',
+            style: 'AU-compass.css',
+            image: 'compass.jpg',
+            format: 'series'
+          },
+          {
+            id: 6,
+            book: 'about',
+            title: 'About MyFriends',
+            folder: 'myfriends',
+            page: 'community',
+            style: 'AU-myfriends.css',
+            image: 'about.jpg',
+            format: 'page'
+          }
+        ]
+        ref.image_dir = ref.standard.image_dir
         ref.loading = false
-        ref.library = ref.content.library
-        console.log(ref.content.library)
-      }
-    })
+        ref.loaded = true
+      })
   }
 }
 </script>

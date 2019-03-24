@@ -44,8 +44,6 @@ export default new Vuex.Store({
       console.log('STORE -  country in new bookmark')
       console.log(value)
       state.bookmark = {}
-      state.bookmark.country = value
-      localStorage.setItem('bookmark', JSON.stringify(state.bookmark))
     },
     SET_BOOKMARK(state, [mark, value]) {
       switch (mark) {
@@ -145,7 +143,7 @@ export default new Vuex.Store({
       //  console.log('STORE - starting CheckBookmarkLanguageLibrary')
       if (route.language) {
         var value = {}
-        console.log('STORE - have route in CheckBookmarkLanguageLIBRARY')
+        console.log('STORE -CheckBookmarkLanguageLIBRARY  have route ')
         var currentLanguage = ''
         if (typeof this.state.bookmark.language != 'undefined') {
           currentLanguage = this.state.bookmark.language.iso
@@ -154,13 +152,17 @@ export default new Vuex.Store({
           console.log('STORE - looking for new language of ' + route.language)
           ContentService.getLanguages(route.country, route.version).then(
             res => {
-              console.log('STORE - this is response from getLanguages')
+              console.log(
+                'STORE - CheckBookmarkLanguageLIBRARY this is response from getLanguages'
+              )
               console.log(res)
-              var response = JSON.parse(res.content.text)
-              console.log('STORE - this is parsed response from getLanguages')
+              var response = JSON.parse(res.data.content.text)
+              console.log(
+                'STORE -CheckBookmarkLanguageLIBRARY this is parsed response from getLanguages'
+              )
               console.log(response)
               var length = response.length
-              console.log('STORE - length')
+              console.log('STORE -CheckBookmarkLanguageLIBRARY  length')
               console.log(length)
               for (var i = 0; i < length; i++) {
                 console.log('STORE - response[i]')
@@ -169,7 +171,7 @@ export default new Vuex.Store({
                   value = response[i]
                 }
               }
-              console.log('STORE - value')
+              console.log('STORE -CheckBookmarkLanguageLIBRARY value')
               console.log(value)
               commit('SET_BOOKMARK', ['language', value])
               ContentService.getLibrary(
@@ -178,10 +180,12 @@ export default new Vuex.Store({
                 route.version
               ).then(response => {
                 value = JSON.parse(response.data.content.text)
-                console.log('STORE - library is ')
+                console.log('STORE -CheckBookmarkLanguageLIBRARY library is ')
                 console.log(value)
                 commit('SET_BOOKMARK', ['library', value])
-                console.log('STORE - finishing CheckBookmarkLanguageLIBRARY')
+                console.log(
+                  'STORE -CheckBookmarkLanguageLIBRARY finishing CheckBookmarkLanguageLIBRARY'
+                )
               })
             }
           )
@@ -197,7 +201,7 @@ export default new Vuex.Store({
             //console.log('STORE - library is ')
             //console.log(value)
             commit('SET_BOOKMARK', ['library', value])
-            console.log('STORE - finishing CheckBookmarkLanguageLIBRARY')
+            console.log('STORE -CheckBookmarkLanguageLIBRARY finishing ')
           })
         }
       }
@@ -288,10 +292,12 @@ update book and erase all bookmark below*/
                 'STORE - CheckBookmarkSeries data returned from Content Service'
               )
               console.log(response)
-              var value = JSON.parse(response.data.content.text)
+              var value = response.data.content
 
-              //console.log('updating bookmark with SERIES value')
-              // console.log(value)
+              console.log(
+                'STORE - CheckBookmarkSeries updating bookmark with SERIES value'
+              )
+              console.log(value)
               commit('SET_BOOKMARK', ['series', value])
             })
           } else {

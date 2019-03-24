@@ -82,6 +82,8 @@ export default {
       this.content.filetype = 'json'
       var contentForm = this.toFormData(this.content)
       var ref = this
+       // clear bookmark because we are editing details
+      this.$store.dispatch('newBookmark', 'clear')
       ContentService.createContentData(contentForm).then(function(response) {
         if (response.data.error) {
           ref.errorMessage = response.data.message

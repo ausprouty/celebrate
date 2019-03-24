@@ -13,10 +13,12 @@ import LanguagesSort from './views/LanguagesSort.vue'
 import Library from './views/Library.vue'
 import LibraryEdit from './views/LibraryEdit.vue'
 import LibraryPreview from './views/LibraryPreview.vue'
+import LibrarySort from './views/LibrarySort.vue'
 
 import Series from './views/Series.vue'
 import SeriesEdit from './views/SeriesEdit.vue'
 import SeriesPreview from './views/SeriesPreview.vue'
+import SeriesSort from './views/SeriesSort.vue'
 
 import Page from './views/Page.vue'
 import PageEdit from './views/PageEdit.vue'
@@ -27,6 +29,8 @@ import Users from './views/Users.vue'
 import Members from './views/Members.vue'
 import MembersAdd from './views/MembersAdd.vue'
 import MembersUpdate from './views/MembersUpdate.vue'
+
+import Test from './views/Test.vue'
 
 import NotFoundComponent from './views/NotFound.vue'
 
@@ -132,6 +136,24 @@ export default new Router({
       name: 'sortLanguages',
       component: LanguagesSort,
       props: true
+    },
+    {
+      path: '/sort/library/:countryCODE/:languageISO',
+      name: 'sortLibrary',
+      component: LibrarySort,
+      props: true
+    },
+    {
+      path: '/sort/series/:countryCODE/:languageISO/:bookNAME',
+      name: 'sortSeries',
+      component: SeriesSort,
+      props: true
+    },
+    {
+      path: '/test',
+      name: 'test',
+      component: Test,
+      props: false
     },
 
     {

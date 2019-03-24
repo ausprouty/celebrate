@@ -88,11 +88,11 @@ export default {
       )
       ContentService.getLanguages(route.country, route.version)
         .then(response => {
-          console.log('LANGUAGES SORT -  response data')
+          console.log('LANGUAGES PREVIEW -  response data')
           console.log(response)
-          if (response.content.text) {
-             console.log('LANGUAGES SORT -  response.content.text exists')
-            this.languages = JSON.parse(response.content.text)
+          if (response.data.content.text) {
+             console.log('LANGUAGES PREVIEW -  response.content.text exists')
+            this.languages = JSON.parse(response.data.content.text)
           } else {
             this.languages = response.data
           }

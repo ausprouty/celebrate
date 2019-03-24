@@ -1,5 +1,6 @@
 <template>
-  <div class="preview">>
+  <div class="preview">
+    >
     <NavBar/>
     <div class="loading" v-if="loadinG">Loading...</div>
     <div class="error" v-if="error">There was an error...</div>
@@ -24,6 +25,11 @@
       </div>
     </div>
     <button class="button" @click="editSeries">Edit</button>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <button class="button" @click="sortSeries">Sort</button>
+    <br>
+    <br>
+    <br>
   </div>
 </template>
 
@@ -73,6 +79,16 @@ export default {
         }
       })
     },
+    sortSeries() {
+      this.$router.push({
+        name: 'sortSeries',
+        params: {
+          countryCODE: this.countryCODE,
+          languageISO: this.languageISO,
+          bookNAME: this.bookNAME
+        }
+      })
+    },
     goBack() {
       window.history.back()
     }
@@ -87,18 +103,20 @@ export default {
     route.language = this.$route.params.languageISO
     route.book = this.$route.params.bookNAME // we need book to get style sheet
     route.series = this.$route.params.bookNAME
+    route.version = 'latest'
     this.$store.dispatch('checkBookmark', route).then(response => {
       ContentService.getSeries(
         this.bookmark.country.code,
         this.bookmark.language.iso,
         this.bookmark.book.folder,
         this.bookmark.book.index,
-        ref.version
+        route.version
       )
         .then(response => {
+          console.log('SERIES PREVIEW - response.data')
           console.log(response.data) // For nseriesDetailsow, logs out the response
-          this.seriesDetails = JSON.parse(response.data.content.text)
-          console.log('this.seriesDetails')
+          this.seriesDetails = response.data.content
+          console.log('SERIES PREVIEW - this.seriesDetails')
           console.log(this.seriesDetails)
 
           this.chapters = this.seriesDetails.chapters
@@ -115,5 +133,4 @@ export default {
     })
   }
 }
-
 </script>

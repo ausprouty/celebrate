@@ -12,43 +12,21 @@
       </div>
       <div>
         <button class="button" @click="addNewChapterForm">New Chapter</button>
-        <button class="button" @click="saveForm">Save</button>
-        <div v-for="(chapter, index) in chapters" :key="chapter.id" :chapter="chapter">
-          <div class="app-card -shadow">
-            <div class="float-right" style="cursor:pointer" @click="deleteChapterForm(index)">X</div>
-            <h4 class="card-title">Chapter #{{chapter.id}}</h4>
-            <div class="form">
-              <span>Title:</span>
-              <input
-                type="text"
-                class="form-control mb-2"
-                placeholder="Title"
-                v-model="chapter.title"
-              >
-              <span>Description:</span>
-              <input
-                type="text"
-                class="form-control mb-2"
-                placeholder="Description"
-                v-model="chapter.description"
-              >
-              <span>Chapter Number:</span>
-              <input
-                type="text"
-                class="form-control mb-2"
-                placeholder="leave blank for un-numbered items"
-                v-model="chapter.count"
-              >
-              <span>Filename:</span>
-              <input type="text" class="form-control mb-2" placeholder v-model="chapter.filename">
+        <draggable v-model="chapters">
+          <transition-group>
+            <div v-for="chapter in chapters" :key="chapter.id" :book="chapter">
+              <div class="shadow-card -shadow">
+                <img v-bind:src="appDir.icons +'move2red.png' " class="sortable">
+                <span class="card-name">{{chapter.title}}</span>
+              </div>
             </div>
-          </div>
-        </div>
-        <button class="button" @click="saveForm">Save</button>
-        <br>
-        <br>
-        <br>
+          </transition-group>
+        </draggable>
       </div>
+      <button class="button" @click="saveForm">Save</button>
+      <br>
+      <br>
+      <br>
     </div>
   </div>
 </template>
@@ -58,11 +36,13 @@ import { mapState } from 'vuex'
 
 import ContentService from '@/services/ContentService.js'
 import NavBar from '@/components/NavBarAdmin.vue'
+import draggable from 'vuedraggable'
 export default {
   props: ['countryCODE', 'languageISO', 'bookNAME'],
   computed: mapState(['bookmark', 'appDir']),
   components: {
-    NavBar
+    NavBar,
+    draggable
   },
   data() {
     return {
@@ -117,7 +97,6 @@ export default {
       this.chapters.splice(id, 1)
     },
     saveForm() {
-
       console.log(this.content)
       var text = this.seriesDetails
       text.text = this.chapters
@@ -168,8 +147,8 @@ export default {
   created() {
     this.error = this.loaded = null
     this.loading = true
-    var ref = this
     var route = {}
+    var ref = this
     route.country = this.$route.params.countryCODE
     route.language = this.$route.params.languageISO
     route.book = this.$route.params.bookNAME // we need book to get style sheet
@@ -184,22 +163,26 @@ export default {
         route.version
       )
         .then(response => {
-          console.log('SERIES EDIT -- response.data')
+          console.log('SERIES SORT -- response.data')
           console.log(response.data) // For nseriesDetailsow, logs out the response
-          ref.seriesDetails = response.data.content
-          console.log('SERIES EDIT --this.seriesDetails')
+          if (response.data.content.text) {
+            ref.seriesDetails = response.data.content
+          } else {
+            ref.seriesDetails = response.data
+          }
+          console.log('SERIES SORT --this.seriesDetails')
           console.log(this.seriesDetails)
 
           ref.chapters = ref.seriesDetails.chapters
-          console.log('SERIES EDIT -- chapters in Series.Vue')
+          console.log('SERIES SORT -- chapters')
           console.log(this.chapters)
           ref.loading = false
           ref.loaded = true
         })
         .catch(error => {
-          ref.loading = false
-          console.log('SERIES EDIT --There was an error:', error.response) // Logs out the error
-          ref.error = error.toString()
+          this.loading = false
+          console.log('SERIES SORT -- There was an error:', error.response) // Logs out the error
+          this.error = error.toString()
         })
     })
   }

@@ -89,6 +89,9 @@ export default {
       this.content.country_iso = this.$route.params.countryCODE
       var contentForm = this.toFormData(this.content)
       var ref = this
+       // clear bookmark because we are editing details
+      this.$store.dispatch('newBookmark', 'clear')
+      //
       ContentService.createContentData(contentForm).then(function(response) {
         if (response.data.error) {
           ref.errorMessage = response.data.message
@@ -161,23 +164,5 @@ export default {
 .float-right {
   text-align: right;
 }
-.shadow-card {
-  background-color: #efefef;
-  cursor: pointer;
-  margin-bottom: 12px;
-  padding: 10px;
-  text-align: left;
-  transition: all 0.2s linear;
-  width: 95%;
-}
-div.card-names {
-  float: right;
-  font-size: 18px;
-  vertical-align: top;
-  width: 70%;
-}
-.card-name {
-  font-weight: bold;
-  line-height: 20px;
-}
+
 </style>

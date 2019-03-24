@@ -81,12 +81,12 @@ export default {
       )
         .then(response => {
           console.log(response.data) // For nseriesDetailsow, logs out the response
-          this.seriesDetails = JSON.parse(response.data.content.text)
-          console.log('this.seriesDetails')
+          this.seriesDetails = response.data.content
+          console.log('SERIES.vue - this.seriesDetails')
           console.log(this.seriesDetails)
 
           this.chapters = this.seriesDetails.chapters
-          console.log('chapters in Series.Vue')
+          console.log('SERIES.vue - chapters in Series.Vue')
           console.log(this.chapters)
           this.loading = false
           this.loaded = true

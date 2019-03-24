@@ -35,7 +35,7 @@ export default {
         )
         console.log(res) // For now, logs out the response
 
-        var response = JSON.parse(res.content.text)
+        var response = JSON.parse(res.data.content.text)
         console.log('COUNTRY PREVIEW - response after parse')
         console.log(response)
         console.log('COUNTRY PREVIEW - length is ' + response.length)

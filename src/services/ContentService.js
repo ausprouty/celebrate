@@ -28,23 +28,27 @@ export default {
     if (version != 'current') {
       console.log('CONTENT SERVICE - getCountries not current version')
       let response = await this.getCountriesData(version)
+      response.source = 'content'
       console.log(
         'CONTENT SERVICE - getCountries returned from looking for data'
       )
-      if (!response.data) {
+      if (!response.data.content) {
         let response = await this.getCountriesContent()
+        response.source = 'content'
         console.log(
           'CONTENT SERVICE - getCountries  response from CONTENT because no data'
         )
         console.log(response)
         return response
       } else {
+        response.source = 'data'
         console.log('CONTENT SERVICE - getCountries response from DATA ')
         console.log(response.data.content)
         return response
       }
     } else {
       let response = await this.getCountriesContent()
+      response.source = 'content'
       console.log(
         'CONTENT SERVICE - getCountries response from CONTENT as requested'
       )
@@ -87,12 +91,14 @@ export default {
     if (version != 'current') {
       console.log('CONTENT SERVICE -getLanguages  not current version')
       let response = await this.getLanguagesData(country, version)
+      response.source = 'data'
       console.log(
         'CONTENT SERVICE - getLanguages returned from looking for data'
       )
       console.log(response)
-      if (!response.data) {
+      if (!response.data.content) {
         let response = await this.getLanguagesContent(country, version)
+        response.source = 'content'
         console.log(
           'CONTENT SERVICE - getLanguages response from CONTENT because no data'
         )
@@ -100,11 +106,12 @@ export default {
         return response
       } else {
         console.log('CONTENT SERVICE - getLanguages response from DATA')
-        console.log(response.data.content)
-        return response.data
+        console.log(response)
+        return response
       }
     } else {
       let response = await this.getLanguagesContent(country, version)
+      response.source = 'content'
       console.log(
         'CONTENT SERVICE - language response from CONTENT as requested'
       )
@@ -142,32 +149,39 @@ export default {
   },
 
   async getLibrary(country, language, version = 'current') {
-    console.log('CONTENT SERVICE -' + version + ' is version')
-    console.log('CONTENT SERVICE - entered get library')
+    console.log('CONTENT SERVICE -getLibrary version is ' + version)
     if (version != 'current') {
-      console.log('CONTENT SERVICE - not current version')
+      console.log('CONTENT SERVICE -getLibrary not current version')
       let response = await this.getLibraryData(country, language, version)
+      response.source = 'data'
 
-      console.log('CONTENT SERVICE - returned from looking for data')
-      if (!response.data) {
+      console.log('CONTENT SERVICE  -getLibrary returned from looking for data')
+      if (!response.data.content) {
         let response = await this.getLanguagesContent(
           country,
           language,
           version
         )
-
-        console.log('CONTENT SERVICE - response from CONTENT because no data')
+        response.source = 'content'
+        console.log(
+          'CONTENT SERVICE  -getLibrary response from CONTENT because no data'
+        )
         console.log(response)
         return response
       } else {
-        console.log('CONTENT SERVICE - response from DATA in ContentServie')
+        console.log(
+          'CONTENT SERVICE  -getLibrary response from DATA in ContentServie'
+        )
         console.log(response.data.content)
         return response
       }
     } else {
       let response = await this.getLibraryContent(country, language, version)
+      response.source = 'content'
 
-      console.log('CONTENT SERVICE - response from CONTENT as requested')
+      console.log(
+        'CONTENT SERVICE  -getLibrary response from CONTENT as requested'
+      )
       console.log(response)
       return response
     }
@@ -181,7 +195,7 @@ export default {
     response.data = {}
     response.data.content = {}
     response.data.content.text = JSON.stringify(res.data)
-    console.log('CONTENT SERVICE - data obtained from getLibraryContent')
+    console.log('CONTENT SERVICE -getLibraryContent  data obtained ')
     console.log(response)
     return response
   },
@@ -192,14 +206,14 @@ export default {
       version: version
     }
     var contentForm = this.toFormData(params)
-    console.log('CONTENT SERVICE - contentForm obtained')
+    console.log('CONTENT SERVICE -getLibraryContent contentForm obtained')
     console.log(contentForm)
     var promise = await apiMYSQL.post(
       'ContentApi.php?crud=library',
       contentForm
     )
     var response = promise
-    console.log('CONTENT SERVICE - response')
+    console.log('CONTENT SERVICE -getLibraryContent response')
     console.log(response)
 
     return response
@@ -217,8 +231,11 @@ export default {
         index,
         version
       )
-
-      console.log('CONTENT SERVICE -getSeries  returned from looking for data')
+      response.source = 'data'
+      console.log(
+        'CONTENT SERVICE -getSeries  response after from looking for data.  Does it have content?'
+      )
+      console.log(response)
       if (!response.data.content) {
         let response = await this.getSeriesContent(
           country,
@@ -227,6 +244,7 @@ export default {
           index,
           version
         )
+        response.source = 'content'
         console.log(
           'CONTENT SERVICE -getSeries response from CONTENT because no data'
         )
@@ -247,6 +265,7 @@ export default {
         index,
         version
       )
+      response.source = 'content'
 
       console.log('CONTENT SERVICE - response from CONTENT as requested')
       console.log(response)
@@ -258,37 +277,51 @@ export default {
     var indexname = index
     var bound = index.indexOf('.json')
     if (bound == -1) {
+      console.log(
+        'CONTENT SERVICE - getSeriesContent -- adding .json to indexname'
+      )
       indexname = index + '.json'
     }
     let res = await apiClient.get(
       'content/' + country + '/' + language + '/' + folder + '/' + indexname
     )
+    console.log('CONTENT SERVICE - getSeriesContent -- res')
+    console.log(res)
     var response = {}
     response.data = {}
     response.data.content = {}
-    response.data.content.text = JSON.stringify(res.data)
-    console.log('CONTENT SERVICE - data obtained from getSeriesContent')
+    response.data.content = res.data
+    console.log('CONTENT SERVICE - getSeriesContent -- data obtained')
     console.log(response)
     return response
   },
   async getSeriesData(country, language, folder, index, version) {
     console.log(
-      'CONTENT SERVICE - ContentService is looking for series with these params'
+      'CONTENT SERVICE - getSeriesData  -- is looking for series with these params'
     )
+    var indexname = index
+    var bound = index.indexOf('.json')
+    if (bound != -1) {
+      console.log(
+        'CONTENT SERVICE - getSeriesContent -- removing .json to indexname'
+      )
+      indexname = index.substr(0, index.length - 5)
+    }
     var params = {
       country: country,
       language: language,
       folder: folder,
-      index: index,
+      index: indexname,
       version: version
     }
+    console.log('CONTENT SERVICE - getSeriesData params')
     console.log(params)
     var contentForm = this.toFormData(params)
     console.log('CONTENT SERVICE - getSeriesData contentForm')
     console.log(contentForm)
     var promise = await apiMYSQL.post('ContentApi.php?crud=series', contentForm)
     var response = promise
-    console.log('CONTENT SERVICE - getSeriesData response')
+    console.log('CONTENT SERVICE - getSeriesDATA response')
     console.log(response)
 
     return response
@@ -305,8 +338,9 @@ export default {
         page,
         version
       )
+      response.source = 'datga'
       console.log('CONTENT SERVICE -getPage  returned from looking for data')
-      if (!response.data) {
+      if (!response.data.content) {
         let response = await this.getPageContent(
           country,
           language,
@@ -314,6 +348,7 @@ export default {
           page,
           version
         )
+        response.source = 'content'
         console.log(
           'CONTENT SERVICE -getPage  response from CONTENT because no data'
         )
@@ -332,6 +367,7 @@ export default {
         page,
         version
       )
+      response.source = 'content'
       console.log('CONTENT SERVICE -getPage response from CONTENT as requested')
       console.log(response)
       return response
@@ -339,6 +375,18 @@ export default {
   },
 
   async getPageContent(country, language, folder, page, version) {
+    console.log('CONTENT SERVICE -getPageContent parameters')
+    console.log(
+      'content/' +
+        country +
+        '/' +
+        language +
+        '/' +
+        folder +
+        '/' +
+        page +
+        '.html'
+    )
     return apiClient.get(
       'content/' +
         country +
@@ -371,7 +419,7 @@ export default {
     for (var key in obj) {
       form_data.append(key, obj[key])
     }
-    console.log('CONTENT SERVICE - form_data')
+    console.log('CONTENT SERVICE -toFormData form_data')
     // Display the key/value pairs
     for (var pair of form_data.entries()) {
       console.log(pair[0] + ', ' + pair[1])
