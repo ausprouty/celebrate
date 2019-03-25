@@ -26,8 +26,14 @@ export default {
       countries: []
     }
   },
+  beforeCreate() {
+    this.$route.params.version = 'current'
+    console.log('PAGE VUE - route')
+    console.log(this.$route.params)
+    this.$store.dispatch('checkBookmark', this.$route.params)
+  },
   created() {
-    ContentService.getCountries('current')
+    ContentService.getCountries(this.$route.params)
       .then(response => {
         console.log(response.data.content.text) // For now, logs out the response
         this.countries = JSON.parse(response.data.content.text)

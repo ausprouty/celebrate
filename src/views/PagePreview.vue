@@ -66,7 +66,10 @@ export default {
       window.history.back()
     }
   },
-
+beforeCreate() {
+    this.$route.params.version = 'latest'
+    this.$store.dispatch('checkBookmark', this.$route.params)
+  },
   created() {
     console.log('I am in Page.Vue')
     this.error = this.loaded = null

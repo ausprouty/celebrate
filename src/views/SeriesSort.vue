@@ -144,47 +144,36 @@ export default {
       return form_data
     }
   },
+  beforeCreate() {
+    this.$route.params.version = 'latest'
+    this.$store.dispatch('checkBookmark', this.$route.params)
+  },
   created() {
     this.error = this.loaded = null
     this.loading = true
-    var route = {}
     var ref = this
-    route.country = this.$route.params.countryCODE
-    route.language = this.$route.params.languageISO
-    route.book = this.$route.params.bookNAME // we need book to get style sheet
-    route.series = this.$route.params.bookNAME
-    route.version = 'latest'
-    this.$store.dispatch('checkBookmark', route).then(response => {
-      ContentService.getSeries(
-        route.country,
-        route.language,
-        this.bookmark.book.folder,
-        this.bookmark.book.index,
-        route.version
-      )
-        .then(response => {
-          console.log('SERIES SORT -- response.data')
-          console.log(response.data) // For nseriesDetailsow, logs out the response
-          if (response.data.content.text) {
-            ref.seriesDetails = response.data.content
-          } else {
-            ref.seriesDetails = response.data
-          }
-          console.log('SERIES SORT --this.seriesDetails')
-          console.log(this.seriesDetails)
-
-          ref.chapters = ref.seriesDetails.chapters
-          console.log('SERIES SORT -- chapters')
-          console.log(this.chapters)
-          ref.loading = false
-          ref.loaded = true
-        })
-        .catch(error => {
-          this.loading = false
-          console.log('SERIES SORT -- There was an error:', error.response) // Logs out the error
-          this.error = error.toString()
-        })
-    })
+    ContentService.getSeries(this.$route.params)
+      .then(response => {
+        console.log('SERIES SORT -- response.data')
+        console.log(response.data) // For nseriesDetailsow, logs out the response
+        if (response.data.content.text) {
+          ref.seriesDetails = response.data.content
+        } else {
+          ref.seriesDetails = response.data
+        }
+        console.log('SERIES SORT --this.seriesDetails')
+        console.log(this.seriesDetails)
+        ref.chapters = ref.seriesDetails.chapters
+        console.log('SERIES SORT -- chapters')
+        console.log(this.chapters)
+        ref.loading = false
+        ref.loaded = true
+      })
+      .catch(error => {
+        this.loading = false
+        console.log('SERIES SORT -- There was an error:', error.response) // Logs out the error
+        this.error = error.toString()
+      })
   }
 }
 </script>

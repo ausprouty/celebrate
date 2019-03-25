@@ -151,7 +151,7 @@ export default {
       this.countries = []
       var ref = this
       console.log('about to get countries ')
-      ContentService.getCountries('latest')
+      ContentService.getCountries(this.$route.params)
         .then(response => {
           console.log('response')
           console.log(response.data)
@@ -165,8 +165,8 @@ export default {
           } else {
             ref.content.recnum = ''
             ref.content.version = ''
-            ref.content.publish_uid = response.data.content.publish_uid
-            ref.content.publish_date = response.data.content.publish_date
+            ref.content.publish_uid = ''
+            ref.content.publish_date = ''
             ref.content.language_iso = ''
             ref.content.country_iso = ''
             ref.content.folder = ''
@@ -184,6 +184,10 @@ export default {
           console.log('There was a problem finding countries in ')
         })
     }
+  },
+  beforeCreate() {
+    this.$route.params.version = 'latest'
+    this.$store.dispatch('checkBookmark', this.$route.params)
   },
   created() {
     this.getCountries()

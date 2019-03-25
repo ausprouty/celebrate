@@ -46,6 +46,10 @@ export default {
       error: null
     }
   },
+  beforeCreate() {
+    this.$route.params.version = 'current'
+    this.$store.dispatch('checkBookmark', this.$route.params)
+  },
   created() {
     /* Update bookmark based on this route (for people to select URL from another source)
        Bookmark stores current Country and all specialized info for that country
@@ -53,29 +57,20 @@ export default {
     */
     this.error = this.loaded = null
     this.loading = true
-    var route = {}
-    route.country = this.countryCODE
-    console.log('LANGUAGES.vue -- entered with route')
-    console.log(route)
-    this.$store
-      .dispatch('checkBookmark', route, 'current')
-      .then(responseUnused => {
-        console.log('about to get languages for ' + this.countryCODE)
-        ContentService.getLanguages(this.countryCODE)
-          .then(response => {
-            this.languages = JSON.parse(response.data.content.text)
-            if (response.data.length === 1) {
-              this.$router.push({
-                name: 'countries'
-              })
-            } else {
-              this.loaded = true
-              this.loading = false
-            }
+    ContentService.getLanguages(this.$route.params)
+      .then(response => {
+        this.languages = JSON.parse(response.data.content.text)
+        if (response.data.length === 1) {
+          this.$router.push({
+            name: 'countries'
           })
-          .catch(() => {
-            console.log('There was a problem finding language')
-          })
+        } else {
+          this.loaded = true
+          this.loading = false
+        }
+      })
+      .catch(() => {
+        console.log('LANGUAGES - There was a problem finding language')
       })
   }
 }

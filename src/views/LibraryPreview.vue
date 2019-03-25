@@ -77,16 +77,16 @@ export default {
       window.history.back()
     }
   },
+  beforeCreate() {
+    this.$route.params.version = 'latest'
+    this.$store.dispatch('checkBookmark', this.$route.params)
+  },
   created() {
     this.error = this.loaded = null
     this.loading = true
     var route = {}
     var ref = this
-    route.country = this.countryCODE
-    route.language = this.languageISO
-    route.version = 'latest'
-    this.$store.dispatch('checkBookmark', route)
-    ContentService.getLibrary(route.country, route.language, route.version)
+    ContentService.getLibrary(this.$route.params)
       .then(response => {
         console.log('LIBRARY PREVIEW - response from edit service')
         console.log(response.data)

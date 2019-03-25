@@ -83,7 +83,7 @@ export default {
       console.log(this.content)
       var contentForm = this.toFormData(this.content)
       var ref = this
-       // clear bookmark because we are editing details
+      // clear bookmark because we are editing details
       this.$store.dispatch('newBookmark', 'clear')
       //
       ContentService.createContentData(contentForm).then(function(response) {
@@ -143,7 +143,10 @@ export default {
         })
     }
   },
-
+  beforeCreate() {
+    this.$route.params.version = 'latest'
+    this.$store.dispatch('checkBookmark', this.$route.params)
+  },
   created() {
     console.log('I am in Page.Vue')
     this.error = this.loaded = null

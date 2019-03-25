@@ -94,7 +94,7 @@ export default {
       this.content.language_iso = this.$route.params.languageISO
       var contentForm = this.toFormData(this.content)
       var ref = this
-       // clear bookmark because we are editing details
+      // clear bookmark because we are editing details
       this.$store.dispatch('newBookmark', 'clear')
       //
       ContentService.createContentData(contentForm).then(function(response) {
@@ -129,25 +129,20 @@ export default {
       return form_data
     }
   },
+  beforeCreate() {
+    this.$route.params.version = 'latest'
+    this.$store.dispatch('checkBookmark', this.$route.params)
+  },
   created() {
     this.error = this.loaded = null
     this.loading = true
-    var route = {}
-    route.country = this.$route.params.countryCODE
-    route.language = this.$route.params.languageISO
-    route.version = 'latest'
     var ref = this
-    this.$store.dispatch('checkBookmark', route)
-    ContentService.getLibrary(
-      route.country,
-      route.language,
-      this.revision
-    ).then(response => {
+    ContentService.getLibrary(this.$route.params).then(response => {
       console.log('response from edit service')
       console.log(response.data)
       if (!response.data.content) {
         console.log('I am going to content for library')
-        ContentService.getLibrary(route.country, route.language)
+        ContentService.getLibrary(this.$route.params)
           .then(response => {
             ref.library = response.data
             if (typeof ref.bookmark.language != 'undefined') {

@@ -61,42 +61,31 @@ export default {
       error: null
     }
   },
+  beforeCreate() {
+    this.$route.params.version = 'current'
+    this.$store.dispatch('checkBookmark', this.$route.params)
+  },
 
   created() {
     this.error = this.loaded = null
     this.loading = true
-    var route = {}
-    route.country = this.countryCODE
-    route.language = this.languageISO
-    route.book = this.bookNAME // we need book to get style sheet
-    route.series = this.bookNAME
-    route.version = 'current'
-    this.$store.dispatch('checkBookmark', route).then(response => {
-      ContentService.getSeries(
-        this.bookmark.country.code,
-        this.bookmark.language.iso,
-        this.bookmark.book.folder,
-        this.bookmark.book.index,
-        route.version
-      )
-        .then(response => {
-          console.log(response.data) // For nseriesDetailsow, logs out the response
-          this.seriesDetails = response.data.content
-          console.log('SERIES.vue - this.seriesDetails')
-          console.log(this.seriesDetails)
-
-          this.chapters = this.seriesDetails.chapters
-          console.log('SERIES.vue - chapters in Series.Vue')
-          console.log(this.chapters)
-          this.loading = false
-          this.loaded = true
-        })
-        .catch(error => {
-          this.loading = false
-          console.log('There was an error:', error.response) // Logs out the error
-          this.error = error.toString()
-        })
-    })
+    ContentService.getSeries(this.$route.params)
+      .then(response => {
+        console.log(response.data) // For nseriesDetailsow, logs out the response
+        this.seriesDetails = response.data.content
+        console.log('SERIES.vue - this.seriesDetails')
+        console.log(this.seriesDetails)
+        this.chapters = this.seriesDetails.chapters
+        console.log('SERIES.vue - chapters in Series.Vue')
+        console.log(this.chapters)
+        this.loading = false
+        this.loaded = true
+      })
+      .catch(error => {
+        this.loading = false
+        console.log('There was an error:', error.response) // Logs out the error
+        this.error = error.toString()
+      })
   }
 }
 </script>

@@ -25,7 +25,7 @@
                 placeholder="myfriends"
                 v-model="book.image"
               >
-              
+
               <span>Book:</span>
               <select v-model="book.book">
                 <option value="issues">Issues</option>
@@ -35,7 +35,7 @@
                 <option value="compass">Compass</option>
                 <option value="about">About</option>
               </select>
-              
+
               <span>Folder:</span>
               <input
                 type="text"
@@ -143,7 +143,7 @@ export default {
       this.content.language_iso = this.$route.params.languageISO
       var contentForm = this.toFormData(this.content)
       var ref = this
-       // clear bookmark because we are editing details
+      // clear bookmark because we are editing details
       this.$store.dispatch('newBookmark', 'clear')
       //
       ContentService.createContentData(contentForm).then(function(response) {
@@ -178,26 +178,27 @@ export default {
       return form_data
     }
   },
+  beforeCreate() {
+    this.$route.params.version = 'latest'
+    this.$store.dispatch('checkBookmark', this.$route.params)
+  },
   created() {
     this.error = this.loaded = null
     this.loading = true
-    var route = {}
-    route.country = this.$route.params.countryCODE
-    route.language = this.$route.params.languageISO
-    route.version = 'latest'
+
     var ref = this
-    this.$store.dispatch('checkBookmark', route)
-    ContentService.getLibrary(route.country, route.language, route.version)
+
+    ContentService.getLibrary(this.$route.params)
       .then(response => {
         console.log('LIBRARY PREVIEW - response from edit service')
         console.log(response)
         if (response.content.text) {
           ref.content.recnum = ''
           ref.content.version = ''
-          ref.content.publish_uid = response.data.content.publish_uid
-          ref.content.publish_date = response.data.content.publish_date
-          ref.content.language_iso = route.language
-          ref.content.country_iso = route.country
+          ref.content.publish_uid = ''
+          ref.content.publish_date = ''
+          ref.content.language_iso = this.$route.params.languageISO
+          ref.content.country_iso = this.$route.params.countryISO
           ref.content.folder = ''
           ref.content.filetype = 'json'
           ref.content.title = ''

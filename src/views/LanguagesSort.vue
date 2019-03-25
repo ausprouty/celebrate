@@ -89,7 +89,7 @@ export default {
       this.content.country_iso = this.$route.params.countryCODE
       var contentForm = this.toFormData(this.content)
       var ref = this
-       // clear bookmark because we are editing details
+      // clear bookmark because we are editing details
       this.$store.dispatch('newBookmark', 'clear')
       //
       ContentService.createContentData(contentForm).then(function(response) {
@@ -123,6 +123,10 @@ export default {
       return form_data
     }
   },
+  beforeCreate() {
+    this.$route.params.version = 'latest'
+    this.$store.dispatch('checkBookmark', this.$route.params)
+  },
   created() {
     /* Update bookmark based on this route (for people to select URL from another source)
        Bookmark stores current Country and all specialized info for that country
@@ -131,30 +135,24 @@ export default {
     this.error = this.loaded = null
     this.loading = true
     this.languages = []
-    var route = {}
-    route.country = this.$route.params.countryCODE
-    route.version = 'latest'
     console.log('Entered LanguageEdits.vue')
     console.log(this.$route.params.countryCODE)
-    this.$store.dispatch('checkBookmark', route).then(responseUnused => {
-      console.log('about to get languages for ' + route.country)
-      ContentService.getLanguages(route.country, route.version)
-        .then(response => {
-          console.log('LANGUAGES SORT -  response data')
-          console.log(response)
-          if (response.content.text) {
-            console.log('LANGUAGES SORT -  response.content.text exists')
-            this.languages = JSON.parse(response.content.text)
-          } else {
-            this.languages = response.data
-          }
-          this.loaded = true
-          this.loading = false
-        })
-        .catch(() => {
-          console.log('There was a problem finding language')
-        })
-    })
+    ContentService.getLanguages(this.$route.params)
+      .then(response => {
+        console.log('LANGUAGES SORT -  response data')
+        console.log(response)
+        if (response.content.text) {
+          console.log('LANGUAGES SORT -  response.content.text exists')
+          this.languages = JSON.parse(response.content.text)
+        } else {
+          this.languages = response.data
+        }
+        this.loaded = true
+        this.loading = false
+      })
+      .catch(() => {
+        console.log('There was a problem finding language')
+      })
   }
 }
 </script>
@@ -164,5 +162,4 @@ export default {
 .float-right {
   text-align: right;
 }
-
 </style>

@@ -3,7 +3,9 @@
   <div>
     <NavBar/>
     <h1>{{this.test}} ---- {{this.version}}</h1>
-    This is a test
+    This page came from {{this.pageText.source}}
+    <br>
+    <br>
     {{this.pageText}}
   </div>
 </template>
@@ -19,7 +21,8 @@ export default {
   computed: mapState(['bookmark', 'appDir', 'cssURL']),
   data() {
     return {
-      pageText: ''
+      pageText: '',
+      source: ''
     }
   },
 
@@ -32,18 +35,18 @@ export default {
     route.test = 'series'
     route.test = 'page'
     route.version = 'latest'
-    //route.version = 'current'
+    route.version = 'current'
 
     switch (route.test) {
       case 'page':
         route.page = 'basics106'
       // eslint-disable-next-line no-fallthrough
       case 'series':
-       route.index = 'issues-chapters'
+        route.index = 'issues-chapters'
         route.folder = 'myfriends'
       // eslint-disable-next-line no-fallthrough
       case 'library':
-        route.language = 'eng'
+        route.language = 'fra'
       // eslint-disable-next-line no-fallthrough
       case 'languages':
         route.country = 'AU'
@@ -67,7 +70,7 @@ export default {
       switch (route.test) {
         case 'countries':
           console.log('TEST - countries')
-          ContentService.getCountries(route.version).then(response => {
+          ContentService.getCountries(route).then(response => {
             console.log('TEST - response')
             console.log(response)
             ref.pageText = response
@@ -75,21 +78,15 @@ export default {
           break
         case 'languages':
           console.log('TEST - languages')
-          ContentService.getLanguages(route.country, route.version).then(
-            response => {
-              console.log('TEST - response')
-              console.log(response)
-              ref.pageText = response
-            }
-          )
+          ContentService.getLanguages(route).then(response => {
+            console.log('TEST - response')
+            console.log(response)
+            ref.pageText = response
+          })
           break
         case 'library':
           console.log('TEST - library')
-          ContentService.getLibrary(
-            route.country,
-            route.language,
-            route.version
-          ).then(response => {
+          ContentService.getLibrary(route).then(response => {
             console.log('TEST - response')
             console.log(response)
             ref.pageText = response
@@ -97,13 +94,7 @@ export default {
           break
         case 'series':
           console.log('TEST - series')
-          ContentService.getSeries(
-            route.country,
-            route.language,
-            route.folder,
-            route.index,
-            route.version
-          ).then(response => {
+          ContentService.getSeries(route).then(response => {
             console.log('TEST - response')
             console.log(response)
             ref.pageText = response
@@ -111,13 +102,7 @@ export default {
           break
         case 'page':
           console.log('TEST - page')
-          ContentService.getPage(
-            route.country,
-            route.language,
-            route.folder,
-            route.page,
-            route.version
-          ).then(response => {
+          ContentService.getPage(route).then(response => {
             console.log('TEST - response')
             console.log(response)
             ref.pageText = response

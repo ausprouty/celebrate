@@ -70,6 +70,10 @@ export default {
       window.history.back()
     }
   },
+  beforeCreate() {
+    this.$route.params.version = 'latest'
+    this.$store.dispatch('checkBookmark', this.$route.params)
+  },
   created() {
     /* Update bookmark based on this route (for people to select URL from another source)
        Bookmark stores current Country and all specialized info for that country

@@ -49,47 +49,25 @@ export default {
       error: null
     }
   },
-
+  beforeCreate() {
+    this.$route.params.version = 'current'
+    this.$store.dispatch('checkBookmark', this.$route.params)
+  },
   created() {
-    console.log('I am in Page.Vue')
+    console.log('PAGE VUE')
     this.error = this.loaded = null
     this.loading = true
-    var route = {}
-    route.country = this.countryCODE
-    route.language = this.languageISO
-    route.book = this.bookNAME
-    route.series = this.bookNAME
-    route.page = this.pageFILENAME
-    route.version = 'current'
-    console.log('This is the route I sending to checkBookmark from Page.vue')
-    console.log(route)
-    this.$store.dispatch('checkBookmark', route)
-    console.log('sending to dataservice from Page.Vue')
-    console.log(
-      this.countryCODE +
-        ',' +
-        this.languageISO +
-        ',' +
-        this.bookmark.book.folder +
-        ',' +
-        this.pageFILENAME
-    )
-    ContentService.getPage(
-      this.countryCODE,
-      this.languageISO,
-      this.bookmark.book.folder,
-      this.pageFILENAME
-    )
+    ContentService.getPage(this.$route.params)
       .then(response => {
-        //  console.log('page in Page.Vue')
-        // console.log(response.data) // For now, logs out the response
+        console.log('PAGE VUE - response.data')
+        console.log(response.data)
         this.pageText = response.data
         this.loading = false
         this.loaded = true
       })
       .catch(error => {
         this.loading = false
-        console.log('There was an error:', error.response) // Logs out the error
+        console.log('PAGE VUE - There was an error:', error.response) // Logs out the error
         this.error = error.toString()
       })
   }

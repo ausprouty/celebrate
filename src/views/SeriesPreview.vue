@@ -93,44 +93,34 @@ export default {
       window.history.back()
     }
   },
+  beforeCreate() {
+    this.$route.params.version = 'latest'
+    this.$store.dispatch('checkBookmark', this.$route.params)
+  },
   created() {
     this.error = this.loaded = null
     this.loading = true
-    var route = {}
     var ref = this
     ref.version = 'latest'
-    route.country = this.$route.params.countryCODE
-    route.language = this.$route.params.languageISO
-    route.book = this.$route.params.bookNAME // we need book to get style sheet
-    route.series = this.$route.params.bookNAME
-    route.version = 'latest'
-    this.$store.dispatch('checkBookmark', route).then(response => {
-      ContentService.getSeries(
-        this.bookmark.country.code,
-        this.bookmark.language.iso,
-        this.bookmark.book.folder,
-        this.bookmark.book.index,
-        route.version
-      )
-        .then(response => {
-          console.log('SERIES PREVIEW - response.data')
-          console.log(response.data) // For nseriesDetailsow, logs out the response
-          this.seriesDetails = response.data.content
-          console.log('SERIES PREVIEW - this.seriesDetails')
-          console.log(this.seriesDetails)
+    ContentService.getSeries(this.$route.params)
+      .then(response => {
+        console.log('SERIES PREVIEW - response.data')
+        console.log(response.data) // For nseriesDetailsow, logs out the response
+        this.seriesDetails = response.data.content
+        console.log('SERIES PREVIEW - this.seriesDetails')
+        console.log(this.seriesDetails)
 
-          this.chapters = this.seriesDetails.chapters
-          console.log('chapters in Series.Vue')
-          console.log(this.chapters)
-          this.loading = false
-          this.loaded = true
-        })
-        .catch(error => {
-          this.loading = false
-          console.log('There was an error:', error.response) // Logs out the error
-          this.error = error.toString()
-        })
-    })
+        this.chapters = this.seriesDetails.chapters
+        console.log('chapters in Series.Vue')
+        console.log(this.chapters)
+        this.loading = false
+        this.loaded = true
+      })
+      .catch(error => {
+        this.loading = false
+        console.log('There was an error:', error.response) // Logs out the error
+        this.error = error.toString()
+      })
   }
 }
 </script>

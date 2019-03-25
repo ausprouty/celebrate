@@ -72,10 +72,14 @@ export default {
       return form_data
     }
   },
+  beforeCreate() {
+    this.$route.params.version = 'latest'
+    this.$store.dispatch('checkBookmark', this.$route.params)
+  },
   async created() {
     var ref = this
     console.log('going to getCountries')
-    let promise = ContentService.getCountries('latest')
+    let promise = ContentService.getCountries(this.$route.params)
     let response = await promise
     console.log('in Countries Preview response from getCountries')
     console.log(response)
