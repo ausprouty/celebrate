@@ -63,6 +63,7 @@ export default {
   },
   beforeCreate() {
     this.$route.params.version = 'current'
+    this.$route.params.book = this.$route.params.fileFILENAME
     this.$store.dispatch('checkBookmark', this.$route.params)
   },
 
