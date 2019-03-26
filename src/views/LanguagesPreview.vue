@@ -75,38 +75,26 @@ export default {
     this.$store.dispatch('checkBookmark', this.$route.params)
   },
   created() {
-    /* Update bookmark based on this route (for people to select URL from another source)
-       Bookmark stores current Country and all specialized info for that country
-      If there is only one language for this country we then go back to country
-    */
     this.error = this.loaded = null
     this.loading = true
-    var route = {}
     var ref = this
-    route.country = this.countryCODE
-    route.version = 'latest'
-    console.log('LANGUAGES PREVIEW')
-    this.$store.dispatch('checkBookmark', route).then(responseUnused => {
-      console.log(
-        'LANGUAGES PREVIEW  - about to get languages for ' + this.countryCODE
-      )
-      ContentService.getLanguages(route.country, route.version)
-        .then(response => {
-          console.log('LANGUAGES PREVIEW -  response data')
-          console.log(response)
-          if (response.data.content.text) {
-             console.log('LANGUAGES PREVIEW -  response.content.text exists')
-            this.languages = JSON.parse(response.data.content.text)
-          } else {
-            this.languages = response.data
-          }
-          this.loaded = true
-          this.loading = false
-        })
-        .catch(() => {
-          console.log('There was a problem finding language')
-        })
-    })
+
+    ContentService.getLanguages( this.$route.params)
+      .then(response => {
+        console.log('LANGUAGES PREVIEW -  response data')
+        console.log(response)
+        if (response.data.content.text) {
+          console.log('LANGUAGES PREVIEW -  response.content.text exists')
+          this.languages = JSON.parse(response.data.content.text)
+        } else {
+          this.languages = response.data
+        }
+        this.loaded = true
+        this.loading = false
+      })
+      .catch(() => {
+        console.log('There was a problem finding language')
+      })
   }
 }
 </script>

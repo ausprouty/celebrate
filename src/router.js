@@ -30,7 +30,8 @@ import Members from './views/Members.vue'
 import MembersAdd from './views/MembersAdd.vue'
 import MembersUpdate from './views/MembersUpdate.vue'
 
-import Test from './views/Test.vue'
+import TestBookmark from './views/TestBookmark.vue'
+import TestContent from './views/TestContent.vue'
 
 import NotFoundComponent from './views/NotFound.vue'
 
@@ -57,13 +58,13 @@ export default new Router({
       props: true
     },
     {
-      path: '/series/:countryCODE/:languageISO/:bookNAME',
+      path: '/series/:countryCODE/:languageISO/:folderNAME/:fileFILENAME',
       name: 'series',
       component: Series,
       props: true
     },
     {
-      path: '/page/:countryCODE/:languageISO/:bookNAME/:pageFILENAME',
+      path: '/page/:countryCODE/:languageISO/:folderNAME/:fileFILENAME',
       name: 'page',
       component: Page,
       props: true
@@ -86,13 +87,13 @@ export default new Router({
       props: true
     },
     {
-      path: '/edit/series/:countryCODE/:languageISO/:bookNAME',
+      path: '/edit/series/:countryCODE/:languageISO/:folderNAME/:fileFILENAME',
       name: 'editSeries',
       component: SeriesEdit,
       props: true
     },
     {
-      path: '/edit/page/:countryCODE/:languageISO/:bookNAME/:pageFILENAME',
+      path: '/edit/page/:countryCODE/:languageISO/:folderNAME/:fileFILENAME',
       name: 'editPage',
       component: PageEdit,
       props: true
@@ -115,13 +116,14 @@ export default new Router({
       props: true
     },
     {
-      path: '/preview/series/:countryCODE/:languageISO/:bookNAME',
+      path:
+        '/preview/series/:countryCODE/:languageISO/:folderNAME/:fileFILENAME',
       name: 'previewSeries',
       component: SeriesPreview,
       props: true
     },
     {
-      path: '/preview/page/:countryCODE/:languageISO/:bookNAME/:pageFILENAME',
+      path: '/preview/page/:countryCODE/:languageISO/:folderNAME/:fileFILENAME',
       name: 'previewPage',
       component: PagePreview,
       props: true
@@ -144,15 +146,21 @@ export default new Router({
       props: true
     },
     {
-      path: '/sort/series/:countryCODE/:languageISO/:bookNAME',
+      path: '/sort/series/:countryCODE/:languageISO/:folderNAME/:fileFILENAME',
       name: 'sortSeries',
       component: SeriesSort,
       props: true
     },
     {
-      path: '/test',
-      name: 'test',
-      component: Test,
+      path: '/test/bookmark',
+      name: 'testBookmark',
+      component: TestBookmark,
+      props: false
+    },
+    {
+      path: '/test/content',
+      name: 'testContent',
+      component: TestContent,
       props: false
     },
 

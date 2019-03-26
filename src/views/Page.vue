@@ -35,7 +35,7 @@ import { mapState } from 'vuex'
 import ContentService from '@/services/ContentService.js'
 import NavBar from '@/components/NavBarBack.vue'
 export default {
-  props: ['countryCODE', 'languageISO', 'bookNAME', 'pageFILENAME'],
+  props: ['countryCODE', 'languageISO', 'folderNAME', 'fileFILENAME'],
   components: {
     NavBar
   },

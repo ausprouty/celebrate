@@ -24,11 +24,15 @@ export default {
       bMark: this.$store.state.bookmark
     }
   },
+  beforeCreate() {
+    this.$route.params.version = 'current'
+    this.$store.dispatch('checkBookmark', this.$route.params)
+  },
   computed: mapState(['bookmark', 'appDir']),
   methods: {
     showPage: function(country) {
       localStorage.setItem('lastPage', 'countries')
-      ContentService.getLanguages(country.code, 'current').then(response => {
+      ContentService.getLanguages(this.$route.params).then(response => {
         console.log(
           'COUNTRY VIEW - response from getLanguages for ' + country.code
         )
@@ -39,22 +43,17 @@ export default {
           var language = response.data[0]
           //    console.log('COUNTRY VIEW - language is ')
           //    console.log(language)
-          this.$store
-            .dispatch('updateBookmark', ['language', language])
-            .then(responseUnused => {
-              //        console.log('COUNTRY VIEW - language_iso is ' + language.iso)
-              this.$router.push({
-                name: 'library',
-                params: {
-                  countryCODE: country.code,
-                  languageISO: language.iso
-                }
-              })
-            })
+          this.$router.push({
+            name: 'library',
+            params: {
+              countryCODE: this.$route.params.countryCODE,
+              languageISO: language
+            }
+          })
         } else {
           this.$router.push({
             name: 'languages',
-            params: { countryCODE: country.code }
+            params: { countryCODE: this.$route.params.countryCODE }
           })
         }
       })

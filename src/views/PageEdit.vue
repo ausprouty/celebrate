@@ -39,7 +39,7 @@ import NavBar from '@/components/NavBarAdmin.vue'
 import './ckeditor/index.js'
 import VueCkeditor from 'vueckeditor'
 export default {
-  props: ['countryCODE', 'languageISO', 'bookNAME', 'pageFILENAME'],
+  props: ['countryCODE', 'languageISO', 'folderNAME', 'fileFILENAME'],
   components: {
     NavBar,
     VueCkeditor
@@ -81,7 +81,7 @@ export default {
       this.content.filetype = 'html'
       console.log('PAGE EDIT - content')
       console.log(this.content)
-      var contentForm = this.toFormData(this.content)
+      var contentForm = ContentService.toFormData(this.content)
       var ref = this
       // clear bookmark because we are editing details
       this.$store.dispatch('newBookmark', 'clear')
@@ -97,28 +97,14 @@ export default {
             params: {
               countryCODE: ref.$route.params.countryCODE,
               languageISO: ref.$route.params.languageISO,
-              bookNAME: ref.$route.params.bookNAME,
+              folderNAME: ref.$route.params.folderNAME,
               pageFILENAME: ref.$route.params.pageFILENAME
             }
           })
         }
       })
     },
-    toFormData(obj) {
-      this.content.edit_date = ''
-      this.content.edit_uid = ''
-      var form_data = new FormData()
-      for (var key in obj) {
-        form_data.append(key, obj[key])
-      }
-      this.content.text = ''
-      console.log('form_data')
-      // Display the key/value pairs
-      for (var pair of form_data.entries()) {
-        console.log(pair[0] + ', ' + pair[1])
-      }
-      return form_data
-    },
+    
 
     handleImageAdded: function(file, Editor, cursorLocation, resetUploader) {
       // An example of using FormData

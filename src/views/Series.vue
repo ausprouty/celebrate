@@ -32,7 +32,7 @@ import Chapter from '@/components/Chapter.vue'
 import ContentService from '@/services/ContentService.js'
 import NavBar from '@/components/NavBarBack.vue'
 export default {
-  props: ['countryCODE', 'languageISO', 'bookNAME'],
+  props: ['countryCODE', 'languageISO', 'folderNAME', 'fileFILENAME'],
   computed: mapState(['bookmark', 'appDir']),
   components: {
     Chapter,

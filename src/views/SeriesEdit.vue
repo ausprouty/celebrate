@@ -59,7 +59,7 @@ import { mapState } from 'vuex'
 import ContentService from '@/services/ContentService.js'
 import NavBar from '@/components/NavBarAdmin.vue'
 export default {
-  props: ['countryCODE', 'languageISO', 'bookNAME'],
+  props: ['countryCODE', 'languageISO', 'folderNAME', 'fileFILENAME'],
   computed: mapState(['bookmark', 'appDir']),
   components: {
     NavBar
@@ -117,7 +117,6 @@ export default {
       this.chapters.splice(id, 1)
     },
     saveForm() {
-
       console.log(this.content)
       var text = this.seriesDetails
       text.text = this.chapters
@@ -127,7 +126,7 @@ export default {
       this.content.country_iso = this.$route.params.countryCODE
       this.content.language_iso = this.$route.params.languageISO
       this.content.folder = this.bookmark.book.folder
-      var contentForm = this.toFormData(this.content)
+      var contentForm = ContentService.toFormData(this.content)
       var ref = this
       // clear bookmark because we are editing details
       this.$store.dispatch('newBookmark', 'clear')
@@ -148,21 +147,6 @@ export default {
           })
         }
       })
-    },
-    toFormData(obj) {
-      this.content.edit_date = ''
-      this.content.edit_uid = ''
-      var form_data = new FormData()
-      for (var key in obj) {
-        form_data.append(key, obj[key])
-      }
-      this.content.text = ''
-      console.log('form_data')
-      // Display the key/value pairs
-      for (var pair of form_data.entries()) {
-        console.log(pair[0] + ', ' + pair[1])
-      }
-      return form_data
     }
   },
   beforeCreate() {

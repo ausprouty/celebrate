@@ -80,9 +80,9 @@ export default {
       this.content.text = JSON.stringify(this.countries)
       this.content.filename = 'countries'
       this.content.filetype = 'json'
-      var contentForm = this.toFormData(this.content)
+      var contentForm = ContentService.toFormData(this.content)
       var ref = this
-       // clear bookmark because we are editing details
+      // clear bookmark because we are editing details
       this.$store.dispatch('newBookmark', 'clear')
       ContentService.createContentData(contentForm).then(function(response) {
         if (response.data.error) {
@@ -95,21 +95,6 @@ export default {
           })
         }
       })
-    },
-    toFormData(obj) {
-      this.content.edit_date = ''
-      this.content.edit_uid = ''
-      var form_data = new FormData()
-      for (var key in obj) {
-        form_data.append(key, obj[key])
-      }
-      this.content.text = ''
-      console.log('form_data')
-      // Display the key/value pairs
-      for (var pair of form_data.entries()) {
-        console.log(pair[0] + ', ' + pair[1])
-      }
-      return form_data
     },
 
     getCountries() {

@@ -9,52 +9,23 @@ const apiClient = axios.create({
   }
 })
 export default {
-  getCountries(revision) {
-    var params = {
-      revision: revision
-    }
+  getCountries(params) {
     var contentForm = this.toFormData(params)
     return apiClient.post('ContentApi.php?crud=countries', contentForm)
   },
-  getLanguages(country, revision) {
-    var params = {
-      country: country,
-      revision: revision
-    }
+  getLanguages(params) {
     var contentForm = this.toFormData(params)
-    console.log('about to post to with ContentApi.php?crud=languages')
     return apiClient.post('ContentApi.php?crud=languages', contentForm)
   },
-  getLibrary(country, language, revision) {
-    var params = {
-      country: country,
-      language: language,
-      revision: revision
-    }
+  getLibrary(params) {
     var contentForm = this.toFormData(params)
     return apiClient.post('ContentApi.php?crud=library', contentForm)
   },
-  getSeries(country, language, folder, index, revision) {
-    console.log('ContentService is looking for series with these params')
-    var params = {
-      country: country,
-      language: language,
-      folder: folder,
-      index: index,
-      revision: revision
-    }
-    console.log(params)
+  getSeries(params) {
     var contentForm = this.toFormData(params)
     return apiClient.post('ContentApi.php?crud=series', contentForm)
   },
-  getPage(country, language, folder, page, revision) {
-    var params = {
-      country: country,
-      language: language,
-      folder: folder,
-      page: page,
-      revision: revision
-    }
+  getPage(params) {
     var contentForm = this.toFormData(params)
     return apiClient.post('ContentApi.php?crud=page', contentForm)
   },

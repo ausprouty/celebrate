@@ -142,21 +142,9 @@ export default {
           console.log('There was a problem finding members')
         })
     },
-    toFormData(obj) {
-      var form_data = new FormData()
-      for (var key in obj) {
-        form_data.append(key, obj[key])
-      }
-      console.log('form_data')
-      // Display the key/value pairs
-      for (var pair of form_data.entries()) {
-        console.log(pair[0] + ', ' + pair[1])
-      }
-      return form_data
-    },
+
     saveMember() {
-     
-      var memForm = this.toFormData(this.newMember)
+      var memForm = ContentService.toFormData(this.newMember)
       console.log('memForm')
       console.log(memForm)
       var ref = this

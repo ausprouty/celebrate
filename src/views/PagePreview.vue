@@ -36,7 +36,7 @@ import { mapState } from 'vuex'
 import ContentService from '@/services/ContentService.js'
 import NavBar from '@/components/NavBarAdmin.vue'
 export default {
-  props: ['countryCODE', 'languageISO', 'bookNAME', 'pageFILENAME'],
+  props: ['countryCODE', 'languageISO', 'folderNAME', 'fileFILENAME'],
   components: {
     NavBar
   },
@@ -55,10 +55,10 @@ export default {
       this.$router.push({
         name: 'editPage',
         params: {
-          countryCODE: this.countryCODE,
-          languageISO: this.languageISO,
-          bookNAME: this.bookNAME,
-          pageFILENAME: this.pageFILENAME
+          countryCODE: this.$route.params.countryCODE,
+          languageISO: this.$route.params.languageISO,
+          folderNAME: this.$route.params.folderNAME,
+          pageFILENAME: this.$route.params.pageFILENAME
         }
       })
     },
@@ -66,7 +66,7 @@ export default {
       window.history.back()
     }
   },
-beforeCreate() {
+  beforeCreate() {
     this.$route.params.version = 'latest'
     this.$store.dispatch('checkBookmark', this.$route.params)
   },

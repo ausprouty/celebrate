@@ -41,8 +41,7 @@ export default new Vuex.Store({
   },
   mutations: {
     NEW_BOOKMARK(state, value) {
-      console.log('STORE - BOOKMARK    country in new bookmark')
-      console.log(value)
+      console.log('STORE - NEW BOOKMARK    ')
       state.bookmark = {}
     },
     SET_BOOKMARK(state, [mark, value]) {
@@ -127,24 +126,29 @@ export default new Vuex.Store({
         })
     },
     async CheckBookmarkCountry({ commit }, route) {
+      if (!route.countryCODE) {
+        return null
+      }
       var currentCountry = ''
       if (typeof this.state.bookmark.country != 'undefined') {
-        console.log('STORE - BOOKMARK    bookmark.country is defined')
+        console.log('STORE - BOOKMARK bookmark.country is defined')
         if (typeof this.state.bookmark.country.code != 'undefined') {
           currentCountry = this.state.bookmark.country.code
         }
       }
-      if (route.country != currentCountry) {
-        console.log('STORE - BOOKMARK    route.country is not currentCountry')
-        ContentService.getCountries(route.version).then(res => {
+      if (route.countryCODE != currentCountry) {
+        console.log(
+          'STORE - BOOKMARK    route.countryCODE is not currentCountry'
+        )
+        ContentService.getCountries(route).then(res => {
           console.log('STORE - BOOKMARK   CheckBookmarkCountry  res ')
           console.log(res)
-          var response = JSON.parse(res.content.text)
+          var response = JSON.parse(res.data.content.text)
 
           var value = {}
           var length = response.length
           for (var i = 0; i < length; i++) {
-            if (response[i].code == route.country) {
+            if (response[i].code == route.countryCODE) {
               value = response[i]
             }
           }
@@ -156,10 +160,10 @@ export default new Vuex.Store({
     },
     async CheckBookmarkLanguageLibrary({ commit }, route) {
       /* LANGUAGE AND LIBRARY
-     if route.language is not the same as bookmark 
+     if route.languageISO is not the same as bookmark 
       update language and erase all bookmark below*/
       //  console.log('STORE - BOOKMARK   starting CheckBookmarkLanguageLibrary')
-      if (route.language) {
+      if (route.languageISO) {
         var value = {}
         console.log(
           'STORE - BOOKMARK   CheckBookmarkLanguageLIBRARY  have route '
@@ -168,63 +172,52 @@ export default new Vuex.Store({
         if (typeof this.state.bookmark.language != 'undefined') {
           currentLanguage = this.state.bookmark.language.iso
         }
-        if (route.language != currentLanguage) {
+        if (route.languageISO != currentLanguage) {
           console.log(
-            'STORE - BOOKMARK   looking for new language of ' + route.language
+            'STORE - BOOKMARK   looking for new language of ' +
+              route.languageISO
           )
-          ContentService.getLanguages(route.country, route.version).then(
-            res => {
-              console.log(
-                'STORE - CheckBookmarkLanguageLIBRARY this is response from getLanguages'
-              )
-              console.log(res)
-              var response = JSON.parse(res.data.content.text)
-              console.log(
-                'STORE -CheckBookmarkLanguageLIBRARY this is parsed response from getLanguages'
-              )
-              console.log(response)
-              var length = response.length
-              console.log(
-                'STORE - BOOKMARK  CheckBookmarkLanguageLIBRARY  length'
-              )
-              console.log(length)
-              for (var i = 0; i < length; i++) {
-                console.log('STORE - BOOKMARK   response[i]')
-                console.log(response[i].iso)
-                if (response[i].iso == route.language) {
-                  value = response[i]
-                }
+          ContentService.getLanguages(route).then(res => {
+            console.log(
+              'STORE - CheckBookmarkLanguageLIBRARY this is response from getLanguages'
+            )
+            console.log(res)
+            var response = JSON.parse(res.data.content.text)
+            console.log(
+              'STORE -CheckBookmarkLanguageLIBRARY this is parsed response from getLanguages'
+            )
+            console.log(response)
+            var length = response.length
+            console.log(
+              'STORE - BOOKMARK  CheckBookmarkLanguageLIBRARY  length'
+            )
+            console.log(length)
+            for (var i = 0; i < length; i++) {
+              console.log('STORE - BOOKMARK   response[i]')
+              console.log(response[i].iso)
+              if (response[i].iso == route.languageISO) {
+                value = response[i]
               }
+            }
+            console.log('STORE - BOOKMARK  CheckBookmarkLanguageLIBRARY value')
+            console.log(value)
+            commit('SET_BOOKMARK', ['language', value])
+            ContentService.getLibrary(route).then(response => {
+              value = JSON.parse(response.data.content.text)
               console.log(
-                'STORE - BOOKMARK  CheckBookmarkLanguageLIBRARY value'
+                'STORE - BOOKMARK  CheckBookmarkLanguageLIBRARY library is '
               )
               console.log(value)
-              commit('SET_BOOKMARK', ['language', value])
-              ContentService.getLibrary(
-                route.country,
-                route.language,
-                route.version
-              ).then(response => {
-                value = JSON.parse(response.data.content.text)
-                console.log(
-                  'STORE - BOOKMARK  CheckBookmarkLanguageLIBRARY library is '
-                )
-                console.log(value)
-                commit('SET_BOOKMARK', ['library', value])
-                console.log(
-                  'STORE -CheckBookmarkLanguageLIBRARY finishing CheckBookmarkLanguageLIBRARY'
-                )
-              })
-            }
-          )
+              commit('SET_BOOKMARK', ['library', value])
+              console.log(
+                'STORE -CheckBookmarkLanguageLIBRARY finishing CheckBookmarkLanguageLIBRARY'
+              )
+            })
+          })
         }
         if (typeof this.state.bookmark.library == 'undefined') {
           // console.log (route)
-          ContentService.getLibrary(
-            route.country,
-            route.language,
-            route.version
-          ).then(response => {
+          ContentService.getLibrary(route).then(response => {
             value = response.data
             //console.log('STORE - BOOKMARK   library is ')
             //console.log(value)
@@ -235,11 +228,11 @@ export default new Vuex.Store({
           })
         }
       }
-      if (!route.language) {
+      if (!route.languageISO) {
         // clear if not set
         commit('UNSET_BOOKMARK', ['language'])
         commit('UNSET_BOOKMARK', ['library'])
-        console.log('STORE - BOOKMARK   I AM CLEARING LIBRARY ')
+        console.log('STORE - BOOKMARK   UNSET LIBRARY ')
       }
 
       return this.state.bookmark
@@ -271,14 +264,15 @@ update book and erase all bookmark below*/
           console.log(value)
           commit('SET_BOOKMARK', ['book', value])
         }
+        console.log('STORE - BOOKMARK    FINISHING CheckBookmarkBOOK with ')
+        console.log(this.state.bookmark)
+        return this.state.bookmark
       }
       if (!route.book) {
-        console.log('STORE - BOOKMARK    clearing bookmark BOOK')
+        console.log('STORE - BOOKMARK    UNSET  BOOK')
         commit('UNSET_BOOKMARK', ['book'])
+        return null
       }
-      console.log('STORE - BOOKMARK    FINISHING CheckBookmarkBOOK with ')
-      console.log(this.state.bookmark)
-      return this.state.bookmark
     },
     /* Series
     if route.book is not the same as bookmark 
@@ -311,13 +305,7 @@ update book and erase all bookmark below*/
           if (value.folder) {
             var folder = value.folder
             var index = value.index
-            ContentService.getSeries(
-              route.country,
-              route.language,
-              folder,
-              index,
-              route.version
-            ).then(response => {
+            ContentService.getSeries(route).then(response => {
               console.log(
                 'STORE - CheckBookmarkSeries data returned from Content Service'
               )
@@ -334,22 +322,21 @@ update book and erase all bookmark below*/
             commit('UNSET_BOOKMARK', ['series'])
           }
         }
+        console.log('STORE - BOOKMARK    FINISHING CheckBookmarkSeries')
+        return this.state.bookmark
       } else {
         // clear if not set
         commit('UNSET_BOOKMARK', ['series'])
+        console.log('STORE - BOOKMARK    UNSET SERIES')
+        return null
       }
-      console.log('STORE - BOOKMARK    FINISHING CheckBookmarkSeries')
-      return this.state.bookmark
     },
     /* Page
       if route.page is not the same as bookmark 
       update book and erase all bookmark below*/
     async CheckBookmarkPage({ commit }, route) {
-      console.log('STORE - BOOKMARK     route in check bookmark PAGE')
-      console.log(route)
       var value = {}
       if (route.page) {
-        console.log('STORE - BOOKMARK     route.page is ' + route.page)
         value = ''
         var currentPage = ''
         if (typeof this.state.bookmark.page != 'undefined') {
@@ -386,12 +373,13 @@ update book and erase all bookmark below*/
             commit('SET_BOOKMARK', ['page', value])
           }
         }
+        console.log('STORE - BOOKMARK    FINISHING CheckBookmarkPage')
+        return this.state.bookmark
       } else {
-        // clear if not set
         commit('UNSET_BOOKMARK', ['page'])
+        console.log('STORE - BOOKMARK   UNSET PAGE')
+        return null
       }
-      console.log('STORE - BOOKMARK    FINISHING CheckBookmarkPage')
-      return this.state.bookmark
     }
   }
 })

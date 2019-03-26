@@ -3,7 +3,7 @@
   <div>
     <NavBar/>
     <h1>{{this.test}} ---- {{this.version}}</h1>
-    This page came from {{this.pageText.source}}
+    This page came from {{this.bookmark}}
     <br>
     <br>
     {{this.pageText}}
@@ -30,10 +30,10 @@ export default {
     console.log('I am in Test.Vue')
     var route = {}
     route.test = 'countries'
-    route.test = 'languages'
-    route.test = 'library'
-    route.test = 'series'
-    route.test = 'page'
+   // route.test = 'languages'
+   // route.test = 'library'
+    //route.test = 'series'
+    //route.test = 'page'
     route.version = 'latest'
     route.version = 'current'
 

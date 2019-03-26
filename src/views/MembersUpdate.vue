@@ -185,7 +185,7 @@ export default {
         })
     },
     saveMember() {
-      var memForm = this.toFormData(this.newMember)
+      var memForm = ContentService.toFormData(this.newMember)
       var ref = this
       ContentService.saveMember(memForm).then(function(response) {
         console.log(response)
@@ -199,7 +199,7 @@ export default {
       })
     },
     updateMember() {
-      var memForm = this.toFormData(this.clickMember)
+      var memForm = ContentService.toFormData(this.clickMember)
       var ref = this
       ContentService.updateMember(memForm).then(function(response) {
         //console.log(response);
@@ -213,7 +213,7 @@ export default {
       })
     },
     deleteMember() {
-      var memForm = this.toFormData(this.clickMember)
+      var memForm = ContentService.toFormData(this.clickMember)
       var ref = this
       ContentService.deleteMember(memForm).then(function(response) {
         //console.log(response);
@@ -228,19 +228,7 @@ export default {
     },
     selectMember(member) {
       this.clickMember = member
-    },
-    toFormData(obj) {
-      var form_data = new FormData()
-      for (var key in obj) {
-        form_data.append(key, obj[key])
-      }
-
-      // Display the key/value pairs
-      // for (var pair of form_data.entries()) {
-      //   console.log(pair[0] + ', ' + pair[1])
-      // }
-      return form_data
-    },
+    }
 
     clearMessage() {
       this.errorMessage = ''
