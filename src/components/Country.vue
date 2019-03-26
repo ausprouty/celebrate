@@ -24,13 +24,10 @@ export default {
       bMark: this.$store.state.bookmark
     }
   },
-  beforeCreate() {
-    this.$route.params.version = 'current'
-    this.$store.dispatch('checkBookmark', this.$route.params)
-  },
   computed: mapState(['bookmark', 'appDir']),
   methods: {
     showPage: function(country) {
+      this.$route.params.countryCODE = country.code
       localStorage.setItem('lastPage', 'countries')
       ContentService.getLanguages(this.$route.params).then(response => {
         console.log(

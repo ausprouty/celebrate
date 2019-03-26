@@ -118,15 +118,9 @@ export default {
   async getSeries(params) {
     var found = false
     var response = {}
-    var bound = params.pageFILENAME.indexOf('.json')
-    var indexname = params.pageFILENAME
     // for latest get data
     if (params.version != 'current') {
       var contentForm = this.toFormData(params)
-      if (bound != -1) {
-        indexname = params.pageFILENAME.substr(0, params.pageFILENAME.length - 5)
-      }
-      params.pageFILENAME = indexname
       response = await apiMYSQL.post('ContentApi.php?crud=series', contentForm)
       if (response.data.content) {
         found = true
@@ -139,9 +133,6 @@ export default {
       response.data = {}
       response.data.content = {}
 
-      if (bound == -1) {
-        indexname = params.pageFILENAME + '.json'
-      }
       let res = await apiClient.get(
         'content/' +
           params.countryCODE +
@@ -150,7 +141,7 @@ export default {
           '/' +
           params.folderNAME +
           '/' +
-          indexname
+          params.fileFILENAME + '.json'
       )
       response.data.content = res.data
       return response

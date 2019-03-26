@@ -58,21 +58,19 @@ export default {
   created() {
     this.error = this.loaded = null
     this.loading = true
+    var ref = this
     ContentService.getLibrary(this.$route.params)
       .then(response => {
-        this.library = JSON.parse(response.data.content.text)
-        this.loading = false
-        this.loaded = true
-        if (typeof this.bookmark.language.image_dir != 'undefined') {
+        ref.library = response.data.content.text
+        ref.loading = false
+        ref.loaded = true
+        ref.image_dir = ref.standard.image_dir
+        if (typeof ref.bookmark.language.image_dir != 'undefined') {
           console.log('USING BOOKMARK')
-          this.image_dir = this.bookmark.language.image_dir
-        } else {
-          console.log('USING STANDARD')
-          this.image_dir = this.standard.image_dir
-          // this.image_dir = 'menu-europe'
+          ref.image_dir = ref.bookmark.language.image_dir
         }
         console.log('this.image_dir')
-        console.log(this.image_dir)
+        console.log(ref.image_dir)
       })
       .catch(error => {
         console.log('There was an error in  bookmark Library:', error.response) // Logs out the error

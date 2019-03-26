@@ -15,19 +15,17 @@ export default {
   props: {
     book: Object
   },
-  computed: mapState(['bookmark', 'standard','appDir']),
+  computed: mapState(['bookmark', 'standard', 'appDir']),
   data() {
     return {
       image_dir: ''
     }
   },
   created() {
+    this.image_dir = this.standard.image_dir
     if (typeof this.bookmark.language.image_dir != 'undefined') {
       console.log('USING BOOKMARK')
       this.image_dir = this.bookmark.language.image_dir
-    } else {
-      console.log('USING STANDARD')
-      this.image_dir = this.standard.image_dir
     }
   },
   methods: {
@@ -42,7 +40,8 @@ export default {
           params: {
             countryCODE: this.bookmark.country.code,
             languageISO: this.bookmark.language.iso,
-            bookNAME: this.book.book
+            folderNAME: this.book.folder,
+            fileFILENAME: this.book.index
           }
         })
       } else {
@@ -52,8 +51,8 @@ export default {
           params: {
             countryCODE: this.bookmark.country.code,
             languageISO: this.bookmark.language.iso,
-            bookNAME: this.book.book,
-            pageFILENAME: this.book.book
+            folderNAME: this.book.folder,
+            fileFILENAME: this.book.index
           }
         })
       }

@@ -28,15 +28,13 @@ export default {
   },
   beforeCreate() {
     this.$route.params.version = 'current'
-    console.log('PAGE VUE - route')
-    console.log(this.$route.params)
-    this.$store.dispatch('checkBookmark', this.$route.params)
+    this.$store.dispatch('newBookmark')
   },
   created() {
     ContentService.getCountries(this.$route.params)
       .then(response => {
         console.log(response.data.content.text) // For now, logs out the response
-        this.countries = JSON.parse(response.data.content.text)
+        this.countries = response.data.content.text
       })
       .catch(error => {
         console.log('There was an error in Countries.vue:', error.response) // Logs out the error

@@ -59,7 +59,7 @@ export default {
     this.loading = true
     ContentService.getLanguages(this.$route.params)
       .then(response => {
-        this.languages = JSON.parse(response.data.content.text)
+        this.languages = response.data.content.text
         if (response.data.length === 1) {
           this.$router.push({
             name: 'countries'
