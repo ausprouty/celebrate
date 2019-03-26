@@ -3,7 +3,7 @@
   <div>
     <NavBar/>
     <h1>{{this.test}} ---- {{this.version}}</h1>
-    This page came from {{this.bookmark}}
+    This page came from {{this.source}}
     <br>
     <br>
     {{this.pageText}}
@@ -30,26 +30,26 @@ export default {
     console.log('I am in Test.Vue')
     var route = {}
     route.test = 'countries'
-   // route.test = 'languages'
-   // route.test = 'library'
-    //route.test = 'series'
+     route.test = 'languages'
+     route.test = 'library'
+    route.test = 'series'
     //route.test = 'page'
     route.version = 'latest'
     route.version = 'current'
 
     switch (route.test) {
       case 'page':
-        route.page = 'basics106'
-      // eslint-disable-next-line no-fallthrough
+        route.pageFILENAME = 'basics106'
+        // eslint-disable-next-line no-fallthrough
       case 'series':
-        route.index = 'issues-chapters'
-        route.folder = 'myfriends'
+        route.pageFILENAME = 'issues-chapters'
+        route.folderNAME = 'myfriends'
       // eslint-disable-next-line no-fallthrough
       case 'library':
-        route.language = 'fra'
+        route.languageISO = 'hin'
       // eslint-disable-next-line no-fallthrough
       case 'languages':
-        route.country = 'AU'
+        route.countryCODE = 'AU'
       // eslint-disable-next-line no-fallthrough
       case 'countries':
     }
@@ -73,7 +73,8 @@ export default {
           ContentService.getCountries(route).then(response => {
             console.log('TEST - response')
             console.log(response)
-            ref.pageText = response
+            ref.source = response.source
+            ref.pageText = response.data
           })
           break
         case 'languages':
@@ -81,7 +82,8 @@ export default {
           ContentService.getLanguages(route).then(response => {
             console.log('TEST - response')
             console.log(response)
-            ref.pageText = response
+            ref.source = response.source
+            ref.pageText = response.data
           })
           break
         case 'library':
@@ -89,7 +91,8 @@ export default {
           ContentService.getLibrary(route).then(response => {
             console.log('TEST - response')
             console.log(response)
-            ref.pageText = response
+            ref.source = response.source
+            ref.pageText = response.data
           })
           break
         case 'series':
@@ -97,7 +100,8 @@ export default {
           ContentService.getSeries(route).then(response => {
             console.log('TEST - response')
             console.log(response)
-            ref.pageText = response
+            ref.source = response.source
+            ref.pageText = response.data
           })
           break
         case 'page':
@@ -105,7 +109,8 @@ export default {
           ContentService.getPage(route).then(response => {
             console.log('TEST - response')
             console.log(response)
-            ref.pageText = response
+            ref.source = response.source
+            ref.pageText = response.data
           })
           break
         default:

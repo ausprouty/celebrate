@@ -143,7 +143,7 @@ export default new Vuex.Store({
         ContentService.getCountries(route).then(res => {
           console.log('STORE - BOOKMARK   CheckBookmarkCountry  res ')
           console.log(res)
-          var response = JSON.parse(res.data.content.text)
+          var response = res.data.content.text
 
           var value = {}
           var length = response.length
@@ -182,7 +182,7 @@ export default new Vuex.Store({
               'STORE - CheckBookmarkLanguageLIBRARY this is response from getLanguages'
             )
             console.log(res)
-            var response = JSON.parse(res.data.content.text)
+            var response = res.data.content.text
             console.log(
               'STORE -CheckBookmarkLanguageLIBRARY this is parsed response from getLanguages'
             )
@@ -203,7 +203,7 @@ export default new Vuex.Store({
             console.log(value)
             commit('SET_BOOKMARK', ['language', value])
             ContentService.getLibrary(route).then(response => {
-              value = JSON.parse(response.data.content.text)
+              value = response.data.content.text
               console.log(
                 'STORE - BOOKMARK  CheckBookmarkLanguageLIBRARY library is '
               )

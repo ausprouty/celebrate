@@ -25,6 +25,7 @@ export default {
   async getCountries(params) {
     var found = false
     var response = {}
+    // for latest get data
     if (params.version != 'current') {
       var contentForm = this.toFormData(params)
       let res = await apiMYSQL.post(
@@ -39,11 +40,12 @@ export default {
         return response
       }
     }
+    // if no data or need current get content
     if (!found) {
       response.data = {}
       response.data.content = {}
       let res = await apiClient.get('content/countries.json')
-      response.data.content.text = JSON.stringify(res.data)
+      response.data.content.text = res.data
       response.source = 'content'
       return response
     }
@@ -52,12 +54,15 @@ export default {
   async getLanguages(params) {
     var found = false
     var response = {}
+    // for latest get data
     if (params.version != 'current') {
       var contentForm = this.toFormData(params)
       let res = await apiMYSQL.post(
         'ContentApi.php?crud=languages',
         contentForm
       )
+      console.log('getLangauges - data')
+      console.log(res)
       if (res.data.content) {
         found = true
         response = res
@@ -66,11 +71,12 @@ export default {
         return response
       }
     }
+    // if no data or need current get content
     if (!found) {
       response.data = {}
       response.data.content = {}
       let res = await apiClient.get(
-        'content/' + params.country + '/languages.json'
+        'content/' + params.countryCODE + '/languages.json'
       )
       response.data.content.text = res.data
       response.source = 'content'
@@ -81,6 +87,7 @@ export default {
   async getLibrary(params) {
     var found = false
     var response = {}
+    // for latest get data
     if (params.version != 'current') {
       var contentForm = this.toFormData(params)
       let res = await apiMYSQL.post('ContentApi.php?crud=library', contentForm)
@@ -92,27 +99,34 @@ export default {
         return response
       }
     }
+    // if no data or need current get content
     if (!found) {
       response.data = {}
       response.data.content = {}
       let res = await apiClient.get(
-        '/content/' + params.country + '/' + params.language + '/library.json'
+        '/content/' +
+          params.countryCODE +
+          '/' +
+          params.languageISO +
+          '/library.json'
       )
       response.data.content.text = res.data
+      response.source = 'content'
       return response
     }
   },
   async getSeries(params) {
     var found = false
     var response = {}
-    var bound = params.index.indexOf('.json')
-    var indexname = params.index
+    var bound = params.pageFILENAME.indexOf('.json')
+    var indexname = params.pageFILENAME
+    // for latest get data
     if (params.version != 'current') {
       var contentForm = this.toFormData(params)
       if (bound != -1) {
-        indexname = params.index.substr(0, params.index.length - 5)
+        indexname = params.pageFILENAME.substr(0, params.pageFILENAME.length - 5)
       }
-      params.index = indexname
+      params.pageFILENAME = indexname
       response = await apiMYSQL.post('ContentApi.php?crud=series', contentForm)
       if (response.data.content) {
         found = true
@@ -120,20 +134,21 @@ export default {
         return response
       }
     }
+    // if no data or need current get content
     if (!found) {
       response.data = {}
       response.data.content = {}
 
       if (bound == -1) {
-        indexname = params.index + '.json'
+        indexname = params.pageFILENAME + '.json'
       }
       let res = await apiClient.get(
         'content/' +
-          params.country +
+          params.countryCODE +
           '/' +
-          params.language +
+          params.languageISO +
           '/' +
-          params.folder +
+          params.folderNAME +
           '/' +
           indexname
       )
@@ -146,6 +161,7 @@ export default {
     var response = {}
     response.data = {}
     response.data.content = {}
+    // for latest get data
     if (params.version != 'current') {
       var contentForm = this.toFormData(params)
       let response = await apiMYSQL.post(
@@ -158,13 +174,14 @@ export default {
         return response
       }
     }
+    // if no data or need current get content
     if (!found) {
       response.source = 'content'
       let res = await apiClient.get(
         'content/' +
-          params.country +
+          params.countryCODE +
           '/' +
-          params.language +
+          params.languageISO +
           '/' +
           params.folder +
           '/' +
@@ -183,7 +200,6 @@ export default {
     for (var key in obj) {
       form_data.append(key, obj[key])
     }
-    console.log('CONTENT SERVICE -toFormData form_data')
     // Display the key/value pairs
     for (var pair of form_data.entries()) {
       console.log(pair[0] + ', ' + pair[1])

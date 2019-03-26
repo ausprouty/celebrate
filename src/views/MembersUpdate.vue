@@ -228,7 +228,7 @@ export default {
     },
     selectMember(member) {
       this.clickMember = member
-    }
+    },
 
     clearMessage() {
       this.errorMessage = ''
