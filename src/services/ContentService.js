@@ -174,9 +174,9 @@ export default {
           '/' +
           params.languageISO +
           '/' +
-          params.folder +
+          params.folderNAME +
           '/' +
-          params.page +
+          params.fileFILENAME +
           '.html'
       )
       response.data.content.text = res.data

@@ -39,10 +39,10 @@ export default {
 
     switch (route.test) {
       case 'page':
-        route.pageFILENAME = 'basics106'
+        route.fileFILENAME = 'basics106'
         // eslint-disable-next-line no-fallthrough
       case 'series':
-        route.pageFILENAME = 'issues-chapters'
+        route.fileFILENAME = 'principles'
         route.folderNAME = 'myfriends'
       // eslint-disable-next-line no-fallthrough
       case 'library':

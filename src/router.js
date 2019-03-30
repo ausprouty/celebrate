@@ -32,6 +32,7 @@ import MembersUpdate from './views/MembersUpdate.vue'
 
 import TestBookmark from './views/TestBookmark.vue'
 import TestContent from './views/TestContent.vue'
+import TestMixin from './views/TestMixin.vue'
 
 import NotFoundComponent from './views/NotFound.vue'
 
@@ -123,7 +124,8 @@ export default new Router({
       props: true
     },
     {
-      path: '/preview/page/:countryCODE/:languageISO/:folderNAME/:fileFILENAME',
+      path:
+        '/preview/page/:countryCODE/:languageISO/:folderNAME/:fileFILENAME/:seriesNAME',
       name: 'previewPage',
       component: PagePreview,
       props: true
@@ -161,6 +163,12 @@ export default new Router({
       path: '/test/content',
       name: 'testContent',
       component: TestContent,
+      props: false
+    },
+    {
+      path: '/test/mixin',
+      name: 'testMixin',
+      component: TestMixin,
       props: false
     },
 

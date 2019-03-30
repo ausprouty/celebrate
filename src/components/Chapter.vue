@@ -2,8 +2,8 @@
   <div class="app-link" v-on:click="showPage(chapter)">
     <div class="app-card -shadow">
       <div class="chapter">
-        <div v-if = chapter.count class="chapter-title">{{chapter.count}}. {{chapter.title}}</div>
-         <div v-else class="chapter-title">{{chapter.title}}</div>
+        <div v-if="chapter.count" class="chapter-title">{{chapter.count}}. {{chapter.title}}</div>
+        <div v-else class="chapter-title">{{chapter.title}}</div>
         <div class="chapter-description">{{chapter.description}}</div>
       </div>
     </div>
@@ -19,12 +19,14 @@ export default {
   computed: mapState(['bookmark', 'appDir']),
   methods: {
     showPage: function(chapter) {
+      console.log ('chapter')
+      console.log (chapter)
       localStorage.setItem('lastPage', 'language/' + this.chapter.filename)
       var params = {
-        countryCODE: this.bookmark.country.code,
-        languageISO: this.bookmark.language.iso,
-        bookNAME: this.bookmark.book.book,
-        pageFILENAME: this.chapter.filename
+        countryCODE:  this.$route.params.countryCODE,
+        languageISO: this.$route.params.languageISO,
+        folderNAME: this.$route.params.folderNAME,
+        fileFILENAME: this.chapter.filename
       }
       console.log(params)
       this.$router.push({

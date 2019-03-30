@@ -36,34 +36,9 @@ export default new Vuex.Store({
       filename: '',
       text: ''
     },
-    bookmark: {
-      country: {
-        code: '',
-        english: '',
-        name: '',
-        index: '',
-        image: ''
-      },
-      language: {
-        id: 1,
-        folder: '',
-        iso: '',
-        name: '',
-        bible: '',
-        life_issues: '',
-        image_dir: '',
-        nt: '',
-        ot: '',
-        rldir: ''
-      },
-      library: [],
-      series: {
-        series: '',
-        language: '',
-        description: 'T',
-        chapters: []
-      }
-    }
+    bookmark: localStorage.getItem('bookmark')
+      ? JSON.parse(localStorage.getItem('bookmark'))
+      : {}
   },
   mutations: {
     NEW_BOOKMARK(state, value) {
@@ -94,45 +69,20 @@ export default new Vuex.Store({
     },
     UNSET_BOOKMARK(state, [mark]) {
       switch (mark) {
-        case 'country':
-          state.bookmark.country = {
-            code: 'au',
-            english: 'Ausrtalia',
-            name: 'Australia',
-            index: 'au',
-            image: 'tr'
-          }
-          break
         case 'language':
-          state.bookmark.language = {
-            id: '',
-            folder: '',
-            iso: '',
-            name: '',
-            bible: '',
-            life_issues: '',
-            image_dir: '',
-            nt: '',
-            ot: '',
-            rldir: ''
-          }
+          state.bookmark.language = undefined
           break
         case 'library':
-          state.bookmark.library = []
+          state.bookmark.library = undefined
           break
         case 'book':
-          state.bookmark.book = []
+          state.bookmark.book = undefined
           break
         case 'series':
-          state.bookmark.series = {
-            series: '',
-            language: '',
-            description: 'T',
-            chapters: []
-          }
+          state.bookmark.series = undefined
           break
         case 'page':
-          state.bookmark.page = ''
+          state.bookmark.page = undefined
           break
       }
     }
@@ -147,26 +97,34 @@ export default new Vuex.Store({
       commit('SET_BOOKMARK', [mark, value])
     },
     async checkBookmark({ dispatch, commit }, route) {
-      console.log('BOOKMARK SERVICE started')
-      var bm = this.state.bookmark
-      console.log(bm)
-      try {
-        await this.CheckBookmarkCountry({ commit }, route)
-        await this.CheckBookmarkLanguageLibrary({ commit }, route)
-        await this.CheckBookmarkSeries({ commit }, route)
-        await this.CheckBookmarkBook({ commit }, route)
-        await this.CheckBookmarkPage({ commit }, route)
-        console.log(this.state.bookmark)
-        console.log('BOOKMARK SERVICE --    FINISHED BOOKMARK')
-        localStorage.setItem('bookmark', JSON.stringify(this.state.bookmark))
-        return this.state.bookmark
-      } catch (error) {
-        console.log(
-          'BOOKMARK SERVICE -- There was an error setting bookmarks:',
-          error
-        ) // Logs out the error
-        this.error = error.toString()
-      }
+      console.log('STORE - BOOKMARK    route is')
+      console.log(route)
+      dispatch('CheckBookmarkCountry', route)
+        .then(() => {
+          dispatch('CheckBookmarkLanguageLibrary', route)
+        })
+        .then(() => {
+          dispatch('CheckBookmarkSeries', route)
+        })
+        .then(() => {
+          dispatch('CheckBookmarkBook', route)
+        })
+        .then(() => {
+          dispatch('CheckBookmarkPage', route)
+        })
+        .then(() => {
+          console.log(this.state.bookmark)
+          console.log('STORE - BOOKMARK    FINISHED BOOKMARK')
+          localStorage.setItem('bookmark', JSON.stringify(this.state.bookmark))
+          return this.state.bookmark
+        })
+        .catch(error => {
+          console.log(
+            'STORE - BOOKMARK There was an error setting bookmarks:',
+            error.response
+          ) // Logs out the error
+          this.error = error.toString()
+        })
     },
     async CheckBookmarkCountry({ commit }, route) {
       if (!route.countryCODE) {
@@ -423,11 +381,6 @@ update book and erase all bookmark below*/
         console.log('STORE - BOOKMARK   UNSET PAGE')
         return null
       }
-    }
-  },
-  getters: {
-    getBookmark: state => {
-      return state.bookmark
     }
   }
 })
