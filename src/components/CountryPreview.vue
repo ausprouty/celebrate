@@ -14,7 +14,10 @@
 <script>
 import ContentService from '@/services/ContentService.js'
 import { mapState } from 'vuex'
+import { countriesMixin } from '@/mixins/CountriesMixin.js'
+
 export default {
+  mixins: [countriesMixin],
   props: {
     country: Object
   },
@@ -24,46 +27,7 @@ export default {
       bMark: this.$store.state.bookmark
     }
   },
-  computed: mapState(['bookmark', 'appDir']),
-  methods: {
-    showPage: function(country) {
-      var ref = this
-      localStorage.setItem('lastPage', 'countries')
-      ContentService.getLanguages(country.code, 'latest').then(res => {
-        console.log(
-          'COUNTRY PREVIEW - response from getLanguages for ' + country.code
-        )
-        console.log(res) // For now, logs out the response
-
-        var response = JSON.parse(res.data.content.text)
-        console.log('COUNTRY PREVIEW - response after parse')
-        console.log(response)
-        console.log('COUNTRY PREVIEW - length is ' + response.length)
-        if (response.length === 1) {
-          var language = response[0]
-          //     console.log('COUNTRY PREVIEW - language is ')
-          //    console.log(language)
-          ref.$store
-            .dispatch('updateBookmark', ['language', language])
-            .then(responseUnused => {
-              //         console.log('COUNTRY PREVIEW - language_iso is ' + language.iso)
-              ref.$router.push({
-                name: 'previewLibrary',
-                params: {
-                  countryCODE: country.code,
-                  languageISO: language.iso
-                }
-              })
-            })
-        } else {
-          ref.$router.push({
-            name: 'previewLanguages',
-            params: { countryCODE: country.code }
-          })
-        }
-      })
-    }
-  }
+  computed: mapState(['bookmark', 'appDir'])
 }
 </script>
 

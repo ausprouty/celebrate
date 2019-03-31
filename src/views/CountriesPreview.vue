@@ -16,13 +16,12 @@
 <script>
 import { mapState } from 'vuex'
 import NavBar from '@/components/NavBarAdmin.vue'
-import ContentService from '@/services/ContentService.js'
 import Country from '@/components/CountryPreview.vue'
 import { bookMarkMixin } from '@/mixins/BookmarkMixin.js'
-import { countryMixin } from '@/mixins/CountryMixin.js'
+import { countriesMixin } from '@/mixins/CountriesMixin.js'
 
 export default {
-  mixins: [bookMarkMixin, countryMixin],
+  mixins: [bookMarkMixin, countriesMixin],
   components: {
     Country,
     NavBar

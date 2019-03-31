@@ -24,8 +24,9 @@ import NavBar from '@/components/NavBarAdmin.vue'
 import ContentService from '@/services/ContentService.js'
 import { mapState } from 'vuex'
 import { bookMarkMixin } from '@/mixins/BookmarkMixin.js'
+import { languageMixin } from '@/mixins/LanguageMixin.js'
 export default {
-  mixins: [bookMarkMixin],
+  mixins: [bookMarkMixin, languageMixin],
   props: ['countryCODE'],
   components: {
     Language,
@@ -74,29 +75,13 @@ export default {
   },
   beforeCreate() {
     this.$route.params.version = 'latest'
-    this.$store.dispatch('checkBookmark', this.$route.params)
   },
-  created() {
-    this.error = this.loaded = null
-    this.loading = true
-    var ref = this
-
-    ContentService.getLanguages( this.$route.params)
-      .then(response => {
-        console.log('LANGUAGES PREVIEW -  response data')
-        console.log(response)
-        if (response.data.content.text) {
-          console.log('LANGUAGES PREVIEW -  response.content.text exists')
-          this.languages = JSON.parse(response.data.content.text)
-        } else {
-          this.languages = response.data
-        }
-        this.loaded = true
-        this.loading = false
-      })
-      .catch(() => {
-        console.log('There was a problem finding language')
-      })
+  async created() {
+    try {
+      this.getLanguages()
+    } catch (error) {
+      console.log('There was an error in LanguagesEdit.vue:', error) // Logs out the error
+    }
   }
 }
 </script>

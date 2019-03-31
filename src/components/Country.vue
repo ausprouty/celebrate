@@ -13,8 +13,10 @@
 
 <script>
 import { mapState } from 'vuex'
-import ContentService from '@/services/ContentService.js'
+import { countriesMixin } from '@/mixins/CountriesMixin.js'
+
 export default {
+  mixins: [countriesMixin],
   props: {
     country: Object
   },
@@ -24,38 +26,7 @@ export default {
       bMark: this.$store.state.bookmark
     }
   },
-  computed: mapState(['bookmark', 'appDir']),
-  methods: {
-    showPage: function(country) {
-      this.$route.params.countryCODE = country.code
-      localStorage.setItem('lastPage', 'countries')
-      ContentService.getLanguages(this.$route.params).then(response => {
-        console.log(
-          'COUNTRY VIEW - response from getLanguages for ' + country.code
-        )
-        console.log(response.data) // For now, logs out the response
-        console.log('COUNTRY VIEW - length is ' + response.data.length)
-        this.languages = response.data
-        if (response.data.length === 1) {
-          var language = response.data[0]
-          //    console.log('COUNTRY VIEW - language is ')
-          //    console.log(language)
-          this.$router.push({
-            name: 'library',
-            params: {
-              countryCODE: this.$route.params.countryCODE,
-              languageISO: language
-            }
-          })
-        } else {
-          this.$router.push({
-            name: 'languages',
-            params: { countryCODE: this.$route.params.countryCODE }
-          })
-        }
-      })
-    }
-  }
+  computed: mapState(['bookmark', 'appDir'])
 }
 </script>
 

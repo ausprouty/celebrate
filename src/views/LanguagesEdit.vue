@@ -57,8 +57,9 @@ import NavBar from '@/components/NavBarAdmin.vue'
 import ContentService from '@/services/ContentService.js'
 import { mapState } from 'vuex'
 import { bookMarkMixin } from '@/mixins/BookmarkMixin.js'
+import { languageMixin } from '@/mixins/LanguageMixin.js'
 export default {
-  mixins: [bookMarkMixin],
+  mixins: [bookMarkMixin, languageMixin],
   props: ['countryCODE'],
   components: {
     NavBar
@@ -140,32 +141,13 @@ export default {
   },
   beforeCreate() {
     this.$route.params.version = 'latest'
-    this.$store.dispatch('checkBookmark', this.$route.params)
   },
-  created() {
-    /* Update bookmark based on this route (for people to select URL from another source)
-       Bookmark stores current Country and all specialized info for that country
-      If there is only one language for this country we then go back to country
-    */
-    this.error = this.loaded = null
-    this.loading = true
-    this.languages = []
-    ContentService.getLanguages(this.$route.params)
-      .then(response => {
-        console.log('LANGUAGES SORT -  response data')
-        console.log(response)
-        if (response.content.text) {
-          console.log('LANGUAGES SORT -  response.content.text exists')
-          this.languages = JSON.parse(response.content.text)
-        } else {
-          this.languages = response.data
-        }
-        this.loaded = true
-        this.loading = false
-      })
-      .catch(() => {
-        console.log('There was a problem finding language')
-      })
+  async created() {
+    try {
+      this.getLanguages()
+    } catch (error) {
+      console.log('There was an error in LanguagesEdit.vue:', error) // Logs out the error
+    }
   }
 }
 </script>

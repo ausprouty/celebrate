@@ -1,17 +1,19 @@
 import ContentService from '@/services/ContentService.js'
-export const countryMixin = {
+export const libraryMixin = {
   methods: {
-    async getCountries() {
+    async getLibrary() {
       try {
         this.error = this.loaded = null
         this.loading = true
         this.countries = []
         await this.CheckBookmarks(this.$route.params)
-        var response = await ContentService.getCountries(this.$route.params)
+        var response = await ContentService.getLibrary(this.$route.params)
         console.log('Page View Data obtained')
-        this.countries = response.data.content.text
+        this.library = response.data.content.text
+        this.loaded = true
+        this.loading = false
       } catch (error) {
-        console.log('There was an error in Countries.vue:', error) // Logs out the error
+        console.log('There was an error in LibraryMixin:', error) // Logs out the error
       }
     }
   }

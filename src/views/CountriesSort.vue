@@ -28,9 +28,9 @@ import ContentService from '@/services/ContentService.js'
 import draggable from 'vuedraggable'
 import { mapState } from 'vuex'
 import { bookMarkMixin } from '@/mixins/BookmarkMixin.js'
-import { countryMixin } from '@/mixins/CountryMixin.js'
+import { countriesMixin } from '@/mixins/CountriesMixin.js'
 export default {
-  mixins: [bookMarkMixin, countryMixin],
+  mixins: [bookMarkMixin, countriesMixin],
   components: {
     NavBar,
     draggable
