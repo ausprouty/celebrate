@@ -15,7 +15,10 @@ import { mapState } from 'vuex'
 import NavBar from '@/components/NavBarFront.vue'
 import Country from '@/components/Country.vue'
 import ContentService from '@/services/ContentService.js'
+import { bookMarkMixin } from '@/mixins/BookmarkMixin.js'
 export default {
+  mixins: [bookMarkMixin],
+
   components: {
     Country,
     NavBar
@@ -27,18 +30,16 @@ export default {
     }
   },
   beforeCreate() {
-    this.$route.params.version = 'current'
-    this.$store.dispatch('newBookmark')
+    this.$route.params.version = 'latest'
   },
-  created() {
-    ContentService.getCountries(this.$route.params)
-      .then(response => {
-        console.log(response.data.content.text) // For now, logs out the response
-        this.countries = response.data.content.text
-      })
-      .catch(error => {
-        console.log('There was an error in Countries.vue:', error.response) // Logs out the error
-      })
+  async created() {
+    try {
+      await this.CheckBookmarks(this.$route.params)
+      var response = await ContentService.getCountries(this.$route.params)
+      this.countries = response.data.content.text
+    } catch (error) {
+      console.log('There was an error in Countries.vue:', error) // Logs out the error
+    }
   }
 }
 </script>

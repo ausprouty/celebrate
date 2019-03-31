@@ -6,29 +6,7 @@ Vue.use(Vuex)
 
 export const bookMarkMixin = {
   computed: mapState(['bookmark', 'standard']),
-  async createdx() {
-    var route = this.$route.params
-    console.log('BOOKMARK SERVICE started')
-    var bm = this.bookmark
-    console.log(bm)
-    try {
-      await this.CheckBookmarkCountry(route)
-      await this.CheckBookmarkLanguageLibrary(route)
-      await this.CheckBookmarkSeries(route)
-      await this.CheckBookmarkBook(route)
-      await this.CheckBookmarkPage(route)
-      console.log(this.bookmark)
-      console.log('BOOKMARK SERVICE --    FINISHED BOOKMARK')
-      localStorage.setItem('bookmark', JSON.stringify(this.bookmark))
-      return this.bookmark
-    } catch (error) {
-      console.log(
-        'BOOKMARK SERVICE -- There was an error setting bookmarks:',
-        error
-      ) // Logs out the error
-      this.error = error.toString()
-    }
-  },
+
   methods: {
     async CheckBookmarks(route) {
       console.log('BOOKMARK SERVICE started')

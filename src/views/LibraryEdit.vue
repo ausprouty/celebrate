@@ -77,7 +77,9 @@
 import NavBar from '@/components/NavBarAdmin.vue'
 import ContentService from '@/services/ContentService.js'
 import { mapState } from 'vuex'
+import { bookMarkMixin } from '@/mixins/BookmarkMixin.js'
 export default {
+  mixins: [bookMarkMixin],
   components: {
     NavBar
   },

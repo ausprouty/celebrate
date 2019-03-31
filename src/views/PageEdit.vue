@@ -38,7 +38,9 @@ import ContentService from '@/services/ContentService.js'
 import NavBar from '@/components/NavBarAdmin.vue'
 import './ckeditor/index.js'
 import VueCkeditor from 'vueckeditor'
+import { bookMarkMixin } from '@/mixins/BookmarkMixin.js'
 export default {
+  mixins: [bookMarkMixin],
   props: ['countryCODE', 'languageISO', 'folderNAME', 'fileFILENAME'],
   components: {
     NavBar,

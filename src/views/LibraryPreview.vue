@@ -25,7 +25,9 @@ import Book from '@/components/BookPreview.vue'
 import { mapState } from 'vuex'
 import NavBar from '@/components/NavBarAdmin.vue'
 import ContentService from '@/services/ContentService.js'
+import { bookMarkMixin } from '@/mixins/BookmarkMixin.js'
 export default {
+  mixins: [bookMarkMixin],
   props: ['countryCODE', 'languageISO'],
   computed: mapState(['bookmark', 'appDir', 'cssURL', 'standard']),
   components: {

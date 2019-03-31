@@ -20,7 +20,9 @@ import Language from '@/components/Language.vue'
 import NavBar from '@/components/NavBarHamburger.vue'
 import ContentService from '@/services/ContentService.js'
 import { mapState } from 'vuex'
+import { bookMarkMixin } from '@/mixins/BookmarkMixin.js'
 export default {
+  mixins: [bookMarkMixin],
   props: ['countryCODE'],
   components: {
     Language,

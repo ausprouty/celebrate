@@ -61,7 +61,10 @@
 import NavBar from '@/components/NavBarAdmin.vue'
 import ContentService from '@/services/ContentService.js'
 import { mapState } from 'vuex'
+import { bookMarkMixin } from '@/mixins/BookmarkMixin.js'
+import { countryMixin } from '@/mixins/CountryMixin.js'
 export default {
+  mixins: [bookMarkMixin, countryMixin],
   components: {
     NavBar
   },
@@ -128,53 +131,17 @@ export default {
           })
         }
       })
-    },
-    getCountries() {
-      this.error = this.loaded = null
-      this.loading = true
-      this.countries = []
-      var ref = this
-      console.log('about to get countries ')
-      ContentService.getCountries(this.$route.params)
-        .then(response => {
-          console.log('response')
-          console.log(response.data)
-          if (response.data.content == 'none') {
-            ContentService.getCountries().then(response => {
-              console.log('lookig for old data')
-              ref.countries = response.data
-              ref.loaded = true
-              ref.loading = false
-            })
-          } else {
-            ref.content.recnum = ''
-            ref.content.version = ''
-            ref.content.publish_uid = ''
-            ref.content.publish_date = ''
-            ref.content.language_iso = ''
-            ref.content.country_iso = ''
-            ref.content.folder = ''
-            ref.content.filetype = 'json'
-            ref.content.title = ''
-            ref.content.filename = 'countries'
-            ref.content.countries = JSON.parse(response.data.content.text)
-            ref.loaded = true
-            ref.loading = false
-            this.countries = ref.content.countries
-            console.log(ref.content.countries)
-          }
-        })
-        .catch(() => {
-          console.log('There was a problem finding countries in ')
-        })
     }
   },
   beforeCreate() {
     this.$route.params.version = 'latest'
-    this.$store.dispatch('checkBookmark', this.$route.params)
   },
-  created() {
-    this.getCountries()
+  async created() {
+    try {
+      this.getCountries()
+    } catch (error) {
+      console.log('There was an error in CountriesEdit.vue:', error) // Logs out the error
+    }
   }
 }
 </script>

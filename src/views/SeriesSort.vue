@@ -37,7 +37,9 @@ import { mapState } from 'vuex'
 import ContentService from '@/services/ContentService.js'
 import NavBar from '@/components/NavBarAdmin.vue'
 import draggable from 'vuedraggable'
+import { bookMarkMixin } from '@/mixins/BookmarkMixin.js'
 export default {
+  mixins: [bookMarkMixin],
   props: ['countryCODE', 'languageISO', 'folderNAME', 'fileFILENAME'],
   computed: mapState(['bookmark', 'appDir']),
   components: {

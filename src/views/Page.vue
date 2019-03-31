@@ -30,12 +30,10 @@
 <script>
 import { mapState } from 'vuex'
 import ContentService from '@/services/ContentService.js'
-//import BookmarkService from '@/services/BookmarkService.vue'
-import { versionLatestMixin } from '@/mixins/VersionLatestMixin.js'
-import { bookMarkMixin } from '@/mixins/BookmarkMixin.js'
 import NavBar from '@/components/NavBarBack.vue'
+import { bookMarkMixin } from '@/mixins/BookmarkMixin.js'
 export default {
-  mixins: [versionLatestMixin, bookMarkMixin],
+  mixins: [bookMarkMixin],
   props: ['countryCODE', 'languageISO', 'folderNAME', 'fileFILENAME'],
   components: {
     NavBar
@@ -59,15 +57,10 @@ export default {
       let ref = this
       this.$route.params.version = 'current'
       this.$route.params.page = this.$route.params.fileFILENAME
-
-    //  await this.CheckBookmarkCountry(this.$route.params)
-    //  await this.CheckBookmarkLanguageLibrary(this.$route.params)
-    //  await this.CheckBookmarkSeries(this.$route.params)
-    //  await this.CheckBookmarkBook(this.$route.params)
-    //  await this.CheckBookmarkPage(this.$route.params)
+      await this.CheckBookmarks(this.$route.params)
       console.log(this.bookmark)
       console.log('BOOKMARK SERVICE --    FINISHED BOOKMARK')
-      localStorage.setItem('bookmark', JSON.stringify(this.state.bookmark))
+      localStorage.setItem('bookmark', JSON.stringify(this.bookmark))
       // Logs out the
       //var bm = await this.$store.dispatch('checkBookmark', this.$route)
       console.log(bm)

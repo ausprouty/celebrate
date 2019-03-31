@@ -3,11 +3,10 @@
 </template>
 <script>
 import { mapState } from 'vuex'
-import { versionLatestMixin } from '@/mixins/VersionLatestMixin.js'
 import { bookMarkMixin } from '@/mixins/BookmarkMixin.js'
 import NavBar from '@/components/NavBarBack.vue'
 export default {
-  mixins: [versionLatestMixin, bookMarkMixin],
+  mixins: [bookMarkMixin],
   props: ['countryCODE', 'languageISO', 'folderNAME', 'fileFILENAME'],
   components: {
     NavBar
