@@ -22,11 +22,11 @@ export default {
       localStorage.setItem('lastPage', 'language/' + this.chapter.filename)
       this.$router.push({
         name: 'previewPage',
-        params: {
-          countryCODE: this.bookmark.country.code,
-          languageISO: this.bookmark.language.iso,
-          bookNAME: this.bookmark.book.book,
-          pageFILENAME: this.chapter.filename
+        parameter: {
+          countryCODE: this.$route.params.countryCODE,
+          languageISO: this.$route.params.languageISO,
+          folderNAME: this.bookmark.book.folder,
+          fileFILENAME: chapter.filename
         }
       })
     }

@@ -51,46 +51,14 @@ export default {
       style: null
     }
   },
-  
+  beforeCreate() {
+    this.$route.params.version = 'current'
+  },
   async created() {
     try {
-      let ref = this
-      this.$route.params.version = 'current'
-      this.$route.params.page = this.$route.params.fileFILENAME
-      await this.CheckBookmarks(this.$route.params)
-      console.log(this.bookmark)
-      console.log('BOOKMARK SERVICE --    FINISHED BOOKMARK')
-      localStorage.setItem('bookmark', JSON.stringify(this.bookmark))
-      // Logs out the
-      //var bm = await this.$store.dispatch('checkBookmark', this.$route)
-      console.log(bm)
-      console.log('PAGE VUE created has started')
-      this.error = this.loaded = null
-      this.loading = true
-      console.log('this.standard')
-      console.log(this.standard)
-      this.image_dir = this.standard.image_dir
-      if (this.bookmark.language) {
-        this.image_dir = this.bookmark.language.image_dir
-      }
-      this.image = this.standard.image
-      this.style = this.standard.style
-      if (this.bookmark.book) {
-        this.image = this.bookmark.book.image
-        this.style = this.bookmark.book.style
-      }
-      this.book_image = this.appDir.library + this.image_dir + '/' + this.image
-
-      var response = await ContentService.getPage(this.$route.params)
-      console.log('PAGE VUE - response.data')
-      console.log(response.data)
-      ref.pageText = response.data
-      ref.loading = false
-      ref.loaded = true
+      this.getSeries(this.$route.params)
     } catch (error) {
-      this.loading = false
-      console.log('PAGE VUE - There was an error:', error) // Logs out the error
-      this.error = error.toString()
+      console.log('There was an error in Page.vue:', error) // Logs out the error
     }
   }
 }

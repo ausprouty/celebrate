@@ -19,18 +19,15 @@ export default {
   computed: mapState(['bookmark', 'appDir']),
   methods: {
     showPage: function(chapter) {
-      console.log('chapter')
-      console.log(chapter)
       localStorage.setItem('lastPage', 'language/' + this.chapter.filename)
-      var p = {
-        countryCODE: this.$route.params.countryCODE,
-        languageISO: this.$route.params.languageISO,
-        seriesNAME: this.book.book
-      }
-      console.log(p)
       this.$router.push({
         name: 'page',
-        p
+        parameter: {
+          countryCODE: this.$route.params.countryCODE,
+          languageISO: this.$route.params.languageISO,
+          folderNAME: this.bookmark.book.folder,
+          fileFILENAME: chapter.filename
+        }
       })
     }
   }

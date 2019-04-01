@@ -70,46 +70,13 @@ export default {
   },
   beforeCreate() {
     this.$route.params.version = 'latest'
-    this.$store.dispatch('checkBookmark', this.$route.params)
   },
-  created() {
-    console.log('I am in Page.Vue')
-    this.error = this.loaded = null
-    this.loading = true
-    var route = {}
-    route.country = this.countryCODE
-    route.language = this.languageISO
-    route.book = this.bookNAME
-    route.series = this.bookNAME
-    route.page = this.pageFILENAME
-    route.version = 'latest'
-    this.$store.dispatch('checkBookmark', route)
-    var ref = this
-    ContentService.getPage(
-      this.countryCODE,
-      this.languageISO,
-      this.bookmark.book.folder,
-      this.pageFILENAME,
-      route.version
-    )
-      .then(response => {
-        console.log('PAGE PREVIEW - response from getPage')
-        console.log(response)
-        if (!response.data.content.text) {
-          ref.pageText = response.data
-        } else {
-          console.log('PAGE PREVIEW - Text is from DATA')
-          console.log(response.data.content.text)
-          ref.pageText = response.data.content.text
-        }
-        ref.loading = false
-        ref.loaded = true
-      })
-      .catch(error => {
-        ref.loading = false
-        console.log('There was an error in PagePreview:', error.response) // Logs out the error
-        ref.error = error.toString()
-      })
+  async created() {
+    try {
+      this.getSeries(this.$route.params)
+    } catch (error) {
+      console.log('There was an error in Page.vue:', error) // Logs out the error
+    }
   }
 }
 </script>

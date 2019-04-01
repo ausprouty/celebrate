@@ -30,10 +30,6 @@ import Members from './views/Members.vue'
 import MembersAdd from './views/MembersAdd.vue'
 import MembersUpdate from './views/MembersUpdate.vue'
 
-import TestBookmark from './views/TestBookmark.vue'
-import TestContent from './views/TestContent.vue'
-import TestMixin from './views/TestMixin.vue'
-
 import NotFoundComponent from './views/NotFound.vue'
 
 Vue.use(Router)
@@ -59,7 +55,7 @@ export default new Router({
       props: true
     },
     {
-      path: 'series/:countryCODE/:languageISO/:seriesNAME',
+      path: '/series/:countryCODE/:languageISO/:seriesNAME',
       name: 'series',
       component: Series,
       props: true
@@ -151,25 +147,6 @@ export default new Router({
       component: SeriesSort,
       props: true
     },
-    {
-      path: '/test/bookmark',
-      name: 'testBookmark',
-      component: TestBookmark,
-      props: false
-    },
-    {
-      path: '/test/content',
-      name: 'testContent',
-      component: TestContent,
-      props: false
-    },
-    {
-      path: '/test/mixin',
-      name: 'testMixin',
-      component: TestMixin,
-      props: false
-    },
-
     {
       path: '/users',
       name: 'users',

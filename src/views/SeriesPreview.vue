@@ -15,8 +15,8 @@
             >
           </div>
         </div>
-        <h1>{{bookmark.book.title}}</h1>
-        <div v-if="this.bookmark.series.description">{{this.bookmark.series.description}}</div>
+        <h2>{{bookmark.book.title}}</h2>
+        <div v-if="this.description">{{this.description}}</div><br><br>
 
         <Chapter v-for="chapter in chapters" :key="chapter.id" :chapter="chapter"/>
         <div class="version">

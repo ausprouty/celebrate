@@ -34,7 +34,7 @@ export default {
       console.log(book)
       localStorage.setItem('lastPage', 'library/country/language')
       if (book.format == 'series') {
-        console.log('this is a series')
+        console.log('BOOK - this is a series')
         this.$router.push({
           name: 'series',
           params: {
@@ -44,7 +44,7 @@ export default {
           }
         })
       } else {
-        console.log('this is a NOT a series')
+        console.log('BOOK - this is a NOT a series')
         this.$router.push({
           name: 'page',
           params: {

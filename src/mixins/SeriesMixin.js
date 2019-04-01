@@ -8,7 +8,7 @@ export const seriesMixin = {
         console.log(params)
         this.error = this.loaded = null
         this.loading = true
-        await this.CheckBookmarks(this.$route.params)
+        await this.CheckBookmarks(params)
         params.folderNAME = this.bookmark.book.folder
         params.fileFILENAME = this.bookmark.book.index
         console.log('params')
