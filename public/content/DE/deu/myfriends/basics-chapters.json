@@ -1,0 +1,85 @@
+{		
+	"series" :"basics",
+	"language" : "deu",
+	"description":"",
+	"chapters": [
+	{"id": 1,
+		"title": "Der Garten",
+		"desciption": "",
+		"count": 1,
+		"filename": "basics101"
+	},
+	{"id": 2,
+		"title": "Die Wahl",
+		"desciption": "",
+		"count": 2,
+		"filename": "basics102"
+	},
+	{"id": 3,
+		"title": "Die Flut",
+		"desciption": "",
+		"count": 3,
+		"filename": "basics103"
+	},
+	{"id": 4,
+		"title": "Zehn Dinge",
+		"desciption": "",
+		"count": 4,
+		"filename": "basics104"
+	},
+	{"id": 5,
+		"title": "Ein neuer Bund",
+		"desciption": "",
+		"count": 5,
+		"filename": "basics105"
+	},
+	{"id": 6,
+		"title": "Der Diener",
+		"desciption": "",
+		"count": 6,
+		"filename": "basics106"
+	},
+	{"id": 7,
+		"title": "Ein Video",
+		"desciption": "",
+		"count": 7,
+		"filename": "basics107"
+	},
+	{"id": 8,
+		"title": "Mit Gott Sprechen",
+		"desciption": "",
+		"count": 8,
+		"filename": "basics108"
+	},
+	{"id": 9,
+		"title": "Weise oder töricht?",
+		"desciption": "",
+		"count": 9,
+		"filename": "basics109"
+	},
+	{"id": 10,
+		"title": "Neues Leben",
+		"desciption": "",
+		"count": 10,
+		"filename": "basics110"
+	},
+	{"id": 11,
+		"title": "Gott kennenlernen",
+		"desciption": "",
+		"count": "",
+		"filename": "gospel"
+	},
+	{"id": 12,
+		"title": "Entscheidungen feiern",
+		"desciption": "",
+		"count": "",
+		"filename": "celebrate"
+	},
+	{"id": 13,
+		"title": "Family leben",
+		"desciption": "",
+		"count": "",
+		"filename": "community"
+	}
+  ]
+}

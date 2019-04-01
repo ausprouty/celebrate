@@ -1,0 +1,52 @@
+{		
+	"series" :"principles",
+	"language" : "deu",
+	"css" : "myfriends.css",
+	"version": "1.01",
+	"description":"Hier findest du eine Übersicht von Themen, die dir und deinen Freunden helfen soll herauszufinden, was Gott zu Alltagthemen sagt. Wähle diese Themen aus, die dich am meisten interessieren und plane 15 bis 30 Minuten Diskussionszeit mit deinen Freunden ein.",
+	"chapters": [
+		
+		{"id": 1,
+			"title" :  "HÖRT MICH GOTT? ",
+			"description" :"",
+			"verses" : "Matthäus 7, 7-11",
+			"count": 1,
+			"filename" : "principle201"
+		},
+		{"id": 2,
+			"title" :  "NEUANFANG ",
+			"description" :"",
+			"verses" : "Lukas 19, 1-10",
+			"count": 2,
+			"filename" : "principle202"
+		},
+		{"id": 3,
+			"title" :  "FOKUSSIERT LEBEN ",
+			"description" :"",
+			"verses" : "Matthäus 22, 34-37",
+			"count": 3,
+			"filename" : "principle203"
+		},
+		{"id": 4,
+			"title" :  "EIN BEDEUTUNGSVOLLES LEBEN",
+			"description" :"",
+			"verses" : "Johannes 7, 37-39",
+			"count": 4,
+			"filename" : "principle204"
+		},
+		{"id": 5,
+			"title" :  "SORGENFREI ",
+			"description" :"",
+			"verses" : "Matthäus 6, 24-33",
+			"count": 5,
+			"filename" : "principle205"
+		},
+		{"id": 6,
+			"title" :  "MEHR ALS GENUG ",
+			"description" :"",
+			"verses" : "Markus 6, 34-44",
+			"count": 6,
+			"filename" : "principle206"
+		}
+]
+}
