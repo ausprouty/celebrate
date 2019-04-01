@@ -1,7 +1,7 @@
 <template>
   <div>
     <NavBar/>
-    <div class="loading" v-if="loadinG">Loading...</div>
+    <div class="loading" v-if="loading">Loading...</div>
     <div class="error" v-if="error">There was an error...</div>
     <div class="content" v-if="loaded">
       <div v-bind:class="this.dir">
@@ -14,8 +14,8 @@
             >
           </div>
         </div>
-        <h1>{{bookmark.book.title}}</h1>
-        <div v-if="this.seriesDetails.description">{{this.seriesDetails.description}}</div>
+        <h2>{{this.bookmark.book.title}}</h2>
+        <div v-if="this.description">{{this.description}}</div>
 
         <Chapter v-for="chapter in chapters" :key="chapter.id" :chapter="chapter"/>
         <div class="version">
@@ -32,8 +32,9 @@ import Chapter from '@/components/Chapter.vue'
 import ContentService from '@/services/ContentService.js'
 import NavBar from '@/components/NavBarBack.vue'
 import { bookMarkMixin } from '@/mixins/BookmarkMixin.js'
+import { seriesMixin } from '@/mixins/SeriesMixin.js'
 export default {
-  mixins: [bookMarkMixin],
+  mixins: [bookMarkMixin, seriesMixin],
   props: ['countryCODE', 'languageISO', 'folderNAME', 'fileFILENAME'],
   computed: mapState(['bookmark', 'appDir']),
   components: {
@@ -56,8 +57,8 @@ export default {
           filename: ''
         }
       ],
+      description: '',
       dir: 'ltr',
-      loadinG: false,
       loading: false,
       loaded: null,
       error: null
@@ -65,32 +66,13 @@ export default {
   },
   beforeCreate() {
     this.$route.params.version = 'current'
-    this.$route.params.book = this.$route.params.fileFILENAME
-    this.$route.params.series = this.$route.params.fileFILENAME
-    this.$store.dispatch('checkBookmark', this.$route.params)
   },
-
-  created() {
-    this.error = this.loaded = null
-    this.loading = true
-    var ref = this
-    ContentService.getSeries(this.$route.params)
-      .then(response => {
-        console.log(response.data) // For nseriesDetailsow, logs out the response
-        ref.seriesDetails = response.data.content
-        console.log('SERIES.vue - this.seriesDetails')
-        console.log(ref.seriesDetails)
-        ref.chapters = ref.seriesDetails.chapters
-        console.log('SERIES.vue - chapters in Series.Vue')
-        console.log(this.chapters)
-        ref.loading = false
-        ref.loaded = true
-      })
-      .catch(error => {
-        ref.loading = false
-        console.log('There was an error:', error.response) // Logs out the error
-        ref.error = error.toString()
-      })
+  async created() {
+    try {
+      this.getSeries(this.$route.params)
+    } catch (error) {
+      console.log('There was an error in SeriesEdit.vue:', error) // Logs out the error
+    }
   }
 }
 </script>

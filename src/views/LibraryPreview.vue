@@ -26,8 +26,9 @@ import { mapState } from 'vuex'
 import NavBar from '@/components/NavBarAdmin.vue'
 import ContentService from '@/services/ContentService.js'
 import { bookMarkMixin } from '@/mixins/BookmarkMixin.js'
+import { libraryMixin } from '@/mixins/LibraryMixin.js'
 export default {
-  mixins: [bookMarkMixin],
+  mixins: [bookMarkMixin, libraryMixin],
   props: ['countryCODE', 'languageISO'],
   computed: mapState(['bookmark', 'appDir', 'cssURL', 'standard']),
   components: {
@@ -81,33 +82,13 @@ export default {
   },
   beforeCreate() {
     this.$route.params.version = 'latest'
-    this.$store.dispatch('checkBookmark', this.$route.params)
   },
-  created() {
-    this.error = this.loaded = null
-    this.loading = true
-    var route = {}
-    var ref = this
-    ContentService.getLibrary(this.$route.params)
-      .then(response => {
-        console.log('LIBRARY PREVIEW - response from edit service')
-        console.log(response.data)
-        if (response.data.content) {
-          console.log('LIBRARY PREVIEW - putting edited content into library')
-          ref.library = JSON.parse(response.data.content.text)
-          ref.image_dir = ref.bookmark.language.image_dir
-          console.log(ref.library)
-          ref.loading = false
-          ref.loaded = true
-        }
-      })
-      .catch(error => {
-        console.log(
-          'LIBRARY PREVIEW - There was an error in  bookmark Library:',
-          error.response
-        ) // Logs out the error
-        this.error = error.toString()
-      })
+  async created() {
+    try {
+      this.getLibrary()
+    } catch (error) {
+      console.log('There was an error in LibraryEdit.vue:', error) // Logs out the error
+    }
   }
 }
 </script>

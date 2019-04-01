@@ -52,8 +52,8 @@ export default {
           params: {
             countryCODE: this.bookmark.country.code,
             languageISO: this.bookmark.language.iso,
-            bookNAME: this.book.book,
-            pageFILENAME: this.book.book
+            folderNAME: this.book.folder,
+            fileFILENAME: this.book.book
           }
         })
       }

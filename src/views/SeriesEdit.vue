@@ -59,9 +59,10 @@ import { mapState } from 'vuex'
 import ContentService from '@/services/ContentService.js'
 import NavBar from '@/components/NavBarAdmin.vue'
 import { bookMarkMixin } from '@/mixins/BookmarkMixin.js'
+import { seriesMixin } from '@/mixins/SeriesMixin.js'
 export default {
-  mixins: [bookMarkMixin],
-  props: ['countryCODE', 'languageISO', 'folderNAME', 'fileFILENAME'],
+  mixins: [bookMarkMixin, seriesMixin],
+  props: ['countryCODE', 'languageISO', 'seriesNAME'],
   computed: mapState(['bookmark', 'appDir']),
   components: {
     NavBar
@@ -153,45 +154,13 @@ export default {
   },
   beforeCreate() {
     this.$route.params.version = 'latest'
-    this.$store.dispatch('checkBookmark', this.$route.params)
   },
-  created() {
-    this.error = this.loaded = null
-    this.loading = true
-    var ref = this
-    var route = {}
-    route.country = this.$route.params.countryCODE
-    route.language = this.$route.params.languageISO
-    route.book = this.$route.params.bookNAME // we need book to get style sheet
-    route.series = this.$route.params.bookNAME
-    route.version = 'latest'
-    this.$store.dispatch('checkBookmark', route).then(response => {
-      ContentService.getSeries(
-        route.country,
-        route.language,
-        this.bookmark.book.folder,
-        this.bookmark.book.index,
-        route.version
-      )
-        .then(response => {
-          console.log('SERIES EDIT -- response.data')
-          console.log(response.data) // For nseriesDetailsow, logs out the response
-          ref.seriesDetails = response.data.content
-          console.log('SERIES EDIT --this.seriesDetails')
-          console.log(this.seriesDetails)
-
-          ref.chapters = ref.seriesDetails.chapters
-          console.log('SERIES EDIT -- chapters in Series.Vue')
-          console.log(this.chapters)
-          ref.loading = false
-          ref.loaded = true
-        })
-        .catch(error => {
-          ref.loading = false
-          console.log('SERIES EDIT --There was an error:', error.response) // Logs out the error
-          ref.error = error.toString()
-        })
-    })
+  async created() {
+    try {
+      this.getSeries(this.$route.params)
+    } catch (error) {
+      console.log('There was an error in SeriesEdit.vue:', error) // Logs out the error
+    }
   }
 }
 </script>

@@ -6,11 +6,11 @@
     <div class="error" v-if="error">There was an error...</div>
     <div class="content" v-if="loaded">
       <div v-bind:class="this.dir">
-        <link rel="stylesheet" v-bind:href="'/css/' + this.bookmark.book.style">
+        <link rel="stylesheet" v-bind:href="'/css/' + this.style">
         <div class="app-link">
           <div class="app-card -shadow">
             <img
-              v-bind:src="appDir.library + this.bookmark.language.image_dir + '/' + this.bookmark.book.image"
+              v-bind:src="appDir.library + this.image_dir + '/' + this.bookmark.book.image"
               class="app-img-header"
             >
           </div>
@@ -39,9 +39,10 @@ import Chapter from '@/components/ChapterPreview.vue'
 import ContentService from '@/services/ContentService.js'
 import NavBar from '@/components/NavBarAdmin.vue'
 import { bookMarkMixin } from '@/mixins/BookmarkMixin.js'
+import { seriesMixin } from '@/mixins/SeriesMixin.js'
 export default {
-  mixins: [bookMarkMixin],
-  props: ['countryCODE', 'languageISO', 'folderNAME', 'fileFILENAME'],
+  mixins: [bookMarkMixin, seriesMixin],
+  props: ['countryCODE', 'languageISO', 'seriesNAME'],
   computed: mapState(['bookmark', 'appDir']),
   components: {
     Chapter,
@@ -97,32 +98,13 @@ export default {
   },
   beforeCreate() {
     this.$route.params.version = 'latest'
-    this.$store.dispatch('checkBookmark', this.$route.params)
   },
-  created() {
-    this.error = this.loaded = null
-    this.loading = true
-    var ref = this
-    ref.version = 'latest'
-    ContentService.getSeries(this.$route.params)
-      .then(response => {
-        console.log('SERIES PREVIEW - response.data')
-        console.log(response.data) // For nseriesDetailsow, logs out the response
-        this.seriesDetails = response.data.content
-        console.log('SERIES PREVIEW - this.seriesDetails')
-        console.log(this.seriesDetails)
-
-        this.chapters = this.seriesDetails.chapters
-        console.log('chapters in Series.Vue')
-        console.log(this.chapters)
-        this.loading = false
-        this.loaded = true
-      })
-      .catch(error => {
-        this.loading = false
-        console.log('There was an error:', error.response) // Logs out the error
-        this.error = error.toString()
-      })
+  async created() {
+    try {
+      this.getSeries(this.$route.params)
+    } catch (error) {
+      console.log('There was an error in SeriesEdit.vue:', error) // Logs out the error
+    }
   }
 }
 </script>

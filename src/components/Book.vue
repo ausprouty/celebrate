@@ -40,8 +40,7 @@ export default {
           params: {
             countryCODE: this.bookmark.country.code,
             languageISO: this.bookmark.language.iso,
-            folderNAME: this.book.folder,
-            fileFILENAME: this.book.index
+            seriesNAME: this.book.book
           }
         })
       } else {
@@ -52,7 +51,7 @@ export default {
             countryCODE: this.bookmark.country.code,
             languageISO: this.bookmark.language.iso,
             folderNAME: this.book.folder,
-            fileFILENAME: this.book.index
+            fileFILENAME: this.book.book
           }
         })
       }

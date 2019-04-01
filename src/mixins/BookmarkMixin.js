@@ -161,12 +161,12 @@ export const bookMarkMixin = {
       update book and erase all bookmark below*/
     async CheckBookmarkBook(route) {
       console.log('BOOKMARK SERVICE --    checking book')
-      if (!route.book) {
+      if (!route.bookNAME) {
         console.log('BOOKMARK SERVICE --    UNSET  BOOK')
         //commit('UNSET_BOOKMARK', ['book'])
         return null
       }
-      if (route.book) {
+      if (route.bookNAME) {
         try {
           var currentBook = ''
           if (typeof this.bookmark.book != 'undefined') {
@@ -179,7 +179,7 @@ export const bookMarkMixin = {
             var library = this.bookmark.library
             var length = library.length
             for (var i = 0; i < length; i++) {
-              if (library[i].book == route.book) {
+              if (library[i].book == route.bookNAME) {
                 console.log('BOOKMARK SERVICE --    I found book in library')
                 console.log(library[i])
                 value = library[i]
@@ -208,16 +208,16 @@ export const bookMarkMixin = {
     async CheckBookmarkSeries(route) {
       //   console.log('BOOKMARK SERVICE --    starting check bookmark series with route')
       //    console.log(route)
-      if (!route.series) {
+      if (!route.seriesNAME) {
         return null
       }
-      if (route.series) {
+      if (route.seriesNAME) {
         try {
           var currentSeries = ''
           if (typeof this.bookmark.series != 'undefined') {
             currentSeries = this.bookmark.series //this.bookmark.series.book
           }
-          if (route.series != currentSeries) {
+          if (route.seriesNAME != currentSeries) {
             // get folder and index from Library so you can get correct series
             console.log('BOOKMARK SERVICE --    new series')
             var value = {}

@@ -195,7 +195,7 @@ export default {
     for (var pair of form_data.entries()) {
       console.log(pair[0] + ', ' + pair[1])
     }
-    console.log(form_data)
+    //console.log(form_data)
     return form_data
   }
 }

@@ -38,9 +38,10 @@ import ContentService from '@/services/ContentService.js'
 import NavBar from '@/components/NavBarAdmin.vue'
 import draggable from 'vuedraggable'
 import { bookMarkMixin } from '@/mixins/BookmarkMixin.js'
+import { seriesMixin } from '@/mixins/SeriesMixin.js'
 export default {
-  mixins: [bookMarkMixin],
-  props: ['countryCODE', 'languageISO', 'folderNAME', 'fileFILENAME'],
+  mixins: [bookMarkMixin, seriesMixin],
+  props: ['countryCODE', 'languageISO', 'seriesNAME'],
   computed: mapState(['bookmark', 'appDir']),
   components: {
     NavBar,
@@ -133,34 +134,13 @@ export default {
   },
   beforeCreate() {
     this.$route.params.version = 'latest'
-    this.$store.dispatch('checkBookmark', this.$route.params)
   },
-  created() {
-    this.error = this.loaded = null
-    this.loading = true
-    var ref = this
-    ContentService.getSeries(this.$route.params)
-      .then(response => {
-        console.log('SERIES SORT -- response.data')
-        console.log(response.data) // For nseriesDetailsow, logs out the response
-        if (response.data.content.text) {
-          ref.seriesDetails = response.data.content
-        } else {
-          ref.seriesDetails = response.data
-        }
-        console.log('SERIES SORT --this.seriesDetails')
-        console.log(this.seriesDetails)
-        ref.chapters = ref.seriesDetails.chapters
-        console.log('SERIES SORT -- chapters')
-        console.log(this.chapters)
-        ref.loading = false
-        ref.loaded = true
-      })
-      .catch(error => {
-        this.loading = false
-        console.log('SERIES SORT -- There was an error:', error.response) // Logs out the error
-        this.error = error.toString()
-      })
+  async created() {
+    try {
+      this.getSeries(this.$route.params)
+    } catch (error) {
+      console.log('There was an error in SeriesEdit.vue:', error) // Logs out the error
+    }
   }
 }
 </script>

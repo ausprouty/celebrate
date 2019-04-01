@@ -30,7 +30,7 @@ export default {
     }
   },
   beforeCreate() {
-    this.$route.params.version = 'latest'
+    this.$route.params.version = 'current'
   },
   async created() {
     try {

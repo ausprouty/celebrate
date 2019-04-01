@@ -59,7 +59,7 @@ export default new Router({
       props: true
     },
     {
-      path: '/series/:countryCODE/:languageISO/:folderNAME/:fileFILENAME',
+      path: 'series/:countryCODE/:languageISO/:seriesNAME',
       name: 'series',
       component: Series,
       props: true
@@ -88,7 +88,7 @@ export default new Router({
       props: true
     },
     {
-      path: '/edit/series/:countryCODE/:languageISO/:folderNAME/:fileFILENAME',
+      path: '/edit/series/:countryCODE/:languageISO/:seriesNAME',
       name: 'editSeries',
       component: SeriesEdit,
       props: true
@@ -117,15 +117,13 @@ export default new Router({
       props: true
     },
     {
-      path:
-        '/preview/series/:countryCODE/:languageISO/:folderNAME/:fileFILENAME',
+      path: '/preview/series/:countryCODE/:languageISO/:seriesNAME',
       name: 'previewSeries',
       component: SeriesPreview,
       props: true
     },
     {
-      path:
-        '/preview/page/:countryCODE/:languageISO/:folderNAME/:fileFILENAME/:seriesNAME',
+      path: '/preview/page/:countryCODE/:languageISO/:folderNAME/:fileFILENAME',
       name: 'previewPage',
       component: PagePreview,
       props: true
@@ -148,7 +146,7 @@ export default new Router({
       props: true
     },
     {
-      path: '/sort/series/:countryCODE/:languageISO/:folderNAME/:fileFILENAME',
+      path: '/sort/series/:countryCODE/:languageISO/:seriesNAME',
       name: 'sortSeries',
       component: SeriesSort,
       props: true
