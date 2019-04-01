@@ -40,7 +40,7 @@ export default {
           params: {
             countryCODE: this.bookmark.country.code,
             languageISO: this.bookmark.language.iso,
-            seriesNAME: this.book.book
+            bookNAME: this.book.book
           }
         })
       } else {

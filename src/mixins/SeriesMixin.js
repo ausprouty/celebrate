@@ -3,7 +3,7 @@ export const seriesMixin = {
   methods: {
     async getSeries(params) {
       try {
-        params.bookNAME = params.seriesNAME
+        params.bookNAME = params.bookNAME
         console.log('params in SeriesMixin')
         console.log(params)
         this.error = this.loaded = null

@@ -62,7 +62,7 @@ import { bookMarkMixin } from '@/mixins/BookmarkMixin.js'
 import { seriesMixin } from '@/mixins/SeriesMixin.js'
 export default {
   mixins: [bookMarkMixin, seriesMixin],
-  props: ['countryCODE', 'languageISO', 'seriesNAME'],
+  props: ['countryCODE', 'languageISO', 'bookNAME'],
   computed: mapState(['bookmark', 'appDir']),
   components: {
     NavBar

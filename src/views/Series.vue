@@ -19,7 +19,7 @@
 
         <Chapter v-for="chapter in chapters" :key="chapter.id" :chapter="chapter"/>
         <div class="version">
-          <p class="version">Version 1.01</p>
+          <p class="version">Version 1.11</p>
         </div>
       </div>
     </div>

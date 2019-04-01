@@ -32,8 +32,9 @@ import { mapState } from 'vuex'
 import ContentService from '@/services/ContentService.js'
 import NavBar from '@/components/NavBarBack.vue'
 import { bookMarkMixin } from '@/mixins/BookmarkMixin.js'
+import { pageMixin } from '@/mixins/PageMixin.js'
 export default {
-  mixins: [bookMarkMixin],
+  mixins: [bookMarkMixin, pageMixin],
   props: ['countryCODE', 'languageISO', 'folderNAME', 'fileFILENAME'],
   components: {
     NavBar
@@ -56,7 +57,7 @@ export default {
   },
   async created() {
     try {
-      this.getSeries(this.$route.params)
+      this.getPage(this.$route.params)
     } catch (error) {
       console.log('There was an error in Page.vue:', error) // Logs out the error
     }

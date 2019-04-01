@@ -55,13 +55,13 @@ export default new Router({
       props: true
     },
     {
-      path: '/series/:countryCODE/:languageISO/:seriesNAME',
+      path: '/series/:countryCODE/:languageISO/:bookNAME',
       name: 'series',
       component: Series,
       props: true
     },
     {
-      path: '/page/:countryCODE/:languageISO/:folderNAME/:fileFILENAME',
+      path: '/page/:countryCODE/:languageISO/:bookNAME/:fileFILENAME',
       name: 'page',
       component: Page,
       props: true
@@ -84,13 +84,13 @@ export default new Router({
       props: true
     },
     {
-      path: '/edit/series/:countryCODE/:languageISO/:seriesNAME',
+      path: '/edit/series/:countryCODE/:languageISO/:bookNAME',
       name: 'editSeries',
       component: SeriesEdit,
       props: true
     },
     {
-      path: '/edit/page/:countryCODE/:languageISO/:folderNAME/:fileFILENAME',
+      path: '/edit/page/:countryCODE/:languageISO/:bookNAME/:fileFILENAME',
       name: 'editPage',
       component: PageEdit,
       props: true
@@ -113,13 +113,13 @@ export default new Router({
       props: true
     },
     {
-      path: '/preview/series/:countryCODE/:languageISO/:seriesNAME',
+      path: '/preview/series/:countryCODE/:languageISO/:bookNAME',
       name: 'previewSeries',
       component: SeriesPreview,
       props: true
     },
     {
-      path: '/preview/page/:countryCODE/:languageISO/:folderNAME/:fileFILENAME',
+      path: '/preview/page/:countryCODE/:languageISO/:bookNAME/:fileFILENAME',
       name: 'previewPage',
       component: PagePreview,
       props: true
@@ -142,7 +142,7 @@ export default new Router({
       props: true
     },
     {
-      path: '/sort/series/:countryCODE/:languageISO/:seriesNAME',
+      path: '/sort/series/:countryCODE/:languageISO/:bookNAME',
       name: 'sortSeries',
       component: SeriesSort,
       props: true
