@@ -8,10 +8,12 @@
         <link rel="stylesheet" v-bind:href="'/css/' + this.bookmark.book.style">
         <div class="app-link">
           <div class="app-card -shadow">
+            <a v-bind:href= "/library/ + this.$route.params.countryCODE + '/' + this.$route.params.languageISO">
             <img
               v-bind:src="appDir.library + this.bookmark.language.image_dir + '/' + this.bookmark.book.image"
               class="app-img-header"
             >
+            </a>
           </div>
         </div>
         <h2>{{this.bookmark.book.title}}</h2>

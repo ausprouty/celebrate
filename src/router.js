@@ -24,11 +24,8 @@ import Page from './views/Page.vue'
 import PageEdit from './views/PageEdit.vue'
 import PagePreview from './views/PagePreview.vue'
 
-import Hello from './views/CKEditor4.vue'
 import Users from './views/Users.vue'
-import Members from './views/Members.vue'
-import MembersAdd from './views/MembersAdd.vue'
-import MembersUpdate from './views/MembersUpdate.vue'
+import Custom from './views/CustomEditor.vue'
 
 import NotFoundComponent from './views/NotFound.vue'
 
@@ -154,30 +151,12 @@ export default new Router({
       props: true
     },
     {
-      path: '/members',
-      name: 'members',
-      component: Members,
-      props: true
-    },
-    {
-      path: '/add',
-      name: 'add',
-      component: MembersAdd,
-      props: true
-    },
-    {
-      path: '/update',
-      name: 'update',
-      component: MembersUpdate,
+      path: '/custom',
+      name: 'custom',
+      component: Custom,
       props: true
     },
 
-    {
-      path: '/hello',
-      name: 'hello',
-      component: Hello,
-      props: true
-    },
     {
       path: '*',
       component: NotFoundComponent

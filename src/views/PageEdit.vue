@@ -39,9 +39,10 @@ import NavBar from '@/components/NavBarAdmin.vue'
 import './ckeditor/index.js'
 import VueCkeditor from 'vueckeditor'
 import { bookMarkMixin } from '@/mixins/BookmarkMixin.js'
+import { pageMixin } from '@/mixins/PageMixin.js'
 export default {
-  mixins: [bookMarkMixin],
-  props: ['countryCODE', 'languageISO', 'folderNAME', 'fileFILENAME'],
+  mixins: [bookMarkMixin, pageMixin],
+  props: ['countryCODE', 'languageISO', 'bookNAME', 'fileFILENAME'],
   components: {
     NavBar,
     VueCkeditor
@@ -54,7 +55,7 @@ export default {
       loading: false,
       loaded: null,
       error: null,
-      htmlText: null,
+      htmlText: 'This is what I want to say',
       content: {
         recnum: '',
         version: '',
@@ -106,7 +107,6 @@ export default {
         }
       })
     },
-    
 
     handleImageAdded: function(file, Editor, cursorLocation, resetUploader) {
       // An example of using FormData
@@ -132,49 +132,16 @@ export default {
     }
   },
   beforeCreate() {
-    this.$route.params.version = 'latest'
-    this.$store.dispatch('checkBookmark', this.$route.params)
+    this.$route.params.version = 'current'
   },
-  created() {
-    console.log('I am in Page.Vue')
-    this.error = this.loaded = null
-    this.loading = true
-    var ref = this
-    var route = {}
-    route.country = this.$route.params.countryCODE
-    route.language = this.$route.params.languageISO
-    route.book = this.$route.params.bookNAME
-    route.series = this.$route.params.bookNAME
-    route.page = this.$route.params.pageFILENAME
-    console.log('This is the route I sending to checkBookmark from Page.vue')
-    console.log(route)
-    this.$store
-      .dispatch('checkBookmark', route, 'latest')
-      .then(response => {
-        ContentService.getPage(
-          ref.$route.params.countryCODE,
-          ref.$route.params.languageISO,
-          ref.bookmark.book.folder,
-          ref.$route.params.pageFILENAME,
-          'latest'
-        ).then(response => {
-          console.log('PAGE EDIT - response from ContentService.getPage')
-          console.log(response)
-          if (!response.data.content.text) {
-            ref.htmlText = response.data
-          } else {
-            ref.htmlText = response.data.content.text
-          }
-          ref.loading = false
-          ref.loaded = true
-        })
-      })
-
-      .catch(error => {
-        this.loading = false
-        console.log('There was an error:', error.response) // Logs out the error
-        this.error = error.toString()
-      })
+  async created() {
+    try {
+      console.log('PAGE VIEW - route')
+      console.log(this.$route.params)
+    //  this.getPage(this.$route.params)
+    } catch (error) {
+      console.log('There was an error in Page.vue:', error) // Logs out the error
+    }
   }
 }
 </script>

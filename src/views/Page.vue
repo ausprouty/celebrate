@@ -7,10 +7,11 @@
       <link rel="stylesheet" v-bind:href="'/css/' + this.style">
       <div class="app-link">
         <div class="app-card -shadow">
-          <img v-bind:src="this.book_image" class="book">
-
-          <div class="book">
-            <span class="bold">{{this.bookmark.book.title}}</span>
+          <div v-on:click="goBack()">
+            <img v-bind:src="this.book_image" class="book">
+            <div class="book">
+              <span class="bold">{{this.bookmark.book.title}}</span>
+            </div>
           </div>
         </div>
       </div>
@@ -35,7 +36,7 @@ import { bookMarkMixin } from '@/mixins/BookmarkMixin.js'
 import { pageMixin } from '@/mixins/PageMixin.js'
 export default {
   mixins: [bookMarkMixin, pageMixin],
-  props: ['countryCODE', 'languageISO', 'folderNAME', 'fileFILENAME'],
+  props: ['countryCODE', 'languageISO', 'bookNAME', 'fileFILENAME'],
   components: {
     NavBar
   },
@@ -52,11 +53,18 @@ export default {
       style: null
     }
   },
+  methods: {
+    goBack() {
+      window.history.back()
+    }
+  },
   beforeCreate() {
     this.$route.params.version = 'current'
   },
   async created() {
     try {
+      console.log('PAGE VIEW - route')
+      console.log(this.$route.params)
       this.getPage(this.$route.params)
     } catch (error) {
       console.log('There was an error in Page.vue:', error) // Logs out the error

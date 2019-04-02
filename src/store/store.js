@@ -56,11 +56,32 @@ export default new Vuex.Store({
         ot: '',
         rldir: ''
       },
-      library: [],
+      library: [
+        {
+          book: '',
+          folder: '',
+          format: '',
+          id: '',
+          image: '',
+          index: '',
+          instructions: '',
+          title: ''
+        }
+      ],
+      book: {
+        book: '',
+        folder: '',
+        format: '',
+        id: '',
+        image: '',
+        index: '',
+        instructions: '',
+        title: ''
+      },
       series: {
         series: '',
         language: '',
-        description: 'T',
+        description: 'Not set',
         chapters: []
       }
     }
@@ -97,10 +118,10 @@ export default new Vuex.Store({
         case 'country':
           state.bookmark.country = {
             code: 'au',
-            english: 'Ausrtalia',
-            name: 'Australia',
-            index: 'au',
-            image: 'tr'
+            english: '',
+            name: '',
+            index: '',
+            image: ''
           }
           break
         case 'language':
@@ -121,7 +142,16 @@ export default new Vuex.Store({
           state.bookmark.library = []
           break
         case 'book':
-          state.bookmark.book = []
+          state.bookmark.book = {
+            book: '',
+            folder: '',
+            format: '',
+            id: '',
+            image: '',
+            index: '',
+            instructions: '',
+            title: ''
+          }
           break
         case 'series':
           state.bookmark.series = {
@@ -139,12 +169,15 @@ export default new Vuex.Store({
   },
   actions: {
     newBookmark({ commit }, value) {
-      commit('NEW_BOOKMARK', value)
+      commit('UNSET_BOOKMARK', [value])
     },
     updateBookmark({ commit }, [mark, value]) {
       console.log('STORE - BOOKMARK    updateBookmark with')
       console.log(value)
       commit('SET_BOOKMARK', [mark, value])
+    },
+    unsetBookmark({ commit }, [mark]) {
+      commit('UNSET_BOOKMARK', [mark])
     }
   }
 })
