@@ -52,7 +52,7 @@ export default {
           params: {
             countryCODE: this.bookmark.country.code,
             languageISO: this.bookmark.language.iso,
-            folderNAME: this.book.folder,
+            bookNAME: this.book.book,
             fileFILENAME: this.book.book
           }
         })

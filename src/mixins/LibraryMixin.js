@@ -1,5 +1,40 @@
 import ContentService from '@/services/ContentService.js'
 export const libraryMixin = {
+  data() {
+    return {
+      library: [
+        {
+          id: '',
+          book: '',
+          title: '',
+          folder: '',
+          index: '',
+          style: 'AU-myfriends.css',
+          image: 'issues.jpg',
+          format: 'series'
+        }
+      ],
+      image_dir: 'menu-europe',
+      loading: false,
+      loaded: null,
+      error: null,
+      content: {
+        recnum: '',
+        version: '',
+        edit_date: '',
+        edit_uid: '',
+        publish_uid: '',
+        publish_date: '',
+        language_iso: '',
+        country_iso: '',
+        folder: '',
+        filetype: '',
+        title: '',
+        filename: '',
+        text: ''
+      }
+    }
+  },
   methods: {
     async getLibrary() {
       try {

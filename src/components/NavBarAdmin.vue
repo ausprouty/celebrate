@@ -47,14 +47,10 @@ export default {
     }
   },
   created() {
-    console.log('NAV this.menu')
-    console.log(this.menu)
     if (this.bookmark.country) {
       this.menu[1].show = true
-      console.log('Country set')
     }
     if (this.bookmark.language && this.bookmark.country) {
-      console.log('Language set')
       this.menu[2].show = true
     }
   },
@@ -71,11 +67,8 @@ export default {
       }
     },
     setNewSelectedOption(selectedOption) {
-      console.log(' I am at selectedOption')
-      console.log(selectedOption)
       switch (selectedOption) {
         case 'countries':
-          console.log(' I am at countries Option')
           this.$router.push({
             name: 'previewCountries'
           })

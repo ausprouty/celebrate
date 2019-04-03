@@ -1,5 +1,35 @@
 import ContentService from '@/services/ContentService.js'
 export const countriesMixin = {
+  data() {
+    return {
+      countries: [
+        {
+          code: '',
+          english: '',
+          name: '',
+          index: ''
+        }
+      ],
+      loading: false,
+      loaded: null,
+      error: null,
+      content: {
+        recnum: '',
+        version: '',
+        edit_date: '',
+        edit_uid: '',
+        publish_uid: '',
+        publish_date: '',
+        language_iso: '',
+        country_iso: '',
+        folder: '',
+        filetype: '',
+        title: '',
+        filename: '',
+        text: ''
+      }
+    }
+  },
   methods: {
     async getCountries() {
       try {

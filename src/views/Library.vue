@@ -1,7 +1,7 @@
 <template>
   <div>
     <NavBar/>
-    <div class="loading" v-if="loadinG">Loading...</div>
+    <div class="loading" v-if="loading">Loading...</div>
     <div class="error" v-if="error">There was an error...</div>
     <div class="content" v-if="loaded">
       <a v-bind:href="'/languages/' + this.bookmark.country.code">
@@ -48,7 +48,7 @@ export default {
         }
       ],
       image_dir: '',
-      loadinG: false,
+      loading: false,
       loading: false,
       loaded: null,
       error: null

@@ -37,39 +37,7 @@ export default {
     draggable
   },
   computed: mapState(['bookmark', 'appDir']),
-  data() {
-    return {
-      language: [],
-      languages: [
-        {
-          id: '',
-          folder: '',
-          iso: '',
-          name: '',
-          image_dir: '',
-          rldir: 'ltr'
-        }
-      ],
-      loading: false,
-      loaded: null,
-      error: null,
-      content: {
-        recnum: '',
-        version: '',
-        edit_date: '',
-        edit_uid: '',
-        publish_uid: '',
-        publish_date: '',
-        language_iso: '',
-        country_iso: '',
-        folder: '',
-        filetype: '',
-        title: '',
-        filename: '',
-        text: ''
-      }
-    }
-  },
+
   methods: {
     addNewLanguageForm() {
       this.languages.push({

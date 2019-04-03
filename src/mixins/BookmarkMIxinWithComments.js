@@ -13,6 +13,10 @@ export const bookMarkMixin = {
     },
     async CheckBookmarks(route) {
       console.log('BOOKMARK SERVICE started')
+      var bm = this.bookmark
+      console.log(bm)
+      console.log('route')
+      console.log(route)
       try {
         await this.CheckBookmarkCountry(route)
         await this.CheckBookmarkLanguageLibrary(route)
@@ -31,18 +35,27 @@ export const bookMarkMixin = {
       }
     },
     async CheckBookmarkCountry(route) {
+      console.log(this.bookmark)
       if (!route.countryCODE) {
         return null
       }
       try {
         var currentCountry = ''
         if (typeof this.bookmark.country != 'undefined') {
+          console.log(
+            'BOOKMARK SERVICE --CheckBookmarkCountry bookmark.country is defined'
+          )
           if (typeof this.bookmark.country.code != 'undefined') {
             currentCountry = this.bookmark.country.code
           }
         }
         if (route.countryCODE != currentCountry) {
+          console.log(
+            'BOOKMARK SERVICE --CheckBookmarkCountry    route.countryCODE is not currentCountry'
+          )
           var res = await ContentService.getCountries(route)
+          console.log('BOOKMARK SERVICE --CheckBookmarkCountry  res ')
+          console.log(res)
           var response = res.data.content.text
           var value = {}
           var length = response.length
@@ -68,30 +81,63 @@ export const bookMarkMixin = {
             update language and erase all bookmark below*/
       if (!route.languageISO) {
         this.$store.dispatch('unsetBookmark', ['language'])
+        console.log(
+          'BOOKMARK SERVICE --CheckBookmarkLanguageLibrary   UNSET LIBRARY '
+        )
         return null
       }
       if (route.languageISO) {
         try {
           var value = {}
           var response = ''
+          console.log(
+            'BOOKMARK SERVICE --CheckBookmarkLanguageLIBRARY  have route '
+          )
           var currentLanguage = ''
           if (typeof this.bookmark.language != 'undefined') {
             currentLanguage = this.bookmark.language.iso
           }
           if (route.languageISO != currentLanguage) {
+            console.log(
+              'BOOKMARK SERVICE --CheckBookmarkLanguageLibrary  looking for new language of ' +
+                route.languageISO
+            )
             var res = await ContentService.getLanguages(route)
+            console.log(
+              'BOOKMARK SERVICE  --CheckBookmarkLanguageLIBRARY this is response from getLanguages'
+            )
+            console.log(res)
             response = res.data.content.text
+            console.log(
+              'BOOKMARK SERVICE  --CheckBookmarkLanguageLIBRARY this is parsed response from getLanguages'
+            )
+            console.log(response)
             var length = response.length
+            console.log(
+              'BOOKMARK SERVICE --CheckBookmarkLanguageLIBRARY  length'
+            )
+            console.log(length)
             for (var i = 0; i < length; i++) {
+              console.log('BOOKMARK SERVICE --   response[i]')
+              console.log(response[i].iso)
               if (response[i].iso == route.languageISO) {
                 value = response[i]
               }
             }
+            console.log('BOOKMARK SERVICE --CheckBookmarkLanguageLIBRARY value')
+            console.log(value)
             this.$store.dispatch('updateBookmark', ['language', value])
 
             response = await ContentService.getLibrary(route)
             value = response.data.content.text
+            console.log(
+              'BOOKMARK SERVICE --CheckBookmarkLanguageLIBRARY library is '
+            )
+            console.log(value)
             this.$store.dispatch('updateBookmark', ['library', value])
+            console.log(
+              'BOOKMARK SERVICE  --CheckBookmarkLanguageLIBRARY finishing CheckBookmarkLanguageLIBRARY'
+            )
           }
           if (typeof this.bookmark.library == 'undefined') {
             // console.log (route)
@@ -100,6 +146,9 @@ export const bookMarkMixin = {
             //console.log('BOOKMARK SERVICE --   library is ')
             //console.log(value)
             this.$store.dispatch('updateBookmark', ['library', value])
+            console.log(
+              'BOOKMARK SERVICE --CheckBookmarkLanguageLIBRARY finishing '
+            )
           }
           return this.bookmark
         } catch (error) {
@@ -114,7 +163,9 @@ export const bookMarkMixin = {
       if route.book is not the same as bookmark 
       update book and erase all bookmark below*/
     async CheckBookmarkBookSeries(route) {
+      console.log('BOOKMARK SERVICE --CheckBookmarkBook    checking BOOK')
       if (!route.bookNAME) {
+        console.log('BOOKMARK SERVICE --CheckBookmarkBook   UNSET  BOOK')
         this.$store.dispatch('unsetBookmark', ['book'])
         return null
       }
@@ -132,14 +183,23 @@ export const bookMarkMixin = {
             var length = library.length
             for (var i = 0; i < length; i++) {
               if (library[i].book == route.bookNAME) {
+                console.log(
+                  'BOOKMARK SERVICE --CheckBookmarkBook    I found book in library'
+                )
+                console.log(library[i])
                 value = library[i]
               }
             }
+            console.log(
+              'BOOKMARK SERVICE --CheckBookmarkBook    updating bookmark BOOK with'
+            )
+            console.log(value)
             this.$store.dispatch('updateBookmark', ['book', value])
           }
           // now update series
           var currentSeries = ''
           if (this.bookmark.book.format != 'series') {
+            console.log('BOOKMARK SERVICE --CheckBookmarkBook   UNSET  BOOK')
             this.$store.dispatch('unsetBookmark', ['series'])
             return this.bookmark
           }
@@ -148,12 +208,23 @@ export const bookMarkMixin = {
           }
           if (route.bookNAME != currentSeries) {
             // get folder and index from Library so you can get correct series
+            console.log('BOOKMARK SERVICE --CheckBookmarkSeries    new series')
+
             route.folderNAME = this.bookmark.book.folder
             route.fileFILENAME = this.bookmark.book.index
             var response = await ContentService.getSeries(route)
+            console.log(
+              'BOOKMARK SERVICE  --CheckBookmarkSeries data returned from Content Service'
+            )
+            console.log(response)
             value = response.data.content
+            console.log(
+              'BOOKMARK SERVICE  --CheckBookmarkSeries updating bookmark with SERIES value'
+            )
+            console.log(value)
             this.$store.dispatch('updateBookmark', ['series', value])
           }
+          console.log('BOOKMARK SERVICE --CheckBookmarkSeries    FINISHING ')
           return this.bookmark
         } catch (error) {
           console.log(
@@ -169,6 +240,7 @@ export const bookMarkMixin = {
     async CheckBookmarkPage(route) {
       if (!route.pageNAME) {
         this.$store.dispatch('unsetBookmark', ['page'])
+        console.log('BOOKMARK SERVICE --   UNSET PAGE')
         return null
       }
       if (route.pageNAME) {
@@ -196,14 +268,26 @@ export const bookMarkMixin = {
               } else {
                 value = this.bookmark.book
               }
+              // console.log ('value for page')
+              //  console.log (value)
+              console.log(
+                'BOOKMARK SERVICE --CheckBookmarkPage    updating bookmark with PAGE value'
+              )
+              console.log(value)
               this.$store.dispatch('updateBookmark', ['page', value])
             } else {
               // it is a basic page from the library
+              console.log(
+                'BOOKMARK SERVICE --CheckBookmarkPage    This is a basic page'
+              )
               value = {}
               value.title = ''
               this.$store.dispatch('setBookmark', ['page', value])
             }
           }
+          console.log(
+            'BOOKMARK SERVICE --CheckBookmarkPage    FINISHING CheckBookmarkPage'
+          )
           return this.bookmark
         } catch (error) {
           console.log(

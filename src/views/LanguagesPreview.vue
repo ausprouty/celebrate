@@ -1,10 +1,12 @@
 <template>
   <div class="preview">
     <NavBar/>
-    <div class="loading" v-if="loadinG">Loading...</div>
+    <div class="loading" v-if="loading">Loading...</div>
     <div class="error" v-if="error">There was an error...</div>
     <div class="content" v-if="loaded">
+       <a href="preview/languages">
       <img v-bind:src="appDir.root+'languages.jpg'" class="app-img-header">
+      </a>
 
       <h1>Choose Language (preview for {{this.countryCODE}})</h1>
       <Language v-for="language in languages" :key="language.iso" :language="language"/>
@@ -33,25 +35,7 @@ export default {
     NavBar
   },
   computed: mapState(['bookmark', 'appDir']),
-  data() {
-    return {
-      loadinG: false,
-      language: [],
-      languages: [
-        {
-          id: '',
-          folder: '',
-          iso: '',
-          name: '',
-          image_dir: '',
-          rldir: 'ltr'
-        }
-      ],
-      loading: false,
-      loaded: null,
-      error: null
-    }
-  },
+
   methods: {
     editLanguages() {
       this.$router.push({

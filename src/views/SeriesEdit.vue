@@ -67,45 +67,7 @@ export default {
   components: {
     NavBar
   },
-  data() {
-    return {
-      seriesDetails: {
-        series: '',
-        language: '',
-        description: ''
-      },
-      chapter: {},
-      chapters: [
-        {
-          id: '',
-          title: '',
-          desciption: '',
-          count: '',
-          filename: ''
-        }
-      ],
-      dir: 'ltr',
-      loadinG: false,
-      loading: false,
-      loaded: null,
-      error: null,
-      content: {
-        recnum: '',
-        version: '',
-        edit_date: '',
-        edit_uid: '',
-        publish_uid: '',
-        publish_date: '',
-        language_iso: '',
-        country_iso: '',
-        folder: '',
-        filetype: '',
-        title: '',
-        filename: '',
-        text: ''
-      }
-    }
-  },
+
   methods: {
     addNewChapterForm() {
       this.chapters.push({

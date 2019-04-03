@@ -1,7 +1,7 @@
 <template>
   <div>
     <NavBar/>
-    <div class="loading" v-if="loadinG">Loading...</div>
+    <div class="loading" v-if="loading">Loading...</div>
     <div class="error" v-if="error">There was an error...</div>
     <div class="content" v-if="loaded">
       <img v-bind:src="appDir.root+'languages.jpg'" class="app-img-header">
@@ -32,7 +32,7 @@ export default {
   computed: mapState(['bookmark', 'appDir']),
   data() {
     return {
-      loadinG: false,
+      loading: false,
       language: [],
       languages: [
         {

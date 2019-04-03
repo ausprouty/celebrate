@@ -2,21 +2,27 @@
   <div class="preview">
     >
     <NavBar/>
-    <div class="loading" v-if="loadinG">Loading...</div>
+    <div class="loading" v-if="loading">Loading...</div>
     <div class="error" v-if="error">There was an error...</div>
     <div class="content" v-if="loaded">
       <div v-bind:class="this.dir">
         <link rel="stylesheet" v-bind:href="'/css/' + this.style">
         <div class="app-link">
           <div class="app-card -shadow">
-            <img
-              v-bind:src="appDir.library + this.image_dir + '/' + this.bookmark.book.image"
-              class="app-img-header"
+            <a
+              v-bind:href="'/preview/languages/' + this.bookmark.country.code + '/' +  + this.bookmark.language.iso"
             >
+              <img
+                v-bind:src="appDir.library + this.image_dir + '/' + this.bookmark.book.image"
+                class="app-img-header"
+              >
+            </a>
           </div>
         </div>
         <h2>{{bookmark.book.title}}</h2>
-        <div v-if="this.description">{{this.description}}</div><br><br>
+        <div v-if="this.description">{{this.description}}</div>
+        <br>
+        <br>
 
         <Chapter v-for="chapter in chapters" :key="chapter.id" :chapter="chapter"/>
         <div class="version">
@@ -48,29 +54,7 @@ export default {
     Chapter,
     NavBar
   },
-  data() {
-    return {
-      seriesDetails: {
-        series: '',
-        language: '',
-        description: ''
-      },
-      chapters: [
-        {
-          id: '',
-          title: '',
-          desciption: '',
-          count: '',
-          filename: ''
-        }
-      ],
-      dir: 'ltr',
-      loadinG: false,
-      loading: false,
-      loaded: null,
-      error: null
-    }
-  },
+
   methods: {
     editSeries() {
       this.$router.push({

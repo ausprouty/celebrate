@@ -27,26 +27,7 @@ export default {
     NavBar
   },
   computed: mapState(['appDir']),
-  data() {
-    return {
-      countries: [],
-      content: {
-        recnum: '',
-        version: '',
-        edit_date: '',
-        edit_uid: '',
-        publish_uid: '',
-        publish_date: '',
-        language_iso: '',
-        country_iso: '',
-        folder: '',
-        filetype: '',
-        title: '',
-        filename: '',
-        text: ''
-      }
-    }
-  },
+  
   methods: {
     editCountries() {
       this.$router.push({

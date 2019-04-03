@@ -69,36 +69,7 @@ export default {
     NavBar
   },
   computed: mapState(['bookmark', 'appDir', 'revision']),
-  data() {
-    return {
-      countries: [
-        {
-          code: '',
-          english: '',
-          name: '',
-          index: ''
-        }
-      ],
-      loading: false,
-      loaded: null,
-      error: null,
-      content: {
-        recnum: '',
-        version: '',
-        edit_date: '',
-        edit_uid: '',
-        publish_uid: '',
-        publish_date: '',
-        language_iso: '',
-        country_iso: '',
-        folder: '',
-        filetype: '',
-        title: '',
-        filename: '',
-        text: ''
-      }
-    }
-  },
+  
   methods: {
     deleteCountryForm(index) {
       this.countries.splice(index, 1)

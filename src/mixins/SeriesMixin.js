@@ -1,5 +1,43 @@
 import ContentService from '@/services/ContentService.js'
 export const seriesMixin = {
+  data() {
+    return {
+      seriesDetails: {
+        series: '',
+        language: '',
+        description: ''
+      },
+      chapter: {},
+      chapters: [
+        {
+          id: '',
+          title: '',
+          desciption: '',
+          count: '',
+          filename: ''
+        }
+      ],
+      dir: 'ltr',
+      loading: false,
+      loaded: null,
+      error: null,
+      content: {
+        recnum: '',
+        version: '',
+        edit_date: '',
+        edit_uid: '',
+        publish_uid: '',
+        publish_date: '',
+        language_iso: '',
+        country_iso: '',
+        folder: '',
+        filetype: '',
+        title: '',
+        filename: '',
+        text: ''
+      }
+    }
+  },
   methods: {
     async getSeries(params) {
       try {

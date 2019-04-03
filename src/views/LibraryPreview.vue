@@ -1,10 +1,10 @@
 <template>
   <div class="preview">
     <NavBar/>
-    <div class="loading" v-if="loadinG">Loading...</div>
+    <div class="loading" v-if="loading">Loading...</div>
     <div class="error" v-if="error">There was an error...</div>
     <div class="content" v-if="loaded">
-      <a v-bind:href="'/languages/' + this.bookmark.country.code">
+      <a v-bind:href="'/preview/language/' + this.bookmark.country.code">
         <img v-bind:src="appDir.library +  this.image_dir +'/journey.jpg'" class="app-img-header">
       </a>
 
@@ -35,28 +35,7 @@ export default {
     Book,
     NavBar
   },
-  data() {
-    return {
-      library: [
-        {
-          id: '',
-          book: '',
-          title: '',
-          folder: '',
-          index: '',
-          style: 'AU-myfriends.css',
-          image: 'issues.jpg',
-          format: 'series',
-          instructions: ''
-        }
-      ],
-      image_dir: '',
-      loadinG: false,
-      loading: false,
-      loaded: null,
-      error: null
-    }
-  },
+
   methods: {
     editLibrary() {
       this.$router.push({

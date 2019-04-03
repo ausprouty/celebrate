@@ -1,19 +1,21 @@
 <template>
   <div>
     <NavBar/>
-    <div class="loading" v-if="loadinG">Loading...</div>
+    <div class="loading" v-if="loading">Loading...</div>
     <div class="error" v-if="error">There was an error...</div>
     <div class="content" v-if="loaded">
       <link rel="stylesheet" v-bind:href="'/css/' + this.bookmark.book.style">
       <div class="app-link">
         <div class="app-card -shadow">
-          <img
-            v-bind:src="appDir.library + this.bookmark.language.image_dir + '/' + this.bookmark.book.image"
-            class="book"
-          >
+          <div v-on:click="goBack()">
+            <img
+              v-bind:src="appDir.library + this.bookmark.language.image_dir + '/' + this.bookmark.book.image"
+              class="book"
+            >
 
-          <div class="book">
-            <span class="bold">{{this.bookmark.book.title}}</span>
+            <div class="book">
+              <span class="bold">{{this.bookmark.book.title}}</span>
+            </div>
           </div>
         </div>
       </div>
@@ -51,7 +53,6 @@ export default {
   data() {
     return {
       pageText: '',
-      loadinG: false,
       loading: false,
       loaded: null,
       error: null,
@@ -74,6 +75,9 @@ export default {
     }
   },
   methods: {
+    goBack() {
+      window.history.back()
+    },
     saveForm() {
       console.log(this.content)
       this.content.text = this.htmlText
@@ -138,7 +142,7 @@ export default {
     try {
       console.log('PAGE VIEW - route')
       console.log(this.$route.params)
-    //  this.getPage(this.$route.params)
+      //  this.getPage(this.$route.params)
     } catch (error) {
       console.log('There was an error in Page.vue:', error) // Logs out the error
     }
