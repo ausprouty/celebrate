@@ -54,34 +54,26 @@ export default {
     deleteBookForm(index) {
       this.library.splice(index, 1)
     },
-    saveForm() {
-      console.log(this.content)
-      this.content.text = JSON.stringify(this.library)
-      this.content.filename = 'library'
-      this.content.filetype = 'json'
-      this.content.country_iso = this.$route.params.countryCODE
-      this.content.language_iso = this.$route.params.languageISO
-      var contentForm = ContentService.toFormData(this.content)
-      var ref = this
-      // clear bookmark because we are editing details
-      this.$store.dispatch('newBookmark', 'clear')
-      //
-      ContentService.createContentData(contentForm).then(function(response) {
-        if (response.data.error) {
-          ref.errorMessage = response.data.message
-        } else {
-          // this.successMessage = response.data.message
-          //ref.getCountries()
-          ref.$router.push({
-            name: 'previewLibrary',
-            params: {
-              countryCODE: ref.$route.params.countryCODE,
-              languageISO: ref.$route.params.languageISO
-            }
-          })
-        }
-      })
-    }
+    async saveForm() {
+      try{
+        this.content.text = JSON.stringify(this.library)
+        this.content.filename = 'library'
+        this.content.filetype = 'json'
+        this.content.country_iso = this.$route.params.countryCODE
+        this.content.language_iso = this.$route.params.languageISO
+        this.$store.dispatch('newBookmark', 'clear')
+        var contentForm = ContentService.toFormData(this.content)
+        var response =  await  ContentService.createContentData(contentForm)
+        this.$router.push({
+          name: 'previewLibrary',
+          params: {
+            countryCODE: this.$route.params.countryCODE,
+            languageISO: this.$route.params.languageISO
+          }
+        })
+      } catch (error) {
+        console.log('LIBRARY EDIT There was an error ', error) //
+      }
   },
   beforeCreate() {
     this.$route.params.version = 'latest'

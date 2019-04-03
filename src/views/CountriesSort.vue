@@ -36,7 +36,7 @@ export default {
     draggable
   },
   computed: mapState(['bookmark', 'appDir', 'revision']),
-  
+
   methods: {
     deleteCountryForm(index) {
       this.countries.splice(index, 1)
@@ -49,26 +49,20 @@ export default {
         index: ''
       })
     },
-    saveForm() {
-      console.log(this.content)
-      this.content.text = JSON.stringify(this.countries)
-      this.content.filename = 'countries'
-      this.content.filetype = 'json'
-      var contentForm = ContentService.toFormData(this.content)
-      var ref = this
-      // clear bookmark because we are editing details
-      this.$store.dispatch('newBookmark', 'clear')
-      ContentService.createContentData(contentForm).then(function(response) {
-        if (response.data.error) {
-          ref.errorMessage = response.data.message
-        } else {
-          // this.successMessage = response.data.message
-          //ref.getCountries()
-          ref.$router.push({
-            name: 'previewCountries'
-          })
-        }
-      })
+    async saveForm() {
+      try {
+        this.$store.dispatch('newBookmark', 'clear')
+        this.content.text = JSON.stringify(this.countries)
+        this.content.filename = 'countries'
+        this.content.filetype = 'json'
+        var contentForm = ContentService.toFormData(this.content)
+        await ContentService.createContentData(contentForm)
+        this.$router.push({
+          name: 'previewCountries'
+        })
+      } catch (error) {
+        console.log('COUNTRIES SORT There was an error ', error) //
+      }
     },
 
     beforeCreate() {

@@ -81,37 +81,31 @@ export default {
     deleteChapterForm(id) {
       this.chapters.splice(id, 1)
     },
-    saveForm() {
-      console.log(this.content)
-      var text = this.seriesDetails
-      text.text = this.chapters
-      this.content.text = JSON.stringify(text)
-      this.content.filename = this.$route.params.bookNAME + '-chapters'
-      this.content.filetype = 'json'
-      this.content.country_iso = this.$route.params.countryCODE
-      this.content.language_iso = this.$route.params.languageISO
-      this.content.folder = this.bookmark.book.folder
-      var contentForm = ContentService.toFormData(this.content)
-      var ref = this
-      // clear bookmark because we are editing details
-      this.$store.dispatch('newBookmark', 'clear')
-      //
-      ContentService.createContentData(contentForm).then(function(response) {
-        if (response.data.error) {
-          ref.errorMessage = response.data.message
-        } else {
-          // this.successMessage = response.data.message
-          //ref.getCountries()
-          ref.$router.push({
-            name: 'previewSeries',
-            params: {
-              countryCODE: ref.$route.params.countryCODE,
-              languageISO: ref.$route.params.languageISO,
-              bookNAME: ref.$route.params.bookNAME
-            }
-          })
-        }
-      })
+    async saveForm() {
+      try {
+        console.log(this.content)
+        var text = this.seriesDetails
+        text.text = this.chapters
+        this.content.text = JSON.stringify(text)
+        this.content.filename = this.$route.params.bookNAME + '-chapters'
+        this.content.filetype = 'json'
+        this.content.country_iso = this.$route.params.countryCODE
+        this.content.language_iso = this.$route.params.languageISO
+        this.content.folder = this.bookmark.book.folder
+        var contentForm = ContentService.toFormData(this.content)
+        this.$store.dispatch('newBookmark', 'clear')
+        await ContentService.createContentData(contentForm)
+        this.$router.push({
+          name: 'previewSeries',
+          params: {
+            countryCODE: this.$route.params.countryCODE,
+            languageISO: this.$route.params.languageISO,
+            bookNAME: this.$route.params.bookNAME
+          }
+        })
+      } catch (error) {
+        console.log('LIBRARY EDIT There was an error ', error) //
+      }
     }
   },
   beforeCreate() {

@@ -52,32 +52,24 @@ export default {
     deleteLanguageForm(index) {
       this.languages.splice(index, 1)
     },
-    saveForm() {
-      console.log(this.content)
-      this.content.text = JSON.stringify(this.languages)
-      this.content.filename = 'languages'
-      this.content.filetype = 'json'
-      this.content.country_iso = this.$route.params.countryCODE
-      var contentForm = ContentService.toFormData(this.content)
-      var ref = this
-      // clear bookmark because we are editing details
-      this.$store.dispatch('newBookmark', 'clear')
-      //
-      ContentService.createContentData(contentForm).then(function(response) {
-        if (response.data.error) {
-          ref.errorMessage = response.data.message
-        } else {
-          // this.successMessage = response.data.message
-          //ref.getCountries()
-          ref.$router.push({
-            name: 'previewLanguages',
-            params: {
-              countryCODE: ref.$route.params.countryCODE
-            }
-          })
-        }
-      })
-    }
+    async saveForm() {
+      try{
+        this.$store.dispatch('newBookmark', 'clear')
+        this.content.text = JSON.stringify(this.languages)
+        this.content.filename = 'languages'
+        this.content.filetype = 'json'
+        this.content.country_iso = this.$route.params.countryCODE
+        var contentForm = ContentService.toFormData(this.content)
+        var response = await ContentService.createContentData(contentForm)
+        this.$router.push({
+        name: 'previewLanguages',
+          params: {
+            countryCODE: ref.$route.params.countryCODE
+          }
+        })
+      } catch (error) {
+        console.log('LANGUAGES SORT There was an error ', error) //
+      }
   },
   beforeCreate() {
     this.$route.params.version = 'latest'

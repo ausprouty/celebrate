@@ -78,38 +78,29 @@ export default {
     goBack() {
       window.history.back()
     },
-    saveForm() {
-      console.log(this.content)
-      this.content.text = this.htmlText
-      this.content.country_iso = this.$route.params.countryCODE
-      this.content.language_iso = this.$route.params.languageISO
-      this.content.folder = this.bookmark.book.folder
-      this.content.filename = this.$route.params.pageFILENAME
-      this.content.filetype = 'html'
-      console.log('PAGE EDIT - content')
-      console.log(this.content)
-      var contentForm = ContentService.toFormData(this.content)
-      var ref = this
-      // clear bookmark because we are editing details
-      this.$store.dispatch('newBookmark', 'clear')
-      //
-      ContentService.createContentData(contentForm).then(function(response) {
-        if (response.data.error) {
-          ref.errorMessage = response.data.message
-        } else {
-          // this.successMessage = response.data.message
-          //ref.getCountries()
-          ref.$router.push({
-            name: 'previewPage',
-            params: {
-              countryCODE: ref.$route.params.countryCODE,
-              languageISO: ref.$route.params.languageISO,
-              folderNAME: ref.$route.params.folderNAME,
-              pageFILENAME: ref.$route.params.pageFILENAME
-            }
-          })
-        }
-      })
+    async saveForm() {
+      try {
+        this.content.text = this.htmlText
+        this.content.country_iso = this.$route.params.countryCODE
+        this.content.language_iso = this.$route.params.languageISO
+        this.content.folder = this.bookmark.book.folder
+        this.content.filename = this.$route.params.pageFILENAME
+        this.content.filetype = 'html'
+        var contentForm = ContentService.toFormData(this.content)
+        this.$store.dispatch('newBookmark', 'clear')
+        await ContentService.createContentData(contentForm)
+        this.$router.push({
+          name: 'previewPage',
+          params: {
+            countryCODE: this.$route.params.countryCODE,
+            languageISO: this.$route.params.languageISO,
+            bookNAME: this.$route.params.bookNAME,
+            fileFILENAME: this.$route.params.fileFILENAME
+          }
+        })
+      } catch (error) {
+        console.log('LIBRARY EDIT There was an error ', error) //
+      }
     },
 
     handleImageAdded: function(file, Editor, cursorLocation, resetUploader) {
