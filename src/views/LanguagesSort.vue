@@ -53,7 +53,7 @@ export default {
       this.languages.splice(index, 1)
     },
     async saveForm() {
-      try{
+      try {
         this.$store.dispatch('newBookmark', 'clear')
         this.content.text = JSON.stringify(this.languages)
         this.content.filename = 'languages'
@@ -62,7 +62,7 @@ export default {
         var contentForm = ContentService.toFormData(this.content)
         var response = await ContentService.createContentData(contentForm)
         this.$router.push({
-        name: 'previewLanguages',
+          name: 'previewLanguages',
           params: {
             countryCODE: ref.$route.params.countryCODE
           }
@@ -70,15 +70,16 @@ export default {
       } catch (error) {
         console.log('LANGUAGES SORT There was an error ', error) //
       }
-  },
-  beforeCreate() {
-    this.$route.params.version = 'latest'
-  },
-  async created() {
-    try {
-      this.getLanguages()
-    } catch (error) {
-      console.log('There was an error in LanguagesEdit.vue:', error) // Logs out the error
+    },
+    beforeCreate() {
+      this.$route.params.version = 'latest'
+    },
+    async created() {
+      try {
+        this.getLanguages()
+      } catch (error) {
+        console.log('There was an error in LanguagesEdit.vue:', error) // Logs out the error
+      }
     }
   }
 }

@@ -36,12 +36,15 @@ export const languageMixin = {
   methods: {
     async getLanguages() {
       try {
+        console.log('getLanguages started')
+        console.log(this.$route.params)
         this.error = this.loaded = null
         this.loading = true
         this.countries = []
         await this.CheckBookmarks(this.$route.params)
         var response = await ContentService.getLanguages(this.$route.params)
         console.log('Page View Data obtained')
+        console.log(response)
         this.languages = response.data.content.text
         this.loaded = true
         this.loading = false

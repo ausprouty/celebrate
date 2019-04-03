@@ -37,7 +37,7 @@ export default {
   },
   props: ['countryCODE', 'languageISO'],
   computed: mapState(['bookmark', 'appDir', 'cssURL', 'standard']),
-  
+
   methods: {
     addNewBookForm() {
       this.library.push({
@@ -55,7 +55,7 @@ export default {
       this.library.splice(index, 1)
     },
     async saveForm() {
-      try{
+      try {
         this.content.text = JSON.stringify(this.library)
         this.content.filename = 'library'
         this.content.filetype = 'json'
@@ -63,7 +63,7 @@ export default {
         this.content.language_iso = this.$route.params.languageISO
         this.$store.dispatch('newBookmark', 'clear')
         var contentForm = ContentService.toFormData(this.content)
-        var response =  await  ContentService.createContentData(contentForm)
+        var response = await ContentService.createContentData(contentForm)
         this.$router.push({
           name: 'previewLibrary',
           params: {
@@ -74,15 +74,16 @@ export default {
       } catch (error) {
         console.log('LIBRARY EDIT There was an error ', error) //
       }
-  },
-  beforeCreate() {
-    this.$route.params.version = 'latest'
-  },
-  async created() {
-    try {
-      this.getLibrary()
-    } catch (error) {
-      console.log('There was an error in LibraryEdit.vue:', error) // Logs out the error
+    },
+    beforeCreate() {
+      this.$route.params.version = 'latest'
+    },
+    async created() {
+      try {
+        this.getLibrary()
+      } catch (error) {
+        console.log('There was an error in LibraryEdit.vue:', error) // Logs out the error
+      }
     }
   }
 }

@@ -65,7 +65,7 @@ export default {
     NavBar
   },
   computed: mapState(['bookmark', 'appDir']),
-  
+
   methods: {
     addNewLanguageForm() {
       this.languages.push({
@@ -81,32 +81,33 @@ export default {
       this.languages.splice(index, 1)
     },
     async saveForm() {
-      try{
+      try {
         this.$store.dispatch('newBookmark', 'clear')
         this.content.text = JSON.stringify(this.languages)
         this.content.filename = 'languages'
         this.content.filetype = 'json'
         this.content.country_iso = this.$route.params.countryCODE
         var contentForm = ContentService.toFormData(this.content)
-        var response = await ContentService.createContentData(contentForm)
+         await ContentService.createContentData(contentForm)
         this.$router.push({
-        name: 'previewLanguages',
+          name: 'previewLanguages',
           params: {
-            countryCODE: ref.$route.params.countryCODE
+            countryCODE: this.$route.params.countryCODE
           }
         })
       } catch (error) {
         console.log('LANGUAGES EDIT There was an error ', error) //
       }
-  },
-  beforeCreate() {
-    this.$route.params.version = 'latest'
-  },
-  async created() {
-    try {
-      this.getLanguages()
-    } catch (error) {
-      console.log('There was an error in LanguagesEdit.vue:', error) // Logs out the error
+    },
+    beforeCreate() {
+      this.$route.params.version = 'latest'
+    },
+    async created() {
+      try {
+        this.getLanguages()
+      } catch (error) {
+        console.log('There was an error in LanguagesEdit.vue:', error) // Logs out the error
+      }
     }
   }
 }
