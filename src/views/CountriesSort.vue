@@ -52,11 +52,11 @@ export default {
     async saveForm() {
       try {
         this.$store.dispatch('newBookmark', 'clear')
-        this.content.text = JSON.stringify(this.countries)
+        var valid = ContentService.valid (this.countries)
+        this.content.text = JSON.stringify(valid)
         this.content.filename = 'countries'
         this.content.filetype = 'json'
-        var contentForm = ContentService.toFormData(this.content)
-        await ContentService.createContentData(contentForm)
+        await ContentService.createContentData(this.content)
         this.$router.push({
           name: 'previewCountries'
         })
@@ -71,7 +71,7 @@ export default {
   },
   async created() {
     try {
-      this.getCountries()
+      await this.getCountries()
     } catch (error) {
       console.log('There was an error in Countries.vue:', error) // Logs out the error
     }

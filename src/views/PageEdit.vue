@@ -80,15 +80,14 @@ export default {
     },
     async saveForm() {
       try {
-        this.content.text = this.htmlText
+        this.content.text = ContentService.validate(this.htmlText)
         this.content.country_iso = this.$route.params.countryCODE
         this.content.language_iso = this.$route.params.languageISO
         this.content.folder = this.bookmark.book.folder
         this.content.filename = this.$route.params.pageFILENAME
         this.content.filetype = 'html'
-        var contentForm = ContentService.toFormData(this.content)
         this.$store.dispatch('newBookmark', 'clear')
-        await ContentService.createContentData(contentForm)
+        await ContentService.createContentData(this.content)
         this.$router.push({
           name: 'previewPage',
           params: {

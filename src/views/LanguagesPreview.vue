@@ -4,8 +4,8 @@
     <div class="loading" v-if="loading">Loading...</div>
     <div class="error" v-if="error">There was an error...</div>
     <div class="content" v-if="loaded">
-       <a href="preview/languages">
-      <img v-bind:src="appDir.root+'languages.jpg'" class="app-img-header">
+      <a href="preview/languages">
+        <img v-bind:src="appDir.root+'languages.jpg'" class="app-img-header">
       </a>
 
       <h1>Choose Language (preview for {{this.countryCODE}})</h1>
@@ -35,7 +35,6 @@ export default {
     NavBar
   },
   computed: mapState(['bookmark', 'appDir']),
-
   methods: {
     editLanguages() {
       this.$router.push({
@@ -62,7 +61,9 @@ export default {
   },
   async created() {
     try {
-      this.getLanguages()
+      await this.getLanguages()
+      this.loaded = true
+      this.loading = false
     } catch (error) {
       console.log('There was an error in LanguagesEdit.vue:', error) // Logs out the error
     }

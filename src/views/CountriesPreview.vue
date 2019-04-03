@@ -60,7 +60,7 @@ export default {
   },
   async created() {
     try {
-      this.getCountries()
+      await this.getCountries()
     } catch (error) {
       console.log('There was an error in Countries.vue:', error) // Logs out the error
     }

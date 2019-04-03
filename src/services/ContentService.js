@@ -132,7 +132,11 @@ export default {
     if (!found) {
       response.data = {}
       response.data.content = {}
-
+      // may need to remove .json from some FILENAME
+      var filename = params.fileFILENAME
+      if (!filename.includes('.json')) {
+        filename = filename + '.json'
+      }
       let res = await apiClient.get(
         'content/' +
           params.countryCODE +
@@ -141,7 +145,7 @@ export default {
           '/' +
           params.folderNAME +
           '/' +
-          params.fileFILENAME + '.json'
+          filename
       )
       response.data.content = res.data
       return response
@@ -183,7 +187,17 @@ export default {
       return response
     }
   },
-  createContentData(contentForm) {
+  valid(entry) {
+    var clean = entry
+
+    return clean
+  },
+  createContentData(obj) {
+    var d = new Date()
+    obj.edit_date = d.getTime()
+    obj.edit_uid = 1
+    var contentForm = this.toFormData(obj)
+    console.log('about to create content')
     return apiMYSQL.post('ContentApi.php?crud=create', contentForm)
   },
   toFormData(obj) {

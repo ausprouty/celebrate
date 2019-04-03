@@ -8,7 +8,7 @@
       <div class="form">
         <span>Series Description:</span>
         <br>
-        <textarea v-model="seriesDetails.description" placeholder="add multiple lines"></textarea>
+        <textarea v-model="description" placeholder="add multiple lines"></textarea>
       </div>
       <div>
         <button class="button" @click="addNewChapterForm">New Chapter</button>
@@ -84,17 +84,22 @@ export default {
     async saveForm() {
       try {
         console.log(this.content)
-        var text = this.seriesDetails
+        var text = {}
+        text.description = this.description
+        console.log('text.description')
+        console.log(text.description)
         text.text = this.chapters
-        this.content.text = JSON.stringify(text)
+        var valid = ContentService.validate(text)
+        this.content.text = JSON.stringify(valid)
         this.content.filename = this.$route.params.bookNAME + '-chapters'
         this.content.filetype = 'json'
         this.content.country_iso = this.$route.params.countryCODE
         this.content.language_iso = this.$route.params.languageISO
         this.content.folder = this.bookmark.book.folder
-        var contentForm = ContentService.toFormData(this.content)
+        console.log('this.content')
+        console.log(this.content)
         this.$store.dispatch('newBookmark', 'clear')
-        await ContentService.createContentData(contentForm)
+        await ContentService.createContentData(this.content)
         this.$router.push({
           name: 'previewSeries',
           params: {

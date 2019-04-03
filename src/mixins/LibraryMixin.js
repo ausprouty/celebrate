@@ -55,8 +55,7 @@ export const libraryMixin = {
         }
         console.log('this.image_dir')
         console.log(this.image_dir)
-        this.loaded = true
-        this.loading = false
+       
       } catch (error) {
         console.log('There was an error in LibraryMixin:', error) // Logs out the error
       }

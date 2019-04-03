@@ -105,14 +105,14 @@ export default {
     },
     async saveForm() {
       try {
-        this.content.text = JSON.stringify(this.library)
+        var valid = ContentService.validate(this.library)
+        this.content.text = JSON.stringify(valid)
         this.content.filename = 'library'
         this.content.filetype = 'json'
         this.content.country_iso = this.$route.params.countryCODE
         this.content.language_iso = this.$route.params.languageISO
         this.$store.dispatch('newBookmark', 'clear')
-        var contentForm = ContentService.toFormData(this.content)
-        await ContentService.createContentData(contentForm)
+        await ContentService.createContentData(this.content)
         this.$router.push({
           name: 'previewLibrary',
           params: {
@@ -123,16 +123,18 @@ export default {
       } catch (error) {
         console.log('LIBRARY EDIT There was an error ', error) //
       }
-    },
-    beforeCreate() {
-      this.$route.params.version = 'latest'
-    },
-    async created() {
-      try {
-        this.getLibrary()
-      } catch (error) {
-        console.log('There was an error in Library.vue:', error) // Logs out the error
-      }
+    }
+  },
+  beforeCreate() {
+    this.$route.params.version = 'latest'
+  },
+  async created() {
+    try {
+      await this.getLibrary()
+      this.loaded = true
+      this.loading = false
+    } catch (error) {
+      console.log('There was an error in Library.vue:', error) // Logs out the error
     }
   }
 }

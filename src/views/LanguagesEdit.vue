@@ -1,6 +1,7 @@
 <template>
   <div>
     <NavBar/>
+    <h1>This came in</h1>
     <div class="loading" v-if="loading">Loading...</div>
     <div class="error" v-if="error">There was an error...</div>
     <div class="content" v-if="loaded">
@@ -83,12 +84,12 @@ export default {
     async saveForm() {
       try {
         this.$store.dispatch('newBookmark', 'clear')
-        this.content.text = JSON.stringify(this.languages)
+        var valid = ContentService.valid(this.languages)
+        this.content.text = JSON.stringify(valid)
         this.content.filename = 'languages'
         this.content.filetype = 'json'
         this.content.country_iso = this.$route.params.countryCODE
-        var contentForm = ContentService.toFormData(this.content)
-         await ContentService.createContentData(contentForm)
+        await ContentService.createContentData(this.content)
         this.$router.push({
           name: 'previewLanguages',
           params: {
@@ -98,16 +99,18 @@ export default {
       } catch (error) {
         console.log('LANGUAGES EDIT There was an error ', error) //
       }
-    },
-    beforeCreate() {
-      this.$route.params.version = 'latest'
-    },
-    async created() {
-      try {
-        this.getLanguages()
-      } catch (error) {
-        console.log('There was an error in LanguagesEdit.vue:', error) // Logs out the error
-      }
+    }
+  },
+  beforeCreate() {
+    this.$route.params.version = 'latest'
+  },
+  async created() {
+    try {
+      await this.getLanguages()
+      this.loaded = true
+      this.loading = false
+    } catch (error) {
+      console.log('There was an error in LanguagesEdit.vue:', error) // Logs out the error
     }
   }
 }

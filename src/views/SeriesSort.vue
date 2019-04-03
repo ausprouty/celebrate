@@ -65,15 +65,15 @@ export default {
         console.log(this.content)
         var text = this.seriesDetails
         text.text = this.chapters
-        this.content.text = JSON.stringify(text)
+        var valid = ContentService.validate(text)
+        this.content.text = JSON.stringify(valid)
         this.content.filename = this.$route.params.bookNAME + '-chapters'
         this.content.filetype = 'json'
         this.content.country_iso = this.$route.params.countryCODE
         this.content.language_iso = this.$route.params.languageISO
         this.content.folder = this.bookmark.book.folder
-        var contentForm = ContentService.toFormData(this.content)
         this.$store.dispatch('newBookmark', 'clear')
-        await ContentService.createContentData(contentForm)
+        await ContentService.createContentData(this.content)
         this.$router.push({
           name: 'previewSeries',
           params: {

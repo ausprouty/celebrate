@@ -56,7 +56,7 @@ export const countriesMixin = {
       console.log(response)
       console.log('COUNTRY PREVIEW - length is ' + response.length)
       if (response.length === 1) {
-        link = 'Library'
+        link = 'library'
         if (this.$route.params.version == 'latest') {
           link = 'previewLibrary'
         }
