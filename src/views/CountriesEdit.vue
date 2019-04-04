@@ -63,13 +63,14 @@ import ContentService from '@/services/ContentService.js'
 import { mapState } from 'vuex'
 import { bookMarkMixin } from '@/mixins/BookmarkMixin.js'
 import { countriesMixin } from '@/mixins/CountriesMixin.js'
+import { required } from 'vuelidate/lib/validators'
 export default {
   mixins: [bookMarkMixin, countriesMixin],
   components: {
     NavBar
   },
   computed: mapState(['bookmark', 'appDir', 'revision']),
-
+  validations: {},
   methods: {
     deleteCountryForm(index) {
       this.countries.splice(index, 1)
@@ -85,7 +86,7 @@ export default {
     async saveForm() {
       try {
         this.$store.dispatch('newBookmark', 'clear')
-        var valid = ContentService.valid (this.countries)
+        var valid = ContentService.valid(this.countries)
         this.content.text = JSON.stringify(valid)
         this.content.filename = 'countries'
         this.content.filetype = 'json'

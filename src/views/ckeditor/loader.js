@@ -12,7 +12,7 @@ require.context(
   '!file-loader?name=[path][name].[ext]!ckeditor/plugins/',
   true,
   // plugins|needed|by|ckeditor|whatever plugin your need
-  /^\.\/((wsc|scayt|copyformatting|tableselection|link|image|div|bidi|autogrow|placeholder)(\/(?!lang\/)[^/]+)*)?[^/]*$/
+  /^\.\/((wsc|scayt|copyformatting|tableselection|link|image|div)(\/(?!lang\/)[^/]+)*)?[^/]*$/
 )
 
 // Load lang files from plugins.
@@ -34,7 +34,7 @@ require.context(
 
 // Load skin.
 require.context(
-  '!file-loader?name=[path][name].[ext]!ckeditor/skins/kama',
+  '!file-loader?name=[path][name].[ext]!ckeditor/skins/moono-lisa',
   true,
   /.*/
 )

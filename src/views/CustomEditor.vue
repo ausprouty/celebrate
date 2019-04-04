@@ -1,17 +1,19 @@
 <template>
   <div>
     <NavBar/>
- 
-      <link rel="stylesheet" v-bind:href="'/css/' + this.style">
-      <p>
-        <vue-ckeditor v-model="htmlText" language="en"></vue-ckeditor>
-      </p>
-      <p>
-        Please compare to
-        <a target="a_blank" href="/page/AU/eng/basics/basics101">/page/AU/eng/basics/basics101</a>
-      </p>
-    </div>
 
+    <link rel="stylesheet" v-bind:href="'/css/' + this.style">
+    <p>
+      <vue-ckeditor v-model="htmlText" language="en"></vue-ckeditor>
+    </p>
+    <p>
+      Please compare to
+      <a
+        target="a_blank"
+        href="/page/AU/eng/basics/basics101"
+      >/page/AU/eng/basics/basics101</a>
+    </p>
+  </div>
 </template>
 
 
@@ -27,9 +29,9 @@ export default {
   },
   data() {
     return {
-      style: 'myfriends.css',
-
-      htmlText: `<div class="lesson">
+      style: 'AU-myfriends.css',
+      htmlText: 'this is my test',
+      htmlTextx: `<div class="lesson">
     <img class="lesson-icon" src="/images/sharing-life.png" />
     <div class="lesson-subtitle">SHARE</div>
   </div>
