@@ -60,6 +60,7 @@ import ContentService from '@/services/ContentService.js'
 import NavBar from '@/components/NavBarAdmin.vue'
 import { bookMarkMixin } from '@/mixins/BookmarkMixin.js'
 import { seriesMixin } from '@/mixins/SeriesMixin.js'
+import { required } from 'vuelidate/lib/validators'
 export default {
   mixins: [bookMarkMixin, seriesMixin],
   props: ['countryCODE', 'languageISO', 'bookNAME'],

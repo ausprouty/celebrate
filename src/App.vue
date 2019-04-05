@@ -122,6 +122,12 @@ div.card-names {
   font-weight: bold;
   line-height: 20px;
 }
+.error {
+  border: 1px solid red;
+}
+.errorMessage {
+  color: red;
+}
 .eyebrow {
   font-size: 20px;
 }
@@ -204,11 +210,19 @@ button:-moz-focusring,
 }
 button {
   margin-bottom: 20px;
-  background-color: red;
+  background-color: green;
   color: white;
   font-weight: bold;
+  border-radius: 6px;
+  text-align: center;
+  padding: 0 40px;
+  height: 36px;
 }
-img.sortable{
+.button.red{
+  background-color:red;
+   height: 48px;
+}
+img.sortable {
   height: 30px;
   width: 30px;
 }

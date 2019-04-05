@@ -30,8 +30,8 @@ export default {
   data() {
     return {
       style: 'AU-myfriends.css',
-      htmlText: 'this is my test',
-      htmlTextx: `<div class="lesson">
+      htmlTextx: 'this is my test',
+      htmlText: `<div class="lesson">
     <img class="lesson-icon" src="/images/sharing-life.png" />
     <div class="lesson-subtitle">SHARE</div>
   </div>

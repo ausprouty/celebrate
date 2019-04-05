@@ -26,6 +26,8 @@ import PagePreview from './views/PagePreview.vue'
 
 import Users from './views/Users.vue'
 import Custom from './views/CustomEditor.vue'
+import Validate from './views/Validate.vue'
+import Test from './views/Test.vue'
 
 import NotFoundComponent from './views/NotFound.vue'
 
@@ -149,6 +151,18 @@ export default new Router({
       name: 'users',
       component: Users,
       props: true
+    },
+    {
+      path: '/validate',
+      name: 'validate',
+      component: Validate,
+      props: false
+    },
+    {
+      path: '/test',
+      name: 'test',
+      component: Test,
+      props: false
     },
     {
       path: '/custom',

@@ -5,54 +5,90 @@
     <div class="error" v-if="error">There was an error...</div>
     <div class="content" v-if="loaded">
       <h1>Countries</h1>
-      <div>
-        <button class="button" @click="addNewCountryForm">New Country</button>
-        <div v-for="(country, index) in countries" :key="country.code" :country="country">
-          <div class="app-card -shadow">
-            <div class="float-right" style="cursor:pointer" @click="deleteCountryForm(index)">X</div>
-            <h4 class="card-title">Country #{{index}}</h4>
-            <div class="form">
-              <span>Country Name :</span>
-              <input
-                type="text"
-                class="form-control mb-2"
-                placeholder="Country Name"
-                v-model="country.name"
-              >
-              <span>English Name:</span>
-              <input
-                type="text"
-                class="form-control mb-2"
-                placeholder="English Name"
-                v-model="country.english"
-              >
-              <span>country 2 letter ISO:</span>
-              <input
-                type="text"
-                maxlength="2"
-                class="form-control mb-2"
-                placeholder="2 letter ISO code"
-                v-model="country.code"
-              >
-              <span>Index</span>
-              <input
-                type="text"
-                class="form-control mb-2"
-                placeholder="index-ISO"
-                v-model="country.english"
-              >
-              <span>Image</span>
-              <input
-                type="text"
-                class="form-control mb-2"
-                placeholder="ISO.png"
-                v-model="country.image"
-              >
-            </div>
-          </div>
+      <div
+        v-for="(country, index) in $v.countries.$each.$iter"
+        :key="country.code"
+        :country="country"
+      >
+        <div class="app-card -shadow">
+          <div class="float-right" style="cursor:pointer" @click="deleteCountryForm(index)">X</div>
+          <h4 class="card-title">Country #{{index}}</h4>
+          <form>
+            <BaseInput
+              v-model="country.name.$model"
+              label="Country Name"
+              type="text"
+              placeholder="Country Name"
+              class="field"
+              :class="{ error: country.name.$error }"
+              @blur="country.name.$touch()"
+            />
+            <template v-if="country.name.$error">
+              <div class="errorMessage" v-if="!country.name.required">Country Name is required.</div>
+            </template>
+
+            <BaseInput
+              v-model="country.english.$model"
+              label="English Name"
+              type="text"
+              placeholder="English Name"
+              class="field"
+              :class="{ error: country.english.$error }"
+              @blur="country.english.$touch()"
+            />
+            <template v-if="country.english.$error">
+              <div class="errorMessage" v-if="!country.english.required">English Name is required.</div>
+            </template>
+
+            <BaseInput
+              v-model="country.code.$model"
+              label="Country ISO Code"
+              type="text"
+              placeholder="2 letter ISO code"
+              class="field"
+              :class="{ error: country.code.$error }"
+              @blur="country.code.$touch()"
+            />
+            <template v-if="country.code.$error">
+              <div class="errorMessage" v-if="!country.code.required">Country Code is required.</div>
+            </template>
+
+            <BaseInput
+              v-model="country.index.$model"
+              label="Index"
+              type="text"
+              placeholder="XX-index"
+              class="field"
+              :class="{ error: country.index.$error }"
+              @blur="country.index.$touch()"
+            />
+            <template v-if="country.index.$error">
+              <div class="errorMessage" v-if="!country.index.required">Index is required.</div>
+            </template>
+
+            <BaseInput
+              v-model="country.image.$model"
+              label="Index"
+              type="text"
+              placeholder="ISO.png"
+              class="field"
+              :class="{ error: country.image.$error }"
+              @blur="country.image.$touch()"
+            />
+            <template v-if="country.image.$error">
+              <div class="errorMessage" v-if="!country.image.required">Image is required.</div>
+            </template>
+          </form>
         </div>
-        <button class="button" @click="saveForm">Save</button>
       </div>
+       <div>
+        <button class="button" @click="addNewCountryForm">New Country</button>
+      </div>
+      <div>
+        <button class="button red" @click="saveForm">Save Changes</button>
+        </div>
+          <p v-if="$v.$anyError" class="errorMessage">Please fill out the required field(s).</p>
+       </div>
     </div>
   </div>
 </template>
@@ -70,7 +106,29 @@ export default {
     NavBar
   },
   computed: mapState(['bookmark', 'appDir', 'revision']),
-  validations: {},
+  data() {
+    return {
+      countries: {
+        name: '',
+        english: '',
+        code: '',
+        index: '',
+        image: ''
+      }
+    }
+  },
+  validations: {
+    countries: {
+      required,
+      $each: {
+        name: { required },
+        english: { required },
+        code: { required },
+        index: { required },
+        image: { required }
+      }
+    }
+  },
   methods: {
     deleteCountryForm(index) {
       this.countries.splice(index, 1)
@@ -84,7 +142,10 @@ export default {
       })
     },
     async saveForm() {
+      // this.$v.$touch()
+      // if (!this.$v.$invalid) {
       try {
+        console.log('saving form')
         this.$store.dispatch('newBookmark', 'clear')
         var valid = ContentService.valid(this.countries)
         this.content.text = JSON.stringify(valid)
@@ -98,6 +159,7 @@ export default {
         console.log('COUNTRIES EDIT There was an error ', error) //
       }
     }
+    //}
   },
   beforeCreate() {
     this.$route.params.version = 'latest'

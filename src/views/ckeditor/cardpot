@@ -1,36 +1,170 @@
-config.plugins =
-    'dialogui,dialog,about,a11yhelp,dialogadvtab,basicstyles,bidi,blockquote,notification,button,toolbar,clipboard,panelbutton,panel,floatpanel,colorbutton,colordialog,templates,menu,contextmenu,copyformatting,div,resize,elementspath,enterkey,entities,popup,filetools,filebrowser,find,fakeobjects,flash,floatingspace,listblock,richcombo,font,forms,format,horizontalrule,htmlwriter,iframe,wysiwygarea,image,indent,indentblock,indentlist,smiley,justify,menubutton,language,link,list,liststyle,magicline,maximize,newpage,pagebreak,pastetext,pastefromword,preview,print,removeformat,save,selectall,showblocks,showborders,sourcearea,specialchar,scayt,stylescombo,tab,table,tabletools,tableselection,undo,lineutils,widgetselection,widget,notificationaggregator,uploadwidget,uploadimage,wsc,autogrow,placeholder,simage'
-  
+<template>
+  <div>
+    <NavBar/>
+    <div class="loading" v-if="loading">Loading...</div>
+    <div class="error" v-if="error">There was an error...</div>
+    <div class="content" v-if="loaded">
+      <h1>Countries</h1>
+      <div>
+        <div v-for="(country, index) in countries" :key="country.code" :country="country">
+          <div class="app-card -shadow">
+            <div class="float-right" style="cursor:pointer" @click="deleteCountryForm(index)">X</div>
+            <h4 class="card-title">Country #{{index}}</h4>
+            <form @submit.prevent="saveForm">
+              <BaseInput
+                label="Country Name"
+                v-model="country.name"
+                type="text"
+                placeholder="Country NAME"
+                class="field"
+                :class="{ error: $v.country.name.$error }"
+                @blur="$v.country.name.$touch()"
+              />
+              <template v-if="$v.country.name.$error">
+                <p v-if="!$v.country.name.required" class="errorMessage">Country Name is required</p>
+              </template>
 
-  window.CKEDITOR.editorConfig = function(config) {
-  // Define changes to default configuration here.
-  // For complete reference see:
-  // http://docs.ckeditor.com/#!/api/CKEDITOR.config
-  config.plugins =
-    'dialogui,dialog,about,a11yhelp,dialogadvtab,basicstyles,bidi,blockquote,notification,button,toolbar,clipboard,panelbutton,panel,floatpanel,colorbutton,colordialog,templates,menu,contextmenu,copyformatting,div,resize,elementspath,enterkey,entities,popup,filetools,filebrowser,find,fakeobjects,flash,floatingspace,listblock,richcombo,font,forms,format,horizontalrule,htmlwriter,iframe,wysiwygarea,image,indent,indentblock,indentlist,smiley,justify,menubutton,language,link,list,liststyle,magicline,maximize,newpage,pagebreak,pastetext,pastefromword,preview,print,removeformat,save,selectall,showblocks,showborders,sourcearea,specialchar,scayt,stylescombo,tab,table,tabletools,tableselection,undo,lineutils,widgetselection,widget,notificationaggregator,uploadwidget,uploadimage,wsc,autogrow'
-  config.uiColor = '#efefef'
-  config.toolbarGroups = [
-    { name: 'styles', groups: ['styles'] },
-    { name: 'basicstyles', groups: ['basicstyles', 'cleanup'] },
-    {
-      name: 'editing',
-      groups: ['find', 'selection', 'spellchecker', 'editing']
-    },
-    { name: 'links', groups: ['links'] },
-    { name: 'insert', groups: ['insert'] },
-    { name: 'forms', groups: ['forms'] },
-    { name: 'tools', groups: ['tools'] },
-    { name: 'document', groups: ['mode', 'document', 'doctools'] },
-    { name: 'clipboard', groups: ['clipboard', 'undo'] },
-    { name: 'others', groups: ['others'] },
-    '/',
-    {
-      name: 'paragraph',
-      groups: ['list', 'indent', 'blocks', 'align', 'bidi', 'paragraph']
-    },
-    { name: 'colors', groups: ['colors'] },
-    { name: 'about', groups: ['about'] }
-  ]
+              <BaseInput
+                v-model="country.english"
+                label="English Name"
+                type="text"
+                placeholder="English Name"
+                class="field"
+                :class="{ error: $v.country.english.$error }"
+                @blur="$v.country.english.$touch()"
+              />
+              <template v-if="$v.country.english.$error">
+                <p v-if="!$v.country.english.required" class="errorMessage">English Name is required</p>
+              </template>
 
-  config.removeButtons = 'Underline,Subscript,Superscript'
+              <BaseInput
+                v-model="country.code"
+                label="Country ISO Code"
+                type="text"
+                placeholder="2 letter ISO code"
+                class="field"
+                :class="{ error: $v.country.code.$error }"
+                @blur="$v.country.code.$touch()"
+              />
+              <template v-if="$v.country.code.$error">
+                <p
+                  v-if="!$v.country.code.required"
+                  class="errorMessage"
+                >Country ISO Code is required</p>
+              </template>
+
+              <BaseInput
+                v-model="country.index"
+                label="Index"
+                type="text"
+                placeholder="XX-index"
+                class="field"
+                :class="{ error: $v.country.index.$error }"
+                @blur="$v.country.index.$touch()"
+              />
+              <template v-if="$v.country.index.$error">
+                <p v-if="!$v.country.index.required" class="errorMessage">Country Index is required</p>
+              </template>
+
+              <BaseInput
+                v-model="country.image"
+                label="Image"
+                type="text"
+                placeholder="ISO.png"
+                class="field"
+                :class="{ error: $v.country.image.$error }"
+                @blur="$v.country.image.$touch()"
+              />
+              <template v-if="$v.country.image.$error">
+                <p v-if="!$v.country.image.required" class="errorMessage">Country Flag is required</p>
+              </template>
+            </form>
+          </div>
+        </div>
+
+        <button class="button" @click="addNewCountryForm">New Country</button>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+import NavBar from '@/components/NavBarAdmin.vue'
+import ContentService from '@/services/ContentService.js'
+import { mapState } from 'vuex'
+import { bookMarkMixin } from '@/mixins/BookmarkMixin.js'
+import { countriesMixin } from '@/mixins/CountriesMixin.js'
+import { required } from 'vuelidate/lib/validators'
+export default {
+  mixins: [bookMarkMixin, countriesMixin],
+  components: {
+    NavBar
+  },
+  computed: mapState(['bookmark', 'appDir', 'revision']),
+  data() {
+    return {
+      name: null
+    }
+  },
+  validations: {
+    country: {
+      required,
+      $each: {
+        name: { required },
+        english: { required },
+        code: { required },
+        index: { required },
+        image: { required }
+      }
+    }
+  },
+  methods: {
+    deleteCountryForm(index) {
+      this.countries.splice(index, 1)
+    },
+    addNewCountryForm() {
+      this.countries.push({
+        code: '',
+        english: '',
+        name: '',
+        index: ''
+      })
+    },
+    async saveForm() {
+      this.$v.$touch()
+      if (!this.$v.$invalid) {
+        try {
+          this.$store.dispatch('newBookmark', 'clear')
+          var valid = ContentService.valid(this.countries)
+          this.content.text = JSON.stringify(valid)
+          this.content.filename = 'countries'
+          this.content.filetype = 'json'
+          await ContentService.createContentData(this.content)
+          this.$router.push({
+            name: 'previewCountries'
+          })
+        } catch (error) {
+          console.log('COUNTRIES EDIT There was an error ', error) //
+        }
+      }
+    }
+  },
+  beforeCreate() {
+    this.$route.params.version = 'latest'
+  },
+  async created() {
+    try {
+      await this.getCountries()
+    } catch (error) {
+      console.log('There was an error in CountriesEdit.vue:', error) // Logs out the error
+    }
+  }
 }
+</script>
+
+
+<style scoped>
+.float-right {
+  text-align: right;
+}
+</style>

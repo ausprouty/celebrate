@@ -16,7 +16,7 @@
             </div>
           </transition-group>
         </draggable>
-        <button class="button" @click="saveForm">Save</button>
+        <button class="button red" @click="saveForm">Save</button>
       </div>
     </div>
   </div>

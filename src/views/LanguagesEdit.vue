@@ -1,33 +1,46 @@
 <template>
   <div>
     <NavBar/>
-    <h1>This came in</h1>
+
     <div class="loading" v-if="loading">Loading...</div>
     <div class="error" v-if="error">There was an error...</div>
     <div class="content" v-if="loaded">
       <h1>Languages for {{this.$route.params.countryCODE}}</h1>
       <div>
-        <button class="button" @click="addNewLanguageForm">New Language</button>
-        <div v-for="(language, index) in languages" :key="language.id" :language="language">
+        <div
+          v-for="(language, index) in $v.languages.$each.$iter"
+          :key="language.id"
+          :language="language"
+        >
           <div class="app-card -shadow">
             <div class="float-right" style="cursor:pointer" @click="deleteLanguageForm(index)">X</div>
             <h4 class="card-title">Language #{{index}}</h4>
-            <div class="form">
-              <span>Language Name (as you want your audience to see it):</span>
-              <input
+            <form @submit.prevent="saveForm">
+              <BaseInput
+                v-model="language.name.$model"
+                label="Language Name (as you want your audience to see it)"
                 type="text"
-                class="form-control mb-2"
                 placeholder="Language Name"
-                v-model="language.name"
-              >
-              <span>Language 3 letter ISO:</span>
-              <input
+                class="field"
+                :class="{ error: language.name.$error }"
+                @blur="language.name.$touch()"
+              />
+              <template v-if="language.name.$error">
+                <p v-if="!language.name.required" class="errorMessage">Language Name is required</p>
+              </template>
+
+              <BaseInput
+                v-model="language.iso.$model"
+                label="Language 3 letter ISO"
                 type="text"
-                maxlength="3"
-                class="form-control mb-2"
                 placeholder="3 letter ISO code"
-                v-model="language.iso"
-              >
+                :class="{ error: language.iso.$error }"
+                @blur="language.iso.$touch()"
+              />
+              <template v-if="language.iso.$error">
+                <p v-if="!language.iso.required" class="errorMessage">Language ISO is required</p>
+              </template>
+
               <span>Menu Images:</span>
               <select v-model="language.image_dir">
                 <option disabled value>Menu Images:</option>
@@ -44,12 +57,18 @@
                 <option value="ltr">Left to Right</option>
                 <option value="rtl">Right to Left</option>
               </select>
-            </div>
+            </form>
           </div>
         </div>
       </div>
     </div>
-    <button class="button" @click="saveForm">Save</button>
+    <div>
+      <button class="button" @click="addNewLanguageForm">New Language</button>
+    </div>
+    <div>
+      <button class="button red" @click="saveForm">Save Changes</button>
+    </div>
+    <p v-if="$v.$anyError" class="errorMessage">Please fill out the required field(s).</p>
   </div>
 </template>
 
@@ -59,6 +78,7 @@ import ContentService from '@/services/ContentService.js'
 import { mapState } from 'vuex'
 import { bookMarkMixin } from '@/mixins/BookmarkMixin.js'
 import { languageMixin } from '@/mixins/LanguageMixin.js'
+import { required } from 'vuelidate/lib/validators'
 export default {
   mixins: [bookMarkMixin, languageMixin],
   props: ['countryCODE'],
@@ -66,7 +86,27 @@ export default {
     NavBar
   },
   computed: mapState(['bookmark', 'appDir']),
-
+  data() {
+    return {
+      languages: {
+        name: '',
+        iso: '',
+        image_dir: '',
+        lrdir: ''
+      }
+    }
+  },
+  validations: {
+    languages: {
+      required,
+      $each: {
+        name: { required },
+        iso: { required },
+        image_dir: { required },
+        lrdir: { required }
+      }
+    }
+  },
   methods: {
     addNewLanguageForm() {
       this.languages.push({

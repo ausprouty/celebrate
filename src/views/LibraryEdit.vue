@@ -11,20 +11,25 @@
           <div class="app-card -shadow">
             <div class="float-right" style="cursor:pointer" @click="deleteBookForm(index)">X</div>
             <h4 class="card-title">Book #{{index}}</h4>
-            <div class="form">
-              <span>Title:</span>
-              <input type="text" class="form-control mb-2" placeholder="Title" v-model="book.title">
+            <form @submit.prevent="saveForm">
+              <BaseInput
+                v-model="book.title"
+                label="Title"
+                type="text"
+                placeholder="Title"
+                class="field"
+              />
               <br>
               <br>
               <img v-bind:src="appDir.library  + image_dir  + '/' + book.image" class="book">
               <br>
-              <span>Image:</span>
-              <input
-                type="text"
-                class="form-control mb-2"
-                placeholder="myfriends"
+              <BaseInput
                 v-model="book.image"
-              >
+                label="Image"
+                type="text"
+                placeholder="myfriends"
+                class="field"
+              />
 
               <span>Book:</span>
               <select v-model="book.book">
@@ -35,36 +40,36 @@
                 <option value="compass">Compass</option>
                 <option value="about">About</option>
               </select>
-
-              <span>Folder:</span>
-              <input
-                type="text"
-                class="form-control mb-2"
-                placeholder="myfriends"
+              <BaseInput
                 v-model="book.folder"
-              >
+                label="Folder"
+                type="text"
+                placeholder="myfriends"
+                class="field"
+              />
               <span>Format:</span>
               <select v-model="book.format">
                 <option value="series">series</option>
                 <option value="page">page</option>
               </select>
               <div v-if="book.format == 'series'">
-                <span>Index</span>
-                <input
-                  type="text"
-                  class="form-control mb-2"
-                  placeholder="basics-chapters.json"
+                <BaseInput
                   v-model="book.index"
-                >
+                  label="Index"
+                  type="text"
+                  placeholder="basics-chapters"
+                  class="field"
+                />
               </div>
-              <span>Style Sheet</span>
-              <input
-                type="text"
-                class="form-control mb-2"
-                placeholder="AU-myfriends.css"
+
+              <BaseInput
                 v-model="book.style"
-              >
-            </div>
+                label="Language 3 letter ISOStyle Sheet"
+                type="text"
+                placeholder="AU-myfriends.css"
+                class="field"
+              />
+            </form>
           </div>
         </div>
       </div>
@@ -79,6 +84,7 @@ import ContentService from '@/services/ContentService.js'
 import { mapState } from 'vuex'
 import { bookMarkMixin } from '@/mixins/BookmarkMixin.js'
 import { libraryMixin } from '@/mixins/LibraryMixin.js'
+import { required } from 'vuelidate/lib/validators'
 export default {
   mixins: [bookMarkMixin, libraryMixin],
   components: {
