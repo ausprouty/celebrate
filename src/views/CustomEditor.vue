@@ -4,7 +4,7 @@
 
     <link rel="stylesheet" v-bind:href="'/css/' + this.style">
     <p>
-      <vue-ckeditor v-model="htmlText" language="en"></vue-ckeditor>
+      <vue-ckeditor v-model="content" :config="config"/>
     </p>
     <p>
       Please compare to
@@ -19,8 +19,7 @@
 
 <script>
 import NavBar from '@/components/NavBarAdmin.vue'
-import './ckeditor/index.js'
-import VueCkeditor from 'vueckeditor'
+import VueCkeditor from 'vue-ckeditor2'
 
 export default {
   components: {
@@ -30,7 +29,33 @@ export default {
   data() {
     return {
       style: 'AU-myfriends.css',
-      htmlText: 'this is my test',
+      content: 'this is my test',
+      config: {
+        extraPlugins: 'bidi',
+        toolbarGroups : [
+          { name: 'styles', groups: ['styles'] },
+          { name: 'basicstyles', groups: ['basicstyles', 'cleanup'] },
+          {
+            name: 'editing',
+            groups: ['find', 'selection', 'spellchecker', 'editing']
+          },
+          { name: 'links', groups: ['links'] },
+          { name: 'insert', groups: ['insert'] },
+          { name: 'forms', groups: ['forms'] },
+          { name: 'tools', groups: ['tools'] },
+          { name: 'document', groups: ['mode', 'document', 'doctools'] },
+          { name: 'clipboard', groups: ['clipboard', 'undo'] },
+          { name: 'others', groups: ['others'] },
+          '/',
+          {
+            name: 'paragraph',
+            groups: ['list', 'indent', 'blocks', 'align', 'bidi', 'paragraph']
+          },
+          { name: 'colors', groups: ['colors'] },
+          { name: 'about', groups: ['about'] }
+        ],
+        height: 300
+      },
       htmlTextx: `<div class="lesson">
     <img class="lesson-icon" src="/images/sharing-life.png" />
     <div class="lesson-subtitle">SHARE</div>
