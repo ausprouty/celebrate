@@ -34,29 +34,38 @@
                 label="Language 3 letter ISO"
                 type="text"
                 placeholder="3 letter ISO code"
+                class="field"
                 :class="{ error: language.iso.$error }"
                 @blur="language.iso.$touch()"
               />
               <template v-if="language.iso.$error">
                 <p v-if="!language.iso.required" class="errorMessage">Language ISO is required</p>
               </template>
-
-              <span>Menu Images:</span>
-              <select v-model="language.image_dir">
-                <option disabled value>Menu Images:</option>
-                <option value="menu-china">China</option>
-                <option value="menu-ethiopian">Ethiopian</option>
-                <option value="menu-europe">Europe</option>
-                <option value="menu-india">India</option>
-                <option value="menu-latin">Latin America</option>
-                <option value="menu-middle_east">Middle East</option>
-              </select>
-              <span>Text Direction:</span>
-              <select v-model="language.rldir">
-                <option disabled value>Text Direction</option>
-                <option value="ltr">Left to Right</option>
-                <option value="rtl">Right to Left</option>
-              </select>
+              <BaseSelect
+                label="Menu Images"
+                :options="menus"
+                v-model="language.image_dir.$model"
+                class="field"
+                :class="{ error: language.image_dir.$error }"
+                @blur="language.image_dir.$touch()"
+              />
+              <template v-if="language.image_dir.$error">
+                <p
+                  v-if="!language.image_dir.required"
+                  class="errorMessage"
+                >Menu directory is required</p>
+              </template>
+              <BaseSelect
+                label="Text Direction"
+                :options="direction"
+                v-model="language.rldir.$model"
+                class="field"
+                :class="{ error: language.rldir.$error }"
+                @blur="language.rldir.$touch()"
+              />
+              <template v-if="language.rldir.$error">
+                <p v-if="!language.rldir.required" class="errorMessage">Text Direction is required</p>
+              </template>
             </form>
           </div>
         </div>
@@ -65,10 +74,13 @@
     <div>
       <button class="button" @click="addNewLanguageForm">New Language</button>
     </div>
-    <div>
+    <div v-if="!$v.$anyError">
       <button class="button red" @click="saveForm">Save Changes</button>
     </div>
-    <p v-if="$v.$anyError" class="errorMessage">Please fill out the required field(s).</p>
+    <div v-if="$v.$anyError">
+      <button class="button grey">Disabled</button>
+      <p v-if="$v.$anyError" class="errorMessage">Please fill out the required field(s).</p>
+    </div>
   </div>
 </template>
 
@@ -93,7 +105,16 @@ export default {
         iso: '',
         image_dir: '',
         lrdir: ''
-      }
+      },
+      menus: [
+        'menu-china',
+        'menu-ethiopian',
+        'menu-europe',
+        'menu-india',
+        'menu-latin',
+        'menu-middle_east'
+      ],
+      direction: ['rtl', 'ltr']
     }
   },
   validations: {
@@ -103,7 +124,7 @@ export default {
         name: { required },
         iso: { required },
         image_dir: { required },
-        lrdir: { required }
+        rldir: { required }
       }
     }
   },

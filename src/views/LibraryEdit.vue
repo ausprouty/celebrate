@@ -11,14 +11,19 @@
           <div class="app-card -shadow">
             <div class="float-right" style="cursor:pointer" @click="deleteBookForm(index)">X</div>
             <h4 class="card-title">Book #{{index}}</h4>
-            <form @submit.prevent="saveForm">
+            <div>
               <BaseInput
-                v-model="book.title"
+                v-model="book.title.$model"
                 label="Title"
                 type="text"
                 placeholder="Title"
                 class="field"
+                :class="{ error: book.title.$error }"
+                @blur="book.title.$touch()"
               />
+              <template v-if="book.title.$error">
+                <p v-if="!book.title.required" class="errorMessage">Book Title is required</p>
+              </template>
               <br>
               <br>
               <img v-bind:src="appDir.library  + image_dir  + '/' + book.image" class="book">
@@ -31,15 +36,31 @@
                 class="field"
               />
 
-              <span>Book:</span>
-              <select v-model="book.book">
-                <option value="issues">Issues</option>
-                <option value="basics">Basics</option>
-                <option value="community">Community</option>
-                <option value="firststeps">First Steps</option>
-                <option value="compass">Compass</option>
-                <option value="about">About</option>
-              </select>
+              <BaseInput
+                v-model="book.image.$model"
+                label="Image"
+                type="text"
+                placeholder="Image"
+                class="field"
+                :class="{ error: book.image.$error }"
+                @blur="book.image.$touch()"
+              />
+              <template v-if="book.image.$error">
+                <p v-if="!book.image.required" class="errorMessage">Book Image is required</p>
+              </template>
+
+              <BaseSelect
+                label="Book"
+                :options="books"
+                v-model="book.book.$model"
+                class="field"
+                :class="{ error: book.book.$error }"
+                @blur="book.book.$touch()"
+              />
+              <template v-if="book.book.$error">
+                <p v-if="!book.book.required" class="errorMessage">Book is required</p>
+              </template>
+
               <BaseInput
                 v-model="book.folder"
                 label="Folder"
@@ -47,34 +68,58 @@
                 placeholder="myfriends"
                 class="field"
               />
-              <span>Format:</span>
-              <select v-model="book.format">
-                <option value="series">series</option>
-                <option value="page">page</option>
-              </select>
+
+              <BaseSelect
+                label="Format"
+                :options="formats"
+                v-model="book.format.$model"
+                class="field"
+                :class="{ error: book.format.$error }"
+                @blur="book.format.$touch()"
+              />
+              <template v-if="book.format.$error">
+                <p v-if="!book.format.required" class="errorMessage">Format is required</p>
+              </template>
+
               <div v-if="book.format == 'series'">
                 <BaseInput
-                  v-model="book.index"
+                  v-model="book.index.$model"
                   label="Index"
                   type="text"
-                  placeholder="basics-chapters"
+                  placeholder="Index"
                   class="field"
+                  :class="{ error:book.index.$error }"
+                  @blur="book.index.$touch()"
                 />
-              </div>
+                <template v-if="book.index.$error">
+                  <p v-if="!book.index.required" class="errorMessage">Index is required</p>
+                </template>
 
-              <BaseInput
-                v-model="book.style"
-                label="Language 3 letter ISOStyle Sheet"
-                type="text"
-                placeholder="AU-myfriends.css"
-                class="field"
-              />
-            </form>
+                <BaseInput
+                  v-model="book.style.$model"
+                  label="Style Sheet"
+                  type="text"
+                  placeholder="AU-myfriends.css"
+                  class="field"
+                  :class="{ error: book.style.$error }"
+                  @blur="book.style.$touch()"
+                />
+                <template v-if="book.style.$error">
+                  <p v-if="!book.style.required" class="errorMessage">Style Sheet is required</p>
+                </template>
+              </div>
+            </div>
           </div>
         </div>
       </div>
+      <div v-if="!$v.$anyError">
+        <button class="button red" @click="saveForm">Save Changes</button>
+      </div>
+      <div v-if="$v.$anyError">
+        <button class="button grey">Disabled</button>
+        <p v-if="$v.$anyError" class="errorMessage">Please fill out the required field(s).</p>
+      </div>
     </div>
-    <button class="button" @click="saveForm">Save</button>
   </div>
 </template>
 
@@ -92,7 +137,36 @@ export default {
   },
   props: ['countryCODE', 'languageISO'],
   computed: mapState(['bookmark', 'appDir', 'cssURL', 'standard']),
-
+  data() {
+    return {
+      library: {
+        id: '',
+        book: '',
+        title: '',
+        folder: '',
+        index: '',
+        style: '',
+        image: '',
+        format: ''
+      },
+      formats: ['series', 'page'],
+      book: ['issues', 'basics', 'community', 'firststeps', 'compass', 'about']
+    }
+  },
+  validations: {
+    library: {
+      required,
+      $each: {
+        book: { required },
+        title: { required },
+        folder: { required },
+        index: '',
+        style: { required },
+        image: { required },
+        format: { required }
+      }
+    }
+  },
   methods: {
     addNewBookForm() {
       this.library.push({

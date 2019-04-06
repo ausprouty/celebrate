@@ -12,7 +12,7 @@
       >
         <div class="app-card -shadow">
           <div class="float-right" style="cursor:pointer" @click="deleteCountryForm(index)">X</div>
-          <h4 class="card-title">Country #{{index}}</h4>
+          <p class="card-title">Country #{{index}}</p>
           <form>
             <BaseInput
               v-model="country.name.$model"
@@ -84,10 +84,14 @@
        <div>
         <button class="button" @click="addNewCountryForm">New Country</button>
       </div>
-      <div>
+       <div v-if="!$v.$anyError">
         <button class="button red" @click="saveForm">Save Changes</button>
         </div>
+        <div v-if="$v.$anyError">
+        <button class="button grey" >Disabled</button>
           <p v-if="$v.$anyError" class="errorMessage">Please fill out the required field(s).</p>
+        </div> 
+
        </div>
     </div>
   </div>

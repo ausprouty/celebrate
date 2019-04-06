@@ -13,7 +13,11 @@
       <div>
         <button class="button" @click="addNewChapterForm">New Chapter</button>
         <button class="button" @click="saveForm">Save</button>
-        <div v-for="(chapter, index) in chapters" :key="chapter.id" :chapter="chapter">
+        <div
+          v-for="(chapter, index) in $v.chapters.$each.$iter"
+          :key="chapter.id"
+          :chapter="chapter"
+        >
           <div class="app-card -shadow">
             <div class="float-right" style="cursor:pointer" @click="deleteChapterForm(index)">X</div>
             <h4 class="card-title">Chapter #{{chapter.id}}</h4>
@@ -44,7 +48,13 @@
             </div>
           </div>
         </div>
-        <button class="button" @click="saveForm">Save</button>
+        <div v-if="!$v.$anyError">
+          <button class="button red" @click="saveForm">Save Changes</button>
+        </div>
+        <div v-if="$v.$anyError">
+          <button class="button grey">Disabled</button>
+          <p v-if="$v.$anyError" class="errorMessage">Please fill out the required field(s).</p>
+        </div>
         <br>
         <br>
         <br>

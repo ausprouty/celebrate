@@ -218,9 +218,13 @@ button {
   padding: 0 40px;
   height: 36px;
 }
-.button.red{
-  background-color:red;
-   height: 48px;
+.button.red {
+  background-color: red;
+  height: 48px;
+}
+.button.grey {
+  background-color: grey;
+  height: 48px;
 }
 img.sortable {
   height: 30px;

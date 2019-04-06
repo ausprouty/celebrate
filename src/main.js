@@ -8,6 +8,7 @@ import './registerServiceWorker'
 import upperFirst from 'lodash/upperFirst'
 import camelCase from 'lodash/camelCase'
 import VueSidebarMenu from 'vue-sidebar-menu'
+
 Vue.use(VueSidebarMenu)
 
 Vue.use(Vuelidate)

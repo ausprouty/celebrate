@@ -23,13 +23,19 @@
       <h1 v-if="this.bookmark.page.count">{{this.bookmark.page.count}}. {{this.bookmark.page.title}}</h1>
       <h1 v-else>{{this.bookmark.page.title}}</h1>
       <p>
-        <vue-ckeditor v-model="htmlText" language="en"></vue-ckeditor>
+        <vue-ckeditor v-model="pageText" :config="config"/>
       </p>
       <div class="version">
         <p class="version">Version 1.01</p>
       </div>
     </div>
-    <button class="button" @click="saveForm">Save</button>
+    <div v-if="!$v.$anyError">
+      <button class="button red" @click="saveForm">Save Changes</button>
+    </div>
+    <div v-if="$v.$anyError">
+      <button class="button grey">Disabled</button>
+      <p v-if="$v.$anyError" class="errorMessage">Please fill out the required field(s).</p>
+    </div>
   </div>
 </template>
 
@@ -39,7 +45,8 @@ import { mapState } from 'vuex'
 import ContentService from '@/services/ContentService.js'
 import NavBar from '@/components/NavBarAdmin.vue'
 import './ckeditor/index.js'
-import VueCkeditor from 'vueckeditor'
+//import VueCkeditor from '//
+import VueCkeditor from 'vue-ckeditor2'
 import { bookMarkMixin } from '@/mixins/BookmarkMixin.js'
 import { pageMixin } from '@/mixins/PageMixin.js'
 export default {
@@ -71,6 +78,32 @@ export default {
         title: '',
         filename: '',
         text: ''
+      },
+      config: {
+        extraPlugins: 'bidi',
+        toolbarGroups: [
+          { name: 'styles', groups: ['styles'] },
+          { name: 'basicstyles', groups: ['basicstyles', 'cleanup'] },
+          {
+            name: 'editing',
+            groups: ['find', 'selection', 'spellchecker', 'editing']
+          },
+          { name: 'links', groups: ['links'] },
+          { name: 'insert', groups: ['insert'] },
+          { name: 'forms', groups: ['forms'] },
+          { name: 'tools', groups: ['tools'] },
+          { name: 'document', groups: ['mode', 'document', 'doctools'] },
+          { name: 'clipboard', groups: ['clipboard', 'undo'] },
+          { name: 'others', groups: ['others'] },
+          '/',
+          {
+            name: 'paragraph',
+            groups: ['list', 'indent', 'blocks', 'align', 'bidi', 'paragraph']
+          },
+          { name: 'colors', groups: ['colors'] },
+          { name: 'about', groups: ['about'] }
+        ],
+        height: 600
       }
     }
   },
@@ -126,13 +159,13 @@ export default {
     }
   },
   beforeCreate() {
-    this.$route.params.version = 'current'
+    this.$route.params.version = 'lastest'
   },
   async created() {
     try {
       console.log('PAGE VIEW - route')
       console.log(this.$route.params)
-      //  this.getPage(this.$route.params)
+      this.getPage(this.$route.params)
     } catch (error) {
       console.log('There was an error in Page.vue:', error) // Logs out the error
     }

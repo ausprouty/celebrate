@@ -50,7 +50,6 @@ export default {
     return {
       pageText: '',
       loading: false,
-      loading: false,
       loaded: null,
       error: null
     }
