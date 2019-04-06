@@ -20,7 +20,6 @@
 <script>
 import NavBar from '@/components/NavBarAdmin.vue'
 import VueCkeditor from 'vue-ckeditor2'
-import './ckeditor/index.js'
 
 export default {
   components: {
@@ -33,7 +32,7 @@ export default {
       content: 'this is my test',
       config: {
         extraPlugins: 'bidi',
-        toolbarGroups: [
+        toolbarGroups : [
           { name: 'styles', groups: ['styles'] },
           { name: 'basicstyles', groups: ['basicstyles', 'cleanup'] },
           {
