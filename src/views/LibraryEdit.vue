@@ -6,11 +6,11 @@
     <div class="content" v-if="loaded">
       <h1>Library</h1>
       <div>
-        <button class="button" @click="addNewBookForm">New Book</button>
-        <div v-for="(book, index) in library" :key="book.code" :book="book">
+       
+
+        <div v-for="(book, index) in $v.library.$each.$iter" :key="book.code" :book="book">
           <div class="app-card -shadow">
             <div class="float-right" style="cursor:pointer" @click="deleteBookForm(index)">X</div>
-            <h4 class="card-title">Book #{{index}}</h4>
             <div>
               <BaseInput
                 v-model="book.title.$model"
@@ -26,15 +26,9 @@
               </template>
               <br>
               <br>
-              <img v-bind:src="appDir.library  + image_dir  + '/' + book.image" class="book">
+              <img v-bind:src="appDir.library  + image_dir  + '/' + book.image.$model" class="book">
               <br>
-              <BaseInput
-                v-model="book.image"
-                label="Image"
-                type="text"
-                placeholder="myfriends"
-                class="field"
-              />
+            
 
               <BaseInput
                 v-model="book.image.$model"
@@ -61,13 +55,18 @@
                 <p v-if="!book.book.required" class="errorMessage">Book is required</p>
               </template>
 
-              <BaseInput
-                v-model="book.folder"
+               <BaseInput
+                v-model="book.folder.$model"
                 label="Folder"
                 type="text"
                 placeholder="myfriends"
                 class="field"
+                :class="{ error: book.folder.$error }"
+                @blur="book.folder.$touch()"
               />
+              <template v-if="book.folder.$error">
+                <p v-if="!book.folder.required" class="errorMessage">Folder is required</p>
+              </template>
 
               <BaseSelect
                 label="Format"
@@ -81,7 +80,7 @@
                 <p v-if="!book.format.required" class="errorMessage">Format is required</p>
               </template>
 
-              <div v-if="book.format == 'series'">
+              <div v-if="book.format.$model == 'series'">
                 <BaseInput
                   v-model="book.index.$model"
                   label="Index"
@@ -112,6 +111,7 @@
           </div>
         </div>
       </div>
+       <button class="button" @click="addNewBookForm">New Book</button>
       <div v-if="!$v.$anyError">
         <button class="button red" @click="saveForm">Save Changes</button>
       </div>
@@ -150,7 +150,7 @@ export default {
         format: ''
       },
       formats: ['series', 'page'],
-      book: ['issues', 'basics', 'community', 'firststeps', 'compass', 'about']
+      books: ['issues', 'basics', 'community', 'firststeps', 'compass', 'about']
     }
   },
   validations: {

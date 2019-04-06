@@ -11,8 +11,6 @@
         <textarea v-model="description" placeholder="add multiple lines"></textarea>
       </div>
       <div>
-        <button class="button" @click="addNewChapterForm">New Chapter</button>
-        <button class="button" @click="saveForm">Save</button>
         <div
           v-for="(chapter, index) in $v.chapters.$each.$iter"
           :key="chapter.id"
@@ -20,34 +18,61 @@
         >
           <div class="app-card -shadow">
             <div class="float-right" style="cursor:pointer" @click="deleteChapterForm(index)">X</div>
-            <h4 class="card-title">Chapter #{{chapter.id}}</h4>
             <div class="form">
-              <span>Title:</span>
-              <input
+               <BaseInput
+                v-model="chapter.count.$model"
+                label="Chapter Number"
                 type="text"
-                class="form-control mb-2"
-                placeholder="Title"
-                v-model="chapter.title"
-              >
-              <span>Description:</span>
-              <input
-                type="text"
-                class="form-control mb-2"
-                placeholder="Description"
-                v-model="chapter.description"
-              >
-              <span>Chapter Number:</span>
-              <input
-                type="text"
-                class="form-control mb-2"
                 placeholder="leave blank for un-numbered items"
-                v-model="chapter.count"
-              >
-              <span>Filename:</span>
-              <input type="text" class="form-control mb-2" placeholder v-model="chapter.filename">
+                class="field"
+                :class="{ error: chapter.count.$error }"
+                @blur="chapter.count.$touch()"
+              />
+              <BaseInput
+                v-model="chapter.title.$model"
+                label="Title"
+                type="text"
+                placeholder
+                class="field"
+                :class="{ error: chapter.title.$error }"
+                @blur="chapter.title.$touch()"
+              />
+              <template v-if="chapter.title.$error">
+                <p v-if="!chapter.title.required" class="errorMessage">Title is required</p>
+              </template>
+
+              <BaseInput
+                v-model="chapter.description.$model"
+                label="Description:"
+                type="text"
+                placeholder
+                class="field"
+                :class="{ error: chapter.description.$error }"
+                @blur="chapter.description.$touch()"
+              />
+              <template v-if="chapter.description.$error">
+                <p v-if="!chapter.description.required" class="errorMessage">Description is required</p>
+              </template>
+
+             
+
+              <BaseInput
+                v-model="chapter.filename.$model"
+                label="File Name"
+                type="text"
+                placeholder
+                class="field"
+                :class="{ error: chapter.filename.$error }"
+                @blur="chapter.filename.$touch()"
+              />
+              <template v-if="chapter.filename.$error">
+                <p v-if="!chapter.filename.required" class="errorMessage">Description is required</p>
+              </template>
             </div>
           </div>
         </div>
+        <button class="button" @click="addNewChapterForm">New Chapter</button>
+
         <div v-if="!$v.$anyError">
           <button class="button red" @click="saveForm">Save Changes</button>
         </div>
@@ -78,7 +103,27 @@ export default {
   components: {
     NavBar
   },
-
+  data() {
+    return {
+      chapter: {
+        title: '',
+        description: '',
+        count: '',
+        filename: ''
+      }
+    }
+  },
+  validations: {
+    chapters: {
+      required,
+      $each: {
+        title: { required },
+        description: { required },
+        count: '',
+        filename: { required }
+      }
+    }
+  },
   methods: {
     addNewChapterForm() {
       this.chapters.push({

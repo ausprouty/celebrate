@@ -14,7 +14,6 @@
         >
           <div class="app-card -shadow">
             <div class="float-right" style="cursor:pointer" @click="deleteLanguageForm(index)">X</div>
-            <h4 class="card-title">Language #{{index}}</h4>
             <form @submit.prevent="saveForm">
               <BaseInput
                 v-model="language.name.$model"
