@@ -49,7 +49,7 @@ div.lesson {
     margin-top: 30px;
     position: relative;
 }
-div.lesson-words {
+div.lesson-subtitle {
     bottom: 0;
     color:var(--color-black);
     font-size: 30px;
@@ -57,7 +57,7 @@ div.lesson-words {
     margin-left: 45px;
     position: absolute;
 }
-div.lesson-words-rtl {
+div.lesson-subtitle-rtl {
     bottom: 0;
     color: var(--color-black);
     font-size: 30px;

@@ -54,7 +54,9 @@ export default {
   },
   async created() {
     try {
-      this.getLanguages()
+      await this.getLanguages()
+      this.loaded = true
+      this.loading = false
     } catch (error) {
       console.log('There was an error in LanguagesEdit.vue:', error) // Logs out the error
     }

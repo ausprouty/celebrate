@@ -49,7 +49,6 @@ export default {
       ],
       image_dir: '',
       loading: false,
-      loading: false,
       loaded: null,
       error: null
     }
@@ -59,7 +58,9 @@ export default {
   },
   async created() {
     try {
-      this.getLibrary()
+      await this.getLibrary()
+      this.loaded = true
+      this.loading = false
     } catch (error) {
       console.log('There was an error in LibraryEdit.vue:', error) // Logs out the error
     }
