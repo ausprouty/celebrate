@@ -32,7 +32,7 @@ export default {
   computed: mapState(['bookmark', 'appDir']),
   data() {
     return {
-      loading: false,
+
       language: [],
       languages: [
         {

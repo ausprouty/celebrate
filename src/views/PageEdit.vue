@@ -29,12 +29,8 @@
         <p class="version">Version 1.01</p>
       </div>
     </div>
-    <div v-if="!$v.$anyError">
+    <div>
       <button class="button red" @click="saveForm">Save Changes</button>
-    </div>
-    <div v-if="$v.$anyError">
-      <button class="button grey">Disabled</button>
-      <p v-if="$v.$anyError" class="errorMessage">Please fill out the required field(s).</p>
     </div>
   </div>
 </template>
