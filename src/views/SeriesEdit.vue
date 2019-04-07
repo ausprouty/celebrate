@@ -19,7 +19,7 @@
           <div class="app-card -shadow">
             <div class="float-right" style="cursor:pointer" @click="deleteChapterForm(index)">X</div>
             <div class="form">
-               <BaseInput
+              <BaseInput
                 v-model="chapter.count.$model"
                 label="Chapter Number"
                 type="text"
@@ -53,8 +53,6 @@
               <template v-if="chapter.description.$error">
                 <p v-if="!chapter.description.required" class="errorMessage">Description is required</p>
               </template>
-
-             
 
               <BaseInput
                 v-model="chapter.filename.$model"
@@ -118,7 +116,7 @@ export default {
       required,
       $each: {
         title: { required },
-        description: { required },
+        description: {},
         count: '',
         filename: { required }
       }
@@ -145,7 +143,7 @@ export default {
         console.log('text.description')
         console.log(text.description)
         text.text = this.chapters
-        var valid = ContentService.validate(text)
+        var valid = ContentService.valid(text)
         this.content.text = JSON.stringify(valid)
         this.content.filename = this.$route.params.bookNAME + '-chapters'
         this.content.filetype = 'json'
