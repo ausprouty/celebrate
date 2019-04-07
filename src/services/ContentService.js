@@ -4,7 +4,6 @@ const apiClient = axios.create({
   // baseURL: `http://prototype.myfriends.network`,
   // baseURL: `http://localhost:8080`,
   baseURL: '/',
-
   withCredentials: false, // This is the default
   headers: {
     Accept: 'application/json',
@@ -13,8 +12,10 @@ const apiClient = axios.create({
 })
 
 const apiMYSQL = axios.create({
-  baseURL: 'http://localhost:8000/myfriends/',
+  // baseURL: 'http://localhost:8000/myfriends/',
+  baseURL: 'http://create.myfriends.network/',
   withCredentials: false, // This is the default
+  crossDomain: true,
   headers: {
     Accept: 'application/json',
     'Content-Type': 'application/json'
@@ -187,7 +188,7 @@ export default {
       return response
     }
   },
-  valid(entry) {
+  validate(entry) {
     var clean = entry
 
     return clean

@@ -95,7 +95,7 @@ export default new Router({
       props: true
     },
     {
-      path: '/preview/countries',
+      path: '/preview',
       name: 'previewCountries',
       component: CountriesPreview
     },

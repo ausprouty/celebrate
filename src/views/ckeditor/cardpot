@@ -135,7 +135,7 @@ export default {
       if (!this.$v.$invalid) {
         try {
           this.$store.dispatch('newBookmark', 'clear')
-          var valid = ContentService.valid(this.countries)
+          var valid = ContentService.validate(this.countries)
           this.content.text = JSON.stringify(valid)
           this.content.filename = 'countries'
           this.content.filetype = 'json'

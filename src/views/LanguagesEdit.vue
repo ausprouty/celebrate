@@ -144,7 +144,7 @@ export default {
     async saveForm() {
       try {
         this.$store.dispatch('newBookmark', 'clear')
-        var valid = ContentService.valid(this.languages)
+        var valid = ContentService.validate(this.languages)
         this.content.text = JSON.stringify(valid)
         this.content.filename = 'languages'
         this.content.filetype = 'json'

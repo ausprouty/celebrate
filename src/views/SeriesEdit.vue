@@ -143,7 +143,7 @@ export default {
         console.log('text.description')
         console.log(text.description)
         text.text = this.chapters
-        var valid = ContentService.valid(text)
+        var valid = ContentService.validate(text)
         this.content.text = JSON.stringify(valid)
         this.content.filename = this.$route.params.bookNAME + '-chapters'
         this.content.filetype = 'json'

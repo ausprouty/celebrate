@@ -151,7 +151,7 @@ export default {
       try {
         console.log('saving form')
         this.$store.dispatch('newBookmark', 'clear')
-        var valid = ContentService.valid(this.countries)
+        var valid = ContentService.validate(this.countries)
         this.content.text = JSON.stringify(valid)
         this.content.filename = 'countries'
         this.content.filetype = 'json'
