@@ -12,7 +12,7 @@ require.context(
   '!file-loader?name=[path][name].[ext]!ckeditor/plugins/',
   true,
   // plugins|needed|by|ckeditor|whatever plugin your need
-  /^\.\/((wsc|scayt|copyformatting|tableselection|link|image|div)(\/(?!lang\/)[^/]+)*)?[^/]*$/
+  /^\.\/((wsc|scayt|copyformatting|tableselection|link|image|div|bidi)(\/(?!lang\/)[^/]+)*)?[^/]*$/
 )
 
 // Load lang files from plugins.
@@ -22,7 +22,7 @@ require.context(
   '!file-loader?name=[path][name].[ext]!ckeditor/plugins/',
   true,
   // plugins|needed|by|ckeditor|here is the same
-  /^\.\/(wsc|scayt|copyformatting|tableselection|link|image|div)\/(.*\/)*lang\/(en|es)\.js$/
+  /^\.\/(wsc|scayt|copyformatting|tableselection|link|image|div|bidi)\/(.*\/)*lang\/(en|es)\.js$/
 )
 
 // Load CKEditor lang files.

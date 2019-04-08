@@ -19,6 +19,7 @@
 
 <script>
 import NavBar from '@/components/NavBarAdmin.vue'
+import './ckeditor/index.js'
 import VueCkeditor from 'vue-ckeditor2'
 
 export default {
