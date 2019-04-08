@@ -63,7 +63,7 @@ export default {
   },
   async created() {
     try {
-      this.getLibrary()
+      await this.getLibrary()
       this.loaded = true
       this.loading = false
     } catch (error) {

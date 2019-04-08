@@ -12,7 +12,7 @@
       >
         <div class="app-card -shadow">
           <div class="float-right" style="cursor:pointer" @click="deleteCountryForm(index)">X</div>
-          <p class="card-title">Country #{{index}}</p>
+        
           <form>
             <BaseInput
               v-model="country.name.$model"
@@ -33,12 +33,8 @@
               type="text"
               placeholder="English Name"
               class="field"
-              :class="{ error: country.english.$error }"
-              @blur="country.english.$touch()"
             />
-            <template v-if="country.english.$error">
-              <div class="errorMessage" v-if="!country.english.required">English Name is required.</div>
-            </template>
+           
 
             <BaseInput
               v-model="country.code.$model"
@@ -126,7 +122,7 @@ export default {
       required,
       $each: {
         name: { required },
-        english: { required },
+        english: {},
         code: { required },
         index: { required },
         image: { required }
