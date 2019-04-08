@@ -33,8 +33,6 @@
               type="text"
               placeholder="English Name"
               class="field"
-              :class="{ error: country.english.$error }"
-              @blur="country.english.$touch()"
             />
            
 

@@ -142,10 +142,10 @@ export default {
         text.description = this.description
         console.log('text.description')
         console.log(text.description)
-        text.text = this.chapters
+        text.chapters = this.chapters
         var valid = ContentService.validate(text)
         this.content.text = JSON.stringify(valid)
-        this.content.filename = this.$route.params.bookNAME + '-chapters'
+        this.content.filename = this.bookmark.book.index
         this.content.filetype = 'json'
         this.content.country_iso = this.$route.params.countryCODE
         this.content.language_iso = this.$route.params.languageISO

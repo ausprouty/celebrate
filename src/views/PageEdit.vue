@@ -109,11 +109,11 @@ export default {
     },
     async saveForm() {
       try {
-        this.content.text = ContentService.validate(this.htmlText)
+        this.content.text = ContentService.validate(this.pageText)
         this.content.country_iso = this.$route.params.countryCODE
         this.content.language_iso = this.$route.params.languageISO
         this.content.folder = this.bookmark.book.folder
-        this.content.filename = this.$route.params.pageFILENAME
+        this.content.filename = this.$route.params.fileFILENAME
         this.content.filetype = 'html'
         this.$store.dispatch('newBookmark', 'clear')
         await ContentService.createContentData(this.content)

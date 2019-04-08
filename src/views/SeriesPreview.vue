@@ -85,7 +85,9 @@ export default {
   },
   async created() {
     try {
-      this.getSeries(this.$route.params)
+      await this.getSeries(this.$route.params)
+      this.loaded = true
+      this.loading = false
     } catch (error) {
       console.log('There was an error in SeriesEdit.vue:', error) // Logs out the error
     }
