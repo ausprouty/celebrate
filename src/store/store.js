@@ -5,6 +5,12 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    user: {
+      uid: '',
+      scope: '',
+      firstname: '',
+      lastname: ''
+    },
     appDir: {
       css: '/css/',
       country: '/images/country/',
@@ -87,6 +93,9 @@ export default new Vuex.Store({
     }
   },
   mutations: {
+    LOGIN_USER(state, value) {
+      state.user = value[0]
+    },
     NEW_BOOKMARK(state, value) {
       console.log('STORE - NEW BOOKMARK    ')
       state.bookmark = {}
@@ -178,6 +187,9 @@ export default new Vuex.Store({
     },
     unsetBookmark({ commit }, [mark]) {
       commit('UNSET_BOOKMARK', [mark])
+    },
+    loginUser({ commit }, [mark]) {
+      commit('LOGIN_USER', [mark])
     }
   }
 })

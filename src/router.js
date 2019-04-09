@@ -25,9 +25,10 @@ import PageEdit from './views/PageEdit.vue'
 import PagePreview from './views/PagePreview.vue'
 
 import Users from './views/Users.vue'
+import Login from './views/Login.vue'
 import Custom from './views/CustomEditor.vue'
 import Validate from './views/Validate.vue'
-import Test from './views/Test.vue'
+//prototype.myfriends.network/preview
 
 import NotFoundComponent from './views/NotFound.vue'
 
@@ -147,6 +148,12 @@ export default new Router({
       props: true
     },
     {
+      path: '/login',
+      name: 'login',
+      component: Login,
+      props: false
+    },
+    {
       path: '/users',
       name: 'users',
       component: Users,
@@ -156,12 +163,6 @@ export default new Router({
       path: '/validate',
       name: 'validate',
       component: Validate,
-      props: false
-    },
-    {
-      path: '/test',
-      name: 'test',
-      component: Test,
       props: false
     },
     {

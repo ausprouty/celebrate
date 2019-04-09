@@ -77,18 +77,18 @@
           </form>
         </div>
       </div>
-       <div>
-        <button class="button" @click="addNewCountryForm">New Country</button>
-      </div>
-       <div v-if="!$v.$anyError">
-        <button class="button red" @click="saveForm">Save Changes</button>
+      <div v-if="this.authorized">
+        <div>
+          <button class="button" @click="addNewCountryForm">New Country</button>
+        </div>
+        <div v-if="!$v.$anyError">
+          <button class="button red" @click="saveForm">Save Changes</button>
         </div>
         <div v-if="$v.$anyError">
-        <button class="button grey" >Disabled</button>
+          <button class="button grey" >Disabled</button>
           <p v-if="$v.$anyError" class="errorMessage">Please fill out the required field(s).</p>
         </div> 
-
-       </div>
+      </div>
     </div>
   </div>
 </template>
@@ -99,9 +99,10 @@ import ContentService from '@/services/ContentService.js'
 import { mapState } from 'vuex'
 import { bookMarkMixin } from '@/mixins/BookmarkMixin.js'
 import { countriesMixin } from '@/mixins/CountriesMixin.js'
+import { authorMixin } from '@/mixins/AuthorMixin.js'
 import { required } from 'vuelidate/lib/validators'
 export default {
-  mixins: [bookMarkMixin, countriesMixin],
+  mixins: [bookMarkMixin, countriesMixin, authorMixin],
   components: {
     NavBar
   },
@@ -114,7 +115,8 @@ export default {
         code: '',
         index: '',
         image: ''
-      }
+      },
+      authorized: false
     }
   },
   validations: {
@@ -147,7 +149,7 @@ export default {
       try {
         console.log('saving form')
         this.$store.dispatch('newBookmark', 'clear')
-        var valid = ContentService.validate(this.countries)
+        this.authorized = this.
         this.content.text = JSON.stringify(valid)
         this.content.filename = 'countries'
         this.content.filetype = 'json'
@@ -166,6 +168,7 @@ export default {
   },
   async created() {
     try {
+       this.authorized = this.authorize('write')
       await this.getCountries()
     } catch (error) {
       console.log('There was an error in CountriesEdit.vue:', error) // Logs out the error

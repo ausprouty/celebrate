@@ -12,7 +12,6 @@
           :key="country.code"
           :country="country"
         >
-
           <BaseInput
             v-model="country.english.$model"
             label="English Name"
@@ -20,10 +19,10 @@
             placeholder="English Name"
             class="field"
             :class="{ error: country.english.$error }"
-             @blur="country.english.$touch()"
+            @blur="country.english.$touch()"
           />
-           <template v-if="country.english.$error">
-          <div class="errorMessage" v-if="!country.english.required">English Name is required.</div>
+          <template v-if="country.english.$error">
+            <div class="errorMessage" v-if="!country.english.required">English Name is required.</div>
           </template>
         </div>
       </div>
@@ -37,9 +36,10 @@ import ContentService from '@/services/ContentService.js'
 import { mapState } from 'vuex'
 import { bookMarkMixin } from '@/mixins/BookmarkMixin.js'
 import { countriesMixin } from '@/mixins/CountriesMixin.js'
+import { authorMixin } from '@/mixins/AuthorsMixin.js'
 import { required } from 'vuelidate/lib/validators'
 export default {
-  mixins: [bookMarkMixin, countriesMixin],
+  mixins: [bookMarkMixin, countriesMixin, authorMixin],
   components: {
     NavBar
   },

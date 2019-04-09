@@ -30,9 +30,11 @@
         </div>
       </div>
     </div>
-    <button class="button" @click="editSeries">Edit</button>
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <button class="button" @click="sortSeries">Sort</button>
+    <div v-if="authorized">
+      <button class="button" @click="editSeries">Edit</button>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <button class="button" @click="sortSeries">Sort</button>
+    </div>
     <br>
     <br>
     <br>

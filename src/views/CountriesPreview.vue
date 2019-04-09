@@ -4,8 +4,8 @@
     <img v-bind:src="appDir.country+'world.jpg'" class="app-img-header">
     <h1>Select Country (Preview Mode)</h1>
     <Country v-for="country in countries" :key="country.code" :country="country"/>
-    <div class="version">
-      <p class="version">Version 1.01</p>
+     <p class="version">Version 1.01</p>
+    <div v-if="this.authorized">
       <button class="button" @click="editCountries">Edit</button>
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
       <button class="button" @click="sortCountries">Sort</button>
@@ -14,20 +14,27 @@
 </template>
 
 <script>
+import Vuex from 'vuex'
 import { mapState } from 'vuex'
 import NavBar from '@/components/NavBarAdmin.vue'
 import Country from '@/components/CountryPreview.vue'
 import { bookMarkMixin } from '@/mixins/BookmarkMixin.js'
 import { countriesMixin } from '@/mixins/CountriesMixin.js'
+import { authorMixin } from '@/mixins/AuthorMixin.js'
 
 export default {
-  mixins: [bookMarkMixin, countriesMixin],
+  mixins: [bookMarkMixin, countriesMixin, authorMixin],
   components: {
     Country,
     NavBar
   },
-  computed: mapState(['appDir']),
-  
+  data() {
+    return {
+      authorized: false
+    }
+  },
+  computed: mapState(['appDir', 'user']),
+
   methods: {
     editCountries() {
       this.$router.push({
@@ -61,6 +68,7 @@ export default {
   async created() {
     try {
       await this.getCountries()
+      this.authorized = this.authorize('write')
     } catch (error) {
       console.log('There was an error in Countries.vue:', error) // Logs out the error
     }

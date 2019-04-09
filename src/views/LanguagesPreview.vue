@@ -13,7 +13,7 @@
       <div class="version">
         <p class="version">Version 1.01</p>
       </div>
-    </div>
+    </div v-if = "authorized">
     <button class="button" @click="editLanguages">Edit</button>
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <button class="button" @click="sortLanguages">Sort</button>

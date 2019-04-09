@@ -13,9 +13,11 @@
         <p class="version">Version 1.01</p>
       </div>
     </div>
-    <button class="button" @click="editLibrary">Edit</button>
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <button class="button" @click="sortLibrary">Sort</button>
+    <div v-if="authorized">
+      <button class="button" @click="editLibrary">Edit</button>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <button class="button" @click="sortLibrary">Sort</button>
+    </div>
   </div>
 </template>
 

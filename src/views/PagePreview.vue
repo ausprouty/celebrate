@@ -29,7 +29,9 @@
         <p class="version">Version 1.01</p>
       </div>
     </div>
+    <div v-if = "authorized">
     <button class="button" @click="editPage">Edit</button>
+    </div>
   </div>
 </template>
 
