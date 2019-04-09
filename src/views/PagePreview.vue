@@ -29,8 +29,8 @@
         <p class="version">Version 1.01</p>
       </div>
     </div>
-    <div v-if = "authorized">
-    <button class="button" @click="editPage">Edit</button>
+    <div v-if="write">
+      <button class="button" @click="editPage">Edit</button>
     </div>
   </div>
 </template>
@@ -41,8 +41,9 @@ import ContentService from '@/services/ContentService.js'
 import NavBar from '@/components/NavBarAdmin.vue'
 import { bookMarkMixin } from '@/mixins/BookmarkMixin.js'
 import { pageMixin } from '@/mixins/PageMixin.js'
+import { authorMixin } from '@/mixins/AuthorMixin.js'
 export default {
-  mixins: [bookMarkMixin, pageMixin],
+  mixins: [bookMarkMixin, pageMixin, authorMixin],
   props: ['countryCODE', 'languageISO', 'bookNAME', 'fileFILENAME'],
   components: {
     NavBar
@@ -53,7 +54,9 @@ export default {
       pageText: '',
       loading: false,
       loaded: null,
-      error: null
+      error: null,
+      read: false,
+      write: false
     }
   },
   methods: {
@@ -78,6 +81,8 @@ export default {
   async created() {
     try {
       this.getPage(this.$route.params)
+      this.read = this.authorize('read')
+      this.write = this.authorize('write')
     } catch (error) {
       console.log('There was an error in Page.vue:', error) // Logs out the error
     }

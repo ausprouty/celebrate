@@ -69,18 +69,20 @@
             </div>
           </div>
         </div>
-        <button class="button" @click="addNewChapterForm">New Chapter</button>
+        <div v-if="this.authorized">
+          <button class="button" @click="addNewChapterForm">New Chapter</button>
 
-        <div v-if="!$v.$anyError">
-          <button class="button red" @click="saveForm">Save Changes</button>
+          <div v-if="!$v.$anyError">
+            <button class="button red" @click="saveForm">Save Changes</button>
+          </div>
+          <div v-if="$v.$anyError">
+            <button class="button grey">Disabled</button>
+            <p v-if="$v.$anyError" class="errorMessage">Please fill out the required field(s).</p>
+          </div>
+          <br>
+          <br>
+          <br>
         </div>
-        <div v-if="$v.$anyError">
-          <button class="button grey">Disabled</button>
-          <p v-if="$v.$anyError" class="errorMessage">Please fill out the required field(s).</p>
-        </div>
-        <br>
-        <br>
-        <br>
       </div>
     </div>
   </div>
@@ -94,8 +96,9 @@ import NavBar from '@/components/NavBarAdmin.vue'
 import { bookMarkMixin } from '@/mixins/BookmarkMixin.js'
 import { seriesMixin } from '@/mixins/SeriesMixin.js'
 import { required } from 'vuelidate/lib/validators'
+import { authorMixin } from '@/mixins/AuthorMixin.js'
 export default {
-  mixins: [bookMarkMixin, seriesMixin],
+  mixins: [bookMarkMixin, seriesMixin, authorMixin],
   props: ['countryCODE', 'languageISO', 'bookNAME'],
   computed: mapState(['bookmark', 'appDir']),
   components: {
@@ -103,6 +106,7 @@ export default {
   },
   data() {
     return {
+      authorized: false,
       chapter: {
         title: '',
         description: '',
@@ -173,6 +177,7 @@ export default {
   async created() {
     try {
       this.getSeries(this.$route.params)
+      this.authorized = this.authorize('write')
     } catch (error) {
       console.log('There was an error in SeriesEdit.vue:', error) // Logs out the error
     }

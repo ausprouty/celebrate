@@ -4,33 +4,40 @@
     <div class="loading" v-if="loading">Loading...</div>
     <div class="error" v-if="error">There was an error...</div>
     <div class="content" v-if="loaded">
-      <link rel="stylesheet" v-bind:href="'/css/' + this.bookmark.book.style">
-      <div class="app-link">
-        <div class="app-card -shadow">
-          <div v-on:click="goBack()">
-            <img
-              v-bind:src="appDir.library + this.bookmark.language.image_dir + '/' + this.bookmark.book.image"
-              class="book"
-            >
+      <div v-if="!this.authorized">
+        <p>You have stumbled into a restricted page. Sorry I can not show it to you now</p>
+      </div>
+      <div v-if="this.authorized">
+        <link rel="stylesheet" v-bind:href="'/css/' + this.bookmark.book.style">
+        <div class="app-link">
+          <div class="app-card -shadow">
+            <div v-on:click="goBack()">
+              <img
+                v-bind:src="appDir.library + this.bookmark.language.image_dir + '/' + this.bookmark.book.image"
+                class="book"
+              >
 
-            <div class="book">
-              <span class="bold">{{this.bookmark.book.title}}</span>
+              <div class="book">
+                <span class="bold">{{this.bookmark.book.title}}</span>
+              </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <h1 v-if="this.bookmark.page.count">{{this.bookmark.page.count}}. {{this.bookmark.page.title}}</h1>
-      <h1 v-else>{{this.bookmark.page.title}}</h1>
-      <p>
-        <vue-ckeditor v-model="pageText" :config="config"/>
-      </p>
-      <div class="version">
-        <p class="version">Version 1.01</p>
+        <h1
+          v-if="this.bookmark.page.count"
+        >{{this.bookmark.page.count}}. {{this.bookmark.page.title}}</h1>
+        <h1 v-else>{{this.bookmark.page.title}}</h1>
+        <p>
+          <vue-ckeditor v-model="pageText" :config="config"/>
+        </p>
+        <div class="version">
+          <p class="version">Version 1.01</p>
+        </div>
       </div>
-    </div>
-    <div>
-      <button class="button red" @click="saveForm">Save Changes</button>
+      <div>
+        <button class="button red" @click="saveForm">Save Changes</button>
+      </div>
     </div>
   </div>
 </template>
@@ -42,11 +49,11 @@ import ContentService from '@/services/ContentService.js'
 import NavBar from '@/components/NavBarAdmin.vue'
 import './ckeditor/index.js'
 import VueCkeditor from 'vue-ckeditor2'
-
 import { bookMarkMixin } from '@/mixins/BookmarkMixin.js'
 import { pageMixin } from '@/mixins/PageMixin.js'
+import { authorMixin } from '@/mixins/AuthorMixin.js'
 export default {
-  mixins: [bookMarkMixin, pageMixin],
+  mixins: [bookMarkMixin, pageMixin, authorMixin],
   props: ['countryCODE', 'languageISO', 'bookNAME', 'fileFILENAME'],
   components: {
     NavBar,
@@ -55,6 +62,7 @@ export default {
   computed: mapState(['bookmark', 'appDir', 'cssURL']),
   data() {
     return {
+      authorized: false,
       pageText: '',
       loading: false,
       loaded: null,
@@ -137,9 +145,8 @@ export default {
   },
   async created() {
     try {
-      console.log('PAGE VIEW - route')
-      console.log(this.$route.params)
       this.getPage(this.$route.params)
+      this.authorized = this.authorize('write')
     } catch (error) {
       console.log('There was an error in Page.vue:', error) // Logs out the error
     }

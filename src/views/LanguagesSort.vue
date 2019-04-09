@@ -4,6 +4,10 @@
     <div class="loading" v-if="loading">Loading...</div>
     <div class="error" v-if="error">There was an error...</div>
     <div class="content" v-if="loaded">
+      <div v-if="!this.authorized">
+        <p> You have stumbled into a restricted page.  Sorry I can not show it to you now </p>
+      </div>
+    <div v-if="this.authorized">
       <h1>Languages for {{this.$route.params.countryCODE}}</h1>
       <div>
         <draggable v-model="languages">
@@ -18,7 +22,9 @@
         </draggable>
       </div>
     </div>
-    <button class="button" @click="saveForm">Save</button>
+    
+      <button class="button" @click="saveForm">Save</button>
+    </div>
   </div>
 </template>
 
@@ -29,12 +35,18 @@ import draggable from 'vuedraggable'
 import { mapState } from 'vuex'
 import { bookMarkMixin } from '@/mixins/BookmarkMixin.js'
 import { languageMixin } from '@/mixins/LanguageMixin.js'
+import { authorMixin } from '@/mixins/AuthorMixin.js'
 export default {
-  mixins: [bookMarkMixin, languageMixin],
+  mixins: [bookMarkMixin, languageMixin, authorMixin],
   props: ['countryCODE'],
   components: {
     NavBar,
     draggable
+  },
+  data() {
+    return {
+      authorized: false
+    }
   },
   computed: mapState(['bookmark', 'appDir']),
 
@@ -78,6 +90,7 @@ export default {
   async created() {
     try {
       await this.getLanguages()
+      this.authorized = this.authorize('write')
       this.loaded = true
       this.loading = false
     } catch (error) {

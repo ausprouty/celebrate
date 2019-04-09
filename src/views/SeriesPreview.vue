@@ -30,10 +30,13 @@
         </div>
       </div>
     </div>
-    <div v-if="authorized">
+    <div v-if="this.write">
       <button class="button" @click="editSeries">Edit</button>
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
       <button class="button" @click="sortSeries">Sort</button>
+    </div>
+    <div v-if="this.readonly">
+        <button class="button" @click="editSeries">View Details</button>
     </div>
     <br>
     <br>
@@ -48,13 +51,20 @@ import ContentService from '@/services/ContentService.js'
 import NavBar from '@/components/NavBarAdmin.vue'
 import { bookMarkMixin } from '@/mixins/BookmarkMixin.js'
 import { seriesMixin } from '@/mixins/SeriesMixin.js'
+import { authorMixin } from '@/mixins/AuthorMixin.js'
 export default {
-  mixins: [bookMarkMixin, seriesMixin],
+  mixins: [bookMarkMixin, seriesMixin, authorMixin],
   props: ['countryCODE', 'languageISO', 'bookNAME'],
   computed: mapState(['bookmark', 'appDir']),
   components: {
     Chapter,
     NavBar
+  },
+  data() {
+    return {
+      readonly: false,
+      write: false
+    }
   },
 
   methods: {
@@ -88,6 +98,8 @@ export default {
   async created() {
     try {
       await this.getSeries(this.$route.params)
+       this.readonly = this.authorize('readonly')
+      this.write = this.authorize('write')
       this.loaded = true
       this.loading = false
     } catch (error) {

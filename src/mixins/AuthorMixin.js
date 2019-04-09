@@ -9,16 +9,24 @@ export const authorMixin = {
     authorize(reason) {
       var scope = this.user.scope
       if (scope == '*') {
-        return true
+        if (reason != 'readonly') {
+          return true
+        } else {
+          return false
+        }
       } else {
+        var included = scope.includes(this.$route.params.countryCODE)
         if (reason == 'edit') {
-          var show = scope.includes(this.$route.params.countryCODE)
-          return show
+          return included
         }
         if (reason == 'read' && scope) {
           return true
         }
+        if (reason == 'readonly' && scope && !included) {
+          return true
+        }
       }
+      return false
     }
   }
 }

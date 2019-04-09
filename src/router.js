@@ -101,7 +101,7 @@ export default new Router({
       component: CountriesPreview
     },
     {
-      path: '/preview/language/:countryCODE',
+      path: '/preview/languages/:countryCODE',
       name: 'previewLanguages',
       component: LanguagesPreview,
       props: true

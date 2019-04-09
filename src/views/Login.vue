@@ -30,13 +30,10 @@
       </template>
       <br>
       <br>
-      <div v-if="!$v.$anyError">
-        <button class="button red" @click="saveForm">Login</button>
-      </div>
-      <div v-if="$v.$anyError">
-        <button class="button grey">Disabled</button>
-        <p v-if="$v.$anyError" class="errorMessage">Please fill out the required field(s).</p>
-      </div>
+      <button class="button red" @click="saveForm">Login</button>
+       <template v-if="wrong">
+         <p class="errorMessage">Wrong username or password.  Try again</p>
+      </template>
     </form>
   </div>
 </template>
@@ -54,9 +51,10 @@ export default {
   },
   data() {
     return {
-      username: '',
-      password: '',
-      submitted: false
+      username: null,
+      password: null,
+      submitted: false,
+      wrong: null
     }
   },
   computed: mapState(['user']),
@@ -76,17 +74,19 @@ export default {
         console.log(params)
         let res = await AuthorService.getUser(params)
         console.log('res')
-        console.log(res)
+        if (res.data.content) {
+          response.firstname = res.data.content.firstname
+          response.lastname = res.data.content.lastname
+          response.scope = res.data.content.countries
+          response.uid = res.data.content.uid
 
-        response.firstname = res.data.content.firstname
-        response.lastname = res.data.content.lastname
-        response.scope = res.data.content.countries
-        response.uid = res.data.content.uid
-
-        this.$store.dispatch('loginUser', [response])
-        this.$router.push({
-          name: 'previewCountries'
-        })
+          this.$store.dispatch('loginUser', [response])
+          this.$router.push({
+            name: 'previewCountries'
+          })
+        } else {
+          this.wrong = true
+        }
       } catch (error) {
         console.log('Login There was an error ', error) //
       }

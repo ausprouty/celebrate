@@ -70,15 +70,17 @@
         </div>
       </div>
     </div>
-    <div>
-      <button class="button" @click="addNewLanguageForm">New Language</button>
-    </div>
-    <div v-if="!$v.$anyError">
-      <button class="button red" @click="saveForm">Save Changes</button>
-    </div>
-    <div v-if="$v.$anyError">
-      <button class="button grey">Disabled</button>
-      <p v-if="$v.$anyError" class="errorMessage">Please fill out the required field(s).</p>
+    <div v-if="this.authorized">
+      <div>
+        <button class="button" @click="addNewLanguageForm">New Language</button>
+      </div>
+      <div v-if="!$v.$anyError">
+        <button class="button red" @click="saveForm">Save Changes</button>
+      </div>
+      <div v-if="$v.$anyError">
+        <button class="button grey">Disabled</button>
+        <p v-if="$v.$anyError" class="errorMessage">Please fill out the required field(s).</p>
+      </div>
     </div>
   </div>
 </template>
@@ -89,9 +91,10 @@ import ContentService from '@/services/ContentService.js'
 import { mapState } from 'vuex'
 import { bookMarkMixin } from '@/mixins/BookmarkMixin.js'
 import { languageMixin } from '@/mixins/LanguageMixin.js'
+import { authorMixin } from '@/mixins/AuthorMixin.js'
 import { required } from 'vuelidate/lib/validators'
 export default {
-  mixins: [bookMarkMixin, languageMixin],
+  mixins: [bookMarkMixin, languageMixin, authorMixin],
   props: ['countryCODE'],
   components: {
     NavBar
@@ -113,7 +116,8 @@ export default {
         'menu-latin',
         'menu-middle_east'
       ],
-      direction: ['rtl', 'ltr']
+      direction: ['rtl', 'ltr'],
+      authorized: false
     }
   },
   validations: {
@@ -167,6 +171,7 @@ export default {
   async created() {
     try {
       await this.getLanguages()
+      this.authorized = this.authorize('write')
       this.loaded = true
       this.loading = false
     } catch (error) {

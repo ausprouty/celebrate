@@ -4,21 +4,26 @@
     <div class="loading" v-if="loading">Loading...</div>
     <div class="error" v-if="error">There was an error...</div>
     <div class="content" v-if="loaded">
-      <h1>Library</h1>
-      <div>
-        <draggable v-model="library">
-          <transition-group>
-            <div v-for="book in library" :key="book.id" :book="book">
-              <div class="shadow-card -shadow">
-                <img v-bind:src="appDir.icons +'move2red.png' " class="sortable">
-                <span class="card-name">{{book.title}}</span>
-              </div>
-            </div>
-          </transition-group>
-        </draggable>
+      <div v-if="!this.authorized">
+        <p>You have stumbled into a restricted page. Sorry I can not show it to you now</p>
       </div>
+      <div v-if="this.authorized">
+        <h1>Library</h1>
+        <div>
+          <draggable v-model="library">
+            <transition-group>
+              <div v-for="book in library" :key="book.id" :book="book">
+                <div class="shadow-card -shadow">
+                  <img v-bind:src="appDir.icons +'move2red.png' " class="sortable">
+                  <span class="card-name">{{book.title}}</span>
+                </div>
+              </div>
+            </transition-group>
+          </draggable>
+        </div>
+      </div>
+      <button class="button" @click="saveForm">Save</button>
     </div>
-    <button class="button" @click="saveForm">Save</button>
   </div>
 </template>
 
@@ -29,15 +34,20 @@ import draggable from 'vuedraggable'
 import { mapState } from 'vuex'
 import { bookMarkMixin } from '@/mixins/BookmarkMixin.js'
 import { libraryMixin } from '@/mixins/LibraryMixin.js'
+import { authorMixin } from '@/mixins/AuthorMixin.js'
 export default {
-  mixins: [bookMarkMixin, libraryMixin],
+  mixins: [bookMarkMixin, libraryMixin, authorMixin],
   components: {
     NavBar,
     draggable
   },
   props: ['countryCODE', 'languageISO'],
+  data() {
+    return {
+      authorized: false
+    }
+  },
   computed: mapState(['bookmark', 'appDir', 'cssURL', 'standard']),
-
   methods: {
     addNewBookForm() {
       this.library.push({
@@ -82,6 +92,7 @@ export default {
   async created() {
     try {
       await this.getLibrary()
+      this.authorized = this.authorize('write')
       this.loaded = true
       this.loading = false
     } catch (error) {

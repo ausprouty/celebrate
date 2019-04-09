@@ -13,10 +13,15 @@
       <div class="version">
         <p class="version">Version 1.01</p>
       </div>
-    </div v-if = "authorized">
-    <button class="button" @click="editLanguages">Edit</button>
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <button class="button" @click="sortLanguages">Sort</button>
+      <div v-if="this.write">
+        <button class="button" @click="editLanguages">Edit</button>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <button class="button" @click="sortLanguages">Sort</button>
+      </div>
+       <div v-if="this.readonly">
+        <button class="button" @click="editLanguages">View Details</button>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -27,12 +32,19 @@ import ContentService from '@/services/ContentService.js'
 import { mapState } from 'vuex'
 import { bookMarkMixin } from '@/mixins/BookmarkMixin.js'
 import { languageMixin } from '@/mixins/LanguageMixin.js'
+import { authorMixin } from '@/mixins/AuthorMixin.js'
 export default {
-  mixins: [bookMarkMixin, languageMixin],
+  mixins: [bookMarkMixin, languageMixin, authorMixin],
   props: ['countryCODE'],
   components: {
     Language,
     NavBar
+  },
+  data() {
+    return {
+      readonly: false,
+      write: false
+    }
   },
   computed: mapState(['bookmark', 'appDir']),
   methods: {
@@ -62,6 +74,8 @@ export default {
   async created() {
     try {
       await this.getLanguages()
+      this.readonly = this.authorize('readonly')
+      this.write = this.authorize('write')
       this.loaded = true
       this.loading = false
     } catch (error) {

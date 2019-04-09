@@ -12,7 +12,7 @@
       >
         <div class="app-card -shadow">
           <div class="float-right" style="cursor:pointer" @click="deleteCountryForm(index)">X</div>
-        
+
           <form>
             <BaseInput
               v-model="country.name.$model"
@@ -34,7 +34,6 @@
               placeholder="English Name"
               class="field"
             />
-           
 
             <BaseInput
               v-model="country.code.$model"
@@ -85,9 +84,9 @@
           <button class="button red" @click="saveForm">Save Changes</button>
         </div>
         <div v-if="$v.$anyError">
-          <button class="button grey" >Disabled</button>
+          <button class="button grey">Disabled</button>
           <p v-if="$v.$anyError" class="errorMessage">Please fill out the required field(s).</p>
-        </div> 
+        </div>
       </div>
     </div>
   </div>
@@ -149,7 +148,7 @@ export default {
       try {
         console.log('saving form')
         this.$store.dispatch('newBookmark', 'clear')
-        this.authorized = this.
+        var valid = ContentService.validate(this.countries)
         this.content.text = JSON.stringify(valid)
         this.content.filename = 'countries'
         this.content.filetype = 'json'
@@ -168,7 +167,7 @@ export default {
   },
   async created() {
     try {
-       this.authorized = this.authorize('write')
+      this.authorized = this.authorize('write')
       await this.getCountries()
     } catch (error) {
       console.log('There was an error in CountriesEdit.vue:', error) // Logs out the error

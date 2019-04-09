@@ -1,124 +1,72 @@
 <template>
-  <div>
+  <div class="preview">
     <NavBar/>
-
     <div class="loading" v-if="loading">Loading...</div>
     <div class="error" v-if="error">There was an error...</div>
     <div class="content" v-if="loaded">
-      <h1>Languages for {{this.$route.params.countryCODE}}</h1>
-      <div>
-        <div v-for="(language, index) in languages" :key="language.id" :language="language">
-          
-          <div class="app-card -shadow">
-            <div class="float-right" style="cursor:pointer" @click="deleteLanguageForm(index)">X</div>
-            <h4 class="card-title">Language #{{index}}</h4>
-            <form @submit.prevent="saveForm">
-              <BaseInput
-                v-model="language.name"
-                label="Language Name (as you want your audience to see it)"
-                type="text"
-                placeholder="Language Name"
-                class="field"
-                :class="{ error: $v.language.name.$error }"
-                @blur="$v.language.name.$touch()"
-              />
-              <template v-if="$v.language.name.$error">
-                <p v-if="!$v.language.name.required" class="errorMessage">Language Name is required</p>
-              </template>
+      <a v-bind:href="'/preview/language/' + this.bookmark.country.code">
+        <img v-bind:src="appDir.library +  this.image_dir +'/journey.jpg'" class="app-img-header">
+      </a>
 
-              <BaseInput
-                v-model="language.iso"
-                label="Language 3 letter ISO"
-                type="text"
-                placeholder="3 letter ISO code"
-                :class="{ error: $v.language.iso.$error }"
-                @blur="$v.language.iso.$touch()"
-              />
-              <template v-if="$v.language.iso.$error">
-                <p v-if="!$v.language.iso.required" class="errorMessage">Language ISO is required</p>
-              </template>
-
-              <span>Menu Images:</span>
-              <select v-model="language.image_dir">
-                <option disabled value>Menu Images:</option>
-                <option value="menu-china">China</option>
-                <option value="menu-ethiopian">Ethiopian</option>
-                <option value="menu-europe">Europe</option>
-                <option value="menu-india">India</option>
-                <option value="menu-latin">Latin America</option>
-                <option value="menu-middle_east">Middle East</option>
-              </select>
-              <span>Text Direction:</span>
-              <select v-model="language.rldir">
-                <option disabled value>Text Direction</option>
-                <option value="ltr">Left to Right</option>
-                <option value="rtl">Right to Left</option>
-              </select>
-            </form>
-          </div>
-        </div>
+      <Book v-for="book in library" :key="book.title" :book="book"/>
+      <div class="version">
+        <p class="version">Version 1.01</p>
       </div>
     </div>
-    <BaseButton type="submit" buttonClass="-fill-gradient" >Save Changes</BaseButton>
-    <p v-if="$v.$anyError" class="errorMessage">Please fill out the required field(s).</p>
-    <button class="button" @click="addNewLanguageForm">New Language</button>
+    <div v-if="this.write">
+      <button class="button" @click="editLibrary">Edit</button>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <button class="button" @click="sortLibrary">Sort</button>
+    </div>
+    <div v-if="this.read">
+      <button class="button" @click="editLibrary">View Details</button>\
+    </div>
   </div>
 </template>
 
+
 <script>
-import NavBar from '@/components/NavBarAdmin.vue'
-import ContentService from '@/services/ContentService.js'
+import Book from '@/components/BookPreview.vue'
 import { mapState } from 'vuex'
+import NavBar from '@/components/NavBarAdmin.vue'
 import { bookMarkMixin } from '@/mixins/BookmarkMixin.js'
-import { languageMixin } from '@/mixins/LanguageMixin.js'
-import { required } from 'vuelidate/lib/validators'
+import { libraryMixin } from '@/mixins/LibraryMixin.js'
+import { authorMixin } from '@/mixins/AuthorMixin.js'
 export default {
-  mixins: [bookMarkMixin, languageMixin],
-  props: ['countryCODE'],
+  mixins: [bookMarkMixin, libraryMixin, authorMixin.js],
+  props: ['countryCODE', 'languageISO'],
+  computed: mapState(['bookmark', 'appDir', 'cssURL', 'standard']),
   components: {
+    Book,
     NavBar
   },
-  computed: mapState(['bookmark', 'appDir']),
-  validations: {
-    language: {
-      name: { required },
-      iso: { required },
-      image_dir: { required },
-      lrdir: { required }
+  data() {
+    return {
+      read: false,
+      write: false
     }
   },
   methods: {
-    addNewLanguageForm() {
-      this.languages.push({
-        id: '',
-        folder: '',
-        iso: '',
-        name: '',
-        image_dir: '',
-        rldir: 'ltr'
+    editLibrary() {
+      this.$router.push({
+        name: 'editLibrary',
+        params: {
+          countryCODE: this.countryCODE,
+          languageISO: this.languageISO
+        }
       })
     },
-    deleteLanguageForm(index) {
-      this.languages.splice(index, 1)
+    sortLibrary() {
+      this.$router.push({
+        name: 'sortLibrary',
+        params: {
+          countryCODE: this.countryCODE,
+          languageISO: this.languageISO
+        }
+      })
     },
-    async saveForm() {
-      try {
-        this.$store.dispatch('newBookmark', 'clear')
-        var valid = ContentService.validate(this.languages)
-        this.content.text = JSON.stringify(valid)
-        this.content.filename = 'languages'
-        this.content.filetype = 'json'
-        this.content.country_iso = this.$route.params.countryCODE
-        await ContentService.createContentData(this.content)
-        this.$router.push({
-          name: 'previewLanguages',
-          params: {
-            countryCODE: this.$route.params.countryCODE
-          }
-        })
-      } catch (error) {
-        console.log('LANGUAGES EDIT There was an error ', error) //
-      }
+    goBack() {
+      window.history.back()
     }
   },
   beforeCreate() {
@@ -126,19 +74,14 @@ export default {
   },
   async created() {
     try {
-      await this.getLanguages()
+      await this.getLibrary()
+      this.read = this.authorize('read')
+      this.write = this.authorize('write')
       this.loaded = true
       this.loading = false
     } catch (error) {
-      console.log('There was an error in LanguagesEdit.vue:', error) // Logs out the error
+      console.log('There was an error in LibraryEdit.vue:', error) // Logs out the error
     }
   }
 }
 </script>
-
-
-<style scoped>
-.float-right {
-  text-align: right;
-}
-</style>

@@ -4,29 +4,34 @@
     <div class="loading" v-if="loading">Loading...</div>
     <div class="error" v-if="error">There was an error...</div>
     <div class="content" v-if="loaded">
-      <h1>Series for {{this.$route.params.countryCODE}}</h1>
-      <div class="form">
-        <span>Series Description:</span>
-        <br>
-        <textarea v-model="seriesDetails.description" placeholder="add multiple lines"></textarea>
+      <div v-if="!this.authorized">
+        <p>You have stumbled into a restricted page. Sorry I can not show it to you now</p>
       </div>
-      <div>
-        <button class="button" @click="addNewChapterForm">New Chapter</button>
-        <draggable v-model="chapters">
-          <transition-group>
-            <div v-for="chapter in chapters" :key="chapter.id" :book="chapter">
-              <div class="shadow-card -shadow">
-                <img v-bind:src="appDir.icons +'move2red.png' " class="sortable">
-                <span class="card-name">{{chapter.title}}</span>
+      <div v-if="this.authorized">
+        <h1>Series for {{this.$route.params.countryCODE}}</h1>
+        <div class="form">
+          <span>Series Description:</span>
+          <br>
+          <textarea v-model="seriesDetails.description" placeholder="add multiple lines"></textarea>
+        </div>
+        <div>
+          <button class="button" @click="addNewChapterForm">New Chapter</button>
+          <draggable v-model="chapters">
+            <transition-group>
+              <div v-for="chapter in chapters" :key="chapter.id" :book="chapter">
+                <div class="shadow-card -shadow">
+                  <img v-bind:src="appDir.icons +'move2red.png' " class="sortable">
+                  <span class="card-name">{{chapter.title}}</span>
+                </div>
               </div>
-            </div>
-          </transition-group>
-        </draggable>
+            </transition-group>
+          </draggable>
+        </div>
+        <button class="button" @click="saveForm">Save</button>
+        <br>
+        <br>
+        <br>
       </div>
-      <button class="button" @click="saveForm">Save</button>
-      <br>
-      <br>
-      <br>
     </div>
   </div>
 </template>
@@ -39,13 +44,19 @@ import NavBar from '@/components/NavBarAdmin.vue'
 import draggable from 'vuedraggable'
 import { bookMarkMixin } from '@/mixins/BookmarkMixin.js'
 import { seriesMixin } from '@/mixins/SeriesMixin.js'
+import { authorMixin } from '@/mixins/AuthorMixin.js'
 export default {
-  mixins: [bookMarkMixin, seriesMixin],
+  mixins: [bookMarkMixin, seriesMixin, authorMixin],
   props: ['countryCODE', 'languageISO', 'bookNAME'],
   computed: mapState(['bookmark', 'appDir']),
   components: {
     NavBar,
     draggable
+  },
+  data() {
+    return {
+      authorized: false
+    }
   },
   methods: {
     addNewChapterForm() {
@@ -93,6 +104,7 @@ export default {
   async created() {
     try {
       this.getSeries(this.$route.params)
+      this.authorized = this.authorize('write')
     } catch (error) {
       console.log('There was an error in SeriesEdit.vue:', error) // Logs out the error
     }

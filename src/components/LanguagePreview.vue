@@ -17,6 +17,9 @@ export default {
   computed: mapState(['bookmark']),
   methods: {
     showPage: function(language) {
+      console.log('showPage')
+      console.log(language)
+      console.log(this.bookmark.country.code)
       localStorage.setItem('lastPage', 'language/' + language)
       this.$router.push({
         name: 'previewLibrary',

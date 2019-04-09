@@ -13,10 +13,13 @@
         <p class="version">Version 1.01</p>
       </div>
     </div>
-    <div v-if="authorized">
+    <div v-if="this.write">
       <button class="button" @click="editLibrary">Edit</button>
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
       <button class="button" @click="sortLibrary">Sort</button>
+    </div>
+    <div v-if="this.readonly">
+      <button class="button" @click="editLibrary">View Details</button>
     </div>
   </div>
 </template>
@@ -26,17 +29,24 @@
 import Book from '@/components/BookPreview.vue'
 import { mapState } from 'vuex'
 import NavBar from '@/components/NavBarAdmin.vue'
+import ContentService from '@/services/ContentService.js'
 import { bookMarkMixin } from '@/mixins/BookmarkMixin.js'
 import { libraryMixin } from '@/mixins/LibraryMixin.js'
+import { authorMixin } from '@/mixins/AuthorMixin.js'
 export default {
-  mixins: [bookMarkMixin, libraryMixin],
+  mixins: [bookMarkMixin, libraryMixin, authorMixin],
   props: ['countryCODE', 'languageISO'],
   computed: mapState(['bookmark', 'appDir', 'cssURL', 'standard']),
   components: {
     Book,
     NavBar
   },
-
+  data() {
+    return {
+      readonly: false,
+      write: false
+    }
+  },
   methods: {
     editLibrary() {
       this.$router.push({
@@ -66,6 +76,8 @@ export default {
   async created() {
     try {
       await this.getLibrary()
+      this.readonly = this.authorize('readonly')
+      this.write = this.authorize('write')
       this.loaded = true
       this.loading = false
     } catch (error) {
