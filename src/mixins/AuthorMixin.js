@@ -8,8 +8,8 @@ export const authorMixin = {
   methods: {
     authorize(reason) {
       var scope = this.user.scope
-      console.log ('scope')
-      console.log (scope)
+   //   console.log ('scope')
+   //   console.log (scope)
       if (scope == '*') {
         if (reason != 'readonly') {
           return true

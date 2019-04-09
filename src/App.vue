@@ -14,6 +14,9 @@
   --color-blue: blue;
   --color-background: rgb(228, 194, 131);
   --color-version: rgb(110, 107, 241);
+  --color-back: #f0555a;
+  --color-up: #f38832;
+  --color-forward: #1ca0a6;
 }
 .preview {
   background-color: white;
@@ -360,5 +363,39 @@ p.version {
   text-align: right;
   color: var(--color-version);
   font-size: 10pt;
+}
+
+div.lesson {
+  margin-bottom: 30px;
+  margin-top: 30px;
+  position: relative;
+  text-align: left;
+}
+div.lesson-lookback {
+  font-size: 24px;
+  line-height: 24px;
+  margin-left: 30px;
+  position: absolute;
+  color: var(--color-back);
+  display: inline;
+  text-align: left;
+}
+div.lesson-lookup {
+  font-size: 24px;
+  line-height: 24px;
+  margin-left: 30px;
+  position: absolute;
+  color: var(--color-up);
+  display: inline;
+  text-align: left;
+}
+div.lesson-lookforward {
+  font-size: 24px;
+  line-height: 24px;
+  margin-left: 30px;
+  position: absolute;
+  color: var(--color-forward);
+  display: inline;
+  text-align: left;
 }
 </style>

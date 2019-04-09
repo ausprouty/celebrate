@@ -144,9 +144,9 @@ export default {
         console.log(this.content)
         var text = {}
         text.description = this.description
-        console.log('text.description')
-        console.log(text.description)
         text.chapters = this.chapters
+        console.log('text')
+        console.log(text)
         var valid = ContentService.validate(text)
         this.content.text = JSON.stringify(valid)
         this.content.filename = this.bookmark.book.index

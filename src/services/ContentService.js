@@ -62,8 +62,8 @@ export default {
         'ContentApi.php?crud=languages',
         contentForm
       )
-      console.log('getLangauges - data')
-      console.log(res)
+    //  console.log('getLangauges - data')
+    //  console.log(res)
       if (res.data.content) {
         found = true
         response = res
@@ -123,8 +123,8 @@ export default {
     if (params.version != 'current') {
       var contentForm = this.toFormData(params)
       response = await apiMYSQL.post('ContentApi.php?crud=series', contentForm)
-      console.log('get Series data')
-      console.log(response)
+   //   console.log('get Series data')
+   //   console.log(response)
       if (response.data.content) {
         found = true
         response.source = 'data'
@@ -209,9 +209,9 @@ export default {
       form_data.append(key, obj[key])
     }
     // Display the key/value pairs
-    for (var pair of form_data.entries()) {
-      console.log(pair[0] + ', ' + pair[1])
-    }
+    //for (var pair of form_data.entries()) {
+    //  console.log(pair[0] + ', ' + pair[1])
+    //}
     //console.log(form_data)
     return form_data
   }

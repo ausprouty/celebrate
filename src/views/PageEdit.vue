@@ -8,7 +8,8 @@
         <p>You have stumbled into a restricted page. Sorry I can not show it to you now</p>
       </div>
       <div v-if="this.authorized">
-        <link rel="stylesheet" v-bind:href="'/css/' + this.bookmark.book.style">
+        <link rel="stylesheet" v-bind:href="this.appDir.css + this.bookmark.book.style">
+
         <div class="app-link">
           <div class="app-card -shadow">
             <div v-on:click="goBack()">
@@ -145,8 +146,10 @@ export default {
   },
   async created() {
     try {
-      this.getPage(this.$route.params)
+      await this.getPage(this.$route.params)
       this.authorized = this.authorize('write')
+      console.log('css')
+      console.log(this.bookmark.book.style)
     } catch (error) {
       console.log('There was an error in Page.vue:', error) // Logs out the error
     }

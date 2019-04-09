@@ -181,8 +181,8 @@ export default new Vuex.Store({
       commit('UNSET_BOOKMARK', [value])
     },
     updateBookmark({ commit }, [mark, value]) {
-      console.log('STORE - BOOKMARK    updateBookmark with')
-      console.log(value)
+    //  console.log('STORE - BOOKMARK    updateBookmark with')
+   //   console.log(value)
       commit('SET_BOOKMARK', [mark, value])
     },
     unsetBookmark({ commit }, [mark]) {
