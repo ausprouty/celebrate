@@ -72,7 +72,7 @@ export default new Router({
       component: CountriesEdit
     },
     {
-      path: '/edit/language/:countryCODE',
+      path: '/edit/languages/:countryCODE',
       name: 'editLanguages',
       component: LanguageEdit,
       props: true
@@ -130,7 +130,7 @@ export default new Router({
       component: CountriesSort
     },
     {
-      path: '/sort/language/:countryCODE',
+      path: '/sort/languages/:countryCODE',
       name: 'sortLanguages',
       component: LanguagesSort,
       props: true

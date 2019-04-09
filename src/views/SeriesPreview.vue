@@ -1,6 +1,5 @@
 <template>
   <div class="preview">
-    >
     <NavBar/>
     <div class="loading" v-if="loading">Loading...</div>
     <div class="error" v-if="error">There was an error...</div>
@@ -36,7 +35,7 @@
       <button class="button" @click="sortSeries">Sort</button>
     </div>
     <div v-if="this.readonly">
-        <button class="button" @click="editSeries">View Details</button>
+      <button class="button" @click="editSeries">View Details</button>
     </div>
     <br>
     <br>
@@ -98,7 +97,7 @@ export default {
   async created() {
     try {
       await this.getSeries(this.$route.params)
-       this.readonly = this.authorize('readonly')
+      this.readonly = this.authorize('readonly')
       this.write = this.authorize('write')
       this.loaded = true
       this.loading = false

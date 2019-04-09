@@ -8,6 +8,8 @@ export const authorMixin = {
   methods: {
     authorize(reason) {
       var scope = this.user.scope
+      console.log ('scope')
+      console.log (scope)
       if (scope == '*') {
         if (reason != 'readonly') {
           return true
@@ -15,7 +17,10 @@ export const authorMixin = {
           return false
         }
       } else {
-        var included = scope.includes(this.$route.params.countryCODE)
+        var included = false
+        if (this.$route.params.countryCODE){
+          included = scope.includes(this.$route.params.countryCODE)
+        }
         if (reason == 'edit') {
           return included
         }

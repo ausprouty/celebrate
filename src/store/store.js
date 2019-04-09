@@ -6,10 +6,10 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     user: {
-      uid: '',
-      scope: '',
-      firstname: '',
-      lastname: ''
+      uid: 1,
+      scope: '*',
+      firstname: 'bob',
+      lastname: 'prouty',
     },
     appDir: {
       css: '/css/',
@@ -28,65 +28,65 @@ export default new Vuex.Store({
       css: ''
     },
     content: {
-      recnum: '',
+      recnum: null,
       version: '1.1',
-      edit_date: '',
-      edit_uid: '',
-      publish_uid: '',
-      publish_date: '',
-      language_iso: '',
-      country_iso: '',
-      folder: '',
-      filetype: '',
-      title: '',
-      filename: '',
-      text: ''
+      edit_date: null,
+      edit_uid: null,
+      publish_uid: null,
+      publish_date: null,
+      language_iso: null,
+      country_iso: null,
+      folder: null,
+      filetype: null,
+      title: null,
+      filename: null,
+      text: null
     },
     bookmark: {
       country: {
-        code: '',
-        english: '',
-        name: '',
-        index: '',
-        image: ''
+        code: null,
+        english: null,
+        name: null,
+        index: null,
+        image: null
       },
       language: {
         id: 1,
-        folder: '',
-        iso: '',
-        name: '',
-        bible: '',
-        life_issues: '',
-        image_dir: '',
-        nt: '',
-        ot: '',
-        rldir: ''
+        folder: null,
+        iso: null,
+        name: null,
+        bible: null,
+        life_issues: null,
+        image_dir: null,
+        nt: null,
+        ot: null,
+        rldir: null
       },
       library: [
         {
-          book: '',
-          folder: '',
-          format: '',
-          id: '',
-          image: '',
-          index: '',
-          instructions: '',
-          title: ''
+          book: null,
+          folder: null,
+          format: null,
+          id: null,
+          image: null,
+          index: null,
+          instructions: null,
+          title: null
         }
       ],
       book: {
-        book: '',
-        folder: '',
-        format: '',
-        id: '',
-        image: '',
-        index: '',
-        instructions: '',
-        title: ''
+        book: null,
+        folder: null,
+        format: null,
+        id: null,
+        image: null,
+        index: null,
+        instructions: null,
+        title: null
       },
       series: {
-        series: '',
-        language: '',
+        series: null,
+        language: null,
         description: 'Not set',
         chapters: []
       }
