@@ -27,13 +27,14 @@ export default {
     NavBar,
     VueCkeditor
   },
+  props: ['css'],
   data() {
     return {
       style: 'AU-myfriends.css',
       content: 'this is my test',
       config: {
         extraPlugins: 'bidi',
-        toolbarGroups : [
+        toolbarGroups: [
           { name: 'styles', groups: ['styles'] },
           { name: 'basicstyles', groups: ['basicstyles', 'cleanup'] },
           {

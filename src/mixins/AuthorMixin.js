@@ -4,7 +4,7 @@ import { mapState } from 'vuex'
 Vue.use(Vuex)
 
 export const authorMixin = {
-  computed: mapState(['user'),
+  computed: mapState(['user']),
   methods: {
     authorize(reason) {
       var scope = this.user.scope
