@@ -34,17 +34,16 @@
                 >
                 <br>
 
-                <BaseInput
-                  v-model="book.image.$model"
+                <BaseSelect
                   label="Image"
-                  type="text"
-                  placeholder="Image"
+                  :options="images"
+                  v-model="book.image.$model"
                   class="field"
                   :class="{ error: book.image.$error }"
                   @blur="book.image.$touch()"
                 />
                 <template v-if="book.image.$error">
-                  <p v-if="!book.image.required" class="errorMessage">Book Image is required</p>
+                  <p v-if="!book.image.required" class="errorMessage">Book Imae is required</p>
                 </template>
 
                 <BaseSelect
@@ -142,11 +141,12 @@
 <script>
 import NavBar from '@/components/NavBarAdmin.vue'
 import ContentService from '@/services/ContentService.js'
+import AuthorService from '@/services/AuthorService.js'
 import { mapState } from 'vuex'
 import { bookMarkMixin } from '@/mixins/BookmarkMixin.js'
 import { libraryMixin } from '@/mixins/LibraryMixin.js'
-import { required } from 'vuelidate/lib/validators'
 import { authorMixin } from '@/mixins/AuthorMixin.js'
+import { required } from 'vuelidate/lib/validators'
 export default {
   mixins: [bookMarkMixin, libraryMixin, authorMixin],
   components: {
@@ -176,6 +176,7 @@ export default {
         'compass',
         'about'
       ],
+      images: [],
       authorized: false
     }
   },
@@ -239,6 +240,9 @@ export default {
   async created() {
     try {
       await this.getLibrary()
+      var param = {}
+      param.menu = this.bookmark.language.image_dir
+      this.images = await AuthorService.getImages(param)
       this.authorized = this.authorize('write')
       this.loaded = true
       this.loading = false

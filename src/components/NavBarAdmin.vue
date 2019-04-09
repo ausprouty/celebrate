@@ -36,19 +36,19 @@ export default {
       authorized: false,
       menu: [
         {
-          value: 'Edit Countries',
+          value: 'Preview Latest Countries',
           link: 'countries',
           index: 1,
           show: true
         },
         {
-          value: 'Edit Languages',
+          value: 'Preview Latest Languages',
           link: 'languages',
           index: 2,
           show: false
         },
         {
-          value: 'Edit Library',
+          value: 'Preview Latest Library',
           link: 'library',
           index: 3,
           show: false
@@ -79,14 +79,14 @@ export default {
     },
     setNewSelectedOption(selectedOption) {
       switch (selectedOption) {
-        case 'countries':
+       case 'countries':
           this.$router.push({
-            name: 'editCountries'
+            name: 'previewCountries'
           })
           break
         case 'languages':
           this.$router.push({
-            name: 'editLanguages',
+            name: 'previewLanguages',
             params: {
               countryCODE: this.bookmark.country.code
             }
@@ -94,7 +94,7 @@ export default {
           break
         case 'library':
           this.$router.push({
-            name: 'editLibrary',
+            name: 'previewLibrary',
             params: {
               countryCODE: this.bookmark.country.code,
               languageISO: this.bookmark.language.iso

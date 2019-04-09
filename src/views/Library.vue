@@ -24,6 +24,7 @@ import NavBar from '@/components/NavBarHamburger.vue'
 import ContentService from '@/services/ContentService.js'
 import { bookMarkMixin } from '@/mixins/BookmarkMixin.js'
 import { libraryMixin } from '@/mixins/LibraryMixin.js'
+
 export default {
   mixins: [bookMarkMixin, libraryMixin],
   props: ['countryCODE', 'languageISO'],
@@ -47,7 +48,8 @@ export default {
           instructions: ''
         }
       ],
-      image_dir: '',
+      image_dir: null,
+      images: null,
       loading: false,
       loaded: null,
       error: null
@@ -58,6 +60,7 @@ export default {
   },
   async created() {
     try {
+      this
       await this.getLibrary()
       this.loaded = true
       this.loading = false

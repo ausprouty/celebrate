@@ -80,7 +80,7 @@ p.reference {
 }
 sup,
 .versenum {
-    color: var(--color-blue);
+    color: var(--color-red);
     font-size: 75%;
     padding-right:2px;
     padding-left: 3px;

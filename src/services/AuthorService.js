@@ -1,6 +1,5 @@
 import axios from 'axios'
 
-
 const apiMYSQL = axios.create({
   baseURL: 'http://create.myfriends.network/',
   withCredentials: false, // This is the default
@@ -12,6 +11,18 @@ const apiMYSQL = axios.create({
 })
 // I want to export a JSON.stringified of response.data.content.text
 export default {
+  async getImages(params) {
+    var contentForm = this.toFormData(params)
+    let response = await apiMYSQL.post(
+      'ResourceApi.php?resource=images',
+      contentForm
+    )
+    return JSON.parse(response.data.content)
+  },
+  async getMenus() {
+    let response = await apiMYSQL.post('ResourceApi.php?resource=menu')
+    return JSON.parse(response.data.content)
+  },
   async getUser(params) {
     var contentForm = this.toFormData(params)
     let response = await apiMYSQL.post(

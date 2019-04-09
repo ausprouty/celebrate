@@ -88,6 +88,7 @@
 <script>
 import NavBar from '@/components/NavBarAdmin.vue'
 import ContentService from '@/services/ContentService.js'
+import AuthorService from '@/services/AuthorService.js'
 import { mapState } from 'vuex'
 import { bookMarkMixin } from '@/mixins/BookmarkMixin.js'
 import { languageMixin } from '@/mixins/LanguageMixin.js'
@@ -108,14 +109,7 @@ export default {
         image_dir: '',
         lrdir: ''
       },
-      menus: [
-        'menu-china',
-        'menu-ethiopian',
-        'menu-europe',
-        'menu-india',
-        'menu-latin',
-        'menu-middle_east'
-      ],
+      menus: [],
       direction: ['rtl', 'ltr'],
       authorized: false
     }
@@ -170,6 +164,7 @@ export default {
   },
   async created() {
     try {
+      this.menus = await AuthorService.getMenus()
       await this.getLanguages()
       this.authorized = this.authorize('write')
       this.loaded = true
