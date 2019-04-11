@@ -70,15 +70,11 @@ window.CKEDITOR.stylesSet.add('default', [
   { name: 'Small', element: 'small' },
   { name: 'Typewriter', element: 'tt' },
 
-  { name: 'Computer Code', element: 'code' },
-  { name: 'Keyboard Phrase', element: 'kbd' },
-  { name: 'Sample Text', element: 'samp' },
   { name: 'Variable', element: 'var' },
 
   { name: 'Deleted Text', element: 'del' },
   { name: 'Inserted Text', element: 'ins' },
 
-  { name: 'Cited Work', element: 'cite' },
   { name: 'Inline Quotation', element: 'q' },
 
   { name: 'Language: RTL', element: 'span', attributes: { dir: 'rtl' } },

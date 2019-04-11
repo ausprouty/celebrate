@@ -85,6 +85,7 @@ export default {
         text: ''
       },
       config: {
+        // I don't think this actually works
         extraPlugins: 'bidi',
         toolbarGroups: [
           { name: 'styles', groups: ['styles'] },
@@ -108,7 +109,8 @@ export default {
           { name: 'colors', groups: ['colors'] },
           { name: 'about', groups: ['about'] }
         ],
-        height: 600
+        height: 600,
+        removeButtons: 'Underline,JustifyCenter'
       }
     }
   },
