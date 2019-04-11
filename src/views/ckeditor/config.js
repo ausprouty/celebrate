@@ -25,6 +25,7 @@ window.CKEDITOR.editorConfig = function(config) {
     { name: 'colors', groups: ['colors'] },
     { name: 'about', groups: ['about'] }
   ]
+
   config.removeButtons =
     'About,Button,Checkbox,CreatePlaceholder,DocProps,Flash,Form,HiddenField,Iframe,ImageButton,NewPage,PageBreak,Preview,Print,Radio,Save,Scayt,Select,Smiley,SpecialChar,TextField,Textarea'
 }
