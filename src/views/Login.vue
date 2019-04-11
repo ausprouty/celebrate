@@ -19,7 +19,7 @@
       <BaseInput
         v-model="password"
         label="Password"
-        type="text"
+        type="password"
         placeholder
         class="field"
         :class="{ error: $v.password.$error}"

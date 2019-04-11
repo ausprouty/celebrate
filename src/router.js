@@ -28,6 +28,7 @@ import Users from './views/Users.vue'
 import Login from './views/Login.vue'
 import Custom from './views/CustomEditor.vue'
 import Validate from './views/Validate.vue'
+import Upload from './views/Upload.vue'
 //prototype.myfriends.network/preview
 
 import NotFoundComponent from './views/NotFound.vue'
@@ -169,6 +170,12 @@ export default new Router({
       path: '/custom/:css',
       name: 'custom',
       component: Custom,
+      props: true
+    },
+    {
+      path: '/upload',
+      name: 'upload',
+      component: Upload,
       props: true
     },
 
