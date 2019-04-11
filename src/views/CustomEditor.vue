@@ -34,6 +34,7 @@ export default {
       content: 'this is my test',
       config: {
         extraPlugins: 'bidi',
+        stylesSet: this.$route.params.css,
         toolbarGroups: [
           { name: 'styles', groups: ['styles'] },
           { name: 'basicstyles', groups: ['basicstyles', 'cleanup'] },

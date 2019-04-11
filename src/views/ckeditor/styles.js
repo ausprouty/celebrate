@@ -221,4 +221,24 @@ window.CKEDITOR.stylesSet.add('default', [
     attributes: { class: 'embed-1080p' },
     group: 'size'
   }
-])
+]);
+
+
+window.CKEDITOR.stylesSet.add('compass', [
+
+  { name: 'Compass', element: 'h2', styles: { 'font-style': 'italic' } },
+
+]);
+
+window.CKEDITOR.stylesSet.add('firststeps', [
+
+  { name: 'firststeps', element: 'h2', styles: { 'font-style': 'italic' } },
+
+]);
+
+
+window.CKEDITOR.stylesSet.add('myfriends', [
+
+  { name: 'myfriends', element: 'h2', styles: { 'font-style': 'italic' } },
+
+]);
