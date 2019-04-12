@@ -12,24 +12,14 @@ require.context(
   '!file-loader?name=[path][name].[ext]!ckeditor/plugins/',
   true,
   // plugins|needed|by|ckeditor|whatever plugin your need
-  /^\.\/((wsc|scayt|copyformatting|tableselection|link|image|div|bidi)(\/(?!lang\/)[^/]+)*)?[^/]*$/
-)
-
-// Load lang files from plugins.
-// Limit to active plugins with
-// Object.keys(CKEDITOR.plugins.registered).sort().toString().replace(/,/g, '|')
-require.context(
-  '!file-loader?name=[path][name].[ext]!ckeditor/plugins/',
-  true,
-  // plugins|needed|by|ckeditor|here is the same
-  /^\.\/(wsc|scayt|copyformatting|tableselection|link|image|div|bidi)\/(.*\/)*lang\/(en|es)\.js$/
+  /^\.\/((bidi|copy|div|find|formatting|image|link|stylescombo|table|tabletools|templates|undo|wsc|)(\/(?!lang\/)[^/]+)*)?[^/]*$/
 )
 
 // Load CKEditor lang files.
 require.context(
   '!file-loader?name=[path][name].[ext]!ckeditor/lang',
   true,
-  /(en|es)\.js/
+  /(en|es|ar|pt|)\.js/
 )
 
 // Load skin.
