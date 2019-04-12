@@ -3,7 +3,7 @@ window.CKEDITOR.editorConfig = function(config) {
   // THESE CHANGES SEEM TO WORK
   // For complete reference see:
   // http://docs.ckeditor.com/#!/api/CKEDITOR.config
-
+  config.ContentsCss = '/public/css/AU-fsteps.css'
   config.toolbarGroups = [
     { name: 'styles', groups: ['styles'] },
     { name: 'basicstyles', groups: ['basicstyles', 'cleanup'] },
@@ -25,6 +25,7 @@ window.CKEDITOR.editorConfig = function(config) {
     { name: 'colors', groups: ['colors'] },
     { name: 'about', groups: ['about'] }
   ]
+
   config.removeButtons =
     'About,Button,Checkbox,CreatePlaceholder,DocProps,Flash,Form,HiddenField,Iframe,ImageButton,NewPage,PageBreak,Preview,Print,Radio,Save,Scayt,Select,Smiley,SpecialChar,TextField,Textarea'
 }

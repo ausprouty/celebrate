@@ -29,7 +29,7 @@ require.context(
 require.context(
   '!file-loader?name=[path][name].[ext]!ckeditor/lang',
   true,
-  /(en|es)\.js/
+  /(en|es|ar|pt|)\.js/
 )
 
 // Load skin.
