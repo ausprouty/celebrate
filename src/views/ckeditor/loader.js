@@ -11,9 +11,19 @@ require(`!file-loader?context=${__dirname}&outputPath=node_modules/ckeditor/&nam
 // Object.keys(CKEDITOR.plugins.registered).sort().toString().replace(/,/g, '|')
 require.context(
   '!file-loader?name=[path][name].[ext]!ckeditor/plugins/',
-  true,
+  true
   // plugins|needed|by|ckeditor|whatever plugin your need
-  /^\.\/((bidi|copy|div|find|formatting|image|link|stylescombo|table|tabletools|templates|undo|wsc|)(\/(?!lang\/)[^/]+)*)?[^/]*$/
+  // /^\.\/((wsc|scayt|copyformatting|tableselection|link|image|div|bidi)(\/(?!lang\/)[^/]+)*)?[^/]*$/
+)
+
+// Load lang files from plugins.
+// Limit to active plugins with
+// Object.keys(CKEDITOR.plugins.registered).sort().toString().replace(/,/g, '|')
+require.context(
+  '!file-loader?name=[path][name].[ext]!ckeditor/plugins/',
+  true
+  // plugins|needed|by|ckeditor|here is the same
+  // /^\.\/(wsc|scayt|copyformatting|tableselection|link|image|div|bidi)\/(.*\/)*lang\/(en|es)\.js$/
 )
 
 // Load CKEditor lang files.
