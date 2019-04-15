@@ -147,7 +147,7 @@ export default {
         this.content.filename = 'languages'
         this.content.filetype = 'json'
         this.content.country_iso = this.$route.params.countryCODE
-        await ContentService.createContentData(this.content)
+        await AuthorService.createContentData(this.content)
         this.$router.push({
           name: 'previewLanguages',
           params: {

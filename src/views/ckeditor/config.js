@@ -3,7 +3,6 @@ window.CKEDITOR.editorConfig = function(config) {
   // THESE CHANGES SEEM TO WORK
   // For complete reference see:
   // http://docs.ckeditor.com/#!/api/CKEDITOR.config
-  config.ContentsCss = '/public/css/AU-fsteps.css'
   config.toolbarGroups = [
     { name: 'styles', groups: ['styles'] },
     { name: 'basicstyles', groups: ['basicstyles', 'cleanup'] },

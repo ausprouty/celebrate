@@ -201,7 +201,7 @@ export default {
     obj.edit_uid = 1
     var contentForm = this.toFormData(obj)
     console.log('about to create content')
-    return apiMYSQL.post('ContentApi.php?crud=create', contentForm)
+    return apiMYSQL.post('AuthorApi.php?crud=create', contentForm)
   },
   toFormData(obj) {
     var form_data = new FormData()

@@ -31,6 +31,15 @@ export default {
     )
     return response
   },
+  createContentData(obj) {
+    var d = new Date()
+    obj.edit_date = d.getTime()
+    obj.edit_uid = 1
+    var contentForm = this.toFormData(obj)
+    console.log('about to create content')
+    return apiMYSQL.post('AuthorApi.php?crud=create', contentForm)
+  },
+ 
   toFormData(obj) {
     var form_data = new FormData()
     for (var key in obj) {

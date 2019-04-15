@@ -30,7 +30,6 @@ export default {
       config: {
         extraPlugins: 'bidi',
         extraAllowedContent: 'ol(*)',
-        addContentsCss: '/public/css/AU-fsteps.css',
         stylesSet: this.$route.params.css,
         toolbarGroups: [
           { name: 'styles', groups: ['styles'] },

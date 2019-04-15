@@ -1,15 +1,17 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import ContentService from '@/services/ContentService.js'
+import axios from 'axios'
+
 Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
     user: {
-      uid: 1,
-      scope: '*',
-      firstname: 'bob',
-      lastname: 'prouty',
+      uid: '',
+      scope: '',
+      firstname: '',
+      lastname: '',
+      token: ''
     },
     appDir: {
       css: '/css/',
@@ -95,8 +97,11 @@ export default new Vuex.Store({
   mutations: {
     LOGIN_USER(state, value) {
       state.user = value[0]
+      console.log('token')
+      console.log(state.user.token)
+      localStorage.setItem('user', JSON.stringify(state.user))
     },
-	SET_USER_DATA (state, userData) {
+    SET_USER_DATA(state, userData) {
       state.user = userData
       localStorage.setItem('user', JSON.stringify(userData))
       axios.defaults.headers.common['Authorization'] = `Bearer ${
@@ -188,8 +193,8 @@ export default new Vuex.Store({
       commit('UNSET_BOOKMARK', [value])
     },
     updateBookmark({ commit }, [mark, value]) {
-    //  console.log('STORE - BOOKMARK    updateBookmark with')
-   //   console.log(value)
+      //  console.log('STORE - BOOKMARK    updateBookmark with')
+      //   console.log(value)
       commit('SET_BOOKMARK', [mark, value])
     },
     unsetBookmark({ commit }, [mark]) {
@@ -198,13 +203,13 @@ export default new Vuex.Store({
     loginUser({ commit }, [mark]) {
       commit('LOGIN_USER', [mark])
     },
-	 register ({ commit }, credentials) {
-		  return axios
-			.post('//localhost:3000/register', credentials)
-			.then(({ data }) => {
-			  console.log('user data is', userData)
-			  commit('SET_USER_DATA', data)
-			})
-		}
+    register({ commit }, credentials) {
+      return axios
+        .post('//localhost:3000/register', credentials)
+        .then(({ data }) => {
+          console.log('user data is', userData)
+          commit('SET_USER_DATA', data)
+        })
+    }
   }
 })

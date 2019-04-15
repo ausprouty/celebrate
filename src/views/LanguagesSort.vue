@@ -5,24 +5,24 @@
     <div class="error" v-if="error">There was an error...</div>
     <div class="content" v-if="loaded">
       <div v-if="!this.authorized">
-        <p> You have stumbled into a restricted page.  Sorry I can not show it to you now </p>
+        <p>You have stumbled into a restricted page. Sorry I can not show it to you now</p>
       </div>
-    <div v-if="this.authorized">
-      <h1>Languages for {{this.$route.params.countryCODE}}</h1>
-      <div>
-        <draggable v-model="languages">
-          <transition-group>
-            <div v-for="language in languages" :key="language.id" :language="language">
-              <div class="shadow-card -shadow">
-                <img v-bind:src="appDir.icons +'move2red.png' " class="sortable">
-                <span class="card-name">{{language.name}}</span>
+      <div v-if="this.authorized">
+        <h1>Languages for {{this.$route.params.countryCODE}}</h1>
+        <div>
+          <draggable v-model="languages">
+            <transition-group>
+              <div v-for="language in languages" :key="language.id" :language="language">
+                <div class="shadow-card -shadow">
+                  <img v-bind:src="appDir.icons +'move2red.png' " class="sortable">
+                  <span class="card-name">{{language.name}}</span>
+                </div>
               </div>
-            </div>
-          </transition-group>
-        </draggable>
+            </transition-group>
+          </draggable>
+        </div>
       </div>
-    </div>
-    
+
       <button class="button" @click="saveForm">Save</button>
     </div>
   </div>
@@ -31,6 +31,7 @@
 <script>
 import NavBar from '@/components/NavBarAdmin.vue'
 import ContentService from '@/services/ContentService.js'
+import AuthorService from '@/services/AuthorService.js'
 import draggable from 'vuedraggable'
 import { mapState } from 'vuex'
 import { bookMarkMixin } from '@/mixins/BookmarkMixin.js'
@@ -72,7 +73,7 @@ export default {
         this.content.filename = 'languages'
         this.content.filetype = 'json'
         this.content.country_iso = this.$route.params.countryCODE
-        await ContentService.createContentData(this.content)
+        await AuthorService.createContentData(this.content)
         this.$router.push({
           name: 'previewLanguages',
           params: {

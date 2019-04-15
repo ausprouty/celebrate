@@ -92,6 +92,7 @@
 import { mapState } from 'vuex'
 
 import ContentService from '@/services/ContentService.js'
+import AuthorService from '@/services/AuthorService.js'
 import NavBar from '@/components/NavBarAdmin.vue'
 import { bookMarkMixin } from '@/mixins/BookmarkMixin.js'
 import { seriesMixin } from '@/mixins/SeriesMixin.js'
@@ -157,7 +158,7 @@ export default {
         console.log('this.content')
         console.log(this.content)
         this.$store.dispatch('newBookmark', 'clear')
-        await ContentService.createContentData(this.content)
+        await AuthorService.createContentData(this.content)
         this.$router.push({
           name: 'previewSeries',
           params: {

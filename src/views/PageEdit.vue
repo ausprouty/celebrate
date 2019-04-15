@@ -47,6 +47,7 @@
 <script>
 import { mapState } from 'vuex'
 import ContentService from '@/services/ContentService.js'
+import AuthorService from '@/services/AuthorService.js'
 import NavBar from '@/components/NavBarAdmin.vue'
 import './ckeditor/index.js'
 import VueCkeditor from 'vue-ckeditor2'
@@ -127,7 +128,7 @@ export default {
         this.content.filename = this.$route.params.fileFILENAME
         this.content.filetype = 'html'
         this.$store.dispatch('newBookmark', 'clear')
-        await ContentService.createContentData(this.content)
+        await AuthorService.createContentData(this.content)
         this.$router.push({
           name: 'previewPage',
           params: {

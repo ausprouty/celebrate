@@ -40,6 +40,7 @@
 import { mapState } from 'vuex'
 
 import ContentService from '@/services/ContentService.js'
+import AuthorService from '@/services/AuthorService.js'
 import NavBar from '@/components/NavBarAdmin.vue'
 import draggable from 'vuedraggable'
 import { bookMarkMixin } from '@/mixins/BookmarkMixin.js'
@@ -84,7 +85,7 @@ export default {
         this.content.language_iso = this.$route.params.languageISO
         this.content.folder = this.bookmark.book.folder
         this.$store.dispatch('newBookmark', 'clear')
-        await ContentService.createContentData(this.content)
+        await AuthorService.createContentData(this.content)
         this.$router.push({
           name: 'previewSeries',
           params: {

@@ -74,11 +74,13 @@ export default {
         console.log(params)
         let res = await AuthorService.getUser(params)
         console.log('res')
+         console.log(res)
         if (res.data.content) {
           response.firstname = res.data.content.firstname
           response.lastname = res.data.content.lastname
           response.scope = res.data.content.countries
           response.uid = res.data.content.uid
+          response.token = res.data.token
 
           this.$store.dispatch('loginUser', [response])
           this.$router.push({

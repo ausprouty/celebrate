@@ -3,7 +3,8 @@ window.CKEDITOR_BASEPATH = `/node_modules/ckeditor/`
 // Load your custom config.js file for CKEditor.
 require(`!file-loader?context=${__dirname}&outputPath=node_modules/ckeditor/&name=[path][name].[ext]!./config.js`)
 require(`!file-loader?context=${__dirname}&outputPath=node_modules/ckeditor/&name=[path][name].[ext]!./styles.js`)
-require(`!file-loader?context=${__dirname}&outputPath=node_modules/ckeditor/&name=[path][name].[ext]!./contents.css`)
+//require(`!file-loader?context=${__dirname}&outputPath=node_modules/ckeditor/&name=[path][name].[ext]!./contents.css`)
+require(`!file-loader?context=${__dirname}&outputPath=node_modules/ckeditor/&name=[path][name].[ext]!./fsteps/contents.css`)
 
 // Load files from plugins, excluding lang files.
 // Limit to active plugins with
