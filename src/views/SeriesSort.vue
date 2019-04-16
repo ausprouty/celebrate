@@ -32,6 +32,12 @@
         <br>
         <br>
       </div>
+      <div v-if="!this.authorized">
+        <p>
+          You need to
+          <a href="/login">login to make changes</a> here
+        </p>
+      </div>
     </div>
   </div>
 </template>

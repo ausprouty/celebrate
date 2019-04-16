@@ -2,7 +2,7 @@
   <div>
     <NavBar/>
     <div class="loading" v-if="loading">Loading...</div>
-    <div class="error" v-if="error">There was an error...</div>
+    <div class="error" v-if="error">There was an error... {{this.error_message}}</div>
     <div class="content" v-if="loaded">
       <h1>Countries</h1>
       <div
@@ -88,6 +88,12 @@
           <p v-if="$v.$anyError" class="errorMessage">Please fill out the required field(s).</p>
         </div>
       </div>
+      <div v-if="!this.authorized">
+        <p>
+          You need to
+          <a href="/login">login to make changes</a> here
+        </p>
+      </div>
     </div>
   </div>
 </template>
@@ -109,6 +115,7 @@ export default {
   computed: mapState(['bookmark', 'appDir', 'revision']),
   data() {
     return {
+      error_message: null,
       countries: {
         name: '',
         english: '',
@@ -153,12 +160,24 @@ export default {
         this.content.text = JSON.stringify(valid)
         this.content.filename = 'countries'
         this.content.filetype = 'json'
-        await AuthorService.createContentData(this.content)
-        this.$router.push({
-          name: 'previewCountries'
-        })
+        valid = await AuthorService.createContentData(this.content)
+        console.log(valid)
+        valid.data.message = 'you are not authorised'
+
+        this.error = true
+        this.error_message = valid.data.message
+        this.loaded = false
+        // if (valid.data.error != 'false') {
+        //   this.$router.push({
+        //     name: 'previewCountries'
+        //   })
+        //  }
       } catch (error) {
-        console.log('COUNTRIES EDIT There was an error ', error) //
+        valid.data.message = 'you are not authorised to make changes'
+        console.log('COUNTRIES EDIT There was an error ', error)
+        this.error = true
+        this.loaded = false
+        this.error_message = valid.data.message
       }
     }
     //}

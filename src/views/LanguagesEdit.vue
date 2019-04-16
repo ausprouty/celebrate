@@ -82,6 +82,12 @@
         <p v-if="$v.$anyError" class="errorMessage">Please fill out the required field(s).</p>
       </div>
     </div>
+    <div v-if="!this.authorized">
+        <p>
+          You need to
+          <a href="/login">login to make changes</a> here
+        </p>
+      </div>
   </div>
 </template>
 

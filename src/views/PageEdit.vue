@@ -35,10 +35,15 @@
         <div class="version">
           <p class="version">Version 1.01</p>
         </div>
-      </div>
-      <div>
         <button class="button red" @click="saveForm">Save Changes</button>
       </div>
+      <div v-if="!this.authorized">
+        <p>
+          You need to
+          <a href="/login">login to make changes</a> here
+        </p>
+      </div>
+      <div></div>
     </div>
   </div>
 </template>
