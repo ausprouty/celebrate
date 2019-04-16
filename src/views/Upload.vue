@@ -1,40 +1,37 @@
-<template>
-  <div>
-    <input style="display:none" type="file" @change="onFileSelected" ref="fileInput">
-    <button @click="$refs.fileInput.click()">Pick File</button>
-    <button @click="onUpload">Upload!</button>
+
+ <template>
+  <div class="container">
+    <div class="large-12 medium-12 small-12 cell">
+      <label>
+        <input type="file" id="file" ref="file" v-on:change="handleFileUpload()">
+      </label>
+      <button v-on:click="submitFile()">Submit</button>
+    </div>
   </div>
 </template>
 
+
 <script>
 import axios from 'axios'
+import AuthorService from '@/services/AuthorService.js'
+import { authorMixin } from '@/mixins/AuthorMixin.js'
 export default {
+  mixins: [authorMixin],
   data() {
     return {
-      selectedFile: null
+      file: null
     }
   },
   methods: {
-    onFileSelected(event) {
-      console.log(event)
-      this.selectedFile = event.larget.files[0]
+    handleFileUpload() {
+      this.file = this.$refs.file.files[0]
+      console.log(this.$refs)
     },
-    onUpload() {
-      const formData = new FormData()
-      formData.append('myFile', this.selectedFile, this.selectedFile.name)
-      axios
-        .post('my-domain.com/file-upload', formData, {
-          onUploadProgress: progressEvent => {
-            console.log(
-              'Upload Progress: ' +
-                Math.round((progressEvent.loaded / progressEvent.total) * 100) +
-                '%'
-            )
-          }
-        })
-        .then(res => {
-          console.log(res)
-        })
+    submitFile() {
+      var params = {}
+      params.directory = 'flag'
+      params.name = 'TEST'
+      AuthorService.storeImage(params, this.file)
     }
   }
 }

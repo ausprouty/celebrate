@@ -27,6 +27,7 @@
               <div class="errorMessage" v-if="!country.name.required">Country Name is required.</div>
             </template>
 
+
             <BaseInput
               v-model="country.english.$model"
               label="English Name"
@@ -35,7 +36,8 @@
               class="field"
             />
 
-            <BaseInput
+            
+             <BaseInput
               v-model="country.code.$model"
               label="Country ISO Code"
               type="text"
@@ -48,6 +50,25 @@
               <div class="errorMessage" v-if="!country.code.required">Country Code is required.</div>
             </template>
 
+            
+            <br>
+            <img v-bind:src="appDir.country+ country.image.$model" class="flag">
+            <br>
+            <BaseInput
+              v-model="country.image.$model"
+              label="Image"
+              type="text"
+              placeholder="ISO.png"
+              class="field"
+              :class="{ error: country.image.$error }"
+              @blur="country.image.$touch()"
+            />
+            <template v-if="country.image.$error">
+              <div class="errorMessage" v-if="!country.image.required">Image is required.</div>
+            </template>
+
+           
+
             <BaseInput
               v-model="country.index.$model"
               label="Index"
@@ -59,19 +80,6 @@
             />
             <template v-if="country.index.$error">
               <div class="errorMessage" v-if="!country.index.required">Index is required.</div>
-            </template>
-
-            <BaseInput
-              v-model="country.image.$model"
-              label="Index"
-              type="text"
-              placeholder="ISO.png"
-              class="field"
-              :class="{ error: country.image.$error }"
-              @blur="country.image.$touch()"
-            />
-            <template v-if="country.image.$error">
-              <div class="errorMessage" v-if="!country.image.required">Image is required.</div>
             </template>
           </form>
         </div>
