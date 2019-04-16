@@ -153,7 +153,7 @@ export default {
         this.content.filename = 'languages'
         this.content.filetype = 'json'
         this.content.country_iso = this.$route.params.countryCODE
-        await AuthorService.createContentData(this.content)
+        vaid = await AuthorService.createContentData(this.content)
         this.$router.push({
           name: 'previewLanguages',
           params: {
@@ -161,7 +161,10 @@ export default {
           }
         })
       } catch (error) {
-        console.log('LANGUAGES EDIT There was an error ', error) //
+        console.log('LANGUAGES EDIT There was an error ', error) 
+        this.error = true
+        this.loaded = false
+        this.error_message = valid.data.message
       }
     }
   },

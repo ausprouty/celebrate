@@ -161,26 +161,18 @@ export default {
         this.content.filename = 'countries'
         this.content.filetype = 'json'
         valid = await AuthorService.createContentData(this.content)
-        console.log(valid)
-        valid.data.message = 'you are not authorised'
-
-        this.error = true
-        this.error_message = valid.data.message
-        this.loaded = false
-        // if (valid.data.error != 'false') {
-        //   this.$router.push({
-        //     name: 'previewCountries'
-        //   })
-        //  }
+        if (valid.data.error != 'false') {
+          this.$router.push({
+            name: 'previewCountries'
+          })
+        }
       } catch (error) {
-        valid.data.message = 'you are not authorised to make changes'
         console.log('COUNTRIES EDIT There was an error ', error)
         this.error = true
         this.loaded = false
         this.error_message = valid.data.message
       }
     }
-    //}
   },
   beforeCreate() {
     this.$route.params.version = 'latest'

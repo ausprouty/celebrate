@@ -80,7 +80,7 @@ export default {
         this.content.country_iso = this.$route.params.countryCODE
         this.content.language_iso = this.$route.params.languageISO
         this.$store.dispatch('newBookmark', 'clear')
-        await AuthorService.createContentData(this.content)
+        valid = await AuthorService.createContentData(this.content)
         this.$router.push({
           name: 'previewLibrary',
           params: {
@@ -89,7 +89,10 @@ export default {
           }
         })
       } catch (error) {
-        console.log('LIBRARY EDIT There was an error ', error) //
+        console.log('LIBRARY EDIT There was an error ', error) 
+        this.error = true
+        this.loaded = false
+        this.error_message = valid.data.message
       }
     }
   },

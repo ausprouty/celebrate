@@ -12,14 +12,14 @@ export const bookMarkMixin = {
       this.$store.dispatch('unsetBookmark', ['country'])
     },
     async CheckBookmarks(route) {
-    //  console.log('BOOKMARK SERVICE started')
+      //  console.log('BOOKMARK SERVICE started')
       try {
         await this.CheckBookmarkCountry(route)
         await this.CheckBookmarkLanguageLibrary(route)
         await this.CheckBookmarkBookSeries(route)
         await this.CheckBookmarkPage(route)
-      //  console.log(this.bookmark)
-      //  console.log('BOOKMARK SERVICE --    FINISHED BOOKMARK')
+        //  console.log(this.bookmark)
+        //  console.log('BOOKMARK SERVICE --    FINISHED BOOKMARK')
         localStorage.setItem('bookmark', JSON.stringify(this.bookmark))
         return this.bookmark
       } catch (error) {
@@ -53,7 +53,7 @@ export const bookMarkMixin = {
           }
           this.$store.dispatch('updateBookmark', ['country', value])
         }
-    //    console.log('BOOKMARK SERVICE --CheckBookmarkCountry    FINISHING ')
+        //    console.log('BOOKMARK SERVICE --CheckBookmarkCountry    FINISHING ')
         return this.bookmark
       } catch (error) {
         console.log(

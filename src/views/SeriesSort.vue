@@ -2,7 +2,7 @@
   <div>
     <NavBar/>
     <div class="loading" v-if="loading">Loading...</div>
-    <div class="error" v-if="error">There was an error...</div>
+    <div class="error" v-if="error">There was an error... {{this.error_message}}</div>
     <div class="content" v-if="loaded">
       <div v-if="!this.authorized">
         <p>You have stumbled into a restricted page. Sorry I can not show it to you now</p>
@@ -91,7 +91,7 @@ export default {
         this.content.language_iso = this.$route.params.languageISO
         this.content.folder = this.bookmark.book.folder
         this.$store.dispatch('newBookmark', 'clear')
-        await AuthorService.createContentData(this.content)
+        vaid = await AuthorService.createContentData(this.content)
         this.$router.push({
           name: 'previewSeries',
           params: {
@@ -101,7 +101,8 @@ export default {
           }
         })
       } catch (error) {
-        console.log('LIBRARY EDIT There was an error ', error) //
+        console.log('LIBRARY EDIT There was an error ', error) 
+        AuthorService.createContentData//
       }
     }
   },

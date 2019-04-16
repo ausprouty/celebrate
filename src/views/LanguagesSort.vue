@@ -2,7 +2,7 @@
   <div>
     <NavBar/>
     <div class="loading" v-if="loading">Loading...</div>
-    <div class="error" v-if="error">There was an error...</div>
+    <div class="error" v-if="error">There was an error... {{this.error_message}}</div>
     <div class="content" v-if="loaded">
       <div v-if="!this.authorized">
         <p>You have stumbled into a restricted page. Sorry I can not show it to you now</p>
@@ -78,7 +78,7 @@ export default {
         this.content.filename = 'languages'
         this.content.filetype = 'json'
         this.content.country_iso = this.$route.params.countryCODE
-        await AuthorService.createContentData(this.content)
+        valid = await AuthorService.createContentData(this.content)
         this.$router.push({
           name: 'previewLanguages',
           params: {
@@ -86,7 +86,10 @@ export default {
           }
         })
       } catch (error) {
-        console.log('LANGUAGES SORT There was an error ', error) //
+        console.log('LANGUAGES SORT There was an error ', error) 
+        this.error = true
+        this.loaded = false
+        this.error_message = valid.data.message
       }
     }
   },

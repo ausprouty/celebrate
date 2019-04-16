@@ -7,7 +7,8 @@ export const languageMixin = {
       content: {},
       loading: false,
       loaded: null,
-      error: null
+      error: null,
+      error_message: null
     }
   },
   methods: {
