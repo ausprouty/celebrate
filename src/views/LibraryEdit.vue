@@ -2,7 +2,7 @@
   <div>
     <NavBar/>
     <div class="loading" v-if="loading">Loading...</div>
-     <div class="error" v-if="error">There was an error... {{this.error_message}}</div>
+    <div class="error" v-if="error">There was an error... {{this.error_message}}</div>
     <div class="content" v-if="loaded">
       <div v-if="!this.authorized">
         <p>You have stumbled into a restricted page. Sorry I can not show it to you now</p>
@@ -26,25 +26,37 @@
                 <template v-if="book.title.$error">
                   <p v-if="!book.title.required" class="errorMessage">Book Title is required</p>
                 </template>
-                <br>
-                <br>
-                <img
-                  v-bind:src="appDir.library  + image_dir  + '/' + book.image.$model"
-                  class="book"
-                >
-                <br>
 
-                <BaseSelect
-                  label="Image"
-                  :options="images"
-                  v-model="book.image.$model"
-                  class="field"
-                  :class="{ error: book.image.$error }"
-                  @blur="book.image.$touch()"
-                />
-                <template v-if="book.image.$error">
-                  <p v-if="!book.image.required" class="errorMessage">Book Imae is required</p>
-                </template>
+                <div v-if="images">
+                  <br>
+                  <br>
+                  <img
+                    v-bind:src="appDir.library  + image_dir  + '/' + book.image.$model"
+                    class="book"
+                  >
+                  <br>
+                  <BaseSelect
+                    label="Image"
+                    :options="images"
+                    v-model="book.image.$model"
+                    class="field"
+                    :class="{ error: book.image.$error }"
+                    @blur="book.image.$touch()"
+                  />
+                  <template v-if="book.image.$error">
+                    <p v-if="!book.image.required" class="errorMessage">Book Imae is required</p>
+                  </template>
+                </div>
+                <div>
+                  <label>
+                    <input
+                      type="file"
+                      v-bind:id="book.title.$model"
+                      ref="file"
+                      v-on:change="handleFileUpload(book.title.$model)"
+                    >
+                  </label>
+                </div>
 
                 <BaseSelect
                   label="Format"
@@ -84,11 +96,10 @@
                   <p v-if="!book.book.required" class="errorMessage">Book is required</p>
                 </template>
 
-                <BaseInput
-                  v-model="book.folder.$model"
+                <BaseSelect
                   label="Folder"
-                  type="text"
-                  placeholder="myfriends"
+                  :options="folders"
+                  v-model="book.folder.$model"
                   class="field"
                   :class="{ error: book.folder.$error }"
                   @blur="book.folder.$touch()"
@@ -123,8 +134,7 @@
             </div>
           </div>
         </div>
-      </div>
-      <div v-if="this.authorized">
+
         <button class="button" @click="addNewBookForm">New Book</button>
         <div v-if="!$v.$anyError">
           <button class="button red" @click="saveForm">Save Changes</button>
@@ -182,7 +192,8 @@ export default {
         'compass',
         'about'
       ],
-      images: [],
+      images: null,
+      folders: null,
       authorized: false
     }
   },
@@ -236,7 +247,7 @@ export default {
           }
         })
       } catch (error) {
-        console.log('LIBRARY EDIT There was an error ', error) 
+        console.log('LIBRARY EDIT There was an error ', error)
         this.error = true
         this.loaded = false
         this.error_message = valid.data.message
@@ -249,9 +260,19 @@ export default {
   async created() {
     try {
       await this.getLibrary()
+      console.log('after get Libary')
       var param = {}
       param.menu = this.bookmark.language.image_dir
-      this.images = await AuthorService.getImages(param)
+      var img = await AuthorService.getImages(param)
+      if (img) {
+        this.images = img
+      }
+      param.country_code = this.$route.params.countryCODE
+      param.language_iso = this.$route.params.languageISO
+      var folder = await AuthorService.getFolders(param)
+      if (folder) {
+        this.folders = folder
+      }
       this.authorized = this.authorize('write')
       this.loaded = true
       this.loading = false

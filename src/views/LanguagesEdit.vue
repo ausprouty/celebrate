@@ -28,6 +28,15 @@
                 <p v-if="!language.name.required" class="errorMessage">Language Name is required</p>
               </template>
 
+              <div v-if="!language.iso.$model">
+                <p>
+                  <a
+                    target="a_blank"
+                    href="https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes"
+                  >Reference File</a>
+                </p>
+              </div>
+
               <BaseInput
                 v-model="language.iso.$model"
                 label="Language 3 letter ISO"
@@ -48,6 +57,12 @@
                 :class="{ error: language.image_dir.$error }"
                 @blur="language.image_dir.$touch()"
               />
+
+              <div>
+                <p>
+                  <a @click="menuDir(language.iso.$model)">Create new menu image directory</a>
+                </p>
+              </div>
               <template v-if="language.image_dir.$error">
                 <p
                   v-if="!language.image_dir.required"
@@ -83,11 +98,11 @@
       </div>
     </div>
     <div v-if="!this.authorized">
-        <p>
-          You need to
-          <a href="/login">login to make changes</a> here
-        </p>
-      </div>
+      <p>
+        You need to
+        <a href="/login">login to make changes</a> here
+      </p>
+    </div>
   </div>
 </template>
 
@@ -134,26 +149,51 @@ export default {
   methods: {
     addNewLanguageForm() {
       this.languages.push({
-        id: '',
-        folder: '',
-        iso: '',
-        name: '',
-        image_dir: '',
+        id: null,
+        folder: null,
+        iso: null,
+        name: null,
+        image_dir: null,
         rldir: 'ltr'
       })
     },
     deleteLanguageForm(index) {
       this.languages.splice(index, 1)
     },
+    async menuDir(iso) {
+      AuthorService.createDirectoryMenu(iso)
+      console.log(this.$v.languages.$model)
+      var change = this.$v.languages.$model
+      var arrayLength = change.length
+      // console.log(arrayLength)
+      for (var i = 0; i < arrayLength; i++) {
+        var checkfile = this.$v.languages.$model[i]
+        if (checkfile.iso == iso) {
+          this.$v.languages.$each[i].$model.image_dir = 'menu-' + iso
+          console.log(checkfile)
+          this.menus = await AuthorService.getMenus()
+        }
+
+        //    if (checkfile.code.$model == code) {
+        //      this.$v.countries.$each[i].$model.image = 'default.png'
+        //      this.$v.countries.$each[i].$model.image = code + type
+      }
+    },
     async saveForm() {
       try {
         this.$store.dispatch('newBookmark', 'clear')
         var valid = ContentService.validate(this.languages)
+        console.log('saveForm')
+        console.log(valid)
+        AuthorService.createDirectoryLanguages(
+          this.$route.params.countryCODE,
+          valid
+        )
         this.content.text = JSON.stringify(valid)
         this.content.filename = 'languages'
         this.content.filetype = 'json'
         this.content.country_iso = this.$route.params.countryCODE
-        vaid = await AuthorService.createContentData(this.content)
+        valid = await AuthorService.createContentData(this.content)
         this.$router.push({
           name: 'previewLanguages',
           params: {
@@ -161,10 +201,10 @@ export default {
           }
         })
       } catch (error) {
-        console.log('LANGUAGES EDIT There was an error ', error) 
+        console.log('LANGUAGES EDIT There was an error ', error)
         this.error = true
         this.loaded = false
-        this.error_message = valid.data.message
+        this.error_message = error
       }
     }
   },

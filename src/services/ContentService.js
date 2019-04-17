@@ -62,8 +62,8 @@ export default {
         'ContentApi.php?crud=languages',
         contentForm
       )
-    //  console.log('getLangauges - data')
-    //  console.log(res)
+      //  console.log('getLangauges - data')
+      //  console.log(res)
       if (res.data.content) {
         found = true
         response = res
@@ -86,12 +86,14 @@ export default {
   },
 
   async getLibrary(params) {
+    console.log('getLibrary')
     var found = false
     var response = {}
     // for latest get data
     if (params.version != 'current') {
       var contentForm = this.toFormData(params)
       let res = await apiMYSQL.post('ContentApi.php?crud=library', contentForm)
+      console.log(res)
       if (res.data.content) {
         found = true
         response = res
@@ -123,8 +125,8 @@ export default {
     if (params.version != 'current') {
       var contentForm = this.toFormData(params)
       response = await apiMYSQL.post('ContentApi.php?crud=series', contentForm)
-   //   console.log('get Series data')
-   //   console.log(response)
+      //   console.log('get Series data')
+      //   console.log(response)
       if (response.data.content) {
         found = true
         response.source = 'data'

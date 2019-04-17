@@ -29,17 +29,37 @@ const apiIMAGE = axios.create({
 })
 // I want to export a JSON.stringified of response.data.content.text
 export default {
+  async getFolders(params) {
+    console.log ('getFolders')
+    params.token = store.state.user.token
+    var contentForm = this.toFormData(params)
+    let response = await apiSELECT.post(
+      'AuthorApi.php?crud=folders',
+      contentForm
+    )
+    console.log(response)
+    if (response.data.content) {
+      return JSON.parse(response.data.content)
+    } else return
+  },
   async getImages(params) {
     var contentForm = this.toFormData(params)
     let response = await apiSELECT.post(
       'ResourceApi.php?resource=images',
       contentForm
     )
-    return JSON.parse(response.data.content)
+    if (response.data.content) {
+      return JSON.parse(response.data.content)
+    } else return
   },
   async getMenus() {
     let response = await apiSELECT.post('ResourceApi.php?resource=menu')
-    return JSON.parse(response.data.content)
+    if (response.data.content) {
+      var menu = JSON.parse(response.data.content)
+      return menu.sort()
+    } else {
+      return
+    }
   },
   async getUser(params) {
     var contentForm = this.toFormData(params)
@@ -59,6 +79,58 @@ export default {
     var contentForm = this.toFormData(obj)
     console.log('about to create content')
     return apiSECURE.post('AuthorApi.php?crud=create', contentForm)
+  },
+  createDirectoryCountries(countries) {
+    var code = ''
+    console.log('createDirectoryCountries')
+    var arrayLength = countries.length
+    for (var i = 0; i < arrayLength; i++) {
+      code = countries[i].code
+      if (code.length == 2) {
+        if (this.isLetter(code)) {
+          var obj = {}
+          obj.code = code
+          obj.scope = 'country'
+          obj.token = store.state.user.token
+          var contentForm = this.toFormData(obj)
+          apiSECURE.post('AuthorApi.php?crud=createDir', contentForm)
+        }
+      }
+    }
+  },
+  createDirectoryLanguages(country, languages) {
+    var code = ''
+    console.log('createDirectoryLanguages')
+    console.log(languages)
+    var arrayLength = languages.length
+    for (var i = 0; i < arrayLength; i++) {
+      code = languages[i].iso
+      console.log(code)
+      if (this.isLetter(code)) {
+        var obj = {}
+        obj.scope = 'language'
+        obj.country = country
+        obj.code = code
+        obj.token = store.state.user.token
+        var contentForm = this.toFormData(obj)
+        apiSECURE.post('AuthorApi.php?crud=createDir', contentForm)
+      }
+    }
+  },
+  createDirectoryMenu(code) {
+    console.log('createDirectoryMenu')
+    console.log(code)
+    if (this.isLetter(code)) {
+      var obj = {}
+      obj.code = code
+      obj.scope = 'menu'
+      obj.token = store.state.user.token
+      var contentForm = this.toFormData(obj)
+      apiSECURE.post('AuthorApi.php?crud=createDir', contentForm)
+    }
+  },
+  isLetter(s) {
+    return s.match('^[a-zA-Z]+$')
   },
   imageType(file) {
     var type = null
@@ -94,9 +166,9 @@ export default {
       form_data.append(key, obj[key])
     }
     // Display the key/value pairs
-    for (var pair of form_data.entries()) {
-      console.log(pair[0] + ', ' + pair[1])
-    }
+    //   for (var pair of form_data.entries()) {
+    //     console.log(pair[0] + ', ' + pair[1])
+    //    }
     //console.log(form_data)
     return form_data
   }

@@ -43,6 +43,14 @@
               :class="{ error: country.code.$error }"
               @blur="country.code.$touch()"
             />
+            <div v-if="!country.code.$model">
+              <p>
+                <a
+                  target="a_blank"
+                  href="https://en.wikipedia.org/wiki/List_of_ISO_3166_country_codes"
+                >Reference File</a>
+              </p>
+            </div>
             <template v-if="country.code.$error">
               <div class="errorMessage" v-if="!country.code.required">Country Code is required.</div>
             </template>
@@ -55,10 +63,10 @@
             <div v-if="country.code.$model">
               <label>
                 <input
-                type="file"
-                v-bind:id= country.code.$model 
-                ref="file"
-                v-on:change="handleFileUpload(country.code.$model, country.index.$model)"
+                  type="file"
+                  v-bind:id="country.code.$model"
+                  ref="file"
+                  v-on:change="handleFileUpload(country.code.$model)"
                 >
               </label>
             </div>
@@ -107,11 +115,11 @@ export default {
       file: null,
       error_message: null,
       countries: {
-        name: '',
-        english: '',
-        code: '',
-        index: '',
-        image: ''
+        name: null,
+        english: null,
+        code: null,
+        index: null,
+        image: null
       },
       authorized: false
     }
@@ -123,8 +131,8 @@ export default {
         name: { required },
         english: {},
         code: { required },
-        index: { required },
-        image: { required }
+        index: {},
+        image: {}
       }
     }
   },
@@ -142,16 +150,15 @@ export default {
       })
     },
     handleFileUpload(code) {
-      console.log('index in handle')
-      console.log(code)
+      console.log('code in handle:' + code)
       var checkfile = ''
       var i = 0
       var arrayLength = this.$refs.file.length
       for (i = 0; i < arrayLength; i++) {
         checkfile = this.$refs.file[i]['files']
         if (checkfile.length == 1) {
-          console.log(checkfile)
-          console.log(checkfile[0])
+          // console.log(checkfile)
+          //  console.log(checkfile[0])
           var type = AuthorService.imageType(checkfile[0])
           if (type) {
             var params = {}
@@ -162,8 +169,10 @@ export default {
             for (i = 0; i < arrayLength; i++) {
               checkfile = this.$v.countries.$each[i]
               if (checkfile.code.$model == code) {
+                this.$v.countries.$each[i].$model.image = 'default.png'
                 this.$v.countries.$each[i].$model.image = code + type
                 console.log(' I reset ' + i)
+                console.log(this.$v.countries.$each)
               }
             }
           }
@@ -177,6 +186,7 @@ export default {
         console.log('saving form')
         this.$store.dispatch('newBookmark', 'clear')
         var valid = ContentService.validate(this.countries)
+        AuthorService.createDirectoryCountries(this.countries)
         this.content.text = JSON.stringify(valid)
         this.content.filename = 'countries'
         this.content.filetype = 'json'
@@ -190,7 +200,7 @@ export default {
         console.log('COUNTRIES EDIT There was an error ', error)
         this.error = true
         this.loaded = false
-        this.error_message = valid.data.message
+        this.error_message = error
       }
     }
   },
