@@ -227,7 +227,7 @@ window.CKEDITOR.stylesSet.add('compass', [
   { name: 'Compass', element: 'h2', styles: { 'font-style': 'italic' } }
 ])
 
-window.CKEDITOR.stylesSet.add('firststeps', [
+window.CKEDITOR.stylesSet.add('fsteps', [
   { name: 'firststeps', element: 'h2', styles: { 'font-style': 'italic' } }
 ])
 

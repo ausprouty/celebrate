@@ -31,6 +31,7 @@ export default {
         extraPlugins: 'bidi',
         extraAllowedContent: 'ol(*)',
         stylesSet: this.$route.params.css,
+        contentsCss: '/css/AU-' + this.$route.params.css +'.css',
         toolbarGroups: [
           { name: 'styles', groups: ['styles'] },
           { name: 'basicstyles', groups: ['basicstyles', 'cleanup'] },
@@ -139,5 +140,6 @@ export default {
   }
 }
 </script>
-<style >
+<style>
+@import '../../src/assets/css/AU-myfriends.css'
 </style>
