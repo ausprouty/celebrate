@@ -60,6 +60,23 @@ export default {
     console.log('about to create content')
     return apiSECURE.post('AuthorApi.php?crud=create', contentForm)
   },
+  imageType(file) {
+    var type = null
+    var filetype = file['type']
+    switch (filetype) {
+      case 'image/jpeg':
+        type = '.jpg'
+        break
+      case 'image/png':
+        type = '.png'
+        break
+      case 'image/gif':
+        type = '.gif'
+        break
+      default:
+    }
+    return type
+  },
   async storeImage(params, image) {
     console.log('Store Image')
     console.log(params)

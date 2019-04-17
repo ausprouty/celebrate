@@ -7,11 +7,12 @@
       <h1>Countries</h1>
       <div
         v-for="(country, index) in $v.countries.$each.$iter"
-        :key="country.code.$model"
+        :key="country.code"
         :country="country"
       >
         <div class="app-card -shadow">
           <div class="float-right" style="cursor:pointer" @click="deleteCountryForm(index)">X</div>
+
           <form>
             <BaseInput
               v-model="country.name.$model"
@@ -26,6 +27,7 @@
               <div class="errorMessage" v-if="!country.name.required">Country Name is required.</div>
             </template>
 
+
             <BaseInput
               v-model="country.english.$model"
               label="English Name"
@@ -34,7 +36,8 @@
               class="field"
             />
 
-            <BaseInput
+            
+             <BaseInput
               v-model="country.code.$model"
               label="Country ISO Code"
               type="text"
@@ -47,21 +50,37 @@
               <div class="errorMessage" v-if="!country.code.required">Country Code is required.</div>
             </template>
 
-            <div v-if="country.image.$model">
-              <br>
-              <img v-bind:src="appDir.country+ country.image.$model" class="flag">
-              <br>
-            </div>
-            <div v-if="country.code.$model">
-              <label>
-                <input
-                type="file"
-                v-bind:id= country.code.$model 
-                ref="file"
-                v-on:change="handleFileUpload(country.code.$model, country.index.$model)"
-                >
-              </label>
-            </div>
+            
+            <br>
+            <img v-bind:src="appDir.country+ country.image.$model" class="flag">
+            <br>
+            <BaseInput
+              v-model="country.image.$model"
+              label="Image"
+              type="text"
+              placeholder="ISO.png"
+              class="field"
+              :class="{ error: country.image.$error }"
+              @blur="country.image.$touch()"
+            />
+            <template v-if="country.image.$error">
+              <div class="errorMessage" v-if="!country.image.required">Image is required.</div>
+            </template>
+
+           
+
+            <BaseInput
+              v-model="country.index.$model"
+              label="Index"
+              type="text"
+              placeholder="XX-index"
+              class="field"
+              :class="{ error: country.index.$error }"
+              @blur="country.index.$touch()"
+            />
+            <template v-if="country.index.$error">
+              <div class="errorMessage" v-if="!country.index.required">Index is required.</div>
+            </template>
           </form>
         </div>
       </div>
@@ -104,7 +123,6 @@ export default {
   computed: mapState(['bookmark', 'appDir', 'revision']),
   data() {
     return {
-      file: null,
       error_message: null,
       countries: {
         name: '',
@@ -134,41 +152,11 @@ export default {
     },
     addNewCountryForm() {
       this.countries.push({
-        name: null,
-        english: null,
-        code: null,
-        index: null,
-        image: null
+        code: '',
+        english: '',
+        name: '',
+        index: ''
       })
-    },
-    handleFileUpload(code) {
-      console.log('index in handle')
-      console.log(code)
-      var checkfile = ''
-      var i = 0
-      var arrayLength = this.$refs.file.length
-      for (i = 0; i < arrayLength; i++) {
-        checkfile = this.$refs.file[i]['files']
-        if (checkfile.length == 1) {
-          console.log(checkfile)
-          console.log(checkfile[0])
-          var type = AuthorService.imageType(checkfile[0])
-          if (type) {
-            var params = {}
-            params.directory = 'flag'
-            params.name = code
-            AuthorService.storeImage(params, checkfile[0])
-
-            for (i = 0; i < arrayLength; i++) {
-              checkfile = this.$v.countries.$each[i]
-              if (checkfile.code.$model == code) {
-                this.$v.countries.$each[i].$model.image = code + type
-                console.log(' I reset ' + i)
-              }
-            }
-          }
-        }
-      }
     },
     async saveForm() {
       // this.$v.$touch()
