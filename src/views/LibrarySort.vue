@@ -21,8 +21,14 @@
             </transition-group>
           </draggable>
         </div>
+        <button class="button" @click="saveForm">Save</button>
       </div>
-      <button class="button" @click="saveForm">Save</button>
+      <div v-if="!this.authorized">
+        <p>
+          You need to
+          <a href="/login">login to make changes</a> here
+        </p>
+      </div>
     </div>
   </div>
 </template>
@@ -74,7 +80,7 @@ export default {
         this.content.country_iso = this.$route.params.countryCODE
         this.content.language_iso = this.$route.params.languageISO
         this.$store.dispatch('newBookmark', 'clear')
-        await AuthorService.createContentData(this.content)
+        valid = await AuthorService.createContentData(this.content)
         this.$router.push({
           name: 'previewLibrary',
           params: {
@@ -83,7 +89,10 @@ export default {
           }
         })
       } catch (error) {
-        console.log('LIBRARY EDIT There was an error ', error) //
+        console.log('LIBRARY EDIT There was an error ', error) 
+        this.error = true
+        this.loaded = false
+        this.error_message = valid.data.message
       }
     }
   },

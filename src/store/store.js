@@ -1,18 +1,20 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from 'axios'
+import defaultBookmark from './default-bookmark'
+import defaultUser from './default-user'
+import { saveStatePlugin } from '@/utils.js' // <-- Import saveStatePlugin
 
 Vue.use(Vuex)
 
+const bookmark = JSON.parse(localStorage.getItem('bookmark')) || defaultBookmark
+const user = JSON.parse(localStorage.getItem('user')) || defaultUser
+
 export default new Vuex.Store({
+  plugins: [saveStatePlugin], // <-- Use
   state: {
-    user: {
-      uid: '',
-      scope: '',
-      firstname: '',
-      lastname: '',
-      token: ''
-    },
+    bookmark,
+    user,
     appDir: {
       css: '/css/',
       country: '/images/country/',
@@ -43,55 +45,6 @@ export default new Vuex.Store({
       title: null,
       filename: null,
       text: null
-    },
-    bookmark: {
-      country: {
-        code: null,
-        english: null,
-        name: null,
-        index: null,
-        image: null
-      },
-      language: {
-        id: 1,
-        folder: null,
-        iso: null,
-        name: null,
-        bible: null,
-        life_issues: null,
-        image_dir: null,
-        nt: null,
-        ot: null,
-        rldir: null
-      },
-      library: [
-        {
-          book: null,
-          folder: null,
-          format: null,
-          id: null,
-          image: null,
-          index: null,
-          instructions: null,
-          title: null
-        }
-      ],
-      book: {
-        book: null,
-        folder: null,
-        format: null,
-        id: null,
-        image: null,
-        index: null,
-        instructions: null,
-        title: null
-      },
-      series: {
-        series: null,
-        language: null,
-        description: 'Not set',
-        chapters: []
-      }
     }
   },
   mutations: {

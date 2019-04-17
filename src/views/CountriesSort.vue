@@ -4,19 +4,27 @@
     <div class="loading" v-if="loading">Loading...</div>
     <div class="error" v-if="error">There was an error...</div>
     <div class="content" v-if="loaded">
-      <h1>Countries</h1>
-      <div>
-        <draggable v-model="countries">
-          <transition-group>
-            <div v-for="country in countries" :key="country.code">
-              <div class="shadow-card -shadow">
-                <img v-bind:src="appDir.icons +'move2red.png' " class="sortable">
-                <span class="card-name">{{country.name}}</span>
+      <div v-if="this.authorized">
+        <h1>Countries</h1>
+        <div>
+          <draggable v-model="countries">
+            <transition-group>
+              <div v-for="country in countries" :key="country.code">
+                <div class="shadow-card -shadow">
+                  <img v-bind:src="appDir.icons +'move2red.png' " class="sortable">
+                  <span class="card-name">{{country.name}}</span>
+                </div>
               </div>
-            </div>
-          </transition-group>
-        </draggable>
-        <button class="button red" @click="saveForm">Save</button>
+            </transition-group>
+          </draggable>
+          <button class="button red" @click="saveForm">Save</button>
+        </div>
+      </div>
+      <div v-if="!this.authorized">
+        <p>
+          You need to
+          <a href="/login">login to make changes</a> here
+        </p>
       </div>
     </div>
   </div>
@@ -57,12 +65,15 @@ export default {
         this.content.text = JSON.stringify(valid)
         this.content.filename = 'countries'
         this.content.filetype = 'json'
-        await AuthorService.createContentData(this.content)
+        valid = await AuthorService.createContentData(this.content)
         this.$router.push({
           name: 'previewCountries'
         })
       } catch (error) {
-        console.log('COUNTRIES SORT There was an error ', error) //
+        console.log('COUNTRIES SORT There was an error ', error) 
+        this.error = true
+        this.loaded = false
+        this.error_message = valid.data.message
       }
     },
 

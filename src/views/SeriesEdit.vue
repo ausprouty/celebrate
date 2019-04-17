@@ -2,7 +2,7 @@
   <div>
     <NavBar/>
     <div class="loading" v-if="loading">Loading...</div>
-    <div class="error" v-if="error">There was an error...</div>
+    <div class="error" v-if="error">There was an error... {{this.error_message}}</div>
     <div class="content" v-if="loaded">
       <h1>Series for {{this.$route.params.countryCODE}}</h1>
       <div class="form">
@@ -83,6 +83,12 @@
           <br>
           <br>
         </div>
+        <div v-if="!this.authorized">
+          <p>
+            You need to
+            <a href="/login">login to make changes</a> here
+          </p>
+        </div>
       </div>
     </div>
   </div>
@@ -158,7 +164,7 @@ export default {
         console.log('this.content')
         console.log(this.content)
         this.$store.dispatch('newBookmark', 'clear')
-        await AuthorService.createContentData(this.content)
+        valid = await AuthorService.createContentData(this.content)
         this.$router.push({
           name: 'previewSeries',
           params: {
@@ -168,7 +174,10 @@ export default {
           }
         })
       } catch (error) {
-        console.log('LIBRARY EDIT There was an error ', error) //
+        console.log('LIBRARY EDIT There was an error ', error)
+        this.error = true
+        this.loaded = false
+        this.error_message = valid.data.message
       }
     }
   },

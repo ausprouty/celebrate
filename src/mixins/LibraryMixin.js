@@ -18,6 +18,7 @@ export const libraryMixin = {
       loading: false,
       loaded: null,
       error: null,
+      error_message: null,
       content: {
         recnum: '',
         version: '',

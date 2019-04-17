@@ -2,7 +2,7 @@
   <div>
     <NavBar/>
     <div class="loading" v-if="loading">Loading...</div>
-    <div class="error" v-if="error">There was an error...</div>
+    <div class="error" v-if="error">There was an error... {{this.error_message}}</div>
     <div class="content" v-if="loaded">
       <h1>Countries</h1>
       <p>from https://vuelidate.netlify.com/#sub-validation-groups</p>
@@ -89,12 +89,15 @@ export default {
           this.content.text = JSON.stringify(valid)
           this.content.filename = 'countries'
           this.content.filetype = 'json'
-          await AuthorService.createContentData(this.content)
+          valid = await AuthorService.createContentData(this.content)
           this.$router.push({
             name: 'previewCountries'
           })
         } catch (error) {
-          console.log('COUNTRIES EDIT There was an error ', error) //
+          console.log('COUNTRIES EDIT There was an error ', error)
+          this.error = true
+          this.loaded = false
+          this.error_message = valid.data.message
         }
       }
     }
