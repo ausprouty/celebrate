@@ -17,11 +17,13 @@ export default new Vuex.Store({
     user,
     appDir: {
       css: '/css/',
+      styles: '/styles/',
       country: '/images/country/',
       icons: '/images/icons/',
       library: '/images/library/',
       root: '/images/'
     },
+    books: ['about', 'basics', 'community', 'compass', 'firststeps', 'issues'],
     revision: '1.1',
     baseURL: './',
     cssURL: './css/',

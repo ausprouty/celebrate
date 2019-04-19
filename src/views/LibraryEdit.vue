@@ -52,8 +52,8 @@
                     <input
                       type="file"
                       v-bind:id="book.title.$model"
-                      ref="file"
-                      v-on:change="handleFileUpload(book.title.$model)"
+                      ref="image"
+                      v-on:change="handleImageUpload(book.title.$model)"
                     >
                   </label>
                 </div>
@@ -73,7 +73,7 @@
                 <div v-if="book.format.$model == 'series'">
                   <BaseInput
                     v-model="book.index.$model"
-                    label="Index"
+                    label="Index Filename"
                     type="text"
                     placeholder="Index"
                     class="field"
@@ -86,7 +86,7 @@
                 </div>
                 <BaseSelect
                   label="Book"
-                  :options="books"
+                  :options="mybooks"
                   v-model="book.book.$model"
                   class="field"
                   :class="{ error: book.book.$error }"
@@ -95,6 +95,11 @@
                 <template v-if="book.book.$error">
                   <p v-if="!book.book.required" class="errorMessage">Book is required</p>
                 </template>
+                <div>
+                  <p>
+                    <a class="black" @click="createBook()">Create new Book</a>
+                  </p>
+                </div>
 
                 <BaseSelect
                   label="Folder"
@@ -107,29 +112,50 @@
                 <template v-if="book.folder.$error">
                   <p v-if="!book.folder.required" class="errorMessage">Folder is required</p>
                 </template>
+                <div>
+                  <p>
+                    <a class="black" @click="createFolder()">Create new Folder</a>
+                  </p>
+                </div>
 
-                <BaseInput
-                  v-model="book.style.$model"
+                <BaseSelect
                   label="Style Sheet"
-                  type="text"
-                  placeholder="AU-myfriends.css"
+                  :options="styles"
+                  v-model="book.style.$model"
                   class="field"
                   :class="{ error: book.style.$error }"
                   @blur="book.style.$touch()"
                 />
                 <template v-if="book.style.$error">
-                  <p v-if="!book.style.required" class="errorMessage">Style Sheet is required</p>
+                  <p v-if="!book.style.required" class="errorMessage">Style is required</p>
                 </template>
+                <label>
+                  Add new stylesheet&nbsp;&nbsp;&nbsp;&nbsp;
+                  <input
+                    type="file"
+                    v-bind:id="book.title.$model"
+                    ref="style"
+                    v-on:change="handleStyleUpload(book.title.$model)"
+                  >
+                </label>
 
-                <BaseInput
-                  v-model="book.template.$model"
+                <BaseSelect
                   label="Template"
-                  type="text"
-                  placeholder="AU-myfriends"
+                  :options="templates"
+                  v-model="book.template.$model"
                   class="field"
                   :class="{ error: book.template.$error }"
-                  @blur="book.style.$touch()"
+                  @blur="book.template.$touch()"
                 />
+                <label>
+                  Add new template&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <input
+                    type="file"
+                    v-bind:id="book.title.$model"
+                    ref="template"
+                    v-on:change="handleTemplateUpload(book.title.$model)"
+                  >
+                </label>
               </div>
             </div>
           </div>
@@ -169,7 +195,7 @@ export default {
     NavBar
   },
   props: ['countryCODE', 'languageISO'],
-  computed: mapState(['bookmark', 'appDir', 'cssURL', 'standard']),
+  computed: mapState(['bookmark', 'appDir', 'cssURL', 'standard', 'books']),
   data() {
     return {
       library: {
@@ -183,17 +209,12 @@ export default {
         format: '',
         template: ''
       },
-      formats: ['series', 'page'],
-      books: [
-        'issues',
-        'basics',
-        'community',
-        'firststeps',
-        'compass',
-        'about'
-      ],
+      formats: ['page', 'series'],
       images: null,
       folders: null,
+      styles: null,
+      mybooks: null,
+      templates: null,
       authorized: false
     }
   },
@@ -226,8 +247,93 @@ export default {
         template: 'AU-myfriends'
       })
     },
+    createFolder() {},
     deleteBookForm(index) {
       this.library.splice(index, 1)
+    },
+    handleImageUpload(code) {
+      console.log('code in handle:' + code)
+      var checkfile = ''
+      var i = 0
+      var arrayLength = this.$refs.file.length
+      for (i = 0; i < arrayLength; i++) {
+        checkfile = this.$refs.file[i]['files']
+        if (checkfile.length == 1) {
+          // console.log(checkfile)
+          //  console.log(checkfile[0])
+          var type = AuthorService.typeImage(checkfile[0])
+          if (type) {
+            var params = {}
+            params.directory = 'flag'
+            params.name = code
+            AuthorService.storeImage(params, checkfile[0])
+
+            for (i = 0; i < arrayLength; i++) {
+              checkfile = this.$v.countries.$each[i]
+              if (checkfile.code.$model == code) {
+                this.$v.countries.$each[i].$model.image = 'default.png'
+                this.$v.countries.$each[i].$model.image = code + type
+                console.log(' I reset ' + i)
+                console.log(this.$v.countries.$each)
+              }
+            }
+          }
+        }
+      }
+    },
+    handleStyleUpload(code) {
+      console.log('code in handle Style:' + code)
+      var checkfile = ''
+      var i = 0
+      var arrayLength = this.$refs.style.length
+      console.log(this.$refs.style)
+      for (i = 0; i < arrayLength; i++) {
+        checkfile = this.$refs.style[i]['files']
+        if (checkfile.length == 1) {
+          console.log(checkfile[0])
+          var type = AuthorService.typeStyle(checkfile[0])
+          if (type) {
+            console.log(checkfile)
+            var params = {}
+            params.file = checkfile[0]
+            params.country = this.$route.params.countryCODE
+            type = AuthorService.createStyle(params)
+            if (type) {
+              console.log(type)
+            }
+          } else {
+            console.log('not a style sheet')
+          }
+        }
+      }
+    },
+    handleTemplateUpload(code) {
+      console.log('code in handle Template:' + code)
+      var checkfile = ''
+      var i = 0
+      var arrayLength = this.$refs.template.length
+      console.log(this.$refs.template)
+      for (i = 0; i < arrayLength; i++) {
+        checkfile = this.$refs.template[i]['files']
+        if (checkfile.length == 1) {
+          console.log(checkfile[0])
+          var type = AuthorService.typeTemplate(checkfile[0])
+          if (type) {
+            console.log('type ok')
+            console.log(checkfile)
+            var params = {}
+            params.file = checkfile[0]
+            params.country = this.$route.params.countryCODE
+            params.language = this.$route.params.languageISO
+            type = AuthorService.createTemplate(params)
+            if (type) {
+              console.log(type)
+            }
+          } else {
+            console.log('not a template')
+          }
+        }
+      }
     },
     async saveForm() {
       try {
@@ -260,7 +366,7 @@ export default {
   async created() {
     try {
       await this.getLibrary()
-      console.log('after get Libary')
+      // console.log('after get Libary')
       var param = {}
       param.menu = this.bookmark.language.image_dir
       var img = await AuthorService.getImages(param)
@@ -272,6 +378,20 @@ export default {
       var folder = await AuthorService.getFolders(param)
       if (folder) {
         this.folders = folder
+      }
+      var style = await AuthorService.getStyles(param)
+      if (style) {
+        this.styles = style
+      }
+      var template = await AuthorService.getTemplates(param)
+      if (template) {
+        this.templates = template
+      }
+      var booklist = await AuthorService.getTemplates(param)
+      if (booklist) {
+        this.mybooks = booklist
+      } else {
+        this.mybooks = this.books
       }
       this.authorized = this.authorize('write')
       this.loaded = true

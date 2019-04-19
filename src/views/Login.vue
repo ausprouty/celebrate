@@ -31,8 +31,8 @@
       <br>
       <br>
       <button class="button red" @click="saveForm">Login</button>
-       <template v-if="wrong">
-         <p class="errorMessage">Wrong username or password.  Try again</p>
+      <template v-if="wrong">
+        <p class="errorMessage">Wrong username or password. Try again</p>
       </template>
     </form>
   </div>
@@ -73,8 +73,8 @@ export default {
         console.log('params')
         console.log(params)
         let res = await AuthorService.getUser(params)
-        console.log('res')
-         console.log(res)
+        console.log('res from Author Service')
+        console.log(res)
         if (res.data.content) {
           response.firstname = res.data.content.firstname
           response.lastname = res.data.content.lastname

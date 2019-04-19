@@ -1,23 +1,16 @@
 <template>
   <div id="nav">
-    <div v-if="!authorized">
-      <router-link to="/">
-        <img class="nav-icon" alt="Home" src="@/assets/header-hamburger.png">
-      </router-link>
+    <div v-on:click="toggleMenu()">
+      <img class="nav-icon" alt="Home" src="@/assets/header-admin.png">
     </div>
-    <div v-if="authorized">
-      <div v-on:click="toggleMenu()">
-        <img class="nav-icon" alt="Home" src="@/assets/header-admin.png">
-      </div>
-      <div v-if="showMenu">
-        <div v-for="(menuItem) in this.menu" :key="menuItem.link" :menuItem="menuItem">
-          <div class="menu-card -shadow" v-if="menuItem.show">
-            <div
-              class="float-left"
-              style="cursor:pointer"
-              @click="setNewSelectedOption(menuItem.link)"
-            >{{menuItem.value}}</div>
-          </div>
+    <div v-if="showMenu">
+      <div v-for="(menuItem) in this.menu" :key="menuItem.link" :menuItem="menuItem">
+        <div class="menu-card -shadow" v-if="menuItem.show">
+          <div
+            class="float-left"
+            style="cursor:pointer"
+            @click="setNewSelectedOption(menuItem.link)"
+          >{{menuItem.value}}</div>
         </div>
       </div>
     </div>
@@ -28,7 +21,7 @@
 import { mapState } from 'vuex'
 import { authorMixin } from '@/mixins/AuthorMixin.js'
 export default {
-  computed: mapState(['bookmark']),
+  computed: mapState(['bookmark', 'user']),
   mixins: [authorMixin],
   data() {
     return {
@@ -36,10 +29,16 @@ export default {
       authorized: false,
       menu: [
         {
+          value: 'Login',
+          link: 'login',
+          index: 0,
+          show: false
+        },
+        {
           value: 'Preview Latest Countries',
           link: 'countries',
           index: 1,
-          show: true
+          show: false
         },
         {
           value: 'Preview Latest Languages',
@@ -52,17 +51,34 @@ export default {
           link: 'library',
           index: 3,
           show: false
+        },
+        {
+          value: 'Logout',
+          link: 'logout',
+          index: 4,
+          show: false
         }
       ]
     }
   },
   created() {
     this.authorized = this.authorize('read')
-    if (this.bookmark.country.code) {
-      this.menu[1].show = true
+    var arrayLength = this.menu
+    for (var i = 0; i < arrayLength; i++) {
+      this.menu[i].show = false
     }
-    if (this.bookmark.language.iso && this.bookmark.country.code) {
-      this.menu[2].show = true
+    if (this.authorized) {
+      this.menu[1].show = true
+      if (this.bookmark.country.code) {
+        this.menu[2].show = true
+      }
+      if (this.bookmark.language.iso && this.bookmark.country.code) {
+        this.menu[3].show = true
+      }
+      this.menu[4].show = true
+    }
+    if (!this.authorized) {
+      this.menu[0].show = true
     }
   },
   methods: {
@@ -79,7 +95,18 @@ export default {
     },
     setNewSelectedOption(selectedOption) {
       switch (selectedOption) {
-       case 'countries':
+        case 'login':
+          this.$router.push({
+            name: 'login'
+          })
+          break
+        case 'logout':
+          this.user = null
+          this.$router.push({
+            name: 'login'
+          })
+          break
+        case 'countries':
           this.$router.push({
             name: 'previewCountries'
           })

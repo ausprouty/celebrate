@@ -173,10 +173,6 @@ export default {
           console.log(checkfile)
           this.menus = await AuthorService.getMenus()
         }
-
-        //    if (checkfile.code.$model == code) {
-        //      this.$v.countries.$each[i].$model.image = 'default.png'
-        //      this.$v.countries.$each[i].$model.image = code + type
       }
     },
     async saveForm() {

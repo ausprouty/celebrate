@@ -30,36 +30,73 @@ const apiIMAGE = axios.create({
 // I want to export a JSON.stringified of response.data.content.text
 export default {
   async getFolders(params) {
-    console.log ('getFolders')
+    //console.log('getFolders')
+    var folders = []
     params.token = store.state.user.token
     var contentForm = this.toFormData(params)
     let response = await apiSELECT.post(
       'AuthorApi.php?crud=folders',
       contentForm
     )
-    console.log(response)
+    //console.log(response)
     if (response.data.content) {
-      return JSON.parse(response.data.content)
-    } else return
+      folders = JSON.parse(response.data.content)
+      folders.sort()
+    }
+    return folders
   },
   async getImages(params) {
+    var images = []
     var contentForm = this.toFormData(params)
     let response = await apiSELECT.post(
       'ResourceApi.php?resource=images',
       contentForm
     )
     if (response.data.content) {
-      return JSON.parse(response.data.content)
-    } else return
+      images = JSON.parse(response.data.content)
+    }
+    return images
   },
   async getMenus() {
+    var menu = []
     let response = await apiSELECT.post('ResourceApi.php?resource=menu')
     if (response.data.content) {
-      var menu = JSON.parse(response.data.content)
-      return menu.sort()
-    } else {
-      return
+      menu = JSON.parse(response.data.content)
+      menu.sort()
     }
+    return menu
+  },
+  async getStyles(params) {
+    var styles = []
+    // console.log('getStyles')
+    params.token = store.state.user.token
+    var contentForm = this.toFormData(params)
+    let response = await apiSELECT.post(
+      'AuthorApi.php?crud=getStyles',
+      contentForm
+    )
+    // console.log(response)
+    if (response.data.content) {
+      styles = JSON.parse(response.data.content)
+      styles.sort()
+    }
+    return styles
+  },
+  async getTemplates(params) {
+    var templates = []
+    // console.log('getTemplates')
+    params.token = store.state.user.token
+    var contentForm = this.toFormData(params)
+    let response = await apiSELECT.post(
+      'AuthorApi.php?crud=getTemplates',
+      contentForm
+    )
+    //console.log(response)
+    if (response.data.content) {
+      templates = JSON.parse(response.data.content)
+      templates.sort()
+    }
+    return templates
   },
   async getUser(params) {
     var contentForm = this.toFormData(params)
@@ -78,7 +115,7 @@ export default {
     console.log(obj)
     var contentForm = this.toFormData(obj)
     console.log('about to create content')
-    return apiSECURE.post('AuthorApi.php?crud=create', contentForm)
+    return apiSECURE.post('AuthorApi.php?crud=createContent', contentForm)
   },
   createDirectoryCountries(countries) {
     var code = ''
@@ -129,10 +166,44 @@ export default {
       apiSECURE.post('AuthorApi.php?crud=createDir', contentForm)
     }
   },
-  isLetter(s) {
-    return s.match('^[a-zA-Z]+$')
+  createStyle(params) {
+    console.log('createStyle')
+    console.log(params)
+    if (this.isLetter(params.file.name)) {
+      console.log('is letters')
+      var obj = {}
+      obj.file = params.file
+      obj.country_code = params.country
+      obj.token = store.state.user.token
+      var contentForm = this.toFormData(obj)
+      apiSECURE.post('AuthorApi.php?crud=createStyle', contentForm)
+    } else {
+      console.log('NOT letters')
+    }
   },
-  imageType(file) {
+  createTemplate(params) {
+    console.log('create Template')
+    console.log(params)
+    console.log('params.file.name')
+    console.log(params.file.name)
+    if (this.isLetter(params.file.name)) {
+      console.log('is letters')
+      var obj = {}
+      obj.file = params.file
+      obj.country_code = params.country
+      obj.language_iso = params.language
+      obj.token = store.state.user.token
+      var contentForm = this.toFormData(obj)
+      apiSECURE.post('AuthorApi.php?crud=createTemplate', contentForm)
+    } else {
+      console.log('NOT letters')
+    }
+  },
+
+  isLetter(s) {
+    return s.match('^[a-zA-Z0-9-_.]+$')
+  },
+  typeImage(file) {
     var type = null
     var filetype = file['type']
     switch (filetype) {
@@ -144,6 +215,28 @@ export default {
         break
       case 'image/gif':
         type = '.gif'
+        break
+      default:
+    }
+    return type
+  },
+  typeStyle(file) {
+    var type = null
+    var filetype = file['type']
+    switch (filetype) {
+      case 'text/css':
+        type = '.css'
+        break
+      default:
+    }
+    return type
+  },
+  typeTemplate(file) {
+    var type = null
+    var filetype = file['type']
+    switch (filetype) {
+      case 'text/html':
+        type = '.html'
         break
       default:
     }

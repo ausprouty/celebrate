@@ -9,7 +9,7 @@
 
 <style>
 :root {
-  --color-black: purple;
+  --color-black: black;
   --color-red: red;
   --color-blue: blue;
   --color-background: rgb(228, 194, 131);
@@ -17,6 +17,10 @@
   --color-back: #f0555a;
   --color-up: #f38832;
   --color-forward: #1ca0a6;
+}
+a.black {
+  color: black;
+  text-decoration: underline;
 }
 .preview {
   background-color: white;
@@ -55,11 +59,7 @@ hr {
   height: 0;
   overflow: visible;
 }
-a {
-  color: #39b982;
-  font-weight: 600;
-  background-color: transparent;
-}
+
 img {
   border-style: none;
   width: 100%;

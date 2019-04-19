@@ -159,7 +159,7 @@ export default {
         if (checkfile.length == 1) {
           // console.log(checkfile)
           //  console.log(checkfile[0])
-          var type = AuthorService.imageType(checkfile[0])
+          var type = AuthorService.typeImage(checkfile[0])
           if (type) {
             var params = {}
             params.directory = 'flag'
