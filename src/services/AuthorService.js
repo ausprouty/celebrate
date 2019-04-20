@@ -29,6 +29,99 @@ const apiIMAGE = axios.create({
 })
 // I want to export a JSON.stringified of response.data.content.text
 export default {
+  createContentData(obj) {
+    var d = new Date()
+    obj.edit_date = d.getTime()
+    obj.edit_uid = 1
+    obj.token = store.state.user.token
+    console.log('obj in Create Content')
+    console.log(obj)
+    var contentForm = this.toFormData(obj)
+    console.log('about to create content')
+    return apiSECURE.post('AuthorApi.php?crud=createContent', contentForm)
+  },
+  createDirectoryCountries(countries) {
+    var code = ''
+    console.log('createDirectoryCountries')
+    var arrayLength = countries.length
+    for (var i = 0; i < arrayLength; i++) {
+      code = countries[i].code
+      if (code.length == 2) {
+        if (this.isFilename(code)) {
+          var obj = {}
+          obj.code = code
+          obj.scope = 'country'
+          obj.token = store.state.user.token
+          var contentForm = this.toFormData(obj)
+          apiSECURE.post('AuthorApi.php?crud=createDir', contentForm)
+        }
+      }
+    }
+  },
+  createDirectoryLanguages(country, languages) {
+    var code = ''
+    console.log('createDirectoryLanguages')
+    console.log(languages)
+    var arrayLength = languages.length
+    for (var i = 0; i < arrayLength; i++) {
+      code = languages[i].iso
+      console.log(code)
+      if (this.isFilename(code)) {
+        var obj = {}
+        obj.scope = 'language'
+        obj.country = country
+        obj.code = code
+        obj.token = store.state.user.token
+        var contentForm = this.toFormData(obj)
+        apiSECURE.post('AuthorApi.php?crud=createDir', contentForm)
+      }
+    }
+  },
+  createDirectoryMenu(country, language) {
+    console.log('createDirectoryMenu')
+    console.log(country, language)
+    if (this.isFilename(language)) {
+      var obj = {}
+      obj.language_iso = language
+      obj.country_code = country
+      obj.token = store.state.user.token
+      var contentForm = this.toFormData(obj)
+      apiSECURE.post('AuthorApi.php?crud=createDirectoryMenu', contentForm)
+    }
+  },
+  createStyle(params) {
+    console.log('createStyle')
+    console.log(params)
+    if (this.isFilename(params.file.name)) {
+      console.log('is letters')
+      var obj = {}
+      obj.file = params.file
+      obj.country_code = params.country
+      obj.token = store.state.user.token
+      var contentForm = this.toFormData(obj)
+      apiSECURE.post('AuthorApi.php?crud=createStyle', contentForm)
+    } else {
+      console.log('NOT letters')
+    }
+  },
+  createTemplate(params) {
+    console.log('create Template')
+    console.log(params)
+    console.log('params.file.name')
+    console.log(params.file.name)
+    if (this.isFilename(params.file.name)) {
+      console.log('is letters')
+      var obj = {}
+      obj.file = params.file
+      obj.country_code = params.country
+      obj.language_iso = params.language
+      obj.token = store.state.user.token
+      var contentForm = this.toFormData(obj)
+      apiSECURE.post('AuthorApi.php?crud=createTemplate', contentForm)
+    } else {
+      console.log('NOT letters')
+    }
+  },
   async getFolders(params) {
     //console.log('getFolders')
     var folders = []
@@ -106,102 +199,12 @@ export default {
     )
     return response
   },
-  createContentData(obj) {
-    var d = new Date()
-    obj.edit_date = d.getTime()
-    obj.edit_uid = 1
-    obj.token = store.state.user.token
-    console.log('obj in Create Content')
-    console.log(obj)
-    var contentForm = this.toFormData(obj)
-    console.log('about to create content')
-    return apiSECURE.post('AuthorApi.php?crud=createContent', contentForm)
-  },
-  createDirectoryCountries(countries) {
-    var code = ''
-    console.log('createDirectoryCountries')
-    var arrayLength = countries.length
-    for (var i = 0; i < arrayLength; i++) {
-      code = countries[i].code
-      if (code.length == 2) {
-        if (this.isLetter(code)) {
-          var obj = {}
-          obj.code = code
-          obj.scope = 'country'
-          obj.token = store.state.user.token
-          var contentForm = this.toFormData(obj)
-          apiSECURE.post('AuthorApi.php?crud=createDir', contentForm)
-        }
-      }
-    }
-  },
-  createDirectoryLanguages(country, languages) {
-    var code = ''
-    console.log('createDirectoryLanguages')
-    console.log(languages)
-    var arrayLength = languages.length
-    for (var i = 0; i < arrayLength; i++) {
-      code = languages[i].iso
-      console.log(code)
-      if (this.isLetter(code)) {
-        var obj = {}
-        obj.scope = 'language'
-        obj.country = country
-        obj.code = code
-        obj.token = store.state.user.token
-        var contentForm = this.toFormData(obj)
-        apiSECURE.post('AuthorApi.php?crud=createDir', contentForm)
-      }
-    }
-  },
-  createDirectoryMenu(code) {
-    console.log('createDirectoryMenu')
-    console.log(code)
-    if (this.isLetter(code)) {
-      var obj = {}
-      obj.code = code
-      obj.scope = 'menu'
-      obj.token = store.state.user.token
-      var contentForm = this.toFormData(obj)
-      apiSECURE.post('AuthorApi.php?crud=createDir', contentForm)
-    }
-  },
-  createStyle(params) {
-    console.log('createStyle')
-    console.log(params)
-    if (this.isLetter(params.file.name)) {
-      console.log('is letters')
-      var obj = {}
-      obj.file = params.file
-      obj.country_code = params.country
-      obj.token = store.state.user.token
-      var contentForm = this.toFormData(obj)
-      apiSECURE.post('AuthorApi.php?crud=createStyle', contentForm)
-    } else {
-      console.log('NOT letters')
-    }
-  },
-  createTemplate(params) {
-    console.log('create Template')
-    console.log(params)
-    console.log('params.file.name')
-    console.log(params.file.name)
-    if (this.isLetter(params.file.name)) {
-      console.log('is letters')
-      var obj = {}
-      obj.file = params.file
-      obj.country_code = params.country
-      obj.language_iso = params.language
-      obj.token = store.state.user.token
-      var contentForm = this.toFormData(obj)
-      apiSECURE.post('AuthorApi.php?crud=createTemplate', contentForm)
-    } else {
-      console.log('NOT letters')
-    }
-  },
 
-  isLetter(s) {
+  isFilename(s) {
     return s.match('^[a-zA-Z0-9-_.]+$')
+  },
+  isFoldername(s) {
+    return s.match('^[a-zA-Z0-9-_/]+$')
   },
   typeImage(file) {
     var type = null

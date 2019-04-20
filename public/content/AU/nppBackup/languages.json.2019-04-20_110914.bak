@@ -1,5 +1,6 @@
 [
-{
+  {
+  "id":0,
 "folder": "amh",
 "iso": "amh",
 "name": "አማርኛ (Amharic)",
@@ -9,8 +10,9 @@
 "nt": "1676",
 "ot": "1676",
 "rldir": "ltr"
-},
-{
+  },
+  {
+  "id":1,
 "folder": "arb",
 "iso": "arb",
 "name": "عربى (Arabic)",
@@ -20,8 +22,9 @@
 "nt": "1213",
 "ot": "1213",
 "rldir": "rtl"
-},
-{
+  },
+  {
+  "id":2,
 "folder": "deu",
 "iso": "deu",
 "name": "Deutsch (German)",
@@ -31,9 +34,10 @@
 "nt": "1227",
 "ot": "1229",
 "rldir": "ltr"
-},
-{
-"folder": "aus",
+  },
+  {
+  "id":3,
+"folder": "eng",
 "iso": "eng",
 "name": "English",
 "bible": "text",
@@ -42,8 +46,9 @@
 "nt": "1257",
 "ot": "1257",
 "rldir": "ltr"
-},
-{
+  },
+  {
+  "id":4,
 "folder": "fra",
 "iso": "fra",
 "name": "Français (French)",
@@ -53,8 +58,9 @@
 "nt": "1289",
 "ot": "1289",
 "rldir": "ltr"
-},
-{
+  },
+  {
+  "id":5,
 "folder": "gaz",
 "iso": "gaz",
 "name": "Afaan Oromoo (Oromo)",
@@ -64,8 +70,9 @@
 "nt": "local",
 "ot": "local",
 "rldir": "ltr"
-},
-{
+  },
+  {
+  "id":6,
 "folder": "hin",
 "iso": "hin",
 "name": "हिंदी (Hindi)",
@@ -75,8 +82,9 @@
 "nt": "1298",
 "ot": "1298",
 "rldir": "ltr"
-},
-{
+  },
+  {
+  "id":7,
 "folder": "hinr",
 "iso": "hin-en",
 "name": "Hindi - Romanized",
@@ -86,8 +94,9 @@
 "nt": "1298",
 "ot": "1298",
 "rldir": "ltr"
-},
-{
+  },
+  {
+  "id":8,
 "folder": "por",
 "iso": "por",
 "name": "Português (Portugese)",
@@ -97,8 +106,9 @@
 "nt": "1330",
 "ot": "1330",
 "rldir": "ltr"
-},
-{
+  },
+  {
+  "id":9,
 "folder": "spa",
 "iso": "spa",
 "name": "Español - América Latina (Spanish - Latin America)",
@@ -108,8 +118,9 @@
 "nt": "1284",
 "ot": "1284",
 "rldir": "ltr"
-},
-{
+  },
+  {
+  "id":10,
 "folder": "tam",
 "iso": "tam",
 "name": "தமிழ் (Tamil)",
@@ -119,8 +130,9 @@
 "nt": "1346",
 "ot": "1346",
 "rldir": "ltr"
-},
-{
+  },
+  {
+  "id":11,
 "folder": "urd",
 "iso": "urd",
 "name": "اُردُو‬ (Urdu)",
@@ -130,8 +142,9 @@
 "nt": "1353",
 "ot": "1353",
 "rldir": "ltr"
-},
-{
+  },
+  {
+  "id":12,
 "folder": "zhs",
 
 "iso": "zh-s",
@@ -142,5 +155,5 @@
 "nt": "1358",
 "ot": "1359",
 "rldir": "ltr"
-}
+  }
 ]

@@ -161,7 +161,7 @@ export default {
       this.languages.splice(index, 1)
     },
     async menuDir(iso) {
-      AuthorService.createDirectoryMenu(iso)
+      AuthorService.createDirectoryMenu(this.$route.params.countryCODE, iso)
       console.log(this.$v.languages.$model)
       var change = this.$v.languages.$model
       var arrayLength = change.length
