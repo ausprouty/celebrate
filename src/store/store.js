@@ -20,7 +20,7 @@ export default new Vuex.Store({
       styles: '/styles/',
       country: '/images/country/',
       icons: '/images/icons/',
-      library: '/images/library/',
+      library: '/content/',
       root: '/images/'
     },
     books: ['about', 'basics', 'community', 'compass', 'firststeps', 'issues'],

@@ -50,7 +50,7 @@
                 <p v-if="!language.iso.required" class="errorMessage">Language ISO is required</p>
               </template>
               <BaseSelect
-                label="Menu Images"
+                label="Library Image Folder"
                 :options="menus"
                 v-model="language.image_dir.$model"
                 class="field"
@@ -60,7 +60,7 @@
 
               <div>
                 <p>
-                  <a @click="menuDir(language.iso.$model)">Create new menu image directory</a>
+                  <a @click="menuDir(language.iso.$model)">Create new library image folder</a>
                 </p>
               </div>
               <template v-if="language.image_dir.$error">
