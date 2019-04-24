@@ -158,7 +158,7 @@ export default {
         this.content.text = JSON.stringify(valid)
         this.content.filename = this.bookmark.book.index
         this.content.filetype = 'json'
-        this.content.country_iso = this.$route.params.countryCODE
+        this.content.country_code = this.$route.params.countryCODE
         this.content.language_iso = this.$route.params.languageISO
         this.content.folder = this.bookmark.book.folder
         console.log('this.content')

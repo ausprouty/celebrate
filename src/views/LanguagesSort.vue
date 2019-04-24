@@ -77,7 +77,7 @@ export default {
         this.content.text = JSON.stringify(valid)
         this.content.filename = 'languages'
         this.content.filetype = 'json'
-        this.content.country_iso = this.$route.params.countryCODE
+        this.content.country_code = this.$route.params.countryCODE
         valid = await AuthorService.createContentData(this.content)
         this.$router.push({
           name: 'previewLanguages',
@@ -86,7 +86,7 @@ export default {
           }
         })
       } catch (error) {
-        console.log('LANGUAGES SORT There was an error ', error) 
+        console.log('LANGUAGES SORT There was an error ', error)
         this.error = true
         this.loaded = false
         this.error_message = valid.data.message

@@ -27,7 +27,7 @@ export const libraryMixin = {
         publish_uid: '',
         publish_date: '',
         language_iso: '',
-        country_iso: '',
+        country_code: '',
         folder: '',
         filetype: '',
         title: '',
@@ -56,7 +56,6 @@ export const libraryMixin = {
         }
         console.log('this.image_dir')
         console.log(this.image_dir)
-       
       } catch (error) {
         console.log('There was an error in LibraryMixin:', error) // Logs out the error
       }

@@ -8,6 +8,9 @@
 
       <h1>Choose Language</h1>
       <Language v-for="language in languages" :key="language.iso" :language="language"/>
+      <div v-if="!this.ZZ">
+        <a href="/languages/ZZ">More Languages</a>
+      </div>
       <div class="version">
         <p class="version">Version 1.01</p>
       </div>
@@ -32,7 +35,6 @@ export default {
   computed: mapState(['bookmark', 'appDir']),
   data() {
     return {
-
       language: [],
       languages: [
         {
@@ -46,7 +48,8 @@ export default {
       ],
       loading: false,
       loaded: null,
-      error: null
+      error: null,
+      ZZ: false
     }
   },
   beforeCreate() {
@@ -57,6 +60,9 @@ export default {
       await this.getLanguages()
       this.loaded = true
       this.loading = false
+      if (this.$route.params.countryCODE == 'ZZ') {
+        this.ZZ = true
+      }
     } catch (error) {
       console.log('There was an error in LanguagesEdit.vue:', error) // Logs out the error
     }

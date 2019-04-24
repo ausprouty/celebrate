@@ -40,24 +40,7 @@ export default {
     console.log('about to create content')
     return apiSECURE.post('AuthorApi.php?crud=createContent', contentForm)
   },
-  createDirectoryCountries(countries) {
-    var code = ''
-    console.log('createDirectoryCountries')
-    var arrayLength = countries.length
-    for (var i = 0; i < arrayLength; i++) {
-      code = countries[i].code
-      if (code.length == 2) {
-        if (this.isFilename(code)) {
-          var obj = {}
-          obj.code = code
-          obj.scope = 'country'
-          obj.token = store.state.user.token
-          var contentForm = this.toFormData(obj)
-          apiSECURE.post('AuthorApi.php?crud=createDir', contentForm)
-        }
-      }
-    }
-  },
+
   createDirectoryLanguages(country, languages) {
     var code = ''
     console.log('createDirectoryLanguages')
@@ -138,6 +121,37 @@ export default {
     }
     return folders
   },
+  async getFoldersLanguage() {
+    var folders = []
+    var params = {}
+    params.token = store.state.user.token
+    var contentForm = this.toFormData(params)
+    let response = await apiSELECT.post(
+      'AuthorApi.php?crud=getFoldersLanguage',
+      contentForm
+    )
+    //console.log(response)
+    if (response.data.content) {
+      folders = JSON.parse(response.data.content)
+      folders.sort()
+    }
+    return folders
+  },
+  async getFoldersImages() {
+    var folders = []
+    var params = {}
+    params.token = store.state.user.token
+    var contentForm = this.toFormData(params)
+    let response = await apiSELECT.post(
+      'AuthorApi.php?crud=getFoldersImages',
+      contentForm
+    )
+    if (response.data.content) {
+      folders = JSON.parse(response.data.content)
+      folders.sort()
+    }
+    return folders
+  },
   async getImages(params) {
     var images = []
     var contentForm = this.toFormData(params)
@@ -150,15 +164,7 @@ export default {
     }
     return images
   },
-  async getMenus() {
-    var menu = []
-    let response = await apiSELECT.post('ResourceApi.php?resource=menu')
-    if (response.data.content) {
-      menu = JSON.parse(response.data.content)
-      menu.sort()
-    }
-    return menu
-  },
+
   async getStyles(params) {
     var styles = []
     // console.log('getStyles')
@@ -199,12 +205,48 @@ export default {
     )
     return response
   },
-
   isFilename(s) {
     return s.match('^[a-zA-Z0-9-_.]+$')
   },
   isFoldername(s) {
     return s.match('^[a-zA-Z0-9-_/]+$')
+  },
+  setupCountries(countries) {
+    var code = ''
+    console.log('setupCountriess')
+    var arrayLength = countries.length
+    for (var i = 0; i < arrayLength; i++) {
+      code = countries[i].code
+      if (code.length == 2) {
+        if (this.isFilename(code)) {
+          var obj = {}
+          obj.country_code = code
+          obj.token = store.state.user.token
+          var contentForm = this.toFormData(obj)
+          apiSECURE.post('AuthorApi.php?crud=setupCountry', contentForm)
+        }
+      }
+    }
+  },
+  setupLanguageFolder(country, language) {
+    if (this.isFilename(language)) {
+      var obj = {}
+      obj.language_iso = language
+      obj.country_code = country
+      obj.token = store.state.user.token
+      var contentForm = this.toFormData(obj)
+      apiSECURE.post('AuthorApi.php?crud=setupLanguageFolder', contentForm)
+    }
+  },
+  setupImageFolder(country, language) {
+    if (this.isFilename(language)) {
+      var obj = {}
+      obj.language_iso = language
+      obj.country_code = country
+      obj.token = store.state.user.token
+      var contentForm = this.toFormData(obj)
+      apiSECURE.post('AuthorApi.php?crud=setupImageFolder', contentForm)
+    }
   },
   typeImage(file) {
     var type = null

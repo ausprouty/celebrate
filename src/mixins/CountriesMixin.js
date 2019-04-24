@@ -22,7 +22,7 @@ export const countriesMixin = {
         publish_uid: '',
         publish_date: '',
         language_iso: '',
-        country_iso: '',
+        country_code: '',
         folder: '',
         filetype: '',
         title: '',

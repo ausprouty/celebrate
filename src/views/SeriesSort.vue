@@ -87,7 +87,7 @@ export default {
         this.content.text = JSON.stringify(valid)
         this.content.filename = this.$route.params.bookNAME + '-chapters'
         this.content.filetype = 'json'
-        this.content.country_iso = this.$route.params.countryCODE
+        this.content.country_code = this.$route.params.countryCODE
         this.content.language_iso = this.$route.params.languageISO
         this.content.folder = this.bookmark.book.folder
         this.$store.dispatch('newBookmark', 'clear')
@@ -101,8 +101,8 @@ export default {
           }
         })
       } catch (error) {
-        console.log('LIBRARY EDIT There was an error ', error) 
-        AuthorService.createContentData//
+        console.log('LIBRARY EDIT There was an error ', error)
+        AuthorService.createContentData //
       }
     }
   },

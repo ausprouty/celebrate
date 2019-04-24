@@ -54,6 +54,9 @@
             <template v-if="country.code.$error">
               <div class="errorMessage" v-if="!country.code.required">Country Code is required.</div>
             </template>
+            <div v-if="!country.image.$model">
+              <p class="errorMessage">Upload Country Flag</p>
+            </div>
 
             <div v-if="country.image.$model">
               <br>
@@ -186,7 +189,7 @@ export default {
         console.log('saving form')
         this.$store.dispatch('newBookmark', 'clear')
         var valid = ContentService.validate(this.countries)
-        AuthorService.createDirectoryCountries(this.countries)
+        AuthorService.setupCountries(this.countries)
         this.content.text = JSON.stringify(valid)
         this.content.filename = 'countries'
         this.content.filetype = 'json'

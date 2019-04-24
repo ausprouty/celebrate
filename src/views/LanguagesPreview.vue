@@ -10,15 +10,21 @@
 
       <h1>Choose Language (preview for {{this.countryCODE}})</h1>
       <Language v-for="language in languages" :key="language.iso" :language="language"/>
+      <div v-if="!this.ZZ">
+        <a href="/languages/ZZ">More Languages</a>
+      </div>
       <div class="version">
         <p class="version">Version 1.01</p>
       </div>
       <div v-if="this.write">
         <button class="button" @click="editLanguages">Edit</button>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <button class="button" @click="sortLanguages">Sort</button>
+        <button
+          class="button"
+          @click="sortLanguages"
+        >Sort</button>
       </div>
-       <div v-if="this.readonly">
+      <div v-if="this.readonly">
         <button class="button" @click="editLanguages">View Details</button>
       </div>
     </div>
@@ -76,6 +82,10 @@ export default {
       await this.getLanguages()
       this.readonly = this.authorize('readonly')
       this.write = this.authorize('write')
+      this.ZZ = false
+      if (this.$route.params.countryCODE == 'ZZ') {
+        this.ZZ = true
+      }
       this.loaded = true
       this.loading = false
     } catch (error) {

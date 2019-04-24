@@ -341,7 +341,7 @@ export default {
         this.content.text = JSON.stringify(valid)
         this.content.filename = 'library'
         this.content.filetype = 'json'
-        this.content.country_iso = this.$route.params.countryCODE
+        this.content.country_code = this.$route.params.countryCODE
         this.content.language_iso = this.$route.params.languageISO
         this.$store.dispatch('newBookmark', 'clear')
         valid = await AuthorService.createContentData(this.content)

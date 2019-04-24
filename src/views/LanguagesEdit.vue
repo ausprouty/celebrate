@@ -5,103 +5,130 @@
     <div class="loading" v-if="loading">Loading...</div>
     <div class="error" v-if="error">There was an error...</div>
     <div class="content" v-if="loaded">
-      <h1>Languages for {{this.$route.params.countryCODE}}</h1>
-      <div>
-        <div
-          v-for="(language, index) in $v.languages.$each.$iter"
-          :key="language.id"
-          :language="language"
-        >
-          <div class="app-card -shadow">
-            <div class="float-right" style="cursor:pointer" @click="deleteLanguageForm(index)">X</div>
-            <form @submit.prevent="saveForm">
-              <BaseInput
-                v-model="language.name.$model"
-                label="Language Name (as you want your audience to see it)"
-                type="text"
-                placeholder="Language Name"
-                class="field"
-                :class="{ error: language.name.$error }"
-                @blur="language.name.$touch()"
-              />
-              <template v-if="language.name.$error">
-                <p v-if="!language.name.required" class="errorMessage">Language Name is required</p>
-              </template>
+      <div v-if="this.authorized">
+        <h1>Languages for {{this.$route.params.countryCODE}}</h1>
+        <div>
+          <div
+            v-for="(language, index) in $v.languages.$each.$iter"
+            :key="language.id"
+            :language="language"
+          >
+            <div class="app-card -shadow">
+              <div class="float-right" style="cursor:pointer" @click="deleteLanguageForm(index)">X</div>
+              <form @submit.prevent="saveForm">
+                <BaseInput
+                  v-model="language.name.$model"
+                  label="Language Name (as you want your audience to see it)"
+                  type="text"
+                  placeholder="Language Name"
+                  class="field"
+                  :class="{ error: language.name.$error }"
+                  @blur="language.name.$touch()"
+                />
+                <template v-if="language.name.$error">
+                  <p v-if="!language.name.required" class="errorMessage">Language Name is required</p>
+                </template>
 
-              <div v-if="!language.iso.$model">
-                <p>
-                  <a
-                    target="a_blank"
-                    href="https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes"
-                  >Reference File</a>
-                </p>
-              </div>
+                <div v-if="!language.iso.$model">
+                  <p>
+                    <a
+                      target="a_blank"
+                      href="https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes"
+                    >Reference File</a>
+                  </p>
+                </div>https://forum.vuejs.org/t/inputs-always-in-uppercase-using-v-model/7450/3
+                <BaseInput
+                  v-model="language.iso.$model"
+                  label="Language 3 letter ISO"
+                  type="text"
+                  placeholder="3 letter ISO code"
+                  class="field"
+                  :class="{ error: language.iso.$error }"
+                  @blur="language.iso.$touch()"
+                  @input="forceLowerISO(language.iso.$model)"
+                />
+                <template v-if="language.iso.$error">
+                  <p v-if="!language.iso.required" class="errorMessage">Language ISO is required</p>
+                </template>
 
-              <BaseInput
-                v-model="language.iso.$model"
-                label="Language 3 letter ISO"
-                type="text"
-                placeholder="3 letter ISO code"
-                class="field"
-                :class="{ error: language.iso.$error }"
-                @blur="language.iso.$touch()"
-              />
-              <template v-if="language.iso.$error">
-                <p v-if="!language.iso.required" class="errorMessage">Language ISO is required</p>
-              </template>
-              <BaseSelect
-                label="Library Image Folder"
-                :options="menus"
-                v-model="language.image_dir.$model"
-                class="field"
-                :class="{ error: language.image_dir.$error }"
-                @blur="language.image_dir.$touch()"
-              />
+                <div v-if="language.iso.$model">
+                  <BaseSelect
+                    label="Content Folder"
+                    :options="content_folders"
+                    v-model="language.folder.$model"
+                    class="field"
+                    :class="{ error: language.folder.$error }"
+                    @blur="language.folder.$touch()"
+                  />
+                  <div>
+                    <p>
+                      <a @click="setupLanguageFolder(language.iso.$model)">Create new content folder</a>
+                    </p>
+                  </div>
+                  <template v-if="language.folder.$error">
+                    <p
+                      v-if="!language.folder.required"
+                      class="errorMessage"
+                    >Content folder is required</p>
+                  </template>
+                </div>
+                <div v-if="language.folder.$model">
+                  <BaseSelect
+                    label="Library Image Folder"
+                    :options="image_folders"
+                    v-model="language.image_dir.$model"
+                    class="field"
+                    :class="{ error: language.image_dir.$error }"
+                    @blur="language.image_dir.$touch()"
+                  />
 
-              <div>
-                <p>
-                  <a @click="menuDir(language.iso.$model)">Create new library image folder</a>
-                </p>
-              </div>
-              <template v-if="language.image_dir.$error">
-                <p
-                  v-if="!language.image_dir.required"
-                  class="errorMessage"
-                >Menu directory is required</p>
-              </template>
-              <BaseSelect
-                label="Text Direction"
-                :options="direction"
-                v-model="language.rldir.$model"
-                class="field"
-                :class="{ error: language.rldir.$error }"
-                @blur="language.rldir.$touch()"
-              />
-              <template v-if="language.rldir.$error">
-                <p v-if="!language.rldir.required" class="errorMessage">Text Direction is required</p>
-              </template>
-            </form>
+                  <div>
+                    <p>
+                      <a @click="setupImageFolder(language.iso.$model)">Create new image folder</a>
+                    </p>
+                  </div>
+                  <template v-if="language.image_dir.$error">
+                    <p
+                      v-if="!language.image_dir.required"
+                      class="errorMessage"
+                    >Menu directory is required</p>
+                  </template>
+                  <BaseSelect
+                    label="Text Direction"
+                    :options="direction"
+                    v-model="language.rldir.$model"
+                    class="field"
+                    :class="{ error: language.rldir.$error }"
+                    @blur="language.rldir.$touch()"
+                  />
+                  <template v-if="language.rldir.$error">
+                    <p
+                      v-if="!language.rldir.required"
+                      class="errorMessage"
+                    >Text Direction is required</p>
+                  </template>
+                </div>
+              </form>
+            </div>
           </div>
         </div>
+        <div>
+          <button class="button" @click="addNewLanguageForm">New Language</button>
+        </div>
+        <div v-if="!$v.$anyError">
+          <button class="button red" @click="saveForm">Save Changes</button>
+        </div>
+        <div v-if="$v.$anyError">
+          <button class="button grey">Disabled</button>
+          <p v-if="$v.$anyError" class="errorMessage">Please fill out the required field(s).</p>
+        </div>
       </div>
-    </div>
-    <div v-if="this.authorized">
-      <div>
-        <button class="button" @click="addNewLanguageForm">New Language</button>
+      <div v-if="!this.authorized">
+        <p>
+          You need to
+          <a href="/login">login to make changes</a> here
+        </p>
       </div>
-      <div v-if="!$v.$anyError">
-        <button class="button red" @click="saveForm">Save Changes</button>
-      </div>
-      <div v-if="$v.$anyError">
-        <button class="button grey">Disabled</button>
-        <p v-if="$v.$anyError" class="errorMessage">Please fill out the required field(s).</p>
-      </div>
-    </div>
-    <div v-if="!this.authorized">
-      <p>
-        You need to
-        <a href="/login">login to make changes</a> here
-      </p>
     </div>
   </div>
 </template>
@@ -114,7 +141,8 @@ import { mapState } from 'vuex'
 import { bookMarkMixin } from '@/mixins/BookmarkMixin.js'
 import { languageMixin } from '@/mixins/LanguageMixin.js'
 import { authorMixin } from '@/mixins/AuthorMixin.js'
-import { required } from 'vuelidate/lib/validators'
+import { required, minLength, maxLength } from 'vuelidate/lib/validators'
+//import { validFoldername } from '@/validators/Validator.js'
 export default {
   mixins: [bookMarkMixin, languageMixin, authorMixin],
   props: ['countryCODE'],
@@ -130,7 +158,8 @@ export default {
         image_dir: '',
         lrdir: ''
       },
-      menus: [],
+      image_folders: [],
+      content_folders: [],
       direction: ['rtl', 'ltr'],
       authorized: false
     }
@@ -141,6 +170,7 @@ export default {
       $each: {
         name: { required },
         iso: { required },
+        folder: { required },
         image_dir: { required },
         rldir: { required }
       }
@@ -148,6 +178,9 @@ export default {
   },
   methods: {
     addNewLanguageForm() {
+      if (!this.languages) {
+        this.languages = []
+      }
       this.languages.push({
         id: null,
         folder: null,
@@ -160,8 +193,21 @@ export default {
     deleteLanguageForm(index) {
       this.languages.splice(index, 1)
     },
-    async menuDir(iso) {
-      AuthorService.createDirectoryMenu(this.$route.params.countryCODE, iso)
+    forceLowerISO(value) {
+      var change = this.$v.languages.$model
+      var arrayLength = change.length
+      for (var i = 0; i < arrayLength; i++) {
+        var checkfile = this.$v.languages.$model[i]
+        if (checkfile.iso == value) {
+          this.$v.languages.$each[i].$model.iso = value.toLowerCase()
+        }
+      }
+    },
+    async setupLanguageFolder(iso) {
+      AuthorService.setupLanguageFolder(
+        this.$route.params.countryCODE,
+        iso.toLowerCase()
+      )
       console.log(this.$v.languages.$model)
       var change = this.$v.languages.$model
       var arrayLength = change.length
@@ -169,9 +215,24 @@ export default {
       for (var i = 0; i < arrayLength; i++) {
         var checkfile = this.$v.languages.$model[i]
         if (checkfile.iso == iso) {
-          this.$v.languages.$each[i].$model.image_dir = 'menu-' + iso
+          this.$v.languages.$each[i].$model.image_dir = iso.toLowerCase()
           console.log(checkfile)
-          this.menus = await AuthorService.getMenus()
+          this.content_folders = await AuthorService.getFoldersLanguage()
+        }
+      }
+    },
+    async setupImageFolder(iso) {
+      AuthorService.setupImageFolder(this.$route.params.countryCODE, iso)
+      console.log(this.$v.languages.$model)
+      var change = this.$v.languages.$model
+      var arrayLength = change.length
+      // console.log(arrayLength)
+      for (var i = 0; i < arrayLength; i++) {
+        var checkfile = this.$v.languages.$model[i]
+        if (checkfile.iso == iso) {
+          this.$v.languages.$each[i].$model.image_dir = iso
+          console.log(checkfile)
+          this.image_folders = await AuthorService.getFoldersImages()
         }
       }
     },
@@ -188,7 +249,7 @@ export default {
         this.content.text = JSON.stringify(valid)
         this.content.filename = 'languages'
         this.content.filetype = 'json'
-        this.content.country_iso = this.$route.params.countryCODE
+        this.content.country_code = this.$route.params.countryCODE
         valid = await AuthorService.createContentData(this.content)
         this.$router.push({
           name: 'previewLanguages',
@@ -209,9 +270,15 @@ export default {
   },
   async created() {
     try {
-      this.menus = await AuthorService.getMenus()
-      await this.getLanguages()
       this.authorized = this.authorize('write')
+      console.log('this authorized')
+      if (this.authorized) {
+        this.image_folders = await AuthorService.getFoldersImages()
+        console.log(this.image_folders)
+        this.content_folders = await AuthorService.getFoldersLanguage()
+        console.log(this.content_folders)
+        await this.getLanguages()
+      }
       this.loaded = true
       this.loading = false
     } catch (error) {

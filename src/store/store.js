@@ -41,7 +41,7 @@ export default new Vuex.Store({
       publish_uid: null,
       publish_date: null,
       language_iso: null,
-      country_iso: null,
+      country_code: null,
       folder: null,
       filetype: null,
       title: null,

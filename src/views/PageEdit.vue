@@ -83,7 +83,7 @@ export default {
         publish_uid: '',
         publish_date: '',
         language_iso: '',
-        country_iso: '',
+        country_code: '',
         folder: '',
         filetype: '',
         title: '',
@@ -127,7 +127,7 @@ export default {
     async saveForm() {
       try {
         this.content.text = ContentService.validate(this.pageText)
-        this.content.country_iso = this.$route.params.countryCODE
+        this.content.country_code = this.$route.params.countryCODE
         this.content.language_iso = this.$route.params.languageISO
         this.content.folder = this.bookmark.book.folder
         this.content.filename = this.$route.params.fileFILENAME
@@ -144,7 +144,7 @@ export default {
           }
         })
       } catch (error) {
-        console.log('LIBRARY EDIT There was an error ', error) 
+        console.log('LIBRARY EDIT There was an error ', error)
         this.error = true
         this.loaded = false
         this.error_message = valid.data.message
