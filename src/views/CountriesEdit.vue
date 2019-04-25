@@ -42,6 +42,7 @@
               class="field"
               :class="{ error: country.code.$error }"
               @blur="country.code.$touch()"
+              @input="forceUpperCODE(country.code.$model)"
             />
             <div v-if="!country.code.$model">
               <p>
@@ -54,6 +55,7 @@
             <template v-if="country.code.$error">
               <div class="errorMessage" v-if="!country.code.required">Country Code is required.</div>
             </template>
+
             <div v-if="!country.image.$model">
               <p class="errorMessage">Upload Country Flag</p>
             </div>
@@ -151,6 +153,16 @@ export default {
         index: null,
         image: null
       })
+    },
+    forceUpperCODE(value) {
+      var change = this.$v.countries.$model
+      var arrayLength = change.length
+      for (var i = 0; i < arrayLength; i++) {
+        var checkfile = this.$v.countries.$model[i]
+        if (checkfile.code == value) {
+          this.$v.countries.$each[i].$model.code = value.toUpperCase()
+        }
+      }
     },
     handleFileUpload(code) {
       console.log('code in handle:' + code)
