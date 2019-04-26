@@ -2,7 +2,7 @@
   <div>
     <NavBar/>
     <div class="loading" v-if="loading">Loading...</div>
-    <div class="error" v-if="error">There was an error...</div>
+    <div class="error" v-if="error">There was an error... {{this.error}}</div>
     <div class="content" v-if="loaded">
       <img v-bind:src="appDir.root+'languages.jpg'" class="app-img-header">
 

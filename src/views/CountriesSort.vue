@@ -2,7 +2,7 @@
   <div>
     <NavBar/>
     <div class="loading" v-if="loading">Loading...</div>
-    <div class="error" v-if="error">There was an error...</div>
+    <div class="error" v-if="error">There was an error... {{this.error}}</div>
     <div class="content" v-if="loaded">
       <div v-if="this.authorized">
         <h1>Countries</h1>
@@ -70,7 +70,7 @@ export default {
           name: 'previewCountries'
         })
       } catch (error) {
-        console.log('COUNTRIES SORT There was an error ', error) 
+        console.log('COUNTRIES SORT There was an error ', error)
         this.error = true
         this.loaded = false
         this.error_message = valid.data.message

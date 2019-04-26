@@ -16,7 +16,7 @@
               <div>
                 <BaseInput
                   v-model="book.title.$model"
-                  label="Title"
+                  label="Book Title"
                   type="text"
                   placeholder="Title"
                   class="field"
@@ -75,10 +75,14 @@
                     </p>
                   </div>
                 </div>
+                <br>
+                <br>
                 <div v-if="book.folder.$model">
+                  <div v-if="!image_permission">
+                    <p class="errorMessage">This image comes from a shared directory.</p>
+                    <p></p>
+                  </div>
                   <div v-if="images">
-                    <br>
-                    <br>
                     <div v-if="book.image.$model">
                       <img
                         v-bind:src="appDir.library  + image_dir  + '/' + book.image.$model"
@@ -147,6 +151,10 @@
                   <template v-if="book.style.$error">
                     <p v-if="!book.style.required" class="errorMessage">Style is required</p>
                   </template>
+                  <template v-if="style_error">
+                    <p class="errorMessage">Only .css files may be uploaded</p>
+                  </template>
+
                   <label>
                     Add new stylesheet&nbsp;&nbsp;&nbsp;&nbsp;
                     <input
@@ -174,6 +182,9 @@
                       v-on:change="handleTemplateUpload(book.title.$model)"
                     >
                   </label>
+                  <template v-if="template_error">
+                    <p class="errorMessage">Only .html files may be uploaded as templates</p>
+                  </template>
                 </div>
               </div>
             </div>
@@ -237,7 +248,9 @@ export default {
       templates: null,
       authorized: false,
       image_permission: false,
-      isHidden: true
+      isHidden: true,
+      style_error: false,
+      template_error: false
     }
   },
   validations: {
@@ -290,7 +303,7 @@ export default {
       params.language_iso = this.$route.params.languageISO
       params.folder = folder.toLowerCase()
       AuthorService.createContentFolder(params)
-      this.folders = await AuthorService.getFolders(params)
+      this.folders = await AuthorService.getFoldersContent(params)
     },
 
     deleteBookForm(index) {
@@ -329,7 +342,7 @@ export default {
         }
       }
     },
-    handleStyleUpload(code) {
+    async handleStyleUpload(code) {
       console.log('code in handle Style:' + code)
       var checkfile = ''
       var i = 0
@@ -344,18 +357,20 @@ export default {
             console.log(checkfile)
             var params = {}
             params.file = checkfile[0]
-            params.country = this.$route.params.countryCODE
-            type = AuthorService.createStyle(params)
-            if (type) {
-              console.log(type)
+            params.country_code = this.$route.params.countryCODE
+            type = await AuthorService.createStyle(params)
+            var style = await AuthorService.getStyles(params)
+            if (style) {
+              this.styles = style
+              this.style_error = false
             }
           } else {
-            console.log('not a style sheet')
+            this.style_error = true
           }
         }
       }
     },
-    handleTemplateUpload(code) {
+    async handleTemplateUpload(code) {
       console.log('code in handle Template:' + code)
       var checkfile = ''
       var i = 0
@@ -364,27 +379,51 @@ export default {
       for (i = 0; i < arrayLength; i++) {
         checkfile = this.$refs.template[i]['files']
         if (checkfile.length == 1) {
+          console.log(' i is ' + i)
           console.log(checkfile[0])
+          var book = this.library[i]
           var type = AuthorService.typeTemplate(checkfile[0])
           if (type) {
             console.log('type ok')
             console.log(checkfile)
             var params = {}
             params.file = checkfile[0]
-            params.country = this.$route.params.countryCODE
-            params.language = this.$route.params.languageISO
-            type = AuthorService.createTemplate(params)
+            params.country_code = this.$route.params.countryCODE
+            params.language_iso = this.$route.params.languageISO
+            params.folder = book.folder
+            console.log(params)
+            type = await AuthorService.createTemplate(params)
             if (type) {
-              console.log(type)
+              var template = await AuthorService.getTemplates(params)
+              if (template) {
+                this.templates = template
+                console.log(template)
+                this.template_error = false
+              }
             }
           } else {
-            console.log('not a template')
+            this.template_error = true
           }
         }
       }
     },
     async saveForm() {
       try {
+        // create index files
+        var check = null
+        var params = {}
+        params.country_code = this.$route.params.countryCODE
+        params.language_iso = this.$route.params.languageISO
+        var arrayLength = this.library.length
+        for (i = 0; i < arrayLength; i++) {
+          check = this.library[i]
+          if (check.format == 'series') {
+            params.folder = check.folder
+            params.index = check.index + '.json'
+            AuthorService.createSeriesIndex(params)
+          }
+        }
+        // update library file
         var valid = ContentService.validate(this.library)
         this.content.text = JSON.stringify(valid)
         this.content.filename = 'library'
@@ -417,7 +456,7 @@ export default {
       // console.log('after get Libary')
       var param = {}
       param.image_dir = this.bookmark.language.image_dir
-      console.log('image dir: ' +  param.image_dir.substring(0, 2))
+      console.log('image dir: ' + param.image_dir.substring(0, 2))
       this.image_permission = this.authorize(
         'write',
         param.image_dir.substring(0, 1)
@@ -430,7 +469,7 @@ export default {
       }
       param.country_code = this.$route.params.countryCODE
       param.language_iso = this.$route.params.languageISO
-      var folder = await AuthorService.getFolders(param)
+      var folder = await AuthorService.getFoldersContent(param)
       if (folder) {
         this.folders = folder
       }
@@ -459,6 +498,10 @@ export default {
 
 
 <style scoped>
+.app-card {
+  margin-bottom: 90px;
+}
+
 .float-right {
   text-align: right;
 }

@@ -2,7 +2,7 @@
   <div class="preview">
     <NavBar/>
     <div class="loading" v-if="loading">Loading...</div>
-    <div class="error" v-if="error">There was an error...</div>
+    <div class="error" v-if="error">There was an error... {{this.error}}</div>
     <div class="content" v-if="loaded">
       <a href="preview/languages">
         <img v-bind:src="appDir.root+'languages.jpg'" class="app-img-header">
@@ -80,7 +80,7 @@ export default {
   async created() {
     try {
       await this.getLanguages()
-      this.readonly = this.authorize('readonly')
+      this.readonly = this.authorize('readonly', this.$route.params.countryCODE)
       this.write = this.authorize('write', this.$route.params.countryCODE)
       this.ZZ = false
       if (this.$route.params.countryCODE == 'ZZ') {

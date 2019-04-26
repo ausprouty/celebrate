@@ -28,7 +28,7 @@ export default new Vuex.Store({
     baseURL: './',
     cssURL: './css/',
     standard: {
-      image_dir: 'menu-europe',
+      image_dir: 'zz/images/europe',
       image: 'journey.png',
       rldir: 'ltr',
       css: ''

@@ -7,6 +7,7 @@ export const authorMixin = {
   computed: mapState(['user']),
   methods: {
     authorize(reason, code) {
+      console.log('authorize for ' + reason + ' with code ' + code)
       var scope = this.user.scope
       //   console.log (scope)
       if (scope == '*') {
@@ -18,7 +19,8 @@ export const authorMixin = {
       } else {
         var included = false
         included = scope.includes(code)
-        if (reason == 'edit') {
+        console.log('included ' + included)
+        if (reason == 'write') {
           return included
         }
         if (reason == 'read' && scope) {

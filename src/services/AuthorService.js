@@ -29,6 +29,8 @@ const apiIMAGE = axios.create({
 })
 // I want to export a JSON.stringified of response.data.content.text
 export default {
+
+  
   createContentData(obj) {
     var d = new Date()
     obj.edit_date = d.getTime()
@@ -77,14 +79,21 @@ export default {
       apiSECURE.post('AuthorApi.php?crud=createDirectoryMenu', contentForm)
     }
   },
-  createStyle(params) {
+  async createSeriesIndex(params){
+    console.log('createSeriesIndex')
+    console.log(params)
+    params.token = store.state.user.token
+    var contentForm = this.toFormData(params)
+    apiSECURE.post('AuthorApi.php?crud=createSeriesIndex', contentForm)
+  },
+  async createStyle(params) {
     console.log('createStyle')
     console.log(params)
     if (this.isFilename(params.file.name)) {
       console.log('is letters')
       var obj = {}
       obj.file = params.file
-      obj.country_code = params.country
+      obj.country_code = params.country_code
       obj.token = store.state.user.token
       var contentForm = this.toFormData(obj)
       apiSECURE.post('AuthorApi.php?crud=createStyle', contentForm)
@@ -92,7 +101,7 @@ export default {
       console.log('NOT letters')
     }
   },
-  createTemplate(params) {
+  async createTemplate(params) {
     console.log('create Template')
     console.log(params)
     console.log('params.file.name')
@@ -101,22 +110,25 @@ export default {
       console.log('is letters')
       var obj = {}
       obj.file = params.file
-      obj.country_code = params.country
-      obj.language_iso = params.language
+      obj.country_code = params.country_code
+      obj.language_iso = params.language_iso
+      obj.folder = params.folder
       obj.token = store.state.user.token
       var contentForm = this.toFormData(obj)
       apiSECURE.post('AuthorApi.php?crud=createTemplate', contentForm)
+      return true
     } else {
       console.log('NOT letters')
+      return false
     }
   },
-  async getFolders(params) {
+  async getFoldersContent(params) {
     //console.log('getFolders')
     var folders = []
     params.token = store.state.user.token
     var contentForm = this.toFormData(params)
     let response = await apiSELECT.post(
-      'AuthorApi.php?crud=folders',
+      'AuthorApi.php?crud=getFoldersContent',
       contentForm
     )
     //console.log(response)

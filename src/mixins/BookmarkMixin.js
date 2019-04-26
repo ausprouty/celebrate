@@ -27,7 +27,8 @@ export const bookMarkMixin = {
           'BOOKMARK SERVICE -- There was an error setting bookmarks:',
           error
         ) // Logs out the error
-        this.error = error.toString()
+        this.error = error.toString() + 'BOOKMARK SERVICE --CheckBookmarks'
+        return null
       }
     },
     async CheckBookmarkCountry(route) {
@@ -59,7 +60,10 @@ export const bookMarkMixin = {
         console.log(
           'BOOKMARK SERVICE --CheckBookmarkCountry There was an error ',
           error
-        ) //
+        )
+        this.error =
+          error.toString() + 'BOOKMARK SERVICE --CheckBookmarkCountry'
+        return null
       }
     },
     async CheckBookmarkLanguageLibrary(route) {
@@ -106,7 +110,11 @@ export const bookMarkMixin = {
           console.log(
             'BOOKMARK SERVICE -- There was an error in CheckBookmarkLanguageLibrary',
             error
-          ) //
+          )
+          this.error =
+            error.toString() +
+            ' BOOKMARK SERVICE -- CheckBookmarkLanguageLibrary'
+          return null
         }
       }
     },
@@ -151,6 +159,8 @@ export const bookMarkMixin = {
             route.folderNAME = this.bookmark.book.folder
             route.fileFILENAME = this.bookmark.book.index
             var response = await ContentService.getSeries(route)
+            console.log('response when no data')
+            console.log(response)
             value = response.data.content
             this.$store.dispatch('updateBookmark', ['series', value])
           }
@@ -159,7 +169,10 @@ export const bookMarkMixin = {
           console.log(
             'BOOKMARK SERVICE --CheckBookmarkSeries There was an error in CheckBookmarkBookSeries',
             error
-          ) //
+          )
+          this.error =
+            error.toString() + ' BOOKMARK SERVICE --CheckBookmarkSeries'
+          return null
         }
       }
     },
@@ -209,7 +222,9 @@ export const bookMarkMixin = {
           console.log(
             'BOOKMARK SERVICE -- There was an error in CheckBookmarkPage',
             error
-          ) //
+          )
+          this.error = error.toString() +  ' BOOKMARK SERVICE -- CheckBookmarkPage'
+          return null
         }
       }
     }

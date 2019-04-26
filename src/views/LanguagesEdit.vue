@@ -3,7 +3,7 @@
     <NavBar/>
 
     <div class="loading" v-if="loading">Loading...</div>
-    <div class="error" v-if="error">There was an error...</div>
+    <div class="error" v-if="error">There was an error... {{this.error}}</div>
     <div class="content" v-if="loaded">
       <div v-if="this.authorized">
         <h1>Languages for {{this.$route.params.countryCODE}}</h1>
@@ -36,7 +36,7 @@
                       href="https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes"
                     >Reference File</a>
                   </p>
-                </div>https://forum.vuejs.org/t/inputs-always-in-uppercase-using-v-model/7450/3
+                </div>
                 <BaseInput
                   v-model="language.iso.$model"
                   label="Language 3 letter ISO"
