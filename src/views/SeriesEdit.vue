@@ -70,6 +70,16 @@
           </div>
         </div>
         <div v-if="this.authorized">
+          <div v-if="!this.chapters">
+            <p
+              class="errorMessage"
+            >Import Series in tab format (number| title | description| bible reference| filename)</p>
+            <label>
+              <input type="file" ref="series" v-on:change="importSeries()">
+            </label>
+            <br>
+            <br>
+          </div>
           <button class="button" @click="addNewChapterForm">New Chapter</button>
 
           <div v-if="!$v.$anyError">
@@ -135,6 +145,9 @@ export default {
   },
   methods: {
     addNewChapterForm() {
+      if (!this.chapters) {
+        this.chapters = []
+      }
       this.chapters.push({
         id: '',
         title: '',
@@ -146,6 +159,7 @@ export default {
     deleteChapterForm(id) {
       this.chapters.splice(id, 1)
     },
+    async importSeries() {},
     async saveForm() {
       try {
         console.log(this.content)

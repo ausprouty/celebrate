@@ -415,7 +415,7 @@ export default {
         params.country_code = this.$route.params.countryCODE
         params.language_iso = this.$route.params.languageISO
         var arrayLength = this.library.length
-        for (i = 0; i < arrayLength; i++) {
+        for (var i = 0; i < arrayLength; i++) {
           check = this.library[i]
           if (check.format == 'series') {
             params.folder = check.folder
@@ -441,9 +441,9 @@ export default {
         })
       } catch (error) {
         console.log('LIBRARY EDIT There was an error ', error)
-        this.error = true
         this.loaded = false
-        this.error_message = valid.data.message
+        this.error_message = error
+        this.error = true
       }
     }
   },
@@ -491,6 +491,8 @@ export default {
       this.loading = false
     } catch (error) {
       console.log('There was an error in Library.vue:', error) // Logs out the error
+      this.error_message = error + 'LIbrary Edit - reated()'
+      this.error = true
     }
   }
 }
