@@ -81,8 +81,8 @@ export default {
   async created() {
     try {
       this.getPage(this.$route.params)
-      this.read = this.authorize('read')
-      this.write = this.authorize{'write', this.$route.params.countryCODE)
+      this.read = this.authorize('read', this.$route.params.countryCODE)
+      this.write = this.authorize('write', this.$route.params.countryCODE)
     } catch (error) {
       console.log('There was an error in Page.vue:', error) // Logs out the error
     }

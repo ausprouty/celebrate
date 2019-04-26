@@ -33,7 +33,7 @@ export default {
   computed: mapState(['bookmark']),
   mixins: [authorMixin],
   created() {
-    this.authorized = this.authorize('read')
+    this.authorized = this.authorize('read', this.$route.params.countryCODE)
   },
   data() {
     return {

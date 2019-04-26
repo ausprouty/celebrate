@@ -62,7 +62,7 @@ export default {
     }
   },
   created() {
-    this.authorized = this.authorize('read')
+    this.authorized = this.authorize('read', this.$route.params.countryCODE)
     var arrayLength = this.menu
     for (var i = 0; i < arrayLength; i++) {
       this.menu[i].show = false

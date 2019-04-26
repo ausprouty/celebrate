@@ -187,7 +187,7 @@ export default {
   async created() {
     try {
       this.getSeries(this.$route.params)
-      this.authorized = this.authorize{'write', this.$route.params.countryCODE)
+      this.authorized = this.authorize('write', this.$route.params.countryCODE)
     } catch (error) {
       console.log('There was an error in SeriesEdit.vue:', error) // Logs out the error
     }

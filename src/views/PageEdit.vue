@@ -158,7 +158,7 @@ export default {
   async created() {
     try {
       await this.getPage(this.$route.params)
-      this.authorized = this.authorize{'write', this.$route.params.countryCODE)
+      this.authorized = this.authorize('write', this.$route.params.countryCODE)
       console.log('css')
       console.log(this.bookmark.book.style)
     } catch (error) {

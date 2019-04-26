@@ -98,11 +98,11 @@
                       <p v-if="!book.image.required" class="errorMessage">Image is required</p>
                     </template>
                   </div>
-                  <div>
+                  <div v-if="image_permission">
                     <label>
                       <input
                         type="file"
-                        v-bind:id="book.title.$model"
+                        v-bind:id="book.book.$model"
                         ref="image"
                         v-on:change="handleImageUpload(book.book.$model)"
                       >
@@ -236,6 +236,7 @@ export default {
       booklist: null,
       templates: null,
       authorized: false,
+      image_permission: false,
       isHidden: true
     }
   },
@@ -416,6 +417,11 @@ export default {
       // console.log('after get Libary')
       var param = {}
       param.image_dir = this.bookmark.language.image_dir
+      console.log('image dir: ' +  param.image_dir.substring(0, 2))
+      this.image_permission = this.authorize(
+        'write',
+        param.image_dir.substring(0, 1)
+      )
       var img = await AuthorService.getImages(param)
       console.log('img')
       console.log(img)
@@ -441,7 +447,7 @@ export default {
       for (var i = 0; i < arrayLength; i++) {
         this.booklist.push(this.bookmark.library[i].book)
       }
-      this.authorized = this.authorize{'write', this.$route.params.countryCODE)
+      this.authorized = this.authorize('write', this.$route.params.countryCODE)
       this.loaded = true
       this.loading = false
     } catch (error) {

@@ -182,7 +182,7 @@ export default {
   },
   async created() {
     try {
-      this.authorized = this.authorize{'write', this.$route.params.countryCODE)
+      this.authorized = this.authorize('write', this.$route.params.countryCODE)
       await this.getCountries()
     } catch (error) {
       console.log('There was an error in CountriesEdit.vue:', error) // Logs out the error
