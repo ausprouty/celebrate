@@ -27,7 +27,6 @@
               <div class="errorMessage" v-if="!country.name.required">Country Name is required.</div>
             </template>
 
-
             <BaseInput
               v-model="country.english.$model"
               label="English Name"
@@ -36,8 +35,7 @@
               class="field"
             />
 
-            
-             <BaseInput
+            <BaseInput
               v-model="country.code.$model"
               label="Country ISO Code"
               type="text"
@@ -50,7 +48,6 @@
               <div class="errorMessage" v-if="!country.code.required">Country Code is required.</div>
             </template>
 
-            
             <br>
             <img v-bind:src="appDir.country+ country.image.$model" class="flag">
             <br>
@@ -66,8 +63,6 @@
             <template v-if="country.image.$error">
               <div class="errorMessage" v-if="!country.image.required">Image is required.</div>
             </template>
-
-           
 
             <BaseInput
               v-model="country.index.$model"
@@ -187,7 +182,7 @@ export default {
   },
   async created() {
     try {
-      this.authorized = this.authorize('write')
+      this.authorized = this.authorize{'write', this.$route.params.countryCODE)
       await this.getCountries()
     } catch (error) {
       console.log('There was an error in CountriesEdit.vue:', error) // Logs out the error

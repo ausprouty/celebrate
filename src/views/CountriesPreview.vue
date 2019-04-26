@@ -4,7 +4,7 @@
     <img v-bind:src="appDir.country+'world.jpg'" class="app-img-header">
     <h1>Select Country (Preview Mode)</h1>
     <Country v-for="country in countries" :key="country.code" :country="country"/>
-     <p class="version">Version 1.01</p>
+    <p class="version">Version 1.01</p>
     <div v-if="this.authorized">
       <button class="button" @click="editCountries">Edit</button>
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -68,7 +68,7 @@ export default {
   async created() {
     try {
       await this.getCountries()
-      this.authorized = this.authorize('write')
+      this.authorized = this.authorize{'write', this.$route.params.countryCODE)
     } catch (error) {
       console.log('There was an error in Countries.vue:', error) // Logs out the error
     }

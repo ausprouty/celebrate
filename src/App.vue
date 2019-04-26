@@ -35,6 +35,9 @@ img.nav-icon {
   width: 95%;
   max-width: 650px;
 }
+.hidden {
+  visibility: hidden;
+}
 html {
   -webkit-text-size-adjust: 100%;
   -webkit-font-smoothing: antialiased;

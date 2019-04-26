@@ -40,6 +40,11 @@ export default {
     console.log('about to create content')
     return apiSECURE.post('AuthorApi.php?crud=createContent', contentForm)
   },
+  createContentFolder(params) {
+    params.token = store.state.user.token
+    var contentForm = this.toFormData(params)
+    apiSECURE.post('AuthorApi.php?crud=createContentFolder', contentForm)
+  },
 
   createDirectoryLanguages(country, languages) {
     var code = ''
@@ -154,11 +159,13 @@ export default {
   },
   async getImages(params) {
     var images = []
+    params.token = store.state.user.token
     var contentForm = this.toFormData(params)
     let response = await apiSELECT.post(
-      'ResourceApi.php?resource=images',
+      'AuthorApi.php?crud=getImages',
       contentForm
     )
+
     if (response.data.content) {
       images = JSON.parse(response.data.content)
     }
@@ -185,6 +192,8 @@ export default {
     var templates = []
     // console.log('getTemplates')
     params.token = store.state.user.token
+    console.log('getTemplates')
+    console.log(params)
     var contentForm = this.toFormData(params)
     let response = await apiSELECT.post(
       'AuthorApi.php?crud=getTemplates',
@@ -295,7 +304,7 @@ export default {
     var contentForm = this.toFormData(params)
     contentForm.append('file', image)
     console.log(contentForm)
-    return apiIMAGE.post('AuthorApi.php?crud=image', contentForm)
+    return apiIMAGE.post('AuthorApi.php?crud=storeImage', contentForm)
   },
 
   toFormData(obj) {

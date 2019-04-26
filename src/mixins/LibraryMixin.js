@@ -43,7 +43,7 @@ export const libraryMixin = {
         this.loading = true
         await this.CheckBookmarks(this.$route.params)
         var response = await ContentService.getLibrary(this.$route.params)
-        console.log('Page View Data obtained')
+        console.log('Library Data obtained')
         if (response.data.content.text) {
           this.library = response.data.content.text
         } else {
@@ -51,7 +51,7 @@ export const libraryMixin = {
         }
         this.image_dir = this.standard.image_dir
         if (typeof this.bookmark.language.image_dir != 'undefined') {
-          console.log('USING BOOKMARK')
+          console.log('get Library is using Bookmark')
           this.image_dir = this.bookmark.language.image_dir
         }
         console.log('this.image_dir')

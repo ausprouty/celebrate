@@ -270,7 +270,7 @@ export default {
   },
   async created() {
     try {
-      this.authorized = this.authorize('write')
+      this.authorized = this.authorize{'write', this.$route.params.countryCODE)
       console.log('this authorized')
       if (this.authorized) {
         this.image_folders = await AuthorService.getFoldersImages()

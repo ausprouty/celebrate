@@ -102,7 +102,7 @@ export default {
   async created() {
     try {
       await this.getLibrary()
-      this.authorized = this.authorize('write')
+      this.authorized = this.authorize{'write', this.$route.params.countryCODE)
       this.loaded = true
       this.loading = false
     } catch (error) {

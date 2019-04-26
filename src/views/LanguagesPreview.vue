@@ -81,7 +81,7 @@ export default {
     try {
       await this.getLanguages()
       this.readonly = this.authorize('readonly')
-      this.write = this.authorize('write')
+      this.write = this.authorize{'write', this.$route.params.countryCODE)
       this.ZZ = false
       if (this.$route.params.countryCODE == 'ZZ') {
         this.ZZ = true

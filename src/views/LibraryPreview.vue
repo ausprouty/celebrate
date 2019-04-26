@@ -76,8 +76,8 @@ export default {
   async created() {
     try {
       await this.getLibrary()
-      this.readonly = this.authorize('readonly')
-      this.write = this.authorize('write')
+      this.readonly = this.authorize('readonly', this.$route.params.countryCODE)
+      this.write = this.authorize{'write', this.$route.params.countryCODE)
       this.loaded = true
       this.loading = false
     } catch (error) {

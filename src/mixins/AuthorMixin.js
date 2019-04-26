@@ -6,7 +6,7 @@ Vue.use(Vuex)
 export const authorMixin = {
   computed: mapState(['user']),
   methods: {
-    authorize(reason) {
+    authorize(reason, code) {
       var scope = this.user.scope
       //   console.log (scope)
       if (scope == '*') {
@@ -17,9 +17,7 @@ export const authorMixin = {
         }
       } else {
         var included = false
-        if (this.$route.params.countryCODE) {
-          included = scope.includes(this.$route.params.countryCODE)
-        }
+        included = scope.includes(code)
         if (reason == 'edit') {
           return included
         }

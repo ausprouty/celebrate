@@ -27,135 +27,154 @@
                   <p v-if="!book.title.required" class="errorMessage">Book Title is required</p>
                 </template>
 
-                <div v-if="images">
-                  <br>
-                  <br>
-                  <img
-                    v-bind:src="appDir.library  + image_dir  + '/' + book.image.$model"
-                    class="book"
-                  >
-                  <br>
-                  <BaseSelect
-                    label="Image"
-                    :options="images"
-                    v-model="book.image.$model"
-                    class="field"
-                    :class="{ error: book.image.$error }"
-                    @blur="book.image.$touch()"
-                  />
-                  <template v-if="book.image.$error">
-                    <p v-if="!book.image.required" class="errorMessage">Book Imae is required</p>
-                  </template>
-                </div>
-                <div>
-                  <label>
-                    <input
-                      type="file"
-                      v-bind:id="book.title.$model"
-                      ref="image"
-                      v-on:change="handleImageUpload(book.title.$model)"
-                    >
-                  </label>
-                </div>
-
                 <BaseSelect
-                  label="Format"
-                  :options="formats"
-                  v-model="book.format.$model"
-                  class="field"
-                  :class="{ error: book.format.$error }"
-                  @blur="book.format.$touch()"
-                />
-                <template v-if="book.format.$error">
-                  <p v-if="!book.format.required" class="errorMessage">Format is required</p>
-                </template>
-
-                <div v-if="book.format.$model == 'series'">
-                  <BaseInput
-                    v-model="book.index.$model"
-                    label="Index Filename"
-                    type="text"
-                    placeholder="Index"
-                    class="field"
-                    :class="{ error:book.index.$error }"
-                    @blur="book.index.$touch()"
-                  />
-                  <template v-if="book.index.$error">
-                    <p v-if="!book.index.required" class="errorMessage">Index is required</p>
-                  </template>
-                </div>
-                <BaseSelect
-                  label="Book"
-                  :options="mybooks"
+                  label="International Title"
+                  :options="booklist"
                   v-model="book.book.$model"
                   class="field"
                   :class="{ error: book.book.$error }"
                   @blur="book.book.$touch()"
                 />
-                <template v-if="book.book.$error">
-                  <p v-if="!book.book.required" class="errorMessage">Book is required</p>
-                </template>
                 <div>
                   <p>
-                    <a class="black" @click="createBook()">Create new Book</a>
+                    <a
+                      class="black"
+                      @click="createBook(book.book.$model)"
+                    >Create new International Title</a>
                   </p>
                 </div>
-
-                <BaseSelect
-                  label="Folder"
-                  :options="folders"
-                  v-model="book.folder.$model"
-                  class="field"
-                  :class="{ error: book.folder.$error }"
-                  @blur="book.folder.$touch()"
-                />
-                <template v-if="book.folder.$error">
-                  <p v-if="!book.folder.required" class="errorMessage">Folder is required</p>
-                </template>
-                <div>
-                  <p>
-                    <a class="black" @click="createFolder()">Create new Folder</a>
-                  </p>
+                <div v-bind:id="book.title.$model" v-bind:class="{ hidden: isHidden }">
+                  <BaseInput
+                    label="New International Title"
+                    v-model="book.book.$model"
+                    type="text"
+                    placeholder="international title"
+                    class="field"
+                  />
+                  <button
+                    class="button"
+                    @click="addNewBookTitle(book.title.$model)"
+                  >Save International Title</button>
                 </div>
 
-                <BaseSelect
-                  label="Style Sheet"
-                  :options="styles"
-                  v-model="book.style.$model"
-                  class="field"
-                  :class="{ error: book.style.$error }"
-                  @blur="book.style.$touch()"
-                />
-                <template v-if="book.style.$error">
-                  <p v-if="!book.style.required" class="errorMessage">Style is required</p>
-                </template>
-                <label>
-                  Add new stylesheet&nbsp;&nbsp;&nbsp;&nbsp;
-                  <input
-                    type="file"
-                    v-bind:id="book.title.$model"
-                    ref="style"
-                    v-on:change="handleStyleUpload(book.title.$model)"
-                  >
-                </label>
+                <div v-if="book.book.$model">
+                  <BaseSelect
+                    label="Folder"
+                    :options="folders"
+                    v-model="book.folder.$model"
+                    class="field"
+                    :class="{ error: book.folder.$error }"
+                    @blur="book.folder.$touch()"
+                  />
+                  <template v-if="book.folder.$error">
+                    <p v-if="!book.folder.required" class="errorMessage">Folder is required</p>
+                  </template>
+                  <div>
+                    <p>
+                      <a class="black" @click="createFolder(book.book.$model)">Create new Folder</a>
+                    </p>
+                  </div>
+                </div>
+                <div v-if="book.folder.$model">
+                  <div v-if="images">
+                    <br>
+                    <br>
+                    <div v-if="book.image.$model">
+                      <img
+                        v-bind:src="appDir.library  + image_dir  + '/' + book.image.$model"
+                        class="book"
+                      >
+                      <br>
+                    </div>
+                    <BaseSelect
+                      label="Image"
+                      :options="images"
+                      v-model="book.image.$model"
+                      class="field"
+                      :class="{ error: book.image.$error }"
+                      @blur="book.image.$touch()"
+                    />
+                    <template v-if="book.image.$error">
+                      <p v-if="!book.image.required" class="errorMessage">Image is required</p>
+                    </template>
+                  </div>
+                  <div>
+                    <label>
+                      <input
+                        type="file"
+                        v-bind:id="book.title.$model"
+                        ref="image"
+                        v-on:change="handleImageUpload(book.book.$model)"
+                      >
+                    </label>
+                  </div>
 
-                <BaseSelect
-                  label="Template"
-                  :options="templates"
-                  v-model="book.template.$model"
-                  class="field"
-                  :class="{ error: book.template.$error }"
-                  @blur="book.template.$touch()"
-                />
-                <label>
-                  Add new template&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  <input
-                    type="file"
-                    v-bind:id="book.title.$model"
-                    ref="template"
-                    v-on:change="handleTemplateUpload(book.title.$model)"
-                  >
-                </label>
+                  <BaseSelect
+                    label="Format"
+                    :options="formats"
+                    v-model="book.format.$model"
+                    class="field"
+                    :class="{ error: book.format.$error }"
+                    @blur="book.format.$touch()"
+                  />
+                  <template v-if="book.format.$error">
+                    <p v-if="!book.format.required" class="errorMessage">Format is required</p>
+                  </template>
+
+                  <div v-if="book.format.$model == 'series'">
+                    <BaseInput
+                      v-model="book.index.$model"
+                      label="Index Filename"
+                      type="text"
+                      placeholder="Index"
+                      class="field"
+                      :class="{ error:book.index.$error }"
+                      @blur="book.index.$touch()"
+                    />
+                    <template v-if="book.index.$error">
+                      <p v-if="!book.index.required" class="errorMessage">Index is required</p>
+                    </template>
+                  </div>
+
+                  <BaseSelect
+                    label="Style Sheet"
+                    :options="styles"
+                    v-model="book.style.$model"
+                    class="field"
+                    :class="{ error: book.style.$error }"
+                    @blur="book.style.$touch()"
+                  />
+                  <template v-if="book.style.$error">
+                    <p v-if="!book.style.required" class="errorMessage">Style is required</p>
+                  </template>
+                  <label>
+                    Add new stylesheet&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input
+                      type="file"
+                      v-bind:id="book.title.$model"
+                      ref="style"
+                      v-on:change="handleStyleUpload(book.title.$model)"
+                    >
+                  </label>
+
+                  <BaseSelect
+                    label="Template"
+                    :options="templates"
+                    v-model="book.template.$model"
+                    class="field"
+                    :class="{ error: book.template.$error }"
+                    @blur="book.template.$touch()"
+                  />
+                  <label>
+                    Add new template&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input
+                      type="file"
+                      v-bind:id="book.title.$model"
+                      ref="template"
+                      v-on:change="handleTemplateUpload(book.title.$model)"
+                    >
+                  </label>
+                </div>
               </div>
             </div>
           </div>
@@ -199,23 +218,25 @@ export default {
   data() {
     return {
       library: {
-        id: '',
-        book: '',
-        title: '',
-        folder: '',
-        index: '',
-        style: '',
-        image: '',
-        format: '',
-        template: ''
+        book: null,
+        folder: null,
+        format: null,
+        id: null,
+        image: null,
+        index: null,
+        new_book: null,
+        style: null,
+        template: null,
+        title: null
       },
       formats: ['page', 'series'],
       images: null,
       folders: null,
       styles: null,
-      mybooks: null,
+      booklist: null,
       templates: null,
-      authorized: false
+      authorized: false,
+      isHidden: true
     }
   },
   validations: {
@@ -236,35 +257,61 @@ export default {
   methods: {
     addNewBookForm() {
       this.library.push({
-        id: '',
-        book: '',
-        title: '',
-        folder: '',
-        index: '',
-        style: 'AU-myfriends.css',
-        image: 'issues.jpg',
-        format: 'series',
-        template: 'AU-myfriends'
+        id: null,
+        book: null,
+        title: null,
+        folder: null,
+        index: null,
+        style: null,
+        image: null,
+        format: null,
+        template: null
       })
     },
-    createFolder() {},
+    addNewBookTitle(title) {
+      console.log(title)
+      this.booklist = []
+      var change = this.$v.library.$model
+      var arrayLength = change.length
+      for (var i = 0; i < arrayLength; i++) {
+        this.booklist.push(this.$v.library.$model[i].book)
+      }
+      this.isHidden = true
+    },
+    createBook(title) {
+      console.log(title)
+      this.isHidden = false
+    },
+    async createFolder(folder) {
+      console.log(folder)
+      var params = {}
+      params.country_code = this.$route.params.countryCODE
+      params.language_iso = this.$route.params.languageISO
+      params.folder = folder.toLowerCase()
+      AuthorService.createContentFolder(params)
+      this.folders = await AuthorService.getFolders(params)
+    },
+
     deleteBookForm(index) {
       this.library.splice(index, 1)
     },
     handleImageUpload(code) {
-      console.log('code in handle:' + code)
-      var checkfile = ''
+      console.log('handleImageUpload: ' + code)
+      var checkfile = {}
       var i = 0
-      var arrayLength = this.$refs.file.length
+      console.log(this.$refs.image)
+      var arrayLength = this.$refs.image.length
+      console.log('arrayLength: ' + arrayLength)
       for (i = 0; i < arrayLength; i++) {
-        checkfile = this.$refs.file[i]['files']
+        checkfile = this.$refs.image[i]['files']
+        console.log(checkfile)
         if (checkfile.length == 1) {
           // console.log(checkfile)
           //  console.log(checkfile[0])
           var type = AuthorService.typeImage(checkfile[0])
           if (type) {
             var params = {}
-            params.directory = 'flag'
+            params.directory = this.bookmark.language.image_dir
             params.name = code
             AuthorService.storeImage(params, checkfile[0])
 
@@ -368,8 +415,10 @@ export default {
       await this.getLibrary()
       // console.log('after get Libary')
       var param = {}
-      param.menu = this.bookmark.language.image_dir
+      param.image_dir = this.bookmark.language.image_dir
       var img = await AuthorService.getImages(param)
+      console.log('img')
+      console.log(img)
       if (img) {
         this.images = img
       }
@@ -387,13 +436,12 @@ export default {
       if (template) {
         this.templates = template
       }
-      var booklist = await AuthorService.getTemplates(param)
-      if (booklist) {
-        this.mybooks = booklist
-      } else {
-        this.mybooks = this.books
+      this.booklist = []
+      var arrayLength = this.bookmark.library.length
+      for (var i = 0; i < arrayLength; i++) {
+        this.booklist.push(this.bookmark.library[i].book)
       }
-      this.authorized = this.authorize('write')
+      this.authorized = this.authorize{'write', this.$route.params.countryCODE)
       this.loaded = true
       this.loading = false
     } catch (error) {
