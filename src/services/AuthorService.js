@@ -253,6 +253,8 @@ export default {
       obj.language_iso = language
       obj.country_code = country
       obj.token = store.state.user.token
+      console.log('setupLanguageFolder')
+      console.log(obj)
       var contentForm = this.toFormData(obj)
       apiSECURE.post('AuthorApi.php?action=setupLanguageFolder', contentForm)
     }
