@@ -29,8 +29,6 @@ const apiIMAGE = axios.create({
 })
 // I want to export a JSON.stringified of response.data.content.text
 export default {
-
-  
   createContentData(obj) {
     var d = new Date()
     obj.edit_date = d.getTime()
@@ -40,12 +38,12 @@ export default {
     console.log(obj)
     var contentForm = this.toFormData(obj)
     console.log('about to create content')
-    return apiSECURE.post('AuthorApi.php?crud=createContent', contentForm)
+    return apiSECURE.post('AuthorApi.php?action=createContent', contentForm)
   },
   createContentFolder(params) {
     params.token = store.state.user.token
     var contentForm = this.toFormData(params)
-    apiSECURE.post('AuthorApi.php?crud=createContentFolder', contentForm)
+    apiSECURE.post('AuthorApi.php?action=createContentFolder', contentForm)
   },
 
   createDirectoryLanguages(country, languages) {
@@ -63,7 +61,7 @@ export default {
         obj.code = code
         obj.token = store.state.user.token
         var contentForm = this.toFormData(obj)
-        apiSECURE.post('AuthorApi.php?crud=createDir', contentForm)
+        apiSECURE.post('AuthorApi.php?action=createDir', contentForm)
       }
     }
   },
@@ -76,15 +74,15 @@ export default {
       obj.country_code = country
       obj.token = store.state.user.token
       var contentForm = this.toFormData(obj)
-      apiSECURE.post('AuthorApi.php?crud=createDirectoryMenu', contentForm)
+      apiSECURE.post('AuthorApi.php?action=createDirectoryMenu', contentForm)
     }
   },
-  async createSeriesIndex(params){
+  async createSeriesIndex(params) {
     console.log('createSeriesIndex')
     console.log(params)
     params.token = store.state.user.token
     var contentForm = this.toFormData(params)
-    apiSECURE.post('AuthorApi.php?crud=createSeriesIndex', contentForm)
+    apiSECURE.post('AuthorApi.php?action=createSeriesIndex', contentForm)
   },
   async createStyle(params) {
     console.log('createStyle')
@@ -96,7 +94,7 @@ export default {
       obj.country_code = params.country_code
       obj.token = store.state.user.token
       var contentForm = this.toFormData(obj)
-      apiSECURE.post('AuthorApi.php?crud=createStyle', contentForm)
+      apiSECURE.post('AuthorApi.php?action=createStyle', contentForm)
     } else {
       console.log('NOT letters')
     }
@@ -115,7 +113,7 @@ export default {
       obj.folder = params.folder
       obj.token = store.state.user.token
       var contentForm = this.toFormData(obj)
-      apiSECURE.post('AuthorApi.php?crud=createTemplate', contentForm)
+      apiSECURE.post('AuthorApi.php?action=createTemplate', contentForm)
       return true
     } else {
       console.log('NOT letters')
@@ -128,7 +126,7 @@ export default {
     params.token = store.state.user.token
     var contentForm = this.toFormData(params)
     let response = await apiSELECT.post(
-      'AuthorApi.php?crud=getFoldersContent',
+      'AuthorApi.php?action=getFoldersContent',
       contentForm
     )
     //console.log(response)
@@ -144,7 +142,7 @@ export default {
     params.token = store.state.user.token
     var contentForm = this.toFormData(params)
     let response = await apiSELECT.post(
-      'AuthorApi.php?crud=getFoldersLanguage',
+      'AuthorApi.php?action=getFoldersLanguage',
       contentForm
     )
     //console.log(response)
@@ -160,7 +158,7 @@ export default {
     params.token = store.state.user.token
     var contentForm = this.toFormData(params)
     let response = await apiSELECT.post(
-      'AuthorApi.php?crud=getFoldersImages',
+      'AuthorApi.php?action=getFoldersImages',
       contentForm
     )
     if (response.data.content) {
@@ -174,7 +172,7 @@ export default {
     params.token = store.state.user.token
     var contentForm = this.toFormData(params)
     let response = await apiSELECT.post(
-      'AuthorApi.php?crud=getImages',
+      'AuthorApi.php?action=getImages',
       contentForm
     )
 
@@ -190,7 +188,7 @@ export default {
     params.token = store.state.user.token
     var contentForm = this.toFormData(params)
     let response = await apiSELECT.post(
-      'AuthorApi.php?crud=getStyles',
+      'AuthorApi.php?action=getStyles',
       contentForm
     )
     // console.log(response)
@@ -208,7 +206,7 @@ export default {
     console.log(params)
     var contentForm = this.toFormData(params)
     let response = await apiSELECT.post(
-      'AuthorApi.php?crud=getTemplates',
+      'AuthorApi.php?action=getTemplates',
       contentForm
     )
     //console.log(response)
@@ -221,7 +219,7 @@ export default {
   async getUser(params) {
     var contentForm = this.toFormData(params)
     let response = await apiSELECT.post(
-      'AuthorApi.php?crud=authorize',
+      'AuthorApi.php?action=authorize',
       contentForm
     )
     return response
@@ -244,7 +242,7 @@ export default {
           obj.country_code = code
           obj.token = store.state.user.token
           var contentForm = this.toFormData(obj)
-          apiSECURE.post('AuthorApi.php?crud=setupCountry', contentForm)
+          apiSECURE.post('AuthorApi.php?action=setupCountry', contentForm)
         }
       }
     }
@@ -256,7 +254,7 @@ export default {
       obj.country_code = country
       obj.token = store.state.user.token
       var contentForm = this.toFormData(obj)
-      apiSECURE.post('AuthorApi.php?crud=setupLanguageFolder', contentForm)
+      apiSECURE.post('AuthorApi.php?action=setupLanguageFolder', contentForm)
     }
   },
   setupImageFolder(country, language) {
@@ -266,8 +264,28 @@ export default {
       obj.country_code = country
       obj.token = store.state.user.token
       var contentForm = this.toFormData(obj)
-      apiSECURE.post('AuthorApi.php?crud=setupImageFolder', contentForm)
+      apiSECURE.post('AuthorApi.php?action=setupImageFolder', contentForm)
     }
+  },
+  async setupSeries(params, file) {
+    console.log('setup Series')
+    console.log(params)
+    console.log(file)
+    params.token = store.state.user.token
+    var contentForm = this.toFormData(params)
+    contentForm.append('file', file)
+    console.log(contentForm)
+    return apiIMAGE.post('AuthorApi.php?action=setupSeries', contentForm)
+  },
+  async storeImage(params, image) {
+    console.log('Store Image')
+    console.log(params)
+    console.log(image)
+    params.token = store.state.user.token
+    var contentForm = this.toFormData(params)
+    contentForm.append('file', image)
+    console.log(contentForm)
+    return apiIMAGE.post('AuthorApi.php?action=storeImage', contentForm)
   },
   typeImage(file) {
     var type = null
@@ -307,16 +325,6 @@ export default {
       default:
     }
     return type
-  },
-  async storeImage(params, image) {
-    console.log('Store Image')
-    console.log(params)
-    console.log(image)
-    params.token = store.state.user.token
-    var contentForm = this.toFormData(params)
-    contentForm.append('file', image)
-    console.log(contentForm)
-    return apiIMAGE.post('AuthorApi.php?crud=storeImage', contentForm)
   },
 
   toFormData(obj) {

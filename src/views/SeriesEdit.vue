@@ -70,12 +70,13 @@
           </div>
         </div>
         <div v-if="this.authorized">
-          <div v-if="!this.chapters">
+          <div v-if="this.new">
             <p
               class="errorMessage"
             >Import Series in tab format (number| title | description| bible reference| filename)</p>
             <label>
-              <input type="file" ref="series" v-on:change="importSeries()">
+              <input type="file" ref="file" v-on:change="importSeries()">
+              <button v-on:click="submitFile()">Submit</button>
             </label>
             <br>
             <br>
@@ -124,6 +125,8 @@ export default {
   data() {
     return {
       authorized: false,
+      new: false,
+      file: null,
       chapter: {
         title: '',
         description: '',
@@ -159,7 +162,32 @@ export default {
     deleteChapterForm(id) {
       this.chapters.splice(id, 1)
     },
-    async importSeries() {},
+    async importSeries() {
+      console.log('about to import series')
+      this.file = this.$refs.file.files[0]
+      console.log('this.file')
+      console.log(this.file)
+      var param = []
+      param.country_code = this.$route.params.countryCODE
+      param.language_iso = this.$route.params.languageISO
+      param.index = this.bookmark.book.index
+      param.folder = this.bookmark.book.folder
+      param.template = this.bookmark.book.template
+      param.series_name = this.bookmark.book.title
+      param.description = this.description
+      await AuthorService.setupSeries(param, this.file)
+      console.log('back from update')
+      try {
+        this.getSeries(this.$route.params)
+        console.log('tried get series')
+        this.authorized = this.authorize(
+          'write',
+          this.$route.params.countryCODE
+        )
+      } catch (error) {
+        console.log('There was an error in SeriesEdit.vue:', error) // Logs out the error
+      }
+    },
     async saveForm() {
       try {
         console.log(this.content)

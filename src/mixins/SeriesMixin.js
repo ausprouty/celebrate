@@ -67,6 +67,10 @@ export const seriesMixin = {
           this.description = response.data.content.description
           this.chapters = response.data.content.chapters
         }
+        this.new = false
+        if (!this.chapters) {
+          this.new = true
+        }
         this.image_dir = this.standard.image_dir
         if (typeof this.bookmark.language.image_dir != 'undefined') {
           console.log('USING BOOKMARK')
