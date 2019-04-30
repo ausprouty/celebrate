@@ -84,6 +84,7 @@ export default {
     var contentForm = this.toFormData(params)
     apiSECURE.post('AuthorApi.php?action=createSeriesIndex', contentForm)
   },
+
   async createStyle(params) {
     console.log('createStyle')
     console.log(params)
@@ -278,6 +279,13 @@ export default {
     contentForm.append('file', file)
     console.log(contentForm)
     return apiIMAGE.post('AuthorApi.php?action=setupSeries', contentForm)
+  },
+  async setupSeriesFirstSteps(params) {
+    console.log('createSeriesFirstSteps')
+    console.log(params)
+    params.token = store.state.user.token
+    var contentForm = this.toFormData(params)
+    apiSECURE.post('AuthorApi.php?action=setupSeriesFirstSteps', contentForm)
   },
   async storeImage(params, image) {
     console.log('Store Image')

@@ -4,7 +4,7 @@
     <div class="loading" v-if="loading">Loading...</div>
     <div class="error" v-if="error">There was an error... {{this.error}}</div>
     <div class="content" v-if="loaded">
-      <link rel="stylesheet" v-bind:href="'/css/' + this.bookmark.book.style">
+      <link rel="stylesheet" v-bind:href="'/content/' + this.bookmark.book.style">
       <div class="app-link">
         <div class="app-card -shadow">
           <div v-on:click="goBack()">
@@ -62,6 +62,8 @@ export default {
   methods: {
     editPage() {
       var css = this.bookmark.page.style
+        ? this.bookmark.page.style
+        : this.bookmark.book.style
       css.replace('/', '-')
       this.$router.push({
         name: 'editPage',

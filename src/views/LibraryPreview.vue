@@ -75,6 +75,7 @@ export default {
   },
   async created() {
     try {
+      this.$store.dispatch('newBookmark', 'clear')
       await this.getLibrary()
       this.readonly = this.authorize('readonly', this.$route.params.countryCODE)
       this.write = this.authorize('write', this.$route.params.countryCODE)

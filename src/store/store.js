@@ -145,6 +145,7 @@ export default new Vuex.Store({
   },
   actions: {
     newBookmark({ commit }, value) {
+      console.log ('cleared bookmark')
       commit('UNSET_BOOKMARK', [value])
     },
     updateBookmark({ commit }, [mark, value]) {

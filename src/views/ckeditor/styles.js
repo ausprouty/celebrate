@@ -228,7 +228,32 @@ window.CKEDITOR.stylesSet.add('compass', [
 ])
 
 window.CKEDITOR.stylesSet.add('fsteps', [
-  { name: 'firststeps', element: 'h2', styles: { 'font-style': 'italic' } }
+  { name: 'background', element: 'div', attributes: { class: 'background' } },
+  { name: 'bible', element: 'div', attributes: { class: 'bible-container' } },
+  { name: 'lesson', element: 'div', attributes: { class: 'lesson' } },
+  { name: 'lesson-icon', element: 'div', attributes: { class: 'lesson-icon' } },
+
+  {
+    name: 'lesson-point',
+    element: 'img',
+    attributes: { class: 'lesson-point' }
+  },
+  {
+    name: 'list-back',
+    element: 'ol',
+    attributes: { class: 'ol-back' }
+  },
+  {
+    name: 'list-up',
+    element: 'ol',
+    attributes: { class: 'ol-up' }
+  },
+  {
+    name: 'list-forward',
+    element: 'ol',
+    attributes: { class: 'ol-forward' }
+  },
+  { name: 'readmore', element: 'a', attributes: { class: 'readmore' } }
 ])
 
 window.CKEDITOR.stylesSet.add('myfriends', [

@@ -67,6 +67,8 @@ export const bookMarkMixin = {
       }
     },
     async CheckBookmarkLanguageLibrary(route) {
+      console.log('entered CheckBookmarkLanguageLibrary')
+      console.log(route)
       /* LANGUAGE AND LIBRARY
            if route.languageISO is not the same as bookmark 
             update language and erase all bookmark below*/
@@ -82,21 +84,23 @@ export const bookMarkMixin = {
           if (typeof this.bookmark.language != 'undefined') {
             currentLanguage = this.bookmark.language.iso
           }
-          if (route.languageISO != currentLanguage) {
-            var res = await ContentService.getLanguages(route)
-            response = res.data.content.text
-            var length = response.length
-            for (var i = 0; i < length; i++) {
-              if (response[i].iso == route.languageISO) {
-                value = response[i]
-              }
+          //if (route.languageISO != currentLanguage) {  in development the library can change
+          var res = await ContentService.getLanguages(route)
+          response = res.data.content.text
+          var length = response.length
+          for (var i = 0; i < length; i++) {
+            if (response[i].iso == route.languageISO) {
+              value = response[i]
             }
-            this.$store.dispatch('updateBookmark', ['language', value])
-
-            response = await ContentService.getLibrary(route)
-            value = response.data.content.text
-            this.$store.dispatch('updateBookmark', ['library', value])
           }
+          this.$store.dispatch('updateBookmark', ['language', value])
+          console.log('Going to Content Service to GetLibrary with:')
+          console.log(route)
+          response = await ContentService.getLibrary(route)
+          console.log(response)
+          value = response.data.content.text
+          this.$store.dispatch('updateBookmark', ['library', value])
+          // }
           if (typeof this.bookmark.library == 'undefined') {
             // console.log (route)
             response = await ContentService.getLibrary(route)
@@ -223,7 +227,8 @@ export const bookMarkMixin = {
             'BOOKMARK SERVICE -- There was an error in CheckBookmarkPage',
             error
           )
-          this.error = error.toString() +  ' BOOKMARK SERVICE -- CheckBookmarkPage'
+          this.error =
+            error.toString() + ' BOOKMARK SERVICE -- CheckBookmarkPage'
           return null
         }
       }

@@ -42,7 +42,7 @@ export const seriesMixin = {
   methods: {
     async getSeries(params) {
       try {
-        console.log('params in SeriesMixin')
+        console.log('params in SeriesMixin for Check Bookmark')
         console.log(params)
         this.error = this.loaded = null
         this.loading = true

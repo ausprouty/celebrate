@@ -46,7 +46,7 @@
 <script>
 import { mapState } from 'vuex'
 import Chapter from '@/components/ChapterPreview.vue'
-import ContentService from '@/services/ContentService.js'
+import AuthorService from '@/services/AuthorService.js'
 import NavBar from '@/components/NavBarAdmin.vue'
 import { bookMarkMixin } from '@/mixins/BookmarkMixin.js'
 import { seriesMixin } from '@/mixins/SeriesMixin.js'
@@ -96,7 +96,14 @@ export default {
   },
   async created() {
     try {
-      var content = await this.getSeries(this.$route.params)
+      await this.getSeries(this.$route.params)
+      if (
+        this.bookmark.series.length == 0 &&
+        this.$route.params.fileFILENAME == 'first_steps'
+      ) {
+        await AuthorService.setupSeriesFirstSteps(this.$route.params)
+        await this.getSeries(this.$route.params)
+      }
       this.readonly = this.authorize('readonly', this.$route.params.countryCODE)
       this.write = this.authorize('write', this.$route.params.countryCODE)
       this.loaded = true

@@ -228,6 +228,8 @@ export default {
   async created() {
     try {
       this.getSeries(this.$route.params)
+      console.log('this.chapters')
+      console.log(this.chapters)
       this.authorized = this.authorize('write', this.$route.params.countryCODE)
     } catch (error) {
       console.log('There was an error in SeriesEdit.vue:', error) // Logs out the error

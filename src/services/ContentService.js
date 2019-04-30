@@ -139,7 +139,7 @@ export default {
       response.data = {}
       response.data.content = {}
       // may need to remove .json from some FILENAME
-      var filename = params.fileFILENAME
+      var filename = params.fileFILENAME // this is index and is required
       if (!filename.includes('.json')) {
         filename = filename + '.json'
       }

@@ -94,7 +94,7 @@ export default {
         extraPlugins: 'bidi',
         extraAllowedContent: 'ol(*)',
         contentsCss: '/content/' + this.$route.params.css,
-        stylesSet: 'myfriends',
+        stylesSet: this.$route.params.stylesSET,
         toolbarGroups: [
           { name: 'styles', groups: ['styles'] },
           { name: 'basicstyles', groups: ['basicstyles', 'cleanup'] },
@@ -155,13 +155,35 @@ export default {
   },
 
   async beforeCreate() {
+    console.log('before Create')
+    console.log(this.$route.params)
+    console.log(this.$route.params.bookNAME)
+    switch (this.$route.params.bookNAME) {
+      case 'firststeps':
+        this.$route.params.stylesSET = 'fsteps'
+        break
+      case 'basics':
+      case 'issues':
+      case 'myfriends':
+      case 'principles':
+        this.$route.params.stylesSET = 'myfriends'
+        break
+      case 'compass':
+        this.$route.params.stylesSET = 'compass'
+        break
+      case 'multiply':
+        this.$route.params.stylesSET = 'myfriends'
+        break
+      default:
+        this.$route.params.stylesSET = 'unknown'
+    }
     this.$route.params.version = 'lastest'
     this.$route.params.pageNAME = this.$route.params.fileFILENAME
     var css = this.$route.params.cssFORMATTED
     css.replace('-', '/')
     this.$route.params.css = css
-    console.log ('css')
-    console.log(this.$route.params.css)
+    console.log('final params')
+    console.log(this.$route.params)
   },
   async created() {
     try {
