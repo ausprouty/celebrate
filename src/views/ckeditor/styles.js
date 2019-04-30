@@ -232,5 +232,14 @@ window.CKEDITOR.stylesSet.add('fsteps', [
 ])
 
 window.CKEDITOR.stylesSet.add('myfriends', [
-  { name: 'myfriends', element: 'h2', styles: { 'font-style': 'italic' } }
+  { name: 'background', element: 'div', attributes: { class: 'background' } },
+  { name: 'bible', element: 'div', attributes: { class: 'bible' } },
+  { name: 'lesson', element: 'div', attributes: { class: 'lesson' } },
+  { name: 'lesson-icon', element: 'div', attributes: { class: 'lesson-icon' } },
+  {
+    name: 'lesson-subtitle',
+    element: 'div',
+    attributes: { class: 'lesson-subtitle' }
+  },
+  { name: 'readmore', element: 'a', attributes: { class: 'readmore' } }
 ])

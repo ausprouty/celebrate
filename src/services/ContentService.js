@@ -1,10 +1,11 @@
 import axios from 'axios'
 
-const apiClient = axios.create({
-  // baseURL: `http://prototype.myfriends.network`,
+const apiContent = axios.create({
+  //baseURL: `http://prototype.myfriends.network`,
   // baseURL: `http://localhost:8080`,
   baseURL: '/',
   withCredentials: false, // This is the default
+  crossDomain: true,
   headers: {
     Accept: 'application/json',
     'Content-Type': 'application/json'
@@ -45,7 +46,7 @@ export default {
     if (!found) {
       response.data = {}
       response.data.content = {}
-      let res = await apiClient.get('content/countries.json')
+      let res = await apiContent.get('content/countries.json')
       response.data.content.text = res.data
       response.source = 'content'
       return response
@@ -76,7 +77,7 @@ export default {
     if (!found) {
       response.data = {}
       response.data.content = {}
-      let res = await apiClient.get(
+      let res = await apiContent.get(
         'content/' + params.countryCODE + '/languages.json'
       )
       response.data.content.text = res.data
@@ -106,7 +107,7 @@ export default {
     if (!found) {
       response.data = {}
       response.data.content = {}
-      let res = await apiClient.get(
+      let res = await apiContent.get(
         '/content/' +
           params.countryCODE +
           '/' +
@@ -142,7 +143,7 @@ export default {
       if (!filename.includes('.json')) {
         filename = filename + '.json'
       }
-      let res = await apiClient.get(
+      let res = await apiContent.get(
         'content/' +
           params.countryCODE +
           '/' +
@@ -177,7 +178,7 @@ export default {
     // if no data or need current get content
     if (!found) {
       response.source = 'content'
-      let res = await apiClient.get(
+      let res = await apiContent.get(
         'content/' +
           params.countryCODE +
           '/' +

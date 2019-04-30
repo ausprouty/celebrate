@@ -61,13 +61,16 @@ export default {
   },
   methods: {
     editPage() {
+      var css = this.bookmark.page.style
+      css.replace('/', '-')
       this.$router.push({
         name: 'editPage',
         params: {
           countryCODE: this.$route.params.countryCODE,
           languageISO: this.$route.params.languageISO,
           folderNAME: this.$route.params.folderNAME,
-          pageFILENAME: this.$route.params.pageFILENAME
+          pageFILENAME: this.$route.params.pageFILENAME,
+          cssFORMATTED: css
         }
       })
     },

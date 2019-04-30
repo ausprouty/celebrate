@@ -1,0 +1,47 @@
+{
+		"series" :"Life Issues",
+	"language" : "aus",
+	"description":"undefined",
+	"chapters": [
+{
+"id": 0,
+"title": "DOES GOD HEAR ME? ",
+"desciption": "You will be surprised",
+"count": 1,
+"filename": "postmodern1.html"	
+},
+{
+"id": 1,
+"title": "A FRESH START ",
+"desciption": "What we all need",
+"count": 2,
+"filename": "postmodern2.html"	
+},
+{
+"id": 2,
+"title": "LIVING WITH FOCUS ",
+"desciption": "Not being scatterbrained",
+"count": 3,
+"filename": "postmodern3.html"	
+},
+{
+"id": 3,
+"title": "PURPOSEFUL LIFE",
+"desciption": "A life with purpose",
+"count": 4,
+"filename": "postmodern4.html"	
+},
+{
+"id": 4,
+"title": "CAREFREE ",
+"desciption": "Why worry is not needed",
+"count": 5,
+"filename": "postmodern5.html"	
+},
+{
+"id": 5,
+"title": "MORE THAN ENOUGH ",
+"desciption": "The abundance God promises",
+"count": 6,
+"filename": "postmodern6.html"	
+}]}

@@ -91,8 +91,10 @@ export default {
         text: ''
       },
       config: {
-        // I don't think this actually works
         extraPlugins: 'bidi',
+        extraAllowedContent: 'ol(*)',
+        contentsCss: '/content/' + this.$route.params.css,
+        stylesSet: 'myfriends',
         toolbarGroups: [
           { name: 'styles', groups: ['styles'] },
           { name: 'basicstyles', groups: ['basicstyles', 'cleanup'] },
@@ -152,8 +154,14 @@ export default {
     }
   },
 
-  beforeCreate() {
+  async beforeCreate() {
     this.$route.params.version = 'lastest'
+    this.$route.params.pageNAME = this.$route.params.fileFILENAME
+    var css = this.$route.params.cssFORMATTED
+    css.replace('-', '/')
+    this.$route.params.css = css
+    console.log ('css')
+    console.log(this.$route.params.css)
   },
   async created() {
     try {

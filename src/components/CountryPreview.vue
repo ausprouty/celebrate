@@ -1,5 +1,5 @@
 <template>
-  <div class="app-link" v-on:click="showPage(country)">
+  <div class="app-link" v-on:click="showLanguagePage(country)">
     <div class="shadow-card -shadow">
       <img v-bind:src="appDir.country+ country.image" class="flag">
       <div class="card-names">
@@ -27,7 +27,19 @@ export default {
       bMark: this.$store.state.bookmark
     }
   },
-  computed: mapState(['bookmark', 'appDir'])
+  computed: mapState(['bookmark', 'appDir']),
+  methods: {
+    showLanguagePage(country) {
+      localStorage.setItem('lastPage', 'countries')
+      this.$route.params.countryCODE = country.code
+      this.$router.push({
+        name: 'previewLanguages',
+        params: {
+          countryCODE: country.code
+        }
+      })
+    }
+  }
 }
 </script>
 

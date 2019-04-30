@@ -76,7 +76,6 @@
             >Import Series in tab format (number| title | description| bible reference| filename)</p>
             <label>
               <input type="file" ref="file" v-on:change="importSeries()">
-              <button v-on:click="submitFile()">Submit</button>
             </label>
             <br>
             <br>

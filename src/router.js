@@ -91,7 +91,8 @@ export default new Router({
       props: true
     },
     {
-      path: '/edit/page/:countryCODE/:languageISO/:bookNAME/:fileFILENAME',
+      path:
+        '/edit/page/:countryCODE/:languageISO/:bookNAME/:fileFILENAME/:cssFORMATTED',
       name: 'editPage',
       component: PageEdit,
       props: true
