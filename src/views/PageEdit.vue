@@ -161,7 +161,6 @@ export default {
   async beforeCreate() {
     console.log('before Create')
     console.log(this.$route.params)
-    console.log(this.$route.params.bookNAME)
     switch (this.$route.params.bookNAME) {
       case 'firststeps':
         this.$route.params.stylesSET = 'fsteps'

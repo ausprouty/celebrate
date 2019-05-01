@@ -196,14 +196,14 @@ export const bookMarkMixin = {
             currentPage = this.bookmark.page
           }
           if (route.pageNAME != currentPage) {
-            //console.log('BOOKMARK SERVICE --    we have a new page')
+            console.log('BOOKMARK SERVICE --    we have a new page')
             if (typeof this.bookmark.series != 'undefined') {
               // the page is part of a series
               if (typeof this.bookmark.series.chapters != 'undefined') {
                 var chapters = {}
                 chapters = this.bookmark.series.chapters
-                //console.log('BOOKMARK SERVICE --    chapters')
-                // console.log(chapters)
+                console.log('BOOKMARK SERVICE --    chapters')
+                 console.log(chapters)
                 var length = chapters.length
                 for (var i = 0; i < length; i++) {
                   if (chapters[i].filename == route.pageNAME) {

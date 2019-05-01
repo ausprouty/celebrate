@@ -74,7 +74,9 @@ export default {
           languageISO: this.$route.params.languageISO,
           folderNAME: this.$route.params.folderNAME,
           pageFILENAME: this.$route.params.pageFILENAME,
-          cssFORMATTED: clean
+          cssFORMATTED: clean,
+          token: this.user.token
+
         }
       })
     },
