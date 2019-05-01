@@ -64,7 +64,9 @@ export default {
       var css = this.bookmark.page.style
         ? this.bookmark.page.style
         : this.bookmark.book.style
-      css.replace('/', '-')
+      var clean = css.replace(/\//g, '-')
+      console.log('here is clean')
+      console.log(clean)
       this.$router.push({
         name: 'editPage',
         params: {
@@ -72,7 +74,7 @@ export default {
           languageISO: this.$route.params.languageISO,
           folderNAME: this.$route.params.folderNAME,
           pageFILENAME: this.$route.params.pageFILENAME,
-          cssFORMATTED: css
+          cssFORMATTED: clean
         }
       })
     },
