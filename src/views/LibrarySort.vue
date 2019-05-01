@@ -1,12 +1,13 @@
 <template>
   <div>
     <NavBar/>
+     <div v-if="!this.authorized">
+        <p>You have stumbled into a restricted page. Sorry I can not show it to you now</p>
+      </div>
     <div class="loading" v-if="loading">Loading...</div>
     <div class="error" v-if="error">There was an error... {{this.error}}</div>
     <div class="content" v-if="loaded">
-      <div v-if="!this.authorized">
-        <p>You have stumbled into a restricted page. Sorry I can not show it to you now</p>
-      </div>
+     
       <div v-if="this.authorized">
         <h1>Library</h1>
         <div>

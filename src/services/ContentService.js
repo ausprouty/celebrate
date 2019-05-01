@@ -158,6 +158,8 @@ export default {
     }
   },
   async getPage(params) {
+    console.log ('getPage params:')
+    console.log (params)
     var found = false
     var response = {}
     response.data = {}
@@ -178,6 +180,10 @@ export default {
     // if no data or need current get content
     if (!found) {
       response.source = 'content'
+      var fileFILENAME = params.fileFILENAME
+      if (!fileFILENAME.includes('.html')) {
+        fileFILENAME = fileFILENAME + '.html'
+      }
       let res = await apiContent.get(
         'content/' +
           params.countryCODE +
@@ -186,8 +192,7 @@ export default {
           '/' +
           params.folderNAME +
           '/' +
-          params.fileFILENAME +
-          '.html'
+          fileFILENAME
       )
       response.data.content.text = res.data
       return response

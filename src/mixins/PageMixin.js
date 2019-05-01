@@ -31,8 +31,13 @@ export const pageMixin = {
         this.loaded = true
         this.loading = false
       } catch (error) {
-        console.log('No exising page was found') // Logs out the error
+        console.log('No existing page was found') // Logs out the error
         if (this.$route.name != 'editPage') {
+          var css = this.bookmark.page.style
+            ? this.bookmark.page.style
+            : this.bookmark.book.style
+          css.replace('/', '-')
+          this.$route.params.cssFORMATTED = css
           this.$router.push({
             name: 'editPage',
             params: this.$route.params

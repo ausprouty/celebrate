@@ -1,15 +1,13 @@
 <template>
   <div>
     <NavBar/>
+    <div v-if="!this.authorized">
+      <p>You have stumbled into a restricted page. Sorry I can not show it to you now</p>
+    </div>
     <div class="loading" v-if="loading">Loading...</div>
     <div class="error" v-if="error">There was an error... {{this.error_message}}</div>
     <div class="content" v-if="loaded">
-      <div v-if="!this.authorized">
-        <p>You have stumbled into a restricted page. Sorry I can not show it to you now</p>
-      </div>
       <div v-if="this.authorized">
-        <link rel="stylesheet" v-bind:href="this.appDir.css + this.bookmark.book.style">
-
         <div class="app-link">
           <div class="app-card -shadow">
             <div v-on:click="goBack()">
@@ -72,7 +70,7 @@ export default {
       authorized: false,
       pageText: '',
       loading: false,
-      loaded: null,
+      loaded: true,
       error: null,
       htmlText: 'This is what I want to say',
       content: {
@@ -95,6 +93,7 @@ export default {
         extraAllowedContent: 'ol(*)',
         contentsCss: '/content/' + this.$route.params.css,
         stylesSet: this.$route.params.stylesSET,
+
         toolbarGroups: [
           { name: 'styles', groups: ['styles'] },
           { name: 'basicstyles', groups: ['basicstyles', 'cleanup'] },
@@ -118,7 +117,8 @@ export default {
           { name: 'about', groups: ['about'] }
         ],
         height: 600,
-        removeButtons: 'Underline,JustifyCenter'
+        removeButtons:
+          'About,Button,Checkbox,CreatePlaceholder,DocProps,Flash,Form,HiddenField,Iframe,ImageButton,NewPage,PageBreak,Preview,Print,Radio,Save,Scayt,Select,Smiley,SpecialChar,TextField,Textarea'
       }
     }
   },
@@ -149,56 +149,62 @@ export default {
         console.log('LIBRARY EDIT There was an error ', error)
         this.error = true
         this.loaded = false
-        this.error_message = valid.data.message
+        this.error_message = error
       }
-    }
-  },
-
-  async beforeCreate() {
-    console.log('before Create')
-    console.log(this.$route.params)
-    console.log(this.$route.params.bookNAME)
-    switch (this.$route.params.bookNAME) {
-      case 'firststeps':
-        this.$route.params.stylesSET = 'fsteps'
-        break
-      case 'basics':
-      case 'issues':
-      case 'myfriends':
-      case 'principles':
-        this.$route.params.stylesSET = 'myfriends'
-        break
-      case 'compass':
-        this.$route.params.stylesSET = 'compass'
-        break
-      case 'multiply':
-        this.$route.params.stylesSET = 'myfriends'
-        break
-      default:
-        this.$route.params.stylesSET = 'unknown'
-    }
-    this.$route.params.version = 'lastest'
-    this.$route.params.pageNAME = this.$route.params.fileFILENAME
-    var css = this.$route.params.cssFORMATTED
-    css.replace('-', '/')
-    this.$route.params.css = css
-    console.log('final params')
-    console.log(this.$route.params)
-  },
-  async created() {
-    try {
-      await this.getPage(this.$route.params)
-      this.authorized = this.authorize('write', this.$route.params.countryCODE)
-      console.log('css')
-      console.log(this.bookmark.book.style)
-    } catch (error) {
-      console.log('There was an error in Page.vue:', error) // Logs out the error
+    },
+    async beforeCreate() {
+      console.log('before Create')
+      console.log(this.$route.params)
+      console.log(this.$route.params.bookNAME)
+      switch (this.$route.params.bookNAME) {
+        case 'firststeps':
+          this.$route.params.stylesSET = 'fsteps'
+          break
+        case 'basics':
+        case 'issues':
+        case 'myfriends':
+        case 'principles':
+          this.$route.params.stylesSET = 'myfriends'
+          break
+        case 'compass':
+          this.$route.params.stylesSET = 'compass'
+          break
+        case 'multiply':
+          this.$route.params.stylesSET = 'myfriends'
+          break
+        default:
+          this.$route.params.stylesSET = 'unknown'
+      }
+      this.$route.params.version = 'lastest'
+      this.$route.params.pageNAME = this.$route.params.fileFILENAME
+      var css = this.$route.params.cssFORMATTED
+      css.replace('-', '/')
+      this.$route.params.css = css
+      console.log('final params')
+      console.log(this.$route.params)
+    },
+    async created() {
+      try {
+        console.log('in Created')
+        await this.getPage(this.$route.params)
+        console.log('Got page')
+        this.authorized = this.authorize(
+          'write',
+          this.$route.params.countryCODE
+        )
+        console.log('css')
+        console.log(this.bookmark.book.style)
+      } catch (error) {
+        console.log('There was an error in Page.vue:', error)
+        this.error = true
+        this.loaded = false
+        this.error_message = error // Logs out the error
+      }
     }
   }
 }
 </script>
-<style >
-</style>
+
 
 
 <style scoped>
