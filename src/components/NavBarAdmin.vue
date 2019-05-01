@@ -27,6 +27,7 @@ export default {
     return {
       showMenu: false,
       authorized: false,
+      administrator: false,
       menu: [
         {
           value: 'Login',
@@ -53,9 +54,15 @@ export default {
           show: false
         },
         {
+          value: 'Register Editor',
+          link: 'register',
+          index: 4,
+          show: false
+        },
+        {
           value: 'Logout',
           link: 'logout',
-          index: 4,
+          index: 5,
           show: false
         }
       ]
@@ -63,6 +70,10 @@ export default {
   },
   created() {
     this.authorized = this.authorize('read', this.$route.params.countryCODE)
+    this.administrator = this.authorize(
+      'register',
+      this.$route.params.countryCODE
+    )
     var arrayLength = this.menu
     for (var i = 0; i < arrayLength; i++) {
       this.menu[i].show = false
@@ -75,6 +86,9 @@ export default {
       if (this.bookmark.language.iso && this.bookmark.country.code) {
         this.menu[3].show = true
       }
+      this.menu[5].show = true
+    }
+    if (this.administrator) {
       this.menu[4].show = true
     }
     if (!this.authorized) {
@@ -126,6 +140,11 @@ export default {
               countryCODE: this.bookmark.country.code,
               languageISO: this.bookmark.language.iso
             }
+          })
+          break
+        case 'register':
+          this.$router.push({
+            name: 'farm'
           })
           break
         default:

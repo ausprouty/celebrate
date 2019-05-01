@@ -98,6 +98,7 @@ export default {
         templates_files: [
           '/templates/' + this.$route.params.stylesSET + 'CKEDITOR.js'
         ],
+        filebrowserUploadUrl: 'something.php',
         toolbarGroups: [
           { name: 'styles', groups: ['styles'] },
           { name: 'basicstyles', groups: ['basicstyles', 'cleanup'] },

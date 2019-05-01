@@ -26,6 +26,7 @@ import PagePreview from './views/PagePreview.vue'
 
 import Users from './views/Users.vue'
 import Login from './views/Login.vue'
+import Register from './views/Register.vue'
 import Custom from './views/CustomEditor.vue'
 import Validate from './views/Validate.vue'
 import Upload from './views/Upload.vue'
@@ -42,6 +43,12 @@ export default new Router({
       path: '/',
       name: 'countries',
       component: Countries
+    },
+    {
+      path: '/farm',
+      name: 'farm',
+      component: Register,
+      props: true
     },
     {
       path: '/languages/:countryCODE',

@@ -231,6 +231,15 @@ export default {
   isFoldername(s) {
     return s.match('^[a-zA-Z0-9-_/]+$')
   },
+  async registerUser(params) {
+    params.token = store.state.user.token
+    var contentForm = this.toFormData(params)
+    let response = await apiSELECT.post(
+      'AuthorApi.php?action=registerUser',
+      contentForm
+    )
+    return response
+  },
   setupCountries(countries) {
     var code = ''
     console.log('setupCountriess')

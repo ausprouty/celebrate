@@ -141,7 +141,7 @@ import { mapState } from 'vuex'
 import { bookMarkMixin } from '@/mixins/BookmarkMixin.js'
 import { languageMixin } from '@/mixins/LanguageMixin.js'
 import { authorMixin } from '@/mixins/AuthorMixin.js'
-import { required, minLength, maxLength } from 'vuelidate/lib/validators'
+import { required} from 'vuelidate/lib/validators'
 //import { validFoldername } from '@/validators/Validator.js'
 export default {
   mixins: [bookMarkMixin, languageMixin, authorMixin],
