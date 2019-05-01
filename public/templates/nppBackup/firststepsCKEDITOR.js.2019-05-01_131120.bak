@@ -1,0 +1,27 @@
+CKEDITOR.addTemplates("default", {
+	imagesPath: CKEDITOR.getUrl("/templates/images/firststeps"),
+	templates: [{
+		title: "Look Back",
+		image: "basics/LookBack.png",
+		description: "Image and Title",
+		html: '<div class="lesson"><img class="lesson-icon" src="/images/firststeps/look-back.png" />
+<div class="lesson-lookback">Look Back</div>
+</div>'
+	},  {
+		title: "Look Up",
+		image: "LookUp.png",
+		description: "Image and Title",
+		html: '<div class="lesson"><img class="lesson-icon" src="/images/firststeps/look-up.png" />
+<div class="lesson-lookup">Look Up</div>
+</div>'
+	}, {
+		title: "Look Forward",
+		image: "LookForward.png",
+		description: "Image and Title",
+		html: '<div class="lesson"><img class="lesson-icon" src="/images/firststeps/look-forward.png" />
+<div class="lesson-lookforward">Look Forward</div>
+</div>'
+	}, 
+	
+]
+});

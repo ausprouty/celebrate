@@ -1,0 +1,40 @@
+CKEDITOR.addTemplates("myfriends", {
+	imagesPath: CKEDITOR.getUrl("/templates/images/"),
+	templates: [{
+		title: "Share",
+		image: "share.png",
+		description: "Image and Title",
+		html: '<div class="lesson"><img class="lesson-icon" src="/images/sharing-life.png" />
+<div class="lesson-subtitle">SHARE</div>
+</div>'
+	},  {
+		title: "Review",
+		image: "review.png",
+		description: "Image and Title",
+		html: '<div class="lesson"><img class="lesson-icon" src="/images/review.png" />
+<div class="lesson-subtitle">REVIEW</div>
+</div>'
+	}, {
+		title: "Read",
+		image: "read.png",
+		description: "Image and Title",
+		html: '<div class="lesson"><img class="lesson-icon" src="/images/bible-study.png" />
+<div class="lesson-subtitle">READ</div>
+</div>'
+	}, {
+		title: "Discover",
+		image: "discover.png",
+		description: "Image and Title",
+		html: '<div class="lesson"><img class="lesson-icon" src="/images/discover.png" />
+<div class="lesson-subtitle">DISCOVER</div>
+</div>'
+	}, 
+	{
+		title: "Apply",
+		image: "apply.png",
+		description: "Image and Title",
+		html: '<div class="lesson"><img class="lesson-icon" src="/images/challenges.png" />
+<div class="lesson-subtitle">APPLY</div>
+</div>'
+	}, 
+});
