@@ -199,6 +199,15 @@ export default {
     }
     return styles
   },
+  async getTemplate(params) {
+    params.token = store.state.user.token
+    var contentForm = this.toFormData(params)
+    let response = await apiSELECT.post(
+      'AuthorApi.php?action=getTemplate',
+      contentForm
+    )
+    return response.data.content
+  },
   async getTemplates(params) {
     var templates = []
     // console.log('getTemplates')

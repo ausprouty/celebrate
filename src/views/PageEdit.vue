@@ -131,6 +131,22 @@ export default {
     goBack() {
       window.history.back()
     },
+    async loadTemplate() {
+      this.authorized = this.authorize('write', this.$route.params.countryCODE)
+      this.loading = false
+      this.loaded = true
+      if (this.bookmark.book.template) {
+        this.$route.params.template = this.bookmark.book.template
+        console.log('looking for template')
+        console.log(this.$route.params)
+        var res = await AuthorService.getTemplate(this.$route.params)
+        console.log(res)
+        if (res) {
+          console.log('I found template')
+          this.pageText = res
+        }
+      }
+    },
     async saveForm() {
       try {
         this.content.text = ContentService.validate(this.pageText)
@@ -161,24 +177,14 @@ export default {
   async beforeCreate() {
     console.log('before Create')
     console.log(this.$route.params)
-    switch (this.$route.params.bookNAME) {
-      case 'firststeps':
-        this.$route.params.stylesSET = 'fsteps'
-        break
-      case 'basics':
-      case 'issues':
-      case 'myfriends':
-      case 'principles':
-        this.$route.params.stylesSET = 'myfriends'
-        break
-      case 'compass':
-        this.$route.params.stylesSET = 'compass'
-        break
-      case 'multiply':
-        this.$route.params.stylesSET = 'myfriends'
-        break
-      default:
-        this.$route.params.stylesSET = 'unknown'
+    var ok = false
+    var styleSets = ['compass', 'firststeps', 'fsteps', 'myfriends', 'multiply']
+    this.$route.params.stylesSET = 'unknown'
+    var arrayLength = styleSets.length
+    for (var i = 0; i < arrayLength; i++) {
+      if (this.$route.params.cssFORMATTED.includes(styleSets[i])) {
+        this.$route.params.stylesSET = styleSets[i]
+      }
     }
     this.$route.params.version = 'lastest'
     this.$route.params.pageNAME = this.$route.params.fileFILENAME
@@ -199,9 +205,7 @@ export default {
       console.log(this.bookmark.book.style)
     } catch (error) {
       console.log('There was an error in Page.vue:', error)
-      this.error = true
-      this.loaded = false
-      this.error_message = error // Logs out the error
+      this.loadTemplate()
     }
   }
 }
