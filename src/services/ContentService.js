@@ -129,6 +129,9 @@ export default {
       //   console.log('get Series data')
       //   console.log(response)
       if (response.data.content) {
+        var text = JSON.parse( response.data.content.text)
+        response.data.content.description = text.description
+        response.data.content.chapters = text.chapters
         found = true
         response.source = 'data'
         return response

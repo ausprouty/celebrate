@@ -20,8 +20,8 @@
         </div>
       </div>
 
-      <h1 v-if="this.bookmark.page.count">{{this.bookmark.page.count}}. {{this.bookmark.page.title}}</h1>
-      <h1 v-else>{{this.bookmark.page.title}}</h1>
+      <h1 v-if="this.bookmark.page.count">{{this.bookmark.page.count}}.999 {{this.bookmark.page.title}}</h1>
+      <h1 v-else>{{this.bookmark.page.title}} 999</h1>
       <p>
         <span v-html="pageText"></span>
       </p>

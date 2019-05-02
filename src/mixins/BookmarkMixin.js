@@ -184,6 +184,7 @@ export const bookMarkMixin = {
             if route.page is not the same as bookmark 
             update book and erase all bookmark below*/
     async CheckBookmarkPage(route) {
+      console.log('entering bookmark page')
       if (!route.pageNAME) {
         this.$store.dispatch('unsetBookmark', ['page'])
         return null
@@ -198,12 +199,13 @@ export const bookMarkMixin = {
           if (route.pageNAME != currentPage) {
             console.log('BOOKMARK SERVICE --    we have a new page')
             if (typeof this.bookmark.series != 'undefined') {
-              // the page is part of a series
+              console.log('the page is part of a series with chapters as')
+              console.log(this.bookmark.series.chapters)
               if (typeof this.bookmark.series.chapters != 'undefined') {
                 var chapters = {}
                 chapters = this.bookmark.series.chapters
                 console.log('BOOKMARK SERVICE --    chapters')
-                 console.log(chapters)
+                console.log(chapters)
                 var length = chapters.length
                 for (var i = 0; i < length; i++) {
                   if (chapters[i].filename == route.pageNAME) {
@@ -213,6 +215,7 @@ export const bookMarkMixin = {
               } else {
                 value = this.bookmark.book
               }
+              console.log(value)
               this.$store.dispatch('updateBookmark', ['page', value])
             } else {
               // it is a basic page from the library

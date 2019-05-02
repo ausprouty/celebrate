@@ -4,7 +4,7 @@
     <div class="loading" v-if="loading">Loading...</div>
     <div class="error" v-if="error">There was an error... {{this.error_message}}</div>
     <div class="content" v-if="loaded">
-      <h1>Series for {{this.$route.params.countryCODE}}</h1>
+      <h1>Series for {{this.$route.params.countryCODE}} in {{this.$route.params.languageISO}}</h1>
       <div class="form">
         <span>Series Description:</span>
         <br>
