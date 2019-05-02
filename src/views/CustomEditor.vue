@@ -16,7 +16,7 @@
 
 <script>
 import NavBar from '@/components/NavBarAdmin.vue'
-import './ckeditor/index.js'
+// import './ckeditor/index.js'
 import VueCkeditor from 'vue-ckeditor2'
 
 export default {
@@ -28,33 +28,20 @@ export default {
   data() {
     return {
       config: {
-        extraPlugins: 'bidi',
+        extraPlugins: 'bidi,uploadimage,image2',
         extraAllowedContent: 'ol(*)',
         stylesSet: this.$route.params.css,
-       contentsCss: '/css/AU-' + this.$route.params.css +'.css',
-        toolbarGroups: [
-          { name: 'styles', groups: ['styles'] },
-          { name: 'basicstyles', groups: ['basicstyles', 'cleanup'] },
-          {
-            name: 'editing',
-            groups: ['find', 'selection', 'spellchecker', 'editing']
-          },
-          { name: 'links', groups: ['links'] },
-          { name: 'insert', groups: ['insert'] },
-          { name: 'forms', groups: ['forms'] },
-          { name: 'tools', groups: ['tools'] },
-          { name: 'document', groups: ['mode', 'document', 'doctools'] },
-          { name: 'clipboard', groups: ['clipboard', 'undo'] },
-          { name: 'others', groups: ['others'] },
-          '/',
-          {
-            name: 'paragraph',
-            groups: ['list', 'indent', 'blocks', 'align', 'bidi', 'paragraph']
-          },
-          { name: 'colors', groups: ['colors'] },
-          { name: 'about', groups: ['about'] }
-        ],
-        height: 300
+        contentsCss: '/css/AU-' + this.$route.params.css +'.css',
+        height: 300,
+
+        // Upload images to a CKFinder connector (note that the response type is set to JSON).
+        uploadUrl: '/apps/ckfinder/3.4.5/core/connector/php/connector.php?command=QuickUpload&type=Files&responseType=json',
+
+        // Configure your file manager integration. This example uses CKFinder 3 for PHP.
+        filebrowserBrowseUrl: '/apps/ckfinder/3.4.5/ckfinder.html',
+        filebrowserImageBrowseUrl: '/apps/ckfinder/3.4.5/ckfinder.html?type=Images',
+        filebrowserUploadUrl: '/apps/ckfinder/3.4.5/core/connector/php/connector.php?command=QuickUpload&type=Files',
+        filebrowserImageUploadUrl: '/apps/ckfinder/3.4.5/core/connector/php/connector.php?command=QuickUpload&type=Images',
       },
       content: `
   <div class="lesson">
