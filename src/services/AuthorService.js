@@ -32,7 +32,7 @@ export default {
   createContentData(obj) {
     var d = new Date()
     obj.edit_date = d.getTime()
-    obj.edit_uid = 1
+    obj.edit_uid = store.state.user.uid
     obj.token = store.state.user.token
     console.log('obj in Create Content')
     console.log(obj)

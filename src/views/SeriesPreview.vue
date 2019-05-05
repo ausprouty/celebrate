@@ -4,6 +4,9 @@
     <div class="loading" v-if="loading">Loading...</div>
     <div class="error" v-if="error">There was an error...{{this.error}}</div>
     <div class="content" v-if="loaded">
+      <div v-if="this.publish">
+        <button class="button" @click="this.publish('series', this.$route.params)">Publish</button>
+     </div>
       <div v-bind:class="this.dir">
         <link rel="stylesheet" v-bind:href="'/css/' + this.style">
         <div class="app-link">
@@ -47,6 +50,7 @@
 import { mapState } from 'vuex'
 import Chapter from '@/components/ChapterPreview.vue'
 import AuthorService from '@/services/AuthorService.js'
+import PublishService from '@/services/PublishService.js'
 import NavBar from '@/components/NavBarAdmin.vue'
 import { bookMarkMixin } from '@/mixins/BookmarkMixin.js'
 import { seriesMixin } from '@/mixins/SeriesMixin.js'
@@ -62,7 +66,8 @@ export default {
   data() {
     return {
       readonly: false,
-      write: false
+      write: false,
+       publish: false
     }
   },
 
@@ -106,6 +111,7 @@ export default {
       }
       this.readonly = this.authorize('readonly', this.$route.params.countryCODE)
       this.write = this.authorize('write', this.$route.params.countryCODE)
+       this.publish = this.authorize('publish', this.$route.params.countryCODE)
       this.loaded = true
       this.loading = false
     } catch (error) {

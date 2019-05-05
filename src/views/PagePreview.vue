@@ -4,6 +4,9 @@
     <div class="loading" v-if="loading">Loading...</div>
     <div class="error" v-if="error">There was an error... {{this.error}}</div>
     <div class="content" v-if="loaded">
+      <div v-if="this.publish">
+        <button class="button" @click="local_publish()">Publish</button>
+      </div>
       <link rel="stylesheet" v-bind:href="'/content/' + this.bookmark.book.style">
       <div class="app-link">
         <div class="app-card -shadow">
@@ -20,8 +23,10 @@
         </div>
       </div>
 
-      <h1 v-if="this.bookmark.page.count">{{this.bookmark.page.count}}.999 {{this.bookmark.page.title}}</h1>
-      <h1 v-else>{{this.bookmark.page.title}} 999</h1>
+      <h1
+        v-if="this.bookmark.page.count"
+      >{{this.bookmark.page.count}}.&nbsp; {{this.bookmark.page.title}}</h1>
+      <h1 v-else>{{this.bookmark.page.title}}</h1>
       <p>
         <span v-html="pageText"></span>
       </p>
@@ -38,6 +43,7 @@
 <script>
 import { mapState } from 'vuex'
 import ContentService from '@/services/ContentService.js'
+import PublishService from '@/services/PublishService.js'
 import NavBar from '@/components/NavBarAdmin.vue'
 import { bookMarkMixin } from '@/mixins/BookmarkMixin.js'
 import { pageMixin } from '@/mixins/PageMixin.js'
@@ -56,7 +62,8 @@ export default {
       loaded: null,
       error: null,
       read: false,
-      write: false
+      write: false,
+      publish: false
     }
   },
   methods: {
@@ -76,12 +83,14 @@ export default {
           pageFILENAME: this.$route.params.pageFILENAME,
           cssFORMATTED: clean,
           token: this.user.token
-
         }
       })
     },
     goBack() {
       window.history.back()
+    },
+    local_publish() {
+      PublishService.publish('page', this.bookmark)
     }
   },
   beforeCreate() {
@@ -92,6 +101,7 @@ export default {
       this.getPage(this.$route.params)
       this.read = this.authorize('read', this.$route.params.countryCODE)
       this.write = this.authorize('write', this.$route.params.countryCODE)
+      this.publish = this.authorize('publish', this.$route.params.countryCODE)
     } catch (error) {
       console.log('There was an error in Page.vue:', error) // Logs out the error
     }

@@ -4,6 +4,9 @@
     <div class="loading" v-if="loading">Loading...</div>
     <div class="error" v-if="error">There was an error... {{this.error}}</div>
     <div class="content" v-if="loaded">
+      <div v-if="this.publish">
+        <button class="button" @click="this.publish('library', this.$route.params)">Publish</button>
+     </div>
       <a v-bind:href="'/preview/language/' + this.bookmark.country.code">
         <img v-bind:src="appDir.library +  this.image_dir +'/journey.jpg'" class="app-img-header">
       </a>
@@ -30,6 +33,7 @@ import Book from '@/components/BookPreview.vue'
 import { mapState } from 'vuex'
 import NavBar from '@/components/NavBarAdmin.vue'
 import ContentService from '@/services/ContentService.js'
+import PublishService from '@/services/PublishService.js'
 import { bookMarkMixin } from '@/mixins/BookmarkMixin.js'
 import { libraryMixin } from '@/mixins/LibraryMixin.js'
 import { authorMixin } from '@/mixins/AuthorMixin.js'
@@ -44,7 +48,8 @@ export default {
   data() {
     return {
       readonly: false,
-      write: false
+      write: false,
+       publish: false
     }
   },
   methods: {
@@ -79,6 +84,7 @@ export default {
       await this.getLibrary()
       this.readonly = this.authorize('readonly', this.$route.params.countryCODE)
       this.write = this.authorize('write', this.$route.params.countryCODE)
+       this.publish = this.authorize('publish', this.$route.params.countryCODE)
       this.loaded = true
       this.loading = false
     } catch (error) {

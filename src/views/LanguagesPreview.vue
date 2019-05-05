@@ -4,6 +4,9 @@
     <div class="loading" v-if="loading">Loading...</div>
     <div class="error" v-if="error">There was an error... {{this.error}}</div>
     <div class="content" v-if="loaded">
+      <div v-if="this.publish">
+        <button class="button" @click="this.publish('languages', this.$route.params)">Publish</button>
+     </div>
       <a href="preview/languages">
         <img v-bind:src="appDir.root+'languages.jpg'" class="app-img-header">
       </a>
@@ -35,6 +38,7 @@
 import Language from '@/components/LanguagePreview.vue'
 import NavBar from '@/components/NavBarAdmin.vue'
 import ContentService from '@/services/ContentService.js'
+import PublishService from '@/services/PublishService.js'
 import { mapState } from 'vuex'
 import { bookMarkMixin } from '@/mixins/BookmarkMixin.js'
 import { languageMixin } from '@/mixins/LanguageMixin.js'
@@ -49,7 +53,8 @@ export default {
   data() {
     return {
       readonly: false,
-      write: false
+      write: false,
+       publish: false
     }
   },
   computed: mapState(['bookmark', 'appDir']),
@@ -82,6 +87,7 @@ export default {
       await this.getLanguages()
       this.readonly = this.authorize('readonly', this.$route.params.countryCODE)
       this.write = this.authorize('write', this.$route.params.countryCODE)
+       this.publish = this.authorize('publish', this.$route.params.countryCODE)
       this.ZZ = false
       if (this.$route.params.countryCODE == 'ZZ') {
         this.ZZ = true
