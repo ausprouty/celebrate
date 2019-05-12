@@ -10,7 +10,7 @@
         :key="country.code.$model"
         :country="country"
       >
-        <div class="app-card -shadow">
+        <div class="app-card -shadow" v-bind:class="{notpublished : !country.publish.$model}">
           <div class="float-right" style="cursor:pointer" @click="deleteCountryForm(index)">X</div>
           <form>
             <BaseInput
@@ -75,6 +75,18 @@
                 >
               </label>
             </div>
+            <BaseInput
+              v-model="country.publish.$model"
+              label="Publish"
+              type="text"
+              placeholder="true/false"
+              class="field"
+              :class="{ error: country.publish.$error }"
+              @blur="country.publish.$touch()"
+            />
+            <template v-if="country.publish.$error">
+              <div class="errorMessage" v-if="!country.publish.required">Do you want to publish now?</div>
+            </template>
           </form>
         </div>
       </div>
@@ -124,7 +136,8 @@ export default {
         english: null,
         code: null,
         index: null,
-        image: null
+        image: null,
+        publish: null
       },
       authorized: false
     }
@@ -137,7 +150,8 @@ export default {
         english: {},
         code: { required },
         index: {},
-        image: {}
+        image: {},
+        publish: { }
       }
     }
   },
@@ -151,7 +165,8 @@ export default {
         english: null,
         code: null,
         index: null,
-        image: null
+        image: null,
+        publish: null
       })
     },
     forceUpperCODE(value) {
@@ -205,6 +220,7 @@ export default {
         this.content.text = JSON.stringify(valid)
         this.content.filename = 'countries'
         this.content.filetype = 'json'
+        console.log (this.content)
         valid = await AuthorService.createContentData(this.content)
         if (valid.data.error != 'false') {
           this.$router.push({

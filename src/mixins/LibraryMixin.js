@@ -19,6 +19,9 @@ export const libraryMixin = {
       loaded: null,
       error: null,
       error_message: null,
+      publish: false,
+      publish_date: null,
+      recnum: null,
       content: {
         recnum: '',
         version: '',
@@ -49,6 +52,10 @@ export const libraryMixin = {
         console.log('Library Data obtained')
         if (response.data.content.text) {
           this.library = response.data.content.text
+          if (response.data.content.recnum) {
+            this.recnum = response.data.content.recnum
+            this.publish_date = response.data.content.publish_date
+          }
         } else {
           this.newLibrary()
         }

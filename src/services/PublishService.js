@@ -24,7 +24,7 @@ export default {
   publish(scope, params) {
     console.log('publish')
     console.log(params)
-    params.edit_uid = store.state.user.uid
+    params.my_uid = store.state.user.uid
     params.token = store.state.user.token
     switch (scope) {
       case 'countries':
@@ -47,23 +47,40 @@ export default {
   },
   publishCountries(params) {
     var contentForm = this.toFormData(params)
-    apiSECURE.post('PublishApi.php?action=publishCountries', contentForm)
+    apiSECURE.post(
+      'AuthorApi.php?page=publish&action=publishCountries',
+      contentForm
+    )
   },
   publishLanguage(params) {
     var contentForm = this.toFormData(params)
-    apiSECURE.post('PublishApi.php?action=publishLanguage', contentForm)
+    apiSECURE.post(
+      'AuthorApi.php?page=publish&action=publishLanguage',
+      contentForm
+    )
   },
   publishLibrary(params) {
     var contentForm = this.toFormData(params)
-    apiSECURE.post('PublishApi.php?action=publishLibrar', contentForm)
+    apiSECURE.post(
+      'AuthorApi.php?page=publish&action=publishLibrary',
+      contentForm
+    )
   },
   publishSeries(params) {
+    console.log('params in publish Series')
+    console.log(params)
     var contentForm = this.toFormData(params)
-    apiSECURE.post('PublishApi.php?action=publishSeries', contentForm)
+    apiSECURE.post(
+      'AuthorApi.php?page=publish&action=publishSeries',
+      contentForm
+    )
   },
   publishPage(params) {
+    console.log('params in publish Page')
+    console.log(params)
     var contentForm = this.toFormData(params)
-    apiSECURE.post('AuthorApi.php?action= publishPage', contentForm)
+
+    apiSECURE.post('AuthorApi.php?page=publish&action=publishPage', contentForm)
   },
   toFormData(obj) {
     var form_data = new FormData()

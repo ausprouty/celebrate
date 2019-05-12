@@ -1,6 +1,6 @@
 <template>
   <div class="app-link" v-on:click="showLanguagePage(country)">
-    <div class="shadow-card -shadow">
+    <div class="shadow-card -shadow" v-bind:class="{notpublished : !country.publish}">
       <img v-bind:src="appDir.country+ country.image" class="flag">
       <div class="card-names">
         <span class="card-name">{{country.name}}</span>
@@ -48,15 +48,7 @@ div.break {
   display: inline;
 }
 
-.shadow-card {
-  background-color: #efefef;
-  cursor: pointer;
-  margin-bottom: 12px;
-  padding: 10px;
-  text-align: left;
-  transition: all 0.2s linear;
-  width: 95%;
-}
+
 div.card-names {
   float: right;
   font-size: 18px;

@@ -22,6 +22,9 @@ export const seriesMixin = {
       loaded: null,
       error: null,
       error_message: null,
+      publish: false,
+      publish_date: null,
+      recnum: null,
       content: {
         recnum: '',
         version: '',
@@ -57,7 +60,11 @@ export const seriesMixin = {
         console.log('Series Data obtained')
         console.log(response)
         if (response.data.content.text) {
-          // is this needed for latest data?
+          // latest data
+          if (response.data.content.recnum) {
+            this.recnum = response.data.content.recnum
+            this.publish_date = response.data.content.publish_date
+          }
           this.seriesDetails = JSON.parse(response.data.content.text)
           console.log('Series Details')
           console.log(this.seriesDetails)

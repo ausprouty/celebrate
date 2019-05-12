@@ -50,6 +50,7 @@ body {
   font-size: 16px;
   line-height: 1.5;
 }
+
 #app {
   box-sizing: border-box;
   width: 90%;
@@ -400,5 +401,8 @@ div.lesson-lookforward {
   color: var(--color-forward);
   display: inline;
   text-align: left;
+}
+.notpublished {
+  background-color: yellow;
 }
 </style>

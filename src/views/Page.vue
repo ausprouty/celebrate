@@ -43,10 +43,6 @@ export default {
   computed: mapState(['bookmark', 'appDir', 'cssURL', 'standard']),
   data() {
     return {
-      pageText: '',
-      loading: false,
-      loaded: null,
-      error: null,
       image_dir: null,
       image: null,
       book_image: null,

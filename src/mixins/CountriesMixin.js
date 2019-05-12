@@ -4,16 +4,21 @@ export const countriesMixin = {
     return {
       countries: [
         {
-          code: '',
-          english: '',
-          name: '',
-          index: ''
+          name: null,
+          english: null,
+          code: null,
+          index: null,
+          image: null,
+          publish: null
         }
       ],
       loading: false,
       loaded: null,
       error: null,
       error_message: null,
+      publish: false,
+      publish_date: null,
+      recnum: null,
       content: {
         recnum: '',
         version: '',
@@ -41,6 +46,10 @@ export const countriesMixin = {
         var response = await ContentService.getCountries(this.$route.params)
         console.log('Page View Data obtained')
         this.countries = response.data.content.text
+        if (response.data.content.recnum) {
+          this.recnum = response.data.content.recnum
+          this.publish_date = response.data.content.publish_date
+        }
         this.loaded = true
         this.loading = false
       } catch (error) {

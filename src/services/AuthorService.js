@@ -32,18 +32,24 @@ export default {
   createContentData(obj) {
     var d = new Date()
     obj.edit_date = d.getTime()
-    obj.edit_uid = store.state.user.uid
+    obj.my_uid = store.state.user.uid
     obj.token = store.state.user.token
     console.log('obj in Create Content')
     console.log(obj)
     var contentForm = this.toFormData(obj)
     console.log('about to create content')
-    return apiSECURE.post('AuthorApi.php?action=createContent', contentForm)
+    return apiSECURE.post(
+      'AuthorApi.php?page=create&action=createContent',
+      contentForm
+    )
   },
   createContentFolder(params) {
     params.token = store.state.user.token
     var contentForm = this.toFormData(params)
-    apiSECURE.post('AuthorApi.php?action=createContentFolder', contentForm)
+    apiSECURE.post(
+      'AuthorApi.php?page=create&action=createContentFolder',
+      contentForm
+    )
   },
 
   createDirectoryLanguages(country, languages) {
@@ -61,7 +67,10 @@ export default {
         obj.code = code
         obj.token = store.state.user.token
         var contentForm = this.toFormData(obj)
-        apiSECURE.post('AuthorApi.php?action=createDir', contentForm)
+        apiSECURE.post(
+          'AuthorApi.php?page=create&action=createDir',
+          contentForm
+        )
       }
     }
   },
@@ -74,7 +83,10 @@ export default {
       obj.country_code = country
       obj.token = store.state.user.token
       var contentForm = this.toFormData(obj)
-      apiSECURE.post('AuthorApi.php?action=createDirectoryMenu', contentForm)
+      apiSECURE.post(
+        'AuthorApi.php?page=create&action=createDirectoryMenu',
+        contentForm
+      )
     }
   },
   async createSeriesIndex(params) {
@@ -82,7 +94,10 @@ export default {
     console.log(params)
     params.token = store.state.user.token
     var contentForm = this.toFormData(params)
-    apiSECURE.post('AuthorApi.php?action=createSeriesIndex', contentForm)
+    apiSECURE.post(
+      'AuthorApi.php?page=create&action=createSeriesIndex',
+      contentForm
+    )
   },
 
   async createStyle(params) {
@@ -95,7 +110,10 @@ export default {
       obj.country_code = params.country_code
       obj.token = store.state.user.token
       var contentForm = this.toFormData(obj)
-      apiSECURE.post('AuthorApi.php?action=createStyle', contentForm)
+      apiSECURE.post(
+        'AuthorApi.php?page=create&action=createStyle',
+        contentForm
+      )
     } else {
       console.log('NOT letters')
     }
@@ -114,13 +132,17 @@ export default {
       obj.folder = params.folder
       obj.token = store.state.user.token
       var contentForm = this.toFormData(obj)
-      apiSECURE.post('AuthorApi.php?action=createTemplate', contentForm)
+      apiSECURE.post(
+        'AuthorApi.php?page=create&action=createTemplate',
+        contentForm
+      )
       return true
     } else {
       console.log('NOT letters')
       return false
     }
   },
+  ////////////////////////////////////////////////
   async getFoldersContent(params) {
     //console.log('getFolders')
     var folders = []

@@ -8,7 +8,10 @@ export const languageMixin = {
       loading: false,
       loaded: null,
       error: null,
-      error_message: null
+      error_message: null,
+      publish: false,
+      publish_date: null,
+      recnum: null,
     }
   },
   methods: {
@@ -23,6 +26,10 @@ export const languageMixin = {
         console.log('get languages')
         console.log(response)
         this.languages = response.data.content.text
+        if (response.data.content.recnum) {
+          this.recnum = response.data.content.recnum
+          this.publish_date = response.data.content.publish_date
+        }
       } catch (error) {
         console.log('There was an error in LanguageMixin:', error) // Logs out the error
       }

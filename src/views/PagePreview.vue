@@ -55,17 +55,7 @@ export default {
     NavBar
   },
   computed: mapState(['bookmark', 'appDir', 'cssURL']),
-  data() {
-    return {
-      pageText: '',
-      loading: false,
-      loaded: null,
-      error: null,
-      read: false,
-      write: false,
-      publish: false
-    }
-  },
+
   methods: {
     editPage() {
       var css = this.bookmark.page.style
@@ -90,7 +80,9 @@ export default {
       window.history.back()
     },
     local_publish() {
-      PublishService.publish('page', this.bookmark)
+      var params = {}
+      params.recnum = this.recnum
+      PublishService.publish('page', params)
     }
   },
   beforeCreate() {
@@ -98,10 +90,16 @@ export default {
   },
   async created() {
     try {
-      this.getPage(this.$route.params)
+      await this.getPage(this.$route.params)
       this.read = this.authorize('read', this.$route.params.countryCODE)
       this.write = this.authorize('write', this.$route.params.countryCODE)
-      this.publish = this.authorize('publish', this.$route.params.countryCODE)
+      var may_publish = this.authorize(
+        'publish',
+        this.$route.params.countryCODE
+      )
+      if (may_publish && this.recnum && this.publish_date == null) {
+        this.publish = true
+      }
     } catch (error) {
       console.log('There was an error in Page.vue:', error) // Logs out the error
     }

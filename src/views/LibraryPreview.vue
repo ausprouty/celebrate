@@ -5,8 +5,8 @@
     <div class="error" v-if="error">There was an error... {{this.error}}</div>
     <div class="content" v-if="loaded">
       <div v-if="this.publish">
-        <button class="button" @click="this.publish('library', this.$route.params)">Publish</button>
-     </div>
+        <button class="button" @click="localPublish()">Publish</button>
+      </div>
       <a v-bind:href="'/preview/language/' + this.bookmark.country.code">
         <img v-bind:src="appDir.library +  this.image_dir +'/journey.jpg'" class="app-img-header">
       </a>
@@ -49,7 +49,7 @@ export default {
     return {
       readonly: false,
       write: false,
-       publish: false
+      publish: false
     }
   },
   methods: {
@@ -73,23 +73,38 @@ export default {
     },
     goBack() {
       window.history.back()
+    },
+    async localPublish() {
+      var params = {}
+      params.recnum = this.recnum
+      await PublishService.publish('library', params)
+      this.loaded = false
+      this.loading = true
+      this.publish = false
+      await this.loadView()
+    },
+    async loadView() {
+      try {
+        this.$store.dispatch('newBookmark', 'clear')
+        await this.getLibrary()
+        this.readonly = this.authorize(
+          'readonly',
+          this.$route.params.countryCODE
+        )
+        this.write = this.authorize('write', this.$route.params.countryCODE)
+        this.publish = this.authorize('publish', this.$route.params.countryCODE)
+        this.loaded = true
+        this.loading = false
+      } catch (error) {
+        console.log('There was an error in LibraryEdit.vue:', error) // Logs out the error
+      }
     }
   },
   beforeCreate() {
     this.$route.params.version = 'latest'
   },
   async created() {
-    try {
-      this.$store.dispatch('newBookmark', 'clear')
-      await this.getLibrary()
-      this.readonly = this.authorize('readonly', this.$route.params.countryCODE)
-      this.write = this.authorize('write', this.$route.params.countryCODE)
-       this.publish = this.authorize('publish', this.$route.params.countryCODE)
-      this.loaded = true
-      this.loading = false
-    } catch (error) {
-      console.log('There was an error in LibraryEdit.vue:', error) // Logs out the error
-    }
+    await this.loadView()
   }
 }
 </script>

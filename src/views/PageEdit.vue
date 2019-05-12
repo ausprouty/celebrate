@@ -69,11 +69,6 @@ export default {
   data() {
     return {
       authorized: false,
-      pageText: '',
-      loading: false,
-      loaded: true,
-      error: null,
-      htmlText: 'This is what I want to say',
       content: {
         recnum: '',
         version: '',

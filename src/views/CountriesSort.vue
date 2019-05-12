@@ -96,15 +96,6 @@ export default {
 .float-right {
   text-align: right;
 }
-.shadow-card {
-  background-color: #efefef;
-  cursor: pointer;
-  margin-bottom: 12px;
-  padding: 10px;
-  text-align: left;
-  transition: all 0.2s linear;
-  width: 95%;
-}
 div.card-names {
   float: right;
   font-size: 18px;

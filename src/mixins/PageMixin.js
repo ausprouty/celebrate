@@ -1,5 +1,18 @@
 import ContentService from '@/services/ContentService.js'
 export const pageMixin = {
+  data() {
+    return {
+      pageText: '',
+      loading: false,
+      loaded: null,
+      error: null,
+      read: false,
+      write: false,
+      publish: false,
+      publish_date: null,
+      recnum: null
+    }
+  },
   methods: {
     async getPage() {
       try {
@@ -27,6 +40,10 @@ export const pageMixin = {
           this.appDir.library + this.image_dir + '/' + this.image
 
         var response = await ContentService.getPage(this.$route.params)
+        if (response.data.content.recnum) {
+          this.recnum = response.data.content.recnum
+          this.publish_date = response.data.content.publish_date
+        }
         this.pageText = response.data.content.text
         this.loaded = true
         this.loading = false
@@ -44,9 +61,15 @@ export const pageMixin = {
           })
         }
         if (this.bookmark.book.template) {
-          var params = {}
           this.$route.params.fileFILENAME = this.bookmark.book.template
           response = await ContentService.getPage(this.$route.params)
+          // is this coming from database
+          console.log('line 63 in mixin')
+          console.log(response)
+          if (response.data.content.recnum) {
+            this.recnum = response.data.content.recnum
+            this.publish_date = response.data.content.publish_date
+          }
           this.pageText = response.data.content.text
           this.loaded = true
           this.loading = false

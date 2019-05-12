@@ -5,8 +5,8 @@
     <div class="error" v-if="error">There was an error...{{this.error}}</div>
     <div class="content" v-if="loaded">
       <div v-if="this.publish">
-        <button class="button" @click="this.publish('series', this.$route.params)">Publish</button>
-     </div>
+        <button class="button" @click="localPublish()">Publish</button>
+      </div>
       <div v-bind:class="this.dir">
         <link rel="stylesheet" v-bind:href="'/css/' + this.style">
         <div class="app-link">
@@ -67,7 +67,7 @@ export default {
     return {
       readonly: false,
       write: false,
-       publish: false
+      publish: false
     }
   },
 
@@ -94,29 +94,50 @@ export default {
     },
     goBack() {
       window.history.back()
+    },
+    async localPublish() {
+      var params = {}
+      params.recnum = this.recnum
+      await PublishService.publish('series', params)
+      this.loaded = false
+      this.loading = true
+      this.publish = false
+      this.loadView()
+    },
+    async loadView() {
+      try {
+        await this.getSeries(this.$route.params)
+        if (
+          this.bookmark.series.length == 0 &&
+          this.$route.params.fileFILENAME == 'first_steps'
+        ) {
+          await AuthorService.setupSeriesFirstSteps(this.$route.params)
+          await this.getSeries(this.$route.params)
+        }
+        this.readonly = this.authorize(
+          'readonly',
+          this.$route.params.countryCODE
+        )
+        this.write = this.authorize('write', this.$route.params.countryCODE)
+        var may_publish = this.authorize(
+          'publish',
+          this.$route.params.countryCODE
+        )
+        if (may_publish && this.recnum && this.publish_date == null) {
+          this.publish = true
+        }
+        this.loaded = true
+        this.loading = false
+      } catch (error) {
+        console.log('There was an error in SeriesEdit.vue:', error) // Logs out the error
+      }
     }
   },
   beforeCreate() {
     this.$route.params.version = 'latest'
   },
   async created() {
-    try {
-      await this.getSeries(this.$route.params)
-      if (
-        this.bookmark.series.length == 0 &&
-        this.$route.params.fileFILENAME == 'first_steps'
-      ) {
-        await AuthorService.setupSeriesFirstSteps(this.$route.params)
-        await this.getSeries(this.$route.params)
-      }
-      this.readonly = this.authorize('readonly', this.$route.params.countryCODE)
-      this.write = this.authorize('write', this.$route.params.countryCODE)
-       this.publish = this.authorize('publish', this.$route.params.countryCODE)
-      this.loaded = true
-      this.loading = false
-    } catch (error) {
-      console.log('There was an error in SeriesEdit.vue:', error) // Logs out the error
-    }
+    await this.loadView()
   }
 }
 </script>
