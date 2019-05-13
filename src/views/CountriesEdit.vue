@@ -185,7 +185,7 @@ export default {
           var type = AuthorService.typeImage(checkfile[0])
           if (type) {
             var params = {}
-            params.directory = 'flag'
+            params.directory =  'images/country'
             params.name = code
             AuthorService.storeImage(params, checkfile[0])
 

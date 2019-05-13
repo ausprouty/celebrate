@@ -16,7 +16,7 @@
           :key="chapter.id"
           :chapter="chapter"
         >
-          <div class="app-card -shadow">
+          <div class="app-card -shadow" v-bind:class="{notpublished : !chapter.publish.$model}">
             <div class="float-right" style="cursor:pointer" @click="deleteChapterForm(index)">X</div>
             <div class="form">
               <BaseInput

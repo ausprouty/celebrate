@@ -1,20 +1,29 @@
 <template>
   <div>
     <NavBar/>
-     
+
     <div class="loading" v-if="loading">Loading...</div>
     <div class="error" v-if="error">There was an error... {{this.error_message}}</div>
     <div class="content" v-if="loaded">
-     <div v-if="!this.authorized">
+      <div v-if="!this.authorized">
         <p>You have stumbled into a restricted page. Sorry I can not show it to you now</p>
       </div>
       <div v-if="this.authorized">
         <h1>Library</h1>
         <div>
           <div v-for="(book, index) in $v.library.$each.$iter" :key="book.code" :book="book">
-            <div class="app-card -shadow">
+            <div class="app-card -shadow" v-bind:class="{notpublished : !book.publish.$model}">
               <div class="float-right" style="cursor:pointer" @click="deleteBookForm(index)">X</div>
               <div>
+                <BaseInput
+                  v-model="book.id.$model"
+                  label="Book ID"
+                  type="text"
+                  placeholder="ID"
+                  class="field"
+                  :class="{ error: book.id.$error }"
+                  @blur="book.id.$touch()"
+                />
                 <BaseInput
                   v-model="book.title.$model"
                   label="Book Title"
@@ -105,6 +114,7 @@
                   </div>
                   <div v-if="image_permission">
                     <label>
+                      Add new Image&nbsp;&nbsp;&nbsp;&nbsp;
                       <input
                         type="file"
                         v-bind:id="book.book.$model"
@@ -186,6 +196,10 @@
                   <template v-if="template_error">
                     <p class="errorMessage">Only .html files may be uploaded as templates</p>
                   </template>
+                  <input type="checkbox" id="checkbox" v-model="book.publish.$model">
+                  <label for="checkbox">
+                    <h2>Publish?</h2>
+                  </label>
                 </div>
               </div>
             </div>
@@ -238,6 +252,7 @@ export default {
         index: null,
         new_book: null,
         style: null,
+        publish: null,
         template: null,
         title: null
       },
@@ -258,6 +273,7 @@ export default {
     library: {
       required,
       $each: {
+        id: { required },
         book: { required },
         title: { required },
         folder: { required },
@@ -265,7 +281,8 @@ export default {
         style: { required },
         image: { required },
         format: { required },
-        template: ''
+        template: '',
+        publish: ''
       }
     }
   },
@@ -280,7 +297,8 @@ export default {
         style: null,
         image: null,
         format: null,
-        template: null
+        template: null,
+        publish: null
       })
     },
     addNewBookTitle(title) {
@@ -326,17 +344,22 @@ export default {
           var type = AuthorService.typeImage(checkfile[0])
           if (type) {
             var params = {}
-            params.directory = this.bookmark.language.image_dir
+            params.directory = 'content/' + this.bookmark.language.image_dir
             params.name = code
+            console.log('Uploading File')
+            console.log(params)
             AuthorService.storeImage(params, checkfile[0])
-
             for (i = 0; i < arrayLength; i++) {
-              checkfile = this.$v.countries.$each[i]
-              if (checkfile.code.$model == code) {
-                this.$v.countries.$each[i].$model.image = 'default.png'
-                this.$v.countries.$each[i].$model.image = code + type
+              checkfile = this.$v.library.$each[i]
+              console.log('checkfile')
+              console.log(checkfile)
+              if (checkfile.$model.book == code) {
+                console.log('equal')
+                console.log(checkfile.$model.book)
+                //this.$v.library.$each[i].$model.image = 'default.png'
+                this.$v.library.$each[i].$model.image = code + type
                 console.log(' I reset ' + i)
-                console.log(this.$v.countries.$each)
+                console.log(this.$v.library.$each)
               }
             }
           }

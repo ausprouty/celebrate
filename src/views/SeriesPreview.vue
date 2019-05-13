@@ -10,7 +10,7 @@
       <div v-bind:class="this.dir">
         <link rel="stylesheet" v-bind:href="'/css/' + this.style">
         <div class="app-link">
-          <div class="app-card -shadow">
+          <div class="app-card -shadow" v-bind:class="{notpublished : !language.publish.$model}">
             <a
               v-bind:href="'/preview/languages/' + this.bookmark.country.code + '/' +  + this.bookmark.language.iso"
             >

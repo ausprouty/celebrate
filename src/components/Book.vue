@@ -66,7 +66,7 @@ img.book {
 div.book {
   vertical-align: top;
   width: 70%;
-  font-size: 18px;
+  font-size: 24px;
   float: right;
 }
 .book {
