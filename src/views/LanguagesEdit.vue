@@ -13,7 +13,7 @@
             :key="language.id"
             :language="language"
           >
-            <div class="app-card -shadow">
+            <div class="app-card -shadow" v-bind:class="{notpublished : !language.publish.$model}">
               <div class="float-right" style="cursor:pointer" @click="deleteLanguageForm(index)">X</div>
               <form @submit.prevent="saveForm">
                 <BaseInput
@@ -107,6 +107,9 @@
                       class="errorMessage"
                     >Text Direction is required</p>
                   </template>
+
+                  <input type="checkbox" id="checkbox" v-model="language.publish.$model">
+                  <label for="checkbox"><h2>Publish?</h2></label>
                 </div>
               </form>
             </div>
@@ -153,10 +156,12 @@ export default {
   data() {
     return {
       languages: {
-        name: '',
-        iso: '',
-        image_dir: '',
-        lrdir: ''
+        name: null,
+        iso: null,
+        folder:null,
+        image_dir:null,
+        lrdir: null,
+        publish: null
       },
       image_folders: [],
       content_folders: [],
@@ -172,7 +177,8 @@ export default {
         iso: { required },
         folder: { required },
         image_dir: { required },
-        rldir: { required }
+        rldir: { required },
+        publish:{}
       }
     }
   },

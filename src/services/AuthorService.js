@@ -51,7 +51,7 @@ export default {
       contentForm
     )
   },
-
+  // languages is an array of language objects
   createDirectoryLanguages(country, languages) {
     var code = ''
     console.log('createDirectoryLanguages')
@@ -64,6 +64,7 @@ export default {
         var obj = {}
         obj.scope = 'language'
         obj.country = country
+        console.log('Creating language directory for ' + code)
         obj.code = code
         obj.token = store.state.user.token
         var contentForm = this.toFormData(obj)

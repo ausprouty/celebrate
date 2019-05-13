@@ -1,6 +1,6 @@
 <template>
   <div class="app-link" v-on:click="showPage(language)">
-    <div class="app-card -shadow">
+    <div class="app-card -shadow"  v-bind:class="{notpublished : !language.publish}">
       <div class="language">
         <span class="bold">{{language.name}}</span>
       </div>

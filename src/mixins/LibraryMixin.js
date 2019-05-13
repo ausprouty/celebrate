@@ -49,14 +49,15 @@ export const libraryMixin = {
         await this.CheckBookmarks(this.$route.params)
         console.log(this.bookmark)
         var response = await ContentService.getLibrary(this.$route.params)
-        console.log('Library Data obtained')
+        console.log('Library Data obtained:')
+        console.log(response.data.content.text)
         if (response.data.content.text) {
           this.library = response.data.content.text
           if (response.data.content.recnum) {
             this.recnum = response.data.content.recnum
             this.publish_date = response.data.content.publish_date
           }
-        } else {
+        } else {  // you are never going to get here because you will get an error from ContentService.getLibrary
           this.newLibrary()
         }
         this.image_dir = this.standard.image_dir

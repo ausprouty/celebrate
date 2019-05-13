@@ -1,5 +1,5 @@
 import axios from 'axios'
-
+import AuthorService from '@/services/AuthorService.js'
 const apiContent = axios.create({
   //baseURL: `http://prototype.myfriends.network`,
   // baseURL: `http://localhost:8080`,
@@ -105,18 +105,40 @@ export default {
     }
     // if no data or need current get content
     if (!found) {
-      response.data = {}
-      response.data.content = {}
-      let res = await apiContent.get(
-        '/content/' +
-          params.countryCODE +
-          '/' +
-          params.languageISO +
-          '/library.json'
-      )
-      response.data.content.text = res.data
-      response.source = 'content'
-      return response
+      try {
+        console.log('Library data not found')
+        response.data = {}
+        response.data.content = {}
+        let res = await apiContent.get(
+          '/content/' +
+            params.countryCODE +
+            '/' +
+            params.languageISO +
+            '/library.json'
+        )
+        response.data.content.text = res.data
+        response.source = 'content'
+        return response
+        // no library.json
+      } catch (error) {
+        console.log('We are going to try to create Directory Languages')
+        await AuthorService.setupLanguageFolder(
+          params.countryCODE,
+          params.languageISO
+        )
+        response.data = {}
+        response.data.content = {}
+        let res = await apiContent.get(
+          '/content/' +
+            params.countryCODE +
+            '/' +
+            params.languageISO +
+            '/library.json'
+        )
+        response.data.content.text = res.data
+        response.source = 'content'
+        return response
+      }
     }
   },
   async getSeries(params) {
@@ -129,7 +151,7 @@ export default {
       //   console.log('get Series data')
       //   console.log(response)
       if (response.data.content) {
-        var text = JSON.parse( response.data.content.text)
+        var text = JSON.parse(response.data.content.text)
         response.data.content.description = text.description
         response.data.content.chapters = text.chapters
         found = true
@@ -139,30 +161,32 @@ export default {
     }
     // if no data or need current get content
     if (!found) {
-      response.data = {}
-      response.data.content = {}
-      // may need to remove .json from some FILENAME
-      var filename = params.fileFILENAME // this is index and is required
-      if (!filename.includes('.json')) {
-        filename = filename + '.json'
-      }
-      let res = await apiContent.get(
-        'content/' +
-          params.countryCODE +
-          '/' +
-          params.languageISO +
-          '/' +
-          params.folderNAME +
-          '/' +
-          filename
-      )
-      response.data.content = res.data
-      return response
+      try {
+        response.data = {}
+        response.data.content = {}
+        // may need to remove .json from some FILENAME
+        var filename = params.fileFILENAME // this is index and is required
+        if (!filename.includes('.json')) {
+          filename = filename + '.json'
+        }
+        let res = await apiContent.get(
+          'content/' +
+            params.countryCODE +
+            '/' +
+            params.languageISO +
+            '/' +
+            params.folderNAME +
+            '/' +
+            filename
+        )
+        response.data.content = res.data
+        return response
+      } catch (error) {}
     }
   },
   async getPage(params) {
-    console.log ('getPage params:')
-    console.log (params)
+    console.log('getPage params:')
+    console.log(params)
     var found = false
     var response = {}
     response.data = {}

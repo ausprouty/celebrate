@@ -75,18 +75,11 @@
                 >
               </label>
             </div>
-            <BaseInput
-              v-model="country.publish.$model"
-              label="Publish"
-              type="text"
-              placeholder="true/false"
-              class="field"
-              :class="{ error: country.publish.$error }"
-              @blur="country.publish.$touch()"
-            />
-            <template v-if="country.publish.$error">
-              <div class="errorMessage" v-if="!country.publish.required">Do you want to publish now?</div>
-            </template>
+
+            <input type="checkbox" id="checkbox" v-model="country.publish.$model">
+            <label for="checkbox"><h2>Publish?</h2></label>
+
+           
           </form>
         </div>
       </div>
@@ -151,7 +144,7 @@ export default {
         code: { required },
         index: {},
         image: {},
-        publish: { }
+        publish: {}
       }
     }
   },
@@ -220,7 +213,7 @@ export default {
         this.content.text = JSON.stringify(valid)
         this.content.filename = 'countries'
         this.content.filetype = 'json'
-        console.log (this.content)
+        console.log(this.content)
         valid = await AuthorService.createContentData(this.content)
         if (valid.data.error != 'false') {
           this.$router.push({

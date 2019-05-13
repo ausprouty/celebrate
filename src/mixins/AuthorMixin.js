@@ -7,6 +7,9 @@ export const authorMixin = {
   computed: mapState(['user']),
   methods: {
     authorize(reason, code) {
+      if (typeof code == 'undefined') {
+        return false
+      }
       console.log('authorize for ' + reason + ' with code ' + code)
       var scope = this.user.scope
       //   console.log (scope)
