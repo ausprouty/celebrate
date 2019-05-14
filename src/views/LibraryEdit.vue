@@ -141,7 +141,7 @@
                       v-model="book.index.$model"
                       label="Index Filename"
                       type="text"
-                      placeholder="Index"
+                      placeholder
                       class="field"
                       :class="{ error:book.index.$error }"
                       @blur="book.index.$touch()"
@@ -277,7 +277,7 @@ export default {
         book: { required },
         title: { required },
         folder: { required },
-        index: '',
+        index: {}, // can not be required because some items do not have index
         style: { required },
         image: { required },
         format: { required },

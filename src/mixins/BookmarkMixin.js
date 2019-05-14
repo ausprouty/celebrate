@@ -12,22 +12,22 @@ export const bookMarkMixin = {
       this.$store.dispatch('unsetBookmark', ['country'])
     },
     async CheckBookmarks(route) {
-      //  console.log('BOOKMARK SERVICE started')
+      //  console.log('BOOKMARK MIXIN started')
       try {
         await this.CheckBookmarkCountry(route)
         await this.CheckBookmarkLanguageLibrary(route)
         await this.CheckBookmarkBookSeries(route)
         await this.CheckBookmarkPage(route)
         //  console.log(this.bookmark)
-        //  console.log('BOOKMARK SERVICE --    FINISHED BOOKMARK')
+        //  console.log('BOOKMARK MIXIN --    FINISHED BOOKMARK')
         localStorage.setItem('bookmark', JSON.stringify(this.bookmark))
         return this.bookmark
       } catch (error) {
         console.log(
-          'BOOKMARK SERVICE -- There was an error setting bookmarks:',
+          'BOOKMARK MIXIN -- There was an error setting bookmarks:',
           error
         ) // Logs out the error
-        this.error = error.toString() + 'BOOKMARK SERVICE --CheckBookmarks'
+        this.error = error.toString() + 'BOOKMARK MIXIN --CheckBookmarks'
         return null
       }
     },
@@ -54,15 +54,15 @@ export const bookMarkMixin = {
           }
           this.$store.dispatch('updateBookmark', ['country', value])
         }
-        //    console.log('BOOKMARK SERVICE --CheckBookmarkCountry    FINISHING ')
+        //    console.log('BOOKMARK MIXIN --CheckBookmarkCountry    FINISHING ')
         return this.bookmark
       } catch (error) {
         console.log(
-          'BOOKMARK SERVICE --CheckBookmarkCountry There was an error ',
+          'BOOKMARK MIXIN --CheckBookmarkCountry There was an error ',
           error
         )
         this.error =
-          error.toString() + 'BOOKMARK SERVICE --CheckBookmarkCountry'
+          error.toString() + 'BOOKMARK MIXIN --CheckBookmarkCountry'
         return null
       }
     },
@@ -105,19 +105,19 @@ export const bookMarkMixin = {
             // console.log (route)
             response = await ContentService.getLibrary(route)
             value = response.data
-            //console.log('BOOKMARK SERVICE --   library is ')
+            //console.log('BOOKMARK MIXIN --   library is ')
             //console.log(value)
             this.$store.dispatch('updateBookmark', ['library', value])
           }
           return this.bookmark
         } catch (error) {
           console.log(
-            'BOOKMARK SERVICE -- There was an error in CheckBookmarkLanguageLibrary',
+            'BOOKMARK MIXIN -- There was an error in CheckBookmarkLanguageLibrary',
             error
           )
           this.error =
             error.toString() +
-            ' BOOKMARK SERVICE -- CheckBookmarkLanguageLibrary'
+            ' BOOKMARK MIXIN -- CheckBookmarkLanguageLibrary'
           return null
         }
       }
@@ -171,11 +171,11 @@ export const bookMarkMixin = {
           return this.bookmark
         } catch (error) {
           console.log(
-            'BOOKMARK SERVICE --CheckBookmarkSeries There was an error in CheckBookmarkBookSeries',
+            'BOOKMARK MIXIN --CheckBookmarkSeries There was an error in CheckBookmarkBookSeries',
             error
           )
           this.error =
-            error.toString() + ' BOOKMARK SERVICE --CheckBookmarkSeries'
+            error.toString() + ' BOOKMARK MIXIN -- CheckBookmarkBookSeries'
           return null
         }
       }
@@ -197,14 +197,14 @@ export const bookMarkMixin = {
             currentPage = this.bookmark.page
           }
           if (route.pageNAME != currentPage) {
-            console.log('BOOKMARK SERVICE --    we have a new page')
+            console.log('BOOKMARK MIXIN --    we have a new page')
             if (typeof this.bookmark.series != 'undefined') {
               console.log('the page is part of a series with chapters as')
               console.log(this.bookmark.series.chapters)
               if (typeof this.bookmark.series.chapters != 'undefined') {
                 var chapters = {}
                 chapters = this.bookmark.series.chapters
-                console.log('BOOKMARK SERVICE --    chapters')
+                console.log('BOOKMARK MIXIN --    chapters')
                 console.log(chapters)
                 var length = chapters.length
                 for (var i = 0; i < length; i++) {
@@ -227,11 +227,11 @@ export const bookMarkMixin = {
           return this.bookmark
         } catch (error) {
           console.log(
-            'BOOKMARK SERVICE -- There was an error in CheckBookmarkPage',
+            'BOOKMARK MIXIN -- There was an error in CheckBookmarkPage',
             error
           )
           this.error =
-            error.toString() + ' BOOKMARK SERVICE -- CheckBookmarkPage'
+            error.toString() + ' BOOKMARK MIXIN -- CheckBookmarkPage'
           return null
         }
       }

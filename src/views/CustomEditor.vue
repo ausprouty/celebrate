@@ -28,24 +28,21 @@ export default {
   data() {
     return {
       config: {
-        extraPlugins: 'bidi,uploadimage,image2',
+        extraPlugins: 'bidi,uploadimage,ckfinder',
         extraAllowedContent: 'ol(*)',
         stylesSet: this.$route.params.css,
         contentsCss: '/css/AU-' + this.$route.params.css + '.css',
         height: 300,
-
         // Upload images to a CKFinder connector (note that the response type is set to JSON).
         uploadUrl:
-          '/apps/ckfinder/3.4.5/core/connector/php/connector.php?command=QuickUpload&type=Files&responseType=json',
-
+          '/apps/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files&responseType=json',
         // Configure your file manager integration. This example uses CKFinder 3 for PHP.
-        filebrowserBrowseUrl: '/apps/ckfinder/3.4.5/ckfinder.html',
-        filebrowserImageBrowseUrl:
-          '/apps/ckfinder/3.4.5/ckfinder.html?type=Images',
+        filebrowserBrowseUrl: '/apps/ckfinder/ckfinder.html',
+        filebrowserImageBrowseUrl: '/apps/ckfinder/ckfinder.html?type=Images',
         filebrowserUploadUrl:
-          '/apps/ckfinder/3.4.5/core/connector/php/connector.php?command=QuickUpload&type=Files',
+          '/apps/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files',
         filebrowserImageUploadUrl:
-          '/apps/ckfinder/3.4.5/core/connector/php/connector.php?command=QuickUpload&type=Images'
+          '/apps/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images'
       },
       content: `
   <div class="lesson">
