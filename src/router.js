@@ -30,6 +30,8 @@ import Register from './views/Register.vue'
 import Custom from './views/CustomEditor.vue'
 import Validate from './views/Validate.vue'
 import Upload from './views/Upload.vue'
+// for CKFinder
+
 //prototype.myfriends.network/preview
 
 import NotFoundComponent from './views/NotFound.vue'
@@ -186,7 +188,6 @@ export default new Router({
       component: Upload,
       props: true
     },
-
     {
       path: '*',
       component: NotFoundComponent

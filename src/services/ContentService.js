@@ -116,9 +116,13 @@ export default {
             params.languageISO +
             '/library.json'
         )
+        console.log('page found')
+        console.log(res)
+        if (res.data.substring(0, 1 != '[')) throw 'No page'
         response.data.content.text = res.data
         response.source = 'content'
         return response
+
         // no library.json
       } catch (error) {
         console.log('We are going to try to create Directory Languages')

@@ -196,6 +196,8 @@
                   <template v-if="template_error">
                     <p class="errorMessage">Only .html files may be uploaded as templates</p>
                   </template>
+                  <br>
+                  <br>
                   <input type="checkbox" id="checkbox" v-model="book.publish.$model">
                   <label for="checkbox">
                     <h2>Publish?</h2>

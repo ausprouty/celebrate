@@ -1,50 +1,4 @@
-<template>
-  <div>
-    <NavBar/>
-
-    <p><vue-ckeditor v-model="content" name:= "thisEditor" :config="config"/></p>
-    <p>
-      Please compare to
-      <a
-        target="a_blank"
-        href="/page/AU/eng/basics/basics101"
-      >/page/AU/eng/basics/basics101</a>
-    </p>
-  </div>
-</template>
-
-
-<script>
-import NavBar from '@/components/NavBarAdmin.vue'
-// import './ckeditor/index.js'
-import VueCkeditor from 'vue-ckeditor2'
-
-export default {
-  components: {
-    NavBar,
-    VueCkeditor
-  },
-  props: ['css'],
-  data() {
-    return {
-      config: {
-        extraPlugins: 'bidi,uploadimage',
-        extraAllowedContent: 'ol(*)',
-        stylesSet: this.$route.params.css,
-        contentsCss: '/css/AU-' + this.$route.params.css + '.css',
-        height: 300,
-        // Upload images to a CKFinder connector (note that the response type is set to JSON).
-        uploadUrl:
-          '/apps/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files&responseType=json',
-        // Configure your file manager integration. This example uses CKFinder 3 for PHP.
-        filebrowserBrowseUrl: '/apps/ckfinder/ckfinder.html',
-        filebrowserImageBrowseUrl: '/apps/ckfinder/ckfinder.html?type=Images',
-        filebrowserUploadUrl:
-          '/apps/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files',
-        filebrowserImageUploadUrl:
-          '/apps/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images'
-      },
-      content: `
+<html>
   <div class="lesson">
     <img class="lesson-icon" src="/images/firststeps/look-back.png" />
     <div class="lesson-lookback">Look Back</div>
@@ -123,11 +77,4 @@ export default {
     ><br />
     firststepswithgod.com/eng/print/1
   </p>
-`
-    }
-  }
-}
-</script>
-<style>
-@import '../../src/assets/css/AU-myfriends.css';
-</style>
+</html>

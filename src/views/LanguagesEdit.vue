@@ -107,9 +107,12 @@
                       class="errorMessage"
                     >Text Direction is required</p>
                   </template>
-
+                  <br>
+                  <br>
                   <input type="checkbox" id="checkbox" v-model="language.publish.$model">
-                  <label for="checkbox"><h2>Publish?</h2></label>
+                  <label for="checkbox">
+                    <h2>Publish?</h2>
+                  </label>
                 </div>
               </form>
             </div>
@@ -144,7 +147,7 @@ import { mapState } from 'vuex'
 import { bookMarkMixin } from '@/mixins/BookmarkMixin.js'
 import { languageMixin } from '@/mixins/LanguageMixin.js'
 import { authorMixin } from '@/mixins/AuthorMixin.js'
-import { required} from 'vuelidate/lib/validators'
+import { required } from 'vuelidate/lib/validators'
 //import { validFoldername } from '@/validators/Validator.js'
 export default {
   mixins: [bookMarkMixin, languageMixin, authorMixin],
@@ -158,8 +161,8 @@ export default {
       languages: {
         name: null,
         iso: null,
-        folder:null,
-        image_dir:null,
+        folder: null,
+        image_dir: null,
         lrdir: null,
         publish: null
       },
@@ -178,7 +181,7 @@ export default {
         folder: { required },
         image_dir: { required },
         rldir: { required },
-        publish:{}
+        publish: {}
       }
     }
   },

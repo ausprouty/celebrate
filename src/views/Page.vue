@@ -63,7 +63,7 @@ export default {
       console.log(this.$route.params)
       this.getPage(this.$route.params)
     } catch (error) {
-      console.log('There was an error in Page.vue:', error) // Logs out the error
+      console.log('There was AN error in Page.vue:', error) // Logs out the error
     }
   }
 }
