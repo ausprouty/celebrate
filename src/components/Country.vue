@@ -1,4 +1,5 @@
 <template>
+ <div v-if="country.publish">
   <div class="app-link" v-on:click="showPage(country)">
     <div class="shadow-card -shadow">
       <img v-bind:src="appDir.country+ country.image" class="flag">
@@ -8,6 +9,7 @@
         <span class="card-name-english">{{country.english}}</span>
       </div>
     </div>
+  </div>
   </div>
 </template>
 

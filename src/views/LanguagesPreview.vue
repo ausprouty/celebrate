@@ -5,8 +5,8 @@
     <div class="error" v-if="error">There was an error... {{this.error}}</div>
     <div class="content" v-if="loaded">
       <div v-if="this.publish">
-        <button class="button" @click="this.publish('languages', this.$route.params)">Publish</button>
-     </div>
+        <button class="button" @click="local_publish()">Publish</button>
+      </div>
       <a href="preview/languages">
         <img v-bind:src="appDir.root+'languages.jpg'" class="app-img-header">
       </a>
@@ -54,7 +54,7 @@ export default {
     return {
       readonly: false,
       write: false,
-       publish: false
+      publish: false
     }
   },
   computed: mapState(['bookmark', 'appDir']),
@@ -77,26 +77,41 @@ export default {
     },
     goBack() {
       window.history.back()
+    },
+    async local_publish() {
+      var params = {}
+      params.recnum = this.recnum
+      await PublishService.publish('language', params)
+      this.loaded = false
+      this.loading = true
+      this.publish = false
+      this.loadView()
+    },
+    async loadView() {
+      try {
+        await this.getLanguages()
+        this.readonly = this.authorize(
+          'readonly',
+          this.$route.params.countryCODE
+        )
+        this.write = this.authorize('write', this.$route.params.countryCODE)
+        this.publish = this.authorize('publish', this.$route.params.countryCODE)
+        this.ZZ = false
+        if (this.$route.params.countryCODE == 'ZZ') {
+          this.ZZ = true
+        }
+        this.loaded = true
+        this.loading = false
+      } catch (error) {
+        console.log('There was an error in LanguagesEdit.vue:', error) // Logs out the error
+      }
     }
   },
   beforeCreate() {
     this.$route.params.version = 'latest'
   },
-  async created() {
-    try {
-      await this.getLanguages()
-      this.readonly = this.authorize('readonly', this.$route.params.countryCODE)
-      this.write = this.authorize('write', this.$route.params.countryCODE)
-       this.publish = this.authorize('publish', this.$route.params.countryCODE)
-      this.ZZ = false
-      if (this.$route.params.countryCODE == 'ZZ') {
-        this.ZZ = true
-      }
-      this.loaded = true
-      this.loading = false
-    } catch (error) {
-      console.log('There was an error in LanguagesEdit.vue:', error) // Logs out the error
-    }
+  created() {
+   loadView()
   }
 }
 </script>

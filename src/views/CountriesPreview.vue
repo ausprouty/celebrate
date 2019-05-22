@@ -3,12 +3,12 @@
     <NavBar/>
     <img v-bind:src="appDir.country+'world.jpg'" class="app-img-header">
     <div v-if="this.publish">
-        <button class="button" @click="this.publish('countries', this.$route.params)">Publish</button>
-     </div>
+      <button class="button" @click="local_publish()">Publish</button>
+    </div>
     <h1>Select Country (Preview Mode)</h1>
     <Country v-for="country in countries" :key="country.code" :country="country"/>
     <p class="version">Version 1.01</p>
-     
+
     <div v-if="this.authorized">
       <button class="button" @click="editCountries">Edit</button>
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -55,6 +55,27 @@ export default {
     goBack() {
       window.history.back()
     },
+    async local_publish() {
+      var params = {}
+      params.recnum = this.recnum
+      await PublishService.publish('countrty', params)
+      this.loaded = false
+      this.loading = true
+      this.publish = false
+      this.loadView()
+    },
+    async loadView() {
+      try {
+        await this.getCountries()
+        this.authorized = this.authorize(
+          'write',
+          this.$route.params.countryCODE
+        )
+        this.publish = this.authorize('publish', this.$route.params.countryCODE)
+      } catch (error) {
+        console.log('There was an error in Countries.vue:', error) // Logs out the error
+      }
+    },
     toFormData(obj) {
       var form_data = new FormData()
       for (var key in obj) {
@@ -71,14 +92,8 @@ export default {
   beforeCreate() {
     this.$route.params.version = 'latest'
   },
-  async created() {
-    try {
-      await this.getCountries()
-      this.authorized = this.authorize('write', this.$route.params.countryCODE)
-      this.publish = this.authorize('publish', this.$route.params.countryCODE)
-    } catch (error) {
-      console.log('There was an error in Countries.vue:', error) // Logs out the error
-    }
+  created() {
+    loadView()
   }
 }
 </script>
