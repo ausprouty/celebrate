@@ -14,7 +14,7 @@ export const libraryMixin = {
           format: 'series'
         }
       ],
-      image_dir: 'menu-europe',
+      image_dir: 'ZZ/images/europe',
       loading: false,
       loaded: null,
       error: null,
@@ -56,8 +56,11 @@ export const libraryMixin = {
           if (response.data.content.recnum) {
             this.recnum = response.data.content.recnum
             this.publish_date = response.data.content.publish_date
+          } else {
+            this.recnum = this.publish_date = null
           }
-        } else {  // you are never going to get here because you will get an error from ContentService.getLibrary
+        } else {
+          // you are never going to get here because you will get an error from ContentService.getLibrary
           this.newLibrary()
         }
         this.image_dir = this.standard.image_dir

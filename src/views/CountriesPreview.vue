@@ -59,6 +59,7 @@ export default {
       var params = {}
       params.recnum = this.recnum
       await PublishService.publish('countries', params)
+       this.UnsetBookmarks() 
       this.loaded = false
       this.loading = true
       this.publish = false

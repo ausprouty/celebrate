@@ -68,7 +68,12 @@
               </template>
             </div>
           </div>
+        <input type="checkbox" id="checkbox" v-model="chapter.publish.$model">
+        <label for="checkbox">
+          <h2>Publish?</h2>
+        </label>
         </div>
+        
         <div v-if="this.authorized">
           <div v-if="this.new">
             <p
@@ -127,10 +132,11 @@ export default {
       new: false,
       file: null,
       chapter: {
-        title: '',
-        description: '',
-        count: '',
-        filename: ''
+        title: null,
+        description: null,
+        count: null,
+        filename: null,
+        publish: null
       }
     }
   },
@@ -141,7 +147,8 @@ export default {
         title: { required },
         description: {},
         count: '',
-        filename: { required }
+        filename: { required },
+        publish: ''
       }
     }
   },

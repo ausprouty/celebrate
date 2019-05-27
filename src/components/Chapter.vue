@@ -1,5 +1,5 @@
 <template>
-  <div v-if="chapter.publish !== false">
+  <div v-if="chapter.publish == 1">
     <div class="app-link" v-on:click="showPage(chapter)">
       <div class="app-card -shadow">
         <div class="chapter">

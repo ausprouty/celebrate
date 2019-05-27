@@ -92,6 +92,7 @@ export const seriesMixin = {
         console.log(this.image_dir)
         this.loaded = true
         this.loading = false
+        console.log('finished with get Series')
       } catch (error) {
         console.log('There was an error in SeriesMixin:', error) // Logs out the error
       }

@@ -487,22 +487,26 @@ export default {
         'write',
         param.image_dir.substring(0, 1)
       )
+      // get images
       var img = await AuthorService.getImages(param)
       console.log('img')
       console.log(img)
       if (img) {
         this.images = img
       }
+      // get folders
       param.country_code = this.$route.params.countryCODE
       param.language_iso = this.$route.params.languageISO
       var folder = await AuthorService.getFoldersContent(param)
       if (folder) {
         this.folders = folder
       }
+      // get styles
       var style = await AuthorService.getStyles(param)
       if (style) {
         this.styles = style
       }
+      //get templates
       var template = await AuthorService.getTemplates(param)
       if (template) {
         this.templates = template

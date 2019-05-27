@@ -1,6 +1,3 @@
-import axios from 'axios'
-import store from '@/store/store.js'
-
 const apiSELECT = axios.create({
   baseURL: 'http://create.myfriends.network/',
   withCredentials: false, // This is the default
@@ -19,6 +16,9 @@ const apiSECURE = axios.create({
     'Content-Type': 'application/json'
   }
 })
+import axios from 'axios'
+import store from '@/store/store.js'
+
 // I want to export a JSON.stringified of response.data.content.text
 export default {
   publish(scope, params) {

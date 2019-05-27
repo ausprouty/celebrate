@@ -83,6 +83,7 @@ export default {
       var params = {}
       params.recnum = this.recnum
       PublishService.publish('page', params)
+      this.UnsetBookmarks()
       this.loadView()
     },
     async loadView() {

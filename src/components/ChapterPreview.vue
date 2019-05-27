@@ -1,6 +1,6 @@
 <template>
   <div class="app-link" v-on:click="showPage(chapter)">
-    <div class="app-card -shadow">
+    <div class="app-card -shadow" v-bind:class="{notpublished : !chapter.publish}">
       <div class="chapter">
         <div v-if="chapter.count" class="chapter-title">{{chapter.count}}. {{chapter.title}}</div>
         <div v-else class="chapter-title">{{chapter.title}}</div>

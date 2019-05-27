@@ -78,6 +78,7 @@ export default {
       var params = {}
       params.recnum = this.recnum
       await PublishService.publish('library', params)
+      this.UnsetBookmarks()
       this.loaded = false
       this.loading = true
       this.publish = false
@@ -85,6 +86,7 @@ export default {
     },
     async loadView() {
       try {
+        this.recnum = null
         this.$store.dispatch('newBookmark', 'clear')
         await this.getLibrary()
         this.readonly = this.authorize(
