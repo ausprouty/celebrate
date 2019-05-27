@@ -8,7 +8,7 @@
         <button class="button" @click="localPublish()">Publish</button>
       </div>
       <div v-bind:class="this.dir">
-        <link rel="stylesheet" v-bind:href="'/css/' + this.style">
+        <link rel="stylesheet" v-bind:href="'/content/' + this.style">
         <div class="app-link">
           <div class="app-card -shadow" >
             <a

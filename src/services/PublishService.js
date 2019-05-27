@@ -46,23 +46,24 @@ export default {
     }
   },
   publishCountries(params) {
+    console.log('in publishCountries')
     var contentForm = this.toFormData(params)
     apiSECURE.post(
-      'AuthorApi.php?page=publish&action=publishCountries',
+      'PublishApi.php?page=publish&action=publishCountries',
       contentForm
     )
   },
   publishLanguage(params) {
     var contentForm = this.toFormData(params)
     apiSECURE.post(
-      'AuthorApi.php?page=publish&action=publishLanguage',
+      'PublishApi.php?page=publish&action=publishLanguage',
       contentForm
     )
   },
   publishLibrary(params) {
     var contentForm = this.toFormData(params)
     apiSECURE.post(
-      'AuthorApi.php?page=publish&action=publishLibrary',
+      'PublishApi.php?page=publish&action=publishLibrary',
       contentForm
     )
   },
@@ -71,7 +72,7 @@ export default {
     console.log(params)
     var contentForm = this.toFormData(params)
     apiSECURE.post(
-      'AuthorApi.php?page=publish&action=publishSeries',
+      'PublishApi.php?page=publish&action=publishSeries',
       contentForm
     )
   },
@@ -80,7 +81,10 @@ export default {
     console.log(params)
     var contentForm = this.toFormData(params)
 
-    apiSECURE.post('AuthorApi.php?page=publish&action=publishPage', contentForm)
+    apiSECURE.post(
+      'PublishApi.php?page=publish&action=publishPage',
+      contentForm
+    )
   },
   toFormData(obj) {
     var form_data = new FormData()

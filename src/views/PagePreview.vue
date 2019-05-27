@@ -83,26 +83,30 @@ export default {
       var params = {}
       params.recnum = this.recnum
       PublishService.publish('page', params)
+      this.loadView()
+    },
+    async loadView() {
+      try {
+        await this.getPage(this.$route.params)
+        this.read = this.authorize('read', this.$route.params.countryCODE)
+        this.write = this.authorize('write', this.$route.params.countryCODE)
+        var may_publish = this.authorize(
+          'publish',
+          this.$route.params.countryCODE
+        )
+        if (may_publish && this.recnum && this.publish_date == null) {
+          this.publish = true
+        }
+      } catch (error) {
+        console.log('There was an error in Page.vue:', error) // Logs out the error
+      }
     }
   },
   beforeCreate() {
     this.$route.params.version = 'latest'
   },
   async created() {
-    try {
-      await this.getPage(this.$route.params)
-      this.read = this.authorize('read', this.$route.params.countryCODE)
-      this.write = this.authorize('write', this.$route.params.countryCODE)
-      var may_publish = this.authorize(
-        'publish',
-        this.$route.params.countryCODE
-      )
-      if (may_publish && this.recnum && this.publish_date == null) {
-        this.publish = true
-      }
-    } catch (error) {
-      console.log('There was an error in Page.vue:', error) // Logs out the error
-    }
+    this.loadView()
   }
 }
 </script>

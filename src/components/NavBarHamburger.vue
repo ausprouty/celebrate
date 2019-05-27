@@ -3,13 +3,13 @@
     <div v-if="!authorized">
       <div id="nav">
         <router-link to="/">
-          <img class="nav-icon" alt="Home" src="@/assets/header-hamburger.png">
+          <img class="nav-icon" alt="Home" src="/images/menu/header-hamburger.png">
         </router-link>
       </div>
     </div>
     <div v-if="authorized">
       <div v-on:click="toggleMenu()">
-        <img class="nav-icon" alt="Home" src="@/assets/header-hamburger.png">
+        <img class="nav-icon" alt="Home" src="/images/menu/header-hamburger.png">
       </div>
       <div v-if="showMenu">
         <div v-for="(menuItem) in this.menu" :key="menuItem.link" :menuItem="menuItem">

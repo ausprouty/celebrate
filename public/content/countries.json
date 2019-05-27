@@ -1,51 +1,80 @@
-[
-{
+[{
 "code": "AU",
 "english": "Australia",
 "name": "Australia",
 "index": "index-AU",
-"image": "AU.png"
+"image": "AU.png",
+"publish": "true"
 },
 {
 "code": "ES",
 "english": "Spain",
 "name": "España",
 "index": "index-ES",
-"image": "ES.png"
+"image": "ES.png",
+"publish": "true"
 },
 {
 "code": "DE",
 "english": "Germany",
 "name": "Deutschland",
 "index": "index-DE",
-"image": "DE.png"
+"image": "DE.png",
+"publish": "true"
 },
-
 {
 "code": "CH",
-"english": "Switzeland",
-"name": "Schweizerische",
+"english": "Switzerland",
+"name": "Schweiz",
 "index": "index-CH",
-"image": "CH.png"
+"image": "CH.png",
+"publish": "true"
 },
 {
 "code": "US",
 "english": "United States",
 "name": "United States",
 "index": "index-US",
-"image": "US.png"
+"image": "US.png",
+"publish": "true"
 },
 {
 "code": "CN",
 "english": "China",
 "name": "中华人民共和国",
 "index": "index-CN",
-"image": "CN.png"
+"image": "CN.png",
+"publish": "true"
 },
 {
 "code": "ZZ",
+"english": "",
 "name": "Other",
 "index": "index-AU",
-"image": "UN.jpg"
-}
-]
+"image": "UN.jpg",
+"publish": "true"
+},
+{
+"code": "FE",
+"english": "",
+"name": "Federation",
+"index": "",
+"image": "FE.jpg",
+"publish": ""
+},
+{
+"code": "KE",
+"english": "",
+"name": "Klingon Empire",
+"index": "",
+"image": "KE.jpg",
+"publish": ""
+},
+{
+"code": "HT",
+"english": "",
+"name": "Hutt River",
+"index": "",
+"image": "HT.jpg",
+"publish": ""
+}]

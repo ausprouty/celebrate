@@ -10,9 +10,7 @@ export const authorMixin = {
       if (typeof code == 'undefined') {
         return false
       }
-      console.log('authorize for ' + reason + ' with code ' + code)
       var scope = this.user.scope
-      //   console.log (scope)
       if (scope == '*') {
         if (reason != 'readonly') {
           return true

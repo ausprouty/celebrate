@@ -95,7 +95,13 @@ export default {
           this.$route.params.countryCODE
         )
         this.write = this.authorize('write', this.$route.params.countryCODE)
-        this.publish = this.authorize('publish', this.$route.params.countryCODE)
+        this.publish = false
+        if (this.recnum && !this.publish_date) {
+          this.publish = this.authorize(
+            'publish',
+            this.$route.params.countryCODE
+          )
+        }
         this.ZZ = false
         if (this.$route.params.countryCODE == 'ZZ') {
           this.ZZ = true
@@ -111,7 +117,7 @@ export default {
     this.$route.params.version = 'latest'
   },
   created() {
-   loadView()
+    this.loadView()
   }
 }
 </script>

@@ -16,7 +16,7 @@ export default new Vuex.Store({
     bookmark,
     user,
     appDir: {
-      css: '/css/',
+      css: '/content/',
       styles: '/styles/',
       country: '/images/country/',
       icons: '/images/icons/',
@@ -26,7 +26,7 @@ export default new Vuex.Store({
     books: ['about', 'basics', 'community', 'compass', 'firststeps', 'issues'],
     revision: '1.1',
     baseURL: './',
-    cssURL: './css/',
+    cssURL: './content/',
     standard: {
       image_dir: 'zz/images/europe',
       image: 'journey.png',

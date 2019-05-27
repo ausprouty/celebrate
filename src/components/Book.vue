@@ -1,9 +1,11 @@
 <template>
-  <div class="app-link" v-on:click="showPage(book)">
-    <div class="app-card -shadow">
-      <img v-bind:src="appDir.library  + this.image_dir  + '/' +book.image" class="book">
-      <div class="book">
-        <span class="bold">{{book.title}}</span>
+  <div v-if="book.publish == 1">
+    <div class="app-link" v-on:click="showPage(book)">
+      <div class="app-card -shadow">
+        <img v-bind:src="appDir.library  + this.image_dir  + '/' +book.image" class="book">
+        <div class="book">
+          <span class="bold">{{book.title}}</span>
+        </div>
       </div>
     </div>
   </div>

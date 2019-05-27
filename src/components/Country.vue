@@ -1,15 +1,15 @@
 <template>
- <div v-if="country.publish">
-  <div class="app-link" v-on:click="showPage(country)">
-    <div class="shadow-card -shadow">
-      <img v-bind:src="appDir.country+ country.image" class="flag">
-      <div class="card-names">
-        <span class="card-name">{{country.name}}</span>
-        <br>
-        <span class="card-name-english">{{country.english}}</span>
+  <div v-if="country.publish == 'true'">
+    <div class="app-link" v-on:click="showPage(country)">
+      <div class="shadow-card -shadow">
+        <img v-bind:src="appDir.country+ country.image" class="flag">
+        <div class="card-names">
+          <span class="card-name">{{country.name}}</span>
+          <br>
+          <span class="card-name-english">{{country.english}}</span>
+        </div>
       </div>
     </div>
-  </div>
   </div>
 </template>
 

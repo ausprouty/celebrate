@@ -58,7 +58,7 @@ export default {
     async local_publish() {
       var params = {}
       params.recnum = this.recnum
-      await PublishService.publish('countrty', params)
+      await PublishService.publish('countries', params)
       this.loaded = false
       this.loading = true
       this.publish = false
@@ -67,11 +67,11 @@ export default {
     async loadView() {
       try {
         await this.getCountries()
-        this.authorized = this.authorize(
-          'write',
-          this.$route.params.countryCODE
-        )
-        this.publish = this.authorize('publish', this.$route.params.countryCODE)
+        this.authorized = this.authorize('write', 'world')
+        this.publish = false
+        if (this.recnum && !this.publish_date) {
+          this.publish = this.authorize('publish', 'country')
+        }
       } catch (error) {
         console.log('There was an error in Countries.vue:', error) // Logs out the error
       }
@@ -93,7 +93,7 @@ export default {
     this.$route.params.version = 'latest'
   },
   created() {
-    loadView()
+    this.loadView()
   }
 }
 </script>

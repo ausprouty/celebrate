@@ -1,7 +1,7 @@
 <template>
   <div id="nav">
     <div v-on:click="toggleMenu()">
-      <img class="nav-icon" alt="Home" src="@/assets/header-admin.png">
+      <img class="nav-icon" alt="Home" src="/images/menu/header-admin.png">
     </div>
     <div v-if="showMenu">
       <div v-for="(menuItem) in this.menu" :key="menuItem.link" :menuItem="menuItem">

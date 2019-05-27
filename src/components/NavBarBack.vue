@@ -1,6 +1,6 @@
 <template>
   <div id="nav" v-on:click="goBack()">
-    <img class="nav-icon" alt="Home" src="@/assets/header-back.png">
+    <img class="nav-icon" alt="Home" src="/images/menu/header-back.png">
   </div>
 </template>
 

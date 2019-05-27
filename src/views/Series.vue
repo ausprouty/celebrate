@@ -5,7 +5,7 @@
     <div class="error" v-if="error">There was an error... {{this.error}}</div>
     <div class="content" v-if="loaded">
       <div v-bind:class="this.dir">
-        <link rel="stylesheet" v-bind:href="'/css/' + this.bookmark.book.style">
+        <link rel="stylesheet" v-bind:href="'/content/' + this.bookmark.book.style">
         <div class="app-link">
           <div class="app-card -shadow">
             <a

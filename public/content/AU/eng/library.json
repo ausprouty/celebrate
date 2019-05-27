@@ -1,66 +1,72 @@
-[
-  {
-    "id": 1,
-    "book": "principles",
-    "title": "Life Issues",
-    "folder": "myfriends",
-    "index": "principles",
-    "style": "AU-myfriends.css",
-    "image": "issues.jpg",
-    "format": "series",
-    "instructions": ""
-  },
-  {
-    "id": 2,
-    "book": "basics",
-    "title": "Basic Conversations",
-    "folder": "myfriends",
-    "index": "basics",
-    "style": "AU-myfriends.css",
-    "image": "basics.jpg",
-    "format": "series",
-    "instructions": ""
-  },
-  {
-    "id": 3,
-    "book": "community",
-    "title": "Live Community",
-    "folder": "myfriends",
-    "page": "community",
-    "style": "AU-myfriends.css",
-    "image": "community.jpg",
-    "format": "page"
-  },
-  {
-    "id": 4,
-    "book": "firststeps",
-    "title": "First Steps",
-    "folder": "first_steps",
-    "index": "first_steps",
-    "style": "AU-fsteps.css",
-    "image": "firststeps.jpg",
-    "format": "series",
-    "instructions": ""
-  },
-  {
-    "id": 5,
-    "book": "compass",
-    "title": "Compass",
-    "folder": "compass",
-    "index": "compass-chapters",
-    "style": "AU-compass.css",
-    "image": "compass.jpg",
-    "format": "series",
-    "instructions": ""
-  },
-  {
-    "id": 6,
-    "book": "about",
-    "title": "About MyFriends",
-    "folder": "myfriends",
-    "page": "community",
-    "style": "AU-myfriends.css",
-    "image": "about.jpg",
-    "format": "page"
-  }
-]
+[{
+"id" : " 1",
+"book" : "about",
+"title" : "About MyFriends",
+"folder" : "myfriends",
+"index" : "",
+"style" : "ZZ/styles/myfriendsGLOBAL.css",
+"image" : "about.jpg",
+"format" : "page",
+"instructions" : "",
+"publish" : "1"
+},
+{
+"id" : " 2",
+"book" : "principles",
+"title" : "Life Issues",
+"folder" : "myfriends",
+"index" : "principles",
+"style" : "ZZ/styles/myfriendsGLOBAL.css",
+"image" : "issues.jpg",
+"format" : "series",
+"instructions" : "",
+"publish" : "1"
+},
+{
+"id" : " 3",
+"book" : "basics",
+"title" : "Basic Conversations",
+"folder" : "myfriends",
+"index" : "basics",
+"style" : "ZZ/styles/myfriendsGLOBAL.css",
+"image" : "basics.jpg",
+"format" : "series",
+"instructions" : "",
+"publish" : "1"
+},
+{
+"id" : " 5",
+"book" : "multiply",
+"title" : "Multiply",
+"folder" : "multiply",
+"index" : "multiply",
+"style" : "AU/styles/myfriends.css",
+"image" : "multiply.jpg",
+"format" : "series",
+"instructions" : "",
+"publish" : "1"
+},
+{
+"id" : " 6",
+"book" : "like",
+"title" : "Being like Jesus",
+"folder" : "like",
+"index" : "like",
+"style" : "AU/styles/AU-compass.css",
+"image" : "like.jpg",
+"format" : "series",
+"instructions" : "",
+"publish" : ""
+},
+{
+"id" : " 4",
+"book" : "community",
+"title" : "Bible Discovery Framework",
+"folder" : "myfriends",
+"index" : "",
+"style" : "ZZ/styles/myfriendsGLOBAL.css",
+"image" : "community.jpg",
+"format" : "page",
+"instructions" : "",
+"publish" : "1"
+}]
