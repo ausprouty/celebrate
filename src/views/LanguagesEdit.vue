@@ -8,6 +8,7 @@
       <div v-if="this.authorized">
         <h1>Languages for {{this.$route.params.countryCODE}}</h1>
         <div>
+          <button class="button" @click="publishAll">Select ALL to publish?</button>
           <div
             v-for="(language, index) in $v.languages.$each.$iter"
             :key="language.id"
@@ -198,6 +199,13 @@ export default {
         image_dir: null,
         rldir: 'ltr'
       })
+    },
+    publishAll() {
+      var arrayLength = this.languages.length
+      console.log(' Item count:' + arrayLength)
+      for (var i = 0; i < arrayLength; i++) {
+        this.$v.languages.$each.$iter[i].publish.$model = true
+      }
     },
     deleteLanguageForm(index) {
       this.languages.splice(index, 1)

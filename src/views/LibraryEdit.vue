@@ -318,7 +318,7 @@ export default {
       console.log(title)
       this.isHidden = false
     },
-     publishAll() {
+    publishAll() {
       var arrayLength = this.library.length
       console.log(' Item count:' + arrayLength)
       for (var i = 0; i < arrayLength; i++) {
