@@ -11,6 +11,7 @@
         <textarea v-model="description" placeholder="add multiple lines"></textarea>
       </div>
       <div>
+        <button class="button" @click="publishAll">Select ALL to publish?</button>
         <div
           v-for="(chapter, index) in $v.chapters.$each.$iter"
           :key="chapter.id"
@@ -66,14 +67,14 @@
               <template v-if="chapter.filename.$error">
                 <p v-if="!chapter.filename.required" class="errorMessage">Description is required</p>
               </template>
+              <input type="checkbox" id="checkbox" v-model="chapter.publish.$model">
+              <label for="checkbox">
+                <h2>Publish?</h2>
+              </label>
             </div>
           </div>
-        <input type="checkbox" id="checkbox" v-model="chapter.publish.$model">
-        <label for="checkbox">
-          <h2>Publish?</h2>
-        </label>
         </div>
-        
+
         <div v-if="this.authorized">
           <div v-if="this.new">
             <p
@@ -158,12 +159,20 @@ export default {
         this.chapters = []
       }
       this.chapters.push({
-        id: '',
-        title: '',
-        description: '',
-        count: '',
-        filename: ''
+        id: null,
+        title: null,
+        description: null,
+        count: null,
+        filename: null,
+        publish: null
       })
+    },
+    publishAll() {
+      var arrayLength = this.chapters.length
+      console.log(' Item count:' + arrayLength)
+      for (var i = 0; i < arrayLength; i++) {
+        this.$v.chapters.$each.$iter[i].publish.$model = true
+      }
     },
     deleteChapterForm(id) {
       this.chapters.splice(id, 1)

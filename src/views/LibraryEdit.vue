@@ -11,6 +11,7 @@
       <div v-if="this.authorized">
         <h1>Library</h1>
         <div>
+          <button class="button" @click="publishAll">Select ALL to publish?</button>
           <div v-for="(book, index) in $v.library.$each.$iter" :key="book.code" :book="book">
             <div class="app-card -shadow" v-bind:class="{notpublished : !book.publish.$model}">
               <div class="float-right" style="cursor:pointer" @click="deleteBookForm(index)">X</div>
@@ -316,6 +317,13 @@ export default {
     createBook(title) {
       console.log(title)
       this.isHidden = false
+    },
+     publishAll() {
+      var arrayLength = this.library.length
+      console.log(' Item count:' + arrayLength)
+      for (var i = 0; i < arrayLength; i++) {
+        this.$v.library.$each.$iter[i].publish.$model = true
+      }
     },
     async createFolder(folder) {
       console.log(folder)
