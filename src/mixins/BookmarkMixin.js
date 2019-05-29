@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import { mapState } from 'vuex'
 import ContentService from '@/services/ContentService.js'
+import AuthorService from '@/services/AuthorService.js'
 Vue.use(Vuex)
 
 export const bookMarkMixin = {
@@ -172,6 +173,8 @@ export const bookMarkMixin = {
             'BOOKMARK MIXIN --CheckBookmarkSeries There was an error in CheckBookmarkBookSeries',
             error
           )
+          // need to create series index
+
           this.error =
             error.toString() + ' BOOKMARK MIXIN -- CheckBookmarkBookSeries'
           return null

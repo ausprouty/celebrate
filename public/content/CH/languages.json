@@ -1,13 +1,1 @@
-[
-  {
-"folder": "deu",
-"iso": "deu",
-"name": "Deutsch",
-"bible": "text",
-"life-issues": "jurg",
-"image_dir": "menu-europe",
-"nt": "1227",
-"ot": "1229",
-"rldir": "ltr"
-  }
-]
+[{"folder":"CH/deu","iso":"deu","name":"Deutsch","bible":"text","life-issues":"jurg","image_dir":"ZZ/images/europe","nt":"1227","ot":"1229","rldir":"ltr","publish":true}]
