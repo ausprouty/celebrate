@@ -11,7 +11,7 @@ export const languageMixin = {
       error_message: null,
       publish: false,
       publish_date: null,
-      recnum: null,
+      recnum: null
     }
   },
   methods: {

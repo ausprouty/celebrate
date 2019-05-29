@@ -9,25 +9,7 @@
         <p>You have stumbled into a restricted page. Sorry I can not show it to you now</p>
       </div>
       <div v-if="this.authorized">
-        <div class="app-link">
-          <div class="app-card -shadow">
-            <div v-on:click="goBack()">
-              <img
-                v-bind:src="appDir.library + this.bookmark.language.image_dir + '/' + this.bookmark.book.image"
-                class="book"
-              >
-
-              <div class="book">
-                <span class="bold">{{this.bookmark.book.title}}</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <h1
-          v-if="this.bookmark.page.count"
-        >{{this.bookmark.page.count}}. {{this.bookmark.page.title}}</h1>
-        <h1 v-else>{{this.bookmark.page.title}}</h1>
+        <h1>Create Template</h1>
         <p>
           <vue-ckeditor v-model="pageText" :config="config"/>
         </p>
@@ -60,7 +42,7 @@ import { pageMixin } from '@/mixins/PageMixin.js'
 import { authorMixin } from '@/mixins/AuthorMixin.js'
 export default {
   mixins: [bookMarkMixin, pageMixin, authorMixin],
-  props: ['countryCODE', 'languageISO', 'bookNAME', 'fileFILENAME'],
+  props: ['countryCODE', 'languageISO'],
   components: {
     NavBar,
     VueCkeditor
@@ -69,24 +51,10 @@ export default {
   data() {
     return {
       authorized: false,
-      content: {
-        recnum: '',
-        version: '',
-        edit_date: '',
-        edit_uid: '',
-        publish_uid: '',
-        publish_date: '',
-        language_iso: '',
-        country_code: '',
-        folder: '',
-        filetype: '',
-        title: '',
-        filename: '',
-        text: ''
-      },
+      content: {},
       config: {
         extraPlugins: ['bidi', 'uploadimage', 'uploadwidget', 'clipboard'],
-        extraAllowedContent: '*(*)[id]',
+        extraAllowedContent: 'ol(*)',
         contentsCss: '/content/' + this.$route.params.css,
         stylesSet: this.$route.params.stylesSET,
         templates_replaceContent: false,
@@ -135,22 +103,7 @@ export default {
     goBack() {
       window.history.back()
     },
-    async loadTemplate() {
-      this.authorized = this.authorize('write', this.$route.params.countryCODE)
-      this.loading = false
-      this.loaded = true
-      if (this.bookmark.book.template) {
-        this.$route.params.template = this.bookmark.book.template
-        console.log('looking for template')
-        console.log(this.$route.params)
-        var res = await AuthorService.getTemplate(this.$route.params)
-        console.log(res)
-        if (res) {
-          console.log('I found template')
-          this.pageText = res
-        }
-      }
-    },
+
     async saveForm() {
       try {
         this.content.text = ContentService.validate(this.pageText)
@@ -159,15 +112,11 @@ export default {
         this.content.folder = this.bookmark.book.folder
         this.content.filename = this.$route.params.fileFILENAME
         this.content.filetype = 'html'
-        this.$store.dispatch('newBookmark', 'clear')
-        var valid = await AuthorService.createContentData(this.content)
         this.$router.push({
-          name: 'previewPage',
+          name: 'editLibrary',
           params: {
             countryCODE: this.$route.params.countryCODE,
-            languageISO: this.$route.params.languageISO,
-            bookNAME: this.$route.params.bookNAME,
-            fileFILENAME: this.$route.params.fileFILENAME
+            languageISO: this.$route.params.languageISO
           }
         })
       } catch (error) {
@@ -180,6 +129,7 @@ export default {
   },
   async beforeCreate() {
     console.log('before Create')
+    this.$route.params.cssFORMATTED = 'AU-styles-multiply.css'
     console.log(this.$route.params)
     var ok = false
     var styleSets = ['compass', 'firststeps', 'fsteps', 'myfriends', 'multiply']
@@ -193,23 +143,18 @@ export default {
     this.$route.params.version = 'lastest'
     this.$route.params.pageNAME = this.$route.params.fileFILENAME
     var css = this.$route.params.cssFORMATTED
-    var clean = css.replace(/@/g, '/')
+    var clean = css.replace(/-/g, '/')
     this.$route.params.css = clean
     console.log('final params')
     console.log(this.$route.params)
   },
   async created() {
     try {
-      console.log('in Created')
-      await this.getPage(this.$route.params)
-      console.log('Got page')
-      console.log('I am about to authorize to write')
       this.authorized = this.authorize('write', this.$route.params.countryCODE)
-      console.log('css')
-      console.log(this.bookmark.book.style)
+      this.loaded = true
+      this.loading = false
     } catch (error) {
-      console.log('There was an error in Page.vue:', error)
-      this.loadTemplate()
+      console.log('There was an error in Template.vue:', error)
     }
   }
 }

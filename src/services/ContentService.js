@@ -77,7 +77,7 @@ export default {
     if (!found) {
       response.data = {}
       response.data.content = {}
-      console.log('here is the page I am looking for')
+      console.log('here is the page I am looking for ')
       console.log('content/' + params.countryCODE + '/languages.json')
       let res = await apiContent.get(
         'content/' + params.countryCODE + '/languages.json'

@@ -61,7 +61,7 @@ export default {
       var css = this.bookmark.page.style
         ? this.bookmark.page.style
         : this.bookmark.book.style
-      var clean = css.replace(/\//g, '-')
+      var clean = css.replace(/\//g, '@')
       console.log('here is clean')
       console.log(clean)
       this.$router.push({

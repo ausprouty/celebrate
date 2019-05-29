@@ -24,7 +24,8 @@ import Page from './views/Page.vue'
 import PageEdit from './views/PageEdit.vue'
 import PagePreview from './views/PagePreview.vue'
 
-import Users from './views/Users.vue'
+import Template from './views/Template.vue'
+
 import Login from './views/Login.vue'
 import Register from './views/Register.vue'
 import Custom from './views/CustomEditor.vue'
@@ -159,17 +160,18 @@ export default new Router({
       props: true
     },
     {
+      path: '/template/:countryCODE/:languageISO',
+      name: 'createTemplate',
+      component: Template,
+      props: true
+    },
+    {
       path: '/login',
       name: 'login',
       component: Login,
       props: false
     },
-    {
-      path: '/users',
-      name: 'users',
-      component: Users,
-      props: true
-    },
+
     {
       path: '/validate',
       name: 'validate',

@@ -1,12 +1,3 @@
-const apiSELECT = axios.create({
-  baseURL: 'http://create.myfriends.network/',
-  withCredentials: false, // This is the default
-  crossDomain: true,
-  headers: {
-    Accept: 'application/json',
-    'Content-Type': 'application/json'
-  }
-})
 const apiSECURE = axios.create({
   baseURL: 'http://create.myfriends.network/',
   withCredentials: false, // This is the default

@@ -61,8 +61,7 @@ export const bookMarkMixin = {
           'BOOKMARK MIXIN --CheckBookmarkCountry There was an error ',
           error
         )
-        this.error =
-          error.toString() + 'BOOKMARK MIXIN --CheckBookmarkCountry'
+        this.error = error.toString() + 'BOOKMARK MIXIN --CheckBookmarkCountry'
         return null
       }
     },
@@ -80,10 +79,10 @@ export const bookMarkMixin = {
         try {
           var value = {}
           var response = ''
-          var currentLanguage = ''
-          if (typeof this.bookmark.language != 'undefined') {
-            currentLanguage = this.bookmark.language.iso
-          }
+          //var currentLanguage = ''
+          //if (typeof this.bookmark.language != 'undefined') {
+          //  currentLanguage = this.bookmark.language.iso
+          // }
           //if (route.languageISO != currentLanguage) {  in development the library can change
           var res = await ContentService.getLanguages(route)
           response = res.data.content.text
@@ -116,8 +115,7 @@ export const bookMarkMixin = {
             error
           )
           this.error =
-            error.toString() +
-            ' BOOKMARK MIXIN -- CheckBookmarkLanguageLibrary'
+            error.toString() + ' BOOKMARK MIXIN -- CheckBookmarkLanguageLibrary'
           return null
         }
       }
@@ -230,8 +228,7 @@ export const bookMarkMixin = {
             'BOOKMARK MIXIN -- There was an error in CheckBookmarkPage',
             error
           )
-          this.error =
-            error.toString() + ' BOOKMARK MIXIN -- CheckBookmarkPage'
+          this.error = error.toString() + ' BOOKMARK MIXIN -- CheckBookmarkPage'
           return null
         }
       }

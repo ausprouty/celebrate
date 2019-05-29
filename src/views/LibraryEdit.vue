@@ -197,6 +197,7 @@
                   <template v-if="template_error">
                     <p class="errorMessage">Only .html files may be uploaded as templates</p>
                   </template>
+                  <button class="button yellow" @click="createTemplate">Create Template</button>
                   <br>
                   <br>
                   <input type="checkbox" id="checkbox" v-model="book.publish.$model">
@@ -333,6 +334,15 @@ export default {
       params.folder = folder.toLowerCase()
       AuthorService.createContentFolder(params)
       this.folders = await AuthorService.getFoldersContent(params)
+    },
+    createTemplate() {
+      this.$router.push({
+        name: 'createTemplate',
+        params: {
+          countryCODE: this.$route.params.countryCODE,
+          languageISO: this.$route.params.languageISO
+        }
+      })
     },
 
     deleteBookForm(index) {

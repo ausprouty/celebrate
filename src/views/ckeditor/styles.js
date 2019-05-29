@@ -268,3 +268,61 @@ window.CKEDITOR.stylesSet.add('myfriends', [
   },
   { name: 'readmore', element: 'a', attributes: { class: 'readmore' } }
 ])
+
+window.CKEDITOR.stylesSet.add('multiply', [
+  { name: 'background', element: 'div', attributes: { class: 'background' } },
+  { name: 'bible', element: 'div', attributes: { class: 'bible' } },
+  { name: 'lesson', element: 'div', attributes: { class: 'lesson' } },
+  { name: 'lesson-icon', element: 'div', attributes: { class: 'lesson-icon' } },
+  {
+    name: 'lesson-section',
+    element: 'div',
+    attributes: { class: 'lesson-section' }
+  },
+  { name: 'readmore', element: 'a', attributes: { class: 'readmore' } },
+  {
+    name: 'heading-back',
+    element: 'h2',
+    attributes: { class: 'back' }
+  },
+  {
+    name: 'heading-up',
+    element: 'h2',
+    attributes: { class: 'up' }
+  },
+  {
+    name: 'heading-forward',
+    element: 'h2',
+    attributes: { class: 'forward' }
+  },
+  {
+    name: 'list-back',
+    element: 'ol',
+    attributes: { class: 'back' }
+  },
+  {
+    name: 'list-up',
+    element: 'ol',
+    attributes: { class: 'up' }
+  },
+  {
+    name: 'list-forward',
+    element: 'ol',
+    attributes: { class: 'forward' }
+  },
+  {
+    name: 'paragraph-back',
+    element: 'p',
+    attributes: { class: 'back' }
+  },
+  {
+    name: 'paragraph-up',
+    element: 'p',
+    attributes: { class: 'up' }
+  },
+  {
+    name: 'paragraph-forward',
+    element: 'p',
+    attributes: { class: 'forward' }
+  }
+])
