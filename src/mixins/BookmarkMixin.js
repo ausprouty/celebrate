@@ -66,8 +66,8 @@ export const bookMarkMixin = {
       }
     },
     async CheckBookmarkLanguageLibrary(route) {
-      console.log('entered CheckBookmarkLanguageLibrary')
-      console.log(route)
+      //  console.log('entered CheckBookmarkLanguageLibrary')
+      //  console.log(route)
       /* LANGUAGE AND LIBRARY
            if route.languageISO is not the same as bookmark 
             update language and erase all bookmark below*/
@@ -93,10 +93,10 @@ export const bookMarkMixin = {
             }
           }
           this.$store.dispatch('updateBookmark', ['language', value])
-          console.log('Going to Content Service to GetLibrary with:')
-          console.log(route)
+          //  console.log('Going to Content Service to GetLibrary with:')
+          //  console.log(route)
           response = await ContentService.getLibrary(route)
-          console.log(response)
+          //  console.log(response)
           value = response.data.content.text
           this.$store.dispatch('updateBookmark', ['library', value])
           // }
@@ -161,8 +161,8 @@ export const bookMarkMixin = {
             route.folderNAME = this.bookmark.book.folder
             route.fileFILENAME = this.bookmark.book.index
             var response = await ContentService.getSeries(route)
-            console.log('response when no data')
-            console.log(response)
+            //console.log('response when no data')
+            //console.log(response)
             value = response.data.content
             this.$store.dispatch('updateBookmark', ['series', value])
           }
@@ -182,7 +182,7 @@ export const bookMarkMixin = {
             if route.page is not the same as bookmark 
             update book and erase all bookmark below*/
     async CheckBookmarkPage(route) {
-      console.log('entering bookmark page')
+      //console.log('entering bookmark page')
       if (!route.pageNAME) {
         this.$store.dispatch('unsetBookmark', ['page'])
         return null
@@ -195,15 +195,15 @@ export const bookMarkMixin = {
             currentPage = this.bookmark.page
           }
           if (route.pageNAME != currentPage) {
-            console.log('BOOKMARK MIXIN --    we have a new page')
+            //console.log('BOOKMARK MIXIN --    we have a new page')
             if (typeof this.bookmark.series != 'undefined') {
-              console.log('the page is part of a series with chapters as')
-              console.log(this.bookmark.series.chapters)
+              //console.log('the page is part of a series with chapters as')
+              //console.log(this.bookmark.series.chapters)
               if (typeof this.bookmark.series.chapters != 'undefined') {
                 var chapters = {}
                 chapters = this.bookmark.series.chapters
-                console.log('BOOKMARK MIXIN --    chapters')
-                console.log(chapters)
+                // console.log('BOOKMARK MIXIN --    chapters')
+                // console.log(chapters)
                 var length = chapters.length
                 for (var i = 0; i < length; i++) {
                   if (chapters[i].filename == route.pageNAME) {
@@ -213,7 +213,7 @@ export const bookMarkMixin = {
               } else {
                 value = this.bookmark.book
               }
-              console.log(value)
+              //console.log(value)
               this.$store.dispatch('updateBookmark', ['page', value])
             } else {
               // it is a basic page from the library

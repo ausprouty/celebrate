@@ -4,9 +4,9 @@
     --color-blue: #1ca0a6;
     --color-background:#efefef;
     --color-version: blue;
-    --color-back:purple;
-    --color-up: #de1e25;
-    --color-forward:green
+    --color-back:black;
+    --color-up: black;
+    --color-forward:black
     ;
     }
     .back{
@@ -49,6 +49,9 @@
     font-weight: bold;
     padding-left: 35px;
     }
+    .indent{
+        margin-left:20px;
+    }
     .lesson-subheader{
        text-align: left;
        font-weight: 600;
@@ -81,10 +84,7 @@
     text-align: center;
     text-transform: uppercase;
     }
-    h1{
-    color: var(--color-red);
     
-    }
     sup,
     .versenum {
     color: var(--color-blue);
@@ -122,16 +122,21 @@
     h1 {
     color:var(--color-red);
     display: inline;
-    display:none;
+    font-size: 24pt;
     font-weight: bold;
-    padding-left: 25px;
-    text-align: center;
+    text-align:left;
     }
     img.lesson-icon {
-    height: 30px;
-    margin-right: 20px;
+        height: 30px;
+        margin-right: 20px;
+        vertical-align: middle;
+        width: 30px;
+        
+        }
+    img.lesson-image {
     vertical-align: middle;
-    width: 30px;
+    width: 100%;
+    max-width:600px;
     
     }
     img.lesson-rtl-icon {

@@ -20,7 +20,7 @@ export const authorMixin = {
       } else {
         var included = false
         included = scope.includes(code)
-        console.log('included ' + included)
+        //console.log('included ' + included)
         if (reason == 'write') {
           return included
         }

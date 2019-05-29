@@ -1,23 +1,28 @@
 <template>
   <div>
-    <NavBar/>
+    <NavBar />
     <div class="loading" v-if="loading">Loading...</div>
-    <div class="error" v-if="error">There was an error... {{this.error}}</div>
+    <div class="error" v-if="error">There was an error... {{ this.error }}</div>
     <div class="content" v-if="loaded">
-      <link rel="stylesheet" v-bind:href="'/css/' + this.style">
+      <link
+        rel="stylesheet"
+        v-bind:href="'/content/' + this.bookmark.book.style"
+      />
       <div class="app-link">
         <div class="app-card -shadow">
           <div v-on:click="goBack()">
-            <img v-bind:src="this.book_image" class="book">
+            <img v-bind:src="this.book_image" class="book" />
             <div class="book">
-              <span class="bold">{{this.bookmark.book.title}}</span>
+              <span class="bold">{{ this.bookmark.book.title }}</span>
             </div>
           </div>
         </div>
       </div>
 
-      <h1 v-if="this.bookmark.page.count">{{this.bookmark.page.count}}. {{this.bookmark.page.title}}</h1>
-      <h1 v-else>{{this.bookmark.page.title}}</h1>
+      <h1 v-if="this.bookmark.page.count">
+        {{ this.bookmark.page.count }}. {{ this.bookmark.page.title }}
+      </h1>
+      <h1 v-else>{{ this.bookmark.page.title }}</h1>
       <p>
         <span v-html="pageText"></span>
       </p>
@@ -68,5 +73,4 @@ export default {
   }
 }
 </script>
-<style >
-</style>
+<style></style>

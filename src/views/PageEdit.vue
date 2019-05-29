@@ -1,35 +1,45 @@
 <template>
   <div>
-    <NavBar/>
+    <NavBar />
 
     <div class="loading" v-if="loading">Loading...</div>
-    <div class="error" v-if="error">There was an error... {{this.error_message}}</div>
+    <div class="error" v-if="error">
+      There was an error... {{ this.error_message }}
+    </div>
     <div class="content" v-if="loaded">
       <div v-if="!this.authorized">
-        <p>You have stumbled into a restricted page. Sorry I can not show it to you now</p>
+        <p>
+          You have stumbled into a restricted page. Sorry I can not show it to
+          you now
+        </p>
       </div>
       <div v-if="this.authorized">
         <div class="app-link">
           <div class="app-card -shadow">
             <div v-on:click="goBack()">
               <img
-                v-bind:src="appDir.library + this.bookmark.language.image_dir + '/' + this.bookmark.book.image"
+                v-bind:src="
+                  appDir.library +
+                    this.bookmark.language.image_dir +
+                    '/' +
+                    this.bookmark.book.image
+                "
                 class="book"
-              >
+              />
 
               <div class="book">
-                <span class="bold">{{this.bookmark.book.title}}</span>
+                <span class="bold">{{ this.bookmark.book.title }}</span>
               </div>
             </div>
           </div>
         </div>
 
-        <h1
-          v-if="this.bookmark.page.count"
-        >{{this.bookmark.page.count}}. {{this.bookmark.page.title}}</h1>
-        <h1 v-else>{{this.bookmark.page.title}}</h1>
+        <h1 v-if="this.bookmark.page.count">
+          {{ this.bookmark.page.count }}. {{ this.bookmark.page.title }}
+        </h1>
+        <h1 v-else>{{ this.bookmark.page.title }}</h1>
         <p>
-          <vue-ckeditor v-model="pageText" :config="config"/>
+          <vue-ckeditor v-model="pageText" :config="config" />
         </p>
         <div class="version">
           <p class="version">Version 1.01</p>
@@ -46,7 +56,6 @@
     </div>
   </div>
 </template>
-
 
 <script>
 import { mapState } from 'vuex'
@@ -86,7 +95,7 @@ export default {
       },
       config: {
         extraPlugins: ['bidi', 'uploadimage', 'uploadwidget', 'clipboard'],
-        extraAllowedContent: '*(*)[id]',
+        extraAllowedContent: ['*(*)[id]', 'ol[*]'],
         contentsCss: '/content/' + this.$route.params.css,
         stylesSet: this.$route.params.stylesSET,
         templates_replaceContent: false,
@@ -214,8 +223,6 @@ export default {
   }
 }
 </script>
-
-
 
 <style scoped>
 .float-right {

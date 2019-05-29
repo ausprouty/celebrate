@@ -20,11 +20,11 @@ export const languageMixin = {
         this.error = this.loaded = null
         this.loading = true
         this.languages = []
-        console.log('about the check bookmarks')
+       // console.log('about the check bookmarks')
         await this.CheckBookmarks(this.$route.params)
         var response = await ContentService.getLanguages(this.$route.params)
-        console.log('get languages')
-        console.log(response)
+        //console.log('get languages')
+        //console.log(response)
         this.languages = response.data.content.text
         if (response.data.content.recnum) {
           this.recnum = response.data.content.recnum

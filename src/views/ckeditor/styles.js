@@ -270,16 +270,6 @@ window.CKEDITOR.stylesSet.add('myfriends', [
 ])
 
 window.CKEDITOR.stylesSet.add('multiply', [
-  { name: 'background', element: 'div', attributes: { class: 'background' } },
-  { name: 'bible', element: 'div', attributes: { class: 'bible' } },
-  { name: 'lesson', element: 'div', attributes: { class: 'lesson' } },
-  { name: 'lesson-icon', element: 'div', attributes: { class: 'lesson-icon' } },
-  {
-    name: 'lesson-section',
-    element: 'div',
-    attributes: { class: 'lesson-section' }
-  },
-  { name: 'readmore', element: 'a', attributes: { class: 'readmore' } },
   {
     name: 'heading-back',
     element: 'h2',
@@ -324,5 +314,15 @@ window.CKEDITOR.stylesSet.add('multiply', [
     name: 'paragraph-forward',
     element: 'p',
     attributes: { class: 'forward' }
-  }
+  },
+  { name: 'background', element: 'div', attributes: { class: 'background' } },
+  { name: 'bible', element: 'div', attributes: { class: 'bible' } },
+  { name: 'lesson', element: 'div', attributes: { class: 'lesson' } },
+  { name: 'lesson-icon', element: 'div', attributes: { class: 'lesson-icon' } },
+  {
+    name: 'lesson-section',
+    element: 'div',
+    attributes: { class: 'lesson-section' }
+  },
+  { name: 'readmore', element: 'a', attributes: { class: 'readmore' } }
 ])
