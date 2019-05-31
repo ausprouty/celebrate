@@ -1,14 +1,17 @@
 <template>
   <div>
-    <NavBar/>
-     
+    <NavBar />
+
     <div class="loading" v-if="loading">Loading...</div>
-    <div class="error" v-if="error">There was an error... {{this.error}}</div>
+    <div class="error" v-if="error">There was an error... {{ this.error }}</div>
     <div class="content" v-if="loaded">
       <div v-if="!this.authorized">
-        <p>You have stumbled into a restricted page. Sorry I can not show it to you now</p>
+        <p>
+          You have stumbled into a restricted page. Sorry I can not show it to
+          you now
+        </p>
       </div>
-     
+
       <div v-if="this.authorized">
         <h1>Library</h1>
         <div>
@@ -16,8 +19,11 @@
             <transition-group>
               <div v-for="book in library" :key="book.id" :book="book">
                 <div class="shadow-card -shadow">
-                  <img v-bind:src="appDir.icons +'move2red.png' " class="sortable">
-                  <span class="card-name">{{book.title}}</span>
+                  <img
+                    v-bind:src="appDir.icons + 'move2red.png'"
+                    class="sortable"
+                  />
+                  <span class="card-name">{{ book.title }}</span>
                 </div>
               </div>
             </transition-group>
@@ -82,19 +88,25 @@ export default {
         this.content.country_code = this.$route.params.countryCODE
         this.content.language_iso = this.$route.params.languageISO
         this.$store.dispatch('newBookmark', 'clear')
-        valid = await AuthorService.createContentData(this.content)
-        this.$router.push({
-          name: 'previewLibrary',
-          params: {
-            countryCODE: this.$route.params.countryCODE,
-            languageISO: this.$route.params.languageISO
-          }
-        })
+        var response = await AuthorService.createContentData(this.content)
+        if (response.data.error != true) {
+          this.$router.push({
+            name: 'previewLibrary',
+            params: {
+              countryCODE: this.$route.params.countryCODE,
+              languageISO: this.$route.params.languageISO
+            }
+          })
+        } else {
+          this.error = true
+          this.loaded = false
+          this.error_message = response.data.message
+        }
       } catch (error) {
         console.log('LIBRARY EDIT There was an error ', error)
         this.error = true
         this.loaded = false
-        this.error_message = valid.data.message
+        this.error_message = response.data.message
       }
     }
   },
@@ -113,7 +125,6 @@ export default {
   }
 }
 </script>
-
 
 <style scoped>
 .float-right {

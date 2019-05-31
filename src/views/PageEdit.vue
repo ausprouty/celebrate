@@ -169,16 +169,22 @@ export default {
         this.content.filename = this.$route.params.fileFILENAME
         this.content.filetype = 'html'
         this.$store.dispatch('newBookmark', 'clear')
-        var valid = await AuthorService.createContentData(this.content)
-        this.$router.push({
-          name: 'previewPage',
-          params: {
-            countryCODE: this.$route.params.countryCODE,
-            languageISO: this.$route.params.languageISO,
-            bookNAME: this.$route.params.bookNAME,
-            fileFILENAME: this.$route.params.fileFILENAME
-          }
-        })
+        var response = await AuthorService.createContentData(this.content)
+        if (response.data.error != true) {
+          this.$router.push({
+            name: 'previewPage',
+            params: {
+              countryCODE: this.$route.params.countryCODE,
+              languageISO: this.$route.params.languageISO,
+              bookNAME: this.$route.params.bookNAME,
+              fileFILENAME: this.$route.params.fileFILENAME
+            }
+          })
+        } else {
+          this.error = true
+          this.loaded = false
+          this.error_message = response.data.message
+        }
       } catch (error) {
         console.log('LIBRARY EDIT There was an error ', error)
         this.error = true

@@ -105,12 +105,21 @@ export default {
         })
       }
     },
-    local_publish() {
+    async local_publish() {
       var params = {}
       params.recnum = this.recnum
-      PublishService.publish('page', params)
-      this.UnsetBookmarks()
-      this.loadView()
+      var response = await PublishService.publish('page', params)
+      if (response['error']) {
+        this.error = response['message']
+        this.loaded = false
+      } else {
+        this.UnsetBookmarks()
+        this.recnum = null
+        this.loaded = false
+        this.loading = true
+        this.publish = false
+        await this.loadView()
+      }
     },
     async loadView() {
       try {

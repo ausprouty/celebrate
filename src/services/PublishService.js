@@ -15,67 +15,77 @@ export default {
   publish(scope, params) {
     console.log('publish')
     console.log(params)
+    var response = null
     params.my_uid = store.state.user.uid
     params.token = store.state.user.token
     switch (scope) {
       case 'countries':
-        this.publishCountries(params)
+        response = this.publishCountries(params)
         break
       case 'language':
-        this.publishLanguage(params)
+        response = this.publishLanguage(params)
         break
       case 'library':
-        this.publishLibrary(params)
+        response = this.publishLibrary(params)
         break
       case 'series':
-        this.publishSeries(params)
+        response = this.publishSeries(params)
         break
       case 'page':
-        this.publishPage(params)
+        response = this.publishPage(params)
         break
       case 'default':
+        response = null
     }
+    console.log('result of publish')
+    console.log(response)
+    return response
   },
   publishCountries(params) {
     console.log('in publishCountries')
     var contentForm = this.toFormData(params)
-    apiSECURE.post(
+    var response = apiSECURE.post(
       'PublishApi.php?page=publish&action=publishCountries',
       contentForm
     )
+    return response
   },
   publishLanguage(params) {
     var contentForm = this.toFormData(params)
-    apiSECURE.post(
+    var response = apiSECURE.post(
       'PublishApi.php?page=publish&action=publishLanguage',
       contentForm
     )
+    return response
   },
   publishLibrary(params) {
     var contentForm = this.toFormData(params)
-    apiSECURE.post(
+    var response = apiSECURE.post(
       'PublishApi.php?page=publish&action=publishLibrary',
       contentForm
     )
+    return response
   },
   publishSeries(params) {
     console.log('params in publish Series')
     console.log(params)
     var contentForm = this.toFormData(params)
-    apiSECURE.post(
+    var response = apiSECURE.post(
       'PublishApi.php?page=publish&action=publishSeries',
       contentForm
     )
+    return response
   },
   publishPage(params) {
     console.log('params in publish Page')
     console.log(params)
     var contentForm = this.toFormData(params)
 
-    apiSECURE.post(
+    var response = apiSECURE.post(
       'PublishApi.php?page=publish&action=publishPage',
       contentForm
     )
+    return response
   },
   toFormData(obj) {
     var form_data = new FormData()

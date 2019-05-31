@@ -1,17 +1,20 @@
 <template>
   <div class="preview">
-    <NavBar/>
+    <NavBar />
     <div class="loading" v-if="loading">Loading...</div>
-    <div class="error" v-if="error">There was an error... {{this.error}}</div>
+    <div class="error" v-if="error">There was an error... {{ this.error }}</div>
     <div class="content" v-if="loaded">
       <div v-if="this.publish">
         <button class="button" @click="localPublish()">Publish</button>
       </div>
       <a v-bind:href="'/preview/language/' + this.bookmark.country.code">
-        <img v-bind:src="appDir.library +  this.image_dir +'/journey.jpg'" class="app-img-header">
+        <img
+          v-bind:src="appDir.library + this.image_dir + '/journey.jpg'"
+          class="app-img-header"
+        />
       </a>
 
-      <Book v-for="book in library" :key="book.title" :book="book"/>
+      <Book v-for="book in library" :key="book.title" :book="book" />
       <div class="version">
         <p class="version">Version 1.01</p>
       </div>
@@ -26,7 +29,6 @@
     </div>
   </div>
 </template>
-
 
 <script>
 import Book from '@/components/BookPreview.vue'
@@ -77,12 +79,18 @@ export default {
     async localPublish() {
       var params = {}
       params.recnum = this.recnum
-      await PublishService.publish('library', params)
-      this.UnsetBookmarks()
-      this.loaded = false
-      this.loading = true
-      this.publish = false
-      await this.loadView()
+      var response = await PublishService.publish('library', params)
+       if (response['error']) {
+        this.error = response['message']
+        this.loaded = false
+      } else {
+        this.UnsetBookmarks()
+        this.recnum = null
+        this.loaded = false
+        this.loading = true
+        this.publish = false
+        await this.loadView()
+      }
     },
     async loadView() {
       try {
@@ -94,7 +102,13 @@ export default {
           this.$route.params.countryCODE
         )
         this.write = this.authorize('write', this.$route.params.countryCODE)
-        this.publish = this.authorize('publish', this.$route.params.countryCODE)
+        this.publish = false
+        if (this.recnum && !this.publish_date) {
+          this.publish = this.authorize(
+            'publish',
+            this.$route.params.countryCODE
+          )
+        }
         this.loaded = true
         this.loading = false
       } catch (error) {

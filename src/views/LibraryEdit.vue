@@ -1,20 +1,40 @@
 <template>
   <div>
-    <NavBar/>
+    <NavBar />
 
     <div class="loading" v-if="loading">Loading...</div>
-    <div class="error" v-if="error">There was an error... {{this.error_message}}</div>
+    <div class="error" v-if="error">
+      There was an error... {{ this.error_message }}
+    </div>
     <div class="content" v-if="loaded">
       <div v-if="!this.authorized">
-        <p>You have stumbled into a restricted page. Sorry I can not show it to you now</p>
+        <p>
+          You have stumbled into a restricted page. Sorry I can not show it to
+          you now
+        </p>
       </div>
       <div v-if="this.authorized">
         <h1>Library</h1>
         <div>
-          <button class="button" @click="publishAll">Select ALL to publish?</button>
-          <div v-for="(book, index) in $v.library.$each.$iter" :key="book.code" :book="book">
-            <div class="app-card -shadow" v-bind:class="{notpublished : !book.publish.$model}">
-              <div class="float-right" style="cursor:pointer" @click="deleteBookForm(index)">X</div>
+          <button class="button" @click="publishAll">
+            Select ALL to publish?
+          </button>
+          <div
+            v-for="(book, index) in $v.library.$each.$iter"
+            :key="book.code"
+            :book="book"
+          >
+            <div
+              class="app-card -shadow"
+              v-bind:class="{ notpublished: !book.publish.$model }"
+            >
+              <div
+                class="float-right"
+                style="cursor:pointer"
+                @click="deleteBookForm(index)"
+              >
+                X
+              </div>
               <div>
                 <BaseInput
                   v-model="book.id.$model"
@@ -35,7 +55,9 @@
                   @blur="book.title.$touch()"
                 />
                 <template v-if="book.title.$error">
-                  <p v-if="!book.title.required" class="errorMessage">Book Title is required</p>
+                  <p v-if="!book.title.required" class="errorMessage">
+                    Book Title is required
+                  </p>
                 </template>
 
                 <BaseSelect
@@ -48,13 +70,15 @@
                 />
                 <div>
                   <p>
-                    <a
-                      class="black"
-                      @click="createBook(book.book.$model)"
-                    >Create new International Title</a>
+                    <a class="black" @click="createBook(book.book.$model)"
+                      >Create new International Title</a
+                    >
                   </p>
                 </div>
-                <div v-bind:id="book.title.$model" v-bind:class="{ hidden: isHidden }">
+                <div
+                  v-bind:id="book.title.$model"
+                  v-bind:class="{ hidden: isHidden }"
+                >
                   <BaseInput
                     label="New International Title"
                     v-model="book.book.$model"
@@ -65,7 +89,9 @@
                   <button
                     class="button"
                     @click="addNewBookTitle(book.title.$model)"
-                  >Save International Title</button>
+                  >
+                    Save International Title
+                  </button>
                 </div>
 
                 <div v-if="book.book.$model">
@@ -78,28 +104,36 @@
                     @blur="book.folder.$touch()"
                   />
                   <template v-if="book.folder.$error">
-                    <p v-if="!book.folder.required" class="errorMessage">Folder is required</p>
+                    <p v-if="!book.folder.required" class="errorMessage">
+                      Folder is required
+                    </p>
                   </template>
                   <div>
                     <p>
-                      <a class="black" @click="createFolder(book.book.$model)">Create new Folder</a>
+                      <a class="black" @click="createFolder(book.book.$model)"
+                        >Create new Folder</a
+                      >
                     </p>
                   </div>
                 </div>
-                <br>
-                <br>
+                <br />
+                <br />
                 <div v-if="book.folder.$model">
                   <div v-if="!image_permission">
-                    <p class="errorMessage">This image comes from a shared directory.</p>
+                    <p class="errorMessage">
+                      This image comes from a shared directory.
+                    </p>
                     <p></p>
                   </div>
                   <div v-if="images">
                     <div v-if="book.image.$model">
                       <img
-                        v-bind:src="appDir.library  + image_dir  + '/' + book.image.$model"
+                        v-bind:src="
+                          appDir.library + image_dir + '/' + book.image.$model
+                        "
                         class="book"
-                      >
-                      <br>
+                      />
+                      <br />
                     </div>
                     <BaseSelect
                       label="Image"
@@ -110,7 +144,9 @@
                       @blur="book.image.$touch()"
                     />
                     <template v-if="book.image.$error">
-                      <p v-if="!book.image.required" class="errorMessage">Image is required</p>
+                      <p v-if="!book.image.required" class="errorMessage">
+                        Image is required
+                      </p>
                     </template>
                   </div>
                   <div v-if="image_permission">
@@ -121,7 +157,7 @@
                         v-bind:id="book.book.$model"
                         ref="image"
                         v-on:change="handleImageUpload(book.book.$model)"
-                      >
+                      />
                     </label>
                   </div>
 
@@ -134,7 +170,9 @@
                     @blur="book.format.$touch()"
                   />
                   <template v-if="book.format.$error">
-                    <p v-if="!book.format.required" class="errorMessage">Format is required</p>
+                    <p v-if="!book.format.required" class="errorMessage">
+                      Format is required
+                    </p>
                   </template>
 
                   <div v-if="book.format.$model == 'series'">
@@ -144,11 +182,13 @@
                       type="text"
                       placeholder
                       class="field"
-                      :class="{ error:book.index.$error }"
+                      :class="{ error: book.index.$error }"
                       @blur="book.index.$touch()"
                     />
                     <template v-if="book.index.$error">
-                      <p v-if="!book.index.required" class="errorMessage">Index is required</p>
+                      <p v-if="!book.index.required" class="errorMessage">
+                        Index is required
+                      </p>
                     </template>
                   </div>
 
@@ -161,7 +201,9 @@
                     @blur="book.style.$touch()"
                   />
                   <template v-if="book.style.$error">
-                    <p v-if="!book.style.required" class="errorMessage">Style is required</p>
+                    <p v-if="!book.style.required" class="errorMessage">
+                      Style is required
+                    </p>
                   </template>
                   <template v-if="style_error">
                     <p class="errorMessage">Only .css files may be uploaded</p>
@@ -174,7 +216,7 @@
                       v-bind:id="book.title.$model"
                       ref="style"
                       v-on:change="handleStyleUpload(book.title.$model)"
-                    >
+                    />
                   </label>
 
                   <BaseSelect
@@ -192,15 +234,23 @@
                       v-bind:id="book.title.$model"
                       ref="template"
                       v-on:change="handleTemplateUpload(book.title.$model)"
-                    >
+                    />
                   </label>
                   <template v-if="template_error">
-                    <p class="errorMessage">Only .html files may be uploaded as templates</p>
+                    <p class="errorMessage">
+                      Only .html files may be uploaded as templates
+                    </p>
                   </template>
-                  <button class="button yellow" @click="createTemplate">Create Template</button>
-                  <br>
-                  <br>
-                  <input type="checkbox" id="checkbox" v-model="book.publish.$model">
+                  <button class="button yellow" @click="createTemplate">
+                    Create Template
+                  </button>
+                  <br />
+                  <br />
+                  <input
+                    type="checkbox"
+                    id="checkbox"
+                    v-model="book.publish.$model"
+                  />
                   <label for="checkbox">
                     <h2>Publish?</h2>
                   </label>
@@ -216,7 +266,9 @@
         </div>
         <div v-if="$v.$anyError">
           <button class="button grey">Disabled</button>
-          <p v-if="$v.$anyError" class="errorMessage">Please fill out the required field(s).</p>
+          <p v-if="$v.$anyError" class="errorMessage">
+            Please fill out the required field(s).
+          </p>
         </div>
       </div>
       <div v-if="!this.authorized">
@@ -475,14 +527,20 @@ export default {
         this.content.country_code = this.$route.params.countryCODE
         this.content.language_iso = this.$route.params.languageISO
         this.$store.dispatch('newBookmark', 'clear')
-        valid = await AuthorService.createContentData(this.content)
-        this.$router.push({
-          name: 'previewLibrary',
-          params: {
-            countryCODE: this.$route.params.countryCODE,
-            languageISO: this.$route.params.languageISO
-          }
-        })
+        var response = await AuthorService.createContentData(this.content)
+        if (response.data.error != true) {
+          this.$router.push({
+            name: 'previewLibrary',
+            params: {
+              countryCODE: this.$route.params.countryCODE,
+              languageISO: this.$route.params.languageISO
+            }
+          })
+        } else {
+          this.error = true
+          this.loaded = false
+          this.error_message = response.data.message
+        }
       } catch (error) {
         console.log('LIBRARY EDIT There was an error ', error)
         this.loaded = false
@@ -539,13 +597,12 @@ export default {
       this.loading = false
     } catch (error) {
       console.log('There was an error in Library.vue:', error) // Logs out the error
-      this.error_message = error + 'LIbrary Edit - reated()'
+      this.error_message = error + 'Library Edit - created()'
       this.error = true
     }
   }
 }
 </script>
-
 
 <style scoped>
 .app-card {

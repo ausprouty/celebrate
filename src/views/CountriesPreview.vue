@@ -1,12 +1,16 @@
 <template>
   <div class="preview">
-    <NavBar/>
-    <img v-bind:src="appDir.country+'world.jpg'" class="app-img-header">
+    <NavBar />
+    <img v-bind:src="appDir.country + 'world.jpg'" class="app-img-header" />
     <div v-if="this.publish">
       <button class="button" @click="local_publish()">Publish</button>
     </div>
     <h1>Select Country (Preview Mode)</h1>
-    <Country v-for="country in countries" :key="country.code" :country="country"/>
+    <Country
+      v-for="country in countries"
+      :key="country.code"
+      :country="country"
+    />
     <p class="version">Version 1.01</p>
 
     <div v-if="this.authorized">
@@ -58,12 +62,18 @@ export default {
     async local_publish() {
       var params = {}
       params.recnum = this.recnum
-      await PublishService.publish('countries', params)
-       this.UnsetBookmarks() 
-      this.loaded = false
-      this.loading = true
-      this.publish = false
-      this.loadView()
+      var response = await PublishService.publish('countries', params)
+       if (response['error']) {
+        this.error = response['message']
+        this.loaded = false
+      } else {
+        this.UnsetBookmarks()
+        this.recnum = null
+        this.loaded = false
+        this.loading = true
+        this.publish = false
+        await this.loadView()
+      }
     },
     async loadView() {
       try {
@@ -99,5 +109,4 @@ export default {
 }
 </script>
 
-<style>
-</style>
+<style></style>

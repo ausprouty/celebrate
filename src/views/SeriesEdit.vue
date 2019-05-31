@@ -1,24 +1,43 @@
 <template>
   <div>
-    <NavBar/>
+    <NavBar />
     <div class="loading" v-if="loading">Loading...</div>
-    <div class="error" v-if="error">There was an error... {{this.error_message}}</div>
+    <div class="error" v-if="error">
+      There was an error... {{ this.error_message }}
+    </div>
     <div class="content" v-if="loaded">
-      <h1>Series for {{this.$route.params.countryCODE}} in {{this.$route.params.languageISO}}</h1>
+      <h1>
+        Series for {{ this.$route.params.countryCODE }} in
+        {{ this.$route.params.languageISO }}
+      </h1>
       <div class="form">
         <span>Series Description:</span>
-        <br>
-        <textarea v-model="description" placeholder="add multiple lines"></textarea>
+        <br />
+        <textarea
+          v-model="description"
+          placeholder="add multiple lines"
+        ></textarea>
       </div>
       <div>
-        <button class="button" @click="publishAll">Select ALL to publish?</button>
+        <button class="button" @click="publishAll">
+          Select ALL to publish?
+        </button>
         <div
           v-for="(chapter, index) in $v.chapters.$each.$iter"
           :key="chapter.id"
           :chapter="chapter"
         >
-          <div class="app-card -shadow" v-bind:class="{notpublished : !chapter.publish.$model}">
-            <div class="float-right" style="cursor:pointer" @click="deleteChapterForm(index)">X</div>
+          <div
+            class="app-card -shadow"
+            v-bind:class="{ notpublished: !chapter.publish.$model }"
+          >
+            <div
+              class="float-right"
+              style="cursor:pointer"
+              @click="deleteChapterForm(index)"
+            >
+              X
+            </div>
             <div class="form">
               <BaseInput
                 v-model="chapter.count.$model"
@@ -39,7 +58,9 @@
                 @blur="chapter.title.$touch()"
               />
               <template v-if="chapter.title.$error">
-                <p v-if="!chapter.title.required" class="errorMessage">Title is required</p>
+                <p v-if="!chapter.title.required" class="errorMessage">
+                  Title is required
+                </p>
               </template>
 
               <BaseInput
@@ -52,7 +73,9 @@
                 @blur="chapter.description.$touch()"
               />
               <template v-if="chapter.description.$error">
-                <p v-if="!chapter.description.required" class="errorMessage">Description is required</p>
+                <p v-if="!chapter.description.required" class="errorMessage">
+                  Description is required
+                </p>
               </template>
 
               <BaseInput
@@ -65,9 +88,15 @@
                 @blur="chapter.filename.$touch()"
               />
               <template v-if="chapter.filename.$error">
-                <p v-if="!chapter.filename.required" class="errorMessage">Description is required</p>
+                <p v-if="!chapter.filename.required" class="errorMessage">
+                  Description is required
+                </p>
               </template>
-              <input type="checkbox" id="checkbox" v-model="chapter.publish.$model">
+              <input
+                type="checkbox"
+                id="checkbox"
+                v-model="chapter.publish.$model"
+              />
               <label for="checkbox">
                 <h2>Publish?</h2>
               </label>
@@ -77,14 +106,15 @@
 
         <div v-if="this.authorized">
           <div v-if="this.new">
-            <p
-              class="errorMessage"
-            >Import Series in tab format (number| title | description| bible reference| filename)</p>
+            <p class="errorMessage">
+              Import Series in tab format (number| title | description| bible
+              reference| filename)
+            </p>
             <label>
-              <input type="file" ref="file" v-on:change="importSeries()">
+              <input type="file" ref="file" v-on:change="importSeries()" />
             </label>
-            <br>
-            <br>
+            <br />
+            <br />
           </div>
           <button class="button" @click="addNewChapterForm">New Chapter</button>
 
@@ -93,11 +123,13 @@
           </div>
           <div v-if="$v.$anyError">
             <button class="button grey">Disabled</button>
-            <p v-if="$v.$anyError" class="errorMessage">Please fill out the required field(s).</p>
+            <p v-if="$v.$anyError" class="errorMessage">
+              Please fill out the required field(s).
+            </p>
           </div>
-          <br>
-          <br>
-          <br>
+          <br />
+          <br />
+          <br />
         </div>
         <div v-if="!this.authorized">
           <p>
@@ -221,20 +253,26 @@ export default {
         console.log('this.content')
         console.log(this.content)
         this.$store.dispatch('newBookmark', 'clear')
-        valid = await AuthorService.createContentData(this.content)
-        this.$router.push({
-          name: 'previewSeries',
-          params: {
-            countryCODE: this.$route.params.countryCODE,
-            languageISO: this.$route.params.languageISO,
-            bookNAME: this.$route.params.bookNAME
-          }
-        })
+        var response = await AuthorService.createContentData(this.content)
+        if (response.data.error != true) {
+          this.$router.push({
+            name: 'previewSeries',
+            params: {
+              countryCODE: this.$route.params.countryCODE,
+              languageISO: this.$route.params.languageISO,
+              bookNAME: this.$route.params.bookNAME
+            }
+          })
+        } else {
+          this.error = true
+          this.loaded = false
+          this.error_message = response.data.message
+        }
       } catch (error) {
         console.log('LIBRARY EDIT There was an error ', error)
         this.error = true
         this.loaded = false
-        this.error_message = valid.data.message
+        this.error_message = response.data.message
       }
     }
   },
@@ -253,7 +291,6 @@ export default {
   }
 }
 </script>
-
 
 <style scoped>
 .float-right {

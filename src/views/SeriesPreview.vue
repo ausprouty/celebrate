@@ -13,10 +13,10 @@
           <div class="app-card -shadow">
             <a
               v-bind:href="
-                '/preview/languages/' +
+                '/preview/library/' +
                   this.bookmark.country.code +
                   '/' +
-                  +this.bookmark.language.iso
+                  this.bookmark.language.iso
               "
             >
               <img
@@ -112,11 +112,18 @@ export default {
     async localPublish() {
       var params = {}
       params.recnum = this.recnum
-      await PublishService.publish('series', params)
-      this.loaded = false
-      this.loading = true
-      this.publish = false
-      this.loadView()
+      var response = await PublishService.publish('series', params)
+      if (response['error']) {
+        this.error = response['message']
+        this.loaded = false
+      } else {
+        this.UnsetBookmarks()
+        this.recnum = null
+        this.loaded = false
+        this.loading = true
+        this.publish = false
+        await this.loadView()
+      }
     },
     async loadView() {
       try {
@@ -133,13 +140,15 @@ export default {
           this.$route.params.countryCODE
         )
         this.write = this.authorize('write', this.$route.params.countryCODE)
-        var may_publish = this.authorize(
-          'publish',
-          this.$route.params.countryCODE
-        )
-        if (may_publish && this.recnum && this.publish_date == null) {
-          this.publish = true
+
+        this.publish = false
+        if (this.recnum && !this.publish_date) {
+          this.publish = this.authorize(
+            'publish',
+            this.$route.params.countryCODE
+          )
         }
+
         this.loaded = true
         this.loading = false
       } catch (error) {

@@ -1,8 +1,10 @@
 <template>
   <div>
-    <NavBar/>
+    <NavBar />
     <div class="loading" v-if="loading">Loading...</div>
-    <div class="error" v-if="error">There was an error... {{this.error_message}}</div>
+    <div class="error" v-if="error">
+      There was an error... {{ this.error_message }}
+    </div>
     <div class="content" v-if="loaded">
       <h1>Countries</h1>
       <p>from https://vuelidate.netlify.com/#sub-validation-groups</p>
@@ -22,7 +24,9 @@
             @blur="country.english.$touch()"
           />
           <template v-if="country.english.$error">
-            <div class="errorMessage" v-if="!country.english.required">English Name is required.</div>
+            <div class="errorMessage" v-if="!country.english.required">
+              English Name is required.
+            </div>
           </template>
         </div>
       </div>
@@ -89,10 +93,16 @@ export default {
           this.content.text = JSON.stringify(valid)
           this.content.filename = 'countries'
           this.content.filetype = 'json'
-          valid = await AuthorService.createContentData(this.content)
-          this.$router.push({
-            name: 'previewCountries'
-          })
+          var response = await AuthorService.createContentData(this.content)
+          if (response.data.error != true) {
+            this.$router.push({
+              name: 'previewCountries'
+            })
+          } else {
+            this.error = true
+            this.loaded = false
+            this.error_message = response.data.message
+          }
         } catch (error) {
           console.log('COUNTRIES EDIT There was an error ', error)
           this.error = true
@@ -114,7 +124,6 @@ export default {
   }
 }
 </script>
-
 
 <style scoped>
 .float-right {

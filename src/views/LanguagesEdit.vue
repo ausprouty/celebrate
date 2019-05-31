@@ -1,21 +1,34 @@
 <template>
   <div>
-    <NavBar/>
+    <NavBar />
 
     <div class="loading" v-if="loading">Loading...</div>
-    <div class="error" v-if="error">There was an error... {{this.error}}</div>
+    <div class="error" v-if="error">
+      There was an error... {{ this.error_message }}
+    </div>
     <div class="content" v-if="loaded">
       <div v-if="this.authorized">
-        <h1>Languages for {{this.$route.params.countryCODE}}</h1>
+        <h1>Languages for {{ this.$route.params.countryCODE }}</h1>
         <div>
-          <button class="button" @click="publishAll">Select ALL to publish?</button>
+          <button class="button" @click="publishAll">
+            Select ALL to publish?
+          </button>
           <div
             v-for="(language, index) in $v.languages.$each.$iter"
             :key="language.id"
             :language="language"
           >
-            <div class="app-card -shadow" v-bind:class="{notpublished : !language.publish.$model}">
-              <div class="float-right" style="cursor:pointer" @click="deleteLanguageForm(index)">X</div>
+            <div
+              class="app-card -shadow"
+              v-bind:class="{ notpublished: !language.publish.$model }"
+            >
+              <div
+                class="float-right"
+                style="cursor:pointer"
+                @click="deleteLanguageForm(index)"
+              >
+                X
+              </div>
               <form @submit.prevent="saveForm">
                 <BaseInput
                   v-model="language.name.$model"
@@ -27,7 +40,9 @@
                   @blur="language.name.$touch()"
                 />
                 <template v-if="language.name.$error">
-                  <p v-if="!language.name.required" class="errorMessage">Language Name is required</p>
+                  <p v-if="!language.name.required" class="errorMessage">
+                    Language Name is required
+                  </p>
                 </template>
 
                 <div v-if="!language.iso.$model">
@@ -35,7 +50,8 @@
                     <a
                       target="a_blank"
                       href="https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes"
-                    >Reference File</a>
+                      >Reference File</a
+                    >
                   </p>
                 </div>
                 <BaseInput
@@ -49,7 +65,9 @@
                   @input="forceLowerISO(language.iso.$model)"
                 />
                 <template v-if="language.iso.$error">
-                  <p v-if="!language.iso.required" class="errorMessage">Language ISO is required</p>
+                  <p v-if="!language.iso.required" class="errorMessage">
+                    Language ISO is required
+                  </p>
                 </template>
 
                 <div v-if="language.iso.$model">
@@ -63,14 +81,15 @@
                   />
                   <div>
                     <p>
-                      <a @click="setupLanguageFolder(language.iso.$model)">Create new content folder</a>
+                      <a @click="setupLanguageFolder(language.iso.$model)"
+                        >Create new content folder</a
+                      >
                     </p>
                   </div>
                   <template v-if="language.folder.$error">
-                    <p
-                      v-if="!language.folder.required"
-                      class="errorMessage"
-                    >Content folder is required</p>
+                    <p v-if="!language.folder.required" class="errorMessage">
+                      Content folder is required
+                    </p>
                   </template>
                 </div>
                 <div v-if="language.folder.$model">
@@ -85,14 +104,15 @@
 
                   <div>
                     <p>
-                      <a @click="setupImageFolder(language.iso.$model)">Create new image folder</a>
+                      <a @click="setupImageFolder(language.iso.$model)"
+                        >Create new image folder</a
+                      >
                     </p>
                   </div>
                   <template v-if="language.image_dir.$error">
-                    <p
-                      v-if="!language.image_dir.required"
-                      class="errorMessage"
-                    >Menu directory is required</p>
+                    <p v-if="!language.image_dir.required" class="errorMessage">
+                      Menu directory is required
+                    </p>
                   </template>
                   <BaseSelect
                     label="Text Direction"
@@ -103,14 +123,17 @@
                     @blur="language.rldir.$touch()"
                   />
                   <template v-if="language.rldir.$error">
-                    <p
-                      v-if="!language.rldir.required"
-                      class="errorMessage"
-                    >Text Direction is required</p>
+                    <p v-if="!language.rldir.required" class="errorMessage">
+                      Text Direction is required
+                    </p>
                   </template>
-                  <br>
-                  <br>
-                  <input type="checkbox" id="checkbox" v-model="language.publish.$model">
+                  <br />
+                  <br />
+                  <input
+                    type="checkbox"
+                    id="checkbox"
+                    v-model="language.publish.$model"
+                  />
                   <label for="checkbox">
                     <h2>Publish?</h2>
                   </label>
@@ -120,14 +143,18 @@
           </div>
         </div>
         <div>
-          <button class="button" @click="addNewLanguageForm">New Language</button>
+          <button class="button" @click="addNewLanguageForm">
+            New Language
+          </button>
         </div>
         <div v-if="!$v.$anyError">
           <button class="button red" @click="saveForm">Save Changes</button>
         </div>
         <div v-if="$v.$anyError">
           <button class="button grey">Disabled</button>
-          <p v-if="$v.$anyError" class="errorMessage">Please fill out the required field(s).</p>
+          <p v-if="$v.$anyError" class="errorMessage">
+            Please fill out the required field(s).
+          </p>
         </div>
       </div>
       <div v-if="!this.authorized">
@@ -267,13 +294,19 @@ export default {
         this.content.filename = 'languages'
         this.content.filetype = 'json'
         this.content.country_code = this.$route.params.countryCODE
-        valid = await AuthorService.createContentData(this.content)
-        this.$router.push({
-          name: 'previewLanguages',
-          params: {
-            countryCODE: this.$route.params.countryCODE
-          }
-        })
+        var response = await AuthorService.createContentData(this.content)
+        if (response.data.error != true) {
+          this.$router.push({
+            name: 'previewLanguages',
+            params: {
+              countryCODE: this.$route.params.countryCODE
+            }
+          })
+        } else {
+          this.error = true
+          this.loaded = false
+          this.error_message = response.data.message
+        }
       } catch (error) {
         console.log('LANGUAGES EDIT There was an error ', error)
         this.error = true
@@ -304,7 +337,6 @@ export default {
   }
 }
 </script>
-
 
 <style scoped>
 .float-right {

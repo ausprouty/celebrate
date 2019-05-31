@@ -1,18 +1,25 @@
 <template>
   <div class="preview">
-    <NavBar/>
+    <NavBar />
     <div class="loading" v-if="loading">Loading...</div>
-    <div class="error" v-if="error">There was an error... {{this.error}}</div>
+    <div class="error" v-if="error">There was an error... {{ this.error }}</div>
     <div class="content" v-if="loaded">
       <div v-if="this.publish">
         <button class="button" @click="local_publish()">Publish</button>
       </div>
       <a href="preview/languages">
-        <img v-bind:src="appDir.root+'languages.jpg'" class="app-img-header">
+        <img
+          v-bind:src="appDir.root + 'languages.jpg'"
+          class="app-img-header"
+        />
       </a>
 
-      <h1>Choose Language (preview for {{this.countryCODE}})</h1>
-      <Language v-for="language in languages" :key="language.iso" :language="language"/>
+      <h1>Choose Language (preview for {{ this.countryCODE }})</h1>
+      <Language
+        v-for="language in languages"
+        :key="language.iso"
+        :language="language"
+      />
       <div v-if="!this.ZZ">
         <a href="/languages/ZZ">More Languages</a>
       </div>
@@ -22,10 +29,7 @@
       <div v-if="this.write">
         <button class="button" @click="editLanguages">Edit</button>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <button
-          class="button"
-          @click="sortLanguages"
-        >Sort</button>
+        <button class="button" @click="sortLanguages">Sort</button>
       </div>
       <div v-if="this.readonly">
         <button class="button" @click="editLanguages">View Details</button>
@@ -81,12 +85,18 @@ export default {
     async local_publish() {
       var params = {}
       params.recnum = this.recnum
-      await PublishService.publish('language', params)
-      this.UnsetBookmarks()
-      this.loaded = false
-      this.loading = true
-      this.publish = false
-      this.loadView()
+      var response = await PublishService.publish('language', params)
+      if (response['error']) {
+        this.error = response['message']
+        this.loaded = false
+      } else {
+        this.UnsetBookmarks()
+        this.recnum = null
+        this.loaded = false
+        this.loading = true
+        this.publish = false
+        await this.loadView()
+      }
     },
     async loadView() {
       try {
@@ -123,6 +133,4 @@ export default {
 }
 </script>
 
-
-<style>
-</style>
+<style></style>

@@ -1,37 +1,52 @@
 <template>
   <div>
-    <NavBar/>
+    <NavBar />
 
     <div class="loading" v-if="loading">Loading...</div>
-    <div class="error" v-if="error">There was an error... {{this.error_message}}</div>
+    <div class="error" v-if="error">
+      There was an error... {{ this.error_message }}
+    </div>
     <div class="content" v-if="loaded">
       <div v-if="!this.authorized">
-        <p>You have stumbled into a restricted page. Sorry I can not show it to you now</p>
+        <p>
+          You have stumbled into a restricted page. Sorry I can not show it to
+          you now
+        </p>
       </div>
       <div v-if="this.authorized">
-        <h1>Series for {{this.$route.params.countryCODE}}</h1>
+        <h1>Series for {{ this.$route.params.countryCODE }}</h1>
         <div class="form">
           <span>Series Description:</span>
-          <br>
-          <textarea v-model="seriesDetails.description" placeholder="add multiple lines"></textarea>
+          <br />
+          <textarea
+            v-model="seriesDetails.description"
+            placeholder="add multiple lines"
+          ></textarea>
         </div>
         <div>
           <button class="button" @click="addNewChapterForm">New Chapter</button>
           <draggable v-model="chapters">
             <transition-group>
-              <div v-for="chapter in chapters" :key="chapter.id" :book="chapter">
+              <div
+                v-for="chapter in chapters"
+                :key="chapter.id"
+                :book="chapter"
+              >
                 <div class="shadow-card -shadow">
-                  <img v-bind:src="appDir.icons +'move2red.png' " class="sortable">
-                  <span class="card-name">{{chapter.title}}</span>
+                  <img
+                    v-bind:src="appDir.icons + 'move2red.png'"
+                    class="sortable"
+                  />
+                  <span class="card-name">{{ chapter.title }}</span>
                 </div>
               </div>
             </transition-group>
           </draggable>
         </div>
         <button class="button" @click="saveForm">Save</button>
-        <br>
-        <br>
-        <br>
+        <br />
+        <br />
+        <br />
       </div>
       <div v-if="!this.authorized">
         <p>
@@ -92,18 +107,23 @@ export default {
         this.content.language_iso = this.$route.params.languageISO
         this.content.folder = this.bookmark.book.folder
         this.$store.dispatch('newBookmark', 'clear')
-        await AuthorService.createContentData(this.content)
-        this.$router.push({
-          name: 'previewSeries',
-          params: {
-            countryCODE: this.$route.params.countryCODE,
-            languageISO: this.$route.params.languageISO,
-            bookNAME: this.$route.params.bookNAME
-          }
-        })
+        var response = await AuthorService.createContentData(this.content)
+        if (response.data.error != true) {
+          this.$router.push({
+            name: 'previewSeries',
+            params: {
+              countryCODE: this.$route.params.countryCODE,
+              languageISO: this.$route.params.languageISO,
+              bookNAME: this.$route.params.bookNAME
+            }
+          })
+        } else {
+          this.error = true
+          this.loaded = false
+          this.error_message = response.data.message
+        }
       } catch (error) {
         console.log('LIBRARY EDIT There was an error ', error)
-        AuthorService.createContentData //
       }
     }
   },
@@ -120,7 +140,6 @@ export default {
   }
 }
 </script>
-
 
 <style scoped>
 .float-right {

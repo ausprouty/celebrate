@@ -1,13 +1,1 @@
-[
-  {
-    "folder": "eng",
-    "iso": "eng",
-    "name": "English",
-    "bible": "text",
-    "life-issues": "swiss",
-    "image_dir": "menu-europe",
-    "nt": "1257",
-    "ot": "1257",
-    "rldir": "ltr"
-  }
-]
+[{"folder":"US/eng","iso":"eng","name":"English","bible":"text","life-issues":"swiss","image_dir":"ZZ/images/europe","nt":"1257","ot":"1257","rldir":"ltr","publish":true}]

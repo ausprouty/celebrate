@@ -1,22 +1,34 @@
 <template>
   <div>
-    <NavBar/>
+    <NavBar />
 
     <div class="loading" v-if="loading">Loading...</div>
-    <div class="error" v-if="error">There was an error... {{this.error_message}}</div>
+    <div class="error" v-if="error">
+      There was an error... {{ this.error_message }}
+    </div>
     <div class="content" v-if="loaded">
       <div v-if="!this.authorized">
-        <p>You have stumbled into a restricted page. Sorry I can not show it to you now</p>
+        <p>
+          You have stumbled into a restricted page. Sorry I can not show it to
+          you now
+        </p>
       </div>
       <div v-if="this.authorized">
-        <h1>Languages for {{this.$route.params.countryCODE}}</h1>
+        <h1>Languages for {{ this.$route.params.countryCODE }}</h1>
         <div>
           <draggable v-model="languages">
             <transition-group>
-              <div v-for="language in languages" :key="language.id" :language="language">
+              <div
+                v-for="language in languages"
+                :key="language.id"
+                :language="language"
+              >
                 <div class="shadow-card -shadow">
-                  <img v-bind:src="appDir.icons +'move2red.png' " class="sortable">
-                  <span class="card-name">{{language.name}}</span>
+                  <img
+                    v-bind:src="appDir.icons + 'move2red.png'"
+                    class="sortable"
+                  />
+                  <span class="card-name">{{ language.name }}</span>
                 </div>
               </div>
             </transition-group>
@@ -79,18 +91,24 @@ export default {
         this.content.filename = 'languages'
         this.content.filetype = 'json'
         this.content.country_code = this.$route.params.countryCODE
-        valid = await AuthorService.createContentData(this.content)
-        this.$router.push({
-          name: 'previewLanguages',
-          params: {
-            countryCODE: this.$route.params.countryCODE
-          }
-        })
+        var response = await AuthorService.createContentData(this.content)
+        if (response.data.error != true) {
+          this.$router.push({
+            name: 'previewLanguages',
+            params: {
+              countryCODE: this.$route.params.countryCODE
+            }
+          })
+        } else {
+          this.error = true
+          this.loaded = false
+          this.error_message = response.data.message
+        }
       } catch (error) {
         console.log('LANGUAGES SORT There was an error ', error)
         this.error = true
         this.loaded = false
-        this.error_message = valid.data.message
+        this.error_message = response.data.message
       }
     }
   },
@@ -109,7 +127,6 @@ export default {
   }
 }
 </script>
-
 
 <style scoped>
 .float-right {

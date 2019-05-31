@@ -1,8 +1,8 @@
 <template>
   <div>
-    <NavBar/>
+    <NavBar />
     <div class="loading" v-if="loading">Loading...</div>
-    <div class="error" v-if="error">There was an error... {{this.error}}</div>
+    <div class="error" v-if="error">There was an error... {{ this.error }}</div>
     <div class="content" v-if="loaded">
       <div v-if="this.authorized">
         <h1>Countries</h1>
@@ -11,8 +11,11 @@
             <transition-group>
               <div v-for="country in countries" :key="country.code">
                 <div class="shadow-card -shadow">
-                  <img v-bind:src="appDir.icons +'move2red.png' " class="sortable">
-                  <span class="card-name">{{country.name}}</span>
+                  <img
+                    v-bind:src="appDir.icons + 'move2red.png'"
+                    class="sortable"
+                  />
+                  <span class="card-name">{{ country.name }}</span>
                 </div>
               </div>
             </transition-group>
@@ -65,15 +68,21 @@ export default {
         this.content.text = JSON.stringify(valid)
         this.content.filename = 'countries'
         this.content.filetype = 'json'
-        valid = await AuthorService.createContentData(this.content)
-        this.$router.push({
-          name: 'previewCountries'
-        })
+        var response = await AuthorService.createContentData(this.content)
+        if (response.data.error != true) {
+          this.$router.push({
+            name: 'previewCountries'
+          })
+        } else {
+          this.error = true
+          this.loaded = false
+          this.error_message = response.data.message
+        }
       } catch (error) {
         console.log('COUNTRIES SORT There was an error ', error)
         this.error = true
         this.loaded = false
-        this.error_message = valid.data.message
+        this.error_message = response.data.message
       }
     },
 
@@ -90,7 +99,6 @@ export default {
   }
 }
 </script>
-
 
 <style scoped>
 .float-right {
