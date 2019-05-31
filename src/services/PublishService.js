@@ -1,5 +1,5 @@
 const apiSECURE = axios.create({
-  baseURL: 'http://create.myfriends.network/',
+  baseURL: 'https://create.myfriends.network/',
   withCredentials: false, // This is the default
   crossDomain: true,
   headers: {

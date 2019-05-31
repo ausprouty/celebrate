@@ -1,29 +1,38 @@
 <template>
   <div>
-    <NavBar/>
+    <NavBar />
     <div class="loading" v-if="loading">Loading...</div>
-    <div class="error" v-if="error">There was an error... {{this.error}}</div>
+    <div class="error" v-if="error">There was an error... {{ this.error }}</div>
     <div class="content" v-if="loaded">
       <div v-bind:class="this.dir">
-        <link rel="stylesheet" v-bind:href="'/content/' + this.bookmark.book.style">
+        <link
+          rel="stylesheet"
+          v-bind:href="'/content/' + this.bookmark.book.style"
+        />
         <div class="app-link">
           <div class="app-card -shadow">
-            <a
-              v-bind:href="/library/ + this.$route.params.countryCODE + '/' + this.$route.params.languageISO"
-            >
-              <img
-                v-bind:src="appDir.library + this.bookmark.language.image_dir + '/' + this.bookmark.book.image"
-                class="app-img-header"
-              >
-            </a>
+            <img
+              v-on:click="returnToIndex()"
+              v-bind:src="
+                appDir.library +
+                  this.bookmark.language.image_dir +
+                  '/' +
+                  this.bookmark.book.image
+              "
+              class="app-img-header"
+            />
           </div>
         </div>
-        <h2>{{this.bookmark.book.title}}</h2>
-        <div v-if="this.description">{{this.description}}</div>
-        <br>
-        <br>
+        <h2>{{ this.bookmark.book.title }}</h2>
+        <div v-if="this.description">{{ this.description }}</div>
+        <br />
+        <br />
 
-        <Chapter v-for="chapter in chapters" :key="chapter.id" :chapter="chapter"/>
+        <Chapter
+          v-for="chapter in chapters"
+          :key="chapter.id"
+          :chapter="chapter"
+        />
         <div class="version">
           <p class="version">Version 1.11</p>
         </div>
@@ -68,6 +77,17 @@ export default {
       loading: false,
       loaded: null,
       error: null
+    }
+  },
+  methods: {
+    returnToIndex() {
+      this.$router.push({
+        name: 'library',
+        params: {
+          countryCODE: this.$route.params.countryCODE,
+          languageISO: this.$route.params.languageISO
+        }
+      })
     }
   },
   beforeCreate() {

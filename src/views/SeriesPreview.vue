@@ -11,24 +11,13 @@
         <link rel="stylesheet" v-bind:href="'/content/' + this.style" />
         <div class="app-link">
           <div class="app-card -shadow">
-            <a
-              v-bind:href="
-                '/preview/library/' +
-                  this.bookmark.country.code +
-                  '/' +
-                  this.bookmark.language.iso
+            <img
+              v-on:click="returnToIndex()"
+              v-bind:src="
+                appDir.library + this.image_dir + '/' + this.bookmark.book.image
               "
-            >
-              <img
-                v-bind:src="
-                  appDir.library +
-                    this.image_dir +
-                    '/' +
-                    this.bookmark.book.image
-                "
-                class="app-img-header"
-              />
-            </a>
+              class="app-img-header"
+            />
           </div>
         </div>
         <h2>{{ bookmark.book.title }}</h2>
@@ -108,6 +97,15 @@ export default {
     },
     goBack() {
       window.history.back()
+    },
+    returnToIndex() {
+      this.$router.push({
+        name: 'library',
+        params: {
+          countryCODE: this.$route.params.countryCODE,
+          languageISO: this.$route.params.languageISO
+        }
+      })
     },
     async localPublish() {
       var params = {}

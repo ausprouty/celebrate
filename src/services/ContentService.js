@@ -14,7 +14,7 @@ const apiContent = axios.create({
 
 const apiMYSQL = axios.create({
   //baseURL: 'http://localhost:8000/myfriends/',
-  baseURL: 'http://create.myfriends.network/',
+  baseURL: 'https://create.myfriends.network/',
   withCredentials: false, // This is the default
   crossDomain: true,
   headers: {

@@ -162,6 +162,7 @@ padding-right: 10px;
 height:15px;
 width:15px;
 }
+img.large_point,
 img.lesson-point-large{
 padding-right: 10px;
 height:30px;
@@ -227,6 +228,11 @@ line-height:1.4;
 }
 p.rtl{
 text-align:right;
+}
+ul.ol-back,
+ul.ol-up,
+ul.ol-forward{
+    list-style: none;
 }
 
 sup,
