@@ -52,7 +52,25 @@ export default {
       return response
     }
   },
-
+  async getCountry(params) {
+    console.log('in getCountry of Content Service')
+    var found = false
+    var response = {}
+    var contentForm = this.toFormData(params)
+    let res = await apiMYSQL.post('ContentApi.php?crud=country', contentForm)
+    console.log(res)
+    if (res.data.content) {
+      found = true
+      response = res
+      response.data.content.text = res.data.content.text
+      response.source = 'data'
+      return response
+    } else {
+      response.data = {}
+      response.source = 'none'
+      return response
+    }
+  },
   async getLanguages(params) {
     var found = false
     var response = {}

@@ -9,8 +9,8 @@ export const bookMarkMixin = {
   computed: mapState(['bookmark', 'standard']),
 
   methods: {
-    UnsetBookmarks() {
-      this.$store.dispatch('unsetBookmark', ['country'])
+    async UnsetBookmarks() {
+      return this.$store.dispatch('unsetBookmark', ['country'])
     },
     async CheckBookmarks(route) {
       //  console.log('BOOKMARK MIXIN started')

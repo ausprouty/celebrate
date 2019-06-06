@@ -4,10 +4,10 @@
       class="shadow-card -shadow"
       v-bind:class="{ notpublished: !country.publish, custom: country.custom }"
     >
-      <img v-bind:src="appDir.country + country.image" class="flag">
+      <img v-bind:src="appDir.country + country.image" class="flag" />
       <div class="card-names">
         <span class="card-name">{{ country.name }}</span>
-        <br>
+        <br />
         <span class="card-name-english">{{ country.english }}</span>
       </div>
     </div>
@@ -33,11 +33,14 @@ export default {
   computed: mapState(['bookmark', 'appDir']),
   methods: {
     showLanguagePage(country) {
+      console.log('country')
+      console.log(country)
+      console.log(country.code)
       localStorage.setItem('lastPage', 'countries')
-       this.$route.params.countryCODE = country.code
-       var route = 'previewLanguages'
-      if (country.custom){
-        route = 'countryFreeform'
+      this.$route.params.countryCODE = country.code
+      var route = 'previewLanguages'
+      if (country.custom) {
+        route = 'previewCountryPage'
       }
       this.$router.push({
         name: route,

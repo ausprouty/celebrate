@@ -42,11 +42,11 @@ import NavBar from '@/components/NavBarAdmin.vue'
 import './ckeditor/index.js'
 import VueCkeditor from 'vue-ckeditor2'
 import { bookMarkMixin } from '@/mixins/BookmarkMixin.js'
-import { pageMixin } from '@/mixins/PageMixin.js'
+import { freeformMixin } from '@/mixins/FreeformMixin.js'
 import { authorMixin } from '@/mixins/AuthorMixin.js'
 export default {
-  mixins: [bookMarkMixin, pageMixin, authorMixin],
-  props: ['countryCODE', 'languageISO', 'bookNAME', 'fileFILENAME'],
+  mixins: [bookMarkMixin, freeformMixin, authorMixin],
+  props: ['countryCODE'],
   components: {
     NavBar,
     VueCkeditor
@@ -108,6 +108,7 @@ export default {
             name: 'paragraph',
             groups: ['list', 'indent', 'blocks', 'align', 'bidi', 'paragraph']
           },
+          { name: 'iframe', groups: ['iframe'] },
           { name: 'colors', groups: ['colors'] },
           { name: 'about', groups: ['about'] }
         ],
@@ -143,13 +144,13 @@ export default {
         this.content.country_code = this.$route.params.countryCODE
         this.content.language_iso = null
         this.content.folder = null
-        this.content.filename = this.$route.params.fileFILENAME
+        this.content.filename = 'index'
         this.content.filetype = 'html'
         this.$store.dispatch('newBookmark', 'clear')
         var response = await AuthorService.createContentData(this.content)
         if (response.data.error != true) {
           this.$router.push({
-            name: 'countryFreeform',
+            name: 'CountryPreview',
             params: {
               countryCODE: this.$route.params.countryCODE
             }
@@ -168,31 +169,25 @@ export default {
     }
   },
   async beforeCreate() {
-    console.log('before Create')
+    console.log('before Create in Country')
     console.log(this.$route.params)
     this.$route.params.stylesSET = 'myfriends'
     this.$route.params.version = 'lastest'
-    this.$route.params.pageNAME = this.$route.params.fileFILENAME
-    this.$route.params.css = 'myfriends'
+    this.$route.params.pageNAME = 'index'
+    this.$route.params.css = 'AU/styles/AU-freeform.css'
     console.log('final params')
     console.log(this.$route.params)
   },
   async created() {
     try {
       console.log('in Created')
-      this.$route.params.fileFILENAME = 'index'
-      this.$route.params.languageISO = null
-      this.$route.params.folder = null
       console.log(this.$route)
-      await this.getFreeform(this.$route.params)
-      console.log('Got page')
+      var page = await this.getCountry()
+      console.log(page)
       console.log('I am about to authorize to write')
       this.authorized = this.authorize('write', this.$route.params.countryCODE)
-      console.log('css')
-      console.log(this.bookmark.book.style)
     } catch (error) {
-      console.log('There was an error in Page.vue:', error)
-      this.loadTemplate()
+      console.log('There was an error in Country.vue:', error)
     }
   }
 }

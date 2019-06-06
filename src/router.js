@@ -5,6 +5,9 @@ import CountriesEdit from './views/CountriesEdit.vue'
 import CountriesPreview from './views/CountriesPreview.vue'
 import CountriesSort from './views/CountriesSort.vue'
 
+import CountryPageEdit from './views/CountryPageEdit.vue'
+import CountryPagePreview from './views/CountryPagePreview.vue'
+
 import Language from './views/Languages.vue'
 import LanguageEdit from './views/LanguagesEdit.vue'
 import LanguagesPreview from './views/LanguagesPreview.vue'
@@ -14,6 +17,11 @@ import Library from './views/Library.vue'
 import LibraryEdit from './views/LibraryEdit.vue'
 import LibraryPreview from './views/LibraryPreview.vue'
 import LibrarySort from './views/LibrarySort.vue'
+
+import LibraryFriendsEdit from './views/LibraryFriendsEdit.vue'
+import LibraryFriendsPreview from './views/LibraryFriendsPreview.vue'
+import LibraryMeetEdit from './views/LibraryMeetEdit.vue'
+import LibraryMeetPreview from './views/LibraryMeetPreview.vue'
 
 import Series from './views/Series.vue'
 import SeriesEdit from './views/SeriesEdit.vue'
@@ -32,9 +40,7 @@ import Custom from './views/CustomEditor.vue'
 import Validate from './views/Validate.vue'
 import Upload from './views/Upload.vue'
 
-import CountryFreeform from './views/CountryFreeform.vue'
-import LibraryFriends from './views/LibraryFriends.vue'
-import LibraryMeet from './views/LibraryMeet.vue'
+
 // for CKFinder
 
 //prototype.myfriends.network/preview
@@ -47,19 +53,34 @@ export default new Router({
   mode: 'history',
   routes: [
     {
-      path: '/country/:countryCODE',
-      name: 'countryFreeform',
-      component: CountryFreeform
+      path: '/edit/country/:countryCODE',
+      name: 'editCountryPage',
+      component: CountryPageEdit
     },
     {
-      path: '/friends/:countryCODE',
-      name: 'libraryFriends',
-      component: LibraryFriends
+      path: '/preview/country/:countryCODE',
+      name: 'previewCountryPage',
+      component: CountryPagePreview
     },
     {
-      path: '/meet/:countryCODE',
-      name: 'libraryMeet',
-      component: LibraryMeet
+      path: '/edit/friends/:countryCODE',
+      name: 'libraryFriendsEdit',
+      component: LibraryFriendsEdit
+    },
+    {
+      path: '/preview/friends/:countryCODE',
+      name: 'libraryFriendsPreview',
+      component: LibraryFriendsPreview
+    },
+    {
+      path: 'edit/meet/:countryCODE',
+      name: 'libraryMeetEdit',
+      component: LibraryMeetEdit
+    },
+    {
+      path: 'preview/meet/:countryCODE',
+      name: 'libraryMeetPreview',
+      component: LibraryMeetPreview
     },
     {
       path: '/',
