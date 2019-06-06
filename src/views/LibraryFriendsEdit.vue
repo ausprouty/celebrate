@@ -38,7 +38,7 @@
 import { mapState } from 'vuex'
 import ContentService from '@/services/ContentService.js'
 import AuthorService from '@/services/AuthorService.js'
-import NavBar from '@/components/NavBarAdmin.vue'
+import NavBar from '@/components/NavBarFreeform.vue'
 import './ckeditor/index.js'
 import VueCkeditor from 'vue-ckeditor2'
 import { bookMarkMixin } from '@/mixins/BookmarkMixin.js'
@@ -181,8 +181,9 @@ export default {
   async created() {
     try {
       console.log('in Created')
+      this.$route.params.fileFILENAME = 'libraryF'
       console.log(this.$route)
-      var page = await this.getCountry()
+      var page = await this.getLibraryPage()
       console.log(page)
       console.log('I am about to authorize to write')
       this.authorized = this.authorize('write', this.$route.params.countryCODE)

@@ -22,12 +22,32 @@ export const freeformMixin = {
       await this.UnsetBookmarks()
       await this.CheckBookmarks(this.$route.params)
       var response = await ContentService.getCountry(this.$route.params)
-
-      if (response.data.content.recnum) {
-        this.recnum = response.data.content.recnum
-        this.publish_date = response.data.content.publish_date
+      if (response.data.content) {
+        if (response.data.content.recnum) {
+          this.recnum = response.data.content.recnum
+          this.publish_date = response.data.content.publish_date
+        }
       }
       this.pageText = response.data.content.text
+      this.loaded = true
+      this.loading = false
+    },
+    async getLibraryPage() {
+      this.error = this.loaded = null
+      this.loading = true
+      this.recnum = null
+      this.publish_date = null
+      this.pageText = 'Ready to start editing?'
+      await this.UnsetBookmarks()
+      await this.CheckBookmarks(this.$route.params)
+      var response = await ContentService.getLibraryPage(this.$route.params)
+      if (response.data.content) {
+        if (response.data.content.recnum) {
+          this.recnum = response.data.content.recnum
+          this.publish_date = response.data.content.publish_date
+        }
+        this.pageText = response.data.content.text
+      }
       this.loaded = true
       this.loading = false
     }

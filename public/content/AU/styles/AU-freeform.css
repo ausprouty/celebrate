@@ -4,6 +4,12 @@ p.footer{
 
 
 }
+h1{
+    font-family: Arial;
+}
+p{
+    font-family:Arial;
+}
 .icons{
     margin-top: 99px;
 }
@@ -16,9 +22,14 @@ p.footer{
     width:80%;
     max-width: 300px;
 }
+
 td.icon2{
     width:50%;
     align-items:center;
+}
+div.icon1{
+    width:90%;
+    max-width: 600px;
 }
 img.languages{
     width : 80%;

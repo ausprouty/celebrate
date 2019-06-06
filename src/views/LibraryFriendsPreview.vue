@@ -1,58 +1,22 @@
 <template>
-  <div>
-    <NavBar />
-
+  <div class="preview">
+    <NavBar/>
     <div class="loading" v-if="loading">Loading...</div>
-    <div class="error" v-if="error">
-      There was an error... {{ this.error_message }}
-    </div>
+    <div class="error" v-if="error">There was an error... {{ this.error }}</div>
     <div class="content" v-if="loaded">
-      <div v-if="!this.authorized">
-        <p>
-          You have stumbled into a restricted page. Sorry I can not show it to
-          you now
-        </p>
+      <div v-if="this.publish">
+        <button class="button" @click="local_publish()">Publish</button>
       </div>
-      <div v-if="this.authorized">
-        <div class="app-link">
-          <div class="app-card -shadow">
-            <div v-on:click="goBack()">
-              <img
-                v-bind:src="
-                  appDir.library +
-                    this.bookmark.language.image_dir +
-                    '/' +
-                    this.bookmark.book.image
-                "
-                class="book"
-              />
-
-              <div class="book">
-                <span class="bold">{{ this.bookmark.book.title }}</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <h1 v-if="this.bookmark.page.count">
-          {{ this.bookmark.page.count }}. {{ this.bookmark.page.title }}
-        </h1>
-        <h1 v-else>{{ this.bookmark.page.title }}</h1>
-        <p>
-          <vue-ckeditor v-model="pageText" :config="config" />
-        </p>
-        <div class="version">
-          <p class="version">Version 1.01</p>
-        </div>
-        <button class="button red" @click="saveForm">Save Changes</button>
+      <link rel="stylesheet" v-bind:href="'/content/' + this.$route.params.css">
+      
+        <span v-html="pageText"></span>
+      </p>
+      <div class="version">
+        <p class="version">Version 1.01</p>
       </div>
-      <div v-if="!this.authorized">
-        <p>
-          You need to
-          <a href="/login">login to make changes</a> here
-        </p>
-      </div>
-      <div></div>
+    </div>
+    <div v-if="write">
+      <button class="button" @click="editPage">Edit</button>
     </div>
   </div>
 </template>
@@ -60,179 +24,79 @@
 <script>
 import { mapState } from 'vuex'
 import ContentService from '@/services/ContentService.js'
-import AuthorService from '@/services/AuthorService.js'
-import NavBar from '@/components/NavBarAdmin.vue'
-import './ckeditor/index.js'
-import VueCkeditor from 'vue-ckeditor2'
+import PublishService from '@/services/PublishService.js'
+import NavBar from '@/components/NavBarFreeform.vue'
 import { bookMarkMixin } from '@/mixins/BookmarkMixin.js'
-import { pageMixin } from '@/mixins/PageMixin.js'
+import { freeformMixin } from '@/mixins/FreeformMixin.js'
 import { authorMixin } from '@/mixins/AuthorMixin.js'
 export default {
-  mixins: [bookMarkMixin, pageMixin, authorMixin],
+  mixins: [bookMarkMixin, freeformMixin, authorMixin],
   props: ['countryCODE', 'languageISO', 'bookNAME', 'fileFILENAME'],
   components: {
-    NavBar,
-    VueCkeditor
+    NavBar
   },
   computed: mapState(['bookmark', 'appDir', 'cssURL']),
-  data() {
-    return {
-      authorized: false,
-      content: {
-        recnum: '',
-        version: '',
-        edit_date: '',
-        edit_uid: '',
-        publish_uid: '',
-        publish_date: '',
-        language_iso: '',
-        country_code: '',
-        folder: '',
-        filetype: '',
-        title: '',
-        filename: '',
-        text: ''
-      },
-      config: {
-        extraPlugins: ['bidi', 'uploadimage', 'uploadwidget', 'clipboard'],
-        extraAllowedContent: ['*(*)[id]', 'ol[*]'],
-        contentsCss: '/content/' + this.$route.params.css,
-        stylesSet: this.$route.params.stylesSET,
-        templates_replaceContent: false,
-        templates_files: [
-          '/templates/' + this.$route.params.stylesSET + 'CKEDITOR.js'
-        ],
-        // Upload images to a CKFinder connector (note that the response type is set to JSON).
-        uploadUrl:
-          '/apps/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files&responseType=json',
-        // Configure your file manager integration. This example uses CKFinder 3 for PHP.
-        filebrowserBrowseUrl: '/apps/ckfinder/ckfinder.html',
-        filebrowserImageBrowseUrl: '/apps/ckfinder/ckfinder.html?type=Images',
-        filebrowserUploadUrl:
-          '/apps/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files',
-        filebrowserImageUploadUrl:
-          '/apps/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images',
-        toolbarGroups: [
-          { name: 'styles', groups: ['styles'] },
-          { name: 'basicstyles', groups: ['basicstyles', 'cleanup'] },
-          {
-            name: 'editing',
-            groups: ['find', 'selection', 'spellchecker', 'editing']
-          },
-          { name: 'links', groups: ['links'] },
-          { name: 'insert', groups: ['insert'] },
-          { name: 'forms', groups: ['forms'] },
-          { name: 'tools', groups: ['tools'] },
-          { name: 'document', groups: ['mode', 'document', 'doctools'] },
-          { name: 'clipboard', groups: ['clipboard', 'undo'] },
-          { name: 'others', groups: ['others'] },
-          '/',
-          {
-            name: 'paragraph',
-            groups: ['list', 'indent', 'blocks', 'align', 'bidi', 'paragraph']
-          },
-          { name: 'colors', groups: ['colors'] },
-          { name: 'about', groups: ['about'] }
-        ],
-        height: 600,
-        removeButtons:
-          'About,Button,Checkbox,CreatePlaceholder,DocProps,Flash,Form,HiddenField,Iframe,NewPage,PageBreak,Preview,Print,Radio,Save,Scayt,Select,Smiley,SpecialChar,TextField,Textarea'
-      }
-    }
-  },
+
   methods: {
-    goBack() {
-      window.history.back()
-    },
-    async loadTemplate() {
-      this.authorized = this.authorize('write', this.$route.params.countryCODE)
-      this.loading = false
-      this.loaded = true
-      if (this.bookmark.book.template) {
-        this.$route.params.template = this.bookmark.book.template
-        console.log('looking for template')
-        console.log(this.$route.params)
-        var res = await AuthorService.getTemplate(this.$route.params)
-        console.log(res)
-        if (res) {
-          console.log('I found template')
-          this.pageText = res
+    editPage() {
+
+      this.$router.push({
+        name: 'editLibraryFriends',
+        params: {
+          countryCODE: this.$route.params.countryCODE
         }
+      })
+    },
+    goBack() {
+        this.$router.push({
+          name: 'previewCountries'
+        })  
+    },
+    async local_publish() {
+      var params = {}
+      params.recnum = this.recnum
+      params.bookmark = JSON.stringify(this.bookmark)
+      var response = await PublishService.publish('freeform', params)
+      if (response['error']) {
+        this.error = response['message']
+        this.loaded = false
+      } else {
+        this.UnsetBookmarks()
+        this.recnum = null
+        this.loaded = false
+        this.loading = true
+        this.publish = false
+        await this.loadView()
       }
     },
-    async saveForm() {
+    async loadView() {
       try {
-        this.content.text = ContentService.validate(this.pageText)
-        this.content.country_code = this.$route.params.countryCODE
-        this.content.language_iso = this.$route.params.languageISO
-        this.content.folder = this.bookmark.book.folder
-        this.content.filename = this.$route.params.fileFILENAME
-        this.content.filetype = 'html'
-        this.$store.dispatch('newBookmark', 'clear')
-        var response = await AuthorService.createContentData(this.content)
-        if (response.data.error != true) {
-          this.$router.push({
-            name: 'previewPage',
-            params: {
-              countryCODE: this.$route.params.countryCODE,
-              languageISO: this.$route.params.languageISO,
-              bookNAME: this.$route.params.bookNAME,
-              fileFILENAME: this.$route.params.fileFILENAME
-            }
-          })
-        } else {
-          this.error = true
-          this.loaded = false
-          this.error_message = response.data.message
+        this.$route.params.css = 'AU/styles/AU-freeform.css'
+        this.$route.params.fileFILENAME = 'libraryF'
+        await this.getLibraryPage()
+        this.authorized = this.authorize('write', this.$route.params.countryCODE)
+        this.readonly = this.authorize(
+          'readonly',
+          this.$route.params.countryCODE
+        )
+        this.write = this.authorize('write', this.$route.params.countryCODE)
+        this.publish = false
+        if (this.recnum && !this.publish_date) {
+          this.publish = this.authorize(
+            'publish',
+            this.$route.params.countryCODE
+          )
         }
       } catch (error) {
-        console.log('LIBRARY EDIT There was an error ', error)
-        this.error = true
-        this.loaded = false
-        this.error_message = error
+        console.log('There was an error in Country.vue:', error)
       }
     }
   },
-  async beforeCreate() {
-    console.log('before Create')
-    console.log(this.$route.params)
-    var ok = false
-    var styleSets = ['compass', 'firststeps', 'fsteps', 'myfriends', 'multiply']
-    this.$route.params.stylesSET = 'unknown'
-    var arrayLength = styleSets.length
-    for (var i = 0; i < arrayLength; i++) {
-      if (this.$route.params.cssFORMATTED.includes(styleSets[i])) {
-        this.$route.params.stylesSET = styleSets[i]
-      }
-    }
-    this.$route.params.version = 'lastest'
-    this.$route.params.pageNAME = this.$route.params.fileFILENAME
-    var css = this.$route.params.cssFORMATTED
-    var clean = css.replace(/@/g, '/')
-    this.$route.params.css = clean
-    console.log('final params')
-    console.log(this.$route.params)
+  beforeCreate() {
+    this.$route.params.version = 'latest'
   },
   async created() {
-    try {
-      console.log('in Created')
-      this.$route.params.fileFILENAME = 'libraryF'
-      await this.getPage(this.$route.params)
-      console.log('Got page')
-      console.log('I am about to authorize to write')
-      this.authorized = this.authorize('write', this.$route.params.countryCODE)
-      console.log('css')
-      console.log(this.bookmark.book.style)
-    } catch (error) {
-      console.log('There was an error in Page.vue:', error)
-      this.loadTemplate()
-    }
+    this.loadView()
   }
 }
 </script>
-
-<style scoped>
-.float-right {
-  text-align: right;
-}
-</style>
