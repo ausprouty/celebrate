@@ -62,8 +62,9 @@ export default {
     async local_publish() {
       var params = {}
       params.recnum = this.recnum
+      params.bookmark = JSON.stringify(this.bookmark)
       var response = await PublishService.publish('countries', params)
-       if (response['error']) {
+      if (response['error']) {
         this.error = response['message']
         this.loaded = false
       } else {
@@ -83,6 +84,7 @@ export default {
         if (this.recnum && !this.publish_date) {
           this.publish = this.authorize('publish', 'country')
         }
+        // this.publish = true // TODO: remove for testing only
       } catch (error) {
         console.log('There was an error in Countries.vue:', error) // Logs out the error
       }

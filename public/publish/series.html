@@ -1,19 +1,36 @@
-
-<div class="{{this.dir"}}>
-    <link   rel="stylesheet" href="{{bookmark.book.style}}"  />
-    <div class="app-link">
-        <div class="app-card -shadow">
-            <a href= "{{link}}">
-             <img src="{{bookmark.book.image}} class="app-img-header" />
-            </a>
-        </div>
+<div class="content {{ dir }}">
+  <link rel="stylesheet" href="{{ book.style }}" />
+  <div class="app-link">
+    <div class="app-card -shadow">
+      <a href="{{ link }}">
+        <img src="{{ book.image }} class="app-img-header" />
+      </a>
     </div>
-    <h2>{{bookmark.book.title}}</h2>
-    <div>{{ this.description }}</div>
-    <br />
-    <br />
-    [[chapters]]
-    <div class="version">
-        <p class="version">{{version}}</p>
-    </div>
+  </div>
+  <!-- ready for offline --->
+  <p id="offline-ready">Ready for offline use</p>
+  <!-- title --->
+  <h2>{{ book.title }}</h2>
+  <div>{{ book.description }}</div>
+  <br />
+  <br />
+  <!-- chapters --->
+  [[chapters]]
+  <div class="center">
+    <p class="button">
+      <button
+        id="offline-request"
+        class="cache-series"
+        data-json="{{ download.files }}"
+      >
+        Download for offline use
+      </button>
+    </p>
+  </div>
+  <!-- copyright --->
+  <p class="ltr copyright"></p>
+  <!-- version --->
+  <div class="version">
+    <p class="version">{{ version }}</p>
+  </div>
 </div>

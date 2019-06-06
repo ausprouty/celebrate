@@ -79,8 +79,11 @@ export default {
     async localPublish() {
       var params = {}
       params.recnum = this.recnum
+      params.bookmark = JSON.stringify(this.bookmark)
+      console.log('params.bookmark')
+      console.log(params.bookmark)
       var response = await PublishService.publish('library', params)
-       if (response['error']) {
+      if (response['error']) {
         this.error = response['message']
         this.loaded = false
       } else {

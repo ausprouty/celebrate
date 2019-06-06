@@ -1,11 +1,14 @@
 <template>
   <div class="app-link" v-on:click="showLanguagePage(country)">
-    <div class="shadow-card -shadow" v-bind:class="{notpublished : !country.publish}">
-      <img v-bind:src="appDir.country+ country.image" class="flag">
+    <div
+      class="shadow-card -shadow"
+      v-bind:class="{ notpublished: !country.publish, custom: country.custom }"
+    >
+      <img v-bind:src="appDir.country + country.image" class="flag">
       <div class="card-names">
-        <span class="card-name">{{country.name}}</span>
+        <span class="card-name">{{ country.name }}</span>
         <br>
-        <span class="card-name-english">{{country.english}}</span>
+        <span class="card-name-english">{{ country.english }}</span>
       </div>
     </div>
   </div>
@@ -31,9 +34,13 @@ export default {
   methods: {
     showLanguagePage(country) {
       localStorage.setItem('lastPage', 'countries')
-      this.$route.params.countryCODE = country.code
+       this.$route.params.countryCODE = country.code
+       var route = 'previewLanguages'
+      if (country.custom){
+        route = 'countryFreeform'
+      }
       this.$router.push({
-        name: 'previewLanguages',
+        name: route,
         params: {
           countryCODE: country.code
         }
@@ -48,6 +55,9 @@ div.break {
   display: inline;
 }
 
+.custom {
+  background-color: green;
+}
 
 div.card-names {
   float: right;

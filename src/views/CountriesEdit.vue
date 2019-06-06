@@ -71,6 +71,14 @@
                 Country Code is required.
               </div>
             </template>
+             <input
+              type="checkbox"
+              id="checkbox"
+              v-model="country.custom.$model"
+            />
+            <label for="checkbox">
+              <h2>Custom Index?</h2>
+            </label>
 
             <div v-if="!country.image.$model">
               <p class="errorMessage">Upload Country Flag</p>
@@ -154,6 +162,7 @@ export default {
         english: null,
         code: null,
         index: null,
+        custom: null,
         image: null,
         publish: null
       },
@@ -168,6 +177,7 @@ export default {
         english: {},
         code: { required },
         index: {},
+        custom: {},
         image: {},
         publish: {}
       }
@@ -183,6 +193,7 @@ export default {
         english: null,
         code: null,
         index: null,
+        custome: null,
         image: null,
         publish: null
       })
@@ -262,7 +273,8 @@ export default {
   },
   async created() {
     try {
-      this.authorized = this.authorize('write', this.$route.params.countryCODE)
+      this.authorized = this.authorize('write', 'countries')
+      console.log ('Authorized: ' +  this.authorized)
       await this.getCountries()
     } catch (error) {
       console.log('There was an error in CountriesEdit.vue:', error) // Logs out the error

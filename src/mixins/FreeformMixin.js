@@ -1,5 +1,5 @@
 import ContentService from '@/services/ContentService.js'
-export const pageMixin = {
+export const FreeformMixin = {
   data() {
     return {
       pageText: '',
@@ -14,7 +14,7 @@ export const pageMixin = {
     }
   },
   methods: {
-    async getPage() {
+    async getFreeform() {
       try {
         await this.UnsetBookmarks()
         this.error = this.loaded = null
@@ -49,36 +49,6 @@ export const pageMixin = {
         this.loading = false
       } catch (error) {
         console.log('No existing page was found') // Logs out the error
-        if (this.$route.name != 'editPage') {
-          var css = this.bookmark.page.style
-            ? this.bookmark.page.style
-            : 'myfriends'
-          css.replace('/', '-')
-          this.$route.params.cssFORMATTED = css
-          this.$router.push({
-            name: 'editPage',
-            params: this.$route.params
-          })
-        }
-        if (this.bookmark.book.template) {
-          this.$route.params.fileFILENAME = this.bookmark.book.template
-          response = await ContentService.getPage(this.$route.params)
-          // is this coming from database
-          console.log('line 63 in mixin')
-          console.log(response)
-          if (response.data.content.recnum) {
-            this.recnum = response.data.content.recnum
-            this.publish_date = response.data.content.publish_date
-          }
-          this.pageText = response.data.content.text
-          this.loaded = true
-          this.loading = false
-        } else {
-          this.pageText =
-            'No text found.  It would be faster if you created a template'
-          this.loaded = true
-          this.loading = false
-        }
       }
     }
   }

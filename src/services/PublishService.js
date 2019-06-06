@@ -45,7 +45,7 @@ export default {
     console.log('in publishCountries')
     var contentForm = this.toFormData(params)
     var response = apiSECURE.post(
-      'PublishApi.php?page=publish&action=publishCountries',
+      'TestApi.php?page=publish&action=publishCountries',
       contentForm
     )
     return response
@@ -53,7 +53,7 @@ export default {
   publishLanguage(params) {
     var contentForm = this.toFormData(params)
     var response = apiSECURE.post(
-      'PublishApi.php?page=publish&action=publishLanguage',
+      'TestApi.php?page=publish&action=publishLanguage',
       contentForm
     )
     return response
@@ -61,7 +61,7 @@ export default {
   publishLibrary(params) {
     var contentForm = this.toFormData(params)
     var response = apiSECURE.post(
-      'PublishApi.php?page=publish&action=publishLibrary',
+      'TestApi.php?page=publish&action=publishLibrary',
       contentForm
     )
     return response
@@ -71,7 +71,7 @@ export default {
     console.log(params)
     var contentForm = this.toFormData(params)
     var response = apiSECURE.post(
-      'PublishApi.php?page=publish&action=publishSeries',
+      'TestApi.php?page=publish&action=publishSeries',
       contentForm
     )
     return response
@@ -82,7 +82,7 @@ export default {
     var contentForm = this.toFormData(params)
 
     var response = apiSECURE.post(
-      'PublishApi.php?page=publish&action=publishPage',
+      'TestApi.php?page=publish&action=publishPage',
       contentForm
     )
     return response
@@ -94,7 +94,7 @@ export default {
     }
     // Display the key/value pairs
     for (var pair of form_data.entries()) {
-      console.log(pair[0] + ', ' + pair[1])
+      // console.log(pair[0] + ', ' + pair[1])
     }
     console.log(form_data)
     return form_data

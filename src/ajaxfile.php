@@ -14,7 +14,7 @@ if($request == 1){
 	    $response[] = $row;
 	}
 
-	echo json_encode($response);
+	echo JSON.stringify($response);
 	exit;
 }
 

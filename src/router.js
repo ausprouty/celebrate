@@ -31,6 +31,10 @@ import Register from './views/Register.vue'
 import Custom from './views/CustomEditor.vue'
 import Validate from './views/Validate.vue'
 import Upload from './views/Upload.vue'
+
+import CountryFreeform from './views/CountryFreeform.vue'
+import LibraryFriends from './views/LibraryFriends.vue'
+import LibraryMeet from './views/LibraryMeet.vue'
 // for CKFinder
 
 //prototype.myfriends.network/preview
@@ -42,6 +46,21 @@ Vue.use(Router)
 export default new Router({
   mode: 'history',
   routes: [
+    {
+      path: '/country/:countryCODE',
+      name: 'countryFreeform',
+      component: CountryFreeform
+    },
+    {
+      path: '/friends/:countryCODE',
+      name: 'libraryFriends',
+      component: LibraryFriends
+    },
+    {
+      path: '/meet/:countryCODE',
+      name: 'libraryMeet',
+      component: LibraryMeet
+    },
     {
       path: '/',
       name: 'countries',

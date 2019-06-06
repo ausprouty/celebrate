@@ -1,16 +1,22 @@
 <template>
   <div id="nav">
     <div v-on:click="toggleMenu()">
-      <img class="nav-icon" alt="Home" src="/images/menu/header-admin.png">
+      <img class="nav-icon" alt="Home" src="/images/menu/header-admin.png" />
     </div>
     <div v-if="showMenu">
-      <div v-for="(menuItem) in this.menu" :key="menuItem.link" :menuItem="menuItem">
+      <div
+        v-for="menuItem in this.menu"
+        :key="menuItem.link"
+        :menuItem="menuItem"
+      >
         <div class="menu-card -shadow" v-if="menuItem.show">
           <div
             class="float-left"
             style="cursor:pointer"
             @click="setNewSelectedOption(menuItem.link)"
-          >{{menuItem.value}}</div>
+          >
+            {{ menuItem.value }}
+          </div>
         </div>
       </div>
     </div>
@@ -69,11 +75,12 @@ export default {
     }
   },
   created() {
-    this.authorized = this.authorize('read', this.$route.params.countryCODE)
-    this.administrator = this.authorize(
-      'register',
-      this.$route.params.countryCODE
-    )
+    var scope = 'world'
+    if (this.$route.params.countryCODE) {
+      scope = this.$route.params.countryCODE
+    }
+    this.authorized = this.authorize('read', scope)
+    this.administrator = this.authorize('register', scope)
     var arrayLength = this.menu
     for (var i = 0; i < arrayLength; i++) {
       this.menu[i].show = false
@@ -156,5 +163,4 @@ export default {
 }
 </script>
 
-<style>
-</style>
+<style></style>
