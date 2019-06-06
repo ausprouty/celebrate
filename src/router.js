@@ -64,22 +64,22 @@ export default new Router({
     },
     {
       path: '/edit/friends/:countryCODE',
-      name: 'libraryFriendsEdit',
+      name: 'editLibraryFriends',
       component: LibraryFriendsEdit
     },
     {
       path: '/preview/friends/:countryCODE',
-      name: 'libraryFriendsPreview',
+      name: 'previewLibraryFriends',
       component: LibraryFriendsPreview
     },
     {
       path: 'edit/meet/:countryCODE',
-      name: 'libraryMeetEdit',
+      name: 'editLibraryMeet',
       component: LibraryMeetEdit
     },
     {
       path: 'preview/meet/:countryCODE',
-      name: 'libraryMeetPreview',
+      name: 'previewLibraryMeet',
       component: LibraryMeetPreview
     },
     {
