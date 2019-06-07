@@ -1,18 +1,18 @@
 <template>
   <div>
-    <NavBar/>
+    <NavBar />
 
-    <p><vue-ckeditor v-model="content" name:= "thisEditor" :config="config"/></p>
+    <p>
+      <vue-ckeditor v-model="content" name:= "thisEditor" :config="config"/>
+    </p>
     <p>
       Please compare to
-      <a
-        target="a_blank"
-        href="/page/AU/eng/basics/basics101"
-      >/page/AU/eng/basics/basics101</a>
+      <a target="a_blank" href="/page/AU/eng/basics/basics101"
+        >/page/AU/eng/basics/basics101</a
+      >
     </p>
   </div>
 </template>
-
 
 <script>
 import NavBar from '@/components/NavBarAdmin.vue'
@@ -28,7 +28,13 @@ export default {
   data() {
     return {
       config: {
-        extraPlugins: ['bidi', 'uploadimage', 'uploadwidget', 'clipboard', 'videoembed'],
+        extraPlugins: [
+          'bidi',
+          'uploadimage',
+          'uploadwidget',
+          'clipboard',
+          'videoembed'
+        ],
         extraAllowedContent: ['*(*)[id]', 'ol[*]'],
         contentsCss: '/content/' + this.$route.params.css,
         stylesSet: this.$route.params.stylesSET,

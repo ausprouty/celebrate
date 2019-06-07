@@ -71,8 +71,15 @@ export default {
         text: ''
       },
       config: {
-        extraPlugins: ['bidi', 'uploadimage', 'uploadwidget', 'clipboard'],
-        extraAllowedContent: ['*(*)[id]', 'ol[*]'],
+        extraPlugins: [
+          'bidi',
+          'uploadimage',
+          'uploadwidget',
+          'clipboard',
+          'videoembed',
+          'iframe'
+        ],
+        extraAllowedContent: ['*(*)[id]', 'ol[*]', 'iframe(*)'],
         contentsCss: '/content/' + this.$route.params.css,
         stylesSet: this.$route.params.stylesSET,
         templates_replaceContent: false,
@@ -122,22 +129,7 @@ export default {
     goBack() {
       window.history.back()
     },
-    async loadTemplate() {
-      this.authorized = this.authorize('write', this.$route.params.countryCODE)
-      this.loading = false
-      this.loaded = true
-      if (this.bookmark.book.template) {
-        this.$route.params.template = this.bookmark.book.template
-        console.log('looking for template')
-        console.log(this.$route.params)
-        var res = await AuthorService.getTemplate(this.$route.params)
-        console.log(res)
-        if (res) {
-          console.log('I found template')
-          this.pageText = res
-        }
-      }
-    },
+
     async saveForm() {
       try {
         this.content.text = ContentService.validate(this.pageText)
@@ -173,7 +165,7 @@ export default {
     console.log(this.$route.params)
     this.$route.params.stylesSET = 'myfriends'
     this.$route.params.version = 'lastest'
-    this.$route.params.pageNAME = 'index'
+    this.$route.params.fileFILENAME = 'libraryF'
     this.$route.params.css = 'AU/styles/AU-freeform.css'
     console.log('final params')
     console.log(this.$route.params)

@@ -71,8 +71,15 @@ export default {
         text: ''
       },
       config: {
-        extraPlugins: ['bidi', 'uploadimage', 'uploadwidget', 'clipboard'],
-        extraAllowedContent: ['*(*)[id]', 'ol[*]'],
+        extraPlugins: [
+          'bidi',
+          'uploadimage',
+          'uploadwidget',
+          'clipboard',
+          'videoembed',
+           'iframe'
+        ],
+        extraAllowedContent: ['*(*)[id]', 'ol[*]', 'iframe(*)'],
         contentsCss: '/content/' + this.$route.params.css,
         stylesSet: this.$route.params.stylesSET,
         templates_replaceContent: false,
@@ -114,7 +121,7 @@ export default {
         ],
         height: 600,
         removeButtons:
-          'About,Button,Checkbox,CreatePlaceholder,DocProps,Flash,Form,HiddenField,Iframe,NewPage,PageBreak,Preview,Print,Radio,Save,Scayt,Select,Smiley,SpecialChar,TextField,Textarea'
+          'About,Button,Checkbox,CreatePlaceholder,DocProps,Flash,Form,HiddenField,NewPage,PageBreak,Preview,Print,Radio,Save,Scayt,Select,Smiley,SpecialChar,TextField,Textarea'
       }
     }
   },
@@ -122,35 +129,19 @@ export default {
     goBack() {
       window.history.back()
     },
-    async loadTemplate() {
-      this.authorized = this.authorize('write', this.$route.params.countryCODE)
-      this.loading = false
-      this.loaded = true
-      if (this.bookmark.book.template) {
-        this.$route.params.template = this.bookmark.book.template
-        console.log('looking for template')
-        console.log(this.$route.params)
-        var res = await AuthorService.getTemplate(this.$route.params)
-        console.log(res)
-        if (res) {
-          console.log('I found template')
-          this.pageText = res
-        }
-      }
-    },
     async saveForm() {
       try {
         this.content.text = ContentService.validate(this.pageText)
         this.content.country_code = this.$route.params.countryCODE
         this.content.language_iso = null
         this.content.folder = null
-        this.content.filename = 'index'
+        this.content.filename = 'libraryM'
         this.content.filetype = 'html'
         this.$store.dispatch('newBookmark', 'clear')
         var response = await AuthorService.createContentData(this.content)
         if (response.data.error != true) {
           this.$router.push({
-            name: 'CountryPreview',
+            name: 'previewLibraryMeet',
             params: {
               countryCODE: this.$route.params.countryCODE
             }
@@ -173,7 +164,7 @@ export default {
     console.log(this.$route.params)
     this.$route.params.stylesSET = 'myfriends'
     this.$route.params.version = 'lastest'
-    this.$route.params.pageNAME = 'index'
+    this.$route.params.fileFILENAME = 'libraryM'
     this.$route.params.css = 'AU/styles/AU-freeform.css'
     console.log('final params')
     console.log(this.$route.params)
@@ -181,8 +172,9 @@ export default {
   async created() {
     try {
       console.log('in Created')
+      this.$route.params.fileFILENAME = 'libraryM'
       console.log(this.$route)
-      var page = await this.getCountry()
+      var page = await this.getLibraryPage()
       console.log(page)
       console.log('I am about to authorize to write')
       this.authorized = this.authorize('write', this.$route.params.countryCODE)

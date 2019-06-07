@@ -71,8 +71,15 @@ export default {
         text: ''
       },
       config: {
-        extraPlugins: ['bidi', 'uploadimage', 'uploadwidget', 'clipboard'],
-        extraAllowedContent: ['*(*)[id]', 'ol[*]'],
+        extraPlugins: [
+          'bidi',
+          'uploadimage',
+          'uploadwidget',
+          'clipboard',
+          'videoembed',
+          'iframe'
+        ],
+        extraAllowedContent: ['*(*)[id]', 'ol[*]', 'iframe(*)'],
         contentsCss: '/content/' + this.$route.params.css,
         stylesSet: this.$route.params.stylesSET,
         templates_replaceContent: false,
@@ -114,7 +121,7 @@ export default {
         ],
         height: 600,
         removeButtons:
-          'About,Button,Checkbox,CreatePlaceholder,DocProps,Flash,Form,HiddenField,Iframe,NewPage,PageBreak,Preview,Print,Radio,Save,Scayt,Select,Smiley,SpecialChar,TextField,Textarea'
+          'About,Button,Checkbox,CreatePlaceholder,DocProps,Flash,Form,HiddenField,NewPage,PageBreak,Preview,Print,Radio,Save,Scayt,Select,Smiley,SpecialChar,TextField,Textarea'
       }
     }
   },
