@@ -51,9 +51,17 @@ div.languages{
     letter-spacing: 0.1em;
     font-size:18pt;
 }
+.version{
+    text-align: center;
+    color: #999999;
+}
 hr{
     border: 10px solid black;
     border-radius: 5px;
+  }
+  hr.border{
+    border: 6px solid green;
+    
   }
 div.footer{
     text-align: center;

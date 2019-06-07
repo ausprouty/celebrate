@@ -150,7 +150,7 @@ export default {
         var response = await AuthorService.createContentData(this.content)
         if (response.data.error != true) {
           this.$router.push({
-            name: 'CountryPreview',
+            name: 'previewCountryPage',
             params: {
               countryCODE: this.$route.params.countryCODE
             }
@@ -161,7 +161,7 @@ export default {
           this.error_message = response.data.message
         }
       } catch (error) {
-        console.log('LIBRARY EDIT There was an error ', error)
+        console.log('COUNTRY PAGE EDIT There was an error ', error)
         this.error = true
         this.loaded = false
         this.error_message = error
@@ -182,10 +182,12 @@ export default {
     try {
       console.log('in Created')
       console.log(this.$route)
-      var page = await this.getCountry()
-      console.log(page)
-      console.log('I am about to authorize to write')
-      this.authorized = this.authorize('write', this.$route.params.countryCODE)
+      await this.getCountry()
+      this.authorized = this.authorize('write', 'world')
+      this.publish = false
+      if (this.recnum && !this.publish_date) {
+        this.publish = this.authorize('publish', 'country')
+      }
     } catch (error) {
       console.log('There was an error in Country.vue:', error)
     }

@@ -8,13 +8,14 @@
         <button class="button" @click="local_publish()">Publish</button>
       </div>
       <link rel="stylesheet" v-bind:href="'/content/' + this.$route.params.css">
-      
+        <hr class="border">
         <span v-html="pageText"></span>
       </p>
       <div class="version">
-        <p class="version">Version 1.01</p>
+        <p class="language">Version 1.01</p>
       </div>
     </div>
+    <hr class="border">
     <div v-if="write">
       <button class="button" @click="editPage">Edit</button>
     </div>
@@ -41,7 +42,7 @@ export default {
     editPage() {
 
       this.$router.push({
-        name: 'editCountry',
+        name: 'editCountryPage',
         params: {
           countryCODE: this.$route.params.countryCODE
         }
@@ -73,7 +74,11 @@ export default {
       try {
         this.$route.params.css = 'AU/styles/AU-freeform.css'
         await this.getCountry()
-        this.authorized = this.authorize('write', this.$route.params.countryCODE)
+        this.write = this.authorize('write', 'world')
+      this.publish = false
+      if (this.recnum && !this.publish_date) {
+        this.publish = this.authorize('publish', 'country')
+      }
       } catch (error) {
         console.log('There was an error in Country.vue:', error)
       }

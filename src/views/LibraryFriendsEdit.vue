@@ -144,13 +144,13 @@ export default {
         this.content.country_code = this.$route.params.countryCODE
         this.content.language_iso = null
         this.content.folder = null
-        this.content.filename = 'index'
+        this.content.filename = 'libraryF'
         this.content.filetype = 'html'
         this.$store.dispatch('newBookmark', 'clear')
         var response = await AuthorService.createContentData(this.content)
         if (response.data.error != true) {
           this.$router.push({
-            name: 'CountryPreview',
+            name: 'previewLibraryFriends',
             params: {
               countryCODE: this.$route.params.countryCODE
             }

@@ -73,12 +73,12 @@ export default new Router({
       component: LibraryFriendsPreview
     },
     {
-      path: 'edit/meet/:countryCODE',
+      path: '/edit/meet/:countryCODE',
       name: 'editLibraryMeet',
       component: LibraryMeetEdit
     },
     {
-      path: 'preview/meet/:countryCODE',
+      path: '/preview/meet/:countryCODE',
       name: 'previewLibraryMeet',
       component: LibraryMeetPreview
     },

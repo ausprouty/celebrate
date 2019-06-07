@@ -8,12 +8,13 @@
         <button class="button" @click="local_publish()">Publish</button>
       </div>
       <link rel="stylesheet" v-bind:href="'/content/' + this.$route.params.css">
-      
+       <hr class="border">
         <span v-html="pageText"></span>
       </p>
-      <div class="version">
-        <p class="version">Version 1.01</p>
+        <div class="version">
+        <p class="language">Version 1.01</p>
       </div>
+       <hr class="border">
     </div>
     <div v-if="write">
       <button class="button" @click="editPage">Edit</button>
@@ -55,7 +56,8 @@ export default {
     async local_publish() {
       var params = {}
       params.recnum = this.recnum
-      params.bookmark = JSON.stringify(this.bookmark)
+      params.fileFILENAME = 'libraryF'
+      params.countryCODE = this.$route.params.countryCODE
       var response = await PublishService.publish('freeform', params)
       if (response['error']) {
         this.error = response['message']
