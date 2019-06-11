@@ -3,9 +3,11 @@
     <div class="app-link" v-on:click="showPage(chapter)">
       <div class="app-card -shadow">
         <div class="chapter">
-          <div v-if="chapter.count" class="chapter-title">{{chapter.count}}. {{chapter.title}}</div>
-          <div v-else class="chapter-title">{{chapter.title}}</div>
-          <div class="chapter-description">{{chapter.description}}</div>
+          <div v-if="chapter.count" class="chapter-title">
+            {{ chapter.count }}. {{ chapter.title }}
+          </div>
+          <div v-else class="chapter-title">{{ chapter.title }}</div>
+          <div class="chapter-description">{{ chapter.description }}</div>
         </div>
       </div>
     </div>

@@ -50,6 +50,41 @@ export const freeformMixin = {
       }
       this.loaded = true
       this.loading = false
+    },
+    async getSeriesPage(params) {
+      try {
+        console.log('params in getSeriesPage')
+        console.log(params)
+        this.error = this.loaded = null
+        this.loading = true
+        params.countryCODE = this.$route.params.countryCODE
+        params.languageISO = this.$route.params.languageISO
+        params.folderNAME = this.$route.params.folderNAME
+        params.fileFILENAME = 'index'
+        console.log(params)
+        var response = await ContentService.getSeriesPage(params)
+        console.log('Series Data obtained')
+        console.log(response)
+        if (response.source != 'none') {
+          this.recnum = response.data.content.recnum
+          this.publish_date = response.data.content.publish_date
+          this.seriesDetails = JSON.parse(response.data.content.text)
+          this.chapters = this.seriesDetails.chapters
+          this.pageText = this.seriesDetails.description
+          this.new = false
+        } else {
+          this.recnum = null
+          this.publish_date = null
+          this.pageText = 'Enter Image, backlink and text here'
+          this.chapters = []
+          this.new = true
+        }
+        this.loaded = true
+        this.loading = false
+        console.log('finished with get Series')
+      } catch (error) {
+        console.log('There was an error in FreeformMixin:', error) // Logs out the error
+      }
     }
   }
 }

@@ -14,22 +14,133 @@
         </p>
       </div>
       <div v-if="this.authorized">
-        <h1>{{ this.bookmark.country.name }}</h1>
+        <h1>{{ this.$route.params.folderNAME }}</h1>
         <p>
           <vue-ckeditor v-model="pageText" :config="config" />
         </p>
-        <div class="version">
-          <p class="version">Version 1.01</p>
+        <div>
+          <button class="button" @click="publishAll">
+            Select ALL to publish?
+          </button>
+          <div
+            v-for="(chapter, index) in $v.chapters.$each.$iter"
+            :key="chapter.id"
+            :chapter="chapter"
+          >
+            <div
+              class="app-card -shadow"
+              v-bind:class="{ notpublished: !chapter.publish.$model }"
+            >
+              <div
+                class="float-right"
+                style="cursor:pointer"
+                @click="deleteChapterForm(index)"
+              >
+                X
+              </div>
+              <div class="form">
+                <BaseInput
+                  v-model="chapter.count.$model"
+                  label="Chapter Number"
+                  type="text"
+                  placeholder="leave blank for un-numbered items"
+                  class="field"
+                  :class="{ error: chapter.count.$error }"
+                  @blur="chapter.count.$touch()"
+                />
+                <BaseInput
+                  v-model="chapter.title.$model"
+                  label="Title"
+                  type="text"
+                  placeholder
+                  class="field"
+                  :class="{ error: chapter.title.$error }"
+                  @blur="chapter.title.$touch()"
+                />
+                <template v-if="chapter.title.$error">
+                  <p v-if="!chapter.title.required" class="errorMessage">
+                    Title is required
+                  </p>
+                </template>
+
+                <BaseInput
+                  v-model="chapter.description.$model"
+                  label="Description:"
+                  type="text"
+                  placeholder
+                  class="field"
+                  :class="{ error: chapter.description.$error }"
+                  @blur="chapter.description.$touch()"
+                />
+                <template v-if="chapter.description.$error">
+                  <p v-if="!chapter.description.required" class="errorMessage">
+                    Description is required
+                  </p>
+                </template>
+
+                <BaseInput
+                  v-model="chapter.filename.$model"
+                  label="File Name"
+                  type="text"
+                  placeholder
+                  class="field"
+                  :class="{ error: chapter.filename.$error }"
+                  @blur="chapter.filename.$touch()"
+                />
+                <template v-if="chapter.filename.$error">
+                  <p v-if="!chapter.filename.required" class="errorMessage">
+                    Description is required
+                  </p>
+                </template>
+                <input
+                  type="checkbox"
+                  id="checkbox"
+                  v-model="chapter.publish.$model"
+                />
+                <label for="checkbox">
+                  <h2>Publish?</h2>
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <div v-if="this.authorized">
+            <div v-if="this.new">
+              <p class="errorMessage">
+                Import Series in tab format (number| title | description| bible
+                reference| filename)
+              </p>
+              <label>
+                <input type="file" ref="file" v-on:change="importSeries()" />
+              </label>
+              <br />
+              <br />
+            </div>
+            <button class="button" @click="addNewChapterForm">
+              New Chapter
+            </button>
+
+            <div v-if="!$v.$anyError">
+              <button class="button red" @click="saveForm">Save Changes</button>
+            </div>
+            <div v-if="$v.$anyError">
+              <button class="button grey">Disabled</button>
+              <p v-if="$v.$anyError" class="errorMessage">
+                Please fill out the required field(s).
+              </p>
+            </div>
+            <br />
+            <br />
+            <br />
+          </div>
+          <div v-if="!this.authorized">
+            <p>
+              You need to
+              <a href="/login">login to make changes</a> here
+            </p>
+          </div>
         </div>
-        <button class="button red" @click="saveForm">Save Changes</button>
       </div>
-      <div v-if="!this.authorized">
-        <p>
-          You need to
-          <a href="/login">login to make changes</a> here
-        </p>
-      </div>
-      <div></div>
     </div>
   </div>
 </template>
@@ -38,15 +149,16 @@
 import { mapState } from 'vuex'
 import ContentService from '@/services/ContentService.js'
 import AuthorService from '@/services/AuthorService.js'
-import NavBar from '@/components/NavBarFreeform.vue'
+import NavBar from '@/components/NavBarLibraryFriends.vue'
 import './ckeditor/index.js'
 import VueCkeditor from 'vue-ckeditor2'
 import { bookMarkMixin } from '@/mixins/BookmarkMixin.js'
 import { freeformMixin } from '@/mixins/FreeformMixin.js'
 import { authorMixin } from '@/mixins/AuthorMixin.js'
+import { required } from 'vuelidate/lib/validators'
 export default {
   mixins: [bookMarkMixin, freeformMixin, authorMixin],
-  props: ['countryCODE'],
+  props: ['countryCODE', 'languageISO', 'folderNAME'],
   components: {
     NavBar,
     VueCkeditor
@@ -54,7 +166,28 @@ export default {
   computed: mapState(['bookmark', 'appDir', 'cssURL']),
   data() {
     return {
+      seriesDetails: {
+        series: '',
+        language: '',
+        description: ''
+      },
+      chapters: [
+        {
+          id: null,
+          title: null,
+          desciption: null,
+          count: null,
+          filename: null
+        }
+      ],
+      description: 'hi there',
+      dir: 'ltr',
+      file: null,
+      loading: false,
+      loaded: false,
+      error: false,
       authorized: false,
+      new: false,
       content: {
         recnum: '',
         version: '',
@@ -125,27 +258,92 @@ export default {
       }
     }
   },
+  validations: {
+    chapters: {
+      required,
+      $each: {
+        title: { required },
+        description: {},
+        count: '',
+        filename: { required },
+        publish: ''
+      }
+    }
+  },
   methods: {
+    addNewChapterForm() {
+      if (!this.chapters) {
+        this.chapters = []
+      }
+      this.chapters.push({
+        id: null,
+        title: null,
+        description: null,
+        count: null,
+        filename: null,
+        publish: null
+      })
+    },
+    publishAll() {
+      var arrayLength = this.chapters.length
+      console.log(' Item count:' + arrayLength)
+      for (var i = 0; i < arrayLength; i++) {
+        this.$v.chapters.$each.$iter[i].publish.$model = true
+      }
+    },
+    deleteChapterForm(id) {
+      this.chapters.splice(id, 1)
+    },
+    async importSeries() {
+      console.log('about to import series')
+      this.file = this.$refs.file.files[0]
+      console.log('this.file')
+      console.log(this.file)
+      var param = []
+      param.country_code = this.$route.params.countryCODE
+      param.language_iso = this.$route.params.languageISO
+      param.index = 'index'
+      param.folder = this.$route.params.folderNAME
+      param.template = this.bookmark.book.template
+      param.description = this.description
+      await AuthorService.setupSeriesPage(param, this.file)
+      console.log('back from update')
+      try {
+        this.getSeries(this.$route.params)
+        console.log('tried get series')
+        this.authorized = this.authorize(
+          'write',
+          this.$route.params.countryCODE
+        )
+      } catch (error) {
+        console.log('There was an error in SeriesEdit.vue:', error) // Logs out the error
+      }
+    },
     goBack() {
       window.history.back()
     },
 
     async saveForm() {
       try {
-        this.content.text = ContentService.validate(this.pageText)
+        var text = {}
+        text.description = this.pageText
+        text.chapters = this.chapters
+        console.log('text')
+        console.log(text)
+        var valid = ContentService.validate(text)
+        this.content.text = JSON.stringify(valid)
         this.content.country_code = this.$route.params.countryCODE
+        this.content.language_iso = this.$route.params.languageISO
         this.content.folder = this.$route.params.folderNAME
-        this.content.language_iso = null
-        this.content.folder = null
         this.content.filename = 'index'
         this.content.filetype = 'html'
-        this.$store.dispatch('newBookmark', 'clear')
         var response = await AuthorService.createContentData(this.content)
         if (response.data.error != true) {
           this.$router.push({
             name: 'previewSeriesPage',
             params: {
               countryCODE: this.$route.params.countryCODE,
+              languageISO: this.$route.params.languageISO,
               folderNAME: this.$route.params.folderNAME
             }
           })
@@ -175,9 +373,11 @@ export default {
       console.log('in Created')
       this.$route.params.fileFILENAME = 'index'
       console.log(this.$route)
-      var page = await this.getSeriesPage()
-      console.log(page)
+      await this.getSeriesPage(this.$route.params)
       console.log('I am about to authorize to write')
+      console.log('chapters')
+      console.log(this.chapters)
+
       this.authorized = this.authorize('write', this.$route.params.countryCODE)
     } catch (error) {
       console.log('There was an error in Country.vue:', error)

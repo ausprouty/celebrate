@@ -28,7 +28,6 @@ import ContentService from '@/services/ContentService.js'
 import PublishService from '@/services/PublishService.js'
 import NavBar from '@/components/NavBarLibraryFriends.vue'
 import { bookMarkMixin } from '@/mixins/BookmarkMixin.js'
-import { seriesMixin } from '@/mixins/SeriesMixin.js'
 import { freeformMixin } from '@/mixins/FreeformMixin.js'
 import { authorMixin } from '@/mixins/AuthorMixin.js'
 export default {
@@ -43,9 +42,11 @@ export default {
     editPage() {
 
       this.$router.push({
-        name: 'editLibraryFriends',
+        name: 'editSeriesPage',
         params: {
-          countryCODE: this.$route.params.countryCODE
+          countryCODE :this.$route.params.countryCODE,
+          languageISO: this.$route.params.languageISO,
+          folderNAME : this.$route.params.folderNAME
         }
       })
     },
@@ -59,6 +60,7 @@ export default {
       params.recnum = this.recnum
       params.fileFILENAME = 'index'
       params.countryCODE = this.$route.params.countryCODE
+      params.languageISO = this.$route.params.languageISO
       params.folderNAME = this.$route.params.folderNAME
       var response = await PublishService.publish('freeform', params)
       if (response['error']) {
@@ -77,7 +79,7 @@ export default {
       try {
         this.$route.params.css = 'AU/styles/AU-freeform.css'
         this.$route.params.fileFILENAME = 'index'
-        await ContentService.getSeriesPage()
+        await this.getSeriesPage(this.$route.params)
         this.authorized = this.authorize('write', this.$route.params.countryCODE)
         this.readonly = this.authorize(
           'readonly',
@@ -92,7 +94,7 @@ export default {
           )
         }
       } catch (error) {
-        console.log('There was an error in Country.vue:', error)
+        console.log('There was an error in SeriesPagePreview:', error)
       }
     }
   },
