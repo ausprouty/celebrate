@@ -26,7 +26,7 @@
 import { mapState } from 'vuex'
 import ContentService from '@/services/ContentService.js'
 import PublishService from '@/services/PublishService.js'
-import NavBar from '@/components/NavBarFreeform.vue'
+import NavBar from '@/components/NavBarCountry.vue'
 import { bookMarkMixin } from '@/mixins/BookmarkMixin.js'
 import { freeformMixin } from '@/mixins/FreeformMixin.js'
 import { authorMixin } from '@/mixins/AuthorMixin.js'

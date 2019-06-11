@@ -1,11 +1,9 @@
 <template>
   <div>
-    <NavBar />
+    <NavBar/>
 
     <div class="loading" v-if="loading">Loading...</div>
-    <div class="error" v-if="error">
-      There was an error... {{ this.error_message }}
-    </div>
+    <div class="error" v-if="error">There was an error... {{ this.error_message }}</div>
     <div class="content" v-if="loaded">
       <div v-if="!this.authorized">
         <p>
@@ -16,7 +14,7 @@
       <div v-if="this.authorized">
         <h1>{{ this.bookmark.country.name }}</h1>
         <p>
-          <vue-ckeditor v-model="pageText" :config="config" />
+          <vue-ckeditor v-model="pageText" :config="config"/>
         </p>
         <div class="version">
           <p class="version">Version 1.01</p>
@@ -38,7 +36,7 @@
 import { mapState } from 'vuex'
 import ContentService from '@/services/ContentService.js'
 import AuthorService from '@/services/AuthorService.js'
-import NavBar from '@/components/NavBarFreeform.vue'
+import NavBar from '@/components/NavBarCountry.vue'
 import './ckeditor/index.js'
 import VueCkeditor from 'vue-ckeditor2'
 import { bookMarkMixin } from '@/mixins/BookmarkMixin.js'

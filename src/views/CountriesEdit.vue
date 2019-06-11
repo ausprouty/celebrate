@@ -71,7 +71,27 @@
                 Country Code is required.
               </div>
             </template>
-             <input
+
+            <BaseInput
+              v-model="country.language.$model"
+              label="Default Language"
+              type="text"
+              placeholder
+              class="field"
+              :class="{ error: country.language.$error }"
+              @blur="country.language.$touch()"
+            />
+            <div v-if="!country.language.$model">
+              <p>
+                <a
+                  target="a_blank"
+                  href="https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes"
+                  >Reference File -- use 639-2/B</a
+                >
+              </p>
+            </div>
+
+            <input
               type="checkbox"
               id="checkbox"
               v-model="country.custom.$model"
@@ -161,6 +181,7 @@ export default {
         name: null,
         english: null,
         code: null,
+        language: null,
         index: null,
         custom: null,
         image: null,
@@ -176,6 +197,7 @@ export default {
         name: { required },
         english: {},
         code: { required },
+        language: {},
         index: {},
         custom: {},
         image: {},
@@ -192,6 +214,7 @@ export default {
         name: null,
         english: null,
         code: null,
+        language: null,
         index: null,
         custome: null,
         image: null,
@@ -274,7 +297,7 @@ export default {
   async created() {
     try {
       this.authorized = this.authorize('write', 'countries')
-      console.log ('Authorized: ' +  this.authorized)
+      console.log('Authorized: ' + this.authorized)
       await this.getCountries()
     } catch (error) {
       console.log('There was an error in CountriesEdit.vue:', error) // Logs out the error

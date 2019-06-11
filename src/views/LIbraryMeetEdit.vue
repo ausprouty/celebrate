@@ -38,7 +38,7 @@
 import { mapState } from 'vuex'
 import ContentService from '@/services/ContentService.js'
 import AuthorService from '@/services/AuthorService.js'
-import NavBar from '@/components/NavBarFreeform.vue'
+import NavBar from '@/components/NavBarCountry.vue'
 import './ckeditor/index.js'
 import VueCkeditor from 'vue-ckeditor2'
 import { bookMarkMixin } from '@/mixins/BookmarkMixin.js'

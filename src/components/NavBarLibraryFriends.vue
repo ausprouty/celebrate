@@ -3,36 +3,22 @@
     <div v-if="!authorized">
       <div id="nav">
         <router-link to="/">
-          <img
-            class="nav-icon"
-            alt="Home"
-            src="/images/menu/header-hamburger.png"
-          />
+          <img class="nav-icon" alt="Home" src="/images/menu/header-hamburger.png">
         </router-link>
       </div>
     </div>
     <div v-if="authorized">
       <div v-on:click="toggleMenu()">
-        <img
-          class="nav-icon"
-          alt="Home"
-          src="/images/menu/header-hamburger.png"
-        />
+        <img class="nav-icon" alt="Home" src="/images/menu/header-hamburger.png">
       </div>
       <div v-if="showMenu">
-        <div
-          v-for="menuItem in this.menu"
-          :key="menuItem.link"
-          :menuItem="menuItem"
-        >
+        <div v-for="menuItem in this.menu" :key="menuItem.link" :menuItem="menuItem">
           <div class="menu-card -shadow" v-if="menuItem.show">
             <div
               class="float-left"
               style="cursor:pointer"
               @click="setNewSelectedOption(menuItem.link)"
-            >
-              {{ menuItem.value }}
-            </div>
+            >{{ menuItem.value }}</div>
           </div>
         </div>
       </div>
@@ -121,7 +107,7 @@ export default {
           break
         case 'principles':
           this.$router.push({
-            name: 'previewSeriesPage',
+            name: 'previewSeries',
             params: {
               countryCODE: this.$route.params.countryCODE,
               languageISO: 'eng',
@@ -131,7 +117,7 @@ export default {
           break
         case 'basics':
           this.$router.push({
-            name: 'previewSeriesPage',
+            name: 'previewSeries',
             params: {
               countryCODE: this.$route.params.countryCODE,
               languageISO: 'eng',
@@ -141,7 +127,7 @@ export default {
           break
         case 'steps':
           this.$router.push({
-            name: 'previewSeriesPage',
+            name: 'previewSeries',
             params: {
               countryCODE: this.$route.params.countryCODE,
               languageISO: 'eng',
@@ -151,7 +137,7 @@ export default {
           break
         case 'multiply':
           this.$router.push({
-            name: 'previewSeriesPage',
+            name: 'previewSeries',
             params: {
               countryCODE: this.$route.params.countryCODE,
               languageISO: 'eng',
@@ -161,7 +147,7 @@ export default {
           break
         case 'compass':
           this.$router.push({
-            name: 'previewSeriesPage',
+            name: 'previewSeries',
             params: {
               countryCODE: this.$route.params.countryCODE,
               languageISO: 'eng',
@@ -170,7 +156,7 @@ export default {
           })
           break
         default:
-          console.log('Can not find route in NavBarFreeform')
+          console.log('Can not find route in NavBarCountry')
         // code block
       }
     }

@@ -3,36 +3,22 @@
     <div v-if="!authorized">
       <div id="nav">
         <router-link to="/">
-          <img
-            class="nav-icon"
-            alt="Home"
-            src="/images/menu/header-hamburger.png"
-          />
+          <img class="nav-icon" alt="Home" src="/images/menu/header-hamburger.png">
         </router-link>
       </div>
     </div>
     <div v-if="authorized">
       <div v-on:click="toggleMenu()">
-        <img
-          class="nav-icon"
-          alt="Home"
-          src="/images/menu/header-hamburger.png"
-        />
+        <img class="nav-icon" alt="Home" src="/images/menu/header-hamburger.png">
       </div>
       <div v-if="showMenu">
-        <div
-          v-for="menuItem in this.menu"
-          :key="menuItem.link"
-          :menuItem="menuItem"
-        >
+        <div v-for="menuItem in this.menu" :key="menuItem.link" :menuItem="menuItem">
           <div class="menu-card -shadow" v-if="menuItem.show">
             <div
               class="float-left"
               style="cursor:pointer"
               @click="setNewSelectedOption(menuItem.link)"
-            >
-              {{ menuItem.value }}
-            </div>
+            >{{ menuItem.value }}</div>
           </div>
         </div>
       </div>
@@ -55,21 +41,15 @@ export default {
       showMenu: false,
       menu: [
         {
-          value: 'Country',
-          link: 'country',
+          value: 'Countries',
+          link: 'countries',
           index: 0,
           show: true
         },
         {
-          value: 'Meet Jesus',
-          link: 'meet',
+          value: 'Language Settings',
+          link: 'language',
           index: 1,
-          show: true
-        },
-        {
-          value: 'With Friends',
-          link: 'friends',
-          index: 2,
           show: true
         }
       ]
@@ -93,40 +73,21 @@ export default {
     setNewSelectedOption(selectedOption) {
       this.showMenu = false
       switch (selectedOption) {
-        case 'country':
+        case 'countries':
           this.$router.push({
-            name: 'previewCountryPage',
-            params: {
-              countryCODE: this.$route.params.countryCODE
-            }
+            name: 'previewCountries'
           })
           break
-        case 'meet':
+        case 'language':
           this.$router.push({
-            name: 'previewLibraryMeet',
-            params: {
-              countryCODE: this.$route.params.countryCODE
-            }
-          })
-          break
-        case 'friends':
-          this.$router.push({
-            name: 'previewLibraryFriends',
-            params: {
-              countryCODE: this.$route.params.countryCODE
-            }
-          })
-          break
-        case 'principles':
-          this.$router.push({
-            name: 'previewLibraryFriends',
+            name: 'previewLanguages',
             params: {
               countryCODE: this.$route.params.countryCODE
             }
           })
           break
         default:
-          console.log('Can not find route in NavBarFreeform')
+          console.log('Can not find route in NavBarCountry')
         // code block
       }
     }
