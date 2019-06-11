@@ -97,6 +97,62 @@ export const seriesMixin = {
         console.log('There was an error in SeriesMixin:', error) // Logs out the error
       }
     },
+    async getSeriesPage(params) {
+      try {
+        console.log('params in SeriesMixin for Check Bookmark')
+        console.log(params)
+        this.error = this.loaded = null
+        this.loading = true
+        //var ok = await this.CheckBookmarks(params)
+       // console.log('ok')
+        //console.log(ok)
+        params.countryCODE = this.$route.params.countryCODE
+        params.languageISO = this.$route.params.languageISO
+        params.folderNAME = this.$route.params.folderNAME
+        params.fileFILENAME = 'index'
+        console.log('params')
+        console.log(params)
+        var response = await ContentService.getSeries(params)
+        console.log('Series Data obtained')
+        console.log(response)
+        if (response.data.content.text) {
+          // latest data
+          if (response.data.content.recnum) {
+            this.recnum = response.data.content.recnum
+            this.publish_date = response.data.content.publish_date
+          }
+          this.seriesDetails = JSON.parse(response.data.content.text)
+          console.log('Series Details')
+          console.log(this.seriesDetails)
+          this.chapters = this.seriesDetails.chapters
+          this.description = this.seriesDetails.description
+        } else {
+          this.description = response.data.content.description
+          this.chapters = response.data.content.chapters
+        }
+        this.new = false
+        if (!this.chapters) {
+          this.new = true
+        }
+        this.image_dir = this.standard.image_dir
+        if (typeof this.bookmark.language.image_dir != 'undefined') {
+          console.log('USING BOOKMARK')
+          this.image_dir = this.bookmark.language.image_dir
+        }
+        this.style = this.standard.style
+        if (typeof this.bookmark.book.style != 'undefined') {
+          console.log('USING BOOKMARK')
+          this.style = this.bookmark.book.style
+        }
+        console.log('this.image_dir')
+        console.log(this.image_dir)
+        this.loaded = true
+        this.loading = false
+        console.log('finished with get Series')
+      } catch (error) {
+        console.log('There was an error in SeriesMixin:', error) // Logs out the error
+      }
+    },
     newSeries() {
       return
     }

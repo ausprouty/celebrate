@@ -27,6 +27,8 @@ import Series from './views/Series.vue'
 import SeriesEdit from './views/SeriesEdit.vue'
 import SeriesPreview from './views/SeriesPreview.vue'
 import SeriesSort from './views/SeriesSort.vue'
+import SeriesPageEdit from './views/SeriesPageEdit.vue'
+import SeriesPagePreview from './views/SeriesPagePreview.vue'
 
 import Page from './views/Page.vue'
 import PageEdit from './views/PageEdit.vue'
@@ -40,7 +42,6 @@ import Custom from './views/CustomEditor.vue'
 import Validate from './views/Validate.vue'
 import Upload from './views/Upload.vue'
 
-
 // for CKFinder
 
 //prototype.myfriends.network/preview
@@ -52,6 +53,16 @@ Vue.use(Router)
 export default new Router({
   mode: 'history',
   routes: [
+    {
+      path: '/edit/seriesPage/:countryCODE/:languageISO/:folderNAME',
+      name: 'editSeriesPage',
+      component: SeriesPageEdit
+    },
+    {
+      path: '/preview/seriesPage/:countryCODE/:languageISO/:folderNAME',
+      name: 'previewSeriesPage',
+      component: SeriesPagePreview
+    },
     {
       path: '/edit/country/:countryCODE',
       name: 'editCountryPage',

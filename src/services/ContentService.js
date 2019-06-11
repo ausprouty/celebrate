@@ -233,6 +233,25 @@ export default {
       } catch (error) {}
     }
   },
+  async getSeriesPage(params) {
+    var response = {}
+    var contentForm = this.toFormData(params)
+    response = await apiMYSQL.post(
+      'ContentApi.php?crud=seriesPage',
+      contentForm
+    )
+    if (response.data.content) {
+      var text = JSON.parse(response.data.content.text)
+      response.data.content.description = text.description
+      response.data.content.chapters = text.chapters
+      response.source = 'data'
+      return response
+    } else {
+      response.data = {}
+      response.source = 'none'
+      return response
+    }
+  },
   async getPage(params) {
     console.log('getPage params:')
     console.log(params)

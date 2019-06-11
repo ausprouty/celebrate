@@ -28,11 +28,12 @@ import ContentService from '@/services/ContentService.js'
 import PublishService from '@/services/PublishService.js'
 import NavBar from '@/components/NavBarLibraryFriends.vue'
 import { bookMarkMixin } from '@/mixins/BookmarkMixin.js'
+import { seriesMixin } from '@/mixins/SeriesMixin.js'
 import { freeformMixin } from '@/mixins/FreeformMixin.js'
 import { authorMixin } from '@/mixins/AuthorMixin.js'
 export default {
   mixins: [bookMarkMixin, freeformMixin, authorMixin],
-  props: ['countryCODE', 'languageISO', 'bookNAME', 'fileFILENAME'],
+  props: ['countryCODE', 'languageISO', 'folderNAME' ],
   components: {
     NavBar
   },
@@ -56,8 +57,9 @@ export default {
     async local_publish() {
       var params = {}
       params.recnum = this.recnum
-      params.fileFILENAME = 'libraryF'
+      params.fileFILENAME = 'index'
       params.countryCODE = this.$route.params.countryCODE
+      params.folderNAME = this.$route.params.folderNAME
       var response = await PublishService.publish('freeform', params)
       if (response['error']) {
         this.error = response['message']
@@ -74,8 +76,8 @@ export default {
     async loadView() {
       try {
         this.$route.params.css = 'AU/styles/AU-freeform.css'
-        this.$route.params.fileFILENAME = 'libraryF'
-        await this.getLibraryPage()
+        this.$route.params.fileFILENAME = 'index'
+        await ContentService.getSeriesPage()
         this.authorized = this.authorize('write', this.$route.params.countryCODE)
         this.readonly = this.authorize(
           'readonly',

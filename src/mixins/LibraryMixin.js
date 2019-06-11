@@ -45,7 +45,7 @@ export const libraryMixin = {
         this.error = this.loaded = null
         this.loading = true
         //console.log('getLibrary goin to check bookmarks with:')
-       // console.log(this.$route.params)
+        // console.log(this.$route.params)
         await this.CheckBookmarks(this.$route.params)
         //console.log(this.bookmark)
         var response = await ContentService.getLibrary(this.$route.params)
@@ -65,11 +65,45 @@ export const libraryMixin = {
         }
         this.image_dir = this.standard.image_dir
         if (typeof this.bookmark.language.image_dir != 'undefined') {
-         // console.log('get Library is using Bookmark')
+          // console.log('get Library is using Bookmark')
           this.image_dir = this.bookmark.language.image_dir
         }
         //console.log('this.image_dir')
-       // console.log(this.image_dir)
+        // console.log(this.image_dir)
+      } catch (error) {
+        console.log('There was an error in LibraryMixin:', error) // Logs out the error
+      }
+    },
+    async getLibraryPage() {
+      try {
+        this.error = this.loaded = null
+        this.loading = true
+        //console.log('getLibrary goin to check bookmarks with:')
+        // console.log(this.$route.params)
+        await this.CheckBookmarks(this.$route.params)
+        //console.log(this.bookmark)
+        var response = await ContentService.getLibraryPage(this.$route.params)
+        //console.log('Library Data obtained:')
+        //console.log(response.data.content.text)
+        if (response.data.content.text) {
+          this.library = response.data.content.text
+          if (response.data.content.recnum) {
+            this.recnum = response.data.content.recnum
+            this.publish_date = response.data.content.publish_date
+          } else {
+            this.recnum = this.publish_date = null
+          }
+        } else {
+          // you are never going to get here because you will get an error from ContentService.getLibrary
+          this.newLibrary()
+        }
+        this.image_dir = this.standard.image_dir
+        if (typeof this.bookmark.language.image_dir != 'undefined') {
+          // console.log('get Library is using Bookmark')
+          this.image_dir = this.bookmark.language.image_dir
+        }
+        //console.log('this.image_dir')
+        // console.log(this.image_dir)
       } catch (error) {
         console.log('There was an error in LibraryMixin:', error) // Logs out the error
       }

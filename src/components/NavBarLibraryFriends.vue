@@ -61,15 +61,33 @@ export default {
           show: true
         },
         {
-          value: 'Meet Jesus',
-          link: 'meet',
+          value: 'Life Principles',
+          link: 'principles',
           index: 1,
           show: true
         },
         {
-          value: 'With Friends',
-          link: 'friends',
+          value: 'Basic Coversations',
+          link: 'basics',
           index: 2,
+          show: true
+        },
+        {
+          value: 'First Steps',
+          link: 'steps',
+          index: 3,
+          show: true
+        },
+        {
+          value: 'Multiply',
+          link: 'multiply',
+          index: 4,
+          show: true
+        },
+        {
+          value: 'Compass',
+          link: 'compass',
+          index: 5,
           show: true
         }
       ]
@@ -101,27 +119,53 @@ export default {
             }
           })
           break
-        case 'meet':
-          this.$router.push({
-            name: 'previewLibraryMeet',
-            params: {
-              countryCODE: this.$route.params.countryCODE
-            }
-          })
-          break
-        case 'friends':
-          this.$router.push({
-            name: 'previewLibraryFriends',
-            params: {
-              countryCODE: this.$route.params.countryCODE
-            }
-          })
-          break
         case 'principles':
           this.$router.push({
-            name: 'previewLibraryFriends',
+            name: 'previewSeriesPage',
             params: {
-              countryCODE: this.$route.params.countryCODE
+              countryCODE: this.$route.params.countryCODE,
+              languageISO: 'eng',
+              folderNAME: 'principles'
+            }
+          })
+          break
+        case 'basics':
+          this.$router.push({
+            name: 'previewSeriesPage',
+            params: {
+              countryCODE: this.$route.params.countryCODE,
+              languageISO: 'eng',
+              folderNAME: 'basics'
+            }
+          })
+          break
+        case 'steps':
+          this.$router.push({
+            name: 'previewSeriesPage',
+            params: {
+              countryCODE: this.$route.params.countryCODE,
+              languageISO: 'eng',
+              folderNAME: 'first_steps'
+            }
+          })
+          break
+        case 'multiply':
+          this.$router.push({
+            name: 'previewSeriesPage',
+            params: {
+              countryCODE: this.$route.params.countryCODE,
+              languageISO: 'eng',
+              folderNAME: 'multiply'
+            }
+          })
+          break
+        case 'compass':
+          this.$router.push({
+            name: 'previewSeriesPage',
+            params: {
+              countryCODE: this.$route.params.countryCODE,
+              languageISO: 'eng',
+              folderNAME: 'compass'
             }
           })
           break
