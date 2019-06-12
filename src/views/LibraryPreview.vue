@@ -1,6 +1,6 @@
 <template>
   <div class="preview">
-    <NavBar />
+    <NavBar/>
     <div class="loading" v-if="loading">Loading...</div>
     <div class="error" v-if="error">There was an error... {{ this.error }}</div>
     <div class="content" v-if="loaded">
@@ -8,14 +8,13 @@
         <button class="button" @click="localPublish()">Publish</button>
       </div>
       <a v-bind:href="'/preview/language/' + this.bookmark.country.code">
-        <img
-          v-bind:src="appDir.library + this.image_dir + '/' + this.image"
-          class="app-img-header"
-        />
+        <img v-bind:src="appDir.library + this.image_dir + '/' + this.image" class="app-img-header">
       </a>
-      <div><span v-html="text"></span></div>
+      <div>
+        <span v-html="text"></span>
+      </div>
 
-      <Book v-for="book in library" :key="book.title" :book="book" />
+      <Book v-for="book in library" :key="book.title" :book="book"/>
       <div class="version">
         <p class="version">Version 1.01</p>
       </div>
@@ -60,9 +59,9 @@ export default {
       this.$router.push({
         name: 'editLibrary',
         params: {
-          countryCODE: this.countryCODE,
-          languageISO: this.languageISO,
-          libraryCODE: this.libraryCODE
+          countryCODE: this.$route.params.countryCODE,
+          languageISO: this.$route.params.languageISO,
+          libraryCODE: this.$route.params.libraryCODE
         }
       })
     },
@@ -70,9 +69,9 @@ export default {
       this.$router.push({
         name: 'sortLibrary',
         params: {
-          countryCODE: this.countryCODE,
-          languageISO: this.languageISO,
-          libraryCODE: this.libraryCODE
+          countryCODE: this.$route.params.countryCODE,
+          languageISO: this.$route.params.languageISO,
+          libraryCODE: this.$route.params.libraryCODE
         }
       })
     },

@@ -176,6 +176,7 @@ export default {
             params: {
               countryCODE: this.$route.params.countryCODE,
               languageISO: this.$route.params.languageISO,
+              libraryCODE: this.$route.params.libraryCODE,
               folderNAME: this.$route.params.folderNAME,
               fileNAME: this.$route.params.fileNAME
             }

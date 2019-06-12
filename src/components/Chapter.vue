@@ -3,9 +3,7 @@
     <div class="app-link" v-on:click="showPage(chapter)">
       <div class="app-card -shadow">
         <div class="chapter">
-          <div v-if="chapter.count" class="chapter-title">
-            {{ chapter.count }}. {{ chapter.title }}
-          </div>
+          <div v-if="chapter.count" class="chapter-title">{{ chapter.count }}. {{ chapter.title }}</div>
           <div v-else class="chapter-title">{{ chapter.title }}</div>
           <div class="chapter-description">{{ chapter.description }}</div>
         </div>
@@ -32,6 +30,7 @@ export default {
         params: {
           countryCODE: this.$route.params.countryCODE,
           languageISO: this.$route.params.languageISO,
+          libraryCODE: this.$route.params.libraryCODE,
           folderNAME: this.bookmark.book.name,
           fileNAME: chapter.filename
         }

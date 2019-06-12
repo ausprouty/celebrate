@@ -77,6 +77,7 @@ export default {
         params: {
           countryCODE: this.$route.params.countryCODE,
           languageISO: this.$route.params.languageISO,
+          libraryCODE: this.$route.params.libraryCODE,
           folderNAME: this.$route.params.folderNAME,
           pageFILENAME: this.$route.params.pageFILENAME,
           cssFORMATTED: clean,
@@ -92,6 +93,7 @@ export default {
           params: {
             countryCODE: this.$route.params.countryCODE,
             languageISO: this.$route.params.languageISO,
+            libraryCODE: this.$route.params.libraryCODE,
             folderNAME: this.bookmark.book.name
           }
         })
@@ -100,7 +102,8 @@ export default {
           name: 'previewLibrary',
           params: {
             countryCODE: this.$route.params.countryCODE,
-            languageISO: this.$route.params.languageISO
+            languageISO: this.$route.params.languageISO,
+            libraryCODE: this.$route.params.libraryCODE,
           }
         })
       }

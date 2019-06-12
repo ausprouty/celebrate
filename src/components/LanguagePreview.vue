@@ -1,6 +1,6 @@
 <template>
   <div class="app-link" v-on:click="showPage(language)">
-    <div class="app-card -shadow"  v-bind:class="{notpublished : !language.publish}">
+    <div class="app-card -shadow" v-bind:class="{notpublished : !language.publish}">
       <div class="language">
         <span class="bold">{{language.name}}</span>
       </div>
@@ -24,8 +24,9 @@ export default {
       this.$router.push({
         name: 'previewLibrary',
         params: {
-          countryCODE: this.bookmark.country.code,
-          languageISO: language.iso
+          countryCODE: this.$route.params.countryCODE,
+          languageISO: this.$route.params.languageISO,
+          libraryCODE: this.$route.params.libraryCODE
         }
       })
     }

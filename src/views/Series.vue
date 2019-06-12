@@ -85,7 +85,8 @@ export default {
         name: 'library',
         params: {
           countryCODE: this.$route.params.countryCODE,
-          languageISO: this.$route.params.languageISO
+          languageISO: this.$route.params.languageISO,
+          libraryCODE: this.$route.params.libraryCODE,
         }
       })
     }

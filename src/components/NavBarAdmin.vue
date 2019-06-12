@@ -1,22 +1,16 @@
 <template>
   <div id="nav">
     <div v-on:click="toggleMenu()">
-      <img class="nav-icon" alt="Home" src="/images/menu/header-admin.png" />
+      <img class="nav-icon" alt="Home" src="/images/menu/header-admin.png">
     </div>
     <div v-if="showMenu">
-      <div
-        v-for="menuItem in this.menu"
-        :key="menuItem.link"
-        :menuItem="menuItem"
-      >
+      <div v-for="menuItem in this.menu" :key="menuItem.link" :menuItem="menuItem">
         <div class="menu-card -shadow" v-if="menuItem.show">
           <div
             class="float-left"
             style="cursor:pointer"
             @click="setNewSelectedOption(menuItem.link)"
-          >
-            {{ menuItem.value }}
-          </div>
+          >{{ menuItem.value }}</div>
         </div>
       </div>
     </div>
@@ -144,8 +138,9 @@ export default {
           this.$router.push({
             name: 'previewLibrary',
             params: {
-              countryCODE: this.bookmark.country.code,
-              languageISO: this.bookmark.language.iso
+              countryCODE: this.$route.params.countryCODE,
+              languageISO: this.$route.params.languageISO,
+              libraryCODE: 'TODO'
             }
           })
           break

@@ -23,7 +23,7 @@ export default {
       this.$router.push({
         name: 'library',
         params: {
-          countryCODE: this.bookmark.country.code,
+          countryCODE: this.$route.params.countryCODE,
           languageISO: language.iso
         }
       })
