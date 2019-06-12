@@ -4,12 +4,20 @@
       class="app-card -shadow"
       v-bind:class="{ notpublished: !book.publish }"
     >
-      <img
-        v-bind:src="appDir.library + this.image_dir + '/' + book.image"
-        class="book"
-      />
-      <div class="book">
-        <span class="bold">{{ book.title }}</span>
+      <div v-if="!this.bookmark.language.titles">
+        <img
+          v-bind:src="appDir.library + this.image_dir + '/' + book.image"
+          class="book"
+        />
+        <div class="book">
+          <span class="bold">{{ book.title }}</span>
+        </div>
+      </div>
+       <div v-if="this.bookmark.language.titles">
+        <img
+          v-bind:src="appDir.library + this.image_dir + '/' + book.image"
+          class="something"
+        />
       </div>
     </div>
   </div>
@@ -48,7 +56,7 @@ export default {
           params: {
             countryCODE: this.bookmark.country.code,
             languageISO: this.bookmark.language.iso,
-            bookNAME: this.book.book
+            folderNAME: this.book.name
           }
         })
       } else {
@@ -58,8 +66,7 @@ export default {
           params: {
             countryCODE: this.bookmark.country.code,
             languageISO: this.bookmark.language.iso,
-            bookNAME: this.book.book,
-            fileFILENAME: this.book.book
+            fileFILENAME: this.book.name
           }
         })
       }

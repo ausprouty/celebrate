@@ -45,7 +45,13 @@
       </div>
       <div>
         <hr />
+        <h2>Preliminary Text</h2>
+        <p>
+          <vue-ckeditor v-model="text" :config="config" />
+        </p>
       </div>
+      <hr />
+      <h2>Library Items</h2>
       <div>
         <button class="button" @click="publishAll">
           Select ALL to publish?
@@ -70,9 +76,9 @@
           <div>
             <BaseInput
               v-model="book.id.$model"
-              label="Book ID"
+              label="Book Number"
               type="text"
-              placeholder="ID"
+              placeholder="#"
               class="field"
               :class="{ error: book.id.$error }"
               @blur="book.id.$touch()"
@@ -259,6 +265,8 @@
 import NavBar from '@/components/NavBarAdmin.vue'
 import ContentService from '@/services/ContentService.js'
 import AuthorService from '@/services/AuthorService.js'
+import './ckeditor/index.js'
+import VueCkeditor from 'vue-ckeditor2'
 import { mapState } from 'vuex'
 import { bookMarkMixin } from '@/mixins/BookmarkMixin.js'
 import { libraryMixin } from '@/mixins/LibraryMixin.js'
@@ -267,37 +275,102 @@ import { required } from 'vuelidate/lib/validators'
 export default {
   mixins: [bookMarkMixin, libraryMixin, authorMixin],
   components: {
-    NavBar
+    NavBar,
+    VueCkeditor
   },
   props: ['countryCODE', 'languageISO', 'fileFILENAME'],
-  computed: mapState(['bookmark', 'appDir', 'cssURL', 'standard', 'books']),
+  computed: mapState(['bookmark', 'appDir', 'cssURL', 'standard']),
   data() {
     return {
-      library: {
-        name: '',
-        folder: '',
-        format: '',
-        id: '',
-        image: '',
-        index: '',
-        new_book: '',
-        style: '',
-        publish: '',
-        template: '',
-        title: ''
-      },
+      library: [
+        {
+          name: '',
+          folder: '',
+          format: '',
+          id: '',
+          image: '',
+          index: '',
+          new_book: '',
+          style: '',
+          publish: '',
+          template: '',
+          title: ''
+        }
+      ],
       formats: ['page', 'series'],
-      images: '',
-      folders: '',
-      styles: '',
-      booklist: '',
-      templates: '',
+      images: [],
+      folders: [],
+      styles: [],
+      booklist: [
+        'about',
+        'basics',
+        'community',
+        'compass',
+        'life',
+        'multiply',
+        'steps'
+      ],
+      templates: [],
       authorized: false,
       image_permission: false,
       isHidden: true,
+      text: 'What will you write?',
       image: 'withFriends.png',
       style_error: false,
-      template_error: false
+      template_error: false,
+      config: {
+        extraPlugins: [
+          'bidi',
+          'uploadimage',
+          'uploadwidget',
+          'clipboard',
+          'videoembed',
+          'iframe'
+        ],
+        extraAllowedContent: ['*(*)[id]', 'ol[*]', 'iframe(*)'],
+        contentsCss: '/content/' + this.$route.params.css,
+        stylesSet: this.$route.params.stylesSET,
+        templates_replaceContent: false,
+        templates_files: [
+          '/templates/' + this.$route.params.stylesSET + 'CKEDITOR.js'
+        ],
+        // Upload images to a CKFinder connector (note that the response type is set to JSON).
+        uploadUrl:
+          '/apps/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files&responseType=json',
+        // Configure your file manager integration. This example uses CKFinder 3 for PHP.
+        filebrowserBrowseUrl: '/apps/ckfinder/ckfinder.html',
+        filebrowserImageBrowseUrl: '/apps/ckfinder/ckfinder.html?type=Images',
+        filebrowserUploadUrl:
+          '/apps/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files',
+        filebrowserImageUploadUrl:
+          '/apps/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images',
+        toolbarGroups: [
+          { name: 'styles', groups: ['styles'] },
+          { name: 'basicstyles', groups: ['basicstyles', 'cleanup'] },
+          {
+            name: 'editing',
+            groups: ['find', 'selection', 'spellchecker', 'editing']
+          },
+          { name: 'links', groups: ['links'] },
+          { name: 'insert', groups: ['insert'] },
+          { name: 'forms', groups: ['forms'] },
+          { name: 'tools', groups: ['tools'] },
+          { name: 'document', groups: ['mode', 'document', 'doctools'] },
+          { name: 'clipboard', groups: ['clipboard', 'undo'] },
+          { name: 'others', groups: ['others'] },
+          '/',
+          {
+            name: 'paragraph',
+            groups: ['list', 'indent', 'blocks', 'align', 'bidi', 'paragraph']
+          },
+          { name: 'iframe', groups: ['iframe'] },
+          { name: 'colors', groups: ['colors'] },
+          { name: 'about', groups: ['about'] }
+        ],
+        height: 200,
+        removeButtons:
+          'About,Button,Checkbox,CreatePlaceholder,DocProps,Flash,Form,HiddenField,NewPage,PageBreak,Preview,Print,Radio,Save,Scayt,Select,Smiley,SpecialChar,TextField,Textarea'
+      }
     }
   },
   validations: {
@@ -317,16 +390,20 @@ export default {
   },
   methods: {
     addNewBookForm() {
-      this.library.push({
-        id: '',
-        name: '',
-        title: '',
-        style: '',
-        image: '',
-        format: '',
-        template: '',
-        publish: ''
-      })
+      if (this.library.length == 0) {
+        this.newLibrary()
+      } else {
+        this.library.push({
+          id: '',
+          name: '',
+          title: '',
+          style: '',
+          image: '',
+          format: '',
+          template: '',
+          publish: ''
+        })
+      }
     },
     addNewBookTitle(title) {
       console.log(title)
@@ -367,7 +444,6 @@ export default {
         }
       })
     },
-
     deleteBookForm(index) {
       this.library.splice(index, 1)
     },
@@ -570,7 +646,6 @@ export default {
         if (template) {
           this.templates = template
         }
-        this.booklist = this.books
         var arrayLength = this.bookmark.library.length
         for (var i = 0; i < arrayLength; i++) {
           if (!this.booklist.includes(this.bookmark.library[i].book)) {
@@ -600,9 +675,16 @@ export default {
     if (!this.$route.params.fileFILENAME) {
       this.$route.params.fileFILENAME = 'library'
     }
+    this.$route.params.stylesSET = 'myfriends'
+    this.$route.params.version = 'lastest'
+    this.$route.params.pageNAME = 'index'
+    this.$route.params.css = 'AU/styles/AU-freeform.css'
   },
   async created() {
-    this.library = {}
+    this.items
+    console.log('itemsin created')
+    console.log(this.items)
+    this.library = []
     this.text = ''
     this.image = ''
     this.showForm()

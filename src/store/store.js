@@ -23,7 +23,6 @@ export default new Vuex.Store({
       library: '/content/',
       root: '/images/'
     },
-    books: ['about', 'basics', 'community', 'compass', 'life', 'steps'],
     revision: '1.1',
     baseURL: './',
     cssURL: './content/',
@@ -31,7 +30,8 @@ export default new Vuex.Store({
       image_dir: 'ZZ/images/europe',
       image: 'journey.png',
       rldir: 'ltr',
-      css: ''
+      css: '',
+      items: ['about', 'basics', 'community', 'compass', 'life', 'steps']
     },
     content: {
       recnum: null,

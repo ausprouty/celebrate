@@ -61,7 +61,7 @@ export const libraryMixin = {
         if (response.data.content.text) {
           this.library = response.data.content.text.library
             ? response.data.content.text.library
-            : {}
+            : []
           this.image = response.data.content.text.image
             ? response.data.content.text.image
             : ''

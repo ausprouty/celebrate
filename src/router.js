@@ -18,11 +18,6 @@ import LibraryEdit from './views/LibraryEdit.vue'
 import LibraryPreview from './views/LibraryPreview.vue'
 import LibrarySort from './views/LibrarySort.vue'
 
-import LibraryFriendsEdit from './views/LibraryFriendsEdit.vue'
-import LibraryFriendsPreview from './views/LibraryFriendsPreview.vue'
-import LibraryMeetEdit from './views/LibraryMeetEdit.vue'
-import LibraryMeetPreview from './views/LibraryMeetPreview.vue'
-
 import Series from './views/Series.vue'
 import SeriesEdit from './views/SeriesEdit.vue'
 import SeriesPreview from './views/SeriesPreview.vue'
@@ -73,26 +68,7 @@ export default new Router({
       name: 'previewCountryPage',
       component: CountryPagePreview
     },
-    {
-      path: '/edit/friends/:countryCODE',
-      name: 'editLibraryFriends',
-      component: LibraryFriendsEdit
-    },
-    {
-      path: '/preview/friends/:countryCODE',
-      name: 'previewLibraryFriends',
-      component: LibraryFriendsPreview
-    },
-    {
-      path: '/edit/meet/:countryCODE',
-      name: 'editLibraryMeet',
-      component: LibraryMeetEdit
-    },
-    {
-      path: '/preview/meet/:countryCODE',
-      name: 'previewLibraryMeet',
-      component: LibraryMeetPreview
-    },
+
     {
       path: '/',
       name: 'countries',

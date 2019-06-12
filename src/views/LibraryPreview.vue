@@ -9,10 +9,11 @@
       </div>
       <a v-bind:href="'/preview/language/' + this.bookmark.country.code">
         <img
-          v-bind:src="appDir.library + this.image_dir + '/journey.jpg'"
+          v-bind:src="appDir.library + this.image_dir + '/' + this.image"
           class="app-img-header"
         />
       </a>
+      <div><span v-html="text"></span></div>
 
       <Book v-for="book in library" :key="book.title" :book="book" />
       <div class="version">
