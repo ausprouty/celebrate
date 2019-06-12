@@ -55,7 +55,8 @@ export default {
           params: {
             countryCODE: this.bookmark.country.code,
             languageISO: this.bookmark.language.iso,
-            bookNAME: this.book.book
+            libraryCODE: 'TODO',
+            folderNAME: this.book.name,
           }
         })
       } else {
@@ -65,8 +66,9 @@ export default {
           params: {
             countryCODE: this.bookmark.country.code,
             languageISO: this.bookmark.language.iso,
-            bookNAME: this.book.book,
-            fileNAME: this.book.book
+            libraryCODE: 'TODO',
+            folderNAME: this.book.name,
+            fileNAME: this.book.name
           }
         })
       }

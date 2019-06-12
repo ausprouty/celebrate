@@ -111,6 +111,7 @@ export default {
             params: {
               countryCODE: this.$route.params.countryCODE,
               languageISO: 'eng',
+              libraryCODE: 'friends',
               folderNAME: 'principles'
             }
           })
@@ -121,6 +122,7 @@ export default {
             params: {
               countryCODE: this.$route.params.countryCODE,
               languageISO: 'eng',
+              libraryCODE: 'friends',
               folderNAME: 'basics'
             }
           })
@@ -131,6 +133,7 @@ export default {
             params: {
               countryCODE: this.$route.params.countryCODE,
               languageISO: 'eng',
+              libraryCODE: 'friends',
               folderNAME: 'first_steps'
             }
           })
@@ -141,6 +144,7 @@ export default {
             params: {
               countryCODE: this.$route.params.countryCODE,
               languageISO: 'eng',
+              libraryCODE: 'friends',
               folderNAME: 'multiply'
             }
           })
@@ -151,6 +155,7 @@ export default {
             params: {
               countryCODE: this.$route.params.countryCODE,
               languageISO: 'eng',
+              libraryCODE: 'friends',
               folderNAME: 'compass'
             }
           })
