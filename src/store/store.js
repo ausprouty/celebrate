@@ -23,7 +23,7 @@ export default new Vuex.Store({
       library: '/content/',
       root: '/images/'
     },
-    books: ['about', 'basics', 'community', 'compass', 'firststeps', 'issues'],
+    books: ['about', 'basics', 'community', 'compass', 'life', 'steps'],
     revision: '1.1',
     baseURL: './',
     cssURL: './content/',

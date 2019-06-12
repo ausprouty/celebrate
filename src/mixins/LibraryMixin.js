@@ -16,12 +16,12 @@ export const libraryMixin = {
       ],
       image_dir: 'ZZ/images/europe',
       loading: false,
-      loaded: null,
-      error: null,
-      error_message: null,
+      loaded: '',
+      error: '',
+      error_message: '',
       publish: false,
-      publish_date: null,
-      recnum: null,
+      publish_date: '',
+      recnum: '',
       content: {
         recnum: '',
         version: '',
@@ -42,8 +42,14 @@ export const libraryMixin = {
   methods: {
     async getLibrary() {
       try {
-        this.error = this.loaded = null
+        this.error = this.loaded = ''
         this.loading = true
+
+        if (!this.$route.params.fileFILENAME) {
+          this.$route.params.fileFILENAME = 'library'
+        }
+        console.log('getLibrary Params')
+        console.log(this.$route.params)
         //console.log('getLibrary goin to check bookmarks with:')
         // console.log(this.$route.params)
         await this.CheckBookmarks(this.$route.params)
@@ -53,12 +59,20 @@ export const libraryMixin = {
         //console.log('Library Data obtained:')
         //console.log(response.data.content.text)
         if (response.data.content.text) {
-          this.library = response.data.content.text
+          this.library = response.data.content.text.library
+            ? response.data.content.text.library
+            : {}
+          this.image = response.data.content.text.image
+            ? response.data.content.text.image
+            : ''
+          this.text = response.data.content.text.text
+            ? response.data.content.text.text
+            : ''
           if (response.data.content.recnum) {
             this.recnum = response.data.content.recnum
             this.publish_date = response.data.content.publish_date
           } else {
-            this.recnum = this.publish_date = null
+            this.recnum = this.publish_date = ''
           }
         } else {
           // you are never going to get here because you will get an error from ContentService.getLibrary

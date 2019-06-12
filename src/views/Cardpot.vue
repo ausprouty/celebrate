@@ -14,88 +14,211 @@
         </p>
       </div>
       <div v-if="this.authorized">
-        <h1>{{ this.$route.params.folderNAME }}</h1>
-        <p>
-          <vue-ckeditor v-model="this.description" :config="config" />
-        </p>
+        <h1>Library</h1>
         <div>
           <button class="button" @click="publishAll">
             Select ALL to publish?
           </button>
           <div
-            v-for="(chapter, index) in $v.chapters.$each.$iter"
-            :key="chapter.id"
-            :chapter="chapter"
+            v-for="(book, index) in $v.library.$each.$iter"
+            :key="book.code"
+            :book="book"
           >
             <div
               class="app-card -shadow"
-              v-bind:class="{ notpublished: !chapter.publish.$model }"
+              v-bind:class="{ notpublished: !book.publish.$model }"
             >
               <div
                 class="float-right"
                 style="cursor:pointer"
-                @click="deleteChapterForm(index)"
+                @click="deleteBookForm(index)"
               >
                 X
               </div>
-              <div class="form">
+              <div>
                 <BaseInput
-                  v-model="chapter.count.$model"
-                  label="Chapter Number"
+                  v-model="book.id.$model"
+                  label="Book ID"
                   type="text"
-                  placeholder="leave blank for un-numbered items"
+                  placeholder="ID"
                   class="field"
-                  :class="{ error: chapter.count.$error }"
-                  @blur="chapter.count.$touch()"
+                  :class="{ error: book.id.$error }"
+                  @blur="book.id.$touch()"
                 />
                 <BaseInput
-                  v-model="chapter.title.$model"
-                  label="Title"
+                  v-model="book.title.$model"
+                  label="Book Title"
                   type="text"
-                  placeholder
+                  placeholder="Title"
                   class="field"
-                  :class="{ error: chapter.title.$error }"
-                  @blur="chapter.title.$touch()"
+                  :class="{ error: book.title.$error }"
+                  @blur="book.title.$touch()"
                 />
-                <template v-if="chapter.title.$error">
-                  <p v-if="!chapter.title.required" class="errorMessage">
-                    Title is required
+                <template v-if="book.title.$error">
+                  <p v-if="!book.title.required" class="errorMessage">
+                    Book Title is required
                   </p>
                 </template>
 
+                <BaseSelect
+                  label="International Title"
+                  :options="booklist"
+                  v-model="book.name.$model"
+                  class="field"
+                  :class="{ error: book.name.$error }"
+                  @blur="book.name.$touch()"
+                />
+              </div>
+              <div>
+                <p>
+                  <a class="black" @click="createBook(book.name.$model)"
+                    >Create new International Title</a
+                  >
+                </p>
+              </div>
+              <div
+                v-bind:id="book.title.$model"
+                v-bind:class="{ hidden: isHidden }"
+              >
                 <BaseInput
-                  v-model="chapter.description.$model"
-                  label="Description:"
+                  label="New International Title"
+                  v-model="book.name.$model"
+                  type="text"
+                  placeholder="international title"
+                  class="field"
+                />
+                <button
+                  class="button"
+                  @click="addNewBookTitle(book.title.$model)"
+                >
+                  Save International Title
+                </button>
+              </div>
+              <div v-if="images">
+                <div v-if="book.image.$model">
+                  <img
+                    v-bind:src="
+                      appDir.library + image_dir + '/' + book.image.$model
+                    "
+                    class="book"
+                  />
+                  <br />
+                </div>
+                <BaseSelect
+                  label="Image"
+                  :options="images"
+                  v-model="book.image.$model"
+                  class="field"
+                  :class="{ error: book.image.$error }"
+                  @blur="book.image.$touch()"
+                />
+                <template v-if="book.image.$error">
+                  <p v-if="!book.image.required" class="errorMessage">
+                    Image is required
+                  </p>
+                </template>
+              </div>
+              <div v-if="image_permission">
+                <label>
+                  Add new Image&nbsp;&nbsp;&nbsp;&nbsp;
+                  <input
+                    type="file"
+                    v-bind:id="book.name.$model"
+                    ref="image"
+                    v-on:change="handleImageUpload(book.name.$model)"
+                  />
+                </label>
+              </div>
+
+              <BaseSelect
+                label="Format"
+                :options="formats"
+                v-model="book.format.$model"
+                class="field"
+                :class="{ error: book.format.$error }"
+                @blur="book.format.$touch()"
+              />
+              <template v-if="book.format.$error">
+                <p v-if="!book.format.required" class="errorMessage">
+                  Format is required
+                </p>
+              </template>
+
+              <div v-if="book.format.$model == 'series'">
+                <BaseInput
+                  v-model="book.index.$model"
+                  label="Index Filename"
                   type="text"
                   placeholder
                   class="field"
-                  :class="{ error: chapter.description.$error }"
-                  @blur="chapter.description.$touch()"
+                  :class="{ error: book.index.$error }"
+                  @blur="book.index.$touch()"
                 />
-                <template v-if="chapter.description.$error">
-                  <p v-if="!chapter.description.required" class="errorMessage">
-                    Description is required
+                <template v-if="book.index.$error">
+                  <p v-if="!book.index.required" class="errorMessage">
+                    Index is required
                   </p>
+                </template>
+              </div>
+              <div>
+                <BaseSelect
+                  label="Style Sheet"
+                  :options="styles"
+                  v-model="book.style.$model"
+                  class="field"
+                  :class="{ error: book.style.$error }"
+                  @blur="book.style.$touch()"
+                />
+                <template v-if="book.style.$error">
+                  <p v-if="!book.style.required" class="errorMessage">
+                    Style is required
+                  </p>
+                </template>
+                <template v-if="style_error">
+                  <p class="errorMessage">Only .css files may be uploaded</p>
                 </template>
 
-                <BaseInput
-                  v-model="chapter.filename.$model"
-                  label="File Name"
-                  type="text"
-                  placeholder
+                <label>
+                  Add new stylesheet&nbsp;&nbsp;&nbsp;&nbsp;
+                  <input
+                    type="file"
+                    v-bind:id="book.title.$model"
+                    ref="style"
+                    v-on:change="handleStyleUpload(book.title.$model)"
+                  />
+                </label>
+
+                <BaseSelect
+                  label="Template"
+                  :options="templates"
+                  v-model="book.template.$model"
                   class="field"
-                  :class="{ error: chapter.filename.$error }"
-                  @blur="chapter.filename.$touch()"
+                  :class="{ error: book.template.$error }"
+                  @blur="book.template.$touch()"
                 />
-                <template v-if="chapter.filename.$error">
-                  <p v-if="!chapter.filename.required" class="errorMessage">
-                    Description is required
+                <label>
+                  Add new template&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <input
+                    type="file"
+                    v-bind:id="book.title.$model"
+                    ref="template"
+                    v-on:change="handleTemplateUpload(book.title.$model)"
+                  />
+                </label>
+                <template v-if="template_error">
+                  <p class="errorMessage">
+                    Only .html files may be uploaded as templates
                   </p>
                 </template>
+                <button class="button yellow" @click="createTemplate">
+                  Create Template
+                </button>
+                <br />
+                <br />
                 <input
                   type="checkbox"
                   id="checkbox"
-                  v-model="chapter.publish.$model"
+                  v-model="book.publish.$model"
                 />
                 <label for="checkbox">
                   <h2>Publish?</h2>
@@ -103,243 +226,279 @@
               </div>
             </div>
           </div>
-
-          <div v-if="this.authorized">
-            <div v-if="this.new">
-              <p class="errorMessage">
-                Import Series in tab format (number| title | description| bible
-                reference| filename)
-              </p>
-              <label>
-                <input type="file" ref="file" v-on:change="importSeries()" />
-              </label>
-              <br />
-              <br />
-            </div>
-            <button class="button" @click="addNewChapterForm">
-              New Chapter
-            </button>
-
-            <div v-if="!$v.$anyError">
-              <button class="button red" @click="saveForm">Save Changes</button>
-            </div>
-            <div v-if="$v.$anyError">
-              <button class="button grey">Disabled</button>
-              <p v-if="$v.$anyError" class="errorMessage">
-                Please fill out the required field(s).
-              </p>
-            </div>
-            <br />
-            <br />
-            <br />
-          </div>
-          <div v-if="!this.authorized">
-            <p>
-              You need to
-              <a href="/login">login to make changes</a> here
-            </p>
-          </div>
         </div>
+
+        <button class="button" @click="addNewBookForm">New Book</button>
+        <div v-if="!$v.$anyError">
+          <button class="button red" @click="saveForm">Save Changes</button>
+        </div>
+        <div v-if="$v.$anyError">
+          <button class="button grey">Disabled</button>
+          <p v-if="$v.$anyError" class="errorMessage">
+            Please fill out the required field(s).
+          </p>
+        </div>
+      </div>
+
+      <div v-if="!this.authorized">
+        <p>
+          You need to
+          <a href="/login">login to make changes</a> here
+        </p>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import NavBar from '@/components/NavBarAdmin.vue'
 import ContentService from '@/services/ContentService.js'
 import AuthorService from '@/services/AuthorService.js'
-import NavBar from '@/components/NavBarLibraryFriends.vue'
-import './ckeditor/index.js'
-import VueCkeditor from 'vue-ckeditor2'
+import { mapState } from 'vuex'
 import { bookMarkMixin } from '@/mixins/BookmarkMixin.js'
-import { freeformMixin } from '@/mixins/FreeformMixin.js'
+import { libraryMixin } from '@/mixins/LibraryMixin.js'
 import { authorMixin } from '@/mixins/AuthorMixin.js'
 import { required } from 'vuelidate/lib/validators'
 export default {
-  mixins: [bookMarkMixin, freeformMixin, authorMixin],
-  props: ['countryCODE', 'languageISO', 'folderNAME'],
+  mixins: [bookMarkMixin, libraryMixin, authorMixin],
   components: {
-    NavBar,
-    VueCkeditor
+    NavBar
   },
-  computed: mapState(['bookmark', 'appDir', 'cssURL']),
+  props: ['countryCODE', 'languageISO', 'fileFILENAME'],
+  computed: mapState(['bookmark', 'appDir', 'cssURL', 'standard', 'books']),
   data() {
     return {
-      seriesDetails: {
-        series: '',
-        language: '',
-        description: ''
-      },
-      chapters: [
-        {
-          id: null,
-          title: null,
-          desciption: null,
-          count: null,
-          filename: null
-        }
-      ],
-      description: 'hi there',
-      dir: 'ltr',
-      file: null,
-      loading: false,
-      loaded: false,
-      error: false,
-      authorized: false,
-      new: false,
-      content: {
-        recnum: '',
-        version: '',
-        edit_date: '',
-        edit_uid: '',
-        publish_uid: '',
-        publish_date: '',
-        language_iso: '',
-        country_code: '',
+      library: {
+        name: '',
         folder: '',
-        filetype: '',
-        title: '',
-        filename: '',
-        text: ''
+        format: '',
+        id: '',
+        image: '',
+        index: '',
+        new_book: '',
+        style: '',
+        publish: '',
+        template: '',
+        title: ''
       },
-      config: {
-        extraPlugins: [
-          'bidi',
-          'uploadimage',
-          'uploadwidget',
-          'clipboard',
-          'videoembed',
-          'iframe'
-        ],
-        extraAllowedContent: ['*(*)[id]', 'ol[*]', 'iframe(*)'],
-        contentsCss: '/content/' + this.$route.params.css,
-        stylesSet: this.$route.params.stylesSET,
-        templates_replaceContent: false,
-        templates_files: [
-          '/templates/' + this.$route.params.stylesSET + 'CKEDITOR.js'
-        ],
-        // Upload images to a CKFinder connector (note that the response type is set to JSON).
-        uploadUrl:
-          '/apps/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files&responseType=json',
-        // Configure your file manager integration. This example uses CKFinder 3 for PHP.
-        filebrowserBrowseUrl: '/apps/ckfinder/ckfinder.html',
-        filebrowserImageBrowseUrl: '/apps/ckfinder/ckfinder.html?type=Images',
-        filebrowserUploadUrl:
-          '/apps/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files',
-        filebrowserImageUploadUrl:
-          '/apps/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images',
-        toolbarGroups: [
-          { name: 'styles', groups: ['styles'] },
-          { name: 'basicstyles', groups: ['basicstyles', 'cleanup'] },
-          {
-            name: 'editing',
-            groups: ['find', 'selection', 'spellchecker', 'editing']
-          },
-          { name: 'links', groups: ['links'] },
-          { name: 'insert', groups: ['insert'] },
-          { name: 'forms', groups: ['forms'] },
-          { name: 'tools', groups: ['tools'] },
-          { name: 'document', groups: ['mode', 'document', 'doctools'] },
-          { name: 'clipboard', groups: ['clipboard', 'undo'] },
-          { name: 'others', groups: ['others'] },
-          '/',
-          {
-            name: 'paragraph',
-            groups: ['list', 'indent', 'blocks', 'align', 'bidi', 'paragraph']
-          },
-          { name: 'iframe', groups: ['iframe'] },
-          { name: 'colors', groups: ['colors'] },
-          { name: 'about', groups: ['about'] }
-        ],
-        height: 600,
-        removeButtons:
-          'About,Button,Checkbox,CreatePlaceholder,DocProps,Flash,Form,HiddenField,Iframe,NewPage,PageBreak,Preview,Print,Radio,Save,Scayt,Select,Smiley,SpecialChar,TextField,Textarea'
-      }
+      formats: ['page', 'series'],
+      images: '',
+      folders: '',
+      styles: '',
+      booklist: '',
+      templates: '',
+      authorized: false,
+      image_permission: false,
+      isHidden: true,
+      style_error: false,
+      template_error: false
     }
   },
   validations: {
-    chapters: {
+    library: {
       required,
       $each: {
+        id: { required },
+        name: { required },
         title: { required },
-        description: {},
-        count: '',
-        filename: { required },
+        style: { required },
+        image: { required },
+        format: { required },
+        template: '',
         publish: ''
       }
     }
   },
   methods: {
-    addNewChapterForm() {
-      if (!this.chapters) {
-        this.chapters = []
-      }
-      this.chapters.push({
-        id: null,
-        title: null,
-        description: null,
-        count: null,
-        filename: null,
-        publish: null
+    addNewBookForm() {
+      this.library.push({
+        id: '',
+        name: '',
+        title: '',
+        style: '',
+        image: '',
+        format: '',
+        template: '',
+        publish: ''
       })
     },
+    addNewBookTitle(title) {
+      console.log(title)
+      this.booklist = []
+      var change = this.$v.library.$model
+      var arrayLength = change.length
+      for (var i = 0; i < arrayLength; i++) {
+        this.booklist.push(this.$v.library.$model[i].book)
+      }
+      this.isHidden = true
+    },
+    createBook(title) {
+      console.log(title)
+      this.isHidden = false
+    },
     publishAll() {
-      var arrayLength = this.chapters.length
+      var arrayLength = this.library.length
       console.log(' Item count:' + arrayLength)
       for (var i = 0; i < arrayLength; i++) {
-        this.$v.chapters.$each.$iter[i].publish.$model = true
+        this.$v.library.$each.$iter[i].publish.$model = true
       }
     },
-    deleteChapterForm(id) {
-      this.chapters.splice(id, 1)
+    async createFolder(folder) {
+      console.log(folder)
+      var params = {}
+      params.country_code = this.$route.params.countryCODE
+      params.language_iso = this.$route.params.languageISO
+      params.folder = folder.toLowerCase()
+      AuthorService.createContentFolder(params)
+      this.folders = await AuthorService.getFoldersContent(params)
     },
-    async importSeries() {
-      console.log('about to import series')
-      this.file = this.$refs.file.files[0]
-      console.log('this.file')
-      console.log(this.file)
-      var param = []
-      param.country_code = this.$route.params.countryCODE
-      param.language_iso = this.$route.params.languageISO
-      param.index = 'index'
-      param.folder = this.$route.params.folderNAME
-      param.template = this.bookmark.book.template
-      param.description = this.description
-      await AuthorService.setupSeriesPage(param, this.file)
-      console.log('back from update')
-      try {
-        this.getSeries(this.$route.params)
-        console.log('tried get series')
-        this.authorized = this.authorize(
-          'write',
-          this.$route.params.countryCODE
-        )
-      } catch (error) {
-        console.log('There was an error in SeriesEdit.vue:', error) // Logs out the error
-      }
-    },
-    goBack() {
-      window.history.back()
+    createTemplate() {
+      this.$router.push({
+        name: 'createTemplate',
+        params: {
+          countryCODE: this.$route.params.countryCODE,
+          languageISO: this.$route.params.languageISO
+        }
+      })
     },
 
+    deleteBookForm(index) {
+      this.library.splice(index, 1)
+    },
+    handleImageUpload(code) {
+      console.log('handleImageUpload: ' + code)
+      var checkfile = {}
+      var i = 0
+      console.log(this.$refs.image)
+      var arrayLength = this.$refs.image.length
+      console.log('arrayLength: ' + arrayLength)
+      for (i = 0; i < arrayLength; i++) {
+        checkfile = this.$refs.image[i]['files']
+        console.log(checkfile)
+        if (checkfile.length == 1) {
+          // console.log(checkfile)
+          //  console.log(checkfile[0])
+          var type = AuthorService.typeImage(checkfile[0])
+          if (type) {
+            var params = {}
+            params.directory = 'content/' + this.bookmark.language.image_dir
+            params.name = code
+            console.log('Uploading File')
+            console.log(params)
+            AuthorService.storeImage(params, checkfile[0])
+            for (i = 0; i < arrayLength; i++) {
+              checkfile = this.$v.library.$each[i]
+              console.log('checkfile')
+              console.log(checkfile)
+              if (checkfile.$model.book == code) {
+                console.log('equal')
+                console.log(checkfile.$model.book)
+                //this.$v.library.$each[i].$model.image = 'default.png'
+                this.$v.library.$each[i].$model.image = code + type
+                console.log(' I reset ' + i)
+                console.log(this.$v.library.$each)
+              }
+            }
+          }
+        }
+      }
+    },
+    async handleStyleUpload(code) {
+      console.log('code in handle Style:' + code)
+      var checkfile = ''
+      var i = 0
+      var arrayLength = this.$refs.style.length
+      console.log(this.$refs.style)
+      for (i = 0; i < arrayLength; i++) {
+        checkfile = this.$refs.style[i]['files']
+        if (checkfile.length == 1) {
+          console.log(checkfile[0])
+          var type = AuthorService.typeStyle(checkfile[0])
+          if (type) {
+            console.log(checkfile)
+            var params = {}
+            params.file = checkfile[0]
+            params.country_code = this.$route.params.countryCODE
+            type = await AuthorService.createStyle(params)
+            var style = await AuthorService.getStyles(params)
+            if (style) {
+              this.styles = style
+              this.style_error = false
+            }
+          } else {
+            this.style_error = true
+          }
+        }
+      }
+    },
+    async handleTemplateUpload(code) {
+      console.log('code in handle Template:' + code)
+      var checkfile = ''
+      var i = 0
+      var arrayLength = this.$refs.template.length
+      console.log(this.$refs.template)
+      for (i = 0; i < arrayLength; i++) {
+        checkfile = this.$refs.template[i]['files']
+        if (checkfile.length == 1) {
+          console.log(' i is ' + i)
+          console.log(checkfile[0])
+          var book = this.library[i]
+          var type = AuthorService.typeTemplate(checkfile[0])
+          if (type) {
+            console.log('type ok')
+            console.log(checkfile)
+            var params = {}
+            params.file = checkfile[0]
+            params.country_code = this.$route.params.countryCODE
+            params.language_iso = this.$route.params.languageISO
+            params.folder = book.folder
+            console.log(params)
+            type = await AuthorService.createTemplate(params)
+            if (type) {
+              var template = await AuthorService.getTemplates(params)
+              if (template) {
+                this.templates = template
+                console.log(template)
+                this.template_error = false
+              }
+            }
+          } else {
+            this.template_error = true
+          }
+        }
+      }
+    },
     async saveForm() {
       try {
-        this.content.text = ContentService.validate(this.pageText)
+        // create index files
+        var check = ''
+        var params = {}
+        params.country_code = this.$route.params.countryCODE
+        params.language_iso = this.$route.params.languageISO
+        var arrayLength = this.library.length
+        for (var i = 0; i < arrayLength; i++) {
+          check = this.library[i]
+          if (check.format == 'series') {
+            params.folder = check.folder
+            params.index = check.index + '.json'
+            AuthorService.createSeriesIndex(params)
+          }
+        }
+        // update library file
+        var valid = ContentService.validate(this.library)
+        this.content.text = JSON.stringify(valid)
+        this.content.filename = 'library'
+        this.content.filetype = 'json'
         this.content.country_code = this.$route.params.countryCODE
-        this.content.folder = this.$route.params.folderNAME
-        this.content.language_iso = null
-        this.content.folder = null
-        this.content.filename = 'index'
-        this.content.filetype = 'html'
+        this.content.language_iso = this.$route.params.languageISO
         this.$store.dispatch('newBookmark', 'clear')
         var response = await AuthorService.createContentData(this.content)
         if (response.data.error != true) {
           this.$router.push({
-            name: 'previewSeriesPage',
+            name: 'previewLibrary',
             params: {
               countryCODE: this.$route.params.countryCODE,
-              folderNAME: this.$route.params.folderNAME
+              languageISO: this.$route.params.languageISO
             }
           })
         } else {
@@ -348,41 +507,79 @@ export default {
           this.error_message = response.data.message
         }
       } catch (error) {
-        console.log('SERIES PAGE EDIT There was an error ', error)
-        this.error = true
+        console.log('LIBRARY EDIT There was an error ', error)
         this.loaded = false
         this.error_message = error
+        this.error = true
       }
     }
   },
-  async beforeCreate() {
-    this.$route.params.stylesSET = 'myfriends'
-    this.$route.params.version = 'lastest'
-    this.$route.params.fileFILENAME = 'index'
-    this.$route.params.css = 'AU/styles/AU-freeform.css'
-    console.log('final params')
-    console.log(this.$route.params)
+  beforeCreate() {
+    this.$route.params.version = 'latest'
   },
   async created() {
     try {
-      this.pageText = 'hello'
-      console.log('in Created')
-      this.$route.params.fileFILENAME = 'index'
-      console.log(this.$route)
-      this.recnum = null
-      this.publish_date = null
-      this.description = 'from SeriesPageEdit'
-      this.chapters = []
-      this.new = true
-      await this.getSeriesPage(this.$route.params)
-      console.log('I am about to authorize to write')
-      console.log('chapters')
-      console.log(this.chapters)
-
+      await this.getLibrary()
+      // console.log('after get Libary')
+      var param = {}
+      param.image_dir = this.bookmark.language.image_dir
+      console.log('image dir: ' + param.image_dir.substring(0, 2))
+      this.image_permission = this.authorize(
+        'write',
+        param.image_dir.substring(0, 1)
+      )
+      // get images
+      var img = await AuthorService.getImages(param)
+      console.log('img')
+      console.log(img)
+      if (img) {
+        this.images = img
+      }
+      // get folders
+      param.country_code = this.$route.params.countryCODE
+      param.language_iso = this.$route.params.languageISO
+      var folder = await AuthorService.getFoldersContent(param)
+      if (folder) {
+        this.folders = folder
+      }
+      // get styles
+      var style = await AuthorService.getStyles(param)
+      if (style) {
+        this.styles = style
+      }
+      //get templates
+      var template = await AuthorService.getTemplates(param)
+      if (template) {
+        this.templates = template
+      }
+      console.log('line 586 in Library View')
+      this.booklist = []
+      var arrayLength = this.bookmark.library.length
+      for (var i = 0; i < arrayLength; i++) {
+        this.booklist.push(this.bookmark.library[i].book)
+      }
+      console.log('line 592 in Library View')
       this.authorized = this.authorize('write', this.$route.params.countryCODE)
+      console.log('after authorize')
+      this.loaded = true
+      this.loading = false
+      console.log('after loading is true')
     } catch (error) {
-      console.log('There was an error in Country.vue:', error)
+      console.log('roor line 596')
+      console.log('There was an error in Library.vue:', error) // Logs out the error
+      this.error_message = error + 'Library Edit - created()'
+      this.error = true
     }
   }
 }
 </script>
+
+<style scoped>
+.app-card {
+  margin-bottom: 90px;
+}
+
+.float-right {
+  text-align: right;
+}
+</style>
