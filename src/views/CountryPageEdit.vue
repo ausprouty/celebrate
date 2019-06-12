@@ -18,6 +18,11 @@
         <p>
           <vue-ckeditor v-model="pageText" :config="config" />
         </p>
+        <hr />
+        <h2>Country Footer Text</h2>
+        <p>
+          <vue-ckeditor v-model="footerText" :config="config" />
+        </p>
         <div class="version">
           <p class="version">Version 1.01</p>
         </div>
@@ -147,7 +152,10 @@ export default {
     },
     async saveForm() {
       try {
-        this.content.text = ContentService.validate(this.pageText)
+        var text = {}
+        text.page = ContentService.validate(this.pageText)
+        text.footer = ContentService.validate(this.footerText)
+        this.content.text = JSON.stringify(text)
         this.content.country_code = this.$route.params.countryCODE
         this.content.language_iso = null
         this.content.folder = null

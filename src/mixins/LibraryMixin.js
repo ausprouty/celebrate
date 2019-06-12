@@ -5,7 +5,7 @@ export const libraryMixin = {
       library: [
         {
           id: '',
-          book: '',
+          name: '',
           title: '',
           folder: '',
           index: '',
@@ -47,7 +47,8 @@ export const libraryMixin = {
         //console.log('getLibrary goin to check bookmarks with:')
         // console.log(this.$route.params)
         await this.CheckBookmarks(this.$route.params)
-        //console.log(this.bookmark)
+        console.log('getLibrary Params')
+        console.log(this.$route.params)
         var response = await ContentService.getLibrary(this.$route.params)
         //console.log('Library Data obtained:')
         //console.log(response.data.content.text)
@@ -61,6 +62,7 @@ export const libraryMixin = {
           }
         } else {
           // you are never going to get here because you will get an error from ContentService.getLibrary
+          console.log('going to newLibrary from getLibrary')
           this.newLibrary()
         }
         this.image_dir = this.standard.image_dir
@@ -71,40 +73,7 @@ export const libraryMixin = {
         //console.log('this.image_dir')
         // console.log(this.image_dir)
       } catch (error) {
-        console.log('There was an error in LibraryMixin:', error) // Logs out the error
-      }
-    },
-    async getLibraryPage() {
-      try {
-        this.error = this.loaded = null
-        this.loading = true
-        //console.log('getLibrary goin to check bookmarks with:')
-        // console.log(this.$route.params)
-        await this.CheckBookmarks(this.$route.params)
-        //console.log(this.bookmark)
-        var response = await ContentService.getLibraryPage(this.$route.params)
-        //console.log('Library Data obtained:')
-        //console.log(response.data.content.text)
-        if (response.data.content.text) {
-          this.library = response.data.content.text
-          if (response.data.content.recnum) {
-            this.recnum = response.data.content.recnum
-            this.publish_date = response.data.content.publish_date
-          } else {
-            this.recnum = this.publish_date = null
-          }
-        } else {
-          // you are never going to get here because you will get an error from ContentService.getLibrary
-          this.newLibrary()
-        }
-        this.image_dir = this.standard.image_dir
-        if (typeof this.bookmark.language.image_dir != 'undefined') {
-          // console.log('get Library is using Bookmark')
-          this.image_dir = this.bookmark.language.image_dir
-        }
-        //console.log('this.image_dir')
-        // console.log(this.image_dir)
-      } catch (error) {
+        this.newLibrary()
         console.log('There was an error in LibraryMixin:', error) // Logs out the error
       }
     },
@@ -112,63 +81,53 @@ export const libraryMixin = {
       this.library = [
         {
           id: 1,
-          book: 'issues',
-          title: 'Life Issues',
-          folder: 'myfriends',
-          index: 'principle-chapters',
-          style: 'AU-myfriends.css',
-          image: 'issues.jpg',
-          format: 'series'
+          name: 'life',
+          title: 'Life Principles',
+          image: 'life.jpg',
+          format: 'series',
+          style: 'ZZ-myfriends.css'
         },
         {
           id: 2,
-          book: 'basics',
+          name: 'basics',
           title: 'Basic Conversations',
-          folder: 'myfriends',
-          index: 'basics-chapters.json',
-          style: 'AU-myfriends.css',
           image: 'basics.jpg',
-          format: 'series'
+          format: 'series',
+          style: 'ZZ-myfriends.css'
         },
         {
           id: 3,
-          book: 'community',
+          name: 'community',
           title: 'Live Community',
-          folder: 'myfriends',
-          page: 'community',
-          style: 'AU-myfriends.css',
           image: 'community.jpg',
-          format: 'page'
+          format: 'page',
+          page: 'community',
+          style: 'ZZ-myfriends.css'
         },
         {
           id: 4,
-          book: 'firststeps',
+          name: 'steps',
           title: 'First Steps',
-          folder: 'first_steps',
-          index: 'first_steps-chapters',
-          style: 'AU-fsteps.css',
           image: 'firststeps.jpg',
-          format: 'series'
+          format: 'series',
+          style: 'ZZ-steps.css'
         },
         {
           id: 5,
-          book: 'compass',
+          name: 'compass',
           title: 'Compass',
-          folder: 'compass',
-          index: 'compass-chapters',
-          style: 'AU-compass.css',
           image: 'compass.jpg',
-          format: 'series'
+          format: 'series',
+          style: 'ZZ-compass.css'
         },
         {
           id: 6,
-          book: 'about',
+          name: 'about',
           title: 'About MyFriends',
-          folder: 'myfriends',
-          page: 'community',
-          style: 'AU-myfriends.css',
           image: 'about.jpg',
-          format: 'page'
+          format: 'page',
+          page: 'community',
+          style: 'ZZ-myfriends.css'
         }
       ]
     }

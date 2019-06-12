@@ -10,7 +10,8 @@
       <link rel="stylesheet" v-bind:href="'/content/' + this.$route.params.css">
         <hr class="border">
         <span v-html="pageText"></span>
-      </p>
+      </br>
+       <span v-html="footerText"></span>
       <div class="version">
         <p class="language">Version 1.01</p>
       </div>

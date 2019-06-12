@@ -41,7 +41,7 @@ import { libraryMixin } from '@/mixins/LibraryMixin.js'
 import { authorMixin } from '@/mixins/AuthorMixin.js'
 export default {
   mixins: [bookMarkMixin, libraryMixin, authorMixin],
-  props: ['countryCODE', 'languageISO'],
+  props: ['countryCODE', 'languageISO', 'libraryFILE'],
   computed: mapState(['bookmark', 'appDir', 'cssURL', 'standard']),
   components: {
     Book,
@@ -60,7 +60,8 @@ export default {
         name: 'editLibrary',
         params: {
           countryCODE: this.countryCODE,
-          languageISO: this.languageISO
+          languageISO: this.languageISO,
+          libraryFILE: this.libraryFILE
         }
       })
     },
@@ -69,7 +70,8 @@ export default {
         name: 'sortLibrary',
         params: {
           countryCODE: this.countryCODE,
-          languageISO: this.languageISO
+          languageISO: this.languageISO,
+          libraryFILE: this.libraryFILE
         }
       })
     },

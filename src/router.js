@@ -140,7 +140,7 @@ export default new Router({
       props: true
     },
     {
-      path: '/edit/library/:countryCODE/:languageISO',
+      path: '/edit/library/:countryCODE/:languageISO/:libraryFILE?',
       name: 'editLibrary',
       component: LibraryEdit,
       props: true
@@ -170,7 +170,7 @@ export default new Router({
       props: true
     },
     {
-      path: '/preview/library/:countryCODE/:languageISO',
+      path: '/preview/library/:countryCODE/:languageISO/:libraryFILE?',
       name: 'previewLibrary',
       component: LibraryPreview,
       props: true

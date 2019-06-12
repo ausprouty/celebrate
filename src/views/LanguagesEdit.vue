@@ -114,19 +114,20 @@
                       Menu directory is required
                     </p>
                   </template>
+                  <input
+                    type="checkbox"
+                    id="checkbox"
+                    v-model="language.titles.$model"
+                  />
+                  <label for="checkbox">
+                    <p>Images contain Titles</p>
+                  </label>
                   <BaseSelect
                     label="Text Direction"
                     :options="direction"
                     v-model="language.rldir.$model"
                     class="field"
-                    :class="{ error: language.rldir.$error }"
-                    @blur="language.rldir.$touch()"
                   />
-                  <template v-if="language.rldir.$error">
-                    <p v-if="!language.rldir.required" class="errorMessage">
-                      Text Direction is required
-                    </p>
-                  </template>
                   <br />
                   <br />
                   <input
@@ -191,6 +192,7 @@ export default {
         iso: null,
         folder: null,
         image_dir: null,
+        titles: null,
         lrdir: null,
         publish: null
       },
@@ -208,7 +210,8 @@ export default {
         iso: { required },
         folder: { required },
         image_dir: { required },
-        rldir: { required },
+        titles: {},
+        rldir: {},
         publish: {}
       }
     }
@@ -224,6 +227,7 @@ export default {
         iso: null,
         name: null,
         image_dir: null,
+        titles: null,
         rldir: 'ltr'
       })
     },

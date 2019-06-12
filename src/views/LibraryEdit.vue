@@ -295,12 +295,12 @@ export default {
   components: {
     NavBar
   },
-  props: ['countryCODE', 'languageISO'],
+  props: ['countryCODE', 'languageISO', 'libraryFILE'],
   computed: mapState(['bookmark', 'appDir', 'cssURL', 'standard', 'books']),
   data() {
     return {
       library: {
-        book: null,
+        name: null,
         folder: null,
         format: null,
         id: null,
@@ -330,10 +330,8 @@ export default {
       required,
       $each: {
         id: { required },
-        book: { required },
+        name: { required },
         title: { required },
-        folder: { required },
-        index: {}, // can not be required because some items do not have index
         style: { required },
         image: { required },
         format: { required },
@@ -346,10 +344,8 @@ export default {
     addNewBookForm() {
       this.library.push({
         id: null,
-        book: null,
+        name: null,
         title: null,
-        folder: null,
-        index: null,
         style: null,
         image: null,
         format: null,

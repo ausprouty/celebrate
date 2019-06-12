@@ -1,9 +1,15 @@
 <template>
   <div class="app-link" v-on:click="showPage(book)">
-    <div class="app-card -shadow"  v-bind:class="{notpublished : !book.publish}">
-      <img v-bind:src="appDir.library  + this.image_dir  + '/' +book.image" class="book">
+    <div
+      class="app-card -shadow"
+      v-bind:class="{ notpublished: !book.publish }"
+    >
+      <img
+        v-bind:src="appDir.library + this.image_dir + '/' + book.image"
+        class="book"
+      />
       <div class="book">
-        <span class="bold">{{book.title}}</span>
+        <span class="bold">{{ book.title }}</span>
       </div>
     </div>
   </div>
@@ -61,7 +67,7 @@ export default {
   }
 }
 </script>
-<style >
+<style>
 img.book {
   width: 25%;
 }

@@ -28,7 +28,11 @@ export const freeformMixin = {
           this.publish_date = response.data.content.publish_date
         }
       }
-      this.pageText = response.data.content.text
+      var text = JSON.parse(response.data.content.text)
+      console.log ('text')
+      console.log (text)
+      this.pageText = text.page
+      this.footerText = text.footer
       this.loaded = true
       this.loading = false
     },
