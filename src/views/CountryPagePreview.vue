@@ -33,7 +33,7 @@ import { freeformMixin } from '@/mixins/FreeformMixin.js'
 import { authorMixin } from '@/mixins/AuthorMixin.js'
 export default {
   mixins: [bookMarkMixin, freeformMixin, authorMixin],
-  props: ['countryCODE', 'languageISO', 'bookNAME', 'fileNAME'],
+  props: ['countryCODE', 'languageISO', 'folderNAME', 'fileNAME'],
   components: {
     NavBar
   },

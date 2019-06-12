@@ -13,7 +13,7 @@
           <span class="bold">{{ book.title }}</span>
         </div>
       </div>
-       <div v-if="this.bookmark.language.titles">
+      <div v-if="this.bookmark.language.titles">
         <img
           v-bind:src="appDir.library + this.image_dir + '/' + book.image"
           class="something"
@@ -56,6 +56,7 @@ export default {
           params: {
             countryCODE: this.bookmark.country.code,
             languageISO: this.bookmark.language.iso,
+            libraryCODE: 'TODO',
             folderNAME: this.book.name
           }
         })
@@ -66,6 +67,7 @@ export default {
           params: {
             countryCODE: this.bookmark.country.code,
             languageISO: this.bookmark.language.iso,
+            libraryCODE: 'TODO',
             fileNAME: this.book.name
           }
         })

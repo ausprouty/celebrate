@@ -69,7 +69,7 @@ import { pageMixin } from '@/mixins/PageMixin.js'
 import { authorMixin } from '@/mixins/AuthorMixin.js'
 export default {
   mixins: [bookMarkMixin, pageMixin, authorMixin],
-  props: ['countryCODE', 'languageISO', 'bookNAME', 'fileNAME'],
+  props: ['countryCODE', 'languageISO', 'folderNAME', 'fileNAME'],
   components: {
     NavBar,
     VueCkeditor
@@ -176,7 +176,7 @@ export default {
             params: {
               countryCODE: this.$route.params.countryCODE,
               languageISO: this.$route.params.languageISO,
-              bookNAME: this.$route.params.bookNAME,
+              folderNAME: this.$route.params.folderNAME,
               fileNAME: this.$route.params.fileNAME
             }
           })

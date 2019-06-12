@@ -30,7 +30,7 @@ export default {
         params: {
           countryCODE: this.$route.params.countryCODE,
           languageISO: this.$route.params.languageISO,
-          bookNAME: this.bookmark.book.name,
+          folderNAME: this.bookmark.book.name,
           fileNAME: chapter.filename
         }
       })
