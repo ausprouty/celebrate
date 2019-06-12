@@ -125,11 +125,11 @@ export const bookMarkMixin = {
       if route.book is not the same as bookmark 
       update book and erase all bookmark below*/
     async CheckBookmarkBookSeries(route) {
-      if (!route.bookNAME) {
+      if (!route.folderNAME) {
         this.$store.dispatch('unsetBookmark', ['book'])
         return null
       }
-      if (route.bookNAME) {
+      if (route.folderNAME) {
         try {
           var currentBook = ''
           var value = {}
@@ -138,11 +138,11 @@ export const bookMarkMixin = {
               currentBook = this.bookmark.series.book
             }
           }
-          if (route.bookNAME != currentBook) {
+          if (route.folderNAME != currentBook) {
             var library = this.bookmark.library
             var length = library.length
             for (var i = 0; i < length; i++) {
-              if (library[i].book == route.bookNAME) {
+              if (library[i].name == route.folderNAME) {
                 value = library[i]
               }
             }
@@ -154,16 +154,13 @@ export const bookMarkMixin = {
             this.$store.dispatch('unsetBookmark', ['series'])
             return this.bookmark
           }
-          if (typeof this.bookmark.series.book != 'undefined') {
-            currentSeries = this.bookmark.series.book
+          if (typeof this.bookmark.series.name != 'undefined') {
+            currentSeries = this.bookmark.series.name
           }
-          if (route.bookNAME != currentSeries) {
-            // get folder and index from Library so you can get correct series
-            route.folderNAME = this.bookmark.book.folder
-            route.fileFILENAME = this.bookmark.book.index
+          if (route.folderNAME != currentSeries) {
             var response = await ContentService.getSeries(route)
-            //console.log('response when no data')
-            //console.log(response)
+            console.log ('I am getting series')
+            console.log (response)
             value = response.data.content
             this.$store.dispatch('updateBookmark', ['series', value])
           }

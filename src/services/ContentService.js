@@ -194,7 +194,7 @@ export default {
         response.data = {}
         response.data.content = {}
         // may need to remove .json from some FILENAME
-        var filename = params.fileFILENAME // this is index and is required
+        var filename = params.fileNAME // this is index and is required
         if (!filename.includes('.json')) {
           filename = filename + '.json'
         }
@@ -255,9 +255,9 @@ export default {
     // if no data or need current get content
     if (!found) {
       response.source = 'content'
-      var fileFILENAME = params.fileFILENAME
-      if (!fileFILENAME.includes('.html')) {
-        fileFILENAME = fileFILENAME + '.html'
+      var fileNAME = params.fileNAME
+      if (!fileNAME.includes('.html')) {
+        fileNAME = fileNAME + '.html'
       }
       let res = await apiContent.get(
         'content/' +
@@ -267,7 +267,7 @@ export default {
           '/' +
           params.folderNAME +
           '/' +
-          fileFILENAME
+          fileNAME
       )
       response.data.content.text = res.data
       return response

@@ -42,7 +42,7 @@ import { libraryMixin } from '@/mixins/LibraryMixin.js'
 import { authorMixin } from '@/mixins/AuthorMixin.js'
 export default {
   mixins: [bookMarkMixin, libraryMixin, authorMixin],
-  props: ['countryCODE', 'languageISO', 'fileFILENAME'],
+  props: ['countryCODE', 'languageISO', 'libraryCODE'],
   computed: mapState(['bookmark', 'appDir', 'cssURL', 'standard']),
   components: {
     Book,
@@ -62,7 +62,7 @@ export default {
         params: {
           countryCODE: this.countryCODE,
           languageISO: this.languageISO,
-          fileFILENAME: this.fileFILENAME
+          libraryCODE: this.libraryCODE
         }
       })
     },
@@ -72,7 +72,7 @@ export default {
         params: {
           countryCODE: this.countryCODE,
           languageISO: this.languageISO,
-          fileFILENAME: this.fileFILENAME
+          libraryCODE: this.libraryCODE
         }
       })
     },

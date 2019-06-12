@@ -31,7 +31,7 @@ export default {
           countryCODE: this.$route.params.countryCODE,
           languageISO: this.$route.params.languageISO,
           bookNAME: this.bookmark.book.book,
-          fileFILENAME: chapter.filename
+          fileNAME: chapter.filename
         }
       })
     }

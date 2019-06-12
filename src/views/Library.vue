@@ -27,7 +27,7 @@ import { libraryMixin } from '@/mixins/LibraryMixin.js'
 
 export default {
   mixins: [bookMarkMixin, libraryMixin],
-  props: ['countryCODE', 'languageISO'],
+  props: ['countryCODE', 'languageISO', 'libraryCODE'],
   computed: mapState(['bookmark', 'appDir', 'cssURL', 'standard']),
   components: {
     Book,

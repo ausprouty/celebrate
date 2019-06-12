@@ -58,7 +58,7 @@ import { pageMixin } from '@/mixins/PageMixin.js'
 import { authorMixin } from '@/mixins/AuthorMixin.js'
 export default {
   mixins: [bookMarkMixin, pageMixin, authorMixin],
-  props: ['countryCODE', 'languageISO', 'bookNAME', 'fileFILENAME'],
+  props: ['countryCODE', 'languageISO', 'bookNAME', 'fileNAME'],
   components: {
     NavBar
   },

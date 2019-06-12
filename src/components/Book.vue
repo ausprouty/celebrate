@@ -66,7 +66,7 @@ export default {
             countryCODE: this.bookmark.country.code,
             languageISO: this.bookmark.language.iso,
             bookNAME: this.book.book,
-            fileFILENAME: this.book.book
+            fileNAME: this.book.book
           }
         })
       }

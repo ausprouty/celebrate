@@ -110,7 +110,7 @@ export default {
         this.content.country_code = this.$route.params.countryCODE
         this.content.language_iso = this.$route.params.languageISO
         this.content.folder = this.bookmark.book.folder
-        this.content.filename = this.$route.params.fileFILENAME
+        this.content.filename = this.$route.params.fileNAME
         this.content.filetype = 'html'
         this.$router.push({
           name: 'editLibrary',
@@ -141,7 +141,7 @@ export default {
       }
     }
     this.$route.params.version = 'lastest'
-    this.$route.params.pageNAME = this.$route.params.fileFILENAME
+    this.$route.params.pageNAME = this.$route.params.fileNAME
     var css = this.$route.params.cssFORMATTED
     var clean = css.replace(/-/g, '/')
     this.$route.params.css = clean

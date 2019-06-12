@@ -278,7 +278,7 @@ export default {
     NavBar,
     VueCkeditor
   },
-  props: ['countryCODE', 'languageISO', 'fileFILENAME'],
+  props: ['countryCODE', 'languageISO', 'libraryCODE'],
   computed: mapState(['bookmark', 'appDir', 'cssURL', 'standard']),
   data() {
     return {
@@ -583,7 +583,7 @@ export default {
         output.text = this.text
         var valid = ContentService.validate(output)
         this.content.text = JSON.stringify(valid)
-        this.content.filename = this.$route.params.fileFILENAME
+        this.content.filename = this.$route.params.libraryCODE
         this.content.filetype = 'json'
         this.content.country_code = this.$route.params.countryCODE
         this.content.language_iso = this.$route.params.languageISO
@@ -597,7 +597,7 @@ export default {
             params: {
               countryCODE: this.$route.params.countryCODE,
               languageISO: this.$route.params.languageISO,
-              fileFILENAME: this.$route.params.fileFILENAME
+              libraryCODE: this.$route.params.libraryCODE
             }
           })
         } else {
@@ -654,7 +654,7 @@ export default {
         }
         this.booklist.sort()
         if (!this.image) {
-          this.image = this.$route.params.fileFILENAME + '.png'
+          this.image = this.$route.params.libraryCODE + '.png'
         }
         this.authorized = this.authorize(
           'write',
@@ -672,8 +672,8 @@ export default {
   },
   beforeCreate() {
     this.$route.params.version = 'latest'
-    if (!this.$route.params.fileFILENAME) {
-      this.$route.params.fileFILENAME = 'library'
+    if (!this.$route.params.libraryCODE) {
+      this.$route.params.libraryCODE = 'library'
     }
     this.$route.params.stylesSET = 'myfriends'
     this.$route.params.version = 'lastest'

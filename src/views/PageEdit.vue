@@ -69,7 +69,7 @@ import { pageMixin } from '@/mixins/PageMixin.js'
 import { authorMixin } from '@/mixins/AuthorMixin.js'
 export default {
   mixins: [bookMarkMixin, pageMixin, authorMixin],
-  props: ['countryCODE', 'languageISO', 'bookNAME', 'fileFILENAME'],
+  props: ['countryCODE', 'languageISO', 'bookNAME', 'fileNAME'],
   components: {
     NavBar,
     VueCkeditor
@@ -166,7 +166,7 @@ export default {
         this.content.country_code = this.$route.params.countryCODE
         this.content.language_iso = this.$route.params.languageISO
         this.content.folder = this.bookmark.book.folder
-        this.content.filename = this.$route.params.fileFILENAME
+        this.content.filename = this.$route.params.fileNAME
         this.content.filetype = 'html'
         this.$store.dispatch('newBookmark', 'clear')
         var response = await AuthorService.createContentData(this.content)
@@ -177,7 +177,7 @@ export default {
               countryCODE: this.$route.params.countryCODE,
               languageISO: this.$route.params.languageISO,
               bookNAME: this.$route.params.bookNAME,
-              fileFILENAME: this.$route.params.fileFILENAME
+              fileNAME: this.$route.params.fileNAME
             }
           })
         } else {
@@ -206,7 +206,7 @@ export default {
       }
     }
     this.$route.params.version = 'lastest'
-    this.$route.params.pageNAME = this.$route.params.fileFILENAME
+    this.$route.params.pageNAME = this.$route.params.fileNAME
     var css = this.$route.params.cssFORMATTED
     var clean = css.replace(/@/g, '/')
     this.$route.params.css = clean

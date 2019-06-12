@@ -50,7 +50,7 @@ import { bookMarkMixin } from '@/mixins/BookmarkMixin.js'
 import { seriesMixin } from '@/mixins/SeriesMixin.js'
 export default {
   mixins: [bookMarkMixin, seriesMixin],
-  props: ['countryCODE', 'languageISO', 'folderNAME'],
+  props: ['countryCODE', 'languageISO', 'libraryCODE','folderNAME'],
   computed: mapState(['bookmark', 'appDir']),
   components: {
     Chapter,

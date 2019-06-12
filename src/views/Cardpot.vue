@@ -264,7 +264,7 @@ export default {
   components: {
     NavBar
   },
-  props: ['countryCODE', 'languageISO', 'fileFILENAME'],
+  props: ['countryCODE', 'languageISO', 'fileNAME'],
   computed: mapState(['bookmark', 'appDir', 'cssURL', 'standard', 'books']),
   data() {
     return {

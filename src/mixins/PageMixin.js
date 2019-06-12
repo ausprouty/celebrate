@@ -20,11 +20,11 @@ export const pageMixin = {
         this.error = this.loaded = null
         this.loading = true
         this.countries = []
-        // needed becaise CheckBookMarks messes with fileFILENAME
-        this.$route.params.pageNAME = this.$route.params.fileFILENAME
+        // needed becaise CheckBookMarks messes with fileNAME
+        this.$route.params.pageNAME = this.$route.params.fileNAME
         await this.CheckBookmarks(this.$route.params)
         // need folder to get correct page
-        this.$route.params.fileFILENAME = this.$route.params.pageNAME
+        this.$route.params.fileNAME = this.$route.params.pageNAME
         this.$route.params.folderNAME = this.bookmark.book.folder
         this.image_dir = this.standard.image_dir
         if (this.bookmark.language) {
@@ -61,7 +61,7 @@ export const pageMixin = {
           })
         }
         if (this.bookmark.book.template) {
-          this.$route.params.fileFILENAME = this.bookmark.book.template
+          this.$route.params.fileNAME = this.bookmark.book.template
           response = await ContentService.getPage(this.$route.params)
           // is this coming from database
           console.log('line 63 in mixin')

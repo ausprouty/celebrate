@@ -91,6 +91,7 @@ export default {
         params: {
           countryCODE: this.$route.params.countryCODE,
           languageISO: this.$route.params.languageISO,
+          libraryCODE: this.$route.params.libraryCODE,
           folderNAME: this.$route.params.folderNAME
         }
       })
@@ -103,7 +104,8 @@ export default {
         name: 'library',
         params: {
           countryCODE: this.$route.params.countryCODE,
-          languageISO: this.$route.params.languageISO
+          languageISO: this.$route.params.languageISO,
+          libraryCODE: this.$route.params.libraryCODE
         }
       })
     },
@@ -129,7 +131,7 @@ export default {
         await this.getSeries(this.$route.params)
         if (
           this.bookmark.series.length == 0 &&
-          this.$route.params.fileFILENAME == 'first_steps'
+          this.$route.params.fileNAME == 'first_steps'
         ) {
           await AuthorService.setupSeriesFirstSteps(this.$route.params)
           await this.getSeries(this.$route.params)

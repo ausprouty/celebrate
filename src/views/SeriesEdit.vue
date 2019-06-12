@@ -154,7 +154,7 @@ import { required } from 'vuelidate/lib/validators'
 import { authorMixin } from '@/mixins/AuthorMixin.js'
 export default {
   mixins: [bookMarkMixin, seriesMixin, authorMixin],
-  props: ['countryCODE', 'languageISO', 'folderNAME'],
+  props: ['countryCODE', 'languageISO', 'libraryCODE','folderNAME'],
   computed: mapState(['bookmark', 'appDir']),
   components: {
     NavBar
