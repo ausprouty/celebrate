@@ -578,7 +578,7 @@ export default {
         }
         // update library file
         var output = {}
-        output.library = this.library
+        output.books = this.library
         output.image = this.image
         output.text = this.text
         var valid = ContentService.validate(output)

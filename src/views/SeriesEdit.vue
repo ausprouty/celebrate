@@ -154,7 +154,7 @@ import { required } from 'vuelidate/lib/validators'
 import { authorMixin } from '@/mixins/AuthorMixin.js'
 export default {
   mixins: [bookMarkMixin, seriesMixin, authorMixin],
-  props: ['countryCODE', 'languageISO', 'bookNAME'],
+  props: ['countryCODE', 'languageISO', 'folderNAME'],
   computed: mapState(['bookmark', 'appDir']),
   components: {
     NavBar
@@ -217,8 +217,7 @@ export default {
       var param = []
       param.country_code = this.$route.params.countryCODE
       param.language_iso = this.$route.params.languageISO
-      param.index = this.bookmark.book.index
-      param.folder = this.bookmark.book.folder
+      param.folder = this.$route.params.folderNAME
       param.template = this.bookmark.book.template
       param.series_name = this.bookmark.book.title
       param.description = this.description
@@ -249,7 +248,7 @@ export default {
         this.content.filetype = 'json'
         this.content.country_code = this.$route.params.countryCODE
         this.content.language_iso = this.$route.params.languageISO
-        this.content.folder = this.bookmark.book.folder
+        this.content.folder = this.$route.params.folderNAME
         console.log('this.content')
         console.log(this.content)
         this.$store.dispatch('newBookmark', 'clear')
@@ -260,7 +259,7 @@ export default {
             params: {
               countryCODE: this.$route.params.countryCODE,
               languageISO: this.$route.params.languageISO,
-              bookNAME: this.$route.params.bookNAME
+              folderNAME: this.$route.params.folderNAME
             }
           })
         } else {

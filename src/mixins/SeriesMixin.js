@@ -45,17 +45,11 @@ export const seriesMixin = {
   methods: {
     async getSeries(params) {
       try {
-        console.log('params in SeriesMixin for Check Bookmark')
+        console.log('params in SeriesMixin ')
         console.log(params)
         this.error = this.loaded = null
         this.loading = true
         var ok = await this.CheckBookmarks(params)
-        console.log('ok')
-        console.log(ok)
-        params.folderNAME = this.bookmark.book.folder
-        params.fileFILENAME = this.bookmark.book.index
-        console.log('params')
-        console.log(params)
         var response = await ContentService.getSeries(params)
         console.log('Series Data obtained')
         console.log(response)

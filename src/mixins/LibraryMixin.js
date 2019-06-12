@@ -59,8 +59,8 @@ export const libraryMixin = {
         //console.log('Library Data obtained:')
         //console.log(response.data.content.text)
         if (response.data.content.text) {
-          this.library = response.data.content.text.library
-            ? response.data.content.text.library
+          this.library = response.data.content.text.books
+            ? response.data.content.text.books
             : []
           this.image = response.data.content.text.image
             ? response.data.content.text.image

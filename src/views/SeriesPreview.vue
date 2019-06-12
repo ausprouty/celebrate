@@ -60,7 +60,7 @@ import { seriesMixin } from '@/mixins/SeriesMixin.js'
 import { authorMixin } from '@/mixins/AuthorMixin.js'
 export default {
   mixins: [bookMarkMixin, seriesMixin, authorMixin],
-  props: ['countryCODE', 'languageISO', 'bookNAME'],
+  props: ['countryCODE', 'languageISO', 'folderNAME'],
   computed: mapState(['bookmark', 'appDir']),
   components: {
     Chapter,
@@ -79,9 +79,9 @@ export default {
       this.$router.push({
         name: 'editSeries',
         params: {
-          countryCODE: this.countryCODE,
-          languageISO: this.languageISO,
-          bookNAME: this.bookNAME
+          countryCODE: this.$route.params.countryCODE,
+          languageISO: this.$route.params.languageISO,
+          folderNAME: this.$route.params.folderNAME
         }
       })
     },
@@ -89,9 +89,9 @@ export default {
       this.$router.push({
         name: 'sortSeries',
         params: {
-          countryCODE: this.countryCODE,
-          languageISO: this.languageISO,
-          bookNAME: this.bookNAME
+          countryCODE: this.$route.params.countryCODE,
+          languageISO: this.$route.params.languageISO,
+          folderNAME: this.$route.params.folderNAME
         }
       })
     },

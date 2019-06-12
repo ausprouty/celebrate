@@ -70,7 +70,7 @@ import { seriesMixin } from '@/mixins/SeriesMixin.js'
 import { authorMixin } from '@/mixins/AuthorMixin.js'
 export default {
   mixins: [bookMarkMixin, seriesMixin, authorMixin],
-  props: ['countryCODE', 'languageISO', 'bookNAME'],
+  props: ['countryCODE', 'languageISO', 'folderNAME'],
   computed: mapState(['bookmark', 'appDir']),
   components: {
     NavBar,
@@ -101,11 +101,11 @@ export default {
         text.text = this.chapters
         var valid = ContentService.validate(text)
         this.content.text = JSON.stringify(valid)
-        this.content.filename = this.$route.params.bookNAME + '-chapters'
+        this.content.filename = 'index'
         this.content.filetype = 'json'
         this.content.country_code = this.$route.params.countryCODE
         this.content.language_iso = this.$route.params.languageISO
-        this.content.folder = this.bookmark.book.folder
+        this.content.folder = this.$route.params.folderNAME
         this.$store.dispatch('newBookmark', 'clear')
         var response = await AuthorService.createContentData(this.content)
         if (response.data.error != true) {
@@ -114,7 +114,7 @@ export default {
             params: {
               countryCODE: this.$route.params.countryCODE,
               languageISO: this.$route.params.languageISO,
-              bookNAME: this.$route.params.bookNAME
+              folderNAME: this.$route.params.folderNAME
             }
           })
         } else {
