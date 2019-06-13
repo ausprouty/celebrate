@@ -45,8 +45,8 @@ export const libraryMixin = {
         this.error = this.loaded = ''
         this.loading = true
 
-        if (!this.$route.params.fileNAME) {
-          this.$route.params.fileNAME = 'library'
+        if (!this.$route.params.libraryCODE) {
+          this.$route.params.libraryCODE = 'library'
         }
         console.log('getLibrary Params')
         console.log(this.$route.params)

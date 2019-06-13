@@ -1,16 +1,13 @@
 <template>
   <div class="preview">
-    <NavBar />
+    <NavBar/>
     <div class="loading" v-if="loading">Loading...</div>
     <div class="error" v-if="error">There was an error... {{ this.error }}</div>
     <div class="content" v-if="loaded">
       <div v-if="this.publish">
         <button class="button" @click="local_publish()">Publish</button>
       </div>
-      <link
-        rel="stylesheet"
-        v-bind:href="'/content/' + this.bookmark.book.style"
-      />
+      <link rel="stylesheet" v-bind:href="'/content/' + this.bookmark.book.style">
       <div class="app-link">
         <div class="app-card -shadow">
           <div v-on:click="goBack()">
@@ -22,7 +19,7 @@
                   this.bookmark.book.image
               "
               class="book"
-            />
+            >
 
             <div class="book">
               <span class="bold">{{ this.bookmark.book.title }}</span>
@@ -31,9 +28,9 @@
         </div>
       </div>
 
-      <h1 v-if="this.bookmark.page.count">
-        {{ this.bookmark.page.count }}.&nbsp; {{ this.bookmark.page.title }}
-      </h1>
+      <h1
+        v-if="this.bookmark.page.count"
+      >{{ this.bookmark.page.count }}.&nbsp; {{ this.bookmark.page.title }}</h1>
       <h1 v-else>{{ this.bookmark.page.title }}</h1>
       <p>
         <span v-html="pageText"></span>
@@ -79,7 +76,7 @@ export default {
           languageISO: this.$route.params.languageISO,
           libraryCODE: this.$route.params.libraryCODE,
           folderNAME: this.$route.params.folderNAME,
-          pageFILENAME: this.$route.params.pageFILENAME,
+          fileNAME: this.$route.params.fileNAME,
           cssFORMATTED: clean,
           token: this.user.token
         }
@@ -103,7 +100,7 @@ export default {
           params: {
             countryCODE: this.$route.params.countryCODE,
             languageISO: this.$route.params.languageISO,
-            libraryCODE: this.$route.params.libraryCODE,
+            libraryCODE: this.$route.params.libraryCODE
           }
         })
       }

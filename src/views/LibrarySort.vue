@@ -81,12 +81,18 @@ export default {
     },
     async saveForm() {
       try {
-        var valid = ContentService.validate(this.library)
+        var output = {}
+        output.books = this.library
+        output.image = this.image
+        output.text = this.text
+        var valid = ContentService.validate(output)
         this.content.text = JSON.stringify(valid)
-        this.content.filename = 'library'
-        this.content.filetype = 'json'
         this.content.country_code = this.$route.params.countryCODE
         this.content.language_iso = this.$route.params.languageISO
+        this.content.filename = this.$route.params.libraryCODE
+          ? this.$route.params.libraryCODE
+          : 'library'
+        this.content.filetype = 'json'
         this.$store.dispatch('newBookmark', 'clear')
         var response = await AuthorService.createContentData(this.content)
         if (response.data.error != true) {
@@ -95,7 +101,7 @@ export default {
             params: {
               countryCODE: this.$route.params.countryCODE,
               languageISO: this.$route.params.languageISO,
-              libraryCODE: this.$route.params.libraryCODE,
+              libraryCODE: this.$route.params.libraryCODE
             }
           })
         } else {
