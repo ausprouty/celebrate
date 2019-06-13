@@ -139,11 +139,11 @@ export const bookMarkMixin = {
             }
           }
           if (route.folderNAME != currentBook) {
-            var library = this.bookmark.library
-            var length = library.length
+            var books = this.bookmark.library.books
+            var length = books.length
             for (var i = 0; i < length; i++) {
-              if (library[i].name == route.folderNAME) {
-                value = library[i]
+              if (books[i].name == route.folderNAME) {
+                value = books[i]
               }
             }
             this.$store.dispatch('updateBookmark', ['book', value])

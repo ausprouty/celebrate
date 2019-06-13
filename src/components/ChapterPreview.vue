@@ -4,12 +4,20 @@
       class="app-card -shadow"
       v-bind:class="{ notpublished: !chapter.publish }"
     >
-      <div class="chapter">
-        <div v-if="chapter.count" class="chapter-title">
-          {{ chapter.count }}. {{ chapter.title }}
+      <div v-if="!this.chapter.image">
+        <div class="chapter">
+          <div v-if="chapter.count" class="chapter-title">
+            {{ chapter.count }}. {{ chapter.title }}
+          </div>
+          <div v-else class="chapter-title">{{ chapter.title }}</div>
+          <div class="chapter-description">{{ chapter.description }}</div>
         </div>
-        <div v-else class="chapter-title">{{ chapter.title }}</div>
-        <div class="chapter-description">{{ chapter.description }}</div>
+      </div>
+      <div v-if="this.chapter.image">
+        <img
+          v-bind:src="appDir.library + this.image_dir + '/' + chapter.image"
+          class="something"
+        />
       </div>
     </div>
   </div>
@@ -20,6 +28,11 @@ import { mapState } from 'vuex'
 export default {
   props: {
     chapter: Object
+  },
+  data() {
+    return {
+      image_dir: ''
+    }
   },
   computed: mapState(['bookmark', 'appDir']),
   methods: {
@@ -35,6 +48,15 @@ export default {
           fileNAME: chapter.filename
         }
       })
+    }
+  },
+  created() {
+    if (typeof this.bookmark.language != 'undefined') {
+      console.log('BOOK  PREVIEW -using bookmark')
+      this.image_dir = this.bookmark.language.image_dir
+    } else {
+      console.log('BOOK  PREVIEW -using standard directory')
+      this.image_dir = this.standard.image_dir
     }
   }
 }

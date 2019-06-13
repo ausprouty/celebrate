@@ -20,7 +20,9 @@
             />
           </div>
         </div>
-        <h2>{{ bookmark.book.title }}</h2>
+        <div v-if="!bookmark.language.titles">
+          <h2>{{ bookmark.book.title }}</h2>
+        </div>
         <div v-if="this.description">{{ this.description }}</div>
         <br />
         <br />

@@ -92,6 +92,35 @@
                   Description is required
                 </p>
               </template>
+              <div v-if="images">
+                <div v-if="chapter.image.$model">
+                  <img
+                    v-bind:src="
+                      appDir.library + image_dir + '/' + chapter.image.$model
+                    "
+                    class="book"
+                  />
+                  <br />
+                </div>
+                <BaseSelect
+                  label="Image"
+                  :options="images"
+                  v-model="chapter.image.$model"
+                  class="field"
+                />
+              </div>
+              <div v-if="image_permission">
+                <label>
+                  Add new Image&nbsp;&nbsp;&nbsp;&nbsp;
+                  <input
+                    type="file"
+                    v-bind:id="chapter.filename.$model"
+                    ref="image"
+                    v-on:change="handleImageUpload(chapter.filename.$model)"
+                  />
+                </label>
+              </div>
+
               <input
                 type="checkbox"
                 id="checkbox"
@@ -154,7 +183,7 @@ import { required } from 'vuelidate/lib/validators'
 import { authorMixin } from '@/mixins/AuthorMixin.js'
 export default {
   mixins: [bookMarkMixin, seriesMixin, authorMixin],
-  props: ['countryCODE', 'languageISO', 'libraryCODE','folderNAME'],
+  props: ['countryCODE', 'languageISO', 'libraryCODE', 'folderNAME'],
   computed: mapState(['bookmark', 'appDir']),
   components: {
     NavBar
@@ -162,6 +191,8 @@ export default {
   data() {
     return {
       authorized: false,
+      image_permission: false,
+      isHidden: true,
       new: false,
       file: null,
       chapter: {
@@ -169,6 +200,7 @@ export default {
         description: null,
         count: null,
         filename: null,
+        image: null,
         publish: null
       }
     }
@@ -181,6 +213,7 @@ export default {
         description: {},
         count: '',
         filename: { required },
+        image: '',
         publish: ''
       }
     }
@@ -196,18 +229,40 @@ export default {
         description: null,
         count: null,
         filename: null,
+        image: null,
         publish: null
       })
     },
-    publishAll() {
-      var arrayLength = this.chapters.length
-      console.log(' Item count:' + arrayLength)
-      for (var i = 0; i < arrayLength; i++) {
-        this.$v.chapters.$each.$iter[i].publish.$model = true
-      }
-    },
     deleteChapterForm(id) {
       this.chapters.splice(id, 1)
+    },
+    handleImageUpload(code) {
+      console.log('handleImageUpload: ' + code)
+      var checkfile = {}
+      var i = 0
+      var arrayLength = this.$refs.image.length
+      for (i = 0; i < arrayLength; i++) {
+        checkfile = this.$refs.image[i]['files']
+        if (checkfile.length == 1) {
+          // console.log(checkfile)
+          //  console.log(checkfile[0])
+          var type = AuthorService.typeImage(checkfile[0])
+          if (type) {
+            var params = {}
+            params.directory = 'content/' + this.bookmark.language.image_dir
+            params.name = code
+            AuthorService.storeImage(params, checkfile[0])
+            for (i = 0; i < arrayLength; i++) {
+              checkfile = this.$v.chapters.$each[i]
+              if (checkfile.$model.filename == code) {
+                this.$v.chapters.$each[i].$model.image = code + type
+              }
+            }
+            var response = this.saveForm()
+            this.showForm()
+          }
+        }
+      }
     },
     async importSeries() {
       console.log('about to import series')
@@ -234,25 +289,36 @@ export default {
         console.log('There was an error in SeriesEdit.vue:', error) // Logs out the error
       }
     },
+    publishAll() {
+      var arrayLength = this.chapters.length
+      console.log(' Item count:' + arrayLength)
+      for (var i = 0; i < arrayLength; i++) {
+        this.$v.chapters.$each.$iter[i].publish.$model = true
+      }
+    },
+    async saveData() {
+      console.log(this.content)
+      var text = {}
+      text.description = this.description
+      text.chapters = this.chapters
+      console.log('text')
+      console.log(text)
+      var valid = ContentService.validate(text)
+      this.content.text = JSON.stringify(valid)
+      this.content.country_code = this.$route.params.countryCODE
+      this.content.language_iso = this.$route.params.languageISO
+      this.content.folder = this.$route.params.folderNAME
+      this.content.filename = 'index'
+      this.content.filetype = 'json'
+      console.log('this.content')
+      console.log(this.content)
+      this.$store.dispatch('newBookmark', 'clear')
+      var response = await AuthorService.createContentData(this.content)
+      return response
+    },
     async saveForm() {
       try {
-        console.log(this.content)
-        var text = {}
-        text.description = this.description
-        text.chapters = this.chapters
-        console.log('text')
-        console.log(text)
-        var valid = ContentService.validate(text)
-        this.content.text = JSON.stringify(valid)
-        this.content.filename = this.bookmark.book.index
-        this.content.filetype = 'json'
-        this.content.country_code = this.$route.params.countryCODE
-        this.content.language_iso = this.$route.params.languageISO
-        this.content.folder = this.$route.params.folderNAME
-        console.log('this.content')
-        console.log(this.content)
-        this.$store.dispatch('newBookmark', 'clear')
-        var response = await AuthorService.createContentData(this.content)
+        var response = await this.saveData()
         if (response.data.error != true) {
           this.$router.push({
             name: 'previewSeries',
@@ -274,20 +340,38 @@ export default {
         this.loaded = false
         this.error_message = response.data.message
       }
+    },
+    async showForm() {
+      try {
+        this.getSeries(this.$route.params)
+        // get images
+        var param = {}
+        param.image_dir = this.bookmark.language.image_dir
+        console.log('image dir: ' + param.image_dir.substring(0, 2))
+        this.image_permission = this.authorize(
+          'write',
+          param.image_dir.substring(0, 1)
+        )
+        var img = await AuthorService.getImages(param)
+        if (img) {
+          this.images = img.sort()
+        }
+        console.log('this.chapters')
+        console.log(this.chapters)
+        this.authorized = this.authorize(
+          'write',
+          this.$route.params.countryCODE
+        )
+      } catch (error) {
+        console.log('There was an error in SeriesEdit.vue:', error) // Logs out the error
+      }
     }
   },
   beforeCreate() {
     this.$route.params.version = 'latest'
   },
-  async created() {
-    try {
-      this.getSeries(this.$route.params)
-      console.log('this.chapters')
-      console.log(this.chapters)
-      this.authorized = this.authorize('write', this.$route.params.countryCODE)
-    } catch (error) {
-      console.log('There was an error in SeriesEdit.vue:', error) // Logs out the error
-    }
+  created() {
+    this.showForm()
   }
 }
 </script>

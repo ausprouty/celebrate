@@ -1,25 +1,28 @@
 <template>
   <div class="preview">
-    <NavBar/>
+    <NavBar />
     <div class="loading" v-if="loading">Loading...</div>
     <div class="error" v-if="error">There was an error... {{ this.error }}</div>
     <div class="content" v-if="loaded">
       <div v-if="this.publish">
         <button class="button" @click="localPublish()">Publish</button>
       </div>
-       <hr class="border">
+      <hr class="border" />
       <a v-bind:href="'/preview/language/' + this.bookmark.country.code">
-        <img v-bind:src="appDir.library + this.image_dir + '/' + this.image" class="app-img-header">
+        <img
+          v-bind:src="appDir.library + this.image_dir + '/' + this.image"
+          class="app-img-header"
+        />
       </a>
       <div>
         <span v-html="text"></span>
       </div>
 
-      <Book v-for="book in library" :key="book.title" :book="book"/>
+      <Book v-for="book in library" :key="book.title" :book="book" />
       <div class="version">
         <p class="version">Version 1.01</p>
       </div>
-       <hr class="border">
+      <hr class="border" />
     </div>
     <div v-if="this.write">
       <button class="button" @click="editLibrary">Edit</button>

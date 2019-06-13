@@ -97,8 +97,9 @@ export default {
     async saveForm() {
       try {
         console.log(this.content)
-        var text = this.seriesDetails
-        text.text = this.chapters
+         var text = {}
+        text.description = this.seriesDetails.description
+        text.chapters = this.chapters
         var valid = ContentService.validate(text)
         this.content.text = JSON.stringify(valid)
         this.content.country_code = this.$route.params.countryCODE

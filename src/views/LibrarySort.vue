@@ -52,17 +52,17 @@ import { libraryMixin } from '@/mixins/LibraryMixin.js'
 import { authorMixin } from '@/mixins/AuthorMixin.js'
 export default {
   mixins: [bookMarkMixin, libraryMixin, authorMixin],
+  props: ['countryCODE', 'languageISO'],
+  computed: mapState(['bookmark', 'appDir', 'cssURL', 'standard']),
   components: {
     NavBar,
     draggable
   },
-  props: ['countryCODE', 'languageISO'],
   data() {
     return {
       authorized: false
     }
   },
-  computed: mapState(['bookmark', 'appDir', 'cssURL', 'standard']),
   methods: {
     addNewBookForm() {
       this.library.push({
