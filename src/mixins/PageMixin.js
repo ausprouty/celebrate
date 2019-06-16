@@ -10,7 +10,11 @@ export const pageMixin = {
       write: false,
       publish: false,
       publish_date: null,
-      recnum: null
+      image_class: 'book',
+      show_page_title: false,
+      show_series_title: false,
+      recnum: null,
+      header: 'series'
     }
   },
   methods: {
@@ -20,21 +24,30 @@ export const pageMixin = {
         this.error = this.loaded = null
         this.loading = true
         this.countries = []
-        // needed becaise CheckBookMarks messes with fileNAME
-        this.$route.params.pageNAME = this.$route.params.fileNAME
         await this.CheckBookmarks(this.$route.params)
-        // need folder to get correct page
-        this.$route.params.fileNAME = this.$route.params.pageNAME
-        this.$route.params.folderNAME = this.bookmark.book.folder
         this.image_dir = this.standard.image_dir
         if (this.bookmark.language) {
           this.image_dir = this.bookmark.language.image_dir
         }
         this.image = this.standard.image
+        this.image_class = 'book'
         this.style = this.standard.style
+        this.show_page_title = true
+        this.show_series_title = true
+        if (this.bookmark.language.titles) {
+          this.show_series_title = false
+        }
         if (this.bookmark.book) {
-          this.image = this.bookmark.book.image
           this.style = this.bookmark.book.style
+        }
+        if (this.bookmark.page.image) {
+          this.image = this.bookmark.page.image
+          this.image_class = 'something'
+          this.show_page_title = false
+        } else {
+          if (this.bookmark.book) {
+            this.image = this.bookmark.book.image
+          }
         }
         this.book_image =
           this.appDir.library + this.image_dir + '/' + this.image

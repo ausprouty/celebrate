@@ -183,18 +183,18 @@ export const bookMarkMixin = {
             update book and erase all bookmark below*/
     async CheckBookmarkPage(route) {
       //console.log('entering bookmark page')
-      if (!route.pageNAME) {
+      if (!route.fileNAME) {
         this.$store.dispatch('unsetBookmark', ['page'])
         return null
       }
-      if (route.pageNAME) {
+      if (route.fileNAME) {
         try {
           var value = {}
           var currentPage = ''
           if (typeof this.bookmark.page != 'undefined') {
             currentPage = this.bookmark.page
           }
-          if (route.pageNAME != currentPage) {
+          if (route.fileNAME != currentPage) {
             //console.log('BOOKMARK MIXIN --    we have a new page')
             if (typeof this.bookmark.series != 'undefined') {
               //console.log('the page is part of a series with chapters as')
@@ -206,7 +206,7 @@ export const bookMarkMixin = {
                 // console.log(chapters)
                 var length = chapters.length
                 for (var i = 0; i < length; i++) {
-                  if (chapters[i].filename == route.pageNAME) {
+                  if (chapters[i].filename == route.fileNAME) {
                     value = chapters[i]
                   }
                 }

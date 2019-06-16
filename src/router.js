@@ -34,6 +34,7 @@ import Register from './views/Register.vue'
 import Custom from './views/CustomEditor.vue'
 import Validate from './views/Validate.vue'
 import Upload from './views/Upload.vue'
+import Transfer from './views/Transfer.vue'
 
 // for CKFinder
 
@@ -185,6 +186,12 @@ export default new Router({
       path: '/login',
       name: 'login',
       component: Login,
+      props: false
+    },
+    {
+      path: '/transfer/:countryCODE/:languageISO/:actionCODE',
+      name: 'transfer',
+      component: Transfer,
       props: false
     },
 

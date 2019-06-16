@@ -338,6 +338,14 @@ export default {
     console.log(contentForm)
     return apiIMAGE.post('AuthorApi.php?action=storeImage', contentForm)
   },
+  async transfer(params) {
+    console.log ('transfer')
+    console.log (params)
+    params.token = store.state.user.token
+    var contentForm = this.toFormData(params)
+    var action = 'AuthorApi.php?action=transfer' + params.actionCODE
+    apiSECURE.post(action, contentForm)
+  },
   typeImage(file) {
     var type = null
     var filetype = file['type']

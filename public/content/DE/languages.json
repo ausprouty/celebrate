@@ -1,13 +1,1 @@
-[
-  {
-"folder": "deu",
-"iso": "deu",
-"name": "Deutsch - Shine ",
-"bible": "text",
-"life-issues": "swiss",
-"image_dir": "menu-europe",
-"nt": "1227",
-"ot": "1229",
-"rldir": "ltr"
-  }
-]
+[{"folder":"DE/deu","iso":"deu","name":"Deutsch - Shine ","bible":"text","life-issues":"swiss","image_dir":"ZZ/images/europe","nt":"1227","ot":"1229","rldir":"ltr","publish":true}]

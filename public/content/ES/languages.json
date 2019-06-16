@@ -1,13 +1,1 @@
-[
-  {
-"folder": "spa",
-"iso": "spa",
-"name": "Español (Spanish - Europe)",
-"bible": "text",
-"life-issues": "swiss",
-"image_dir": "menu-europe",
-"nt": "1284",
-"ot": "1284",
-"rldir": "ltr"
-  }
-]
+[{"folder":"ES/spa","iso":"spa","name":"Español (Spanish - Europe)","bible":"text","life-issues":"swiss","image_dir":"ES/images/standard","nt":"1284","ot":"1284","rldir":"ltr","publish":true}]

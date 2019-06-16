@@ -1,40 +1,38 @@
 <template>
   <div class="preview">
-    <NavBar/>
+    <NavBar />
     <div class="loading" v-if="loading">Loading...</div>
     <div class="error" v-if="error">There was an error... {{ this.error }}</div>
     <div class="content" v-if="loaded">
       <div v-if="this.publish">
         <button class="button" @click="local_publish()">Publish</button>
       </div>
-      <link rel="stylesheet" v-bind:href="'/content/' + this.bookmark.book.style">
+      <link
+        rel="stylesheet"
+        v-bind:href="'/content/' + this.bookmark.book.style"
+      />
       <div class="app-link">
         <div class="app-card -shadow">
           <div v-on:click="goBack()">
             <img
-              v-bind:src="
-                appDir.library +
-                  this.bookmark.language.image_dir +
-                  '/' +
-                  this.bookmark.book.image
-              "
-              class="book"
-            >
-
-            <div class="book">
+              v-bind:src="appDir.library + this.image_dir + '/' + this.image"
+              v-bind:class="this.image.class"
+            />
+            <div v-if="this.show_series_title">
               <span class="bold">{{ this.bookmark.book.title }}</span>
             </div>
           </div>
         </div>
       </div>
-
-      <h1
-        v-if="this.bookmark.page.count"
-      >{{ this.bookmark.page.count }}.&nbsp; {{ this.bookmark.page.title }}</h1>
-      <h1 v-else>{{ this.bookmark.page.title }}</h1>
-      <p>
+      <div v-if="this.show_page_title">
+        <h1 v-if="this.bookmark.page.count">
+          {{ this.bookmark.page.count }}.&nbsp; {{ this.bookmark.page.title }}
+        </h1>
+        <h1 v-else>{{ this.bookmark.page.title }}</h1>
+      </div>
+      <div>
         <span v-html="pageText"></span>
-      </p>
+      </div>
       <div class="version">
         <p class="version">Version 1.01</p>
       </div>
