@@ -1,7 +1,7 @@
 import axios from 'axios'
 import AuthorService from '@/services/AuthorService.js'
 const apiContent = axios.create({
-  //baseURL: `http://prototype.myfriends.network`,
+  //baseURL: `http://edit.myfriends.network`,
   // baseURL: `http://localhost:8080`,
   baseURL: '/',
   withCredentials: false, // This is the default

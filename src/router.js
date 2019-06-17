@@ -38,7 +38,7 @@ import Transfer from './views/Transfer.vue'
 
 // for CKFinder
 
-//prototype.myfriends.network/preview
+//edit.myfriends.network/preview
 
 import NotFoundComponent from './views/NotFound.vue'
 

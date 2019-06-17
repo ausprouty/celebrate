@@ -263,6 +263,14 @@ export default {
   isFoldername(s) {
     return s.match('^[a-zA-Z0-9-_/]+$')
   },
+  async prototype(params) {
+    console.log('prototype')
+    console.log(params)
+    params.token = store.state.user.token
+    var contentForm = this.toFormData(params)
+    var action = 'AuthorApi.php?action=prototype' + params.actionCODE
+    apiSECURE.post(action, contentForm)
+  },
   async registerUser(params) {
     params.token = store.state.user.token
     var contentForm = this.toFormData(params)
@@ -339,8 +347,8 @@ export default {
     return apiIMAGE.post('AuthorApi.php?action=storeImage', contentForm)
   },
   async transfer(params) {
-    console.log ('transfer')
-    console.log (params)
+    console.log('transfer')
+    console.log(params)
     params.token = store.state.user.token
     var contentForm = this.toFormData(params)
     var action = 'AuthorApi.php?action=transfer' + params.actionCODE

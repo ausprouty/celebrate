@@ -18,7 +18,7 @@ export default {
   async created() {
     this.authorized = this.authorize('write', this.$route.params.countryCODE)
     if (this.authorized) {
-      await AuthorService.transfer(this.$route.params)
+      await AuthorService.prototype(this.$route.params)
     }
   }
 }
