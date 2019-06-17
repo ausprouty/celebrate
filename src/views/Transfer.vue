@@ -6,10 +6,11 @@
 </template>
 <script>
 import AuthorService from '@/services/AuthorService.js'
+import { bookMarkMixin } from '@/mixins/BookmarkMixin.js'
 import { authorMixin } from '@/mixins/AuthorMixin.js'
 export default {
   props: ['countryCODE', 'languageISO', 'actionCODE'],
-  mixins: [authorMixin],
+  mixins: [authorMixin, bookMarkMixin],
   data() {
     return {
       authorized: true
@@ -18,6 +19,9 @@ export default {
   async created() {
     this.authorized = this.authorize('write', this.$route.params.countryCODE)
     if (this.authorized) {
+      await this.CheckBookmarks(this.$route.params)
+      this.$route.params.bookmark = this.bookmark
+      console.log(this.$route.params)
       await AuthorService.prototype(this.$route.params)
     }
   }
