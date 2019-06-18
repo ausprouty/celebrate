@@ -18,6 +18,7 @@ export const countriesMixin = {
       error_message: null,
       publish: false,
       publish_date: null,
+
       recnum: null,
       content: {
         recnum: '',

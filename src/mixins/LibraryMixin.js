@@ -47,6 +47,13 @@ export const libraryMixin = {
 
         if (!this.$route.params.libraryCODE) {
           this.$route.params.libraryCODE = 'library'
+        } else {
+          if (this.$route.params.libraryCODE.includes('.html')) {
+            this.$route.params.libraryCODE = this.$route.params.libraryCODE.slice(
+              0,
+              -5
+            )
+          }
         }
         console.log('getLibrary Params')
         console.log(this.$route.params)

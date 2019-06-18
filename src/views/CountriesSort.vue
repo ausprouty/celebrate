@@ -41,13 +41,19 @@ import draggable from 'vuedraggable'
 import { mapState } from 'vuex'
 import { bookMarkMixin } from '@/mixins/BookmarkMixin.js'
 import { countriesMixin } from '@/mixins/CountriesMixin.js'
+import { authorMixin } from '@/mixins/AuthorMixin.js'
 export default {
-  mixins: [bookMarkMixin, countriesMixin],
+  mixins: [bookMarkMixin, countriesMixin, authorMixin],
   components: {
     NavBar,
     draggable
   },
   computed: mapState(['bookmark', 'appDir', 'revision']),
+  data() {
+    return {
+      authorized: false
+    }
+  },
 
   methods: {
     deleteCountryForm(index) {
@@ -64,7 +70,7 @@ export default {
     async saveForm() {
       try {
         this.$store.dispatch('newBookmark', 'clear')
-        var valid = ContentService.valid(this.countries)
+        var valid = ContentService.validate(this.countries)
         this.content.text = JSON.stringify(valid)
         this.content.filename = 'countries'
         this.content.filetype = 'json'
@@ -92,6 +98,8 @@ export default {
   },
   async created() {
     try {
+      this.authorized = this.authorize('write', 'countries')
+      console.log('Authorized: ' + this.authorized)
       await this.getCountries()
     } catch (error) {
       console.log('There was an error in Countries.vue:', error) // Logs out the error
