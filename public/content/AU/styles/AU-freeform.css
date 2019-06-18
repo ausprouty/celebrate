@@ -9,6 +9,14 @@ h1{
 }
 p{
     font-family:Arial;
+    margin-left:10px;
+    margin-right:10px;
+}
+body{
+    background-color: lightgray;
+}
+.content{
+    background-color:white;
 }
 .icons{
     margin-top: 99px;
@@ -59,16 +67,18 @@ div.languages{
     color: #999999;
 }
 hr{
-    border: 10px solid black;
-    border-radius: 5px;
-  }
-  hr.border{
-    border: 6px solid green;
-    
-  }
+    display:none;
+}
+hr.border{
+    border: 6px solid green;  
+}
 div.footer{
     text-align: center;
     font-family: Arial;
+    padding-bottom: 75px;
+}
+p.footer{
+    text-align: center;
 }
 td.icon2{
     text-align:center;

@@ -5,6 +5,10 @@
 --color-background:#efefef;
 --color-version: blue;
 }
+body {
+    max-width:600px;
+    margin: auto;
+}
 div.bible,
 div.bible {
     background-color: var(--color-background);
