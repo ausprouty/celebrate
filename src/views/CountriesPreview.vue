@@ -3,7 +3,10 @@
     <NavBar />
     <img v-bind:src="appDir.country + 'world.jpg'" class="app-img-header" />
     <div v-if="this.publish">
-      <button class="button" @click="local_publish()">Publish</button>
+      <button class="button" @click="localPublish()">Publish</button>
+    </div>
+    <div v-if="this.prototype">
+      <button class="button" @click="local_prototype()">Prototype</button>
     </div>
     <h1>Select Country (Preview Mode)</h1>
     <Country
@@ -26,7 +29,7 @@ import Vuex from 'vuex'
 import { mapState } from 'vuex'
 import NavBar from '@/components/NavBarAdmin.vue'
 import Country from '@/components/CountryPreview.vue'
-import PublishService from '@/services/PublishService.js'
+import PrototypeService from '@/services/PrototypeService.js'
 import { bookMarkMixin } from '@/mixins/BookmarkMixin.js'
 import { countriesMixin } from '@/mixins/CountriesMixin.js'
 import { authorMixin } from '@/mixins/AuthorMixin.js'
@@ -63,7 +66,7 @@ export default {
       var params = {}
       params.recnum = this.recnum
       params.bookmark = JSON.stringify(this.bookmark)
-      var response = await PublishService.publish('countries', params)
+      var response = await PrototypeService.publish('countries', params)
       if (response['error']) {
         this.error = response['message']
         this.loaded = false

@@ -19,6 +19,8 @@ export const libraryMixin = {
       loaded: '',
       error: '',
       error_message: '',
+      prototype: false,
+      prototype_date: null,
       publish: false,
       publish_date: '',
       recnum: '',
@@ -78,6 +80,7 @@ export const libraryMixin = {
           if (response.data.content.recnum) {
             this.recnum = response.data.content.recnum
             this.publish_date = response.data.content.publish_date
+            this.prototype_date = response.data.content.prototype_date
           } else {
             this.recnum = this.publish_date = ''
           }

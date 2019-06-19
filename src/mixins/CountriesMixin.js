@@ -16,6 +16,8 @@ export const countriesMixin = {
       loaded: null,
       error: null,
       error_message: null,
+      prototype: false,
+      prototype_date: null,
       publish: false,
       publish_date: null,
 
@@ -51,6 +53,7 @@ export const countriesMixin = {
         if (response.data.content.recnum) {
           this.recnum = response.data.content.recnum
           this.publish_date = response.data.content.publish_date
+          this.prototype_date = response.data.content.prototype_date
         }
         this.loaded = true
         this.loading = false

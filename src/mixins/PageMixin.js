@@ -10,6 +10,8 @@ export const pageMixin = {
       write: false,
       publish: false,
       publish_date: null,
+      prototype: false,
+      prototype_date: null,
       image_class: 'book',
       show_page_title: false,
       show_series_title: false,
@@ -56,6 +58,7 @@ export const pageMixin = {
         if (response.data.content.recnum) {
           this.recnum = response.data.content.recnum
           this.publish_date = response.data.content.publish_date
+          this.prototype_date = response.data.content.prototype_date
         }
         this.pageText = response.data.content.text
         this.loaded = true

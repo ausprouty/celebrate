@@ -4,8 +4,11 @@
     <div class="loading" v-if="loading">Loading...</div>
     <div class="error" v-if="error">There was an error...{{ this.error }}</div>
     <div class="content" v-if="loaded">
-      <div v-if="this.publish">
+     <div v-if="this.publish">
         <button class="button" @click="localPublish()">Publish</button>
+      </div>
+      <div v-if="this.prototype">
+        <button class="button" @click="local_prototype()">Prototype</button>
       </div>
       <div v-bind:class="this.dir">
         <link rel="stylesheet" v-bind:href="'/content/' + this.style" />
@@ -65,7 +68,7 @@
 import { mapState } from 'vuex'
 import Chapter from '@/components/ChapterPreview.vue'
 import AuthorService from '@/services/AuthorService.js'
-import PublishService from '@/services/PublishService.js'
+import PrototypeService from '@/services/PrototypeService.js'
 import NavBar from '@/components/NavBarAdmin.vue'
 import { bookMarkMixin } from '@/mixins/BookmarkMixin.js'
 import { seriesMixin } from '@/mixins/SeriesMixin.js'
@@ -131,7 +134,7 @@ export default {
       var params = {}
       params.recnum = this.recnum
       params.bookmark = JSON.stringify(this.bookmark)
-      var response = await PublishService.publish('series', params)
+      var response = await PrototypeService.publish('series', params)
       if (response['error']) {
         this.error = response['message']
         this.loaded = false

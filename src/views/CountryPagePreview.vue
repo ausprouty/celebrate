@@ -7,6 +7,9 @@
       <div v-if="this.publish">
         <button class="button" @click="local_publish()">Publish</button>
       </div>
+       <div v-if="this.prototype">
+        <button class="button" @click="local_prototype()">Prototype</button>
+      </div>
       <link rel="stylesheet" v-bind:href="'/content/' + this.$route.params.css">
         <hr class="border">
         <span v-html="pageText"></span>
@@ -26,7 +29,7 @@
 <script>
 import { mapState } from 'vuex'
 import ContentService from '@/services/ContentService.js'
-import PublishService from '@/services/PublishService.js'
+import PrototypeService from '@/services/PrototypeService.js'
 import NavBar from '@/components/NavBarCountry.vue'
 import { bookMarkMixin } from '@/mixins/BookmarkMixin.js'
 import { freeformMixin } from '@/mixins/FreeformMixin.js'
@@ -58,7 +61,7 @@ export default {
       var params = {}
       params.recnum = this.recnum
       params.bookmark = JSON.stringify(this.bookmark)
-      var response = await PublishService.publish('freeform', params)
+      var response = await PrototypeService.publish('country', params)
       if (response['error']) {
         this.error = response['message']
         this.loaded = false

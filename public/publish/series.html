@@ -8,7 +8,7 @@
     </div>
   </div>
   <!-- ready for offline --->
-  <p id="offline-ready">Ready for offline use</p>
+  <p id="offline-ready">{{ download_ready }}</p>
   <!-- title --->
   <h2>{{ book.title }}</h2>
   <div>{{ book.description }}</div>
@@ -16,17 +16,12 @@
   <br />
   <!-- chapters --->
   [[chapters]]
-  <div class="center">
-    <p class="button">
-      <button
-        id="offline-request"
-        class="cache-series"
-        data-json="{{ download.files }}"
-      >
-        Download for offline use
+  <div>
+    <p class="button ">
+      <button id="offline-request" class="cache-series">
+        {{ download_now }}
       </button>
     </p>
-  </div>
   <!-- copyright --->
   <p class="ltr copyright"></p>
   <!-- version --->

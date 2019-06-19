@@ -5,7 +5,10 @@
     <div class="error" v-if="error">There was an error... {{ this.error }}</div>
     <div class="content" v-if="loaded">
       <div v-if="this.publish">
-        <button class="button" @click="local_publish()">Publish</button>
+        <button class="button" @click="localPublish()">Publish</button>
+      </div>
+      <div v-if="this.prototype">
+        <button class="button" @click="local_prototype()">Prototype</button>
       </div>
       <link
         rel="stylesheet"
@@ -46,7 +49,7 @@
 <script>
 import { mapState } from 'vuex'
 import ContentService from '@/services/ContentService.js'
-import PublishService from '@/services/PublishService.js'
+import PrototypeService from '@/services/PrototypeService.js'
 import NavBar from '@/components/NavBarAdmin.vue'
 import { bookMarkMixin } from '@/mixins/BookmarkMixin.js'
 import { pageMixin } from '@/mixins/PageMixin.js'
@@ -107,7 +110,7 @@ export default {
       var params = {}
       params.recnum = this.recnum
       params.bookmark = JSON.stringify(this.bookmark)
-      var response = await PublishService.publish('page', params)
+      var response = await PrototypeService.publish('page', params)
       if (response['error']) {
         this.error = response['message']
         this.loaded = false

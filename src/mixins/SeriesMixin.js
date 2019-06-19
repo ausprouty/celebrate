@@ -25,6 +25,8 @@ export const seriesMixin = {
       loaded: null,
       error: null,
       error_message: null,
+      prototype: false,
+      prototype_date: null,
       publish: false,
       publish_date: null,
       download_now: 'Download for offline use',
@@ -63,6 +65,7 @@ export const seriesMixin = {
           if (response.data.content.recnum) {
             this.recnum = response.data.content.recnum
             this.publish_date = response.data.content.publish_date
+            this.prototype_date = response.data.content.prototype_date
           }
           this.seriesDetails = JSON.parse(response.data.content.text)
           console.log('Series Details')

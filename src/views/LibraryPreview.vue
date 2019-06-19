@@ -7,6 +7,9 @@
       <div v-if="this.publish">
         <button class="button" @click="localPublish()">Publish</button>
       </div>
+      <div v-if="this.prototype">
+        <button class="button" @click="local_prototype()">Prototype</button>
+      </div>
       <hr class="border" />
       <a v-bind:href="'/preview/language/' + this.bookmark.country.code">
         <img
@@ -40,7 +43,7 @@ import Book from '@/components/BookPreview.vue'
 import { mapState } from 'vuex'
 import NavBar from '@/components/NavBarAdmin.vue'
 import ContentService from '@/services/ContentService.js'
-import PublishService from '@/services/PublishService.js'
+import PrototypeService from '@/services/PrototypeService.js'
 import { bookMarkMixin } from '@/mixins/BookmarkMixin.js'
 import { libraryMixin } from '@/mixins/LibraryMixin.js'
 import { authorMixin } from '@/mixins/AuthorMixin.js'
@@ -89,7 +92,7 @@ export default {
       params.bookmark = JSON.stringify(this.bookmark)
       console.log('params.bookmark')
       console.log(params.bookmark)
-      var response = await PublishService.publish('library', params)
+      var response = await PrototypeService.publish('library', params)
       if (response['error']) {
         this.error = response['message']
         this.loaded = false

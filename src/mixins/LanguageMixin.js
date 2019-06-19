@@ -9,6 +9,8 @@ export const languageMixin = {
       loaded: null,
       error: null,
       error_message: null,
+      prototype: false,
+      prototype_date: null,
       publish: false,
       publish_date: null,
       recnum: null
@@ -20,7 +22,7 @@ export const languageMixin = {
         this.error = this.loaded = null
         this.loading = true
         this.languages = []
-       // console.log('about the check bookmarks')
+        // console.log('about the check bookmarks')
         await this.CheckBookmarks(this.$route.params)
         var response = await ContentService.getLanguages(this.$route.params)
         //console.log('get languages')
@@ -29,6 +31,7 @@ export const languageMixin = {
         if (response.data.content.recnum) {
           this.recnum = response.data.content.recnum
           this.publish_date = response.data.content.publish_date
+          this.prototype_date = response.data.content.prototype_date
         }
       } catch (error) {
         console.log('There was an error in LanguageMixin:', error) // Logs out the error
