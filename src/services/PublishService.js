@@ -71,7 +71,7 @@ export default {
     console.log(params)
     var contentForm = this.toFormData(params)
     var response = apiSECURE.post(
-      'TestApi.php?page=publish&action=publishSeries',
+      'AuthorApi.php?action=prototypeSeries',
       contentForm
     )
     return response

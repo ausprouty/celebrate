@@ -72,7 +72,7 @@ import { seriesMixin } from '@/mixins/SeriesMixin.js'
 import { authorMixin } from '@/mixins/AuthorMixin.js'
 export default {
   mixins: [bookMarkMixin, seriesMixin, authorMixin],
-  props: ['countryCODE', 'languageISO', 'folderNAME'],
+  props: ['countryCODE', 'languageISO', 'libraryCODE','folderNAME'],
   computed: mapState(['bookmark', 'appDir']),
   components: {
     Chapter,
@@ -82,7 +82,12 @@ export default {
     return {
       readonly: false,
       write: false,
-      publish: false
+      publish: false,
+      download_ready: '',
+      download_now: '',
+      description: '',
+      style: ''
+
     }
   },
 

@@ -125,6 +125,8 @@ export const bookMarkMixin = {
       if route.book is not the same as bookmark 
       update book and erase all bookmark below*/
     async CheckBookmarkBookSeries(route) {
+      console.log('route in CheckBookmarkBookSeries')
+      console.log(route)
       if (!route.folderNAME) {
         this.$store.dispatch('unsetBookmark', ['book'])
         return null
@@ -159,10 +161,12 @@ export const bookMarkMixin = {
           }
           if (route.folderNAME != currentSeries) {
             var response = await ContentService.getSeries(route)
-            console.log ('I am getting series')
-            console.log (response)
-            value = response.data.content
-            this.$store.dispatch('updateBookmark', ['series', value])
+            console.log('I am getting series')
+            console.log(response)
+            if (typeof response.data.content != 'undefined') {
+              value = response.data.content
+              this.$store.dispatch('updateBookmark', ['series', value])
+            }
           }
           return this.bookmark
         } catch (error) {

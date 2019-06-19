@@ -27,6 +27,8 @@ export const seriesMixin = {
       error_message: null,
       publish: false,
       publish_date: null,
+      download_now: 'Download for offline use',
+      download_ready: 'Ready for offline use',
       recnum: null,
       content: {
         recnum: '',

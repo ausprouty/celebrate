@@ -169,7 +169,7 @@ export default {
       }
     }
   },
-  
+
   async getSeries(params) {
     var found = false
     var response = {}
@@ -177,9 +177,10 @@ export default {
     if (params.version != 'current') {
       var contentForm = this.toFormData(params)
       response = await apiMYSQL.post('ContentApi.php?crud=series', contentForm)
-      //   console.log('get Series data')
-      //   console.log(response)
+      console.log('get Series data')
+      console.log(response)
       if (response.data.content) {
+        console.log('I have response.data.content')
         var text = JSON.parse(response.data.content.text)
         response.data.content.description = text.description
         response.data.content.chapters = text.chapters
@@ -191,13 +192,11 @@ export default {
     // if no data or need current get content
     if (!found) {
       try {
+        console.log('I DO NOT have response.data.content')
         response.data = {}
         response.data.content = {}
         // may need to remove .json from some FILENAME
-        var filename = params.fileNAME // this is index and is required
-        if (!filename.includes('.json')) {
-          filename = filename + '.json'
-        }
+
         let res = await apiContent.get(
           'content/' +
             params.countryCODE +
@@ -205,33 +204,14 @@ export default {
             params.languageISO +
             '/' +
             params.folderNAME +
-            '/' +
-            filename
+            '/index.json'
         )
         response.data.content = res.data
         return response
       } catch (error) {}
     }
   },
-  async getSeriesPage(params) {
-    var response = {}
-    var contentForm = this.toFormData(params)
-    response = await apiMYSQL.post(
-      'ContentApi.php?crud=seriesPage',
-      contentForm
-    )
-    if (response.data.content) {
-      var text = JSON.parse(response.data.content.text)
-      response.data.content.description = text.description
-      response.data.content.chapters = text.chapters
-      response.source = 'data'
-      return response
-    } else {
-      response.data = {}
-      response.source = 'none'
-      return response
-    }
-  },
+
   async getPage(params) {
     console.log('getPage params:')
     console.log(params)
