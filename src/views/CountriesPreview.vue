@@ -30,6 +30,7 @@ import { mapState } from 'vuex'
 import NavBar from '@/components/NavBarAdmin.vue'
 import Country from '@/components/CountryPreview.vue'
 import PrototypeService from '@/services/PrototypeService.js'
+import PublishService from '@/services/PublishService.js'
 import { bookMarkMixin } from '@/mixins/BookmarkMixin.js'
 import { countriesMixin } from '@/mixins/CountriesMixin.js'
 import { authorMixin } from '@/mixins/AuthorMixin.js'
@@ -62,11 +63,28 @@ export default {
     goBack() {
       window.history.back()
     },
-    async local_publish() {
+    async local_prototype() {
       var params = {}
       params.recnum = this.recnum
       params.bookmark = JSON.stringify(this.bookmark)
       var response = await PrototypeService.publish('countries', params)
+      if (response['error']) {
+        this.error = response['message']
+        this.loaded = false
+      } else {
+        this.UnsetBookmarks()
+        this.recnum = null
+        this.loaded = false
+        this.loading = true
+        this.publish = false
+        await this.loadView()
+      }
+    },
+    async local_publish() {
+      var params = {}
+      params.recnum = this.recnum
+      params.bookmark = JSON.stringify(this.bookmark)
+      var response = await PublishService.publish('countries', params)
       if (response['error']) {
         this.error = response['message']
         this.loaded = false

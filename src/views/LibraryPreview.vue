@@ -44,6 +44,7 @@ import { mapState } from 'vuex'
 import NavBar from '@/components/NavBarAdmin.vue'
 import ContentService from '@/services/ContentService.js'
 import PrototypeService from '@/services/PrototypeService.js'
+import PublishService from '@/services/PublishService.js'
 import { bookMarkMixin } from '@/mixins/BookmarkMixin.js'
 import { libraryMixin } from '@/mixins/LibraryMixin.js'
 import { authorMixin } from '@/mixins/AuthorMixin.js'
@@ -86,13 +87,32 @@ export default {
     goBack() {
       window.history.back()
     },
-    async localPublish() {
+    async localPrototype() {
       var params = {}
       params.recnum = this.recnum
       params.bookmark = JSON.stringify(this.bookmark)
       console.log('params.bookmark')
       console.log(params.bookmark)
       var response = await PrototypeService.publish('library', params)
+      if (response['error']) {
+        this.error = response['message']
+        this.loaded = false
+      } else {
+        this.UnsetBookmarks()
+        this.recnum = null
+        this.loaded = false
+        this.loading = true
+        this.publish = false
+        await this.loadView()
+      }
+    },
+    async localPublish() {
+      var params = {}
+      params.recnum = this.recnum
+      params.bookmark = JSON.stringify(this.bookmark)
+      console.log('params.bookmark')
+      console.log(params.bookmark)
+      var response = await PublishService.publish('library', params)
       if (response['error']) {
         this.error = response['message']
         this.loaded = false
