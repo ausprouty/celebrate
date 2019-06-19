@@ -1,6 +1,6 @@
 <template>
   <div class="preview">
-    <NavBar/>
+    <NavBar />
     <div class="loading" v-if="loading">Loading...</div>
     <div class="error" v-if="error">There was an error... {{ this.error }}</div>
     <div class="content" v-if="loaded">
@@ -8,11 +8,18 @@
         <button class="button" @click="local_publish()">Publish</button>
       </div>
       <a href="preview/languages">
-        <img v-bind:src="appDir.root + 'languages.jpg'" class="app-img-header">
+        <img
+          v-bind:src="appDir.root + 'languages.jpg'"
+          class="app-img-header"
+        />
       </a>
 
       <h1>Choose Language (preview for {{ this.countryCODE }})</h1>
-      <Language v-for="language in languages" :key="language.iso" :language="language"/>
+      <Language
+        v-for="language in languages"
+        :key="language.iso"
+        :language="language"
+      />
       <div v-if="!this.ZZ">
         <a href="/languages/ZZ">More Languages</a>
       </div>
@@ -22,10 +29,7 @@
       <div v-if="this.write">
         <button class="button" @click="editLanguages">Edit</button>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <button
-          class="button"
-          @click="sortLanguages"
-        >Sort</button>
+        <button class="button" @click="sortLanguages">Sort</button>
       </div>
       <div v-if="this.readonly">
         <button class="button" @click="editLanguages">View Details</button>
@@ -105,8 +109,15 @@ export default {
         )
         this.write = this.authorize('write', this.$route.params.countryCODE)
         this.publish = false
-        if (this.recnum && !this.publish_date) {
+        this.prototype = false
+        if (this.recnum && !this.publish_date && this.prototype_date) {
           this.publish = this.authorize(
+            'publish',
+            this.$route.params.countryCODE
+          )
+        }
+        if (this.recnum && !this.prototype_date) {
+          this.prototype = this.authorize(
             'publish',
             this.$route.params.countryCODE
           )

@@ -146,12 +146,19 @@ export default {
         await this.getPage(this.$route.params)
         this.read = this.authorize('read', this.$route.params.countryCODE)
         this.write = this.authorize('write', this.$route.params.countryCODE)
-        var may_publish = this.authorize(
-          'publish',
-          this.$route.params.countryCODE
-        )
-        if (may_publish && this.recnum && this.publish_date == null) {
-          this.publish = true
+        this.publish = false
+        this.prototype = false
+        if (this.recnum && !this.publish_date && this.prototype_date) {
+          this.publish = this.authorize(
+            'publish',
+            this.$route.params.countryCODE
+          )
+        }
+        if (this.recnum && !this.prototype_date) {
+          this.prototype = this.authorize(
+            'publish',
+            this.$route.params.countryCODE
+          )
         }
       } catch (error) {
         console.log('There was an error in Page.vue:', error) // Logs out the error

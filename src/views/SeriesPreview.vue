@@ -165,8 +165,15 @@ export default {
         this.write = this.authorize('write', this.$route.params.countryCODE)
 
         this.publish = false
-        if (this.recnum && !this.publish_date) {
+        this.prototype = false
+        if (this.recnum && !this.publish_date && this.prototype_date) {
           this.publish = this.authorize(
+            'publish',
+            this.$route.params.countryCODE
+          )
+        }
+        if (this.recnum && !this.prototype_date) {
+          this.prototype = this.authorize(
             'publish',
             this.$route.params.countryCODE
           )

@@ -8,6 +8,8 @@ export const freeformMixin = {
       error: null,
       read: false,
       write: false,
+      prototype: false,
+      prototype_date: null,
       publish: false,
       publish_date: null,
       recnum: null
@@ -26,6 +28,7 @@ export const freeformMixin = {
         if (response.data.content.recnum) {
           this.recnum = response.data.content.recnum
           this.publish_date = response.data.content.publish_date
+          this.prototype_date = response.data.content.prototype_date
         }
       }
       var text = JSON.parse(response.data.content.text)

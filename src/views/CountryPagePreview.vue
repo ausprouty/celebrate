@@ -97,10 +97,14 @@ export default {
         this.$route.params.css = 'AU/styles/AU-freeform.css'
         await this.getCountry()
         this.write = this.authorize('write', 'world')
-      this.publish = false
-      if (this.recnum && !this.publish_date) {
-        this.publish = this.authorize('publish', 'country')
-      }
+        this.publish = false
+        this.prototype = false
+        if (this.recnum && !this.publish_date && this.prototype_date) {
+          this.publish = this.authorize('publish', 'country')
+        }
+         if (this.recnum && !this.prototype_date) {
+          this.prototype = this.authorize('publish', 'country')
+        }
       } catch (error) {
         console.log('There was an error in Country.vue:', error)
       }
