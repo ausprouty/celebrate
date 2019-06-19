@@ -1,11 +1,10 @@
 <template>
   <div id="app">
-    <router-view/>
+    <router-view />
   </div>
 </template>
 
- <script>
-</script>
+<script></script>
 
 <style>
 :root {
@@ -17,6 +16,12 @@
   --color-back: #f0555a;
   --color-up: #f38832;
   --color-forward: #1ca0a6;
+}
+#offline-ready {
+  color:  var(--color-up);
+}
+.cache-series {
+  background-color: var(--color-up);
 }
 a.black {
   color: black;
@@ -364,7 +369,7 @@ label,
   font-weight: bold;
 }
 p.version {
-  text-align: right;
+  text-align: center;
   color: var(--color-version);
   font-size: 10pt;
 }

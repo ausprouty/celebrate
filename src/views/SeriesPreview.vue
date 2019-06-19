@@ -25,6 +25,8 @@
         </div>
         <div v-if="this.description">{{ this.description }}</div>
         <br />
+        <p id="offline-ready">{{ this.download_ready }}</p>
+
         <br />
 
         <Chapter
@@ -32,11 +34,19 @@
           :key="chapter.id"
           :chapter="chapter"
         />
-        <div class="version">
-          <p class="version">Version 1.01</p>
-        </div>
+      </div>
+      <div>
+        <p class="button ">
+          <button id="offline-request" class="cache-series">
+            {{ this.download_now }}
+          </button>
+        </p>
+      </div>
+      <div class="version">
+        <p class="version">Version 1.01</p>
       </div>
     </div>
+    <hr>
     <div v-if="this.write">
       <button class="button" @click="editSeries">Edit</button>
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -104,7 +114,7 @@ export default {
     },
     returnToIndex() {
       this.$router.push({
-        name: 'library',
+        name: 'previewLibrary',
         params: {
           countryCODE: this.$route.params.countryCODE,
           languageISO: this.$route.params.languageISO,

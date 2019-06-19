@@ -5,7 +5,9 @@ export const seriesMixin = {
       seriesDetails: {
         series: '',
         language: '',
-        description: ''
+        description: '',
+        download_now: 'Download for offline use',
+        download_ready: 'Ready for offline use'
       },
       chapter: {},
       chapters: [
@@ -65,6 +67,8 @@ export const seriesMixin = {
           console.log(this.seriesDetails)
           this.chapters = this.seriesDetails.chapters
           this.description = this.seriesDetails.description
+          this.download_now = this.seriesDetails.download_now
+          this.download_ready = this.seriesDetails.download_ready
         } else {
           this.description = response.data.content.description
           this.chapters = response.data.content.chapters

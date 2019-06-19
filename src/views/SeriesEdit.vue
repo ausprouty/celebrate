@@ -18,6 +18,28 @@
           placeholder="add multiple lines"
         ></textarea>
       </div>
+      <div class="form">
+        <BaseInput
+          v-model="download_now"
+          label="Download for offline use"
+          type="text"
+          placeholder
+          class="field"
+        />
+      </div>
+      <div class="form">
+        <BaseInput
+          v-model="download_ready"
+          label="Ready for offline use:"
+          type="text"
+          placeholder
+          class="field"
+        />
+      </div>
+
+      <br />
+      <hr />
+      <br />
       <div>
         <button class="button" @click="publishAll">
           Select ALL to publish?
@@ -300,6 +322,8 @@ export default {
       console.log(this.content)
       var text = {}
       text.description = this.description
+      text.download_now = this.download_now
+      text.download_ready = this.download_ready
       text.chapters = this.chapters
       console.log('text')
       console.log(text)
