@@ -177,9 +177,10 @@ export default {
     if (params.version != 'current') {
       var contentForm = this.toFormData(params)
       response = await apiMYSQL.post('ContentApi.php?scope=series', contentForm)
-      console.log('get Series data')
+      console.log('response from getSeries in Content Service')
       console.log(response)
-      if (response.data.content) {
+      console.log('this was response from getSeries in Content Service')
+      if (response.data) {
         console.log('I have response.data.content')
         var text = JSON.parse(response.data.content.text)
         response.data.content.description = text.description

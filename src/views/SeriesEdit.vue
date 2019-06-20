@@ -374,7 +374,7 @@ export default {
         console.log('image dir: ' + param.image_dir.substring(0, 2))
         this.image_permission = this.authorize(
           'write',
-          param.image_dir.substring(0, 1)
+          param.image_dir.substring(0, 2)
         )
         var img = await AuthorService.getImages(param)
         if (img) {

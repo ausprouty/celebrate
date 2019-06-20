@@ -256,6 +256,17 @@ export default {
   isFoldername(s) {
     return s.match('^[a-zA-Z0-9-_/]+$')
   },
+
+  async login(params) {
+    var contentForm = this.toFormData(params)
+    let response = await apiSELECT.post(
+      'AuthorApi.php?action=login',
+      contentForm
+    )
+    console.log('loginResponse')
+    console.log(response)
+    return response
+  },
   async prototype(params) {
     console.log('prototype')
     console.log(params)
@@ -265,13 +276,13 @@ export default {
       'AuthorApi.php?page=prototype&action=prototype' + params.actionCODE
     apiSECURE.post(action, contentForm)
   },
-  async login(params) {
+  async publish(params) {
+    console.log('publsh')
+    console.log(params)
+    params.token = store.state.user.token
     var contentForm = this.toFormData(params)
-    let response = await apiSELECT.post(
-      'AuthorApi.php?action=login',
-      contentForm
-    )
-    return response
+    var action = 'AuthorApi.php?page=publish&action=publish' + params.actionCODE
+    apiSECURE.post(action, contentForm)
   },
   async registerUser(params) {
     params.token = store.state.user.token

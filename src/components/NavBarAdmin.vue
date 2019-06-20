@@ -81,6 +81,7 @@ export default {
     }
     this.authorized = this.authorize('read', scope)
     this.administrator = this.authorize('register', scope)
+    console.log ('I finished authorization')
     var arrayLength = this.menu
     for (var i = 0; i < arrayLength; i++) {
       this.menu[i].show = false
