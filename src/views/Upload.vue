@@ -31,7 +31,7 @@ export default {
       var params = {}
       params.directory = 'flag'
       params.name = 'TEST'
-      AuthorService.storeImage(params, this.file)
+      AuthorService.imageStore(params, this.file)
     }
   }
 }

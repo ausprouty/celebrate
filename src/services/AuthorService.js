@@ -150,7 +150,7 @@ export default {
     params.token = store.state.user.token
     var contentForm = this.toFormData(params)
     let response = await apiSELECT.post(
-      'AuthorApi.php?action=getFoldersContent',
+      'AuthorApi.php?page=get&action=getFoldersContent',
       contentForm
     )
     //console.log(response)
@@ -166,7 +166,7 @@ export default {
     params.token = store.state.user.token
     var contentForm = this.toFormData(params)
     let response = await apiSELECT.post(
-      'AuthorApi.php?action=getFoldersLanguage',
+      'AuthorApi.php?page=get&action=getFoldersLanguage',
       contentForm
     )
     //console.log(response)
@@ -182,7 +182,7 @@ export default {
     params.token = store.state.user.token
     var contentForm = this.toFormData(params)
     let response = await apiSELECT.post(
-      'AuthorApi.php?action=getFoldersImages',
+      'AuthorApi.php?page=get&action=getFoldersImages',
       contentForm
     )
     if (response.data.content) {
@@ -196,7 +196,7 @@ export default {
     params.token = store.state.user.token
     var contentForm = this.toFormData(params)
     let response = await apiSELECT.post(
-      'AuthorApi.php?action=getImages',
+      'AuthorApi.php?page=get&action=getImages',
       contentForm
     )
 
@@ -212,7 +212,7 @@ export default {
     params.token = store.state.user.token
     var contentForm = this.toFormData(params)
     let response = await apiSELECT.post(
-      'AuthorApi.php?action=getStyles',
+      'AuthorApi.php?page=get&action=getStyles',
       contentForm
     )
     // console.log(response)
@@ -226,7 +226,7 @@ export default {
     params.token = store.state.user.token
     var contentForm = this.toFormData(params)
     let response = await apiSELECT.post(
-      'AuthorApi.php?action=getTemplate',
+      'AuthorApi.php?page=get&action=getTemplate',
       contentForm
     )
     return response.data.content
@@ -239,7 +239,7 @@ export default {
     console.log(params)
     var contentForm = this.toFormData(params)
     let response = await apiSELECT.post(
-      'AuthorApi.php?action=getTemplates',
+      'AuthorApi.php?page=get&action=getTemplates',
       contentForm
     )
     //console.log(response)
@@ -249,14 +249,7 @@ export default {
     }
     return templates
   },
-  async getUser(params) {
-    var contentForm = this.toFormData(params)
-    let response = await apiSELECT.post(
-      'AuthorApi.php?action=getUser&page=authorize',
-      contentForm
-    )
-    return response
-  },
+
   isFilename(s) {
     return s.match('^[a-zA-Z0-9-_.]+$')
   },
@@ -268,14 +261,23 @@ export default {
     console.log(params)
     params.token = store.state.user.token
     var contentForm = this.toFormData(params)
-    var action = 'AuthorApi.php?action=prototype' + params.actionCODE
+    var action =
+      'AuthorApi.php?page=prototype&action=prototype' + params.actionCODE
     apiSECURE.post(action, contentForm)
+  },
+  async login(params) {
+    var contentForm = this.toFormData(params)
+    let response = await apiSELECT.post(
+      'AuthorApi.php?action=login',
+      contentForm
+    )
+    return response
   },
   async registerUser(params) {
     params.token = store.state.user.token
     var contentForm = this.toFormData(params)
     let response = await apiSELECT.post(
-      'AuthorApi.php?action=registerUser&page=authorize',
+      'AuthorApi.php?page=register&action=registerUser',
       contentForm
     )
     return response
@@ -292,7 +294,10 @@ export default {
           obj.country_code = code
           obj.token = store.state.user.token
           var contentForm = this.toFormData(obj)
-          apiSECURE.post('AuthorApi.php?action=setupCountry', contentForm)
+          apiSECURE.post(
+            'AuthorApi.php?page=setup&action=setupCountry',
+            contentForm
+          )
         }
       }
     }
@@ -306,7 +311,10 @@ export default {
       console.log('setupLanguageFolder')
       console.log(obj)
       var contentForm = this.toFormData(obj)
-      apiSECURE.post('AuthorApi.php?action=setupLanguageFolder', contentForm)
+      apiSECURE.post(
+        'AuthorApi.php?page=setup&action=setupLanguageFolder',
+        contentForm
+      )
     }
   },
   setupImageFolder(country, language) {
@@ -316,7 +324,10 @@ export default {
       obj.country_code = country
       obj.token = store.state.user.token
       var contentForm = this.toFormData(obj)
-      apiSECURE.post('AuthorApi.php?action=setupImageFolder', contentForm)
+      apiSECURE.post(
+        'AuthorApi.php?page=setup&action=setupImageFolder',
+        contentForm
+      )
     }
   },
   async setupSeries(params, file) {
@@ -327,16 +338,22 @@ export default {
     var contentForm = this.toFormData(params)
     contentForm.append('file', file)
     console.log(contentForm)
-    return apiIMAGE.post('AuthorApi.php?action=setupSeries', contentForm)
+    return apiIMAGE.post(
+      'AuthorApi.php?page=setup&action=setupSeries',
+      contentForm
+    )
   },
   async setupSeriesFirstSteps(params) {
     console.log('createSeriesFirstSteps')
     console.log(params)
     params.token = store.state.user.token
     var contentForm = this.toFormData(params)
-    apiSECURE.post('AuthorApi.php?action=setupSeriesFirstSteps', contentForm)
+    apiSECURE.post(
+      'AuthorApi.php?page=setup&action=setupSeriesFirstSteps',
+      contentForm
+    )
   },
-  async storeImage(params, image) {
+  async imageStore(params, image) {
     console.log('Store Image')
     console.log(params)
     console.log(image)
@@ -344,15 +361,10 @@ export default {
     var contentForm = this.toFormData(params)
     contentForm.append('file', image)
     console.log(contentForm)
-    return apiIMAGE.post('AuthorApi.php?action=storeImage', contentForm)
-  },
-  async transfer(params) {
-    console.log('transfer')
-    console.log(params)
-    params.token = store.state.user.token
-    var contentForm = this.toFormData(params)
-    var action = 'AuthorApi.php?action=transfer' + params.actionCODE
-    apiSECURE.post(action, contentForm)
+    return apiIMAGE.post(
+      'AuthorApi.php?page=image&action=imageStore',
+      contentForm
+    )
   },
   typeImage(file) {
     var type = null

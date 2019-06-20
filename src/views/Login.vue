@@ -76,7 +76,7 @@ export default {
         params.password = this.password
         console.log('params')
         console.log(params)
-        let res = await AuthorService.getUser(params)
+        let res = await AuthorService.login(params)
         console.log('res from Author Service')
         console.log(res)
         if (res.data.content) {

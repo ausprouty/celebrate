@@ -462,7 +462,7 @@ export default {
             var params = {}
             params.directory = 'content/' + this.bookmark.language.image_dir
             params.name = code
-            AuthorService.storeImage(params, checkfile[0])
+            AuthorService.imageStore(params, checkfile[0])
             for (i = 0; i < arrayLength; i++) {
               checkfile = this.$v.library.$each[i]
               if (checkfile.$model.book == code) {
@@ -488,7 +488,7 @@ export default {
           params.directory = 'content/' + this.bookmark.language.image_dir
           params.name = code
           console.log(params)
-          AuthorService.storeImage(params, checkfile[0])
+          AuthorService.imageStore(params, checkfile[0])
           this.header_image = code
           this.saveForm()
           this.showForm()

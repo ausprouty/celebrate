@@ -273,7 +273,7 @@ export default {
             var params = {}
             params.directory = 'content/' + this.bookmark.language.image_dir
             params.name = code
-            AuthorService.storeImage(params, checkfile[0])
+            AuthorService.imageStore(params, checkfile[0])
             for (i = 0; i < arrayLength; i++) {
               checkfile = this.$v.chapters.$each[i]
               if (checkfile.$model.filename == code) {
