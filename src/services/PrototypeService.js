@@ -13,14 +13,18 @@ import store from '@/store/store.js'
 // I want to export a JSON.stringified of response.data.content.text
 export default {
   publish(scope, params) {
-    console.log('publish')
-    console.log(params)
     var response = null
     params.my_uid = store.state.user.uid
     params.token = store.state.user.token
+    params.bookmark = JSON.stringify(store.state.bookmark)
+    console.log('publish')
+    console.log (params)
     switch (scope) {
       case 'countries':
         response = this.publishCountries(params)
+        break
+      case 'country':
+        response = this.publishCountry(params)
         break
       case 'language':
         response = this.publishLanguage(params)
@@ -45,7 +49,16 @@ export default {
     console.log('in publishCountries')
     var contentForm = this.toFormData(params)
     var response = apiSECURE.post(
-      'TestApi.php?page=publish&action=publishCountries',
+      'AuthorApi.php?&action=prototypeCountries',
+      contentForm
+    )
+    return response
+  },
+  publishCountry(params) {
+    console.log('in publishCountry')
+    var contentForm = this.toFormData(params)
+    var response = apiSECURE.post(
+      'AuthorApi.php?action=prototypeCountry',
       contentForm
     )
     return response
@@ -53,7 +66,7 @@ export default {
   publishLanguage(params) {
     var contentForm = this.toFormData(params)
     var response = apiSECURE.post(
-      'TestApi.php?page=publish&action=publishLanguage',
+      'AuthorApi.php?&action=prototypeLanguage',
       contentForm
     )
     return response
@@ -61,7 +74,7 @@ export default {
   publishLibrary(params) {
     var contentForm = this.toFormData(params)
     var response = apiSECURE.post(
-      'AuthorApi.php?page=prototypeLibrary',
+      'AuthorApi.php?action=prototypeLibrary',
       contentForm
     )
     return response
@@ -82,7 +95,7 @@ export default {
     var contentForm = this.toFormData(params)
 
     var response = apiSECURE.post(
-      'TestApi.php?page=publish&action=publishPage',
+      'AuthorApi.php?&action=prototypePage',
       contentForm
     )
     return response
@@ -93,9 +106,9 @@ export default {
       form_data.append(key, obj[key])
     }
     // Display the key/value pairs
-    for (var pair of form_data.entries()) {
-      // console.log(pair[0] + ', ' + pair[1])
-    }
+    //for (var pair of form_data.entries()) {
+    // console.log(pair[0] + ', ' + pair[1])
+    // }
     console.log(form_data)
     return form_data
   }

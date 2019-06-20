@@ -1,6 +1,6 @@
 <template>
   <div>
-    <NavBar/>
+    <NavBar />
     <h2>Login</h2>
     <form @submit.prevent="saveForm">
       <BaseInput
@@ -9,11 +9,13 @@
         type="text"
         placeholder
         class="field"
-        :class="{ error: $v.username.$error}"
+        :class="{ error: $v.username.$error }"
         @blur="$v.username.$touch()"
       />
       <template v-if="$v.username.$error">
-        <p v-if="!$v.username.required" class="errorMessage">Username is required.</p>
+        <p v-if="!$v.username.required" class="errorMessage">
+          Username is required.
+        </p>
       </template>
 
       <BaseInput
@@ -22,14 +24,16 @@
         type="password"
         placeholder
         class="field"
-        :class="{ error: $v.password.$error}"
+        :class="{ error: $v.password.$error }"
         @blur="$v.password.$touch()"
       />
       <template v-if="$v.password.$error">
-        <p v-if="!$v.password.required" class="errorMessage">Password is required.</p>
+        <p v-if="!$v.password.required" class="errorMessage">
+          Password is required.
+        </p>
       </template>
-      <br>
-      <br>
+      <br />
+      <br />
       <button class="button red" @click="saveForm">Login</button>
       <template v-if="wrong">
         <p class="errorMessage">Wrong username or password. Try again</p>

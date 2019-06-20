@@ -252,7 +252,7 @@ export default {
   async getUser(params) {
     var contentForm = this.toFormData(params)
     let response = await apiSELECT.post(
-      'AuthorApi.php?action=authorize',
+      'AuthorApi.php?action=getUser&page=authorize',
       contentForm
     )
     return response
@@ -275,7 +275,7 @@ export default {
     params.token = store.state.user.token
     var contentForm = this.toFormData(params)
     let response = await apiSELECT.post(
-      'AuthorApi.php?action=registerUser',
+      'AuthorApi.php?action=registerUser&page=authorize',
       contentForm
     )
     return response

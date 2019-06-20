@@ -64,12 +64,8 @@ export const freeformMixin = {
         console.log(params)
         this.error = this.loaded = null
         this.loading = true
-        params.countryCODE = this.$route.params.countryCODE
-        params.languageISO = this.$route.params.languageISO
-        params.folderNAME = this.$route.params.folderNAME
-        params.fileNAME = 'index'
-        console.log(params)
-        var response = await ContentService.getSeriesPage(params)
+      
+        var response = await ContentService.getSeriesPage(this.$route.params)
         console.log('Series Data obtained')
         console.log(response)
         if (response.source != 'none') {

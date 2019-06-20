@@ -61,9 +61,9 @@ export default {
     async local_prototype() {
       var params = {}
       params.recnum = this.recnum
-      params.bookmark = JSON.stringify(this.bookmark)
+      params.route = this.$route.params
       var response = await PrototypeService.publish('country', params)
-      if (response['error']) {
+      if (typeof response['error'] != 'undefined'){
         this.error = response['message']
         this.loaded = false
       } else {
@@ -78,9 +78,9 @@ export default {
     async local_publish() {
       var params = {}
       params.recnum = this.recnum
-      params.bookmark = JSON.stringify(this.bookmark)
+      params.route = this.route.params
       var response = await PublishService.publish('country', params)
-      if (response['error']) {
+       if (typeof response['error'] != 'undefined'){
         this.error = response['message']
         this.loaded = false
       } else {

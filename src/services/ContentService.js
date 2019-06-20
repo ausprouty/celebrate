@@ -31,7 +31,7 @@ export default {
     if (params.version != 'current') {
       var contentForm = this.toFormData(params)
       let res = await apiMYSQL.post(
-        'ContentApi.php?crud=countries',
+        'ContentApi.php?scope=countries',
         contentForm
       )
       if (res.data.content) {
@@ -57,7 +57,7 @@ export default {
     var found = false
     var response = {}
     var contentForm = this.toFormData(params)
-    let res = await apiMYSQL.post('ContentApi.php?crud=country', contentForm)
+    let res = await apiMYSQL.post('ContentApi.php?scope=country', contentForm)
     console.log(res)
     if (res.data.content) {
       found = true
@@ -78,7 +78,7 @@ export default {
     if (params.version != 'current') {
       var contentForm = this.toFormData(params)
       let res = await apiMYSQL.post(
-        'ContentApi.php?crud=languages',
+        'ContentApi.php?scope=languages',
         contentForm
       )
       //  console.log('getLangauges - data')
@@ -116,7 +116,7 @@ export default {
     // for latest get data
     if (params.version != 'current') {
       var contentForm = this.toFormData(params)
-      let res = await apiMYSQL.post('ContentApi.php?crud=library', contentForm)
+      let res = await apiMYSQL.post('ContentApi.php?scope=library', contentForm)
       console.log(res)
       if (res.data.content) {
         found = true
@@ -176,7 +176,7 @@ export default {
     // for latest get data
     if (params.version != 'current') {
       var contentForm = this.toFormData(params)
-      response = await apiMYSQL.post('ContentApi.php?crud=series', contentForm)
+      response = await apiMYSQL.post('ContentApi.php?scope=series', contentForm)
       console.log('get Series data')
       console.log(response)
       if (response.data.content) {
@@ -223,7 +223,7 @@ export default {
     if (params.version != 'current') {
       var contentForm = this.toFormData(params)
       let response = await apiMYSQL.post(
-        'ContentApi.php?crud=page',
+        'ContentApi.php?scope=page',
         contentForm
       )
       if (response.data.content) {
@@ -264,7 +264,7 @@ export default {
     obj.edit_uid = 1
     var contentForm = this.toFormData(obj)
     console.log('about to create content')
-    return apiMYSQL.post('AuthorApi.php?crud=create', contentForm)
+    return apiMYSQL.post('AuthorApi.php?scope=create', contentForm)
   },
   toFormData(obj) {
     var form_data = new FormData()
