@@ -156,11 +156,9 @@ export default {
         text.page = ContentService.validate(this.pageText)
         text.footer = ContentService.validate(this.footerText)
         this.content.text = JSON.stringify(text)
-        this.content.country_code = this.$route.params.countryCODE
-        this.content.language_iso = null
-        this.content.folder = null
-        this.content.filename = 'index'
-        this.content.filetype = 'html'
+        this.content.route = this.$route.params
+        this.content.route.fileNAME = 'index'
+        this.content.mapStatefiletype = 'html'
         this.$store.dispatch('newBookmark', 'clear')
         var response = await AuthorService.createContentData(this.content)
         if (response.data.error != true) {

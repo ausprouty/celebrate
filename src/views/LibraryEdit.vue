@@ -429,8 +429,7 @@ export default {
     async createFolder(folder) {
       console.log(folder)
       var params = {}
-      params.country_code = this.$route.params.countryCODE
-      params.language_iso = this.$route.params.languageISO
+      params.route = JSON.stringify(this.$route.params)
       params.folder = folder.toLowerCase()
       AuthorService.createContentFolder(params)
       this.folders = await AuthorService.getFoldersContent(params)
@@ -617,6 +616,7 @@ export default {
         await this.getLibrary()
         // console.log('after get Libary')
         var param = {}
+        param.route = this.$route.params
         param.image_dir = this.bookmark.language.image_dir
         console.log('image dir: ' + param.image_dir.substring(0, 2))
         this.image_permission = this.authorize(
@@ -624,14 +624,14 @@ export default {
           param.image_dir.substring(0, 1)
         )
         // get images
+
         var img = await AuthorService.getImages(param)
 
         if (img) {
           this.images = img.sort()
         }
         // get folders
-        param.country_code = this.$route.params.countryCODE
-        param.language_iso = this.$route.params.languageISO
+
         var folder = await AuthorService.getFoldersContent(param)
         if (folder) {
           this.folders = folder

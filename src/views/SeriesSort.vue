@@ -102,10 +102,8 @@ export default {
         text.chapters = this.chapters
         var valid = ContentService.validate(text)
         this.content.text = JSON.stringify(valid)
-        this.content.country_code = this.$route.params.countryCODE
-        this.content.language_iso = this.$route.params.languageISO
-        this.content.folder = this.$route.params.folderNAME
-        this.content.filename = 'index'
+        this.content.route = JSON.stringify(this.$route.params)
+        this.content.fileNAME = 'index'
         this.content.filetype = 'json'
         this.$store.dispatch('newBookmark', 'clear')
         var response = await AuthorService.createContentData(this.content)

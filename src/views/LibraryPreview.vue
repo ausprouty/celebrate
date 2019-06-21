@@ -89,30 +89,12 @@ export default {
     goBack() {
       window.history.back()
     },
-    async localPrototype() {
-      var params = {}
-      params.recnum = this.recnum
-      params.bookmark = JSON.stringify(this.bookmark)
-      console.log('params.bookmark')
-      console.log(params.bookmark)
-      var response = await PrototypeService.publish('library', params)
-      if (response['error']) {
-        this.error = response['message']
-        this.loaded = false
-      } else {
-        this.UnsetBookmarks()
-        this.recnum = null
-        this.loaded = false
-        this.loading = true
-        this.publish = false
-        await this.loadView()
-      }
-    },
     async localPublish(location) {
       var response = null
       var params = {}
       params.recnum = this.recnum
       params.bookmark = JSON.stringify(this.bookmark)
+      params.route = JSON.stringify(this.$route.params)
       if (location == 'prototype') {
         response = await PrototypeService.publish('library', params)
       } else {

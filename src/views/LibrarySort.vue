@@ -87,9 +87,8 @@ export default {
         output.text = this.text
         var valid = ContentService.validate(output)
         this.content.text = JSON.stringify(valid)
-        this.content.country_code = this.$route.params.countryCODE
-        this.content.language_iso = this.$route.params.languageISO
-        this.content.filename = this.$route.params.libraryCODE
+        this.content.route.params = this.$route.params
+        this.content.route.params.fileNAME = this.$route.params.libraryCODE
           ? this.$route.params.libraryCODE
           : 'library'
         this.content.filetype = 'json'

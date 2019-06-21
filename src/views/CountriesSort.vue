@@ -72,7 +72,7 @@ export default {
         this.$store.dispatch('newBookmark', 'clear')
         var valid = ContentService.validate(this.countries)
         this.content.text = JSON.stringify(valid)
-        this.content.filename = 'countries'
+        this.content.fileNAME = 'countries'
         this.content.filetype = 'json'
         var response = await AuthorService.createContentData(this.content)
         if (response.data.error != true) {

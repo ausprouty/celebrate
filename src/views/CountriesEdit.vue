@@ -240,7 +240,7 @@ export default {
         var valid = ContentService.validate(this.countries)
         AuthorService.setupCountries(this.countries)
         this.content.text = JSON.stringify(valid)
-        this.content.filename = 'countries'
+        this.content.fileNAME = 'countries'
         this.content.filetype = 'json'
         console.log(this.content)
         var response = await AuthorService.createContentData(this.content)
