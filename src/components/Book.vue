@@ -53,10 +53,10 @@ export default {
         this.$router.push({
           name: 'series',
           params: {
-            countryCODE: this.bookmark.country.code,
-            languageISO: this.bookmark.language.iso,
-            libraryCODE: 'TODO',
-            folderNAME: this.book.name,
+            country_code: this.bookmark.country.code,
+            language_iso: this.bookmark.language.iso,
+            library_code: 'TODO',
+            folder_name: this.book.name,
           }
         })
       } else {
@@ -64,11 +64,11 @@ export default {
         this.$router.push({
           name: 'page',
           params: {
-            countryCODE: this.bookmark.country.code,
-            languageISO: this.bookmark.language.iso,
-            libraryCODE: 'TODO',
-            folderNAME: this.book.name,
-            fileNAME: this.book.name
+            country_code: this.bookmark.country.code,
+            language_iso: this.bookmark.language.iso,
+            library_code: 'TODO',
+            folder_name: this.book.name,
+            filename: this.book.name
           }
         })
       }

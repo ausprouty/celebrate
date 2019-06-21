@@ -33,7 +33,7 @@ export default {
   computed: mapState(['bookmark']),
   mixins: [authorMixin],
   created() {
-    this.authorized = this.authorize('read', this.$route.params.countryCODE)
+    this.authorized = this.authorize('read', this.$route.params.country_code)
   },
   data() {
     return {
@@ -82,7 +82,7 @@ export default {
           this.$router.push({
             name: 'previewLanguages',
             params: {
-              countryCODE: this.$route.params.countryCODE
+              country_code: this.$route.params.country_code
             }
           })
           break

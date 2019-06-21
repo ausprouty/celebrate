@@ -63,7 +63,7 @@ export const countriesMixin = {
     },
     async showPage(country) {
       localStorage.setItem('lastPage', 'countries')
-      this.$route.params.countryCODE = country.code
+      this.$route.params.country_code = country.code
       var link = ''
       var res = await ContentService.getLanguages(this.$route.params)
       var response = res.data.content.text
@@ -79,8 +79,8 @@ export const countriesMixin = {
         this.$router.push({
           name: link,
           params: {
-            countryCODE: country.code,
-            languageISO: language.iso
+            country_code: country.code,
+            language_iso: language.iso
           }
         })
       } else {
@@ -91,7 +91,7 @@ export const countriesMixin = {
 
         this.$router.push({
           name: link,
-          params: { countryCODE: country.code }
+          params: { country_code: country.code }
         })
       }
     }

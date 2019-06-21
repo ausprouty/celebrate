@@ -50,7 +50,7 @@ import { bookMarkMixin } from '@/mixins/BookmarkMixin.js'
 import { seriesMixin } from '@/mixins/SeriesMixin.js'
 export default {
   mixins: [bookMarkMixin, seriesMixin],
-  props: ['countryCODE', 'languageISO', 'libraryCODE','folderNAME'],
+  props: ['country_code', 'language_iso', 'library_code','folder_name'],
   computed: mapState(['bookmark', 'appDir']),
   components: {
     Chapter,
@@ -84,9 +84,9 @@ export default {
       this.$router.push({
         name: 'library',
         params: {
-          countryCODE: this.$route.params.countryCODE,
-          languageISO: this.$route.params.languageISO,
-          libraryCODE: this.$route.params.libraryCODE,
+          country_code: this.$route.params.country_code,
+          language_iso: this.$route.params.language_iso,
+          library_code: this.$route.params.library_code,
         }
       })
     }

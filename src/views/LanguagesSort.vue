@@ -14,7 +14,7 @@
         </p>
       </div>
       <div v-if="this.authorized">
-        <h1>Languages for {{ this.$route.params.countryCODE }}</h1>
+        <h1>Languages for {{ this.$route.params.country_code }}</h1>
         <div>
           <draggable v-model="languages">
             <transition-group>
@@ -57,7 +57,7 @@ import { languageMixin } from '@/mixins/LanguageMixin.js'
 import { authorMixin } from '@/mixins/AuthorMixin.js'
 export default {
   mixins: [bookMarkMixin, languageMixin, authorMixin],
-  props: ['countryCODE'],
+  props: ['country_code'],
   components: {
     NavBar,
     draggable
@@ -90,13 +90,13 @@ export default {
         this.content.text = JSON.stringify(valid)
         this.content.filename = 'languages'
         this.content.filetype = 'json'
-        this.content.country_code = this.$route.params.countryCODE
+        this.content.country_code = this.$route.params.country_code
         var response = await AuthorService.createContentData(this.content)
         if (response.data.error != true) {
           this.$router.push({
             name: 'previewLanguages',
             params: {
-              countryCODE: this.$route.params.countryCODE
+              country_code: this.$route.params.country_code
             }
           })
         } else {
@@ -118,7 +118,7 @@ export default {
   async created() {
     try {
       await this.getLanguages(this.$route.params)
-      this.authorized = this.authorize('write', this.$route.params.countryCODE)
+      this.authorized = this.authorize('write', this.$route.params.country_code)
       this.loaded = true
       this.loading = false
     } catch (error) {

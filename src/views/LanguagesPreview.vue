@@ -19,7 +19,7 @@
         />
       </a>
 
-      <h1>Choose Language (preview for {{ this.countryCODE }})</h1>
+      <h1>Choose Language (preview for {{ this.country_code }})</h1>
       <Language
         v-for="language in languages"
         :key="language.iso"
@@ -55,7 +55,7 @@ import { languageMixin } from '@/mixins/LanguageMixin.js'
 import { authorMixin } from '@/mixins/AuthorMixin.js'
 export default {
   mixins: [bookMarkMixin, languageMixin, authorMixin],
-  props: ['countryCODE'],
+  props: ['country_code'],
   components: {
     Language,
     NavBar
@@ -73,7 +73,7 @@ export default {
       this.$router.push({
         name: 'editLanguages',
         params: {
-          countryCODE: this.countryCODE
+          country_code: this.country_code
         }
       })
     },
@@ -81,7 +81,7 @@ export default {
       this.$router.push({
         name: 'sortLanguages',
         params: {
-          countryCODE: this.countryCODE
+          country_code: this.country_code
         }
       })
     },
@@ -116,25 +116,25 @@ export default {
         await this.getLanguages(this.$route.params)
         this.readonly = this.authorize(
           'readonly',
-          this.$route.params.countryCODE
+          this.$route.params.country_code
         )
-        this.write = this.authorize('write', this.$route.params.countryCODE)
+        this.write = this.authorize('write', this.$route.params.country_code)
         this.publish = false
         this.prototype = false
         if (this.recnum && !this.publish_date && this.prototype_date) {
           this.publish = this.authorize(
             'publish',
-            this.$route.params.countryCODE
+            this.$route.params.country_code
           )
         }
         if (this.recnum && !this.prototype_date) {
           this.prototype = this.authorize(
             'publish',
-            this.$route.params.countryCODE
+            this.$route.params.country_code
           )
         }
         this.ZZ = false
-        if (this.$route.params.countryCODE == 'ZZ') {
+        if (this.$route.params.country_code == 'ZZ') {
           this.ZZ = true
         }
         this.loaded = true

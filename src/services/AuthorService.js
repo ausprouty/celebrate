@@ -80,8 +80,8 @@ export default {
     console.log(country, language)
     if (this.isFilename(language)) {
       var obj = {}
-      obj.languageISO = language
-      obj.countryCODE = country
+      obj.language_iso = language
+      obj.country_code = country
       obj.token = store.state.user.token
       var contentForm = this.toFormData(obj)
       apiSECURE.post(
@@ -108,7 +108,7 @@ export default {
       console.log('is letters')
       var obj = {}
       obj.file = params.file
-      obj.country_code = params.country_code
+      obj.countryCode = params.countryCode
       obj.token = store.state.user.token
       var contentForm = this.toFormData(obj)
       apiSECURE.post(
@@ -128,9 +128,9 @@ export default {
       console.log('is letters')
       var obj = {}
       obj.file = params.file
-      obj.countryCODE = params.countryCODE
-      obj.languageISO = params.languageISO
-      obj.folderNAME = params.folderNAME
+      obj.country_code = params.country_code
+      obj.language_iso = params.language_iso
+      obj.folder_name = params.folder_name
       obj.token = store.state.user.token
       var contentForm = this.toFormData(obj)
       apiSECURE.post(
@@ -302,7 +302,7 @@ export default {
       if (code.length == 2) {
         if (this.isFilename(code)) {
           var obj = {}
-          obj.country_code = code
+          obj.countryCode = code
           obj.token = store.state.user.token
           var contentForm = this.toFormData(obj)
           apiSECURE.post(
@@ -316,8 +316,8 @@ export default {
   setupLanguageFolder(country, language) {
     if (this.isFilename(language)) {
       var obj = {}
-      obj.languageISO = language
-      obj.countryCODE = country
+      obj.language_iso = language
+      obj.country_code = country
       obj.token = store.state.user.token
       console.log('setupLanguageFolder')
       console.log(obj)
@@ -332,7 +332,7 @@ export default {
     if (this.isFilename(language)) {
       var obj = {}
       obj.languageNAME = language
-      obj.countryCODE = country
+      obj.country_code = country
       obj.token = store.state.user.token
       var contentForm = this.toFormData(obj)
       apiSECURE.post(

@@ -59,7 +59,7 @@ import { pageMixin } from '@/mixins/PageMixin.js'
 import { authorMixin } from '@/mixins/AuthorMixin.js'
 export default {
   mixins: [bookMarkMixin, pageMixin, authorMixin],
-  props: ['countryCODE', 'languageISO', 'folderNAME', 'fileNAME'],
+  props: ['country_code', 'language_iso', 'folder_name', 'filename'],
   components: {
     NavBar
   },
@@ -76,11 +76,11 @@ export default {
       this.$router.push({
         name: 'editPage',
         params: {
-          countryCODE: this.$route.params.countryCODE,
-          languageISO: this.$route.params.languageISO,
-          libraryCODE: this.$route.params.libraryCODE,
-          folderNAME: this.$route.params.folderNAME,
-          fileNAME: this.$route.params.fileNAME,
+          country_code: this.$route.params.country_code,
+          language_iso: this.$route.params.language_iso,
+          library_code: this.$route.params.library_code,
+          folder_name: this.$route.params.folder_name,
+          filename: this.$route.params.filename,
           cssFORMATTED: clean,
           token: this.user.token
         }
@@ -92,19 +92,19 @@ export default {
         this.$router.push({
           name: 'previewSeries',
           params: {
-            countryCODE: this.$route.params.countryCODE,
-            languageISO: this.$route.params.languageISO,
-            libraryCODE: this.$route.params.libraryCODE,
-            folderNAME: this.bookmark.book.name
+            country_code: this.$route.params.country_code,
+            language_iso: this.$route.params.language_iso,
+            library_code: this.$route.params.library_code,
+            folder_name: this.bookmark.book.name
           }
         })
       } else {
         this.$router.push({
           name: 'previewLibrary',
           params: {
-            countryCODE: this.$route.params.countryCODE,
-            languageISO: this.$route.params.languageISO,
-            libraryCODE: this.$route.params.libraryCODE
+            country_code: this.$route.params.country_code,
+            language_iso: this.$route.params.language_iso,
+            library_code: this.$route.params.library_code
           }
         })
       }
@@ -135,20 +135,20 @@ export default {
     async loadView() {
       try {
         await this.getPage(this.$route.params)
-        this.read = this.authorize('read', this.$route.params.countryCODE)
-        this.write = this.authorize('write', this.$route.params.countryCODE)
+        this.read = this.authorize('read', this.$route.params.country_code)
+        this.write = this.authorize('write', this.$route.params.country_code)
         this.publish = false
         this.prototype = false
         if (this.recnum && !this.publish_date && this.prototype_date) {
           this.publish = this.authorize(
             'publish',
-            this.$route.params.countryCODE
+            this.$route.params.country_code
           )
         }
         if (this.recnum && !this.prototype_date) {
           this.prototype = this.authorize(
             'publish',
-            this.$route.params.countryCODE
+            this.$route.params.country_code
           )
         }
       } catch (error) {

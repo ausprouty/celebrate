@@ -52,7 +52,7 @@ import { libraryMixin } from '@/mixins/LibraryMixin.js'
 import { authorMixin } from '@/mixins/AuthorMixin.js'
 export default {
   mixins: [bookMarkMixin, libraryMixin, authorMixin],
-  props: ['countryCODE', 'languageISO', 'libraryCODE'],
+  props: ['country_code', 'language_iso', 'library_code'],
   computed: mapState(['bookmark', 'appDir', 'cssURL', 'standard']),
   components: {
     Book,
@@ -70,9 +70,9 @@ export default {
       this.$router.push({
         name: 'editLibrary',
         params: {
-          countryCODE: this.$route.params.countryCODE,
-          languageISO: this.$route.params.languageISO,
-          libraryCODE: this.$route.params.libraryCODE
+          country_code: this.$route.params.country_code,
+          language_iso: this.$route.params.language_iso,
+          library_code: this.$route.params.library_code
         }
       })
     },
@@ -80,9 +80,9 @@ export default {
       this.$router.push({
         name: 'sortLibrary',
         params: {
-          countryCODE: this.$route.params.countryCODE,
-          languageISO: this.$route.params.languageISO,
-          libraryCODE: this.$route.params.libraryCODE
+          country_code: this.$route.params.country_code,
+          language_iso: this.$route.params.language_iso,
+          library_code: this.$route.params.library_code
         }
       })
     },
@@ -119,21 +119,21 @@ export default {
         await this.getLibrary()
         this.readonly = this.authorize(
           'readonly',
-          this.$route.params.countryCODE
+          this.$route.params.country_code
         )
-        this.write = this.authorize('write', this.$route.params.countryCODE)
+        this.write = this.authorize('write', this.$route.params.country_code)
         this.publish = false
         this.prototype = false
         if (this.recnum && !this.publish_date && this.prototype_date) {
           this.publish = this.authorize(
             'publish',
-            this.$route.params.countryCODE
+            this.$route.params.country_code
           )
         }
         if (this.recnum && !this.prototype_date) {
           this.prototype = this.authorize(
             'publish',
-            this.$route.params.countryCODE
+            this.$route.params.country_code
           )
         }
         this.loaded = true

@@ -47,20 +47,18 @@ Vue.use(Router)
 export default new Router({
   mode: 'history',
   routes: [
-    
-
     {
       path: '/',
       name: 'countries',
       component: Countries
     },
     {
-      path: '/edit/country/:countryCODE',
+      path: '/edit/country/:country_code',
       name: 'editCountryPage',
       component: CountryPageEdit
     },
     {
-      path: '/preview/country/:countryCODE',
+      path: '/preview/country/:country_code',
       name: 'previewCountryPage',
       component: CountryPagePreview
     },
@@ -71,25 +69,26 @@ export default new Router({
       props: true
     },
     {
-      path: '/languages/:countryCODE',
+      path: '/languages/:country_code',
       name: 'languages',
       component: Language,
       props: true
     },
     {
-      path: '/library/:countryCODE/:languageISO/:libraryCODE?',
+      path: '/library/:country_code/:language_iso/:library_code?',
       name: 'library',
       component: Library,
       props: true
     },
     {
-      path: '/series/:countryCODE/:languageISO/:libraryCODE/:folderNAME',
+      path: '/series/:country_code/:language_iso/:library_code/:folder_name',
       name: 'series',
       component: Series,
       props: true
     },
     {
-      path: '/page/:countryCODE/:languageISO/:libraryCODE/:folderNAME/:fileNAME',
+      path:
+        '/page/:country_code/:language_iso/:library_code/:folder_name/:filename',
       name: 'page',
       component: Page,
       props: true
@@ -100,26 +99,27 @@ export default new Router({
       component: CountriesEdit
     },
     {
-      path: '/edit/languages/:countryCODE',
+      path: '/edit/languages/:country_code',
       name: 'editLanguages',
       component: LanguageEdit,
       props: true
     },
     {
-      path: '/edit/library/:countryCODE/:languageISO/:libraryCODE?',
+      path: '/edit/library/:country_code/:language_iso/:library_code?',
       name: 'editLibrary',
       component: LibraryEdit,
       props: true
     },
     {
-      path: '/edit/series/:countryCODE/:languageISO/:libraryCODE/:folderNAME',
+      path:
+        '/edit/series/:country_code/:language_iso/:library_code/:folder_name',
       name: 'editSeries',
       component: SeriesEdit,
       props: true
     },
     {
       path:
-        '/edit/page/:countryCODE/:languageISO/:libraryCODE/:folderNAME/:fileNAME/:cssFORMATTED',
+        '/edit/page/:country_code/:language_iso/:library_code/:folder_name/:filename/:cssFORMATTED',
       name: 'editPage',
       component: PageEdit,
       props: true
@@ -130,25 +130,27 @@ export default new Router({
       component: CountriesPreview
     },
     {
-      path: '/preview/languages/:countryCODE',
+      path: '/preview/languages/:country_code',
       name: 'previewLanguages',
       component: LanguagesPreview,
       props: true
     },
     {
-      path: '/preview/library/:countryCODE/:languageISO/:libraryCODE?',
+      path: '/preview/library/:country_code/:language_iso/:library_code?',
       name: 'previewLibrary',
       component: LibraryPreview,
       props: true
     },
     {
-      path: '/preview/series/:countryCODE/:languageISO/:libraryCODE/:folderNAME',
+      path:
+        '/preview/series/:country_code/:language_iso/:library_code/:folder_name',
       name: 'previewSeries',
       component: SeriesPreview,
       props: true
     },
     {
-      path: '/preview/page/:countryCODE/:languageISO/:libraryCODE/:folderNAME/:fileNAME',
+      path:
+        '/preview/page/:country_code/:language_iso/:library_code/:folder_name/:filename',
       name: 'previewPage',
       component: PagePreview,
       props: true
@@ -159,25 +161,26 @@ export default new Router({
       component: CountriesSort
     },
     {
-      path: '/sort/languages/:countryCODE',
+      path: '/sort/languages/:country_code',
       name: 'sortLanguages',
       component: LanguagesSort,
       props: true
     },
     {
-      path: '/sort/library/:countryCODE/:languageISO/:libraryCODE/',
+      path: '/sort/library/:country_code/:language_iso/:library_code/',
       name: 'sortLibrary',
       component: LibrarySort,
       props: true
     },
     {
-      path: '/sort/series/:countryCODE/:languageISO/:libraryCODE/:folderNAME',
+      path:
+        '/sort/series/:country_code/:language_iso/:library_code/:folder_name',
       name: 'sortSeries',
       component: SeriesSort,
       props: true
     },
     {
-      path: '/template/:countryCODE/:languageISO',
+      path: '/template/:country_code/:language_iso',
       name: 'createTemplate',
       component: Template,
       props: true
@@ -189,7 +192,7 @@ export default new Router({
       props: false
     },
     {
-      path: '/transfer/:countryCODE/:languageISO/:actionCODE',
+      path: '/transfer/:country_code/:language_iso/:actionCODE',
       name: 'transfer',
       component: Transfer,
       props: false

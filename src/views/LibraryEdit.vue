@@ -231,7 +231,7 @@ export default {
     NavBar,
     VueCkeditor
   },
-  props: ['countryCODE', 'languageISO', 'libraryCODE'],
+  props: ['country_code', 'language_iso', 'library_code'],
   computed: mapState(['bookmark', 'appDir', 'cssURL', 'standard']),
   data() {
     return {
@@ -383,7 +383,7 @@ export default {
       console.log(folder)
       var params = {}
       params.route = this.$route.params
-      params.route.folderNAME = folder.toLowerCase()
+      params.route.folder_name = folder.toLowerCase()
       params.route = JSON.stringify(params.route)
       AuthorService.createContentFolder(params)
       this.folders = await AuthorService.getFoldersContent(params)
@@ -392,8 +392,8 @@ export default {
       this.$router.push({
         name: 'createTemplate',
         params: {
-          countryCODE: this.$route.params.countryCODE,
-          languageISO: this.$route.params.languageISO
+          country_code: this.$route.params.country_code,
+          language_iso: this.$route.params.language_iso
         }
       })
     },
@@ -463,7 +463,7 @@ export default {
             console.log(checkfile)
             var params = {}
             params.file = checkfile[0]
-            params.country_code = this.$route.params.countryCODE
+            params.country_code = this.$route.params.country_code
             type = await AuthorService.createStyle(params)
             var style = await AuthorService.getStyles(params)
             if (style) {
@@ -493,10 +493,10 @@ export default {
             console.log('type ok')
             console.log(checkfile)
             var params = {}
-            params.fileNAME = checkfile[0]
-            params.countryCODE = this.$route.params.countryCODE
-            params.languageISO = this.$route.params.languageISO
-            params.folderNAME = book.folder
+            params.filename = checkfile[0]
+            params.country_code = this.$route.params.country_code
+            params.language_iso = this.$route.params.language_iso
+            params.folder_name = book.folder
             console.log(params)
             type = await AuthorService.createTemplate(params)
             if (type) {
@@ -518,8 +518,8 @@ export default {
         // create index files
         var check = ''
         var params = {}
-        params.country_code = this.$route.params.countryCODE
-        params.= this.$route.params.languageISO
+        params.country_code = this.$route.params.country_code
+        params.language_iso = this.$route.params.language_iso
         var arrayLength = this.library.length
         for (var i = 0; i < arrayLength; i++) {
           check = this.library[i]
@@ -536,10 +536,10 @@ export default {
         output.text = this.text
         var valid = ContentService.validate(output)
         this.content.text = JSON.stringify(valid)
-        this.content.fileNAME = this.$route.params.libraryCODE
+        this.content.filename = this.$route.params.library_code
         this.content.filetype = 'json'
-        this.content.countryCODE = this.$route.params.countryCODE
-        this.content.languageISO = this.$route.params.languageISO
+        this.content.country_code = this.$route.params.country_code
+        this.content.language_iso = this.$route.params.language_iso
         this.$store.dispatch('newBookmark', 'clear')
         console.log('we are about to create content')
         console.log(this.content)
@@ -548,9 +548,9 @@ export default {
           this.$router.push({
             name: 'previewLibrary',
             params: {
-              countryCODE: this.$route.params.countryCODE,
-              languageISO: this.$route.params.languageISO,
-              libraryCODE: this.$route.params.libraryCODE
+              country_code: this.$route.params.country_code,
+              language_iso: this.$route.params.language_iso,
+              library_code: this.$route.params.library_code
             }
           })
         } else {
@@ -608,11 +608,11 @@ export default {
         }
         this.booklist.sort()
         if (!this.image) {
-          this.image = this.$route.params.libraryCODE + '.png'
+          this.image = this.$route.params.library_code + '.png'
         }
         this.authorized = this.authorize(
           'write',
-          this.$route.params.countryCODE
+          this.$route.params.country_code
         )
         this.loaded = true
         this.loading = false
@@ -626,8 +626,8 @@ export default {
   },
   beforeCreate() {
     this.$route.params.version = 'latest'
-    if (!this.$route.params.libraryCODE) {
-      this.$route.params.libraryCODE = 'library'
+    if (!this.$route.params.library_code) {
+      this.$route.params.library_code = 'library'
     }
     this.$route.params.stylesSET = 'myfriends'
     this.$route.params.version = 'lastest'

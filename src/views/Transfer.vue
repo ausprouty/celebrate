@@ -10,7 +10,7 @@ import { mapState } from 'vuex'
 import { bookMarkMixin } from '@/mixins/BookmarkMixin.js'
 import { authorMixin } from '@/mixins/AuthorMixin.js'
 export default {
-  props: ['countryCODE', 'languageISO', 'actionCODE'],
+  props: ['country_code', 'language_iso', 'actionCODE'],
   mixins: [authorMixin, bookMarkMixin],
   computed: mapState(['bookmark', 'appDir', 'cssURL', 'standard']),
   data() {
@@ -19,7 +19,7 @@ export default {
     }
   },
   async created() {
-    this.authorized = this.authorize('write', this.$route.params.countryCODE)
+    this.authorized = this.authorize('write', this.$route.params.country_code)
     if (this.authorized) {
       await this.CheckBookmarks(this.$route.params)
       this.$route.params.bookmark = JSON.stringify(this.bookmark)

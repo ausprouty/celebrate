@@ -42,7 +42,7 @@ import { pageMixin } from '@/mixins/PageMixin.js'
 import { authorMixin } from '@/mixins/AuthorMixin.js'
 export default {
   mixins: [bookMarkMixin, pageMixin, authorMixin],
-  props: ['countryCODE', 'languageISO'],
+  props: ['country_code', 'language_iso'],
   components: {
     NavBar,
     VueCkeditor
@@ -107,17 +107,17 @@ export default {
     async saveForm() {
       try {
         this.content.text = ContentService.validate(this.pageText)
-        this.content.countryCODE = this.$route.params.countryCODE
-        this.content.languageISO = this.$route.params.languageISO
+        this.content.country_code = this.$route.params.country_code
+        this.content.language_iso = this.$route.params.language_iso
         this.content.folder = this.bookmark.book.folder
-        this.content.filename = this.$route.params.fileNAME
+        this.content.filename = this.$route.params.filename
         this.content.filetype = 'html'
         this.$router.push({
           name: 'editLibrary',
           params: {
-            countryCODE: this.$route.params.countryCODE,
-            languageISO: this.$route.params.languageISO,
-            libraryCODE: this.$route.params.libraryCODE,
+            country_code: this.$route.params.country_code,
+            language_iso: this.$route.params.language_iso,
+            library_code: this.$route.params.library_code,
           }
         })
       } catch (error) {
@@ -142,7 +142,7 @@ export default {
       }
     }
     this.$route.params.version = 'lastest'
-    this.$route.params.pageNAME = this.$route.params.fileNAME
+    this.$route.params.pageNAME = this.$route.params.filename
     var css = this.$route.params.cssFORMATTED
     var clean = css.replace(/-/g, '/')
     this.$route.params.css = clean
@@ -151,7 +151,7 @@ export default {
   },
   async created() {
     try {
-      this.authorized = this.authorize('write', this.$route.params.countryCODE)
+      this.authorized = this.authorize('write', this.$route.params.country_code)
       this.loaded = true
       this.loading = false
     } catch (error) {

@@ -69,7 +69,7 @@ import { pageMixin } from '@/mixins/PageMixin.js'
 import { authorMixin } from '@/mixins/AuthorMixin.js'
 export default {
   mixins: [bookMarkMixin, pageMixin, authorMixin],
-  props: ['countryCODE', 'languageISO', 'folderNAME', 'fileNAME'],
+  props: ['country_code', 'language_iso', 'folder_name', 'filename'],
   components: {
     NavBar,
     VueCkeditor
@@ -145,7 +145,7 @@ export default {
       window.history.back()
     },
     async loadTemplate() {
-      this.authorized = this.authorize('write', this.$route.params.countryCODE)
+      this.authorized = this.authorize('write', this.$route.params.country_code)
       this.loading = false
       this.loaded = true
       if (this.bookmark.book.template) {
@@ -171,11 +171,11 @@ export default {
           this.$router.push({
             name: 'previewPage',
             params: {
-              countryCODE: this.$route.params.countryCODE,
-              languageISO: this.$route.params.languageISO,
-              libraryCODE: this.$route.params.libraryCODE,
-              folderNAME: this.$route.params.folderNAME,
-              fileNAME: this.$route.params.fileNAME
+              country_code: this.$route.params.country_code,
+              language_iso: this.$route.params.language_iso,
+              library_code: this.$route.params.library_code,
+              folder_name: this.$route.params.folder_name,
+              filename: this.$route.params.filename
             }
           })
         } else {
@@ -204,7 +204,7 @@ export default {
       }
     }
     this.$route.params.version = 'lastest'
-    this.$route.params.pageNAME = this.$route.params.fileNAME
+    this.$route.params.pageNAME = this.$route.params.filename
     var css = this.$route.params.cssFORMATTED
     var clean = css.replace(/@/g, '/')
     this.$route.params.css = clean
@@ -217,7 +217,7 @@ export default {
       await this.getPage(this.$route.params)
       console.log('Got page')
       console.log('I am about to authorize to write')
-      this.authorized = this.authorize('write', this.$route.params.countryCODE)
+      this.authorized = this.authorize('write', this.$route.params.country_code)
       console.log('css')
       console.log(this.bookmark.book.style)
     } catch (error) {

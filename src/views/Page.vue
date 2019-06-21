@@ -41,7 +41,7 @@ import { bookMarkMixin } from '@/mixins/BookmarkMixin.js'
 import { pageMixin } from '@/mixins/PageMixin.js'
 export default {
   mixins: [bookMarkMixin, pageMixin],
-  props: ['countryCODE', 'languageISO', 'folderNAME', 'fileNAME'],
+  props: ['country_code', 'language_iso', 'folder_name', 'filename'],
   components: {
     NavBar
   },

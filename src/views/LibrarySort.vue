@@ -52,7 +52,7 @@ import { libraryMixin } from '@/mixins/LibraryMixin.js'
 import { authorMixin } from '@/mixins/AuthorMixin.js'
 export default {
   mixins: [bookMarkMixin, libraryMixin, authorMixin],
-  props: ['countryCODE', 'languageISO'],
+  props: ['country_code', 'language_iso'],
   computed: mapState(['bookmark', 'appDir', 'cssURL', 'standard']),
   components: {
     NavBar,
@@ -88,8 +88,8 @@ export default {
         var valid = ContentService.validate(output)
         this.content.text = JSON.stringify(valid)
         this.content.route.params = this.$route.params
-        this.content.route.params.fileNAME = this.$route.params.libraryCODE
-          ? this.$route.params.libraryCODE
+        this.content.route.params.filename = this.$route.params.library_code
+          ? this.$route.params.library_code
           : 'library'
         this.content.filetype = 'json'
         this.$store.dispatch('newBookmark', 'clear')
@@ -98,9 +98,9 @@ export default {
           this.$router.push({
             name: 'previewLibrary',
             params: {
-              countryCODE: this.$route.params.countryCODE,
-              languageISO: this.$route.params.languageISO,
-              libraryCODE: this.$route.params.libraryCODE
+              country_code: this.$route.params.country_code,
+              language_iso: this.$route.params.language_iso,
+              library_code: this.$route.params.library_code
             }
           })
         } else {
@@ -122,7 +122,7 @@ export default {
   async created() {
     try {
       await this.getLibrary()
-      this.authorized = this.authorize('write', this.$route.params.countryCODE)
+      this.authorized = this.authorize('write', this.$route.params.country_code)
       this.loaded = true
       this.loading = false
     } catch (error) {

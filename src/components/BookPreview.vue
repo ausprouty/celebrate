@@ -1,23 +1,14 @@
 <template>
   <div class="app-link" v-on:click="showPage(book)">
-    <div
-      class="app-card -shadow"
-      v-bind:class="{ notpublished: !book.publish }"
-    >
+    <div class="app-card -shadow" v-bind:class="{ notpublished: !book.publish }">
       <div v-if="!this.bookmark.language.titles">
-        <img
-          v-bind:src="appDir.library + this.image_dir + '/' + book.image"
-          class="book"
-        />
+        <img v-bind:src="appDir.library + this.image_dir + '/' + book.image" class="book">
         <div class="book">
           <span class="bold">{{ book.title }}</span>
         </div>
       </div>
       <div v-if="this.bookmark.language.titles">
-        <img
-          v-bind:src="appDir.library + this.image_dir + '/' + book.image"
-          class="something"
-        />
+        <img v-bind:src="appDir.library + this.image_dir + '/' + book.image" class="something">
       </div>
     </div>
   </div>
@@ -54,10 +45,10 @@ export default {
         this.$router.push({
           name: 'previewSeries',
           params: {
-            countryCODE: this.$route.params.countryCODE,
-            languageISO: this.$route.params.languageISO,
-            libraryCODE: this.$route.params.libraryCODE,
-            folderNAME: this.book.name
+            country_code: this.$route.params.country_code,
+            language_iso: this.$route.params.language_iso,
+            library_code: this.$route.params.library_code,
+            folder_name: this.book.name
           }
         })
       } else {
@@ -65,10 +56,10 @@ export default {
         this.$router.push({
           name: 'previewPage',
           params: {
-            countryCODE: this.$route.params.countryCODE,
-            languageISO: this.$route.params.languageISO,
-            libraryCODE: this.$route.params.libraryCODE,
-            fileNAME: this.book.name
+            country_code: this.$route.params.country_code,
+            language_iso: this.$route.params.language_iso,
+            library_code: this.$route.params.library_code,
+            filename: this.book.name
           }
         })
       }

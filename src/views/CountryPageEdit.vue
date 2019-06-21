@@ -51,7 +51,7 @@ import { freeformMixin } from '@/mixins/FreeformMixin.js'
 import { authorMixin } from '@/mixins/AuthorMixin.js'
 export default {
   mixins: [bookMarkMixin, freeformMixin, authorMixin],
-  props: ['countryCODE'],
+  props: ['country_code'],
   components: {
     NavBar,
     VueCkeditor
@@ -135,7 +135,7 @@ export default {
       window.history.back()
     },
     async loadTemplate() {
-      this.authorized = this.authorize('write', this.$route.params.countryCODE)
+      this.authorized = this.authorize('write', this.$route.params.country_code)
       this.loading = false
       this.loaded = true
       if (this.bookmark.book.template) {
@@ -157,7 +157,7 @@ export default {
         text.footer = ContentService.validate(this.footerText)
         this.content.text = JSON.stringify(text)
         this.content.route = this.$route.params
-        this.content.route.fileNAME = 'index'
+        this.content.route.filename = 'index'
         this.content.mapStatefiletype = 'html'
         this.$store.dispatch('newBookmark', 'clear')
         var response = await AuthorService.createContentData(this.content)
@@ -165,7 +165,7 @@ export default {
           this.$router.push({
             name: 'previewCountryPage',
             params: {
-              countryCODE: this.$route.params.countryCODE
+              country_code: this.$route.params.country_code
             }
           })
         } else {

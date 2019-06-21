@@ -96,9 +96,9 @@ export default {
       response.data = {}
       response.data.content = {}
       console.log('here is the page I am looking for ')
-      console.log('content/' + params.countryCODE + '/languages.json')
+      console.log('content/' + params.country_code + '/languages.json')
       let res = await apiContent.get(
-        'content/' + params.countryCODE + '/languages.json'
+        'content/' + params.country_code + '/languages.json'
       )
       console.log(res)
       response.data.content.text = res.data
@@ -134,9 +134,9 @@ export default {
         response.data.content = {}
         let res = await apiContent.get(
           '/content/' +
-            params.countryCODE +
+            params.country_code +
             '/' +
-            params.languageISO +
+            params.language_iso +
             '/library.json'
         )
         console.log('page found')
@@ -150,17 +150,17 @@ export default {
       } catch (error) {
         console.log('We are going to try to create Directory Languages')
         await AuthorService.setupLanguageFolder(
-          params.countryCODE,
-          params.languageISO
+          params.country_code,
+          params.language_iso
         )
         response.data = {}
         response.data.content = {}
         // pulls from default library which may not exist
         let res = await apiContent.get(
           '/content/' +
-            params.countryCODE +
+            params.country_code +
             '/' +
-            params.languageISO +
+            params.language_iso +
             '/library.json'
         )
         response.data.content.text = res.data
@@ -200,11 +200,11 @@ export default {
 
         let res = await apiContent.get(
           'content/' +
-            params.countryCODE +
+            params.country_code +
             '/' +
-            params.languageISO +
+            params.language_iso +
             '/' +
-            params.folderNAME +
+            params.folder_name +
             '/index.json'
         )
         response.data.content = res.data
@@ -236,19 +236,19 @@ export default {
     // if no data or need current get content
     if (!found) {
       response.source = 'content'
-      var fileNAME = params.fileNAME
-      if (!fileNAME.includes('.html')) {
-        fileNAME = fileNAME + '.html'
+      var filename = params.filename
+      if (!filename.includes('.html')) {
+        filename = filename + '.html'
       }
       let res = await apiContent.get(
         'content/' +
-          params.countryCODE +
+          params.country_code +
           '/' +
-          params.languageISO +
+          params.language_iso +
           '/' +
-          params.folderNAME +
+          params.folder_name +
           '/' +
-          fileNAME
+          filename
       )
       response.data.content.text = res.data
       return response

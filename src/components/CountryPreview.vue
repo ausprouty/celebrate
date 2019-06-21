@@ -37,7 +37,7 @@ export default {
       console.log(country)
       console.log(country.code)
       localStorage.setItem('lastPage', 'countries')
-      this.$route.params.countryCODE = country.code
+      this.$route.params.country_code = country.code
       var route = 'previewLanguages'
       if (country.custom) {
         route = 'previewCountryPage'
@@ -45,7 +45,7 @@ export default {
       this.$router.push({
         name: route,
         params: {
-          countryCODE: country.code
+          country_code: country.code
         }
       })
     }

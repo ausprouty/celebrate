@@ -47,11 +47,11 @@ export const libraryMixin = {
         this.error = this.loaded = ''
         this.loading = true
 
-        if (!this.$route.params.libraryCODE) {
-          this.$route.params.libraryCODE = 'library'
+        if (!this.$route.params.library_code) {
+          this.$route.params.library_code = 'library'
         } else {
-          if (this.$route.params.libraryCODE.includes('.html')) {
-            this.$route.params.libraryCODE = this.$route.params.libraryCODE.slice(
+          if (this.$route.params.library_code.includes('.html')) {
+            this.$route.params.library_code = this.$route.params.library_code.slice(
               0,
               -5
             )

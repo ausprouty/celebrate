@@ -33,7 +33,7 @@ export default {
   computed: mapState(['bookmark']),
   mixins: [authorMixin],
   created() {
-    this.authorized = this.authorize('read', this.$route.params.countryCODE)
+    this.authorized = this.authorize('read', this.$route.params.country_code)
   },
   data() {
     return {
@@ -101,7 +101,7 @@ export default {
           this.$router.push({
             name: 'previewCountryPage',
             params: {
-              countryCODE: this.$route.params.countryCODE
+              country_code: this.$route.params.country_code
             }
           })
           break
@@ -109,10 +109,10 @@ export default {
           this.$router.push({
             name: 'previewSeries',
             params: {
-              countryCODE: this.$route.params.countryCODE,
-              languageISO: 'eng',
-              libraryCODE: 'friends',
-              folderNAME: 'principles'
+              country_code: this.$route.params.country_code,
+              language_iso: 'eng',
+              library_code: 'friends',
+              folder_name: 'principles'
             }
           })
           break
@@ -120,10 +120,10 @@ export default {
           this.$router.push({
             name: 'previewSeries',
             params: {
-              countryCODE: this.$route.params.countryCODE,
-              languageISO: 'eng',
-              libraryCODE: 'friends',
-              folderNAME: 'basics'
+              country_code: this.$route.params.country_code,
+              language_iso: 'eng',
+              library_code: 'friends',
+              folder_name: 'basics'
             }
           })
           break
@@ -131,10 +131,10 @@ export default {
           this.$router.push({
             name: 'previewSeries',
             params: {
-              countryCODE: this.$route.params.countryCODE,
-              languageISO: 'eng',
-              libraryCODE: 'friends',
-              folderNAME: 'first_steps'
+              country_code: this.$route.params.country_code,
+              language_iso: 'eng',
+              library_code: 'friends',
+              folder_name: 'first_steps'
             }
           })
           break
@@ -142,10 +142,10 @@ export default {
           this.$router.push({
             name: 'previewSeries',
             params: {
-              countryCODE: this.$route.params.countryCODE,
-              languageISO: 'eng',
-              libraryCODE: 'friends',
-              folderNAME: 'multiply'
+              country_code: this.$route.params.country_code,
+              language_iso: 'eng',
+              library_code: 'friends',
+              folder_name: 'multiply'
             }
           })
           break
@@ -153,10 +153,10 @@ export default {
           this.$router.push({
             name: 'previewSeries',
             params: {
-              countryCODE: this.$route.params.countryCODE,
-              languageISO: 'eng',
-              libraryCODE: 'friends',
-              folderNAME: 'compass'
+              country_code: this.$route.params.country_code,
+              language_iso: 'eng',
+              library_code: 'friends',
+              folder_name: 'compass'
             }
           })
           break

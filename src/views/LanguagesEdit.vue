@@ -8,7 +8,7 @@
     </div>
     <div class="content" v-if="loaded">
       <div v-if="this.authorized">
-        <h1>Languages for {{ this.$route.params.countryCODE }}</h1>
+        <h1>Languages for {{ this.$route.params.country_code }}</h1>
         <div>
           <button class="button" @click="publishAll">
             Select ALL to publish?
@@ -180,7 +180,7 @@ import { required } from 'vuelidate/lib/validators'
 //import { validFoldername } from '@/validators/Validator.js'
 export default {
   mixins: [bookMarkMixin, languageMixin, authorMixin],
-  props: ['countryCODE'],
+  props: ['country_code'],
   components: {
     NavBar
   },
@@ -253,7 +253,7 @@ export default {
     },
     async setupLanguageFolder(iso) {
       AuthorService.setupLanguageFolder(
-        this.$route.params.countryCODE,
+        this.$route.params.country_code,
         iso.toLowerCase()
       )
       console.log(this.$v.languages.$model)
@@ -270,7 +270,7 @@ export default {
       }
     },
     async setupImageFolder(iso) {
-      AuthorService.setupImageFolder(this.$route.params.countryCODE, iso)
+      AuthorService.setupImageFolder(this.$route.params.country_code, iso)
       console.log(this.$v.languages.$model)
       var change = this.$v.languages.$model
       var arrayLength = change.length
@@ -291,7 +291,7 @@ export default {
         console.log('saveForm')
         console.log(valid)
         AuthorService.createDirectoryLanguages(
-          this.$route.params.countryCODE,
+          this.$route.params.country_code,
           valid
         )
         this.content.text = JSON.stringify(valid)
@@ -303,7 +303,7 @@ export default {
           this.$router.push({
             name: 'previewLanguages',
             params: {
-              countryCODE: this.$route.params.countryCODE
+              country_code: this.$route.params.country_code
             }
           })
         } else {
@@ -324,7 +324,7 @@ export default {
   },
   async created() {
     try {
-      this.authorized = this.authorize('write', this.$route.params.countryCODE)
+      this.authorized = this.authorize('write', this.$route.params.country_code)
       console.log('this authorized')
       if (this.authorized) {
         this.image_folders = await AuthorService.getFoldersImages()

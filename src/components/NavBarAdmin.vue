@@ -76,8 +76,8 @@ export default {
   },
   created() {
     var scope = 'world'
-    if (this.$route.params.countryCODE) {
-      scope = this.$route.params.countryCODE
+    if (this.$route.params.country_code) {
+      scope = this.$route.params.country_code
     }
     this.authorized = this.authorize('read', scope)
     this.administrator = this.authorize('register', scope)
@@ -137,7 +137,7 @@ export default {
           this.$router.push({
             name: 'previewLanguages',
             params: {
-              countryCODE: this.bookmark.country.code
+              country_code: this.bookmark.country.code
             }
           })
           break
@@ -145,9 +145,9 @@ export default {
           this.$router.push({
             name: 'previewLibrary',
             params: {
-              countryCODE: this.$route.params.countryCODE,
-              languageISO: this.$route.params.languageISO,
-              libraryCODE: this.$route.params.libraryCODE
+              country_code: this.$route.params.country_code,
+              language_iso: this.$route.params.language_iso,
+              library_code: this.$route.params.library_code
             }
           })
           break

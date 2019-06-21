@@ -37,7 +37,7 @@ import { freeformMixin } from '@/mixins/FreeformMixin.js'
 import { authorMixin } from '@/mixins/AuthorMixin.js'
 export default {
   mixins: [bookMarkMixin, freeformMixin, authorMixin],
-  props: ['countryCODE', 'languageISO', 'folderNAME', 'fileNAME'],
+  props: ['country_code', 'language_iso', 'folder_name', 'filename'],
   components: {
     NavBar
   },
@@ -49,7 +49,7 @@ export default {
       this.$router.push({
         name: 'editCountryPage',
         params: {
-          countryCODE: this.$route.params.countryCODE
+          country_code: this.$route.params.country_code
         }
       })
     },

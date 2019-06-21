@@ -78,7 +78,7 @@ import { seriesMixin } from '@/mixins/SeriesMixin.js'
 import { authorMixin } from '@/mixins/AuthorMixin.js'
 export default {
   mixins: [bookMarkMixin, seriesMixin, authorMixin],
-  props: ['countryCODE', 'languageISO', 'libraryCODE', 'folderNAME'],
+  props: ['country_code', 'language_iso', 'library_code', 'folder_name'],
   computed: mapState(['bookmark', 'appDir']),
   components: {
     Chapter,
@@ -101,10 +101,10 @@ export default {
       this.$router.push({
         name: 'editSeries',
         params: {
-          countryCODE: this.$route.params.countryCODE,
-          languageISO: this.$route.params.languageISO,
-          libraryCODE: this.$route.params.libraryCODE,
-          folderNAME: this.$route.params.folderNAME
+          country_code: this.$route.params.country_code,
+          language_iso: this.$route.params.language_iso,
+          library_code: this.$route.params.library_code,
+          folder_name: this.$route.params.folder_name
         }
       })
     },
@@ -112,10 +112,10 @@ export default {
       this.$router.push({
         name: 'sortSeries',
         params: {
-          countryCODE: this.$route.params.countryCODE,
-          languageISO: this.$route.params.languageISO,
-          libraryCODE: this.$route.params.libraryCODE,
-          folderNAME: this.$route.params.folderNAME
+          country_code: this.$route.params.country_code,
+          language_iso: this.$route.params.language_iso,
+          library_code: this.$route.params.library_code,
+          folder_name: this.$route.params.folder_name
         }
       })
     },
@@ -126,9 +126,9 @@ export default {
       this.$router.push({
         name: 'previewLibrary',
         params: {
-          countryCODE: this.$route.params.countryCODE,
-          languageISO: this.$route.params.languageISO,
-          libraryCODE: this.$route.params.libraryCODE
+          country_code: this.$route.params.country_code,
+          language_iso: this.$route.params.language_iso,
+          library_code: this.$route.params.library_code
         }
       })
     },
@@ -160,29 +160,29 @@ export default {
         await this.getSeries(this.$route.params)
         if (
           this.bookmark.series.length == 0 &&
-          this.$route.params.fileNAME == 'first_steps'
+          this.$route.params.filename == 'first_steps'
         ) {
           await AuthorService.setupSeriesFirstSteps(this.$route.params)
           await this.getSeries(this.$route.params)
         }
         this.readonly = this.authorize(
           'readonly',
-          this.$route.params.countryCODE
+          this.$route.params.country_code
         )
-        this.write = this.authorize('write', this.$route.params.countryCODE)
+        this.write = this.authorize('write', this.$route.params.country_code)
 
         this.publish = false
         this.prototype = false
         if (this.recnum && !this.publish_date && this.prototype_date) {
           this.publish = this.authorize(
             'publish',
-            this.$route.params.countryCODE
+            this.$route.params.country_code
           )
         }
         if (this.recnum && !this.prototype_date) {
           this.prototype = this.authorize(
             'publish',
-            this.$route.params.countryCODE
+            this.$route.params.country_code
           )
         }
 

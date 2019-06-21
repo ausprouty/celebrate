@@ -14,7 +14,7 @@
         </p>
       </div>
       <div v-if="this.authorized">
-        <h1>Series for {{ this.$route.params.countryCODE }}</h1>
+        <h1>Series for {{ this.$route.params.country_code }}</h1>
         <div class="form">
           <span>Series Description:</span>
           <br />
@@ -70,7 +70,7 @@ import { seriesMixin } from '@/mixins/SeriesMixin.js'
 import { authorMixin } from '@/mixins/AuthorMixin.js'
 export default {
   mixins: [bookMarkMixin, seriesMixin, authorMixin],
-  props: ['countryCODE', 'languageISO', 'libraryCODE', 'folderNAME'],
+  props: ['country_code', 'language_iso', 'library_code', 'folder_name'],
   computed: mapState(['bookmark', 'appDir']),
   components: {
     NavBar,
@@ -103,7 +103,7 @@ export default {
         var valid = ContentService.validate(text)
         this.content.text = JSON.stringify(valid)
         this.content.route = JSON.stringify(this.$route.params)
-        this.content.fileNAME = 'index'
+        this.content.filename = 'index'
         this.content.filetype = 'json'
         this.$store.dispatch('newBookmark', 'clear')
         var response = await AuthorService.createContentData(this.content)
@@ -111,10 +111,10 @@ export default {
           this.$router.push({
             name: 'previewSeries',
             params: {
-              countryCODE: this.$route.params.countryCODE,
-              languageISO: this.$route.params.languageISO,
-              libraryCODE: this.$route.params.libraryCODE,
-              folderNAME: this.$route.params.folderNAME
+              country_code: this.$route.params.country_code,
+              language_iso: this.$route.params.language_iso,
+              library_code: this.$route.params.library_code,
+              folder_name: this.$route.params.folder_name
             }
           })
         } else {
@@ -133,7 +133,7 @@ export default {
   async created() {
     try {
       this.getSeries(this.$route.params)
-      this.authorized = this.authorize('write', this.$route.params.countryCODE)
+      this.authorized = this.authorize('write', this.$route.params.country_code)
     } catch (error) {
       console.log('There was an error in SeriesEdit.vue:', error) // Logs out the error
     }

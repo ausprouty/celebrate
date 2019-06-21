@@ -33,7 +33,7 @@ export const bookMarkMixin = {
       }
     },
     async CheckBookmarkCountry(route) {
-      if (!route.countryCODE) {
+      if (!route.country_code) {
         return null
       }
       try {
@@ -43,13 +43,13 @@ export const bookMarkMixin = {
             currentCountry = this.bookmark.country.code
           }
         }
-        if (route.countryCODE != currentCountry) {
+        if (route.country_code != currentCountry) {
           var res = await ContentService.getCountries(route)
           var response = res.data.content.text
           var value = {}
           var length = response.length
           for (var i = 0; i < length; i++) {
-            if (response[i].code == route.countryCODE) {
+            if (response[i].code == route.country_code) {
               value = response[i]
             }
           }
@@ -70,13 +70,13 @@ export const bookMarkMixin = {
       //  console.log('entered CheckBookmarkLanguageLibrary')
       //  console.log(route)
       /* LANGUAGE AND LIBRARY
-           if route.languageISO is not the same as bookmark 
+           if route.language_iso is not the same as bookmark 
             update language and erase all bookmark below*/
-      if (!route.languageISO) {
+      if (!route.language_iso) {
         this.$store.dispatch('unsetBookmark', ['language'])
         return null
       }
-      if (route.languageISO) {
+      if (route.language_iso) {
         try {
           var value = {}
           var response = ''
@@ -84,12 +84,12 @@ export const bookMarkMixin = {
           //if (typeof this.bookmark.language != 'undefined') {
           //  currentLanguage = this.bookmark.language.iso
           // }
-          //if (route.languageISO != currentLanguage) {  in development the library can change
+          //if (route.language_iso != currentLanguage) {  in development the library can change
           var res = await ContentService.getLanguages(route)
           response = res.data.content.text
           var length = response.length
           for (var i = 0; i < length; i++) {
-            if (response[i].iso == route.languageISO) {
+            if (response[i].iso == route.language_iso) {
               value = response[i]
             }
           }
@@ -127,11 +127,11 @@ export const bookMarkMixin = {
     async CheckBookmarkBookSeries(route) {
       console.log('route in CheckBookmarkBookSeries')
       console.log(route)
-      if (!route.folderNAME) {
+      if (!route.folder_name) {
         this.$store.dispatch('unsetBookmark', ['book'])
         return null
       }
-      if (route.folderNAME) {
+      if (route.folder_name) {
         try {
           var currentBook = ''
           var value = {}
@@ -140,11 +140,11 @@ export const bookMarkMixin = {
               currentBook = this.bookmark.series.book
             }
           }
-          if (route.folderNAME != currentBook) {
+          if (route.folder_name != currentBook) {
             var books = this.bookmark.library.books
             var length = books.length
             for (var i = 0; i < length; i++) {
-              if (books[i].name == route.folderNAME) {
+              if (books[i].name == route.folder_name) {
                 value = books[i]
               }
             }
@@ -159,7 +159,7 @@ export const bookMarkMixin = {
           if (typeof this.bookmark.series.name != 'undefined') {
             currentSeries = this.bookmark.series.name
           }
-          if (route.folderNAME != currentSeries) {
+          if (route.folder_name != currentSeries) {
             var response = await ContentService.getSeries(route)
             console.log('I am getting series')
             console.log(response)
@@ -187,18 +187,18 @@ export const bookMarkMixin = {
             update book and erase all bookmark below*/
     async CheckBookmarkPage(route) {
       //console.log('entering bookmark page')
-      if (!route.fileNAME) {
+      if (!route.filename) {
         this.$store.dispatch('unsetBookmark', ['page'])
         return null
       }
-      if (route.fileNAME) {
+      if (route.filename) {
         try {
           var value = {}
           var currentPage = ''
           if (typeof this.bookmark.page != 'undefined') {
             currentPage = this.bookmark.page
           }
-          if (route.fileNAME != currentPage) {
+          if (route.filename != currentPage) {
             //console.log('BOOKMARK MIXIN --    we have a new page')
             if (typeof this.bookmark.series != 'undefined') {
               //console.log('the page is part of a series with chapters as')
@@ -210,7 +210,7 @@ export const bookMarkMixin = {
                 // console.log(chapters)
                 var length = chapters.length
                 for (var i = 0; i < length; i++) {
-                  if (chapters[i].filename == route.fileNAME) {
+                  if (chapters[i].filename == route.filename) {
                     value = chapters[i]
                   }
                 }

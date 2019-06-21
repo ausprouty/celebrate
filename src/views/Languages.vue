@@ -27,7 +27,7 @@ import { bookMarkMixin } from '@/mixins/BookmarkMixin.js'
 import { languageMixin } from '@/mixins/LanguageMixin.js'
 export default {
   mixins: [bookMarkMixin, languageMixin],
-  props: ['countryCODE'],
+  props: ['country_code'],
   components: {
     Language,
     NavBar
@@ -60,7 +60,7 @@ export default {
       await this.getLanguages(this.$route.params)
       this.loaded = true
       this.loading = false
-      if (this.$route.params.countryCODE == 'ZZ') {
+      if (this.$route.params.country_code == 'ZZ') {
         this.ZZ = true
       }
     } catch (error) {

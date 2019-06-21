@@ -7,8 +7,8 @@
     </div>
     <div class="content" v-if="loaded">
       <h1>
-        Series for {{ this.$route.params.countryCODE }} in
-        {{ this.$route.params.languageISO }}
+        Series for {{ this.$route.params.country_code }} in
+        {{ this.$route.params.language_iso }}
       </h1>
       <div class="form">
         <span>Series Description:</span>
@@ -205,7 +205,7 @@ import { required } from 'vuelidate/lib/validators'
 import { authorMixin } from '@/mixins/AuthorMixin.js'
 export default {
   mixins: [bookMarkMixin, seriesMixin, authorMixin],
-  props: ['countryCODE', 'languageISO', 'libraryCODE', 'folderNAME'],
+  props: ['country_code', 'language_iso', 'library_code', 'folder_name'],
   computed: mapState(['bookmark', 'appDir']),
   components: {
     NavBar
@@ -292,9 +292,9 @@ export default {
       console.log('this.file')
       console.log(this.file)
       var param = []
-      param.countryCODE = this.$route.params.countryCODE
-      param.languageISO = this.$route.params.languageISO
-      param.folderNAME = this.$route.params.folderNAME
+      param.country_code = this.$route.params.country_code
+      param.language_iso = this.$route.params.language_iso
+      param.folder_name = this.$route.params.folder_name
       param.template = this.bookmark.book.template
       param.series_name = this.bookmark.book.title
       param.description = this.description
@@ -305,7 +305,7 @@ export default {
         console.log('tried get series')
         this.authorized = this.authorize(
           'write',
-          this.$route.params.countryCODE
+          this.$route.params.country_code
         )
       } catch (error) {
         console.log('There was an error in SeriesEdit.vue:', error) // Logs out the error
@@ -329,9 +329,9 @@ export default {
       console.log(text)
       var valid = ContentService.validate(text)
       this.content.text = JSON.stringify(valid)
-      this.content.countryCODE = this.$route.params.countryCODE
-      this.content.languageISO = this.$route.params.languageISO
-      this.content.folderNAME = this.$route.params.folderNAME
+      this.content.country_code = this.$route.params.country_code
+      this.content.language_iso = this.$route.params.language_iso
+      this.content.folder_name = this.$route.params.folder_name
       this.content.filename = 'index'
       this.content.filetype = 'json'
       console.log('this.content')
@@ -347,10 +347,10 @@ export default {
           this.$router.push({
             name: 'previewSeries',
             params: {
-              countryCODE: this.$route.params.countryCODE,
-              languageISO: this.$route.params.languageISO,
-              libraryCODE: this.$route.params.libraryCODE,
-              folderNAME: this.$route.params.folderNAME
+              country_code: this.$route.params.country_code,
+              language_iso: this.$route.params.language_iso,
+              library_code: this.$route.params.library_code,
+              folder_name: this.$route.params.folder_name
             }
           })
         } else {
@@ -384,7 +384,7 @@ export default {
         console.log(this.chapters)
         this.authorized = this.authorize(
           'write',
-          this.$route.params.countryCODE
+          this.$route.params.country_code
         )
       } catch (error) {
         console.log('There was an error in SeriesEdit.vue:', error) // Logs out the error
