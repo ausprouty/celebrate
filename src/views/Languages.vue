@@ -57,7 +57,7 @@ export default {
   },
   async created() {
     try {
-      await this.getLanguages()
+      await this.getLanguages(this.$route.params)
       this.loaded = true
       this.loading = false
       if (this.$route.params.countryCODE == 'ZZ') {

@@ -331,7 +331,7 @@ export default {
         console.log(this.image_folders)
         this.content_folders = await AuthorService.getFoldersLanguage()
         console.log(this.content_folders)
-        await this.getLanguages()
+        await this.getLanguages(this.$route.params)
       }
       this.loaded = true
       this.loading = false

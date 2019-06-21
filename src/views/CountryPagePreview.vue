@@ -79,7 +79,7 @@ export default {
     async local_publish() {
       var params = {}
       params.recnum = this.recnum
-      params.route = this.route.params
+      params.route = JSON.stringify(this.route.params)
       var response = await PublishService.publish('country', params)
        if (typeof response['error'] != 'undefined'){
         this.error = response['message']

@@ -113,7 +113,7 @@ export default {
     },
     async loadView() {
       try {
-        await this.getLanguages()
+        await this.getLanguages(this.$route.params)
         this.readonly = this.authorize(
           'readonly',
           this.$route.params.countryCODE

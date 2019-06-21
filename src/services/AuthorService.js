@@ -80,8 +80,8 @@ export default {
     console.log(country, language)
     if (this.isFilename(language)) {
       var obj = {}
-      obj.language_iso = language
-      obj.country_code = country
+      obj.languageISO = language
+      obj.countryCODE = country
       obj.token = store.state.user.token
       var contentForm = this.toFormData(obj)
       apiSECURE.post(
@@ -128,9 +128,9 @@ export default {
       console.log('is letters')
       var obj = {}
       obj.file = params.file
-      obj.country_code = params.country_code
-      obj.language_iso = params.language_iso
-      obj.folder = params.folder
+      obj.countryCODE = params.countryCODE
+      obj.languageISO = params.languageISO
+      obj.folderNAME = params.folderNAME
       obj.token = store.state.user.token
       var contentForm = this.toFormData(obj)
       apiSECURE.post(
@@ -316,8 +316,8 @@ export default {
   setupLanguageFolder(country, language) {
     if (this.isFilename(language)) {
       var obj = {}
-      obj.language_iso = language
-      obj.country_code = country
+      obj.languageISO = language
+      obj.countryCODE = country
       obj.token = store.state.user.token
       console.log('setupLanguageFolder')
       console.log(obj)
@@ -331,8 +331,8 @@ export default {
   setupImageFolder(country, language) {
     if (this.isFilename(language)) {
       var obj = {}
-      obj.language_iso = language
-      obj.country_code = country
+      obj.languageNAME = language
+      obj.countryCODE = country
       obj.token = store.state.user.token
       var contentForm = this.toFormData(obj)
       apiSECURE.post(

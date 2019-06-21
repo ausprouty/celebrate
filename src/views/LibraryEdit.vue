@@ -1,10 +1,8 @@
 <template>
   <div>
-    <NavBar />
+    <NavBar/>
     <div class="loading" v-if="loading">Loading...</div>
-    <div class="error" v-if="error">
-      There was an error... {{ this.error_message }}
-    </div>
+    <div class="error" v-if="error">There was an error... {{ this.error_message }}</div>
     <div class="content" v-if="loaded">
       <div v-if="!this.authorized">
         <p>
@@ -19,18 +17,10 @@
       <div v-if="this.authorized">
         <h1>Library</h1>
         <div v-if="images">
-          <img
-            v-bind:src="appDir.library + image_dir + '/' + this.image"
-            class="header"
-          />
-          <br />
+          <img v-bind:src="appDir.library + image_dir + '/' + this.image" class="header">
+          <br>
         </div>
-        <BaseSelect
-          label="Image"
-          :options="images"
-          v-model="image"
-          class="field"
-        />
+        <BaseSelect label="Image" :options="images" v-model="image" class="field"/>
       </div>
       <div v-if="image_permission">
         <label>
@@ -40,39 +30,24 @@
             v-bind:id="image"
             ref="imageHeader"
             v-on:change="handleHeaderUpload(image)"
-          />
+          >
         </label>
       </div>
       <div>
-        <hr />
+        <hr>
         <h2>Preliminary Text</h2>
         <p>
-          <vue-ckeditor v-model="text" :config="config" />
+          <vue-ckeditor v-model="text" :config="config"/>
         </p>
       </div>
-      <hr />
+      <hr>
       <h2>Library Items</h2>
       <div>
-        <button class="button" @click="publishAll">
-          Select ALL to publish?
-        </button>
+        <button class="button" @click="publishAll">Select ALL to publish?</button>
       </div>
-      <div
-        v-for="(book, index) in $v.library.$each.$iter"
-        :key="book.code"
-        :book="book"
-      >
-        <div
-          class="app-card -shadow"
-          v-bind:class="{ notpublished: !book.publish.$model }"
-        >
-          <div
-            class="float-right"
-            style="cursor:pointer"
-            @click="deleteBookForm(index)"
-          >
-            X
-          </div>
+      <div v-for="(book, index) in $v.library.$each.$iter" :key="book.code" :book="book">
+        <div class="app-card -shadow" v-bind:class="{ notpublished: !book.publish.$model }">
+          <div class="float-right" style="cursor:pointer" @click="deleteBookForm(index)">X</div>
           <div>
             <BaseInput
               v-model="book.id.$model"
@@ -93,9 +68,7 @@
               @blur="book.title.$touch()"
             />
             <template v-if="book.title.$error">
-              <p v-if="!book.title.required" class="errorMessage">
-                Book Title is required
-              </p>
+              <p v-if="!book.title.required" class="errorMessage">Book Title is required</p>
             </template>
 
             <BaseSelect
@@ -109,15 +82,10 @@
           </div>
           <div>
             <p>
-              <a class="black" @click="createBook(book.name.$model)"
-                >Create new International Title</a
-              >
+              <a class="black" @click="createBook(book.name.$model)">Create new International Title</a>
             </p>
           </div>
-          <div
-            v-bind:id="book.title.$model"
-            v-bind:class="{ hidden: isHidden }"
-          >
+          <div v-bind:id="book.title.$model" v-bind:class="{ hidden: isHidden }">
             <BaseInput
               label="New International Title"
               v-model="book.name.$model"
@@ -125,9 +93,10 @@
               placeholder="international title"
               class="field"
             />
-            <button class="button" @click="addNewBookTitle(book.title.$model)">
-              Save International Title
-            </button>
+            <button
+              class="button"
+              @click="addNewBookTitle(book.title.$model)"
+            >Save International Title</button>
           </div>
           <div v-if="images">
             <div v-if="book.image.$model">
@@ -136,8 +105,8 @@
                   appDir.library + image_dir + '/' + book.image.$model
                 "
                 class="book"
-              />
-              <br />
+              >
+              <br>
             </div>
             <BaseSelect
               label="Image"
@@ -148,9 +117,7 @@
               @blur="book.image.$touch()"
             />
             <template v-if="book.image.$error">
-              <p v-if="!book.image.required" class="errorMessage">
-                Image is required
-              </p>
+              <p v-if="!book.image.required" class="errorMessage">Image is required</p>
             </template>
           </div>
           <div v-if="image_permission">
@@ -161,7 +128,7 @@
                 v-bind:id="book.name.$model"
                 ref="image"
                 v-on:change="handleImageUpload(book.name.$model)"
-              />
+              >
             </label>
           </div>
           <div>
@@ -174,9 +141,7 @@
               @blur="book.format.$touch()"
             />
             <template v-if="book.format.$error">
-              <p v-if="!book.format.required" class="errorMessage">
-                Format is required
-              </p>
+              <p v-if="!book.format.required" class="errorMessage">Format is required</p>
             </template>
           </div>
           <div>
@@ -189,9 +154,7 @@
               @blur="book.style.$touch()"
             />
             <template v-if="book.style.$error">
-              <p v-if="!book.style.required" class="errorMessage">
-                Style is required
-              </p>
+              <p v-if="!book.style.required" class="errorMessage">Style is required</p>
             </template>
             <template v-if="style_error">
               <p class="errorMessage">Only .css files may be uploaded</p>
@@ -204,7 +167,7 @@
                 v-bind:id="book.title.$model"
                 ref="style"
                 v-on:change="handleStyleUpload(book.title.$model)"
-              />
+              >
             </label>
 
             <BaseSelect
@@ -222,23 +185,15 @@
                 v-bind:id="book.title.$model"
                 ref="template"
                 v-on:change="handleTemplateUpload(book.title.$model)"
-              />
+              >
             </label>
             <template v-if="template_error">
-              <p class="errorMessage">
-                Only .html files may be uploaded as templates
-              </p>
+              <p class="errorMessage">Only .html files may be uploaded as templates</p>
             </template>
-            <button class="button yellow" @click="createTemplate">
-              Create Template
-            </button>
-            <br />
-            <br />
-            <input
-              type="checkbox"
-              id="checkbox"
-              v-model="book.publish.$model"
-            />
+            <button class="button yellow" @click="createTemplate">Create Template</button>
+            <br>
+            <br>
+            <input type="checkbox" id="checkbox" v-model="book.publish.$model">
             <label for="checkbox">
               <h2>Publish?</h2>
             </label>
@@ -252,9 +207,7 @@
         </div>
         <div v-if="$v.$anyError">
           <button class="button grey">Disabled</button>
-          <p v-if="$v.$anyError" class="errorMessage">
-            Please fill out the required field(s).
-          </p>
+          <p v-if="$v.$anyError" class="errorMessage">Please fill out the required field(s).</p>
         </div>
       </div>
     </div>
@@ -429,8 +382,9 @@ export default {
     async createFolder(folder) {
       console.log(folder)
       var params = {}
-      params.route = JSON.stringify(this.$route.params)
-      params.folder = folder.toLowerCase()
+      params.route = this.$route.params
+      params.route.folderNAME = folder.toLowerCase()
+      params.route = JSON.stringify(params.route)
       AuthorService.createContentFolder(params)
       this.folders = await AuthorService.getFoldersContent(params)
     },
@@ -539,10 +493,10 @@ export default {
             console.log('type ok')
             console.log(checkfile)
             var params = {}
-            params.file = checkfile[0]
-            params.country_code = this.$route.params.countryCODE
-            params.language_iso = this.$route.params.languageISO
-            params.folder = book.folder
+            params.fileNAME = checkfile[0]
+            params.countryCODE = this.$route.params.countryCODE
+            params.languageISO = this.$route.params.languageISO
+            params.folderNAME = book.folder
             console.log(params)
             type = await AuthorService.createTemplate(params)
             if (type) {
@@ -565,7 +519,7 @@ export default {
         var check = ''
         var params = {}
         params.country_code = this.$route.params.countryCODE
-        params.language_iso = this.$route.params.languageISO
+        params.= this.$route.params.languageISO
         var arrayLength = this.library.length
         for (var i = 0; i < arrayLength; i++) {
           check = this.library[i]
@@ -582,10 +536,10 @@ export default {
         output.text = this.text
         var valid = ContentService.validate(output)
         this.content.text = JSON.stringify(valid)
-        this.content.filename = this.$route.params.libraryCODE
+        this.content.fileNAME = this.$route.params.libraryCODE
         this.content.filetype = 'json'
-        this.content.country_code = this.$route.params.countryCODE
-        this.content.language_iso = this.$route.params.languageISO
+        this.content.countryCODE = this.$route.params.countryCODE
+        this.content.languageISO = this.$route.params.languageISO
         this.$store.dispatch('newBookmark', 'clear')
         console.log('we are about to create content')
         console.log(this.content)

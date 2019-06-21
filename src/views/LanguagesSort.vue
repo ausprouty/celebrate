@@ -117,7 +117,7 @@ export default {
   },
   async created() {
     try {
-      await this.getLanguages()
+      await this.getLanguages(this.$route.params)
       this.authorized = this.authorize('write', this.$route.params.countryCODE)
       this.loaded = true
       this.loading = false

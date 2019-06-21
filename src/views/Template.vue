@@ -107,8 +107,8 @@ export default {
     async saveForm() {
       try {
         this.content.text = ContentService.validate(this.pageText)
-        this.content.country_code = this.$route.params.countryCODE
-        this.content.language_iso = this.$route.params.languageISO
+        this.content.countryCODE = this.$route.params.countryCODE
+        this.content.languageISO = this.$route.params.languageISO
         this.content.folder = this.bookmark.book.folder
         this.content.filename = this.$route.params.fileNAME
         this.content.filetype = 'html'

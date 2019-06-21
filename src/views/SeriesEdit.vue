@@ -292,9 +292,9 @@ export default {
       console.log('this.file')
       console.log(this.file)
       var param = []
-      param.country_code = this.$route.params.countryCODE
-      param.language_iso = this.$route.params.languageISO
-      param.folder = this.$route.params.folderNAME
+      param.countryCODE = this.$route.params.countryCODE
+      param.languageISO = this.$route.params.languageISO
+      param.folderNAME = this.$route.params.folderNAME
       param.template = this.bookmark.book.template
       param.series_name = this.bookmark.book.title
       param.description = this.description
@@ -329,9 +329,9 @@ export default {
       console.log(text)
       var valid = ContentService.validate(text)
       this.content.text = JSON.stringify(valid)
-      this.content.country_code = this.$route.params.countryCODE
-      this.content.language_iso = this.$route.params.languageISO
-      this.content.folder = this.$route.params.folderNAME
+      this.content.countryCODE = this.$route.params.countryCODE
+      this.content.languageISO = this.$route.params.languageISO
+      this.content.folderNAME = this.$route.params.folderNAME
       this.content.filename = 'index'
       this.content.filetype = 'json'
       console.log('this.content')
