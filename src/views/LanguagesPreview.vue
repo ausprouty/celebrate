@@ -5,7 +5,12 @@
     <div class="error" v-if="error">There was an error... {{ this.error }}</div>
     <div class="content" v-if="loaded">
       <div v-if="this.publish">
-        <button class="button" @click="local_publish()">Publish</button>
+        <button class="button" @click="localPublish('live')">Publish</button>
+      </div>
+      <div v-if="this.prototype">
+        <button class="button" @click="localPublish('prototype')">
+          Prototype
+        </button>
       </div>
       <a href="preview/languages">
         <img
@@ -83,11 +88,16 @@ export default {
     goBack() {
       window.history.back()
     },
-    async local_publish() {
+    async localPublish(location) {
+      var response = null
       var params = {}
       params.recnum = this.recnum
       params.bookmark = JSON.stringify(this.bookmark)
-      var response = await PrototypeService.publish('language', params)
+      if (location == 'prototype') {
+        response = await PrototypeService.publish('languages', params)
+      } else {
+        response = await PublishService.publish('languages', params)
+      }
       if (response['error']) {
         this.error = response['message']
         this.loaded = false

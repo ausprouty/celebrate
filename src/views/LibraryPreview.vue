@@ -5,10 +5,12 @@
     <div class="error" v-if="error">There was an error... {{ this.error }}</div>
     <div class="content" v-if="loaded">
       <div v-if="this.publish">
-        <button class="button" @click="localPublish()">Publish</button>
+        <button class="button" @click="localPublish('live')">Publish</button>
       </div>
       <div v-if="this.prototype">
-        <button class="button" @click="local_prototype()">Prototype</button>
+        <button class="button" @click="localPublish('prototype')">
+          Prototype
+        </button>
       </div>
       <hr class="border" />
       <a v-bind:href="'/preview/language/' + this.bookmark.country.code">
@@ -106,13 +108,16 @@ export default {
         await this.loadView()
       }
     },
-    async localPublish() {
+    async localPublish(location) {
+      var response = null
       var params = {}
       params.recnum = this.recnum
       params.bookmark = JSON.stringify(this.bookmark)
-      console.log('params.bookmark')
-      console.log(params.bookmark)
-      var response = await PublishService.publish('library', params)
+      if (location == 'prototype') {
+        response = await PrototypeService.publish('library', params)
+      } else {
+        response = await PublishService.publish('library', params)
+      }
       if (response['error']) {
         this.error = response['message']
         this.loaded = false

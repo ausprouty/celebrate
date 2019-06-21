@@ -4,11 +4,13 @@
     <div class="loading" v-if="loading">Loading...</div>
     <div class="error" v-if="error">There was an error...{{ this.error }}</div>
     <div class="content" v-if="loaded">
-     <div v-if="this.publish">
-        <button class="button" @click="localPublish()">Publish</button>
+      <div v-if="this.publish">
+        <button class="button" @click="localPublish('live')">Publish</button>
       </div>
       <div v-if="this.prototype">
-        <button class="button" @click="local_prototype()">Prototype</button>
+        <button class="button" @click="localPublish('prototype')">
+          Prototype
+        </button>
       </div>
       <div v-bind:class="this.dir">
         <link rel="stylesheet" v-bind:href="'/content/' + this.style" />
@@ -39,7 +41,7 @@
         />
       </div>
       <div>
-        <p class="button ">
+        <p class="button">
           <button id="offline-request" class="cache-series">
             {{ this.download_now }}
           </button>
@@ -49,7 +51,7 @@
         <p class="version">Version 1.01</p>
       </div>
     </div>
-    <hr>
+    <hr />
     <div v-if="this.write">
       <button class="button" @click="editSeries">Edit</button>
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -76,7 +78,7 @@ import { seriesMixin } from '@/mixins/SeriesMixin.js'
 import { authorMixin } from '@/mixins/AuthorMixin.js'
 export default {
   mixins: [bookMarkMixin, seriesMixin, authorMixin],
-  props: ['countryCODE', 'languageISO', 'libraryCODE','folderNAME'],
+  props: ['countryCODE', 'languageISO', 'libraryCODE', 'folderNAME'],
   computed: mapState(['bookmark', 'appDir']),
   components: {
     Chapter,
@@ -91,7 +93,6 @@ export default {
       download_now: '',
       description: '',
       style: ''
-
     }
   },
 
@@ -131,11 +132,17 @@ export default {
         }
       })
     },
-    async localPublish() {
-      var params = {}
+    async localPublish(location) {
+      var response = null
+      var params = []
       params.recnum = this.recnum
       params.bookmark = JSON.stringify(this.bookmark)
-      var response = await PrototypeService.publish('series', params)
+      params.route = JSON.stringify(this.$route.params)
+      if (location == 'prototype') {
+        response = await PrototypeService.publish('series', params)
+      } else {
+        response = await PublishService.publish('series', params)
+      }
       if (response['error']) {
         this.error = response['message']
         this.loaded = false

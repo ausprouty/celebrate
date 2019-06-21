@@ -3,10 +3,12 @@
     <NavBar />
     <img v-bind:src="appDir.country + 'world.jpg'" class="app-img-header" />
     <div v-if="this.publish">
-      <button class="button" @click="localPublish()">Publish</button>
+      <button class="button" @click="localPublish('live')">Publish</button>
     </div>
     <div v-if="this.prototype">
-      <button class="button" @click="local_prototype()">Prototype</button>
+      <button class="button" @click="localPublish('prototype')">
+        Prototype
+      </button>
     </div>
     <h1>Select Country (Preview Mode)</h1>
     <Country
@@ -63,28 +65,17 @@ export default {
     goBack() {
       window.history.back()
     },
-    async local_prototype() {
+    async localPublish(location) {
+      var response = null
       var params = {}
       params.recnum = this.recnum
       params.bookmark = JSON.stringify(this.bookmark)
-      var response = await PrototypeService.publish('countries', params)
-      if (response['error']) {
-        this.error = response['message']
-        this.loaded = false
+      if (location == 'prototype') {
+        response = await PrototypeService.publish('countries', params)
       } else {
-        this.UnsetBookmarks()
-        this.recnum = null
-        this.loaded = false
-        this.loading = true
-        this.publish = false
-        await this.loadView()
+        response = await PublishService.publish('countries', params)
       }
-    },
-    async local_publish() {
-      var params = {}
-      params.recnum = this.recnum
-      params.bookmark = JSON.stringify(this.bookmark)
-      var response = await PublishService.publish('countries', params)
+
       if (response['error']) {
         this.error = response['message']
         this.loaded = false

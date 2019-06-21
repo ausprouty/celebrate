@@ -5,10 +5,12 @@
     <div class="error" v-if="error">There was an error... {{ this.error }}</div>
     <div class="content" v-if="loaded">
       <div v-if="this.publish">
-        <button class="button" @click="localPublish()">Publish</button>
+        <button class="button" @click="localPublish('live')">Publish</button>
       </div>
       <div v-if="this.prototype">
-        <button class="button" @click="local_prototype()">Prototype</button>
+        <button class="button" @click="localPublish('prototype')">
+          Prototype
+        </button>
       </div>
       <link
         rel="stylesheet"
@@ -107,28 +109,16 @@ export default {
         })
       }
     },
-    async local_prototype() {
+    async localPublish(location) {
+      var response = null
       var params = {}
       params.recnum = this.recnum
       params.bookmark = JSON.stringify(this.bookmark)
-      var response = await PrototypeService.publish('page', params)
-      if (response['error']) {
-        this.error = response['message']
-        this.loaded = false
+      if (location == 'prototype') {
+        response = await PrototypeService.publish('page', params)
       } else {
-        this.UnsetBookmarks()
-        this.recnum = null
-        this.loaded = false
-        this.loading = true
-        this.publish = false
-        await this.loadView()
+        response = await PublishService.publish('page', params)
       }
-    },
-    async local_publish() {
-      var params = {}
-      params.recnum = this.recnum
-      params.bookmark = JSON.stringify(this.bookmark)
-      var response = await PublishService.publish('page', params)
       if (response['error']) {
         this.error = response['message']
         this.loaded = false
