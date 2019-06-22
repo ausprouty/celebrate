@@ -29,11 +29,15 @@ export default {
     var response = {}
     // for latest get data
     if (params.version != 'current') {
+      console.log ('params for getCountries')
+      console.log (params)
       var contentForm = this.toFormData(params)
       let res = await apiMYSQL.post(
         'ContentApi.php?scope=countries',
         contentForm
       )
+      console.log ('res from getCountries')
+      console.log (res)
       if (res.data.content) {
         found = true
         response = res

@@ -47,8 +47,6 @@ export const countriesMixin = {
         this.countries = []
         await this.CheckBookmarks(this.$route.params)
         var response = await ContentService.getCountries(this.$route.params)
-        console.log('Page View Data obtained')
-        console.log(response)
         this.countries = response.data.content.text
         if (response.data.content.recnum) {
           this.recnum = response.data.content.recnum
