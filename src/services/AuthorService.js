@@ -143,6 +143,16 @@ export default {
       return false
     }
   },
+  /////////////////////////////////////////////////
+  async debug(params) {
+    console.log('debug')
+    params.token = store.state.user.token
+    params.my_uid = store.state.user.uid
+    var contentForm = this.toFormData(params)
+    var action = 'AuthorApi.php?page=debug&action=' + params.action
+    apiSECURE.post(action, contentForm)
+  },
+
   ////////////////////////////////////////////////
   async getFoldersContent(params) {
     //console.log('getFolders')

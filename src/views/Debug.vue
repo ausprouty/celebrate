@@ -19,12 +19,11 @@ export default {
     }
   },
   async created() {
-    this.authorized = this.authorize('write', this.$route.params.country_code)
+    this.authorized = this.authorize('write', 'countries')
     if (this.authorized) {
-      await this.CheckBookmarks(this.$route.params)
       this.$route.params.bookmark = JSON.stringify(this.bookmark)
       console.log(this.$route.params)
-      await AuthorService.prototype(this.$route.params)
+      await AuthorService.debug(this.$route.params)
     }
   }
 }
