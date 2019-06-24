@@ -86,10 +86,10 @@ export default {
         ],
         extraAllowedContent: ['*(*)[id]', 'ol[*]', 'iframe(*)'],
         contentsCss: '/content/' + this.$route.params.css,
-        stylesSet: this.$route.params.stylesSET,
+        stylesSet: this.$route.params.styles_set,
         templates_replaceContent: false,
         templates_files: [
-          '/templates/' + this.$route.params.stylesSET + 'CKEDITOR.js'
+          '/templates/' + this.$route.params.styles_set + 'CKEDITOR.js'
         ],
         // Upload images to a CKFinder connector (note that the response type is set to JSON).
         uploadUrl:
@@ -156,9 +156,10 @@ export default {
         text.page = ContentService.validate(this.pageText)
         text.footer = ContentService.validate(this.footerText)
         this.content.text = JSON.stringify(text)
-        this.content.route = this.$route.params
-        this.content.route.filename = 'index'
-        this.content.mapStatefiletype = 'html'
+        this.$route.params.filename = 'index'
+        this.content.route = JSON.stringify(this.$route.params)
+       
+        this.content.filetype = 'html'
         this.$store.dispatch('newBookmark', 'clear')
         var response = await AuthorService.createContentData(this.content)
         if (response.data.error != true) {
@@ -184,9 +185,9 @@ export default {
   async beforeCreate() {
     console.log('before Create in Country')
     console.log(this.$route.params)
-    this.$route.params.stylesSET = 'myfriends'
+    this.$route.params.styles_set = 'myfriends'
     this.$route.params.version = 'lastest'
-    this.$route.params.pageNAME = 'index'
+    this.$route.params.filename = 'index'
     this.$route.params.css = 'AU/styles/AU-freeform.css'
     console.log('final params')
     console.log(this.$route.params)

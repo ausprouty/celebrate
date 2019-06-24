@@ -97,10 +97,10 @@ export default {
         extraPlugins: ['bidi', 'uploadimage', 'uploadwidget', 'clipboard'],
         extraAllowedContent: ['*(*)[id]', 'ol[*]'],
         contentsCss: '/content/' + this.$route.params.css,
-        stylesSet: this.$route.params.stylesSET,
+        stylesSet: this.$route.params.styles_set,
         templates_replaceContent: false,
         templates_files: [
-          '/templates/' + this.$route.params.stylesSET + 'CKEDITOR.js'
+          '/templates/' + this.$route.params.styles_set + 'CKEDITOR.js'
         ],
         // Upload images to a CKFinder connector (note that the response type is set to JSON).
         uploadUrl:
@@ -165,7 +165,6 @@ export default {
         this.content.text = ContentService.validate(this.pageText)
         this.content.route = JSON.stringify(this.$route.params)
         this.content.filetype = 'html'
-        
         var response = await AuthorService.createContentData(this.content)
          this.$store.dispatch('newBookmark', 'clear')
         if (response.data.error != true) {
@@ -197,15 +196,14 @@ export default {
     console.log(this.$route.params)
     var ok = false
     var styleSets = ['compass', 'firststeps', 'fsteps', 'myfriends', 'multiply']
-    this.$route.params.stylesSET = 'unknown'
+    this.$route.params.styles_set = 'unknown'
     var arrayLength = styleSets.length
     for (var i = 0; i < arrayLength; i++) {
       if (this.$route.params.cssFORMATTED.includes(styleSets[i])) {
-        this.$route.params.stylesSET = styleSets[i]
+        this.$route.params.styles_set = styleSets[i]
       }
     }
     this.$route.params.version = 'lastest'
-    this.$route.params.pageNAME = this.$route.params.filename
     var css = this.$route.params.cssFORMATTED
     var clean = css.replace(/@/g, '/')
     this.$route.params.css = clean

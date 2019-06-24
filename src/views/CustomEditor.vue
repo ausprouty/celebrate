@@ -37,10 +37,10 @@ export default {
         ],
         extraAllowedContent: ['*(*)[id]', 'ol[*]'],
         contentsCss: '/content/' + this.$route.params.css,
-        stylesSet: this.$route.params.stylesSET,
+        stylesSet: this.$route.params.styles_set,
         templates_replaceContent: false,
         templates_files: [
-          '/templates/' + this.$route.params.stylesSET + 'CKEDITOR.js'
+          '/templates/' + this.$route.params.styles_set + 'CKEDITOR.js'
         ],
         // Upload images to a CKFinder connector (note that the response type is set to JSON).
         uploadUrl:

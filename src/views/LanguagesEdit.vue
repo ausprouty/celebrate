@@ -288,16 +288,12 @@ export default {
       try {
         this.$store.dispatch('newBookmark', 'clear')
         var valid = ContentService.validate(this.languages)
-        console.log('saveForm')
-        console.log(valid)
-        AuthorService.createDirectoryLanguages(
-          this.$route.params.country_code,
-          valid
-        )
         this.content.text = JSON.stringify(valid)
         this.content.filename = 'languages'
         this.content.filetype = 'json'
-        this.content.route = this.$route.params
+        this.content.text = valid;
+        this.content.route = JSON.stringify(this.$route.params)
+        AuthorService.createDirectoryLanguages(this.content)
         var response = await AuthorService.createContentData(this.content)
         if (response.data.error != true) {
           this.$router.push({

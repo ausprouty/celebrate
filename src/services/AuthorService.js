@@ -252,9 +252,12 @@ export default {
       'AuthorApi.php?page=get&action=getTemplates',
       contentForm
     )
-    //console.log(response)
+    console.log ('get Templates')
+    console.log(response)
     if (response.data.content) {
+      console.log ('about to parse templates')
       templates = JSON.parse(response.data.content)
+      console.log ('did parse templates')
       templates.sort()
     }
     return templates

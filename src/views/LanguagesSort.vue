@@ -90,7 +90,7 @@ export default {
         this.content.text = JSON.stringify(valid)
         this.content.filename = 'languages'
         this.content.filetype = 'json'
-        this.content.country_code = this.$route.params.country_code
+        this.content.route = JSON.stringify(this.$route.params)
         var response = await AuthorService.createContentData(this.content)
         if (response.data.error != true) {
           this.$router.push({

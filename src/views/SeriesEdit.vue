@@ -301,9 +301,7 @@ export default {
       console.log(text)
       var valid = ContentService.validate(text)
       this.content.text = JSON.stringify(valid)
-      this.content.country_code = this.$route.params.country_code
-      this.content.language_iso = this.$route.params.language_iso
-      this.content.folder_name = this.$route.params.folder_name
+      this.content.rout = JSON.stringify(this.$route.params)
       this.content.filename = 'index'
       this.content.filetype = 'json'
       console.log('this.content')

@@ -282,10 +282,10 @@ export default {
         ],
         extraAllowedContent: ['*(*)[id]', 'ol[*]', 'iframe(*)'],
         contentsCss: '/content/' + this.$route.params.css,
-        stylesSet: this.$route.params.stylesSET,
+        stylesSet: this.$route.params.styles_set,
         templates_replaceContent: false,
         templates_files: [
-          '/templates/' + this.$route.params.stylesSET + 'CKEDITOR.js'
+          '/templates/' + this.$route.params.styles_set + 'CKEDITOR.js'
         ],
         // Upload images to a CKFinder connector (note that the response type is set to JSON).
         uploadUrl:
@@ -518,14 +518,14 @@ export default {
         // create index files
         var check = ''
         var params = {}
-        params.country_code = this.$route.params.country_code
-        params.language_iso = this.$route.params.language_iso
+        var route = this.$route.params
         var arrayLength = this.library.length
         for (var i = 0; i < arrayLength; i++) {
           check = this.library[i]
           if (check.format == 'series') {
-            params.folder = check.folder
-            params.index = check.index + '.json'
+            route.folder_name = check.folder
+            route.filename = check.index + '.json'
+            params.route = JSON.stringify(route)
             AuthorService.createSeriesIndex(params)
           }
         }
@@ -536,10 +536,9 @@ export default {
         output.text = this.text
         var valid = ContentService.validate(output)
         this.content.text = JSON.stringify(valid)
-        this.content.filename = this.$route.params.library_code
+        this.$route.params.filename = this.$route.params.library_code
+        this.content.route = JSON.stringify(this.$route.params)
         this.content.filetype = 'json'
-        this.content.country_code = this.$route.params.country_code
-        this.content.language_iso = this.$route.params.language_iso
         this.$store.dispatch('newBookmark', 'clear')
         console.log('we are about to create content')
         console.log(this.content)
@@ -570,7 +569,7 @@ export default {
         await this.getLibrary()
         // console.log('after get Libary')
         var param = {}
-        param.route = this.$route.params
+        param.route = JSON.stringify(this.$route.params)
         param.image_dir = this.bookmark.language.image_dir
         console.log('image dir: ' + param.image_dir.substring(0, 2))
         this.image_permission = this.authorize(
@@ -619,25 +618,24 @@ export default {
         console.log('after loading is true')
       } catch (error) {
         console.log('There was an error in Library.vue:', error) // Logs out the error
-        this.error_message = error + 'Library Edit - created()'
+        this.error_message = error + 'Library Edit - showForm()'
         this.error = true
       }
     }
   },
   beforeCreate() {
+    console.log ('before Create')
+    console.log(this.$route.params)
     this.$route.params.version = 'latest'
     if (!this.$route.params.library_code) {
       this.$route.params.library_code = 'library'
     }
-    this.$route.params.stylesSET = 'myfriends'
+    this.$route.params.styles_set = 'myfriends'
     this.$route.params.version = 'lastest'
-    this.$route.params.pageNAME = 'index'
+    this.$route.params.filename = 'index'
     this.$route.params.css = 'AU/styles/AU-freeform.css'
   },
   async created() {
-    this.items
-    console.log('itemsin created')
-    console.log(this.items)
     this.library = []
     this.text = ''
     this.image = ''

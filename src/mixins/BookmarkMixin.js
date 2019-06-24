@@ -13,7 +13,8 @@ export const bookMarkMixin = {
       return this.$store.dispatch('unsetBookmark', ['country'])
     },
     async CheckBookmarks(route) {
-      //  console.log('BOOKMARK MIXIN started')
+      console.log('BOOKMARK MIXIN started')
+      console.log (route)
       try {
         await this.CheckBookmarkCountry(route)
         await this.CheckBookmarkLanguageLibrary(route)
