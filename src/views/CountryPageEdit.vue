@@ -203,7 +203,7 @@ export default {
         this.publish = this.authorize('publish', 'country')
       }
     } catch (error) {
-      console.log('There was an error in Country.vue:', error)
+      console.log('There was an error in CountryPageEdit.vue:', error)
     }
   }
 }

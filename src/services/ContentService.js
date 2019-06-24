@@ -68,7 +68,9 @@ export default {
       if (res.data.content.text != '') {
         found = true
         response = res
-        response.data.content.text = res.data.content.text
+        console.log('about to parse')
+        response.data.content.text = JSON.parse(res.data.content.text)
+        console.log('was able to parse')
         response.source = 'data'
         return response
       }

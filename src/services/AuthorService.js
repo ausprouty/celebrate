@@ -29,14 +29,14 @@ const apiIMAGE = axios.create({
 })
 // I want to export a JSON.stringified of response.data.content.text
 export default {
-  createContentData(obj) {
+  createContentData(params) {
     var d = new Date()
-    obj.edit_date = d.getTime()
-    obj.my_uid = store.state.user.uid
-    obj.token = store.state.user.token
-    console.log('obj in Create Content')
-    console.log(obj)
-    var contentForm = this.toFormData(obj)
+    params.edit_date = d.getTime()
+    params.my_uid = store.state.user.uid
+    params.token = store.state.user.token
+    console.log('params in Create Content')
+    console.log(params)
+    var contentForm = this.toFormData(params)
     console.log('about to create content')
     return apiSECURE.post(
       'AuthorApi.php?page=create&action=createContent',

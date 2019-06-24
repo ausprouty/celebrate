@@ -359,14 +359,20 @@ export default {
       }
     },
     addNewBookTitle(title) {
+      console.log('I came to addNewBookTitle')
       console.log(title)
       this.booklist = []
       var change = this.$v.library.$model
+      console.log('change')
+      console.log(change)
       var arrayLength = change.length
       for (var i = 0; i < arrayLength; i++) {
-        this.booklist.push(this.$v.library.$model[i].book)
+        this.booklist.push(this.$v.library.$model[i].name)
       }
+      console.log(this.booklist)
+      console.log('about to hide')
       this.isHidden = true
+      console.log('hidden')
     },
     createBook(title) {
       console.log(title)
@@ -523,8 +529,10 @@ export default {
         for (var i = 0; i < arrayLength; i++) {
           check = this.library[i]
           if (check.format == 'series') {
-            route.folder_name = check.folder
-            route.filename = check.index + '.json'
+            route.folder_name = check.name
+            route.filename = 'index'
+            console.log('parms for create Series Index')
+            console.log(route)
             params.route = JSON.stringify(route)
             AuthorService.createSeriesIndex(params)
           }
@@ -599,10 +607,13 @@ export default {
         if (template) {
           this.templates = template
         }
-        var arrayLength = this.bookmark.library.length
+        // update booklist
+        console.log('updating booklist')
+        var arrayLength = this.bookmark.library.books.length
         for (var i = 0; i < arrayLength; i++) {
-          if (!this.booklist.includes(this.bookmark.library[i].book)) {
-            this.booklist.push(this.bookmark.library[i].book)
+          console.log(this.bookmark.library.books[i].name)
+          if (!this.booklist.includes(this.bookmark.library.books[i].name)) {
+            this.booklist.push(this.bookmark.library.books[i].name)
           }
         }
         this.booklist.sort()
@@ -624,7 +635,7 @@ export default {
     }
   },
   beforeCreate() {
-    console.log ('before Create')
+    console.log('before Create')
     console.log(this.$route.params)
     this.$route.params.version = 'latest'
     if (!this.$route.params.library_code) {
