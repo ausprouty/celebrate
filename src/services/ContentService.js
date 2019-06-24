@@ -29,25 +29,26 @@ export default {
     var response = {}
     // for latest get data
     if (params.version != 'current') {
-      console.log ('params for getCountries')
-      console.log (params)
       var contentForm = this.toFormData(params)
       let res = await apiMYSQL.post(
         'ContentApi.php?scope=countries',
         contentForm
       )
-      console.log ('res from getCountries')
-      console.log (res)
       if (res.data.content) {
-        found = true
-        response = res
-        response.data.content.text = JSON.parse(res.data.content.text)
-        response.source = 'data'
-        return response
+        if (res.data.content.text != '') {
+          console.log('content.text found')
+          found = true
+          response = res
+          response.data.content.text = JSON.parse(res.data.content.text)
+          response.source = 'data'
+          console.log(response)
+          return response
+        }
       }
     }
     // if no data or need current get content
     if (!found) {
+      console.log('country data not found')
       response.data = {}
       response.data.content = {}
       let res = await apiContent.get('content/countries.json')
@@ -64,12 +65,15 @@ export default {
     let res = await apiMYSQL.post('ContentApi.php?scope=country', contentForm)
     console.log(res)
     if (res.data.content) {
-      found = true
-      response = res
-      response.data.content.text = res.data.content.text
-      response.source = 'data'
-      return response
-    } else {
+      if (res.data.content.text != '') {
+        found = true
+        response = res
+        response.data.content.text = res.data.content.text
+        response.source = 'data'
+        return response
+      }
+    }
+    if (!found) {
       response.data = {}
       response.source = 'none'
       return response
@@ -88,11 +92,13 @@ export default {
       //  console.log('getLangauges - data')
       //  console.log(res)
       if (res.data.content) {
-        found = true
-        response = res
-        response.data.content.text = JSON.parse(res.data.content.text)
-        response.source = 'data'
-        return response
+        if (res.data.content.text != '') {
+          found = true
+          response = res
+          response.data.content.text = JSON.parse(res.data.content.text)
+          response.source = 'data'
+          return response
+        }
       }
     }
     // if no data or need current get content
@@ -123,11 +129,13 @@ export default {
       let res = await apiMYSQL.post('ContentApi.php?scope=library', contentForm)
       console.log(res)
       if (res.data.content) {
-        found = true
-        response = res
-        response.data.content.text = JSON.parse(res.data.content.text)
-        response.source = 'data'
-        return response
+        if (res.data.content.text != '') {
+          found = true
+          response = res
+          response.data.content.text = JSON.parse(res.data.content.text)
+          response.source = 'data'
+          return response
+        }
       }
     }
     // if no data or need current get content
@@ -186,18 +194,21 @@ export default {
       console.log('this was response from getSeries in Content Service')
       if (response.data) {
         console.log('I have response.data.content')
-        var text = JSON.parse(response.data.content.text)
-        response.data.content.description = text.description
-        response.data.content.chapters = text.chapters
-        found = true
-        response.source = 'data'
-        return response
+        console.log(response.data)
+        if (response.data.content.text != '') {
+          var text = JSON.parse(response.data.content.text)
+          response.data.content.description = text.description
+          response.data.content.chapters = text.chapters
+          found = true
+          response.source = 'data'
+          return response
+        }
       }
     }
     // if no data or need current get content
     if (!found) {
       try {
-        console.log('I DO NOT have response.data.content')
+        console.log('I DO NOT have response.data.content for Series DAta')
         response.data = {}
         response.data.content = {}
         // may need to remove .json from some FILENAME
@@ -211,6 +222,8 @@ export default {
             params.folder_name +
             '/index.json'
         )
+        console.log('res')
+        console.log(res)
         response.data.content = res.data
         return response
       } catch (error) {}

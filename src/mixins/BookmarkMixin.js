@@ -33,6 +33,8 @@ export const bookMarkMixin = {
       }
     },
     async CheckBookmarkCountry(route) {
+      console.log('CheckBookmarkCountry')
+      console.log(route)
       if (!route.country_code) {
         return null
       }
@@ -44,8 +46,12 @@ export const bookMarkMixin = {
           }
         }
         if (route.country_code != currentCountry) {
+          console.log(route)
           var res = await ContentService.getCountries(route)
+          console.log('res')
+          console.log(res)
           var response = res.data.content.text
+          console.log(response)
           var value = {}
           var length = response.length
           for (var i = 0; i < length; i++) {
@@ -94,8 +100,8 @@ export const bookMarkMixin = {
             }
           }
           this.$store.dispatch('updateBookmark', ['language', value])
-          //  console.log('Going to Content Service to GetLibrary with:')
-          //  console.log(route)
+          console.log('Going to Content Service to GetLibrary with:')
+          console.log(route)
           response = await ContentService.getLibrary(route)
           //  console.log(response)
           value = response.data.content.text
@@ -171,7 +177,7 @@ export const bookMarkMixin = {
           return this.bookmark
         } catch (error) {
           console.log(
-            'BOOKMARK MIXIN --CheckBookmarkSeries There was an error in CheckBookmarkBookSeries',
+            'BOOKMARK MIXIN --There was an error in CheckBookmarkBookSeries',
             error
           )
           // need to create series index
