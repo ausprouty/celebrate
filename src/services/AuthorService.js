@@ -204,6 +204,8 @@ export default {
   async getImages(params) {
     var images = []
     params.token = store.state.user.token
+    console.log ('get Images')
+    console.log (params)
     var contentForm = this.toFormData(params)
     let response = await apiSELECT.post(
       'AuthorApi.php?page=get&action=getImages',

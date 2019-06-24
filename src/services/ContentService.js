@@ -121,6 +121,7 @@ export default {
 
   async getLibrary(params) {
     console.log('getLibrary')
+    console.log(params)
     var found = false
     var response = {}
     // for latest get data

@@ -74,12 +74,13 @@ export const bookMarkMixin = {
       }
     },
     async CheckBookmarkLanguageLibrary(route) {
-      //  console.log('entered CheckBookmarkLanguageLibrary')
-      //  console.log(route)
+        console.log('entered CheckBookmarkLanguageLibrary')
+        console.log(route)
       /* LANGUAGE AND LIBRARY
            if route.language_iso is not the same as bookmark 
             update language and erase all bookmark below*/
       if (!route.language_iso) {
+        console.log ('language not set')
         this.$store.dispatch('unsetBookmark', ['language'])
         return null
       }
@@ -100,6 +101,8 @@ export const bookMarkMixin = {
               value = response[i]
             }
           }
+          console.log ('Language Bookmark is ')
+          console.log (value)
           this.$store.dispatch('updateBookmark', ['language', value])
           console.log('Going to Content Service to GetLibrary with:')
           console.log(route)
