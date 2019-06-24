@@ -163,10 +163,11 @@ export default {
     async saveForm() {
       try {
         this.content.text = ContentService.validate(this.pageText)
-        this.content.route = this.$route.params
+        this.content.route = JSON.stringify(this.$route.params)
         this.content.filetype = 'html'
-        this.$store.dispatch('newBookmark', 'clear')
+        
         var response = await AuthorService.createContentData(this.content)
+         this.$store.dispatch('newBookmark', 'clear')
         if (response.data.error != true) {
           this.$router.push({
             name: 'previewPage',

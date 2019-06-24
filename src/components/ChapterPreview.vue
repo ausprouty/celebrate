@@ -1,23 +1,18 @@
 <template>
   <div class="app-link" v-on:click="showPage(chapter)">
-    <div
-      class="app-card -shadow"
-      v-bind:class="{ notpublished: !chapter.publish }"
-    >
+    <div class="app-card -shadow" v-bind:class="{ notpublished: !chapter.publish }">
       <div v-if="!this.chapter.image">
         <div class="chapter">
-          <div v-if="chapter.count" class="chapter-title">
-            {{ chapter.count }}. {{ chapter.title }}
-          </div>
+          <div v-if="chapter.count" class="chapter-title">{{ chapter.count }}. {{ chapter.title }}</div>
           <div v-else class="chapter-title">{{ chapter.title }}</div>
           <div class="chapter-description">{{ chapter.description }}</div>
         </div>
       </div>
       <div v-if="this.chapter.image">
         <img
-          v-bind:src="appDir.library + this.image_dir + '/' + chapter.image"
+          v-bind:src="appDir.library + this.series_image_dir + '/' + chapter.image"
           class="something"
-        />
+        >
       </div>
     </div>
   </div>
@@ -51,6 +46,12 @@ export default {
     }
   },
   created() {
+    this.series_image_dir =
+      this.$route.params.country_code +
+      '/' +
+      this.$route.params.language_iso +
+      '/' +
+      this.$route.params.folder_name
     if (typeof this.bookmark.language != 'undefined') {
       console.log('BOOK  PREVIEW -using bookmark')
       this.image_dir = this.bookmark.language.image_dir

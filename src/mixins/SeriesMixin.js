@@ -21,6 +21,7 @@ export const seriesMixin = {
       ],
       dir: 'ltr',
       image_dir: 'ZZ/images/europe',
+      series_image_dir: 'ZZ/images/europe',
       loading: false,
       loaded: null,
       error: null,

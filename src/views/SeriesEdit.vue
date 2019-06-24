@@ -1,10 +1,8 @@
 <template>
   <div>
-    <NavBar />
+    <NavBar/>
     <div class="loading" v-if="loading">Loading...</div>
-    <div class="error" v-if="error">
-      There was an error... {{ this.error_message }}
-    </div>
+    <div class="error" v-if="error">There was an error... {{ this.error_message }}</div>
     <div class="content" v-if="loaded">
       <h1>
         Series for {{ this.$route.params.country_code }} in
@@ -12,11 +10,8 @@
       </h1>
       <div class="form">
         <span>Series Description:</span>
-        <br />
-        <textarea
-          v-model="description"
-          placeholder="add multiple lines"
-        ></textarea>
+        <br>
+        <textarea v-model="description" placeholder="add multiple lines"></textarea>
       </div>
       <div class="form">
         <BaseInput
@@ -37,29 +32,18 @@
         />
       </div>
 
-      <br />
-      <hr />
-      <br />
+      <br>
+      <hr>
+      <br>
       <div>
-        <button class="button" @click="publishAll">
-          Select ALL to publish?
-        </button>
+        <button class="button" @click="publishAll">Select ALL to publish?</button>
         <div
           v-for="(chapter, index) in $v.chapters.$each.$iter"
           :key="chapter.id"
           :chapter="chapter"
         >
-          <div
-            class="app-card -shadow"
-            v-bind:class="{ notpublished: !chapter.publish.$model }"
-          >
-            <div
-              class="float-right"
-              style="cursor:pointer"
-              @click="deleteChapterForm(index)"
-            >
-              X
-            </div>
+          <div class="app-card -shadow" v-bind:class="{ notpublished: !chapter.publish.$model }">
+            <div class="float-right" style="cursor:pointer" @click="deleteChapterForm(index)">X</div>
             <div class="form">
               <BaseInput
                 v-model="chapter.count.$model"
@@ -80,9 +64,7 @@
                 @blur="chapter.title.$touch()"
               />
               <template v-if="chapter.title.$error">
-                <p v-if="!chapter.title.required" class="errorMessage">
-                  Title is required
-                </p>
+                <p v-if="!chapter.title.required" class="errorMessage">Title is required</p>
               </template>
 
               <BaseInput
@@ -95,9 +77,7 @@
                 @blur="chapter.description.$touch()"
               />
               <template v-if="chapter.description.$error">
-                <p v-if="!chapter.description.required" class="errorMessage">
-                  Description is required
-                </p>
+                <p v-if="!chapter.description.required" class="errorMessage">Description is required</p>
               </template>
 
               <BaseInput
@@ -110,19 +90,17 @@
                 @blur="chapter.filename.$touch()"
               />
               <template v-if="chapter.filename.$error">
-                <p v-if="!chapter.filename.required" class="errorMessage">
-                  Description is required
-                </p>
+                <p v-if="!chapter.filename.required" class="errorMessage">Description is required</p>
               </template>
               <div v-if="images">
                 <div v-if="chapter.image.$model">
                   <img
                     v-bind:src="
-                      appDir.library + image_dir + '/' + chapter.image.$model
+                      appDir.library + series_image_dir + '/' + chapter.image.$model
                     "
                     class="book"
-                  />
-                  <br />
+                  >
+                  <br>
                 </div>
                 <BaseSelect
                   label="Image"
@@ -139,15 +117,11 @@
                     v-bind:id="chapter.filename.$model"
                     ref="image"
                     v-on:change="handleImageUpload(chapter.filename.$model)"
-                  />
+                  >
                 </label>
               </div>
 
-              <input
-                type="checkbox"
-                id="checkbox"
-                v-model="chapter.publish.$model"
-              />
+              <input type="checkbox" id="checkbox" v-model="chapter.publish.$model">
               <label for="checkbox">
                 <h2>Publish?</h2>
               </label>
@@ -162,10 +136,10 @@
               reference| filename)
             </p>
             <label>
-              <input type="file" ref="file" v-on:change="importSeries()" />
+              <input type="file" ref="file" v-on:change="importSeries()">
             </label>
-            <br />
-            <br />
+            <br>
+            <br>
           </div>
           <button class="button" @click="addNewChapterForm">New Chapter</button>
 
@@ -174,13 +148,11 @@
           </div>
           <div v-if="$v.$anyError">
             <button class="button grey">Disabled</button>
-            <p v-if="$v.$anyError" class="errorMessage">
-              Please fill out the required field(s).
-            </p>
+            <p v-if="$v.$anyError" class="errorMessage">Please fill out the required field(s).</p>
           </div>
-          <br />
-          <br />
-          <br />
+          <br>
+          <br>
+          <br>
         </div>
         <div v-if="!this.authorized">
           <p>
@@ -271,7 +243,7 @@ export default {
           var type = AuthorService.typeImage(checkfile[0])
           if (type) {
             var params = {}
-            params.directory = 'content/' + this.bookmark.language.image_dir
+            params.directory = 'content/' + this.series_image_dir
             params.name = code
             AuthorService.imageStore(params, checkfile[0])
             for (i = 0; i < arrayLength; i++) {
@@ -370,12 +342,19 @@ export default {
         this.getSeries(this.$route.params)
         // get images
         var param = {}
+        param.series_image_dir =
+          this.$route.params.country_code +
+          '/' +
+          this.$route.params.language_iso +
+          '/' +
+          this.$route.params.folder_name
         param.image_dir = this.bookmark.language.image_dir
         console.log('image dir: ' + param.image_dir.substring(0, 2))
         this.image_permission = this.authorize(
           'write',
           param.image_dir.substring(0, 2)
         )
+        this.series_image_dir = param.series_image_dir
         var img = await AuthorService.getImages(param)
         if (img) {
           this.images = img.sort()
