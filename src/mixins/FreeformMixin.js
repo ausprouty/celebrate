@@ -31,7 +31,10 @@ export const freeformMixin = {
           this.prototype_date = response.data.content.prototype_date
         }
       }
-      var text = JSON.parse(response.data.content.text)
+      console.log ('from ContentService.getCountry in Freeform Mixin')
+      console.log (response.data.content)
+      //var text = JSON.parse(response.data.content.text)
+      var text = response.data.content.text
       console.log ('text')
       console.log (text)
       this.pageText = text.page

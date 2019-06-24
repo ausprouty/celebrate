@@ -278,8 +278,6 @@ export default {
       'AuthorApi.php?action=login',
       contentForm
     )
-    console.log('loginResponse')
-    console.log(response)
     return response
   },
   async prototype(params) {

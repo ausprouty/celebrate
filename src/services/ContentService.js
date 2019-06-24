@@ -39,7 +39,8 @@ export default {
           console.log('content.text found')
           found = true
           response = res
-          response.data.content.text = JSON.parse(res.data.content.text)
+         // response.data.content.text = JSON.parse(res.data.content.text)
+         response.data.content.text = res.data.content.text
           response.source = 'data'
           console.log(response)
           return response
@@ -68,9 +69,10 @@ export default {
       if (res.data.content.text != '') {
         found = true
         response = res
-        console.log('about to parse')
-        response.data.content.text = JSON.parse(res.data.content.text)
-        console.log('was able to parse')
+        //  console.log('about to parse')
+        // response.data.content.text = JSON.parse(res.data.content.text)
+        response.data.content.text = res.data.content.text
+        // console.log('was able to parse')
         response.source = 'data'
         return response
       }
@@ -97,7 +99,8 @@ export default {
         if (res.data.content.text != '') {
           found = true
           response = res
-          response.data.content.text = JSON.parse(res.data.content.text)
+          //response.data.content.text = JSON.parse(res.data.content.text)
+          response.data.content.text = res.data.content.text
           response.source = 'data'
           return response
         }
@@ -135,7 +138,8 @@ export default {
         if (res.data.content.text != '') {
           found = true
           response = res
-          response.data.content.text = JSON.parse(res.data.content.text)
+         // response.data.content.text = JSON.parse(res.data.content.text)
+          response.data.content.text = res.data.content.text
           response.source = 'data'
           return response
         }
@@ -199,7 +203,8 @@ export default {
         console.log('I have response.data.content')
         console.log(response.data)
         if (response.data.content.text != '') {
-          var text = JSON.parse(response.data.content.text)
+         // var text = JSON.parse(response.data.content.text)
+         var text = response.data.content.text
           response.data.content.description = text.description
           response.data.content.chapters = text.chapters
           found = true

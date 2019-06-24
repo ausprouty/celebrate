@@ -43,6 +43,7 @@ export const libraryMixin = {
   },
   methods: {
     async getLibrary() {
+      console.log ('started Get Library in LibraryMisin')
       try {
         this.error = this.loaded = ''
         this.loading = true

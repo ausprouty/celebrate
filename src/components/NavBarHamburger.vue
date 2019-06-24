@@ -110,7 +110,8 @@ export default {
             name: 'previewLibrary',
             params: {
               country_code: this.bookmark.country.code,
-              language_iso: this.bookmark.language.iso
+              language_iso: this.bookmark.language.iso,
+              library_code: 'library'
             }
           })
           break

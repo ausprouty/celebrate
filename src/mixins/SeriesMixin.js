@@ -68,7 +68,8 @@ export const seriesMixin = {
             this.publish_date = response.data.content.publish_date
             this.prototype_date = response.data.content.prototype_date
           }
-          this.seriesDetails = JSON.parse(response.data.content.text)
+         // this.seriesDetails = JSON.parse(response.data.content.text)
+          this.seriesDetails = response.data.content.text
           console.log('Series Details')
           console.log(this.seriesDetails)
           this.chapters = this.seriesDetails.chapters

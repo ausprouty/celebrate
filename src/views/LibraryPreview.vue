@@ -13,7 +13,7 @@
         </button>
       </div>
       <hr class="border" />
-      <a v-bind:href="'/preview/language/' + this.bookmark.country.code">
+      <a v-bind:href="this.back">
         <img
           v-bind:src="appDir.library + this.image_dir + '/' + this.image"
           class="app-img-header"
@@ -62,7 +62,8 @@ export default {
     return {
       readonly: false,
       write: false,
-      publish: false
+      publish: false,
+      back: 'country'
     }
   },
   methods: {
@@ -117,6 +118,10 @@ export default {
         this.recnum = null
         this.$store.dispatch('newBookmark', 'clear')
         await this.getLibrary()
+        this.back = '/preview/language/' + this.$route.params.country_code
+        if (this.$route.params.library_code){
+          this.back =  '/preview/country/' + this.$route.params.country_code
+        }
         this.readonly = this.authorize(
           'readonly',
           this.$route.params.country_code

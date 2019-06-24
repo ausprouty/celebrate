@@ -1,12 +1,12 @@
 <template>
-<div v-if="language.publish == 1">
-  <div class="app-link" v-on:click="showPage(language)">
-    <div class="app-card -shadow">
-      <div class="language">
-        <span class="bold">{{language.name}}</span>
+  <div v-if="language.publish == 1">
+    <div class="app-link" v-on:click="showPage(language)">
+      <div class="app-card -shadow">
+        <div class="language">
+          <span class="bold">{{ language.name }}</span>
+        </div>
       </div>
     </div>
-  </div>
   </div>
 </template>
 

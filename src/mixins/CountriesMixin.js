@@ -78,7 +78,8 @@ export const countriesMixin = {
           name: link,
           params: {
             country_code: country.code,
-            language_iso: language.iso
+            language_iso: language.iso,
+            library_code: 'library'
           }
         })
       } else {
