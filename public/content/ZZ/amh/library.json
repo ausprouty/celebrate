@@ -1,10 +1,10 @@
 [
   {
     "id": 1,
-    "book": "principles",
+    "name": "life",
     "title": "የኛ ጉዳይ",
     "folder": "myfriends",
-    "index": "principles",
+    "index": "life",
     "style": "AU-myfriends.css",
     "image": "issues.jpg",
     "format": "series",
@@ -12,7 +12,7 @@
   },
   {
     "id": 2,
-    "book": "basics",
+    "name": "basics",
     "title": "መሰረታዊ ውይዪቶች",
     "folder": "myfriends",
     "index": "basics",
@@ -23,7 +23,7 @@
   },
   {
     "id": 3,
-    "book": "community",
+    "name": "community",
     "title": "ህብረተሰቡ ውስ መኖር",
     "folder": "myfriends",
     "page": "community",
@@ -33,7 +33,7 @@
   },
   {
     "id": 4,
-    "book": "firststeps",
+    "name": "firststeps",
     "title": "የመጀመሪያ እርምጃ",
     "folder": "first_steps",
     "index": "first_steps",
@@ -44,7 +44,7 @@
   },
   {
     "id": 6,
-    "book": "about",
+    "name": "about",
     "title": "ስለ",
     "folder": "myfriends",
     "page": "community",

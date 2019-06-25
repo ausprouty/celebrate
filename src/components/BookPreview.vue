@@ -51,15 +51,16 @@ export default {
       localStorage.setItem('lastPage', 'library/country/language')
       if (book.format == 'series') {
         console.log('BOOK  PREVIEW - this is a series')
-        this.$router.push({
-          name: 'previewSeries',
-          params: {
-            country_code: this.$route.params.country_code,
-            language_iso: this.$route.params.language_iso,
-            library_code: this.$route.params.library_code,
-            folder_name: this.book.name
-          }
-        })
+        console.log(book)
+        // this.$router.push({
+        //   name: 'previewSeries',
+        //   params: {
+        //     country_code: this.$route.params.country_code,
+        //     language_iso: this.$route.params.language_iso,
+        //     library_code: this.$route.params.library_code,
+        //     folder_name: this.book.name
+        //  }
+        // })
       } else {
         console.log('BOOK  PREVIEW - this is a NOT a series')
         this.$router.push({

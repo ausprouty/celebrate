@@ -1,10 +1,10 @@
 [
   {
     "id": 1,
-    "book": "life",
+    "name": "life",
     "title": "Temas de la vida",
     "folder": "myfriends",
-    "index": "principles",
+    "index": "life",
     "style": "ZZ/styles/myfriendsGLOBAL.css",
     "image": "issues.jpg",
     "format": "series",
@@ -14,7 +14,7 @@
   },
   {
     "id": 2,
-    "book": "basics",
+    "name": "basics",
     "title": "Conversaciones Básicas",
     "folder": "myfriends",
     "index": "basics",
@@ -27,7 +27,7 @@
   },
   {
     "id": 3,
-    "book": "community",
+    "name": "community",
     "title": "Comunidad vivo",
     "folder": "myfriends",
     "page": "community",
@@ -39,7 +39,7 @@
   },
   {
     "id": 4,
-    "book": "firststeps",
+    "name": "firststeps",
     "title": "Primeros pasos",
     "folder": "first_steps",
     "index": "first_steps",
@@ -52,7 +52,7 @@
   },
   {
     "id": 5,
-    "book": "compass",
+    "name": "compass",
     "title": "Brújula",
     "folder": "compass",
     "index": "compass-chapters",
@@ -65,7 +65,7 @@
   },
   {
     "id": 6,
-    "book": "about",
+    "name": "about",
     "title": "Acerca de",
     "folder": "myfriends",
     "page": "community",

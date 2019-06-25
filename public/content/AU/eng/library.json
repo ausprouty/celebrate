@@ -1,7 +1,7 @@
 [
   {
     "id": "1",
-    "book": "about",
+    "name": "about",
     "title": "About MyFriends",
     "folder": "myfriends",
     "page": "community",
@@ -13,10 +13,10 @@
   },
   {
     "id": "2",
-    "book": "life",
+    "name": "life",
     "title": "Life Issues",
     "folder": "myfriends",
-    "index": "principles",
+    "index": "life",
     "style": "ZZ/styles/myfriendsGLOBAL.css",
     "image": "issues.jpg",
     "format": "series",
@@ -26,7 +26,7 @@
   },
   {
     "id": "3",
-    "book": "basics",
+    "name": "basics",
     "title": "Basic Conversations",
     "folder": "myfriends",
     "index": "basics",
@@ -39,7 +39,7 @@
   },
   {
     "id": "5",
-    "book": "multiply",
+    "name": "multiply",
     "title": "Multiply",
     "folder": "multiply",
     "index": "multiply",
@@ -51,7 +51,7 @@
   },
   {
     "id": "6",
-    "book": "like",
+    "name": "like",
     "title": "Being like Jesus",
     "folder": "like",
     "index": "like",
@@ -62,7 +62,7 @@
   },
   {
     "id": "4",
-    "book": "community",
+    "name": "community",
     "title": "Bible Discovery Framework",
     "folder": "myfriends",
     "page": "community",

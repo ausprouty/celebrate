@@ -1,11 +1,11 @@
 [
   {
     "id": 1,
-    "book": "principles",
+    "name": "life",
 	"format": "series",
 	"folder": "myfriends",
 	"image": "issues.jpg",
-     "index": "principles",
+     "index": "life",
     "instructions": "",
 	"style": "ZZ/styles/myfriends.css",
 	"template": "myfriends/issue.html",
@@ -13,7 +13,7 @@
   },
   {
     "id": 2,
-    "book": "basics",
+    "name": "basics",
 	"folder": "myfriends",
 	"format": "series",
 	"image": "basics.jpg",
@@ -25,7 +25,7 @@
   },
   {
     "id": 3,
-    "book": "community",
+    "name": "community",
 	"folder": "myfriends",
 	"format": "page"
 	"image": "community.jpg",
@@ -36,7 +36,7 @@
   },
   {
     "id": 4,
-    "book": "firststeps",
+    "name": "firststeps",
     "folder": "first_steps",
 	"format": "series",
 	"image": "firststeps.jpg",
@@ -48,7 +48,7 @@
   },
   {
     "id": 5,
-    "book": "compass",
+    "name": "compass",
 	"folder": "compass",
 	"format": "series",
 	"image": "compass.jpg",
@@ -61,7 +61,7 @@
   },
   {
     "id": 6,
-    "book": "about",
+    "name": "about",
     "title": "About MyFriends",
     "folder": "myfriends",
     "page": "community",
