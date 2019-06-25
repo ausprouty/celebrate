@@ -14,7 +14,7 @@ export const libraryMixin = {
           format: 'series'
         }
       ],
-      image_dir: 'ZZ/images/europe',
+      image_dir: 'ZZ/images/GLOBAL',
       loading: false,
       loaded: '',
       error: '',
@@ -43,7 +43,7 @@ export const libraryMixin = {
   },
   methods: {
     async getLibrary() {
-      console.log ('started Get Library in LibraryMisin')
+      console.log('started Get Library in LibraryMisin')
       try {
         this.error = this.loaded = ''
         this.loading = true
@@ -65,15 +65,16 @@ export const libraryMixin = {
         //console.log('Library Data obtained:')
         //console.log(response.data.content.text)
         if (response.data.content.text) {
-          this.library = response.data.content.text.books
+          this.books = response.data.content.text.books
             ? response.data.content.text.books
-            : []
+            : response.data.content.text // from legacy data
           this.image = response.data.content.text.image
             ? response.data.content.text.image
-            : ''
+            : 'journey.jpg'
           this.text = response.data.content.text.text
             ? response.data.content.text.text
             : ''
+
           if (response.data.content.recnum) {
             this.recnum = response.data.content.recnum
             this.publish_date = response.data.content.publish_date
@@ -99,7 +100,7 @@ export const libraryMixin = {
       }
     },
     newLibrary() {
-      this.library = [
+      this.books = [
         {
           id: 1,
           name: 'life',

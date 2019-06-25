@@ -1,8 +1,10 @@
 <template>
   <div>
-    <NavBar/>
+    <NavBar />
     <div class="loading" v-if="loading">Loading...</div>
-    <div class="error" v-if="error">There was an error... {{ this.error_message }}</div>
+    <div class="error" v-if="error">
+      There was an error... {{ this.error_message }}
+    </div>
     <div class="content" v-if="loaded">
       <div v-if="!this.authorized">
         <p>
@@ -17,10 +19,18 @@
       <div v-if="this.authorized">
         <h1>Library</h1>
         <div v-if="images">
-          <img v-bind:src="appDir.library + image_dir + '/' + this.image" class="header">
-          <br>
+          <img
+            v-bind:src="appDir.library + image_dir + '/' + this.image"
+            class="header"
+          />
+          <br />
         </div>
-        <BaseSelect label="Image" :options="images" v-model="image" class="field"/>
+        <BaseSelect
+          label="Image"
+          :options="images"
+          v-model="image"
+          class="field"
+        />
       </div>
       <div v-if="image_permission">
         <label>
@@ -30,24 +40,39 @@
             v-bind:id="image"
             ref="imageHeader"
             v-on:change="handleHeaderUpload(image)"
-          >
+          />
         </label>
       </div>
       <div>
-        <hr>
+        <hr />
         <h2>Preliminary Text</h2>
         <p>
-          <vue-ckeditor v-model="text" :config="config"/>
+          <vue-ckeditor v-model="text" :config="config" />
         </p>
       </div>
-      <hr>
+      <hr />
       <h2>Library Items</h2>
       <div>
-        <button class="button" @click="publishAll">Select ALL to publish?</button>
+        <button class="button" @click="publishAll">
+          Select ALL to publish?
+        </button>
       </div>
-      <div v-for="(book, index) in $v.library.$each.$iter" :key="book.code" :book="book">
-        <div class="app-card -shadow" v-bind:class="{ notpublished: !book.publish.$model }">
-          <div class="float-right" style="cursor:pointer" @click="deleteBookForm(index)">X</div>
+      <div
+        v-for="(book, index) in $v.books.$each.$iter"
+        :key="book.code"
+        :book="book"
+      >
+        <div
+          class="app-card -shadow"
+          v-bind:class="{ notpublished: !book.publish.$model }"
+        >
+          <div
+            class="float-right"
+            style="cursor:pointer"
+            @click="deleteBookForm(index)"
+          >
+            X
+          </div>
           <div>
             <BaseInput
               v-model="book.id.$model"
@@ -68,7 +93,9 @@
               @blur="book.title.$touch()"
             />
             <template v-if="book.title.$error">
-              <p v-if="!book.title.required" class="errorMessage">Book Title is required</p>
+              <p v-if="!book.title.required" class="errorMessage">
+                Book Title is required
+              </p>
             </template>
 
             <BaseSelect
@@ -82,10 +109,15 @@
           </div>
           <div>
             <p>
-              <a class="black" @click="createBook(book.name.$model)">Create new International Title</a>
+              <a class="black" @click="createBook(book.name.$model)"
+                >Create new International Title</a
+              >
             </p>
           </div>
-          <div v-bind:id="book.title.$model" v-bind:class="{ hidden: isHidden }">
+          <div
+            v-bind:id="book.title.$model"
+            v-bind:class="{ hidden: isHidden }"
+          >
             <BaseInput
               label="New International Title"
               v-model="book.name.$model"
@@ -93,10 +125,9 @@
               placeholder="international title"
               class="field"
             />
-            <button
-              class="button"
-              @click="addNewBookTitle(book.title.$model)"
-            >Save International Title</button>
+            <button class="button" @click="addNewBookTitle(book.title.$model)">
+              Save International Title
+            </button>
           </div>
           <div v-if="images">
             <div v-if="book.image.$model">
@@ -105,8 +136,8 @@
                   appDir.library + image_dir + '/' + book.image.$model
                 "
                 class="book"
-              >
-              <br>
+              />
+              <br />
             </div>
             <BaseSelect
               label="Image"
@@ -117,7 +148,9 @@
               @blur="book.image.$touch()"
             />
             <template v-if="book.image.$error">
-              <p v-if="!book.image.required" class="errorMessage">Image is required</p>
+              <p v-if="!book.image.required" class="errorMessage">
+                Image is required
+              </p>
             </template>
           </div>
           <div v-if="image_permission">
@@ -128,7 +161,7 @@
                 v-bind:id="book.name.$model"
                 ref="image"
                 v-on:change="handleImageUpload(book.name.$model)"
-              >
+              />
             </label>
           </div>
           <div>
@@ -141,7 +174,9 @@
               @blur="book.format.$touch()"
             />
             <template v-if="book.format.$error">
-              <p v-if="!book.format.required" class="errorMessage">Format is required</p>
+              <p v-if="!book.format.required" class="errorMessage">
+                Format is required
+              </p>
             </template>
           </div>
           <div>
@@ -154,7 +189,9 @@
               @blur="book.style.$touch()"
             />
             <template v-if="book.style.$error">
-              <p v-if="!book.style.required" class="errorMessage">Style is required</p>
+              <p v-if="!book.style.required" class="errorMessage">
+                Style is required
+              </p>
             </template>
             <template v-if="style_error">
               <p class="errorMessage">Only .css files may be uploaded</p>
@@ -167,7 +204,7 @@
                 v-bind:id="book.title.$model"
                 ref="style"
                 v-on:change="handleStyleUpload(book.title.$model)"
-              >
+              />
             </label>
 
             <BaseSelect
@@ -185,15 +222,23 @@
                 v-bind:id="book.title.$model"
                 ref="template"
                 v-on:change="handleTemplateUpload(book.title.$model)"
-              >
+              />
             </label>
             <template v-if="template_error">
-              <p class="errorMessage">Only .html files may be uploaded as templates</p>
+              <p class="errorMessage">
+                Only .html files may be uploaded as templates
+              </p>
             </template>
-            <button class="button yellow" @click="createTemplate">Create Template</button>
-            <br>
-            <br>
-            <input type="checkbox" id="checkbox" v-model="book.publish.$model">
+            <button class="button yellow" @click="createTemplate">
+              Create Template
+            </button>
+            <br />
+            <br />
+            <input
+              type="checkbox"
+              id="checkbox"
+              v-model="book.publish.$model"
+            />
             <label for="checkbox">
               <h2>Publish?</h2>
             </label>
@@ -207,7 +252,9 @@
         </div>
         <div v-if="$v.$anyError">
           <button class="button grey">Disabled</button>
-          <p v-if="$v.$anyError" class="errorMessage">Please fill out the required field(s).</p>
+          <p v-if="$v.$anyError" class="errorMessage">
+            Please fill out the required field(s).
+          </p>
         </div>
       </div>
     </div>
@@ -327,7 +374,7 @@ export default {
     }
   },
   validations: {
-    library: {
+    books: {
       required,
       $each: {
         id: { required },
@@ -343,10 +390,10 @@ export default {
   },
   methods: {
     addNewBookForm() {
-      if (this.library.length == 0) {
+      if (this.books.length == 0) {
         this.newLibrary()
       } else {
-        this.library.push({
+        this.books.push({
           id: '',
           name: '',
           title: '',
@@ -362,12 +409,12 @@ export default {
       console.log('I came to addNewBookTitle')
       console.log(title)
       this.booklist = []
-      var change = this.$v.library.$model
+      var change = this.$v.books.$model
       console.log('change')
       console.log(change)
       var arrayLength = change.length
       for (var i = 0; i < arrayLength; i++) {
-        this.booklist.push(this.$v.library.$model[i].name)
+        this.booklist.push(this.$v.books.$model[i].name)
       }
       console.log(this.booklist)
       console.log('about to hide')
@@ -379,10 +426,10 @@ export default {
       this.isHidden = false
     },
     publishAll() {
-      var arrayLength = this.library.length
+      var arrayLength = this.books.length
       console.log(' Item count:' + arrayLength)
       for (var i = 0; i < arrayLength; i++) {
-        this.$v.library.$each.$iter[i].publish.$model = true
+        this.$v.books.$each.$iter[i].publish.$model = true
       }
     },
     async createFolder(folder) {
@@ -404,7 +451,7 @@ export default {
       })
     },
     deleteBookForm(index) {
-      this.library.splice(index, 1)
+      this.books.splice(index, 1)
     },
     handleImageUpload(code) {
       console.log('handleImageUpload: ' + code)
@@ -423,9 +470,9 @@ export default {
             params.name = code
             AuthorService.imageStore(params, checkfile[0])
             for (i = 0; i < arrayLength; i++) {
-              checkfile = this.$v.library.$each[i]
+              checkfile = this.$v.books.$each[i]
               if (checkfile.$model.book == code) {
-                this.$v.library.$each[i].$model.image = code + type
+                this.$v.books.$each[i].$model.image = code + type
               }
             }
             this.saveForm()
@@ -525,7 +572,7 @@ export default {
         var check = ''
         var params = {}
         var route = this.$route.params
-        var arrayLength = this.library.length
+        var arrayLength = this.books.length
         for (var i = 0; i < arrayLength; i++) {
           check = this.library[i]
           if (check.format == 'series') {

@@ -14,7 +14,7 @@ export const bookMarkMixin = {
     },
     async CheckBookmarks(route) {
       console.log('BOOKMARK MIXIN started')
-      console.log (route)
+      console.log(route)
       try {
         await this.CheckBookmarkCountry(route)
         await this.CheckBookmarkLanguageLibrary(route)
@@ -74,13 +74,13 @@ export const bookMarkMixin = {
       }
     },
     async CheckBookmarkLanguageLibrary(route) {
-        console.log('entered CheckBookmarkLanguageLibrary')
-        console.log(route)
+      console.log('entered CheckBookmarkLanguageLibrary')
+      console.log(route)
       /* LANGUAGE AND LIBRARY
            if route.language_iso is not the same as bookmark 
             update language and erase all bookmark below*/
       if (!route.language_iso) {
-        console.log ('language not set')
+        console.log('language not set')
         this.$store.dispatch('unsetBookmark', ['language'])
         return null
       }
@@ -101,22 +101,43 @@ export const bookMarkMixin = {
               value = response[i]
             }
           }
-          console.log ('Language Bookmark is ')
-          console.log (value)
+         // console.log('Language Bookmark is ')
+        //  console.log(value)
           this.$store.dispatch('updateBookmark', ['language', value])
-          console.log('Going to Content Service to GetLibrary with:')
-          console.log(route)
+         // console.log('Going to Content Service to GetLibrary with:')
+         // console.log(route)
           response = await ContentService.getLibrary(route)
-          //  console.log(response)
-          value = response.data.content.text
+         // console.log('response from getLibrary')
+         // console.log(response)
+          value = {}
+          if (typeof response.data.content.text.books !== 'undefined') {
+            console.log ('l am using new values')
+            value.books = response.data.content.text.books
+              ? response.data.content.text.books
+              : ''
+            value.image = response.data.content.text.image
+              ? response.data.content.text.image
+              : 'journey.jpg'
+            value.text = response.data.content.text.text
+              ? response.data.content.text.text
+              : ''
+          } else {
+            console.log ('l am using legacy values')
+            value.books = response.data.content.text // from legacy data
+            value.image = 'journey.jpg'
+            value.text = ''
+            console.log (value)
+          }
+          console.log('value')
+          console.log(value)
           this.$store.dispatch('updateBookmark', ['library', value])
           // }
           if (typeof this.bookmark.library == 'undefined') {
             // console.log (route)
             response = await ContentService.getLibrary(route)
             value = response.data
-            //console.log('BOOKMARK MIXIN --   library is ')
-            //console.log(value)
+            console.log('BOOKMARK MIXIN --   library is ')
+            console.log(value)
             this.$store.dispatch('updateBookmark', ['library', value])
           }
           return this.bookmark

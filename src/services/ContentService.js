@@ -138,7 +138,6 @@ export default {
         if (res.data.content.text != '') {
           found = true
           response = res
-         // response.data.content.text = JSON.parse(res.data.content.text)
           response.data.content.text = res.data.content.text
           response.source = 'data'
           return response

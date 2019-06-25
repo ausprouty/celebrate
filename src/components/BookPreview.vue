@@ -1,14 +1,23 @@
 <template>
   <div class="app-link" v-on:click="showPage(book)">
-    <div class="app-card -shadow" v-bind:class="{ notpublished: !book.publish }">
+    <div
+      class="app-card -shadow"
+      v-bind:class="{ notpublished: !book.publish }"
+    >
       <div v-if="!this.bookmark.language.titles">
-        <img v-bind:src="appDir.library + this.image_dir + '/' + book.image" class="book">
+        <img
+          v-bind:src="appDir.library + this.image_dir + '/' + book.image"
+          class="book"
+        />
         <div class="book">
           <span class="bold">{{ book.title }}</span>
         </div>
       </div>
       <div v-if="this.bookmark.language.titles">
-        <img v-bind:src="appDir.library + this.image_dir + '/' + book.image" class="something">
+        <img
+          v-bind:src="appDir.library + this.image_dir + '/' + book.image"
+          class="something"
+        />
       </div>
     </div>
   </div>

@@ -23,7 +23,7 @@
         <span v-html="text"></span>
       </div>
 
-      <Book v-for="book in library" :key="book.title" :book="book" />
+      <Book v-for="book in books" :key="book.title" :book="book" />
       <div class="version">
         <p class="version">Version 1.01</p>
       </div>
