@@ -1,5 +1,5 @@
 {		
-	"series" :"life",
+	"series" :"principles",
 	"language" : "deu",
 	"css" : "myfriends.css",
 	"version": "1.01",
@@ -11,161 +11,161 @@
 			"description" :"",
 			"verses" : "Lukas 18, 18-30",
 			"count": 1,
-			"filename" : "life201"
+			"filename" : "principle201"
 		},
 		{"id": 2,
 			"title" :  "Wie werde ich frei vom Vergleichen?",
 			"description" :"",
 			"verses" : "Lukas 18, 9-17",
 			"count": 2,
-			"filename" : "life202"
+			"filename" : "principle202"
 		},
 		{"id": 3,
 			"title" :  "Versöhnung",
 			"description" :"",
 			"verses" : "Matthäus 18, 21-35",
 			"count": 3,
-			"filename" : "life203"
+			"filename" : "principle203"
 		},
 		{"id": 4,
 			"title" :  "Wie wir miteinander umgehen sollen",
 			"description" :"",
 			"verses" : "Lukas 10, 29-37",
 			"count": 4,
-			"filename" : "life204"
+			"filename" : "principle204"
 		},
 		{"id": 5,
 			"title" :  "Frei vom Urteilen",
 			"description" :"",
 			"verses" : "Johannes 8, 3-11",
 			"count": 5,
-			"filename" : "life205"
+			"filename" : "principle205"
 		},
 		{"id": 6,
 			"title" :  "Vergebung",
 			"description" :"",
 			"verses" : "Matthäus 18:21-35",
 			"count": 6,
-			"filename" : "life206"
+			"filename" : "principle206"
 		},
 		{"id": 7,
 			"title" :  "Umgang mit den Feinden",
 			"description" :"",
 			"verses" : "Lukas 6, 27-36",
 			"count": 7,
-			"filename" : "life207"
+			"filename" : "principle207"
 		},
 		{"id": 8,
 			"title" :  "Mit Konflikten umgehen",
 			"description" :"",
 			"verses" : "Matthäus 5, 21-26",
 			"count": 8,
-			"filename" : "life208"
+			"filename" : "principle208"
 		},
 		{"id": 9,
 			"title" :  "Armut",
 			"description" :"",
 			"verses" : "Matthäus 25, 33-46",
 			"count": 9,
-			"filename" : "life209"
+			"filename" : "principle209"
 		},
 		{"id": 10,
 			"title" :  "Was zählt ihm Leben?",
 			"description" :"",
 			"verses" : "Matthäus 6, 19-33",
 			"count": 10,
-			"filename" : "life210"
+			"filename" : "principle210"
 		},
 		{"id": 11,
 			"title" :  "Ich bin gut genug",
 			"description" :"",
 			"verses" : "Lukas 18, 9-14",
 			"count": 11,
-			"filename" : "life211"
+			"filename" : "principle211"
 		},
 		{"id": 12,
 			"title" :  "Das Selbst",
 			"description" :"",
 			"verses" : "Markus 10, 18-27",
 			"count": 12,
-			"filename" : "life212"
+			"filename" : "principle212"
 		},
 		{"id": 13,
 			"title" :  "Weise investieren",
 			"description" :"",
 			"verses" : "Matthäus 25, 14-30",
 			"count": 13,
-			"filename" : "life213"
+			"filename" : "principle213"
 		},
 		{"id": 14,
 			"title" :  "Unsere Worte",
 			"description" :"",
 			"verses" : "Matthäus 15, 1-20",
 			"count": 14,
-			"filename" : "life214"
+			"filename" : "principle214"
 		},
 		{"id": 15,
 			"title" :  "Was wir haben",
 			"description" :"",
 			"verses" : "Lukas 16, 19-31",
 			"count": 15,
-			"filename" : "life215"
+			"filename" : "principle215"
 		},
 		{"id": 16,
 			"title" :  "Wer ist unser Herr?",
 			"description" :"",
 			"verses" : "Lukas 16, 1-15",
 			"count": 16,
-			"filename" : "life216"
+			"filename" : "principle216"
 		},
 		{"id": 17,
 			"title" :  "Sollen wir stressen?",
 			"description" :"",
 			"verses" : "Matthäus 6, 25-34",
 			"count": 17,
-			"filename" : "life217"
+			"filename" : "principle217"
 		},
 		{"id": 18,
 			"title" :  "Akzeptanz",
 			"description" :"",
 			"verses" : "Lukas 15, 11-32",
 			"count": 18,
-			"filename" : "life218"
+			"filename" : "principle218"
 		},
 		{"id": 19,
 			"title" :  "Meine Worte haben Macht",
 			"description" :"",
 			"verses" : "Matthäus 12, 33-37",
 			"count": 19,
-			"filename" : "life219"
+			"filename" : "principle219"
 		},
 		{"id": 20,
 			"title" :  "Wie werde ich frei vom Vergleichen?",
 			"description" :"",
 			"verses" : "Matthäus 7, 24-27",
 			"count": 20,
-			"filename" : "life220"
+			"filename" : "principle220"
 		},
 		{"id": 21,
 			"title" :  "Was ist deine Antwort an Gott?",
 			"description" :"",
 			"verses" : "Matthäus 13, 1-9",
 			"count": 21,
-			"filename" : "life221"
+			"filename" : "principle221"
 		},
 		{"id": 22,
 			"title" :  "Wie sieht Glaube aus?",
 			"description" :"",
 			"verses" : "Markus 4, 26-34",
 			"count": 22,
-			"filename" : "life222"
+			"filename" : "principle222"
 		},
 		{"id": 23,
 			"title" :  "Wozu bin ich geschaffen?",
 			"description" :"",
 			"verses" : "Markus 4, 26-34",
 			"count": 23,
-			"filename" : "life223"
+			"filename" : "principle223"
 		}
 ]
 }

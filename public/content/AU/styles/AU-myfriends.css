@@ -111,6 +111,7 @@ position: absolute;
 h1 {
 color:var(--color-red);
 display: inline;
+display:none;
 font-weight: bold;
 padding-left: 25px;
 text-align: center;

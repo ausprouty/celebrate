@@ -103,8 +103,12 @@ export default {
         if (this.recnum && !this.publish_date && this.prototype_date) {
           this.publish = this.authorize('publish', 'country')
         }
-         if (this.recnum && !this.prototype_date) {
+        if (this.recnum && !this.prototype_date) {
+           console.log ('I am checking for prototype')
           this.prototype = this.authorize('publish', 'country')
+        }
+        else{
+           console.log ('I am NOTchecking for prototype')
         }
       } catch (error) {
         console.log('There was an error in Country.vue:', error)

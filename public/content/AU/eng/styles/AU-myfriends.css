@@ -20,9 +20,6 @@ p.bible{
     padding-bottom: 10px;
     padding-top: 0px;
 }
-.cache_series{
-    color: var(--color-red);
-}
 
 .gospel_text {
 padding-bottom: 10px;
@@ -49,10 +46,7 @@ padding-left: 35px;
 .rtl{
     direction:rtl;
 }
-div.version{
-    text-align:center;
 
-}
 a {
 background: transparent;
 color: var(--color-red);
@@ -146,7 +140,4 @@ padding-top: 20px;
 color: var(--color-red);
 font-size: 20px;
 padding-bottom: 20px;
-}
-#offline-ready{
-    color: var(--color-red);
 }

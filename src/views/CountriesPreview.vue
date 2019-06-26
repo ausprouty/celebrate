@@ -92,12 +92,15 @@ export default {
     async loadView() {
       try {
         await this.getCountries()
-        this.authorized = this.authorize('write', 'world')
         this.publish = false
-        if (this.recnum && !this.publish_date) {
+        this.prototype = false
+        if (this.recnum && !this.publish_date && this.prototype_date) {
           this.publish = this.authorize('publish', 'country')
         }
-        // this.publish = true // TODO: remove for testing only
+        if (this.recnum && !this.prototype_date) {
+          console.log('I am checking for prototype')
+          this.prototype = this.authorize('publish', 'country')
+        }
       } catch (error) {
         console.log('There was an error in Countries.vue:', error) // Logs out the error
       }
