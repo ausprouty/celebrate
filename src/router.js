@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Countries from './views/Countries.vue'
+
 import CountriesEdit from './views/CountriesEdit.vue'
 import CountriesPreview from './views/CountriesPreview.vue'
 import CountriesSort from './views/CountriesSort.vue'
@@ -8,22 +8,22 @@ import CountriesSort from './views/CountriesSort.vue'
 import CountryPageEdit from './views/CountryPageEdit.vue'
 import CountryPagePreview from './views/CountryPagePreview.vue'
 
-import Language from './views/Languages.vue'
+
 import LanguageEdit from './views/LanguagesEdit.vue'
 import LanguagesPreview from './views/LanguagesPreview.vue'
 import LanguagesSort from './views/LanguagesSort.vue'
 
-import Library from './views/Library.vue'
+
 import LibraryEdit from './views/LibraryEdit.vue'
 import LibraryPreview from './views/LibraryPreview.vue'
 import LibrarySort from './views/LibrarySort.vue'
 
-import Series from './views/Series.vue'
+
 import SeriesEdit from './views/SeriesEdit.vue'
 import SeriesPreview from './views/SeriesPreview.vue'
 import SeriesSort from './views/SeriesSort.vue'
 
-import Page from './views/Page.vue'
+
 import PageEdit from './views/PageEdit.vue'
 import PagePreview from './views/PagePreview.vue'
 
@@ -49,8 +49,8 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'countries',
-      component: Countries
+      name: 'previewCountries',
+      component: CountriesPreview
     },
     {
       path: '/edit/country/:country_code',
@@ -68,31 +68,7 @@ export default new Router({
       component: Register,
       props: true
     },
-    {
-      path: '/languages/:country_code',
-      name: 'languages',
-      component: Language,
-      props: true
-    },
-    {
-      path: '/library/:country_code/:language_iso/:library_code?',
-      name: 'library',
-      component: Library,
-      props: true
-    },
-    {
-      path: '/series/:country_code/:language_iso/:library_code/:folder_name',
-      name: 'series',
-      component: Series,
-      props: true
-    },
-    {
-      path:
-        '/page/:country_code/:language_iso/:library_code/:folder_name/:filename',
-      name: 'page',
-      component: Page,
-      props: true
-    },
+   
     {
       path: '/edit/countries',
       name: 'editCountries',

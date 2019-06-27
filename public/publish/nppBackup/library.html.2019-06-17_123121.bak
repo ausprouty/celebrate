@@ -1,9 +1,0 @@
-<div class="content">
-    <a href="{{link}}>
-        <img src="{{library.image}}" class="app-img-header">
-    </a>
-   [[books]]
-    <div class="version">
-        <p class="version">{{version}}</p>
-    </div>
-</div>

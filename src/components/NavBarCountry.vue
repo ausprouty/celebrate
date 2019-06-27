@@ -3,22 +3,36 @@
     <div v-if="!authorized">
       <div id="nav">
         <router-link to="/">
-          <img class="nav-icon" alt="Home" src="/images/menu/header-hamburger.png">
+          <img
+            class="nav-icon"
+            alt="Home"
+            src="/images/menu/header-hamburger.png"
+          />
         </router-link>
       </div>
     </div>
     <div v-if="authorized">
       <div v-on:click="toggleMenu()">
-        <img class="nav-icon" alt="Home" src="/images/menu/header-hamburger.png">
+        <img
+          class="nav-icon"
+          alt="Home"
+          src="/images/menu/header-hamburger.png"
+        />
       </div>
       <div v-if="showMenu">
-        <div v-for="menuItem in this.menu" :key="menuItem.link" :menuItem="menuItem">
+        <div
+          v-for="menuItem in this.menu"
+          :key="menuItem.link"
+          :menuItem="menuItem"
+        >
           <div class="menu-card -shadow" v-if="menuItem.show">
             <div
               class="float-left"
               style="cursor:pointer"
               @click="setNewSelectedOption(menuItem.link)"
-            >{{ menuItem.value }}</div>
+            >
+              {{ menuItem.value }}
+            </div>
           </div>
         </div>
       </div>
