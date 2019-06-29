@@ -52,24 +52,25 @@ export default {
     )
   },
   // languages is an array of language objects
-  createDirectoryLanguages(country, languages) {
+  createDirectoryLanguages(content) {
     var code = ''
     console.log('createDirectoryLanguages')
-    console.log(languages)
-    var arrayLength = languages.length
+    console.log(content)
+    var route = JSON.parse(content.route)
+    var arrayLength = content.length
     for (var i = 0; i < arrayLength; i++) {
-      code = languages[i].iso
+      code = content[i].iso
       console.log(code)
       if (this.isFilename(code)) {
         var obj = {}
         obj.scope = 'language'
-        obj.country = country
+        obj.country = route.country_code
         console.log('Creating language directory for ' + code)
         obj.code = code
         obj.token = store.state.user.token
         var contentForm = this.toFormData(obj)
         apiSECURE.post(
-          'AuthorApi.php?page=create&action=createDir',
+          'AuthorApi.php?page=create&action=createDirectoryLanguages',
           contentForm
         )
       }

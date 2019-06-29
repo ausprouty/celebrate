@@ -9,6 +9,26 @@
     <div class="content" v-if="loaded">
       <div v-if="this.authorized">
         <h1>Languages for {{ this.$route.params.country_code }}</h1>
+        <div class="form">
+          <BaseInput
+            v-model="choose_language"
+            label="Choose Language:"
+            type="text"
+            placeholder="Choose Language"
+            class="field"
+          />
+        </div>
+        <div class="form">
+          <BaseInput
+            v-model="more_languages"
+            label="More Languages:"
+            type="text"
+            placeholder="More Languages"
+            class="field"
+          />
+        </div>
+        <br />
+        <hr />
         <div>
           <button class="button" @click="publishAll">
             Select ALL to publish?
@@ -187,6 +207,8 @@ export default {
   computed: mapState(['bookmark', 'appDir']),
   data() {
     return {
+      choose_language: 'Choose Language',
+      more_languages: 'More Languages',
       languages: {
         name: null,
         iso: null,
@@ -287,12 +309,19 @@ export default {
     async saveForm() {
       try {
         this.$store.dispatch('newBookmark', 'clear')
-        var valid = ContentService.validate(this.languages)
+        var output = {}
+        output.languages = this.languages
+        output.more_languages = this.more_languages
+        output.choose_language = this.choose_language
+        console.log('output')
+        console.log(output)
+        var valid = ContentService.validate(output)
         this.content.text = JSON.stringify(valid)
-        this.content.filename = 'languages'
-        this.content.filetype = 'json'
-        this.content.text = valid;
+        this.$route.params.filename = 'languages'
         this.content.route = JSON.stringify(this.$route.params)
+        this.content.filetype = 'json'
+        console.log('going to directory languages')
+        console.log(this.content)
         AuthorService.createDirectoryLanguages(this.content)
         var response = await AuthorService.createContentData(this.content)
         if (response.data.error != true) {

@@ -18,7 +18,7 @@
           v-model="download_now"
           label="Download for offline use"
           type="text"
-          placeholder
+          placeholder = ""
           class="field"
         />
       </div>
@@ -27,7 +27,7 @@
           v-model="download_ready"
           label="Ready for offline use:"
           type="text"
-          placeholder
+          placeholder = ""
           class="field"
         />
       </div>

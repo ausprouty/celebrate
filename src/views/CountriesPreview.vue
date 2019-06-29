@@ -101,6 +101,7 @@ export default {
           console.log('I am checking for prototype')
           this.prototype = this.authorize('publish', 'country')
         }
+         this.authorized = this.authorize('write', 'country')
       } catch (error) {
         console.log('There was an error in Countries.vue:', error) // Logs out the error
       }

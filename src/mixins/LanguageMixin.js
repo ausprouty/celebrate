@@ -4,6 +4,8 @@ export const languageMixin = {
     return {
       language: [],
       languages: [],
+      more_languages: 'More Languages',
+      choose_language: 'Choose Language',
       content: {},
       loading: false,
       loaded: null,
@@ -25,9 +27,11 @@ export const languageMixin = {
         // console.log('about the check bookmarks')
         await this.CheckBookmarks(this.$route.params)
         var response = await ContentService.getLanguages(this.$route.params)
-        //console.log('get languages')
-        //console.log(response)
-        this.languages = response.data.content.text
+        console.log('get languages')
+        console.log(response)
+        this.languages = response.data.content.text.languages
+        this.choose_language = response.data.content.text.choose_language
+        this.more_languages = response.data.content.text.more_languages
         if (response.data.content.recnum) {
           this.recnum = response.data.content.recnum
           this.publish_date = response.data.content.publish_date
