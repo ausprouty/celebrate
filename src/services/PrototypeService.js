@@ -22,19 +22,23 @@ export default {
     console.log(params)
     switch (scope) {
       case 'countries':
-        action = 'AuthorApi.php?page=prototype&action=prototypeCountries'
+        action =
+          'AuthorApi.php?page=prototypeCountriese&action=prototypeCountries'
         break
       case 'country':
-        action = 'AuthorApi.php?page=prototype&action=prototypeCountry'
+        action = 'AuthorApi.php?page= prototypeCountry&action=prototypeCountry'
         break
       case 'language':
         action = 'AuthorApi.php?page=prototype&action=prototypeLanguage'
         break
+      case 'languages':
+        action = 'AuthorApi.php?page=prototype&action=prototypeLanguages'
+        break
       case 'library':
-        action = 'AuthorApi.php?page=prototype&action=prototypeLibrary'
+        action = 'AuthorApi.php?page=prototypeLibrary&action=prototypeLibrary'
         break
       case 'series':
-        action = 'AuthorApi.php?page=prototype&action=prototypeSeries'
+        action = 'AuthorApi.php?page=prototypeSeries&action=prototypeSeries'
         break
       case 'page':
         action = 'AuthorApi.php?page=prototype&action=prototypePage'
@@ -42,8 +46,8 @@ export default {
       case 'default':
         action = null
     }
-    console.log ('action')
-    console.log (action)
+    console.log('action')
+    console.log(action)
     var contentForm = this.toFormData(params)
     var response = apiSECURE.post(action, contentForm)
     console.log('result of publish')
