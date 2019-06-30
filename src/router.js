@@ -49,7 +49,7 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'previewCountries',
+      name: 'home',
       component: CountriesPreview
     },
     {

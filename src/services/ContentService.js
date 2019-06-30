@@ -93,13 +93,12 @@ export default {
         'ContentApi.php?scope=languages',
         contentForm
       )
-      //  console.log('getLangauges - data')
-      //  console.log(res)
+        console.log('getLangauges - data')
+        console.log(res)
       if (res.data.content) {
         if (res.data.content.text != '') {
           found = true
           response = res
-          //response.data.content.text = JSON.parse(res.data.content.text)
           response.data.content.text = res.data.content.text
           response.source = 'data'
           return response

@@ -94,24 +94,26 @@ export const bookMarkMixin = {
           // }
           //if (route.language_iso != currentLanguage) {  in development the library can change
           var res = await ContentService.getLanguages(route)
-          response = res.data.content.text
+          console.log ('res from get Languages ')
+          console.log (res)
+          response = res.data.content.text.languages
           var length = response.length
           for (var i = 0; i < length; i++) {
             if (response[i].iso == route.language_iso) {
               value = response[i]
             }
           }
-         // console.log('Language Bookmark is ')
-        //  console.log(value)
+          console.log('Language Bookmark is ')
+          console.log(value)
           this.$store.dispatch('updateBookmark', ['language', value])
-         // console.log('Going to Content Service to GetLibrary with:')
-         // console.log(route)
+          // console.log('Going to Content Service to GetLibrary with:')
+          // console.log(route)
           response = await ContentService.getLibrary(route)
-         // console.log('response from getLibrary')
-         // console.log(response)
+          // console.log('response from getLibrary')
+          // console.log(response)
           value = {}
           if (typeof response.data.content.text.books !== 'undefined') {
-            console.log ('l am using new values')
+            console.log('l am using new values')
             value.books = response.data.content.text.books
               ? response.data.content.text.books
               : ''
@@ -122,11 +124,11 @@ export const bookMarkMixin = {
               ? response.data.content.text.text
               : ''
           } else {
-            console.log ('l am using legacy values')
+            console.log('l am using legacy values')
             value.books = response.data.content.text // from legacy data
             value.image = 'journey.jpg'
             value.text = ''
-            console.log (value)
+            console.log(value)
           }
           console.log('value')
           console.log(value)

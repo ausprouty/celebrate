@@ -635,35 +635,40 @@ export default {
 
         var img = await AuthorService.getImages(param)
 
-        if (img) {
+        if (typeof img !== 'undefined') {
           this.images = img.sort()
         }
         // get folders
 
         var folder = await AuthorService.getFoldersContent(param)
-        if (folder) {
+        if (typeof folder !== 'undefined') {
           this.folders = folder
         }
         // get styles
         var style = await AuthorService.getStyles(param)
-        if (style) {
+        if (typeof style !== 'undefined') {
           this.styles = style
         }
         //get templates
         var template = await AuthorService.getTemplates(param)
-        if (template) {
+        if (typeof template !== 'undefined') {
           this.templates = template
         }
         // update booklist
         console.log('updating booklist')
         var arrayLength = this.bookmark.library.books.length
-        for (var i = 0; i < arrayLength; i++) {
-          console.log(this.bookmark.library.books[i].name)
-          if (!this.booklist.includes(this.bookmark.library.books[i].name)) {
-            this.booklist.push(this.bookmark.library.books[i].name)
+        if (typeof arrayLength !== 'undefined') {
+          for (var i = 0; i < arrayLength; i++) {
+            console.log(this.bookmark.library.books[i].name)
+            if (!this.booklist.includes(this.bookmark.library.books[i].name)) {
+              this.booklist.push(this.bookmark.library.books[i].name)
+            }
           }
         }
-        this.booklist.sort()
+        if (typeof this.booklist !== 'undefined' && this.booklist.length > 0) {
+          this.booklist.sort()
+        }
+
         if (!this.image) {
           this.image = this.$route.params.library_code + '.png'
         }
