@@ -21,6 +21,7 @@ export const libraryMixin = {
       error_message: '',
       prototype: false,
       prototype_date: null,
+      books: [],
       publish: false,
       publish_date: '',
       recnum: '',
@@ -62,8 +63,8 @@ export const libraryMixin = {
         // console.log(this.$route.params)
         await this.CheckBookmarks(this.$route.params)
         var response = await ContentService.getLibrary(this.$route.params)
-        //console.log('Library Data obtained:')
-        //console.log(response.data.content.text)
+        console.log('Library Data obtained:')
+        console.log(response.data.content.text)
         if (response.data.content.text) {
           this.books = response.data.content.text.books
             ? response.data.content.text.books
@@ -74,7 +75,8 @@ export const libraryMixin = {
           this.text = response.data.content.text.text
             ? response.data.content.text.text
             : ''
-
+          console.log('this.books')
+          console.log(this.books)
           if (response.data.content.recnum) {
             this.recnum = response.data.content.recnum
             this.publish_date = response.data.content.publish_date

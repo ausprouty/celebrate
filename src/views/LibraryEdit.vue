@@ -282,21 +282,7 @@ export default {
   computed: mapState(['bookmark', 'appDir', 'cssURL', 'standard']),
   data() {
     return {
-      library: [
-        {
-          name: '',
-          folder: '',
-          format: '',
-          id: '',
-          image: '',
-          index: '',
-          new_book: '',
-          style: '',
-          publish: '',
-          template: '',
-          title: ''
-        }
-      ],
+     
       formats: ['page', 'series'],
       images: [],
       folders: [],
@@ -574,7 +560,7 @@ export default {
         var route = this.$route.params
         var arrayLength = this.books.length
         for (var i = 0; i < arrayLength; i++) {
-          check = this.library[i]
+          check = this.books[i]
           if (check.format == 'series') {
             route.folder_name = check.name
             route.filename = 'index'
@@ -586,7 +572,7 @@ export default {
         }
         // update library file
         var output = {}
-        output.books = this.library
+        output.books = this.books
         output.image = this.image
         output.text = this.text
         var valid = ContentService.validate(output)

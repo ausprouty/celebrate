@@ -23,7 +23,7 @@ export default {
     switch (scope) {
       case 'countries':
         action =
-          'AuthorApi.php?page=prototypeCountriese&action=prototypeCountries'
+          'AuthorApi.php?page=prototypeCountries&action=prototypeCountries'
         break
       case 'country':
         action = 'AuthorApi.php?page= prototypeCountry&action=prototypeCountry'
@@ -32,7 +32,7 @@ export default {
         action = 'AuthorApi.php?page=prototype&action=prototypeLanguage'
         break
       case 'languages':
-        action = 'AuthorApi.php?page=prototype&action=prototypeLanguages'
+        action = 'AuthorApi.php?page=prototypeprototypeLanguages&action=prototypeLanguages'
         break
       case 'library':
         action = 'AuthorApi.php?page=prototypeLibrary&action=prototypeLibrary'

@@ -119,8 +119,8 @@ export default {
         this.$store.dispatch('newBookmark', 'clear')
         await this.getLibrary()
         this.back = '/preview/language/' + this.$route.params.country_code
-        if (this.$route.params.library_code){
-          this.back =  '/preview/country/' + this.$route.params.country_code
+        if (this.$route.params.library_code) {
+          this.back = '/preview/country/' + this.$route.params.country_code
         }
         this.readonly = this.authorize(
           'readonly',
