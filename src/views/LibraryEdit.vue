@@ -83,9 +83,11 @@
               :class="{ error: book.id.$error }"
               @blur="book.id.$touch()"
             />
+          </div>
+          <div>
             <BaseInput
               v-model="book.title.$model"
-              label="Book Title"
+              label="Your Title"
               type="text"
               placeholder="Title"
               class="field"
@@ -97,9 +99,10 @@
                 Book Title is required
               </p>
             </template>
-
+          </div>
+          <div>
             <BaseSelect
-              label="International Title"
+              label="International Code"
               :options="booklist"
               v-model="book.name.$model"
               class="field"
@@ -110,7 +113,7 @@
           <div>
             <p>
               <a class="black" @click="createBook(book.name.$model)"
-                >Create new International Title</a
+                >Create new International Code</a
               >
             </p>
           </div>
@@ -119,7 +122,7 @@
             v-bind:class="{ hidden: isHidden }"
           >
             <BaseInput
-              label="New International Title"
+              label="New International Code"
               v-model="book.name.$model"
               type="text"
               placeholder="international title"
@@ -282,7 +285,6 @@ export default {
   computed: mapState(['bookmark', 'appDir', 'cssURL', 'standard']),
   data() {
     return {
-     
       formats: ['page', 'series'],
       images: [],
       folders: [],
@@ -642,9 +644,16 @@ export default {
         }
         // update booklist
         console.log('updating booklist')
+        console.log (this.bookmark.library)
         var arrayLength = this.bookmark.library.books.length
+        console.log('arrayLength ' + arrayLength)
         if (typeof arrayLength !== 'undefined') {
           for (var i = 0; i < arrayLength; i++) {
+            if (this.bookmark.library.books[i].name == 'undefined') {
+              this.bookmark.library.books[i].name = this.bookmark.library.books[
+                i
+              ].book
+            }
             console.log(this.bookmark.library.books[i].name)
             if (!this.booklist.includes(this.bookmark.library.books[i].name)) {
               this.booklist.push(this.bookmark.library.books[i].name)

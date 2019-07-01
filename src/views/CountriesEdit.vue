@@ -1,8 +1,10 @@
 <template>
   <div>
-    <NavBar/>
+    <NavBar />
     <div class="loading" v-if="loading">Loading...</div>
-    <div class="error" v-if="error">There was an error... {{ this.error_message }}</div>
+    <div class="error" v-if="error">
+      There was an error... {{ this.error_message }}
+    </div>
     <div class="content" v-if="loaded">
       <h1>Countries</h1>
       <div
@@ -10,8 +12,17 @@
         :key="country.code.$model"
         :country="country"
       >
-        <div class="app-card -shadow" v-bind:class="{ notpublished: !country.publish.$model }">
-          <div class="float-right" style="cursor:pointer" @click="deleteCountryForm(index)">X</div>
+        <div
+          class="app-card -shadow"
+          v-bind:class="{ notpublished: !country.publish.$model }"
+        >
+          <div
+            class="float-right"
+            style="cursor:pointer"
+            @click="deleteCountryForm(index)"
+          >
+            X
+          </div>
           <form>
             <BaseInput
               v-model="country.name.$model"
@@ -23,7 +34,9 @@
               @blur="country.name.$touch()"
             />
             <template v-if="country.name.$error">
-              <div class="errorMessage" v-if="!country.name.required">Country Name is required.</div>
+              <div class="errorMessage" v-if="!country.name.required">
+                Country Name is required.
+              </div>
             </template>
 
             <BaseInput
@@ -49,11 +62,14 @@
                 <a
                   target="a_blank"
                   href="https://en.wikipedia.org/wiki/List_of_ISO_3166_country_codes"
-                >Reference File</a>
+                  >Reference File</a
+                >
               </p>
             </div>
             <template v-if="country.code.$error">
-              <div class="errorMessage" v-if="!country.code.required">Country Code is required.</div>
+              <div class="errorMessage" v-if="!country.code.required">
+                Country Code is required.
+              </div>
             </template>
 
             <BaseInput
@@ -70,11 +86,16 @@
                 <a
                   target="a_blank"
                   href="https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes"
-                >Reference File -- use 639-2/B</a>
+                  >Reference File -- use 639-2/B</a
+                >
               </p>
             </div>
 
-            <input type="checkbox" id="checkbox" v-model="country.custom.$model">
+            <input
+              type="checkbox"
+              id="checkbox"
+              v-model="country.custom.$model"
+            />
             <label for="checkbox">
               <h2>Custom Index?</h2>
             </label>
@@ -84,9 +105,12 @@
             </div>
 
             <div v-if="country.image.$model">
-              <br>
-              <img v-bind:src="appDir.country + country.image.$model" class="flag">
-              <br>
+              <br />
+              <img
+                v-bind:src="appDir.country + country.image.$model"
+                class="flag"
+              />
+              <br />
             </div>
             <div v-if="country.code.$model">
               <label>
@@ -95,11 +119,15 @@
                   v-bind:id="country.code.$model"
                   ref="file"
                   v-on:change="handleFileUpload(country.code.$model)"
-                >
+                />
               </label>
             </div>
 
-            <input type="checkbox" id="checkbox" v-model="country.publish.$model">
+            <input
+              type="checkbox"
+              id="checkbox"
+              v-model="country.publish.$model"
+            />
             <label for="checkbox">
               <h2>Publish?</h2>
             </label>
@@ -115,7 +143,9 @@
         </div>
         <div v-if="$v.$anyError">
           <button class="button grey">Disabled</button>
-          <p v-if="$v.$anyError" class="errorMessage">Please fill out the required field(s).</p>
+          <p v-if="$v.$anyError" class="errorMessage">
+            Please fill out the required field(s).
+          </p>
         </div>
       </div>
       <div v-if="!this.authorized">
@@ -238,6 +268,7 @@ export default {
         console.log('saving form')
         this.$store.dispatch('newBookmark', 'clear')
         var valid = ContentService.validate(this.countries)
+        console.log('I am going to set up countries')
         AuthorService.setupCountries(this.countries)
         this.content.text = JSON.stringify(valid)
         this.content.filename = 'countries'
