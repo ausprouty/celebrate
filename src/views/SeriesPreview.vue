@@ -1,6 +1,6 @@
 <template>
   <div class="preview">
-    <NavBar/>
+    <NavBar />
     <div class="loading" v-if="loading">Loading...</div>
     <div class="error" v-if="error">There was an error...{{ this.error }}</div>
     <div class="content" v-if="loaded">
@@ -8,10 +8,12 @@
         <button class="button" @click="localPublish('live')">Publish</button>
       </div>
       <div v-if="this.prototype">
-        <button class="button" @click="localPublish('prototype')">Prototype</button>
+        <button class="button" @click="localPublish('prototype')">
+          Prototype
+        </button>
       </div>
       <div v-bind:class="this.dir">
-        <link rel="stylesheet" v-bind:href="'/content/' + this.style">
+        <link rel="stylesheet" v-bind:href="'/content/' + this.style" />
         <div class="app-link">
           <div class="app-card -shadow">
             <img
@@ -20,30 +22,36 @@
                 appDir.library + this.image_dir + '/' + this.bookmark.book.image
               "
               class="app-img-header"
-            >
+            />
           </div>
         </div>
         <div v-if="!bookmark.language.titles">
           <h2>{{ bookmark.book.title }}</h2>
         </div>
         <div v-if="this.description">{{ this.description }}</div>
-        <br>
+        <br />
         <p id="offline-ready">{{ this.download_ready }}</p>
 
-        <br>
+        <br />
 
-        <Chapter v-for="chapter in chapters" :key="chapter.id" :chapter="chapter"/>
+        <Chapter
+          v-for="chapter in chapters"
+          :key="chapter.id"
+          :chapter="chapter"
+        />
       </div>
       <div>
         <p class="button">
-          <button id="offline-request" class="cache-series">{{ this.download_now }}</button>
+          <button id="offline-request" class="cache-series">
+            {{ this.download_now }}
+          </button>
         </p>
       </div>
       <div class="version">
         <p class="version">Version 1.01</p>
       </div>
     </div>
-    <hr>
+    <hr />
     <div v-if="this.write">
       <button class="button" @click="editSeries">Edit</button>
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -52,9 +60,9 @@
     <div v-if="this.readonly">
       <button class="button" @click="editSeries">View Details</button>
     </div>
-    <br>
-    <br>
-    <br>
+    <br />
+    <br />
+    <br />
   </div>
 </template>
 

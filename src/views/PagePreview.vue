@@ -21,11 +21,11 @@
           <div v-on:click="goBack()">
             <img
               v-bind:src="appDir.library + this.image_dir + '/' + this.image"
-              v-bind:class="this.image.class"
+              v-bind:class="this.image_class"
             />
-            <div v-if="this.show_series_title">
-              <span class="bold">{{ this.bookmark.book.title }}</span>
-            </div>
+            <span class="title" v-if="this.show_series_title">{{
+              this.bookmark.book.title
+            }}</span>
           </div>
         </div>
       </div>
@@ -95,7 +95,7 @@ export default {
             country_code: this.$route.params.country_code,
             language_iso: this.$route.params.language_iso,
             library_code: this.$route.params.library_code,
-            folder_name: this.bookmark.book.name
+            folder_name: this.bookmark.book.code
           }
         })
       } else {
@@ -164,4 +164,12 @@ export default {
   }
 }
 </script>
-<style></style>
+<style>
+.title {
+  font-weight: bold;
+  padding-left: 20px;
+  position: absolute;
+  padding-top: 20px;
+  font-size: 24px;
+}
+</style>

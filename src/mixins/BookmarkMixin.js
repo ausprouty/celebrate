@@ -177,7 +177,7 @@ export const bookMarkMixin = {
             var books = this.bookmark.library.books
             var length = books.length
             for (var i = 0; i < length; i++) {
-              if (books[i].name == route.folder_name) {
+              if (books[i].code == route.folder_name) {
                 value = books[i]
               }
             }

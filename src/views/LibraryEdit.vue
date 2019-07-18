@@ -26,7 +26,7 @@
           <br />
         </div>
         <BaseSelect
-          label="Image"
+          label="Image:"
           :options="images"
           v-model="image"
           class="field"
@@ -57,11 +57,7 @@
           Select ALL to publish?
         </button>
       </div>
-      <div
-        v-for="(book, index) in $v.books.$each.$iter"
-        :key="book.code"
-        :book="book"
-      >
+      <div v-for="(book, id) in $v.books.$each.$iter" :key="id" :book="book">
         <div
           class="app-card -shadow"
           v-bind:class="{ notpublished: !book.publish.$model }"
@@ -76,7 +72,7 @@
           <div>
             <BaseInput
               v-model="book.id.$model"
-              label="Book Number"
+              label="Book Number:"
               type="text"
               placeholder="#"
               class="field"
@@ -87,7 +83,7 @@
           <div>
             <BaseInput
               v-model="book.title.$model"
-              label="Your Title"
+              label="Title:"
               type="text"
               placeholder="Title"
               class="field"
@@ -102,18 +98,18 @@
           </div>
           <div>
             <BaseSelect
-              label="International Code"
+              label="Code:"
               :options="booklist"
-              v-model="book.name.$model"
+              v-model="book.code.$model"
               class="field"
-              :class="{ error: book.name.$error }"
-              @blur="book.name.$touch()"
+              :class="{ error: book.code.$error }"
+              @mousedown="book.code.$touch()"
             />
           </div>
           <div>
             <p>
-              <a class="black" @click="createBook(book.name.$model)"
-                >Create new International Code</a
+              <a class="black" @click="createBook(book.code.$model)"
+                >Create new Code</a
               >
             </p>
           </div>
@@ -122,14 +118,14 @@
             v-bind:class="{ hidden: isHidden }"
           >
             <BaseInput
-              label="New International Code"
-              v-model="book.name.$model"
+              label="New Code:"
+              v-model="book.code.$model"
               type="text"
-              placeholder="international title"
+              placeholder="code"
               class="field"
             />
             <button class="button" @click="addNewBookTitle(book.title.$model)">
-              Save International Title
+              Save Code
             </button>
           </div>
           <div v-if="images">
@@ -143,12 +139,12 @@
               <br />
             </div>
             <BaseSelect
-              label="Image"
+              label="Image:"
               :options="images"
               v-model="book.image.$model"
               class="field"
               :class="{ error: book.image.$error }"
-              @blur="book.image.$touch()"
+              @mousedown="book.image.$touch()"
             />
             <template v-if="book.image.$error">
               <p v-if="!book.image.required" class="errorMessage">
@@ -161,20 +157,20 @@
               Add new Image&nbsp;&nbsp;&nbsp;&nbsp;
               <input
                 type="file"
-                v-bind:id="book.name.$model"
+                v-bind:id="book.code.$model"
                 ref="image"
-                v-on:change="handleImageUpload(book.name.$model)"
+                v-on:change="handleImageUpload(book.code.$model)"
               />
             </label>
           </div>
           <div>
             <BaseSelect
-              label="Format"
+              label="Format:"
               :options="formats"
               v-model="book.format.$model"
               class="field"
               :class="{ error: book.format.$error }"
-              @blur="book.format.$touch()"
+              @mousedown="book.format.$touch()"
             />
             <template v-if="book.format.$error">
               <p v-if="!book.format.required" class="errorMessage">
@@ -184,18 +180,11 @@
           </div>
           <div>
             <BaseSelect
-              label="Style Sheet"
+              label="Style Sheet:"
               :options="styles"
               v-model="book.style.$model"
               class="field"
-              :class="{ error: book.style.$error }"
-              @blur="book.style.$touch()"
             />
-            <template v-if="book.style.$error">
-              <p v-if="!book.style.required" class="errorMessage">
-                Style is required
-              </p>
-            </template>
             <template v-if="style_error">
               <p class="errorMessage">Only .css files may be uploaded</p>
             </template>
@@ -211,12 +200,12 @@
             </label>
 
             <BaseSelect
-              label="Template"
+              label="Template:"
               :options="templates"
               v-model="book.template.$model"
               class="field"
               :class="{ error: book.template.$error }"
-              @blur="book.template.$touch()"
+              @mousedown="book.template.$touch()"
             />
             <label>
               Add new template&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -366,9 +355,9 @@ export default {
       required,
       $each: {
         id: { required },
-        name: { required },
+        code: { required },
         title: { required },
-        style: { required },
+        style: {},
         image: { required },
         format: { required },
         template: '',
@@ -383,7 +372,7 @@ export default {
       } else {
         this.books.push({
           id: '',
-          name: '',
+          code: '',
           title: '',
           style: '',
           image: '',
@@ -402,7 +391,7 @@ export default {
       console.log(change)
       var arrayLength = change.length
       for (var i = 0; i < arrayLength; i++) {
-        this.booklist.push(this.$v.books.$model[i].name)
+        this.booklist.push(this.$v.books.$model[i].code)
       }
       console.log(this.booklist)
       console.log('about to hide')
@@ -564,7 +553,7 @@ export default {
         for (var i = 0; i < arrayLength; i++) {
           check = this.books[i]
           if (check.format == 'series') {
-            route.folder_name = check.name
+            route.folder_name = check.code
             route.filename = 'index'
             console.log('parms for create Series Index')
             console.log(route)
@@ -580,6 +569,7 @@ export default {
         var valid = ContentService.validate(output)
         this.content.text = JSON.stringify(valid)
         this.$route.params.filename = this.$route.params.library_code
+        delete this.$route.params.folder_name
         this.content.route = JSON.stringify(this.$route.params)
         this.content.filetype = 'json'
         this.$store.dispatch('newBookmark', 'clear')
@@ -644,19 +634,14 @@ export default {
         }
         // update booklist
         console.log('updating booklist')
-        console.log (this.bookmark.library)
+        console.log(this.bookmark.library)
         var arrayLength = this.bookmark.library.books.length
         console.log('arrayLength ' + arrayLength)
         if (typeof arrayLength !== 'undefined') {
           for (var i = 0; i < arrayLength; i++) {
-            if (this.bookmark.library.books[i].name == 'undefined') {
-              this.bookmark.library.books[i].name = this.bookmark.library.books[
-                i
-              ].book
-            }
-            console.log(this.bookmark.library.books[i].name)
-            if (!this.booklist.includes(this.bookmark.library.books[i].name)) {
-              this.booklist.push(this.bookmark.library.books[i].name)
+            console.log(this.bookmark.library.books[i].code)
+            if (!this.booklist.includes(this.bookmark.library.books[i].code)) {
+              this.booklist.push(this.bookmark.library.books[i].code)
             }
           }
         }

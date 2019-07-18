@@ -56,7 +56,7 @@ export default {
             country_code: this.bookmark.country.code,
             language_iso: this.bookmark.language.iso,
             library_code: 'TODO',
-            folder_name: this.book.name,
+            folder_name: this.book.code,
           }
         })
       } else {
@@ -67,8 +67,8 @@ export default {
             country_code: this.bookmark.country.code,
             language_iso: this.bookmark.language.iso,
             library_code: 'TODO',
-            folder_name: this.book.name,
-            filename: this.book.name
+            folder_name: this.book.code,
+            filename: this.book.code
           }
         })
       }

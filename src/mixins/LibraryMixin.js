@@ -5,7 +5,7 @@ export const libraryMixin = {
       library: [
         {
           id: '',
-          name: '',
+          code: '',
           title: '',
           folder: '',
           index: '',
@@ -34,7 +34,7 @@ export const libraryMixin = {
         publish_date: '',
         language_iso: '',
         country_code: '',
-        folder: '',
+        folder_name: '',
         filetype: '',
         title: '',
         filename: '',
@@ -105,7 +105,7 @@ export const libraryMixin = {
       this.books = [
         {
           id: 1,
-          name: 'life',
+          code: 'life',
           title: 'Life Principles',
           image: 'life.jpg',
           format: 'series',
@@ -113,7 +113,7 @@ export const libraryMixin = {
         },
         {
           id: 2,
-          name: 'basics',
+          code: 'basics',
           title: 'Basic Conversations',
           image: 'basics.jpg',
           format: 'series',
@@ -121,7 +121,7 @@ export const libraryMixin = {
         },
         {
           id: 3,
-          name: 'community',
+          code: 'community',
           title: 'Live Community',
           image: 'community.jpg',
           format: 'page',
@@ -130,7 +130,7 @@ export const libraryMixin = {
         },
         {
           id: 4,
-          name: 'steps',
+          code: 'steps',
           title: 'First Steps',
           image: 'firststeps.jpg',
           format: 'series',
@@ -138,7 +138,7 @@ export const libraryMixin = {
         },
         {
           id: 5,
-          name: 'compass',
+          code: 'compass',
           title: 'Compass',
           image: 'compass.jpg',
           format: 'series',
@@ -146,7 +146,7 @@ export const libraryMixin = {
         },
         {
           id: 6,
-          name: 'about',
+          code: 'about',
           title: 'About MyFriends',
           image: 'about.jpg',
           format: 'page',

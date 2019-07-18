@@ -58,7 +58,7 @@ export default {
             country_code: this.$route.params.country_code,
             language_iso: this.$route.params.language_iso,
             library_code: this.$route.params.library_code,
-            folder_name: book.name
+            folder_name: book.code
           }
         })
       } else {
@@ -69,7 +69,7 @@ export default {
             country_code: this.$route.params.country_code,
             language_iso: this.$route.params.language_iso,
             library_code: this.$route.params.library_code,
-            filename: book.name
+            filename: book.code
           }
         })
       }
