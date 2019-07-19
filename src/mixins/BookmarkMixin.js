@@ -94,8 +94,8 @@ export const bookMarkMixin = {
           // }
           //if (route.language_iso != currentLanguage) {  in development the library can change
           var res = await ContentService.getLanguages(route)
-          console.log ('res from get Languages ')
-          console.log (res)
+          console.log('res from get Languages ')
+          console.log(res)
           response = res.data.content.text.languages
           var length = response.length
           for (var i = 0; i < length; i++) {
@@ -166,6 +166,10 @@ export const bookMarkMixin = {
       }
       if (route.folder_name) {
         try {
+          var new_book = route.folder_name
+          if (new_book == 'none') {
+            new_book = route.filename
+          }
           var currentBook = ''
           var value = {}
           if (typeof this.bookmark.book != 'undefined') {
@@ -173,11 +177,11 @@ export const bookMarkMixin = {
               currentBook = this.bookmark.series.book
             }
           }
-          if (route.folder_name != currentBook) {
+          if (new_book != currentBook) {
             var books = this.bookmark.library.books
             var length = books.length
             for (var i = 0; i < length; i++) {
-              if (books[i].code == route.folder_name) {
+              if (books[i].code == new_book) {
                 value = books[i]
               }
             }
