@@ -63,14 +63,17 @@ export default {
         })
       } else {
         console.log('BOOK  PREVIEW - this is a NOT a series')
+        var my_params = {
+          country_code: this.$route.params.country_code,
+          language_iso: this.$route.params.language_iso,
+          library_code: this.$route.params.library_code,
+          folder_name: 'none',
+          filename: book.code
+        }
+        console.log(my_params)
         this.$router.push({
           name: 'previewPage',
-          params: {
-            country_code: this.$route.params.country_code,
-            language_iso: this.$route.params.language_iso,
-            library_code: this.$route.params.library_code,
-            filename: book.code
-          }
+          params: my_params
         })
       }
     }

@@ -216,7 +216,7 @@ export default {
         code: null,
         language: null,
         index: null,
-        custome: null,
+        custom: null,
         image: null,
         publish: null
       })

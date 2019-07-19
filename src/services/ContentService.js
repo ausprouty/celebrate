@@ -39,8 +39,8 @@ export default {
           console.log('content.text found')
           found = true
           response = res
-         // response.data.content.text = JSON.parse(res.data.content.text)
-         response.data.content.text = res.data.content.text
+          // response.data.content.text = JSON.parse(res.data.content.text)
+          response.data.content.text = res.data.content.text
           response.source = 'data'
           console.log(response)
           return response
@@ -93,8 +93,8 @@ export default {
         'ContentApi.php?scope=languages',
         contentForm
       )
-        console.log('getLangauges - data')
-        console.log(res)
+      console.log('getLangauges - data')
+      console.log(res)
       if (res.data.content) {
         if (res.data.content.text != '') {
           found = true
@@ -197,12 +197,12 @@ export default {
       console.log('response from getSeries in Content Service')
       console.log(response)
       console.log('this was response from getSeries in Content Service')
-      if (response.data) {
+      if (response.data.content) {
         console.log('I have response.data.content')
         console.log(response.data)
         if (response.data.content.text != '') {
-         // var text = JSON.parse(response.data.content.text)
-         var text = response.data.content.text
+          // var text = JSON.parse(response.data.content.text)
+          var text = response.data.content.text
           response.data.content.description = text.description
           response.data.content.chapters = text.chapters
           found = true
@@ -263,13 +263,19 @@ export default {
       if (!filename.includes('.html')) {
         filename = filename + '.html'
       }
+      // pages that are not part of a series do NOT have a folder
+      var folder_name = '/'
+      if (typeof params.folder_name !== 'undefined') {
+        if (params.folder_name != 'none') {
+          folder_name = '/' + params.folder_name
+        }
+      }
       let res = await apiContent.get(
         'content/' +
           params.country_code +
           '/' +
           params.language_iso +
-          '/' +
-          params.folder_name +
+          folder_name +
           '/' +
           filename
       )

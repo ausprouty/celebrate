@@ -40,15 +40,22 @@ export default {
   methods: {
     showPage: function(chapter) {
       localStorage.setItem('lastPage', 'language/' + this.chapter.filename)
+      var folder_name = ''
+      if (typeof this.bookmark.book.code !== 'undefined') {
+        folder_name = this.bookmark.book.code
+      }
+      var my_params = {
+        country_code: this.$route.params.country_code,
+        language_iso: this.$route.params.language_iso,
+        library_code: this.$route.params.library_code,
+        folder_name: folder_name,
+        filename: chapter.filename
+      }
+      console.log('my_params')
+      console.log(my_params)
       this.$router.push({
         name: 'previewPage',
-        params: {
-          country_code: this.$route.params.country_code,
-          language_iso: this.$route.params.language_iso,
-          library_code: this.$route.params.library_code,
-          folder_name: this.bookmark.book.code,
-          filename: chapter.filename
-        }
+        params: my_params
       })
     }
   },

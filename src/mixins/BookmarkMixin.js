@@ -109,8 +109,8 @@ export const bookMarkMixin = {
           // console.log('Going to Content Service to GetLibrary with:')
           // console.log(route)
           response = await ContentService.getLibrary(route)
-          // console.log('response from getLibrary')
-          // console.log(response)
+          console.log('response from getLibrary')
+          console.log(response)
           value = {}
           if (typeof response.data.content.text.books !== 'undefined') {
             console.log('l am using new values')
