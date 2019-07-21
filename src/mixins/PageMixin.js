@@ -1,4 +1,5 @@
 import ContentService from '@/services/ContentService.js'
+import AuthorService from '@/services/AuthorService.js'
 export const pageMixin = {
   data() {
     return {
@@ -68,8 +69,8 @@ export const pageMixin = {
         if (this.$route.name != 'editPage') {
           var css = this.bookmark.page.style
             ? this.bookmark.page.style
-            : 'myfriends'
-          css.replace('/', '-')
+            : 'ZZ/styles/myfriendsGLOBAL.css'
+          css.replace('/', '@')
           this.$route.params.cssFORMATTED = css
           this.$router.push({
             name: 'editPage',
@@ -77,8 +78,8 @@ export const pageMixin = {
           })
         }
         if (this.bookmark.book.template) {
-          this.$route.params.filename = this.bookmark.book.template
-          response = await ContentService.getPage(this.$route.params)
+          this.$route.params.template = this.bookmark.book.template
+          response = await AuthorService.getTemplate(this.$route.params)
           // is this coming from database
           console.log('line 63 in mixin')
           console.log(response)

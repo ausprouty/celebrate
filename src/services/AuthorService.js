@@ -205,8 +205,8 @@ export default {
   async getImages(params) {
     var images = []
     params.token = store.state.user.token
-    console.log ('get Images')
-    console.log (params)
+    console.log('get Images')
+    console.log(params)
     var contentForm = this.toFormData(params)
     let response = await apiSELECT.post(
       'AuthorApi.php?page=get&action=getImages',
@@ -237,11 +237,15 @@ export default {
   },
   async getTemplate(params) {
     params.token = store.state.user.token
+    console.log('params sent to getTemplate')
+    console.log(params)
     var contentForm = this.toFormData(params)
     let response = await apiSELECT.post(
       'AuthorApi.php?page=get&action=getTemplate',
       contentForm
     )
+    console.log('response from  getTemplate')
+    console.log(response)
     return response.data.content
   },
   async getTemplates(params) {
@@ -255,12 +259,12 @@ export default {
       'AuthorApi.php?page=get&action=getTemplates',
       contentForm
     )
-    console.log ('get Templates')
+    console.log('get Templates')
     console.log(response)
     if (response.data.content) {
-      console.log ('about to parse templates')
+      console.log('about to parse templates')
       templates = JSON.parse(response.data.content)
-      console.log ('did parse templates')
+      console.log('did parse templates')
       templates.sort()
     }
     return templates
