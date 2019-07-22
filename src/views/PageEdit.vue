@@ -61,6 +61,7 @@
 import { mapState } from 'vuex'
 import ContentService from '@/services/ContentService.js'
 import AuthorService from '@/services/AuthorService.js'
+import BibleService from '@/services/BibleService.js'
 import NavBar from '@/components/NavBarAdmin.vue'
 import './ckeditor/index.js'
 import VueCkeditor from 'vue-ckeditor2'
@@ -144,6 +145,17 @@ export default {
     goBack() {
       window.history.back()
     },
+    async getDbtArray() {
+      var params = {}
+      params.language_iso = this.$route.params.language_iso
+      params.passage = 'John 3:16-20'
+      params.dbt = await BibleService.getDbtArray(params)
+      console.log('params for Get passage')
+      console.log(params)
+      var bible = await BibleService.getbibleGetPassage(params)
+      console.log('bible')
+      console.log(bible)
+    },
     async loadTemplate() {
       this.authorized = this.authorize('write', this.$route.params.country_code)
       this.loading = false
@@ -166,7 +178,7 @@ export default {
         this.content.route = JSON.stringify(this.$route.params)
         this.content.filetype = 'html'
         var response = await AuthorService.createContentData(this.content)
-         this.$store.dispatch('newBookmark', 'clear')
+        this.$store.dispatch('newBookmark', 'clear')
         if (response.data.error != true) {
           this.$router.push({
             name: 'previewPage',
@@ -212,6 +224,7 @@ export default {
   },
   async created() {
     try {
+      this.getDbtArray()
       console.log('in Created')
       await this.getPage(this.$route.params)
       console.log('Got page')
