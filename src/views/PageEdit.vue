@@ -38,6 +38,20 @@
           {{ this.bookmark.page.count }}. {{ this.bookmark.page.title }}
         </h1>
         <h1 v-else>{{ this.bookmark.page.title }}</h1>
+        <div v-if="this.request_passage">
+          <div class="form">
+            <BaseInput
+              v-model="reference"
+              label="Passage to Insert"
+              type="text"
+              placeholder
+              class="field"
+            />
+          </div>
+          <button class="button green" @click="insertPassage">
+            InsertPassage
+          </button>
+        </div>
         <p>
           <vue-ckeditor v-model="pageText" :config="config" />
         </p>
@@ -79,6 +93,8 @@ export default {
   data() {
     return {
       authorized: false,
+      request_passage: false,
+      reference: null,
       content: {
         recnum: '',
         version: '',
@@ -145,16 +161,24 @@ export default {
     goBack() {
       window.history.back()
     },
-    async getDbtArray() {
+    async insertPassage() {
       var params = {}
       params.language_iso = this.$route.params.language_iso
-      params.passage = 'John 3:16-20'
+      params.passage = this.reference
+      params.damId = 'PORBSPN2ET'
       params.dbt = await BibleService.getDbtArray(params)
       console.log('params for Get passage')
       console.log(params)
       var bible = await BibleService.getbibleGetPassage(params)
-      console.log('bible')
-      console.log(bible)
+      if (typeof bible.text !== 'undefined') {
+        console.log('bible')
+        console.log(bible)
+        var temp = this.pageText.replace('[BibleText]', bible.text)
+        var temp2 = temp.replace('[Link]', bible.link)
+        temp = temp2.replace('[BibleReference]', bible.reference)
+        this.pageText = temp.replace('[REPLACE LINK]', '')
+        this.request_passage = false
+      }
     },
     async loadTemplate() {
       this.authorized = this.authorize('write', this.$route.params.country_code)
@@ -168,6 +192,7 @@ export default {
         console.log(res)
         if (res) {
           console.log('I found template')
+          this.request_passage = true
           this.pageText = res
         }
       }
@@ -224,7 +249,6 @@ export default {
   },
   async created() {
     try {
-      this.getDbtArray()
       console.log('in Created')
       await this.getPage(this.$route.params)
       console.log('Got page')

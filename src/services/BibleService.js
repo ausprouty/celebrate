@@ -50,6 +50,7 @@ export default {
     p.chapterId = params.dbt.chapterId
     p.verseStart = params.dbt.verseStart
     p.verseEnd = params.dbt.verseEnd
+    p.damId = params.damId
     console.log('params in getbibleGetPassage')
     console.log(p)
     var contentForm = this.toFormData(p)

@@ -223,7 +223,8 @@ export const bookMarkMixin = {
             if route.page is not the same as bookmark 
             update book and erase all bookmark below*/
     async CheckBookmarkPage(route) {
-      //console.log('entering bookmark page')
+      console.log('entering CheckBookmarkPage')
+      console.log(route)
       if (!route.filename) {
         this.$store.dispatch('unsetBookmark', ['page'])
         return null

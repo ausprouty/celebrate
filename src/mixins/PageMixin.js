@@ -88,6 +88,9 @@ export const pageMixin = {
             this.publish_date = response.data.content.publish_date
           }
           this.pageText = response.data.content.text
+          if (this.pageText.includes('[BibleReference]')) {
+            this.request_passage = true
+          }
           this.loaded = true
           this.loading = false
         } else {
