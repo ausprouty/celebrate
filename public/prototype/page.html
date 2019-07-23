@@ -1,20 +1,21 @@
-<div class = "content {{dir}}">
-    <link  rel="stylesheet"  href="{{book.style}}" />
-    <div class="app-link">
-        <div class="app-card -shadow">
-            <a href = "{{link}}">
-                <img src="{{book.image}}" class="book" />
-                <div class="book">
-                    <span class="bold">{{book.title}}</span>
-                </div>
-            </a>
+<div class="content {{ dir }}">
+  <link rel="stylesheet" href="{{ card.style }}" />
+  <link rel="stylesheet" href="{{ book.style }}" />
+  <div class="app-link">
+    <div class="app-card -shadow">
+      <a href="{{ link }}">
+        <img src="{{ book.image }}" class="book" />
+        <div class="book">
+          <span class="title">{{ book.title }}</span>
         </div>
+      </a>
     </div>
-    <h1 >{{page.title}}</h1>
-    <p>
-        {{page.text}}
-    </p>
-    <div class="version">
-        <p class="version">{{version}}</p>
-    </div>
+  </div>
+  <h1>{{ page.title }}</h1>
+  <p>
+    {{ page.text }}
+  </p>
+  <div class="version">
+    <p class="version">{{ version }}</p>
+  </div>
 </div>

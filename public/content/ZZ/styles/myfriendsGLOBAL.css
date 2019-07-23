@@ -471,3 +471,16 @@ color: var(--color-red);
 font-size: 20px;
 padding-bottom: 20px;
 }
+
+img.book {
+  width: 25%;
+}
+div.book {
+  vertical-align: top;
+  width: 70%;
+  font-size: 24px;
+  float: right;
+}
+.book {
+  text-align: left;
+}

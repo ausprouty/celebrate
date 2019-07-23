@@ -41,7 +41,7 @@ export default {
         action = 'AuthorApi.php?page=prototypeSeries&action=prototypeSeries'
         break
       case 'page':
-        action = 'AuthorApi.php?page=prototype&action=prototypePage'
+        action = 'AuthorApi.php?page=prototypePage&action=prototypePage'
         break
       case 'default':
         action = null

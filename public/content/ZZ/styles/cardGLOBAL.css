@@ -64,3 +64,10 @@ div.card-language {
   img.flag {
     width: 25%;
   }
+  .title {
+    font-weight: bold;
+    padding-left: 20px;
+    position: absolute;
+    padding-top: 20px;
+    font-size: 24px;
+  }

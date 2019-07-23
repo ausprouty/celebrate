@@ -241,4 +241,18 @@ sup.versenum{
     font-size:55%;
     padding-right:2px;
      padding-left: 3px;
-    }
+}
+
+    
+img.book {
+    width: 25%;
+  }
+  div.book {
+    vertical-align: top;
+    width: 70%;
+    font-size: 24px;
+    float: right;
+  }
+  .book {
+    text-align: left;
+  }
