@@ -35,6 +35,7 @@ import Custom from './views/CustomEditor.vue'
 import Validate from './views/Validate.vue'
 import Upload from './views/Upload.vue'
 import Debug from './views/Debug.vue'
+import Prototype from './views/Prototype.vue'
 
 // for CKFinder
 
@@ -47,6 +48,11 @@ Vue.use(Router)
 export default new Router({
   mode: 'history',
   routes: [
+    {
+      path: '/prototype',
+      name: 'prototype',
+      component: Prototype
+    },
     {
       path: '/',
       name: 'home',

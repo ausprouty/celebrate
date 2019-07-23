@@ -106,20 +106,31 @@
           class="field"
         />
         <br />
-        <BaseSelect
-          label="Old Testament"
-          :options="versions_ot"
-          v-model="language.bible_ot.$model"
-          class="field"
-        />
-        <br />
 
-        <BaseSelect
-          label="New Testament"
-          :options="versions_nt"
-          v-model="language.bible_nt.$model"
-          class="field"
-        />
+        <div>
+          <br />Old Testament:
+          <select v-model="language.bible_ot.$model">
+            <option
+              v-for="o in this.ot"
+              v-bind:key="o.bid"
+              v-bind:value="o.bid"
+              >{{ o.volume_name }}</option
+            >
+          </select>
+        </div>
+
+        <div>
+          <br />New Testament:
+          <select v-model="language.bible_nt.$model">
+            <option
+              v-for="n in this.nt"
+              v-bind:key="n.bid"
+              v-bind:value="n.bid"
+              >{{ n.volume_name }}</option
+            >
+          </select>
+        </div>
+
         <br />
         <input
           type="checkbox"
@@ -142,15 +153,14 @@ export default {
   props: {
     language: Object
   },
+
   data() {
     return {
       image_folders: [],
       content_folders: [],
       direction: ['rtl', 'ltr'],
-      versions_ot: [],
-      versions_nt: [],
-      ot:[],
-      nt:[]
+      ot: [],
+      nt: []
     }
   },
   methods: {
@@ -203,26 +213,18 @@ export default {
   },
   async created() {
     // see https://stackoverflow.com/questions/35748162/how-to-get-the-text-of-the-selected-option-using-vuejs
-
+    // see https://vue-select.org/guide/values.html#transforming-selections
     this.image_folders = await AuthorService.getFoldersImages()
     // console.log(this.image_folders)
     this.content_folders = await AuthorService.getFoldersLanguage()
     // console.log(this.content_folders)
     this.ot = await this.getBibleVersions(this.language.iso.$model, 'OT')
-    var versions = []
-    var arrayLength = this.ot.length
-    for (var i = 0; i < arrayLength; i++) {
-      versions[i] = this.ot[i].volume_name
-    }
-    this.versions_ot = versions.sort()
-
+    console.log('OT')
+    console.log(this.ot)
     this.nt = await this.getBibleVersions(this.language.iso.$model, 'NT')
-    versions = []
-    arrayLength = this.nt.length
-    for (i = 0; i < arrayLength; i++) {
-      versions[i] = this.nt[i].volume_name
-    }
-    this.versions_nt = versions.sort()
+
+    console.log('NT')
+    console.log(this.nt)
   }
 }
 </script>

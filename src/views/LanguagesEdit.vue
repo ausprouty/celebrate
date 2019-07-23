@@ -189,10 +189,10 @@ export default {
       this.authorized = this.authorize('write', this.$route.params.country_code)
       console.log('this authorized')
       if (this.authorized) {
-      //  this.image_folders = await AuthorService.getFoldersImages()
-      //  console.log(this.image_folders)
-      //  this.content_folders = await AuthorService.getFoldersLanguage()
-      //  console.log(this.content_folders)
+        //  this.image_folders = await AuthorService.getFoldersImages()
+        //  console.log(this.image_folders)
+        //  this.content_folders = await AuthorService.getFoldersLanguage()
+        //  console.log(this.content_folders)
         await this.getLanguages(this.$route.params)
       }
       this.loaded = true
