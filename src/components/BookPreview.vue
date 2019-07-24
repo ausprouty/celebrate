@@ -52,13 +52,20 @@ export default {
       if (book.format == 'series') {
         console.log('BOOK  PREVIEW - this is a series')
         console.log(book)
+        // dealing with legacy data
+        var code = ''
+        if (typeof book.code !== 'undefined') {
+          code = book.code
+        } else {
+          code = book.name
+        }
         this.$router.push({
           name: 'previewSeries',
           params: {
             country_code: this.$route.params.country_code,
             language_iso: this.$route.params.language_iso,
             library_code: this.$route.params.library_code,
-            folder_name: book.code
+            folder_name: code
           }
         })
       } else {

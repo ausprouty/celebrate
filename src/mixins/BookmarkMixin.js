@@ -161,12 +161,16 @@ export const bookMarkMixin = {
       console.log('route in CheckBookmarkBookSeries')
       console.log(route)
       if (!route.folder_name) {
+        console.log('no folder name')
         this.$store.dispatch('unsetBookmark', ['book'])
         return null
       }
       if (route.folder_name) {
+        console.log('older name')
         try {
           var new_book = route.folder_name
+          console.log(new_book)
+          console.log('new_book')
           if (new_book == 'none') {
             new_book = route.filename
           }
@@ -175,14 +179,24 @@ export const bookMarkMixin = {
           if (typeof this.bookmark.book != 'undefined') {
             if (typeof this.bookmark.book.series != 'undefined') {
               currentBook = this.bookmark.series.book
+              console.log('currentBook')
+              console.log(currentBook)
             }
           }
           if (new_book != currentBook) {
+            console.log('new_book is not current book')
             var books = this.bookmark.library.books
             var length = books.length
             for (var i = 0; i < length; i++) {
-              if (books[i].code == new_book) {
-                value = books[i]
+              if (typeof books[i].code !== 'undefined') {
+                if (books[i].code == new_book) {
+                  value = books[i]
+                }
+              } else {
+                // dealing with legacy data
+                if (books[i].name == new_book) {
+                  value = books[i]
+                }
               }
             }
             this.$store.dispatch('updateBookmark', ['book', value])
@@ -198,7 +212,7 @@ export const bookMarkMixin = {
           }
           if (route.folder_name != currentSeries) {
             var response = await ContentService.getSeries(route)
-            console.log('I am getting series')
+            console.log('I am getting series in CheckBookmarkBookSeries')
             console.log(response)
             if (typeof response.data.content != 'undefined') {
               value = response.data.content

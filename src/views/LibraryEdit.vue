@@ -355,7 +355,7 @@ export default {
       required,
       $each: {
         id: { required },
-        code: { required },
+        code: { },
         title: { required },
         style: {},
         image: { required },
