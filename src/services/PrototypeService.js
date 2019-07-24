@@ -26,7 +26,7 @@ export default {
           'AuthorApi.php?page=prototypeCountries&action=prototypeCountries'
         break
       case 'country':
-        action = 'AuthorApi.php?page= prototypeCountry&action=prototypeCountry'
+        action = 'AuthorApi.php?page=prototypeCountry&action=prototypeCountry'
         break
       case 'language':
         action = 'AuthorApi.php?page=prototype&action=prototypeLanguage'
