@@ -13,7 +13,7 @@
           <div v-on:click="goBack()">
             <img v-bind:src="this.book_image" class="book" />
             <div class="book">
-              <span class="bold">{{ this.bookmark.book.title }}</span>
+              <span class="title">{{ this.bookmark.book.title }}</span>
             </div>
           </div>
         </div>

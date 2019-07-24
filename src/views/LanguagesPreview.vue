@@ -19,14 +19,14 @@
         />
       </a>
 
-      <h1>Choose Language (preview for {{ this.country_code }})</h1>
+      <h1> {{ this.choose_language }}</h1>
       <Language
         v-for="language in languages"
         :key="language.iso"
         :language="language"
       />
       <div v-if="!this.ZZ">
-        <a href="/languages/ZZ">More Languages</a>
+        <a href="/languages/ZZ">{{this.more_languages}}</a>
       </div>
       <div class="version">
         <p class="version">Version 1.01</p>
@@ -64,7 +64,9 @@ export default {
     return {
       readonly: false,
       write: false,
-      publish: false
+      publish: false,
+      more_languages: 'More Languages',
+      choose_language: 'Choose Language'
     }
   },
   computed: mapState(['bookmark', 'appDir']),

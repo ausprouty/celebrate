@@ -10,7 +10,7 @@
           class="book"
         />
         <div class="book">
-          <span class="bold">{{ book.title }}</span>
+          <span class="title">{{ book.title }}</span>
         </div>
       </div>
       <div v-if="this.bookmark.language.titles">

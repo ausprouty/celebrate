@@ -28,7 +28,7 @@
               />
 
               <div class="book">
-                <span class="bold">{{ this.bookmark.book.title }}</span>
+                <span class="title">{{ this.bookmark.book.title }}</span>
               </div>
             </div>
           </div>

@@ -639,6 +639,14 @@ export default {
         console.log('arrayLength ' + arrayLength)
         if (typeof arrayLength !== 'undefined') {
           for (var i = 0; i < arrayLength; i++) {
+            // dealing with legacy data
+            if (typeof this.bookmark.library.books[i].code === 'undefined') {
+              if (typeof this.bookmark.library.books[i].name !== 'undefined') {
+                this.bookmark.library.books[
+                  i
+                ].code = this.bookmark.library.books[i].name
+              }
+            }
             console.log(this.bookmark.library.books[i].code)
             if (!this.booklist.includes(this.bookmark.library.books[i].code)) {
               this.booklist.push(this.bookmark.library.books[i].code)
