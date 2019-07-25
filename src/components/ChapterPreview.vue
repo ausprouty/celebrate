@@ -39,8 +39,14 @@ export default {
   computed: mapState(['bookmark', 'appDir']),
   methods: {
     showPage: function(chapter) {
+      console.log ('chapter')
+      console.log (chapter)
       localStorage.setItem('lastPage', 'language/' + this.chapter.filename)
       var folder_name = ''
+      // this section needed for legacy code
+      if (typeof this.bookmark.book.name !== 'undefined') {
+        folder_name = this.bookmark.book.name
+      }
       if (typeof this.bookmark.book.code !== 'undefined') {
         folder_name = this.bookmark.book.code
       }
