@@ -64,7 +64,7 @@ div.card-language {
   img.flag {
     width: 25%;
   }
-  .chapter-title,
+ 
   .title {
     font-weight: bold;
     padding-left: 20px;
@@ -73,3 +73,23 @@ div.card-language {
     font-size: 24px;
     color:black;
   }
+  
+div.chapter {
+  vertical-align: top;
+  width: 90%;
+  font-size: 16px;
+}
+.chapter {
+  text-align: left;
+}
+div.chapter-title {
+  font-size: 16pt;
+  font-weight: bold;
+  color: black;
+}
+div.chapter-description {
+  font-size: 12 pt;
+  font-weight: normal;
+  margin-right: 10 px;
+  color: gray;
+}

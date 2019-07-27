@@ -95,7 +95,7 @@ div.chapter {
   text-align: left;
 }
 div.chapter-title {
-  font-size: 16 pt;
+  font-size: 16pt;
   font-weight: bold;
   color: black;
 }
