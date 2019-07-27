@@ -3,19 +3,13 @@
     <NavBar />
     <img v-bind:src="appDir.country + 'world.jpg'" class="app-img-header" />
     <div v-if="this.publish">
-      <button class="button" @click="localPublish('live')">Publish</button>
+      <button class="button" @click="localPublish('prototype')">Prototype Again</button>
     </div>
     <div v-if="this.prototype">
-      <button class="button" @click="localPublish('prototype')">
-        Prototype
-      </button>
+      <button class="button" @click="localPublish('prototype')">Prototype</button>
     </div>
     <h1>Select Country (Preview Mode)</h1>
-    <Country
-      v-for="country in countries"
-      :key="country.code"
-      :country="country"
-    />
+    <Country v-for="country in countries" :key="country.code" :country="country" />
     <p class="version">Version 1.01</p>
 
     <div v-if="this.authorized">
@@ -101,7 +95,7 @@ export default {
           console.log('I am checking for prototype')
           this.prototype = this.authorize('publish', 'country')
         }
-         this.authorized = this.authorize('write', 'country')
+        this.authorized = this.authorize('write', 'country')
       } catch (error) {
         console.log('There was an error in Countries.vue:', error) // Logs out the error
       }
