@@ -5,24 +5,20 @@ import CountriesEdit from './views/CountriesEdit.vue'
 import CountriesPreview from './views/CountriesPreview.vue'
 import CountriesSort from './views/CountriesSort.vue'
 
-import CountryPageEdit from './views/CountryPageEdit.vue'
-import CountryPagePreview from './views/CountryPagePreview.vue'
-
+import LibraryIndexEdit from './views/LibraryIndexEdit.vue'
+import LibraryIndexPreview from './views/LibraryIndexPreview.vue'
 
 import LanguageEdit from './views/LanguagesEdit.vue'
 import LanguagesPreview from './views/LanguagesPreview.vue'
 import LanguagesSort from './views/LanguagesSort.vue'
 
-
 import LibraryEdit from './views/LibraryEdit.vue'
 import LibraryPreview from './views/LibraryPreview.vue'
 import LibrarySort from './views/LibrarySort.vue'
 
-
 import SeriesEdit from './views/SeriesEdit.vue'
 import SeriesPreview from './views/SeriesPreview.vue'
 import SeriesSort from './views/SeriesSort.vue'
-
 
 import PageEdit from './views/PageEdit.vue'
 import PagePreview from './views/PagePreview.vue'
@@ -58,23 +54,14 @@ export default new Router({
       name: 'home',
       component: CountriesPreview
     },
-    {
-      path: '/edit/country/:country_code',
-      name: 'editCountryPage',
-      component: CountryPageEdit
-    },
-    {
-      path: '/preview/country/:country_code',
-      name: 'previewCountryPage',
-      component: CountryPagePreview
-    },
+
     {
       path: '/farm',
       name: 'farm',
       component: Register,
       props: true
     },
-   
+
     {
       path: '/edit/countries',
       name: 'editCountries',
@@ -87,11 +74,17 @@ export default new Router({
       props: true
     },
     {
+      path: '/edit/library/:country_code/:language_iso/index',
+      name: 'editLibraryIndex',
+      component: LibraryIndexEdit
+    },
+    {
       path: '/edit/library/:country_code/:language_iso/:library_code?',
       name: 'editLibrary',
       component: LibraryEdit,
       props: true
     },
+
     {
       path:
         '/edit/series/:country_code/:language_iso/:library_code/:folder_name',
@@ -116,6 +109,11 @@ export default new Router({
       name: 'previewLanguages',
       component: LanguagesPreview,
       props: true
+    },
+    {
+      path: '/preview/library/:country_code/:language_iso/index',
+      name: 'previewLibraryIndex',
+      component: LibraryIndexPreview
     },
     {
       path: '/preview/library/:country_code/:language_iso/:library_code?',

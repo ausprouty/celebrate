@@ -93,31 +93,26 @@ export default {
     async loadView() {
       try {
         await this.getCountries()
-         this.authorized = this.authorize('write', 'country')
+        this.authorized = this.authorize('write', 'country')
         // authorize for prototype and publish
         this.publish = false
         this.prototype = false
         if (this.recnum && !this.prototype_date) {
-          this.prototype = this.authorize(
-            'publish',
-            this.$route.params.country_code
-          )
-          if (this.prototype){
+          this.prototype = this.authorize('publish', 'world')
+          if (this.prototype) {
             this.prototype_text = 'Prototype'
           }
         }
         if (this.recnum && !this.publish_date && this.prototype_date) {
-          this.publish = this.authorize(
-            'publish',
-            this.$route.params.country_code
-          )
-          if (this.publish){
+          console.log('I am checking to see if I can publish')
+          this.publish = this.authorize('publish', 'world')
+          if (this.publish) {
+            console.log('I can publish and prototype again')
             this.prototype = true
             this.prototype_text = 'Prototype Again'
           }
         }
         // end authorization for prototype and publish
-       
       } catch (error) {
         console.log('There was an error in Countries.vue:', error) // Logs out the error
       }

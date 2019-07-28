@@ -14,12 +14,14 @@
         </p>
       </div>
       <div v-if="this.authorized">
-        <h1>{{ this.bookmark.country.name }}</h1>
+        <h1>
+          {{ this.bookmark.language.name }} -- {{ this.bookmark.country.name }}
+        </h1>
         <p>
           <vue-ckeditor v-model="pageText" :config="config" />
         </p>
         <hr />
-        <h2>Country Footer Text</h2>
+        <h2> Language Footer Text</h2>
         <p>
           <vue-ckeditor v-model="footerText" :config="config" />
         </p>
@@ -51,7 +53,7 @@ import { freeformMixin } from '@/mixins/FreeformMixin.js'
 import { authorMixin } from '@/mixins/AuthorMixin.js'
 export default {
   mixins: [bookMarkMixin, freeformMixin, authorMixin],
-  props: ['country_code'],
+  props: ['country_code', 'language_iso'],
   components: {
     NavBar,
     VueCkeditor
@@ -158,15 +160,16 @@ export default {
         this.content.text = JSON.stringify(text)
         this.$route.params.filename = 'index'
         this.content.route = JSON.stringify(this.$route.params)
-       
+
         this.content.filetype = 'html'
         this.$store.dispatch('newBookmark', 'clear')
         var response = await AuthorService.createContentData(this.content)
         if (response.data.error != true) {
           this.$router.push({
-            name: 'previewCountryPage',
+            name: 'previewLibraryIndex',
             params: {
-              country_code: this.$route.params.country_code
+              country_code: this.$route.params.country_code,
+              language_iso: this.$route.params.language_iso
             }
           })
         } else {
@@ -203,7 +206,7 @@ export default {
         this.publish = this.authorize('publish', 'country')
       }
     } catch (error) {
-      console.log('There was an error in CountryPageEdit.vue:', error)
+      console.log('There was an error in LanguageIndexEdit.vue:', error)
     }
   }
 }

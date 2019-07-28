@@ -2,7 +2,7 @@
   <div class="app-link" v-on:click="showLanguagePage(country)">
     <div
       class="shadow-card -shadow"
-      v-bind:class="{ notpublished: !country.publish, custom: country.custom }"
+      v-bind:class="{ notpublished: !country.publish }"
     >
       <img v-bind:src="appDir.country + country.image" class="flag" />
       <div class="card-names">
@@ -39,9 +39,6 @@ export default {
       localStorage.setItem('lastPage', 'countries')
       this.$route.params.country_code = country.code
       var route = 'previewLanguages'
-      if (country.custom) {
-        route = 'previewCountryPage'
-      }
       this.$router.push({
         name: route,
         params: {

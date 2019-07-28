@@ -32,10 +32,15 @@ export default {
         action = 'AuthorApi.php?page=prototype&action=prototypeLanguage'
         break
       case 'languages':
-        action = 'AuthorApi.php?page=prototypeLanguages&action=prototypeLanguages'
+        action =
+          'AuthorApi.php?page=prototypeLanguages&action=prototypeLanguages'
         break
       case 'library':
         action = 'AuthorApi.php?page=prototypeLibrary&action=prototypeLibrary'
+        break
+      case 'libraryIndex':
+        action =
+          'AuthorApi.php?page=prototypeLibraryIndex&action=prototypeLibraryIndex'
         break
       case 'series':
         action = 'AuthorApi.php?page=prototypeSeries&action=prototypeSeries'

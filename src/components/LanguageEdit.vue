@@ -105,8 +105,16 @@
           v-model="language.rldir.$model"
           class="field"
         />
-        <br />
-
+        <div>
+          <input
+            type="checkbox"
+            id="checkbox"
+            v-model="language.custom.$model"
+          />
+          <label for="checkbox">
+            <h2>Custom Library Index?</h2>
+          </label>
+        </div>
         <div>
           <br />Old Testament:
           <select v-model="language.bible_ot.$model">

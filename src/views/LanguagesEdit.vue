@@ -94,6 +94,7 @@ export default {
         image_dir: null,
         titles: null,
         lrdir: null,
+        custom:null,
         bible_nt: null,
         bible_ot: null,
         publish: null
@@ -110,6 +111,7 @@ export default {
         iso: { required },
         folder: { required },
         image_dir: { required },
+        custom:{},
         bible_nt: {},
         bible_ot: {},
         titles: {},
@@ -129,6 +131,7 @@ export default {
         iso: null,
         name: null,
         image_dir: null,
+        custom: null,
         bible_ot: null,
         bible_nt: null,
         titles: null,

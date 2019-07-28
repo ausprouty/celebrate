@@ -66,6 +66,14 @@ export default {
     )
     return response
   },
+  publishLibraryIndex(params) {
+    var contentForm = this.toFormData(params)
+    var response = apiSECURE.post(
+      'AuthorApi.php?page=prototypeLibraryIndex',
+      contentForm
+    )
+    return response
+  },
   publishSeries(params) {
     console.log('params in publish Series')
     console.log(params)

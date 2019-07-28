@@ -5,8 +5,8 @@
     <div class="error" v-if="error">There was an error... {{ this.error }}</div>
     <div class="content" v-if="loaded">
       <div v-if="this.publish">
-        <button class="button" @click="localPublish('prototype')">
-          Prototype Again
+        <button class="button" @click="localPublish('live')">
+          Publish
         </button>
       </div>
       <div v-if="this.prototype">

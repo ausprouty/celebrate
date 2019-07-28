@@ -91,14 +91,7 @@
               </p>
             </div>
 
-            <input
-              type="checkbox"
-              id="checkbox"
-              v-model="country.custom.$model"
-            />
-            <label for="checkbox">
-              <h2>Custom Index?</h2>
-            </label>
+            
 
             <div v-if="!country.image.$model">
               <p class="errorMessage">Upload Country Flag</p>
