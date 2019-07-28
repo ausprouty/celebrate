@@ -5,11 +5,13 @@
     <div class="error" v-if="error">There was an error... {{ this.error }}</div>
     <div class="content" v-if="loaded">
       <div v-if="this.publish">
-        <button class="button" @click="localPublish('prototype')">Prototype  Again</button>
+        <button class="button" @click="localPublish('prototype')">
+          Prototype Again
+        </button>
       </div>
       <div v-if="this.prototype">
         <button class="button" @click="localPublish('prototype')">
-          Prototype
+          {{ this.prototype_text }}
         </button>
       </div>
       <link
@@ -23,9 +25,9 @@
               v-bind:src="appDir.library + this.image_dir + '/' + this.image"
               v-bind:class="this.image_class"
             />
-            <span class="title" v-if="this.show_series_title">{{
-              this.bookmark.book.title
-            }}</span>
+            <span class="title" v-if="this.show_series_title">
+              {{ this.bookmark.book.title }}
+            </span>
           </div>
         </div>
       </div>
@@ -64,7 +66,11 @@ export default {
     NavBar
   },
   computed: mapState(['bookmark', 'appDir', 'cssURL']),
-
+  data() {
+    return {
+      prototype_text: 'Prototype'
+    }
+  },
   methods: {
     editPage() {
       var css = this.bookmark.page.style
@@ -137,20 +143,29 @@ export default {
         await this.getPage(this.$route.params)
         this.read = this.authorize('read', this.$route.params.country_code)
         this.write = this.authorize('write', this.$route.params.country_code)
+        // authorize for prototype and publish
         this.publish = false
         this.prototype = false
-        if (this.recnum && !this.publish_date && this.prototype_date) {
-          this.publish = this.authorize(
-            'publish',
-            this.$route.params.country_code
-          )
-        }
         if (this.recnum && !this.prototype_date) {
           this.prototype = this.authorize(
             'publish',
             this.$route.params.country_code
           )
+          if (this.prototype){
+            this.prototype_text = 'Prototype'
+          }
         }
+        if (this.recnum && !this.publish_date && this.prototype_date) {
+          this.publish = this.authorize(
+            'publish',
+            this.$route.params.country_code
+          )
+          if (this.publish){
+            this.prototype = true
+            this.prototype_text = 'Prototype Again'
+          }
+        }
+        // end authorization for prototype and publish
       } catch (error) {
         console.log('There was an error in Page.vue:', error) // Logs out the error
       }

@@ -5,11 +5,11 @@
     <div class="error" v-if="error">There was an error... {{ this.error }}</div>
     <div class="content" v-if="loaded">
       <div v-if="this.publish">
-        <button class="button" @click="localPublish('prototype')">Prototype  Again</button>
+        <button class="button" @click="localPublish('live')">Publish</button>
       </div>
       <div v-if="this.prototype">
         <button class="button" @click="localPublish('prototype')">
-          Prototype
+          {{ this.prototype_text }}
         </button>
       </div>
       <a href="preview/languages">
@@ -19,14 +19,14 @@
         />
       </a>
 
-      <h1> {{ this.choose_language }}</h1>
+      <h1>{{ this.choose_language }}</h1>
       <Language
         v-for="language in languages"
         :key="language.iso"
         :language="language"
       />
       <div v-if="!this.ZZ">
-        <a href="/languages/ZZ">{{this.more_languages}}</a>
+        <a href="/languages/ZZ">{{ this.more_languages }}</a>
       </div>
       <div class="version">
         <p class="version">Version 1.01</p>
@@ -46,7 +46,6 @@
 <script>
 import Language from '@/components/LanguagePreview.vue'
 import NavBar from '@/components/NavBarAdmin.vue'
-import ContentService from '@/services/ContentService.js'
 import PrototypeService from '@/services/PrototypeService.js'
 import PublishService from '@/services/PublishService.js'
 import { mapState } from 'vuex'
@@ -65,6 +64,7 @@ export default {
       readonly: false,
       write: false,
       publish: false,
+      prototype_text: 'Prototype',
       more_languages: 'More Languages',
       choose_language: 'Choose Language'
     }
@@ -94,7 +94,7 @@ export default {
       var response = null
       var params = {}
       params.recnum = this.recnum
-       params.bookmark = JSON.stringify(this.bookmark)
+      params.bookmark = JSON.stringify(this.bookmark)
       params.route = JSON.stringify(this.$route.params)
       if (location == 'prototype') {
         response = await PrototypeService.publish('languages', params)
@@ -121,20 +121,29 @@ export default {
           this.$route.params.country_code
         )
         this.write = this.authorize('write', this.$route.params.country_code)
+        // authorize for prototype and publish
         this.publish = false
         this.prototype = false
-        if (this.recnum && !this.publish_date && this.prototype_date) {
-          this.publish = this.authorize(
-            'publish',
-            this.$route.params.country_code
-          )
-        }
         if (this.recnum && !this.prototype_date) {
           this.prototype = this.authorize(
             'publish',
             this.$route.params.country_code
           )
+          if (this.prototype) {
+            this.prototype_text = 'Prototype'
+          }
         }
+        if (this.recnum && !this.publish_date && this.prototype_date) {
+          this.publish = this.authorize(
+            'publish',
+            this.$route.params.country_code
+          )
+          if (this.publish) {
+            this.prototype = true
+            this.prototype_text = 'Prototype Again'
+          }
+        }
+        // end authorization for prototype and publish
         this.ZZ = false
         if (this.$route.params.country_code == 'ZZ') {
           this.ZZ = true

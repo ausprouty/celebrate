@@ -5,11 +5,11 @@
     <div class="error" v-if="error">There was an error...{{ this.error }}</div>
     <div class="content" v-if="loaded">
       <div v-if="this.publish">
-        <button class="button" @click="localPublish('prototype')">Prototype  Again</button>
+        <button class="button" @click="localPublish('live')">Publish</button>
       </div>
       <div v-if="this.prototype">
         <button class="button" @click="localPublish('prototype')">
-          Prototype
+          {{ this.prototype_text }}
         </button>
       </div>
       <div v-bind:class="this.dir">
@@ -89,6 +89,7 @@ export default {
       readonly: false,
       write: false,
       publish: false,
+      prototype_text: 'Prototype',
       download_ready: '',
       download_now: '',
       description: '',
@@ -177,20 +178,29 @@ export default {
         )
         this.write = this.authorize('write', this.$route.params.country_code)
 
+       // authorize for prototype and publish
         this.publish = false
         this.prototype = false
-        if (this.recnum && !this.publish_date && this.prototype_date) {
-          this.publish = this.authorize(
-            'publish',
-            this.$route.params.country_code
-          )
-        }
         if (this.recnum && !this.prototype_date) {
           this.prototype = this.authorize(
             'publish',
             this.$route.params.country_code
           )
+          if (this.prototype){
+            this.prototype_text = 'Prototype'
+          }
         }
+        if (this.recnum && !this.publish_date && this.prototype_date) {
+          this.publish = this.authorize(
+            'publish',
+            this.$route.params.country_code
+          )
+          if (this.publish){
+            this.prototype = true
+            this.prototype_text = 'Prototype Again'
+          }
+        }
+        // end authorization for prototype and publish
 
         this.loaded = true
         this.loading = false

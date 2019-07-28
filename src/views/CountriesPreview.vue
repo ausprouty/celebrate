@@ -3,13 +3,19 @@
     <NavBar />
     <img v-bind:src="appDir.country + 'world.jpg'" class="app-img-header" />
     <div v-if="this.publish">
-      <button class="button" @click="localPublish('prototype')">Prototype Again</button>
+      <button class="button" @click="localPublish('live')">Publish</button>
     </div>
     <div v-if="this.prototype">
-      <button class="button" @click="localPublish('prototype')">Prototype</button>
+      <button class="button" @click="localPublish('prototype')">
+        {{ this.prototype_text }}
+      </button>
     </div>
     <h1>Select Country (Preview Mode)</h1>
-    <Country v-for="country in countries" :key="country.code" :country="country" />
+    <Country
+      v-for="country in countries"
+      :key="country.code"
+      :country="country"
+    />
     <p class="version">Version 1.01</p>
 
     <div v-if="this.authorized">
@@ -40,7 +46,8 @@ export default {
   data() {
     return {
       authorized: false,
-      publish: false
+      publish: false,
+      prototype_text: 'Prototype'
     }
   },
   computed: mapState(['appDir', 'user']),
@@ -86,16 +93,31 @@ export default {
     async loadView() {
       try {
         await this.getCountries()
+         this.authorized = this.authorize('write', 'country')
+        // authorize for prototype and publish
         this.publish = false
         this.prototype = false
-        if (this.recnum && !this.publish_date && this.prototype_date) {
-          this.publish = this.authorize('publish', 'country')
-        }
         if (this.recnum && !this.prototype_date) {
-          console.log('I am checking for prototype')
-          this.prototype = this.authorize('publish', 'country')
+          this.prototype = this.authorize(
+            'publish',
+            this.$route.params.country_code
+          )
+          if (this.prototype){
+            this.prototype_text = 'Prototype'
+          }
         }
-        this.authorized = this.authorize('write', 'country')
+        if (this.recnum && !this.publish_date && this.prototype_date) {
+          this.publish = this.authorize(
+            'publish',
+            this.$route.params.country_code
+          )
+          if (this.publish){
+            this.prototype = true
+            this.prototype_text = 'Prototype Again'
+          }
+        }
+        // end authorization for prototype and publish
+       
       } catch (error) {
         console.log('There was an error in Countries.vue:', error) // Logs out the error
       }

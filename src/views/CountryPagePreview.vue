@@ -58,30 +58,18 @@ export default {
           name: 'previewCountries'
         })  
     },
-    async local_prototype() {
+    async local_publish(location) {
       var params = {}
+      var response = null
       params.recnum = this.recnum
       params.bookmark = JSON.stringify(this.bookmark)
       params.route = JSON.stringify(this.$route.params)
-      var response = await PrototypeService.publish('country', params)
-      if (typeof response['error'] != 'undefined'){
-        this.error = response['message']
-        this.loaded = false
+      if (location == 'prototype') {
+        response = await PrototypeService.publish('country', params)
       } else {
-        this.UnsetBookmarks()
-        this.recnum = null
-        this.loaded = false
-        this.loading = true
-        this.publish = false
-        await this.loadView()
+        response = await PublishService.publish('country', params)
       }
-    },
-    async local_publish() {
-      var params = {}
-      params.recnum = this.recnum
-      params.route = JSON.stringify(this.route.params)
-      var response = await PublishService.publish('country', params)
-       if (typeof response['error'] != 'undefined'){
+      if (typeof response['error'] != 'undefined'){
         this.error = response['message']
         this.loaded = false
       } else {
@@ -98,18 +86,30 @@ export default {
         this.$route.params.css = 'AU/styles/AU-freeform.css'
         await this.getCountry()
         this.write = this.authorize('write', 'world')
+         // authorize for prototype and publish
         this.publish = false
         this.prototype = false
-        if (this.recnum && !this.publish_date && this.prototype_date) {
-          this.publish = this.authorize('publish', 'country')
-        }
         if (this.recnum && !this.prototype_date) {
-           console.log ('I am checking for prototype')
-          this.prototype = this.authorize('publish', 'country')
+          this.prototype = this.authorize(
+            'publish',
+            this.$route.params.country_code
+          )
+          if (this.prototype){
+            this.prototype_text = 'Prototype'
+          }
         }
-        else{
-           console.log ('I am NOTchecking for prototype')
+        if (this.recnum && !this.publish_date && this.prototype_date) {
+          this.publish = this.authorize(
+            'publish',
+            this.$route.params.country_code
+          )
+          if (this.publish){
+            this.prototype = true
+            this.prototype_text = 'Prototype Again'
+          }
         }
+        // end authorization for prototype and publish
+
       } catch (error) {
         console.log('There was an error in Country.vue:', error)
       }

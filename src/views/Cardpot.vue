@@ -1,6 +1,6 @@
 <template>
   <div>
-    <NavBar/>
+    <NavBar />
     <div class="loading" v-if="loading">Loading...</div>
     <div class="error" v-if="error">There was an error... {{ this.error_message }}</div>
     <div class="content" v-if="loaded">
@@ -17,10 +17,10 @@
       <div v-if="this.authorized">
         <h1>Library</h1>
         <div v-if="images">
-          <img v-bind:src="appDir.library + image_dir + '/' + this.image" class="header">
-          <br>
+          <img v-bind:src="appDir.library + image_dir + '/' + this.image" class="header" />
+          <br />
         </div>
-        <BaseSelect label="Image" :options="images" v-model="image" class="field"/>
+        <BaseSelect label="Image" :options="images" v-model="image" class="field" />
       </div>
       <div v-if="image_permission">
         <label>
@@ -30,17 +30,17 @@
             v-bind:id="image"
             ref="imageHeader"
             v-on:change="handleHeaderUpload(image)"
-          >
+          />
         </label>
       </div>
       <div>
-        <hr>
+        <hr />
         <h2>Preliminary Text</h2>
         <p>
-          <vue-ckeditor v-model="text" :config="config"/>
+          <vue-ckeditor v-model="text" :config="config" />
         </p>
       </div>
-      <hr>
+      <hr />
       <h2>Library Items</h2>
       <div>
         <button class="button" @click="publishAll">Select ALL to publish?</button>
@@ -105,8 +105,8 @@
                   appDir.library + image_dir + '/' + book.image.$model
                 "
                 class="book"
-              >
-              <br>
+              />
+              <br />
             </div>
             <BaseSelect
               label="Image"
@@ -128,7 +128,7 @@
                 v-bind:id="book.name.$model"
                 ref="image"
                 v-on:change="handleImageUpload(book.name.$model)"
-              >
+              />
             </label>
           </div>
           <div>
@@ -167,7 +167,7 @@
                 v-bind:id="book.title.$model"
                 ref="style"
                 v-on:change="handleStyleUpload(book.title.$model)"
-              >
+              />
             </label>
 
             <BaseSelect
@@ -185,15 +185,15 @@
                 v-bind:id="book.title.$model"
                 ref="template"
                 v-on:change="handleTemplateUpload(book.title.$model)"
-              >
+              />
             </label>
             <template v-if="template_error">
               <p class="errorMessage">Only .html files may be uploaded as templates</p>
             </template>
             <button class="button yellow" @click="createTemplate">Create Template</button>
-            <br>
-            <br>
-            <input type="checkbox" id="checkbox" v-model="book.publish.$model">
+            <br />
+            <br />
+            <input type="checkbox" id="checkbox" v-model="book.publish.$model" />
             <label for="checkbox">
               <h2>Publish?</h2>
             </label>
@@ -369,7 +369,7 @@ export default {
       for (var i = 0; i < arrayLength; i++) {
         this.booklist.push(this.$v.library.$model[i].book)
       }
-      console.log (this.booklist)
+      console.log(this.booklist)
       console.log('about to hide')
       this.isHidden = true
       console.log('hidden')
