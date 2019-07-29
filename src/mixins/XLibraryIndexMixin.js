@@ -1,5 +1,5 @@
 import ContentService from '@/services/ContentService.js'
-export const freeformMixin = {
+export const libraryIndexMixin = {
   data() {
     return {
       pageText: '',
@@ -16,14 +16,14 @@ export const freeformMixin = {
     }
   },
   methods: {
-    async getCountry() {
+    async getLibraryIndex() {
       this.error = this.loaded = null
       this.loading = true
       this.recnum = null
       this.publish_date = null
       await this.UnsetBookmarks()
       await this.CheckBookmarks(this.$route.params)
-      var response = await ContentService.getCountry(this.$route.params)
+      var response = await ContentService.getLibraryIndex(this.$route.params)
       if (response.data.content) {
         if (response.data.content.recnum) {
           this.recnum = response.data.content.recnum
@@ -31,7 +31,7 @@ export const freeformMixin = {
           this.prototype_date = response.data.content.prototype_date
         }
       }
-      console.log ('from ContentService.getCountry in Freeform Mixin')
+      console.log ('from ContentService.getCountry in Library Index Mixin')
       console.log (response.data.content)
       //var text = JSON.parse(response.data.content.text)
       var text = response.data.content.text

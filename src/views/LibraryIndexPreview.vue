@@ -37,10 +37,10 @@ import PrototypeService from '@/services/PrototypeService.js'
 import PublishService from '@/services/PublishService.js'
 import NavBar from '@/components/NavBarCountry.vue'
 import { bookMarkMixin } from '@/mixins/BookmarkMixin.js'
-import { freeformMixin } from '@/mixins/FreeformMixin.js'
+import { libraryMixin } from '@/mixins/LibraryMixin.js'
 import { authorMixin } from '@/mixins/AuthorMixin.js'
 export default {
-  mixins: [bookMarkMixin, freeformMixin, authorMixin],
+  mixins: [bookMarkMixin, libraryMixin, authorMixin],
   props: ['country_code', 'language_iso'],
   components: {
     NavBar
@@ -88,7 +88,9 @@ export default {
     async loadView() {
       try {
         this.$route.params.css = 'AU/styles/AU-freeform.css'
-        await this.getCountry()
+        console.log ('I started getLibraryIndex')
+        await this.getLibraryIndex()
+        console.log ('I finished getLibraryIndex')
         this.write = this.authorize('write', 'world')
         // authorize for prototype and publish
         this.publish = false
@@ -114,7 +116,7 @@ export default {
         }
         // end authorization for prototype and publish
       } catch (error) {
-        console.log('There was an error in Country.vue:', error)
+        console.log('There was an error in LibraryIndexPreview.vue:', error)
       }
     }
   },

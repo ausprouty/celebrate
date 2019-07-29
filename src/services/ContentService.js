@@ -58,31 +58,6 @@ export default {
       return response
     }
   },
-  async getCountry(params) {
-    console.log('in getCountry of Content Service')
-    var found = false
-    var response = {}
-    var contentForm = this.toFormData(params)
-    let res = await apiMYSQL.post('ContentApi.php?scope=country', contentForm)
-    console.log(res)
-    if (res.data.content) {
-      if (res.data.content.text != '') {
-        found = true
-        response = res
-        //  console.log('about to parse')
-        // response.data.content.text = JSON.parse(res.data.content.text)
-        response.data.content.text = res.data.content.text
-        // console.log('was able to parse')
-        response.source = 'data'
-        return response
-      }
-    }
-    if (!found) {
-      response.data = {}
-      response.source = 'none'
-      return response
-    }
-  },
   async getLanguages(params) {
     var found = false
     var response = {}
@@ -184,6 +159,36 @@ export default {
         response.source = 'content'
         return response
       }
+    }
+  },
+  async getLibraryIndex(params) {
+    console.log('in getLibraryIndex of Content Service')
+    console.log (params)
+    var found = false
+    var response = {}
+    var contentForm = this.toFormData(params)
+    let res = await apiMYSQL.post(
+      'ContentApi.php?scope=libraryIndex',
+      contentForm
+    )
+    console.log('res')
+    console.log(res)
+    if (res.data.content) {
+      if (res.data.content.text != '') {
+        found = true
+        response = res
+        //  console.log('about to parse')
+        // response.data.content.text = JSON.parse(res.data.content.text)
+        response.data.content.text = res.data.content.text
+        // console.log('was able to parse')
+        response.source = 'data'
+        return response
+      }
+    }
+    if (!found) {
+      response.data = {}
+      response.source = 'none'
+      return response
     }
   },
 

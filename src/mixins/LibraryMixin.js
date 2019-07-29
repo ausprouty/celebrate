@@ -22,6 +22,7 @@ export const libraryMixin = {
       prototype: false,
       prototype_date: null,
       books: [],
+      write:false,
       publish: false,
       publish_date: '',
       recnum: '',
@@ -100,6 +101,36 @@ export const libraryMixin = {
         this.newLibrary()
         console.log('There was an error in LibraryMixin:', error) // Logs out the error
       }
+    },
+    async getLibraryIndex() {
+      this.error = this.loaded = null
+      this.loading = true
+      this.recnum = null
+      this.publish_date = null
+      await this.UnsetBookmarks()
+      await this.CheckBookmarks(this.$route.params)
+      console.log ('getLibraryIndex parameters')
+      console.log(this.$route.params)
+      var response = await ContentService.getLibraryIndex(this.$route.params)
+      console.log ('response')
+      console.log (response)
+      if (response.data.content) {
+        if (response.data.content.recnum) {
+          this.recnum = response.data.content.recnum
+          this.publish_date = response.data.content.publish_date
+          this.prototype_date = response.data.content.prototype_date
+        }
+      }
+      console.log('from ContentService.getCountry in LibraryMixin')
+      console.log(response.data.content)
+      //var text = JSON.parse(response.data.content.text)
+      var text = response.data.content.text
+      console.log('text')
+      console.log(text)
+      this.pageText = text.page
+      this.footerText = text.footer
+      this.loaded = true
+      this.loading = false
     },
     newLibrary() {
       this.books = [

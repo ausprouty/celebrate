@@ -49,10 +49,10 @@ import NavBar from '@/components/NavBarCountry.vue'
 import './ckeditor/index.js'
 import VueCkeditor from 'vue-ckeditor2'
 import { bookMarkMixin } from '@/mixins/BookmarkMixin.js'
-import { freeformMixin } from '@/mixins/FreeformMixin.js'
+import { libraryMixin } from '@/mixins/LibraryMixin.js'
 import { authorMixin } from '@/mixins/AuthorMixin.js'
 export default {
-  mixins: [bookMarkMixin, freeformMixin, authorMixin],
+  mixins: [bookMarkMixin, libraryMixin, authorMixin],
   props: ['country_code', 'language_iso'],
   components: {
     NavBar,
@@ -199,7 +199,7 @@ export default {
     try {
       console.log('in Created')
       console.log(this.$route)
-      await this.getCountry()
+      await this.getLibraryIndex()
       this.authorized = this.authorize('write', 'world')
       this.publish = false
       if (this.recnum && !this.publish_date) {

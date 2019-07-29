@@ -74,7 +74,7 @@ export default new Router({
       props: true
     },
     {
-      path: '/edit/library/:country_code/:language_iso/index',
+      path: '/edit/libraryIndex/:country_code/:language_iso',
       name: 'editLibraryIndex',
       component: LibraryIndexEdit
     },
@@ -111,7 +111,7 @@ export default new Router({
       props: true
     },
     {
-      path: '/preview/library/:country_code/:language_iso/index',
+      path: '/preview/libraryIndex/:country_code/:language_iso',
       name: 'previewLibraryIndex',
       component: LibraryIndexPreview
     },
