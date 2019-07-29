@@ -90,8 +90,20 @@
                 >
               </p>
             </div>
-
-            
+            <BaseInput
+              v-model="country.website.$model"
+              label="Website for footer"
+              type="text"
+              placeholder="https://"
+              class="field"
+            />
+            <BaseInput
+              v-model="country.url.$model"
+              label="Url for footer"
+              type="text"
+              placeholder="https://"
+              class="field"
+            />
 
             <div v-if="!country.image.$model">
               <p class="errorMessage">Upload Country Flag</p>
@@ -175,6 +187,8 @@ export default {
         english: null,
         code: null,
         language: null,
+        website: null,
+        url: null,
         index: null,
         custom: null,
         image: null,
@@ -191,6 +205,8 @@ export default {
         english: {},
         code: { required },
         language: {},
+        website: {},
+        url: {},
         index: {},
         custom: {},
         image: {},
@@ -208,6 +224,8 @@ export default {
         english: null,
         code: null,
         language: null,
+        website: null,
+        url: null,
         index: null,
         custom: null,
         image: null,

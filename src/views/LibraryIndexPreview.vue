@@ -9,7 +9,7 @@
       </div>
       <div v-if="this.prototype">
         <button class="button" @click="localPublish('prototype')">
-          Prototype
+          {{ this.prototype_text }}
         </button>
       </div>
       <link
@@ -88,9 +88,9 @@ export default {
     async loadView() {
       try {
         this.$route.params.css = 'AU/styles/AU-freeform.css'
-        console.log ('I started getLibraryIndex')
+        console.log('I started getLibraryIndex')
         await this.getLibraryIndex()
-        console.log ('I finished getLibraryIndex')
+        console.log('I finished getLibraryIndex')
         this.write = this.authorize('write', 'world')
         // authorize for prototype and publish
         this.publish = false
