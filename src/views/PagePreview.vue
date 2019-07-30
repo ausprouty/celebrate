@@ -5,9 +5,7 @@
     <div class="error" v-if="error">There was an error... {{ this.error }}</div>
     <div class="content" v-if="loaded">
       <div v-if="this.publish">
-        <button class="button" @click="localPublish('live')">
-          Publish
-        </button>
+        <button class="button" @click="localPublish('live')">Publish</button>
       </div>
       <div v-if="this.prototype">
         <button class="button" @click="localPublish('prototype')">
@@ -22,8 +20,10 @@
         <div class="app-card -shadow">
           <div v-on:click="goBack()">
             <img
-              v-bind:src="appDir.library + this.image_dir + '/' + this.image"
-              v-bind:class="this.image_class"
+              v-bind:src="
+                appDir.library + this.image_book_dir + '/' + this.image_book
+              "
+              v-bind:class="this.image_book_class"
             />
             <span class="title" v-if="this.show_series_title">
               {{ this.bookmark.book.title }}
@@ -36,6 +36,14 @@
           {{ this.bookmark.page.count }}.&nbsp; {{ this.bookmark.page.title }}
         </h1>
         <h1 v-else>{{ this.bookmark.page.title }}</h1>
+      </div>
+      <div v-if="this.show_page_image">
+        <img
+          v-bind:src="
+            appDir.library + this.image_page_dir + '/' + this.image_page
+          "
+          v-bind:class="this.image_page_class"
+        />
       </div>
       <div>
         <span v-html="pageText"></span>
@@ -95,16 +103,18 @@ export default {
     goBack() {
       // can not use  window.history.back() as this may lead to endless loop with edit
       if (this.bookmark.book.format == 'series') {
+        console.log ('goBack in series')
         this.$router.push({
           name: 'previewSeries',
           params: {
             country_code: this.$route.params.country_code,
             language_iso: this.$route.params.language_iso,
             library_code: this.$route.params.library_code,
-            folder_name: this.bookmark.book.code
+            folder_name: this.$route.params.folder_name,
           }
         })
       } else {
+        console.log ('goBack Page')
         this.$router.push({
           name: 'previewLibrary',
           params: {
@@ -151,7 +161,7 @@ export default {
             'publish',
             this.$route.params.country_code
           )
-          if (this.prototype){
+          if (this.prototype) {
             this.prototype_text = 'Prototype'
           }
         }
@@ -160,7 +170,7 @@ export default {
             'publish',
             this.$route.params.country_code
           )
-          if (this.publish){
+          if (this.publish) {
             this.prototype = true
             this.prototype_text = 'Prototype Again'
           }

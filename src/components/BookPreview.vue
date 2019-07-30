@@ -74,7 +74,7 @@ export default {
           country_code: this.$route.params.country_code,
           language_iso: this.$route.params.language_iso,
           library_code: this.$route.params.library_code,
-          folder_name: 'none',
+          folder_name: 'pages',
           filename: book.code
         }
         console.log(my_params)
