@@ -21,13 +21,16 @@
           <div v-on:click="goBack()">
             <img
               v-bind:src="
-                appDir.library + this.image_book_dir + '/' + this.image_book
+                appDir.library +
+                  this.image_navigation_dir +
+                  '/' +
+                  this.image_navigation
               "
-              v-bind:class="this.image_book_class"
+              v-bind:class="this.image_navigation_class"
             />
-            <span class="title" v-if="this.show_series_title">
-              {{ this.bookmark.book.title }}
-            </span>
+            <span class="title" v-if="this.show_navigation_title">{{
+              this.navigation.title
+            }}</span>
           </div>
         </div>
       </div>
@@ -103,18 +106,18 @@ export default {
     goBack() {
       // can not use  window.history.back() as this may lead to endless loop with edit
       if (this.bookmark.book.format == 'series') {
-        console.log ('goBack in series')
+        console.log('goBack in series')
         this.$router.push({
           name: 'previewSeries',
           params: {
             country_code: this.$route.params.country_code,
             language_iso: this.$route.params.language_iso,
             library_code: this.$route.params.library_code,
-            folder_name: this.$route.params.folder_name,
+            folder_name: this.$route.params.folder_name
           }
         })
       } else {
-        console.log ('goBack Page')
+        console.log('goBack Page')
         this.$router.push({
           name: 'previewLibrary',
           params: {

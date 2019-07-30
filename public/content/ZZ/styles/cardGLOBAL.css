@@ -93,3 +93,6 @@ div.chapter-description {
   margin-right: 10 px;
   color: gray;
 }
+h1.list_header{
+ line-height:4;
+}
