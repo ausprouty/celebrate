@@ -28,9 +28,9 @@
               "
               v-bind:class="this.image_navigation_class"
             />
-            <span class="title" v-if="this.show_navigation_title">{{
-              this.navigation.title
-            }}</span>
+            <span class="title" v-if="this.show_navigation_title">
+              {{ this.navigation.title }}
+            </span>
           </div>
         </div>
       </div>
@@ -48,6 +48,9 @@
           v-bind:class="this.image_page_class"
         />
       </div>
+      <div v-if="this.show_book_title">
+        <h1>{{ this.bookmark.book.title }}</h1>
+      </div>
       <div>
         <span v-html="pageText"></span>
       </div>
@@ -63,7 +66,6 @@
 
 <script>
 import { mapState } from 'vuex'
-import ContentService from '@/services/ContentService.js'
 import PrototypeService from '@/services/PrototypeService.js'
 import PublishService from '@/services/PublishService.js'
 import NavBar from '@/components/NavBarAdmin.vue'

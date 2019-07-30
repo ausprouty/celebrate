@@ -49,16 +49,16 @@ export default {
       console.log('BOOK  PREVIEW - book')
       console.log(book)
       localStorage.setItem('lastPage', 'library/country/language')
+      // dealing with legacy data
+      var code = ''
+      if (typeof book.code !== 'undefined') {
+        code = book.code
+      } else {
+        code = book.name
+      }
       if (book.format == 'series') {
         console.log('BOOK  PREVIEW - this is a series')
         console.log(book)
-        // dealing with legacy data
-        var code = ''
-        if (typeof book.code !== 'undefined') {
-          code = book.code
-        } else {
-          code = book.name
-        }
         this.$router.push({
           name: 'previewSeries',
           params: {
@@ -75,7 +75,7 @@ export default {
           language_iso: this.$route.params.language_iso,
           library_code: this.$route.params.library_code,
           folder_name: 'pages',
-          filename: book.code
+          filename: code
         }
         console.log(my_params)
         this.$router.push({

@@ -166,14 +166,14 @@ export const bookMarkMixin = {
         return null
       }
       if (route.folder_name) {
-        console.log('older name')
         try {
           var new_book = route.folder_name
-          console.log(new_book)
-          console.log('new_book')
-          if (new_book == 'none') {
+          // if a book does NOT contain a series, it is saved in the pages directory
+          if (new_book == 'pages') {
             new_book = route.filename
           }
+          console.log('new_book is:')
+          console.log(new_book)
           var currentBook = ''
           var value = {}
           if (typeof this.bookmark.book != 'undefined') {
