@@ -9,14 +9,14 @@
   <div class="app-link">
     <div class="app-card -shadow">
       <a href="{{ link }}">
-        <img src="{{ book_or_library.image }}" class="book" />
+        <img src="{{ navigation.image }}" class="book" />
         <div class="book">
-          <span class="title">{{ book_or_library.title }}</span>
+          <span class="title">{{ navigation.title }}</span>
         </div>
       </a>
     </div>
   </div>
-  {{ page.title }}
+  {{ page.title_and_image }}
   <p>
     {{ page.text }}
   </p>

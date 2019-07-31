@@ -5,7 +5,7 @@ export const pageMixin = {
     return {
       error: null,
       header: 'series',
-      book_title: null,
+      
       image_navigation: null,
       image_navigation_class: null,
       image_navigation_dir: null,
@@ -14,6 +14,7 @@ export const pageMixin = {
       image_page_dir: 'book',
       loading: false,
       loaded: null,
+      navigation_title: null,
       pageText: '',
       publish: false,
       publish_date: null,
@@ -21,10 +22,8 @@ export const pageMixin = {
       prototype_date: null,
       read: false,
       recnum: null,
-      show_book_title: false,
       show_page_image: false,
       show_page_title: false,
-      
       show_navigation_title: false,
       write: false
     }
@@ -154,7 +153,7 @@ export const pageMixin = {
         this.image_page_class = 'something'
         this.image_page_dir = this.bookmark.language.image_dir
         this.show_page_image = true
-        this.show_book_title =true
+        this.show_navigation_title =true
       }
     }
   }

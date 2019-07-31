@@ -614,6 +614,7 @@ export default {
         var img = await AuthorService.getImages(param)
 
         if (typeof img !== 'undefined') {
+           img.push('')
           this.images = img.sort()
         }
         // get folders

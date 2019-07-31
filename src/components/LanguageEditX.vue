@@ -232,6 +232,7 @@ export default {
     for (var i = 0; i < arrayLength; i++) {
       versions[i] = this.nt[i].volume_name
     }
+    versions.push('')
     this.versions_nt = versions.sort()
     console.log('NT')
     console.log(this.versions_nt)

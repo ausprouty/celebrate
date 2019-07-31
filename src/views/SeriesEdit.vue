@@ -386,6 +386,7 @@ export default {
         this.series_image_dir = param.series_image_dir
         var img = await AuthorService.getImages(param)
         if (img) {
+          img.push('')
           this.images = img.sort()
         }
         console.log('this.chapters')

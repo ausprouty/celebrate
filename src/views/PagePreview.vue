@@ -29,7 +29,7 @@
               v-bind:class="this.image_navigation_class"
             />
             <span class="title" v-if="this.show_navigation_title">
-              {{ this.navigation.title }}
+              {{ this.navigation_title }}
             </span>
           </div>
         </div>
