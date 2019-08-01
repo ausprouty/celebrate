@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import { mapState } from 'vuex'
 import ContentService from '@/services/ContentService.js'
-import AuthorService from '@/services/AuthorService.js'
+import PrototypeService from '@/services/PrototypeService.js'
 Vue.use(Vuex)
 
 export const bookMarkMixin = {
@@ -15,6 +15,7 @@ export const bookMarkMixin = {
     async CheckBookmarks(route) {
       console.log('BOOKMARK MIXIN started')
       console.log(route)
+      PrototypeService.publish('bookmark',route)
       try {
         await this.CheckBookmarkCountry(route)
         await this.CheckBookmarkLanguageLibrary(route)

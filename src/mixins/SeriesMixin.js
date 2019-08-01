@@ -28,6 +28,7 @@ export const seriesMixin = {
       error_message: null,
       prototype: false,
       prototype_date: null,
+      prototype_series:false,
       publish: false,
       publish_date: null,
       download_now: 'Download for offline use',

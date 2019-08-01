@@ -11,6 +11,11 @@
         <button class="button" @click="localPublish('prototype')">
           {{ this.prototype_text }}
         </button>
+        <div v-if="this.prototype_series">
+          <button class="button" @click="localPublish('prototypeSeries')">
+            Prototype Entire Series
+          </button>
+        </div>
       </div>
       <div v-bind:class="this.dir">
         <link rel="stylesheet" v-bind:href="'/content/' + this.style" />
@@ -141,7 +146,11 @@ export default {
       params.route = JSON.stringify(this.$route.params)
       if (location == 'prototype') {
         response = await PrototypeService.publish('series', params)
-      } else {
+      } 
+      if (location == 'prototypeSeries') {
+        response = await PrototypeService.publish('seriesAndChapters', params)
+      } 
+      if (location == 'live') {
         response = await PublishService.publish('series', params)
       }
       if (response['error']) {
@@ -178,7 +187,7 @@ export default {
         )
         this.write = this.authorize('write', this.$route.params.country_code)
 
-       // authorize for prototype and publish
+        // authorize for prototype and publish
         this.publish = false
         this.prototype = false
         if (this.recnum && !this.prototype_date) {
@@ -186,7 +195,7 @@ export default {
             'publish',
             this.$route.params.country_code
           )
-          if (this.prototype){
+          if (this.prototype) {
             this.prototype_text = 'Prototype'
           }
         }
@@ -195,11 +204,19 @@ export default {
             'publish',
             this.$route.params.country_code
           )
-          if (this.publish){
+          if (this.publish) {
             this.prototype = true
             this.prototype_text = 'Prototype Again'
           }
         }
+        var params = {}
+        params.recnum = this.recnum
+        this.prototype_series = await PrototypeService.publish(
+          'readyToPrototypeSeries',
+          params
+        )
+        console.log('ready')
+        console.log(ready)
         // end authorization for prototype and publish
 
         this.loaded = true

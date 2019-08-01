@@ -12,7 +12,7 @@ import store from '@/store/store.js'
 
 // I want to export a JSON.stringified of response.data.content.text
 export default {
-  publish(scope, params) {
+  async publish(scope, params) {
     var action = null
     params.my_uid = store.state.user.uid
     params.token = store.state.user.token
@@ -21,6 +21,9 @@ export default {
     console.log('publish')
     console.log(params)
     switch (scope) {
+      case 'bookmark':
+        action = 'AuthorApi.php?page=bookmark&action=bookmark'
+        break
       case 'countries':
         action =
           'AuthorApi.php?page=prototypeCountries&action=prototypeCountries'
@@ -45,8 +48,28 @@ export default {
       case 'series':
         action = 'AuthorApi.php?page=prototypeSeries&action=prototypeSeries'
         break
+      case 'seriesAndChapters':
+        action =
+          'AuthorApi.php?page=prototypeSeriesAndChapters&action=prototypeSeriesAndChapters'
+        break
       case 'page':
         action = 'AuthorApi.php?page=prototypePage&action=prototypePage'
+        break
+      case 'readyToPrototypeCountry':
+        action =
+          'AuthorApi.php?page=readyToPrototype&action=readyToPrototypeCountry'
+        break
+      case 'readyToPrototypeLanguage':
+        action =
+          'AuthorApi.php?page=readyToPrototype&action=readyToPrototypeLanguage'
+        break
+      case 'readyToPrototypeLibrary':
+        action =
+          'AuthorApi.php?page=readyToPrototype&action=readyToPrototypeLibrary'
+        break
+      case 'readyToPrototypeSeries':
+        action =
+          'AuthorApi.php?page=readyToPrototype&action=readyToPrototypeSeries'
         break
       case 'default':
         action = null
@@ -54,7 +77,7 @@ export default {
     console.log('action')
     console.log(action)
     var contentForm = this.toFormData(params)
-    var response = apiSECURE.post(action, contentForm)
+    var response = await apiSECURE.post(action, contentForm)
     console.log('result of publish')
     console.log(response)
     return response
@@ -67,7 +90,7 @@ export default {
     }
     // Display the key/value pairs
     for (var pair of form_data.entries()) {
-      console.log(pair[0] + ', ' + pair[1])
+      //  console.log(pair[0] + ', ' + pair[1])
     }
     console.log(form_data)
     return form_data
