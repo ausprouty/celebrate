@@ -146,10 +146,10 @@ export default {
       params.route = JSON.stringify(this.$route.params)
       if (location == 'prototype') {
         response = await PrototypeService.publish('series', params)
-      } 
+      }
       if (location == 'prototypeSeries') {
         response = await PrototypeService.publish('seriesAndChapters', params)
-      } 
+      }
       if (location == 'live') {
         response = await PublishService.publish('series', params)
       }
@@ -165,9 +165,19 @@ export default {
         await this.loadView()
       }
     },
+    async localBookmark(recnum) {
+      var param = {}
+      param.recnum = recnum
+      var bm = PrototypeService.publish('bookmark', param)
+      console.log('localBookmark')
+      console.log(bm)
+    },
     async loadView() {
       try {
         await this.getSeries(this.$route.params)
+        if (this.recnum) {
+          this.localBookmark(this.recnum)
+        }
         if (
           this.bookmark.series.length == 0 &&
           this.$route.params.filename == 'first_steps'

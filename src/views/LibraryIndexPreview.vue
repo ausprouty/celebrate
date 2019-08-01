@@ -85,12 +85,21 @@ export default {
         await this.loadView()
       }
     },
+    async localBookmark(recnum) {
+      var param = {}
+      param.recnum = recnum
+      var bm = PrototypeService.publish('bookmark', param)
+      console.log('localBookmark')
+      console.log(bm)
+    },
     async loadView() {
       try {
         this.$route.params.css = 'AU/styles/AU-freeform.css'
-        console.log('I started getLibraryIndex')
+
         await this.getLibraryIndex()
-        console.log('I finished getLibraryIndex')
+        if (this.recnum) {
+          this.localBookmark(this.recnum)
+        }
         this.write = this.authorize('write', 'world')
         // authorize for prototype and publish
         this.publish = false

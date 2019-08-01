@@ -28,9 +28,9 @@
               "
               v-bind:class="this.image_navigation_class"
             />
-            <span class="title" v-if="this.show_navigation_title">
-              {{ this.navigation_title }}
-            </span>
+            <span class="title" v-if="this.show_navigation_title">{{
+              this.navigation_title
+            }}</span>
           </div>
         </div>
       </div>
@@ -153,9 +153,19 @@ export default {
         await this.loadView()
       }
     },
+    async localBookmark(recnum) {
+      var param = {}
+      param.recnum = recnum
+      var bm = PrototypeService.publish('bookmark', param)
+      console.log('localBookmark')
+      console.log(bm)
+    },
     async loadView() {
       try {
         await this.getPage(this.$route.params)
+        if (this.recnum) {
+          this.localBookmark(this.recnum)
+        }
         this.read = this.authorize('read', this.$route.params.country_code)
         this.write = this.authorize('write', this.$route.params.country_code)
         // authorize for prototype and publish

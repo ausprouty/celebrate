@@ -200,6 +200,7 @@ export default {
       console.log('in Created')
       console.log(this.$route)
       await this.getLibraryIndex()
+      
       this.authorized = this.authorize('write', 'world')
       this.publish = false
       if (this.recnum && !this.publish_date) {

@@ -15,7 +15,6 @@ export const bookMarkMixin = {
     async CheckBookmarks(route) {
       console.log('BOOKMARK MIXIN started')
       console.log(route)
-      PrototypeService.publish('bookmark',route)
       try {
         await this.CheckBookmarkCountry(route)
         await this.CheckBookmarkLanguageLibrary(route)

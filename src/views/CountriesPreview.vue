@@ -90,9 +90,19 @@ export default {
         await this.loadView()
       }
     },
+    async localBookmark(recnum){
+      var param = {}
+      param.recnum = recnum
+      var bm = PrototypeService.publish('bookmark', param)
+      console.log ('localBookmark')
+      console.log (bm)
+    },
     async loadView() {
       try {
         await this.getCountries()
+        if (this.recnum){
+          this.localBookmark(this.recnum)
+        }
         this.authorized = this.authorize('write', 'country')
         // authorize for prototype and publish
         this.publish = false

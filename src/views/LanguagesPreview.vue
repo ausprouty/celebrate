@@ -113,9 +113,19 @@ export default {
         await this.loadView()
       }
     },
+    async localBookmark(recnum) {
+      var param = {}
+      param.recnum = recnum
+      var bm = PrototypeService.publish('bookmark', param)
+      console.log('localBookmark')
+      console.log(bm)
+    },
     async loadView() {
       try {
         await this.getLanguages(this.$route.params)
+        if (this.recnum) {
+          this.localBookmark(this.recnum)
+        }
         this.readonly = this.authorize(
           'readonly',
           this.$route.params.country_code
