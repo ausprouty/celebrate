@@ -88,7 +88,8 @@ export default {
     async localBookmark(recnum) {
       var param = {}
       param.recnum = recnum
-      var bm = PrototypeService.publish('bookmark', param)
+       param.library_code = this.$route.params.library_code
+      var bm = await PrototypeService.publish('bookmark', param)
       console.log('localBookmark')
       console.log(bm)
     },

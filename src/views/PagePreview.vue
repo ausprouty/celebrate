@@ -48,7 +48,7 @@
           v-bind:class="this.image_page_class"
         />
       </div>
-      <div v-if="this.show_book_title">
+      <div v-if="this.show_page_title">
         <h1>{{ this.bookmark.book.title }}</h1>
       </div>
       <div>
@@ -156,7 +156,8 @@ export default {
     async localBookmark(recnum) {
       var param = {}
       param.recnum = recnum
-      var bm = PrototypeService.publish('bookmark', param)
+       param.library_code = this.$route.params.library_code
+      var bm = await PrototypeService.publish('bookmark', param)
       console.log('localBookmark')
       console.log(bm)
     },

@@ -5,7 +5,6 @@ export const pageMixin = {
     return {
       error: null,
       header: 'series',
-      
       image_navigation: null,
       image_navigation_class: null,
       image_navigation_dir: null,
@@ -132,6 +131,7 @@ export const pageMixin = {
       //
       if (this.bookmark.book.format == 'page') {
         console.log('I am looking at a page')
+        
         // image
         this.image_navigation = this.standard.image
         if (typeof this.bookmark.library.image !== 'undefined') {
@@ -153,7 +153,8 @@ export const pageMixin = {
         this.image_page_class = 'something'
         this.image_page_dir = this.bookmark.language.image_dir
         this.show_page_image = true
-        this.show_navigation_title =true
+        this.show_page_title = true
+        this.show_navigation_title = true
       }
     }
   }

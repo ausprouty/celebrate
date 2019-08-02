@@ -90,17 +90,18 @@ export default {
         await this.loadView()
       }
     },
-    async localBookmark(recnum){
+    async localBookmark(recnum) {
       var param = {}
       param.recnum = recnum
-      var bm = PrototypeService.publish('bookmark', param)
-      console.log ('localBookmark')
-      console.log (bm)
+      param.library_code = this.$route.params.library_code
+      var bm = await PrototypeService.publish('bookmark', param)
+      console.log('localBookmark')
+      console.log(bm)
     },
     async loadView() {
       try {
         await this.getCountries()
-        if (this.recnum){
+        if (this.recnum) {
           this.localBookmark(this.recnum)
         }
         this.authorized = this.authorize('write', 'country')

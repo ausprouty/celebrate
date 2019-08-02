@@ -113,11 +113,22 @@ export default {
         await this.loadView()
       }
     },
+    async localBookmark(recnum) {
+      var param = {}
+      param.recnum = recnum
+       param.library_code = this.$route.params.library_code
+      var bm = await PrototypeService.publish('bookmark', param)
+      console.log('localBookmark')
+      console.log(bm)
+    },
     async loadView() {
       try {
         this.recnum = null
         this.$store.dispatch('newBookmark', 'clear')
         await this.getLibrary()
+        if (this.recnum) {
+          this.localBookmark(this.recnum)
+        }
         this.back = '/preview/language/' + this.$route.params.country_code
         if (this.$route.params.library_code) {
           this.back = '/preview/country/' + this.$route.params.country_code
@@ -127,7 +138,7 @@ export default {
           this.$route.params.country_code
         )
         this.write = this.authorize('write', this.$route.params.country_code)
-         // authorize for prototype and publish
+        // authorize for prototype and publish
         this.publish = false
         this.prototype = false
         if (this.recnum && !this.prototype_date) {
@@ -135,7 +146,7 @@ export default {
             'publish',
             this.$route.params.country_code
           )
-          if (this.prototype){
+          if (this.prototype) {
             this.prototype_text = 'Prototype'
           }
         }
@@ -144,7 +155,7 @@ export default {
             'publish',
             this.$route.params.country_code
           )
-          if (this.publish){
+          if (this.publish) {
             this.prototype = true
             this.prototype_text = 'Prototype Again'
           }
