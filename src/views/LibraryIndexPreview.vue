@@ -66,7 +66,7 @@ export default {
       var params = {}
       var response = null
       params.recnum = this.recnum
-      params.bookmark = JSON.stringify(this.bookmark)
+     // params.bookmark = JSON.stringify(this.bookmark)
       params.route = JSON.stringify(this.$route.params)
       if (location == 'prototype') {
         response = await PrototypeService.publish('libraryIndex', params)
