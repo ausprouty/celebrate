@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
+import Content from './views/Content.vue'
+
 import CountriesEdit from './views/CountriesEdit.vue'
 import CountriesPreview from './views/CountriesPreview.vue'
 import CountriesSort from './views/CountriesSort.vue'
@@ -53,6 +55,11 @@ export default new Router({
       path: '/',
       name: 'home',
       component: CountriesPreview
+    },
+    {
+      path: '/content/:country?/:language?/:folder?/:filename?',
+      name: 'content',
+      component: Content
     },
 
     {
