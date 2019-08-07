@@ -6,7 +6,16 @@
       <img src="/images/menu/header-back.png" class="app-img-header" />
     </a>
   </div>
-
+  <div class="app-link">
+    <a class="card-link" href="{{ link }}">
+      <div class="app-card -shadow">
+        <img src="{{ navigation.image }}" class="book" />
+        <div class="book">
+          <span class="title">{{ navigation.title }}</span>
+        </div>
+      </div>
+    </a>
+  </div>
   {{ page.title_and_image }}
   <p>
     {{ page.text }}

@@ -41,6 +41,10 @@ export default {
       case 'library':
         action = 'AuthorApi.php?page=prototypeLibrary&action=prototypeLibrary'
         break
+        case 'libraryAndBooks':
+          action =
+            'AuthorApi.php?page=prototypeLibraryAndBooks&action=prototypeLibraryAndBooks'
+          break
       case 'libraryIndex':
         action =
           'AuthorApi.php?page=prototypeLibraryIndex&action=prototypeLibraryIndex'

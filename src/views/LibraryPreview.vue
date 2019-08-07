@@ -11,6 +11,11 @@
         <button class="button" @click="localPublish('prototype')">
           {{ this.prototype_text }}
         </button>
+        <div>
+          <button class="button" @click="localPublish('prototypeLibrary')">
+            Prototype Library and Books
+          </button>
+        </div>
       </div>
       <hr class="border" />
       <a v-bind:href="this.back">
@@ -96,9 +101,14 @@ export default {
       params.recnum = this.recnum
       //params.bookmark = JSON.stringify(this.bookmark)
       params.route = JSON.stringify(this.$route.params)
+
       if (location == 'prototype') {
         response = await PrototypeService.publish('library', params)
-      } else {
+      }
+      if (location == 'prototypeLibrary') {
+        response = await PrototypeService.publish('libraryAndBooks', params)
+      }
+      if (location == 'live') {
         response = await PublishService.publish('library', params)
       }
       if (response['error']) {
@@ -116,7 +126,7 @@ export default {
     async localBookmark(recnum) {
       var param = {}
       param.recnum = recnum
-       param.library_code = this.$route.params.library_code
+      param.library_code = this.$route.params.library_code
       var bm = await PrototypeService.publish('bookmark', param)
       console.log('localBookmark')
       console.log(bm)
