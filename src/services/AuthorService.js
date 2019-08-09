@@ -295,7 +295,7 @@ export default {
     apiSECURE.post(action, contentForm)
   },
   async publish(params) {
-    console.log('publsh')
+    console.log('publish')
     console.log(params)
     params.token = store.state.user.token
     var contentForm = this.toFormData(params)
@@ -303,9 +303,11 @@ export default {
     apiSECURE.post(action, contentForm)
   },
   async registerUser(params) {
+    console.log('registerUser')
+    console.log(params)
     params.token = store.state.user.token
     var contentForm = this.toFormData(params)
-    let response = await apiSELECT.post(
+    var response = await apiSELECT.post(
       'AuthorApi.php?page=register&action=registerUser',
       contentForm
     )

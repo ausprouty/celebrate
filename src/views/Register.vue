@@ -151,6 +151,9 @@ export default {
           this.error_message = res.data.message
         } else {
           this.registered = true
+          this.$router.push({
+            name: 'login'
+          })
         }
       } catch (error) {
         console.log('Register There was an error ', error) //
