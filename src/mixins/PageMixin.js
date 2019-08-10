@@ -21,6 +21,7 @@ export const pageMixin = {
       prototype_date: null,
       read: false,
       recnum: null,
+      rldir: 'ltr',
       show_page_image: false,
       show_page_title: false,
       show_navigation_title: false,
@@ -37,6 +38,7 @@ export const pageMixin = {
         await this.CheckBookmarks(this.$route.params)
         //determine image and like to put in the navigation area
         this.setImagesAndLinks()
+        this.rldir = this.bookmark.language.rldir
         // get page content
         var response = await ContentService.getPage(this.$route.params)
         // has this page been prototyped or published?

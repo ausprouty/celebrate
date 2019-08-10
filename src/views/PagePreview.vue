@@ -1,5 +1,5 @@
 <template>
-  <div class="preview">
+  <div class="preview" v-bind:class="this.bookmark.language.rldir">
     <NavBar />
     <div class="loading" v-if="loading">Loading...</div>
     <div class="error" v-if="error">There was an error... {{ this.error }}</div>

@@ -1,5 +1,5 @@
 <template>
-  <div class="preview">
+  <div class="preview" v-bind:dir="this.rldir">
     <NavBar />
     <div class="loading" v-if="loading">Loading...</div>
     <div class="error" v-if="error">There was an error...{{ this.error }}</div>
@@ -8,16 +8,12 @@
         <button class="button" @click="localPublish('live')">Publish</button>
       </div>
       <div v-if="this.prototype">
-        <button class="button" @click="localPublish('prototype')">
-          {{ this.prototype_text }}
-        </button>
+        <button class="button" @click="localPublish('prototype')">{{ this.prototype_text }}</button>
         <div v-if="this.prototype_series">
-          <button class="button" @click="localPublish('prototypeSeries')">
-            Prototype Entire Series
-          </button>
+          <button class="button" @click="localPublish('prototypeSeries')">Prototype Entire Series</button>
         </div>
       </div>
-      <div v-bind:class="this.dir">
+      <div>
         <link rel="stylesheet" v-bind:href="'/content/' + this.style" />
         <div class="app-link">
           <div class="app-card -shadow">
@@ -39,17 +35,11 @@
 
         <br />
 
-        <Chapter
-          v-for="chapter in chapters"
-          :key="chapter.id"
-          :chapter="chapter"
-        />
+        <Chapter v-for="chapter in chapters" :key="chapter.id" :chapter="chapter" />
       </div>
       <div>
         <p class="button">
-          <button id="offline-request" class="cache-series">
-            {{ this.download_now }}
-          </button>
+          <button id="offline-request" class="cache-series">{{ this.download_now }}</button>
         </p>
       </div>
       <div class="version">

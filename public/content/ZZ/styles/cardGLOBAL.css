@@ -73,6 +73,10 @@ div.card-language {
     font-size: 24px;
     color:black;
   }
+  .rtl{
+    text-align: right;
+    direction: rtl;
+  }
   
 div.chapter {
   vertical-align: top;

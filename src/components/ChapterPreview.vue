@@ -6,11 +6,19 @@
     >
       <div v-if="!this.chapter.image">
         <div class="chapter">
-          <div v-if="chapter.count" class="chapter-title">
-            {{ chapter.count }}. {{ chapter.title }}
+          <div
+            v-if="chapter.count"
+            class="chapter-title"
+            v-bind:class="this.rldir"
+          >
+            {{ chapter.count }}. {{ chapter.title }} 
           </div>
-          <div v-else class="chapter-title">{{ chapter.title }}</div>
-          <div class="chapter-description">{{ chapter.description }}</div>
+          <div v-else class="chapter-title" v-bind:class="this.rldir">
+            {{ chapter.title }}
+          </div>
+          <div class="chapter-description" v-bind:class="this.rldir">
+            {{ chapter.description }}
+          </div>
         </div>
       </div>
       <div v-if="this.chapter.image">
@@ -33,14 +41,15 @@ export default {
   },
   data() {
     return {
-      image_dir: ''
+      image_dir: '',
+      rldir: 'ltr'
     }
   },
   computed: mapState(['bookmark', 'appDir']),
   methods: {
     showPage: function(chapter) {
-      console.log ('chapter')
-      console.log (chapter)
+      console.log('chapter')
+      console.log(chapter)
       localStorage.setItem('lastPage', 'language/' + this.chapter.filename)
       var folder_name = ''
       // this section needed for legacy code
@@ -79,6 +88,7 @@ export default {
       console.log('BOOK  PREVIEW -using standard directory')
       this.image_dir = this.standard.image_dir
     }
+    this.rldir = this.bookmark.language.rldir
   }
 }
 </script>

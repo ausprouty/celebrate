@@ -4,11 +4,8 @@
     <div class="loading" v-if="loading">Loading...</div>
     <div class="error" v-if="error">There was an error... {{ this.error }}</div>
     <div class="content" v-if="loaded">
-      <div v-bind:class="this.dir">
-        <link
-          rel="stylesheet"
-          v-bind:href="'/content/' + this.bookmark.book.style"
-        />
+      <div v-bind:class="this.rldir">
+        <link rel="stylesheet" v-bind:href="'/content/' + this.bookmark.book.style" />
         <div class="app-link">
           <div class="app-card -shadow">
             <img
@@ -28,11 +25,7 @@
         <br />
         <br />
 
-        <Chapter
-          v-for="chapter in chapters"
-          :key="chapter.id"
-          :chapter="chapter"
-        />
+        <Chapter v-for="chapter in chapters" :key="chapter.id" :chapter="chapter" />
         <div class="version">
           <p class="version">Version 1.11</p>
         </div>
@@ -50,7 +43,7 @@ import { bookMarkMixin } from '@/mixins/BookmarkMixin.js'
 import { seriesMixin } from '@/mixins/SeriesMixin.js'
 export default {
   mixins: [bookMarkMixin, seriesMixin],
-  props: ['country_code', 'language_iso', 'library_code','folder_name'],
+  props: ['country_code', 'language_iso', 'library_code', 'folder_name'],
   computed: mapState(['bookmark', 'appDir']),
   components: {
     Chapter,
@@ -86,7 +79,7 @@ export default {
         params: {
           country_code: this.$route.params.country_code,
           language_iso: this.$route.params.language_iso,
-          library_code: this.$route.params.library_code,
+          library_code: this.$route.params.library_code
         }
       })
     }

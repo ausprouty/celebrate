@@ -45,6 +45,7 @@ padding-left: 35px;
 }
 .rtl{
     direction:rtl;
+    text-align:right;
 }
 
 a {

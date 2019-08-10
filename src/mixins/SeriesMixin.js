@@ -19,7 +19,7 @@ export const seriesMixin = {
           filename: ''
         }
       ],
-      dir: 'ltr',
+      rldir: 'ltr',
       image_dir: 'ZZ/images/europe',
       series_image_dir: 'ZZ/images/europe',
       loading: false,
@@ -95,6 +95,7 @@ export const seriesMixin = {
           console.log('USING BOOKMARK')
           this.style = this.bookmark.book.style
         }
+        this.rldir = this.bookmark.language.rldir
         console.log('this.image_dir')
         console.log(this.image_dir)
         this.loaded = true

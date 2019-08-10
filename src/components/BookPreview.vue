@@ -9,8 +9,10 @@
           v-bind:src="appDir.library + this.image_dir + '/' + book.image"
           class="book"
         />
-        <div class="book">
-          <span class="title">{{ book.title }}</span>
+        <div class="book" v-bind:class="this.bookmark.language.rldir">
+          <span class="title" v-bind:class="this.bookmark.language.rldir">{{
+            book.title
+          }}</span>
         </div>
       </div>
       <div v-if="this.bookmark.language.titles">
@@ -32,7 +34,8 @@ export default {
   computed: mapState(['bookmark', 'standard', 'appDir']),
   data() {
     return {
-      image_dir: ''
+      image_dir: '',
+      rldir: 'ltr'
     }
   },
   created() {
@@ -97,7 +100,15 @@ div.book {
   font-size: 24px;
   float: right;
 }
+div.book.rtl {
+  width: 30%;
+  text-align: left;
+}
 .book {
   text-align: left;
+}
+.rtl {
+  text-align: right;
+  direction: rtl;
 }
 </style>

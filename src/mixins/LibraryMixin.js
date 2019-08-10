@@ -19,10 +19,11 @@ export const libraryMixin = {
       loaded: '',
       error: '',
       error_message: '',
+      rldir: 'ltr',
       prototype: false,
       prototype_date: null,
       books: [],
-      write:false,
+      write: false,
       publish: false,
       publish_date: '',
       recnum: '',
@@ -95,6 +96,7 @@ export const libraryMixin = {
           // console.log('get Library is using Bookmark')
           this.image_dir = this.bookmark.language.image_dir
         }
+        this.rldir = this.bookmark.language.rldir
         //console.log('this.image_dir')
         // console.log(this.image_dir)
       } catch (error) {
@@ -109,11 +111,11 @@ export const libraryMixin = {
       this.publish_date = null
       await this.UnsetBookmarks()
       await this.CheckBookmarks(this.$route.params)
-      console.log ('getLibraryIndex parameters')
+      console.log('getLibraryIndex parameters')
       console.log(this.$route.params)
       var response = await ContentService.getLibraryIndex(this.$route.params)
-      console.log ('response')
-      console.log (response)
+      console.log('response')
+      console.log(response)
       if (response.data.content) {
         if (response.data.content.recnum) {
           this.recnum = response.data.content.recnum
