@@ -24,7 +24,21 @@ export default {
     console.log(result)
     return result
   },
+
   async getDbtArray(params) {
+    /* requires params.language_iso
+      and params.entry in form of 'Zephaniah 1:2-3'
+
+    returns:
+      params.dbt = array(
+      'entry' => 'Zephaniah 1:2-3'
+      'bookId' => 'Zeph',  
+      'chapterId' => 1, 
+      'verseStart' => 2, 
+      'verseEnd' => 3,
+      'collection_code' => 'OT' ,
+     );
+  */
     params.my_uid = store.state.user.uid
     params.token = store.state.user.token
     console.log('params in getDbtArray')
@@ -42,29 +56,32 @@ export default {
       return null
     }
   },
-  async getbibleGetPassage(params) {
-    var p = {}
-    p.my_uid = store.state.user.uid
-    p.token = store.state.user.token
-    p.bookId = params.dbt.bookId
-    p.chapterId = params.dbt.chapterId
-    p.verseStart = params.dbt.verseStart
-    p.verseEnd = params.dbt.verseEnd
-    p.damId = params.damId
-    console.log('params in getbibleGetPassage')
-    console.log(p)
-    var contentForm = this.toFormData(p)
+
+  async getBiblePassage(params) {
+    /*
+  expects 
+    params.dbt = array(
+      'entry' => 'Zephaniah 1:2-3'
+      'bookId' => 'Zeph',  
+      'chapterId' => 1, 
+      'verseStart' => 2, 
+      'verseEnd' => 3,
+      'collection_code' => 'OT' ,
+     );
+     params.bid 
+
+  */
+
+    params.my_uid = store.state.user.uid
+    params.token = store.state.user.token
+    console.log('params in getBiblePassage')
+    console.log(params)
+    var contentForm = this.toFormData(params)
     var res = await apiSELECT.post(
       'AuthorApi.php?page=bibleGetPassage&action=bibleGetPassage',
       contentForm
     )
-    if (typeof res.data.content !== 'undefined') {
-      console.log ('passage response')
-      console.log (res.data.content)
-      return res.data.content
-    } else {
-      return null
-    }
+    return res
   },
   toFormData(obj) {
     var form_data = new FormData()

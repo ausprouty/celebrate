@@ -423,6 +423,11 @@ margin-right: 20px;
 vertical-align: middle;
 width: 30px;
 }
+.myfriends-poetry-top-rtl,
+.myfriends-bible-rtl{
+  text-align:right;
+}
+img.myfriend-lesson-rtl-icon,
 img.lesson-rtl-icon {
 height: 30px;
 margin-left: 20px;

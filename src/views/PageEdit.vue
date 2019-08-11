@@ -169,7 +169,7 @@ export default {
       params.dbt = await BibleService.getDbtArray(params)
       console.log('params for Get passage')
       console.log(params)
-      var bible = await BibleService.getbibleGetPassage(params)
+      var bible = await BibleService.getBiblePassage(params)
       if (typeof bible.text !== 'undefined') {
         console.log('bible')
         console.log(bible)

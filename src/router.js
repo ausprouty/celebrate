@@ -172,7 +172,7 @@ export default new Router({
       props: false
     },
     {
-      path: '/debug/:action',
+      path: '/debug/',
       name: 'debug',
       component: Debug,
       props: false
