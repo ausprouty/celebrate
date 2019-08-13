@@ -6,7 +6,7 @@ export const pageMixin = {
       error: null,
       header: 'series',
       image_navigation: null,
-      image_navigation_class: null,
+      image_navigation_class: book,
       image_navigation_dir: null,
       image_page: null,
       image_page_class: 'book',

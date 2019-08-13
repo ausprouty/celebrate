@@ -26,7 +26,7 @@
                   '/' +
                   this.image_navigation
               "
-              v-bind:class="this.image_navigation_class"
+              class="this.image_navigation_class"
             />
             <span class="title" v-if="this.show_navigation_title">{{
               this.navigation_title
@@ -58,7 +58,7 @@
         <p class="version">Version 1.01</p>
       </div>
     </div>
-    <div v-if="write">
+    <div v-if="this.write">
       <button class="button" @click="editPage">Edit</button>
     </div>
   </div>

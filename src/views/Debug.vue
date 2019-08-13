@@ -1,7 +1,6 @@
 <template>
   <div>
     <h1> {{this.passage_name}} </h1>
-     <span v-html="this.reference"></span>
      <span v-html="this.bible"></span><br/></br>
     Link:     {{ this.link }}
   </div>
@@ -19,7 +18,7 @@ export default {
     return {
       authorized: true,
       link: null,
-      reference: null,
+      passage_name: null,
       bible: null
     }
   },

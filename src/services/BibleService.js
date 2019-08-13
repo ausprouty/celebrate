@@ -81,6 +81,9 @@ export default {
       'AuthorApi.php?page=bibleGetPassage&action=bibleGetPassage',
       contentForm
     )
+    console.log('response from getBiblePassage')
+    console.log (res)
+    // I want the whole response so I can see any errors.
     return res
   },
   toFormData(obj) {

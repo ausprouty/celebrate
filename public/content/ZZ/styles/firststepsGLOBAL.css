@@ -1,12 +1,12 @@
 /*colours{
 yellow: #ffc80f
-red: #f0555a
+red:  var(--color-back)
 orange: #f38832
 green #1ca0a6
 }
 */
 :root {
---color-back: #f0555a;
+--color-back:  #f0555a;
 --color-up:#f38832;
 --color-forward: #1ca0a6;
 }
@@ -50,7 +50,7 @@ color:var(--color-forward);
 color:var(--color-up);;
 }
 .color-yellow{
-color: #f38832;
+color:  var(--color-up);
 }
 .text-conclusion{
 font-style: italic;
@@ -73,7 +73,7 @@ color: var(--color-up);
 }
 div.fsteps{
 font-size :18px;
-color:#1ca0a6;
+color: var(--color-forward);
 font-weight:bold;
 line-height: 30px;
 margin-left:55px;
@@ -145,13 +145,13 @@ font-size: 2em;
 margin-left:0px;
 }
 h2.lookback{
-color: #f0555a;
+color:  var(--color-back);
 }
 h2.lookup{
-color: #f38832;
+color:  var(--color-up);
 }
 h2.lookforward{
-color: #1ca0a6;
+color:  var(--color-forward);
 }
 img.lesson-icon{
 height:30px;
@@ -200,24 +200,24 @@ padding-left: 8px;
 font-size:24px;
 }
 li.back:before{
-color:#f0555a;
+color: var(--color-back);
 }
 li.up:before{
-color:#f38832;
+color: var(--color-up);
 }
 li.forward:before{
-color:#1ca0a6;
+color: var(--color-forward);
 }
 ol.ol-back{
-color:#f0555a;
+color: var(--color-back);
 padding-left:30px;
 }
 ol.ol-up{
-color:#f38832;
+color: var(--color-up);
 padding-left:30px;
 }
 ol.ol-forward{
-color:#1ca0a6;
+color: var(--color-forward);
 padding-left:30px;
 }
 p.read{
@@ -235,9 +235,10 @@ ul.ol-forward{
     list-style: none;
 }
 
-sup,
+sup, 
+versenum,
 sup.versenum{
-    color:#1ca0a6;
+    color: var(--color-forward);
     font-size:55%;
     padding-right:2px;
      padding-left: 3px;

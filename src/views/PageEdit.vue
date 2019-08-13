@@ -112,7 +112,7 @@ export default {
       },
       config: {
         extraPlugins: ['bidi', 'uploadimage', 'uploadwidget', 'clipboard'],
-        extraAllowedContent: ['*(*)[id]', 'ol[*]'],
+        extraAllowedContent: ['*(*)[id]', 'ol[*]', 'span[*]'],
         contentsCss: '/content/' + this.$route.params.css,
         stylesSet: this.$route.params.styles_set,
         templates_replaceContent: false,
@@ -164,19 +164,31 @@ export default {
     async insertPassage() {
       var params = {}
       params.language_iso = this.$route.params.language_iso
-      params.passage = this.reference
-      params.damId = 'PORBSPN2ET'
+      params.entry = this.reference
       params.dbt = await BibleService.getDbtArray(params)
+      if (params.dbt.collection_code == 'OT') {
+        params.bid = this.bookmark.language.bible_ot
+      } else {
+        params.bid = this.bookmark.language.bible_nt
+      }
       console.log('params for Get passage')
       console.log(params)
       var bible = await BibleService.getBiblePassage(params)
-      if (typeof bible.text !== 'undefined') {
-        console.log('bible')
-        console.log(bible)
-        var temp = this.pageText.replace('[BibleText]', bible.text)
-        var temp2 = temp.replace('[Link]', bible.link)
-        temp = temp2.replace('[BibleReference]', bible.reference)
+      console.log('results of getBiblePassage')
+      console.log(bible)
+      if (typeof bible !== 'undefined') {
+        console.log('I am replacing text')
+        var temp = this.pageText.replace('[BibleText]', bible.data.content.text)
+        console.log('temp')
+        console.log(temp)
+        var temp2 = temp.replace(
+          '"readmore" href=""',
+          '"readmore" href="' + bible.data.content.link + '"'
+        )
+        temp = temp2.replace('[BibleReference]', bible.data.content.reference)
         this.pageText = temp.replace('[REPLACE LINK]', '')
+        //console.log('This is result of replace')
+        //console.log(this.pageText)
         this.request_passage = false
       }
     },
@@ -251,6 +263,9 @@ export default {
     try {
       console.log('in Created')
       await this.getPage(this.$route.params)
+      if (this.pageText.includes('[')) {
+        this.request_passage = true
+      }
       console.log('Got page')
       console.log('I am about to authorize to write')
       this.authorized = this.authorize('write', this.$route.params.country_code)
@@ -258,7 +273,7 @@ export default {
       console.log(this.bookmark.book.style)
     } catch (error) {
       console.log('There was an error in Page.vue:', error)
-      this.loadTemplate()
+      await this.loadTemplate()
     }
   }
 }

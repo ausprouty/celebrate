@@ -1,5 +1,5 @@
 CKEDITOR.addTemplates('default', {
-  imagesPath: CKEDITOR.getUrl('/templates/images/principles/'),
+  imagesPath: CKEDITOR.getUrl('/templates/images/life/'),
   templates: [
     {
       title: 'Share',
@@ -35,6 +35,12 @@ CKEDITOR.addTemplates('default', {
       description: 'Image and Title',
       html:
         '\x3cdiv class\x3d"lesson"\x3e\x3cimg class\x3d"lesson-icon" src\x3d"/images/challenges.png" /\x3e\x3cdiv class\x3d"lesson-subtitle"\x3eAPPLY\x3c/div\x3e\x3c/div\x3e'
+    },
+    {
+      title: 'BiblePassage',
+      image: '',
+      description: 'Bible Passage and Link',
+      html:'\x3cdiv id\x3d"bible"\x3e\x3cdiv class\x3d"bible"\x3e|PassageName|\x3cbr\x3e|Bible Text|\x3cbr /\x3e\x3ca class\x3d"readmore" href\x3d"|Reference|"\x3eRead More \x3c/a\x3e\x3c/div\x3e\x3c/div\x3e'
     }
   ]
 })
