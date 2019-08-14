@@ -8,17 +8,21 @@
         <button class="button" @click="localPublish('live')">Publish</button>
       </div>
       <div v-if="this.prototype">
-        <button class="button" @click="localPublish('prototype')">{{ this.prototype_text }}</button>
+        <button class="button" @click="localPublish('prototype')">
+          {{ this.prototype_text }}
+        </button>
         <div>
-          <button
-            class="button"
-            @click="localPublish('prototypeLibrary')"
-          >Prototype Library and Books</button>
+          <button class="button" @click="localPublish('prototypeLibrary')">
+            Prototype Library and Books
+          </button>
         </div>
       </div>
       <hr class="border" />
       <a v-bind:href="this.back">
-        <img v-bind:src="appDir.library + this.image_dir + '/' + this.image" class="app-img-header" />
+        <img
+          v-bind:src="appDir.library + this.image_dir + '/' + this.image"
+          class="app-img-header"
+        />
       </a>
       <div>
         <span v-html="text"></span>

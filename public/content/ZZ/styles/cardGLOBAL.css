@@ -26,6 +26,22 @@ a.card-link {
   font-weight: normal;
   line-height: 20px;
 }
+div.book {
+  vertical-align: top;
+  width: 70%;
+  font-size: 24px;
+  float: right;
+}
+div.book.rtl {
+  width: 30%;
+}
+.book, div.book.rtl {
+  text-align: left;
+}
+img.book {
+  width: 25%;
+  }
+  
 div.card-names {
   float: right;
   font-size: 18px;
@@ -66,7 +82,7 @@ div.card-language {
   }
  
   .title {
-    font-weight: bold;
+    font-weight: 700;
     padding-left: 20px;
     position: absolute;
     padding-top: 20px;

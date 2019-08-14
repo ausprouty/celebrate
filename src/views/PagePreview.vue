@@ -26,11 +26,14 @@
                   '/' +
                   this.image_navigation
               "
-              class="this.image_navigation_class"
+              v-bind:class="this.image_navigation_class"
             />
-            <span class="title" v-if="this.show_navigation_title">{{
-              this.navigation_title
-            }}</span>
+            <span
+              class="title"
+              v-bind:class="this.bookmark.language.rldir"
+              v-if="this.show_navigation_title"
+              >{{ this.navigation_title }}</span
+            >
           </div>
         </div>
       </div>
@@ -47,9 +50,6 @@
           "
           v-bind:class="this.image_page_class"
         />
-      </div>
-      <div v-if="this.show_page_title">
-        <h1>{{ this.bookmark.book.title }}</h1>
       </div>
       <div>
         <span v-html="pageText"></span>
@@ -156,7 +156,7 @@ export default {
     async localBookmark(recnum) {
       var param = {}
       param.recnum = recnum
-       param.library_code = this.$route.params.library_code
+      param.library_code = this.$route.params.library_code
       var bm = await PrototypeService.publish('bookmark', param)
       console.log('localBookmark')
       console.log(bm)
@@ -212,5 +212,9 @@ export default {
   position: absolute;
   padding-top: 20px;
   font-size: 24px;
+}
+.title.rtl {
+  padding-left: 0px;
+  padding-right: 20px;
 }
 </style>

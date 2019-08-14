@@ -235,7 +235,11 @@ export default {
         )
         console.log('res')
         console.log(res)
-        response.data.content = res.data
+
+        response.data.content.text = res.data
+        console.log('response.data.content.text')
+        console.log(response.data.content.text)
+
         return response
       } catch (error) {}
     }

@@ -6,7 +6,7 @@ export const pageMixin = {
       error: null,
       header: 'series',
       image_navigation: null,
-      image_navigation_class: book,
+      image_navigation_class: 'book',
       image_navigation_dir: null,
       image_page: null,
       image_page_class: 'book',
@@ -110,6 +110,9 @@ export const pageMixin = {
         if (this.bookmark.language.titles) {
           this.show_navigation_title = false
         }
+        if (this.show_navigation_title){
+          this.navigation_title = this.bookmark.book.title
+        }
 
         this.style = this.standard.style
         if (this.bookmark.book) {
@@ -121,7 +124,7 @@ export const pageMixin = {
           this.image_page = this.bookmark.page.image
           this.image_page_class = 'something'
           this.image_page_dir =
-            this.bookmark.language.folder + '/' + this.bookmark.book.name
+          this.bookmark.language.folder + '/' + this.bookmark.book.name
          
           this.show_page_title = false
           this.show_page_image = true

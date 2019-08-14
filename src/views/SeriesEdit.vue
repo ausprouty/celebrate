@@ -162,7 +162,7 @@
           <div v-if="this.new">
             <p class="errorMessage">
               Import Series in tab format (number| title | description| bible
-              reference| filename)
+              reference| filename| image|publish=Y)
             </p>
             <label>
               <input type="file" ref="file" v-on:change="importSeries()" />
@@ -295,9 +295,7 @@ export default {
       console.log('this.file')
       console.log(this.file)
       var param = []
-      param.country_code = this.$route.params.country_code
-      param.language_iso = this.$route.params.language_iso
-      param.folder_name = this.$route.params.folder_name
+      param.route = JSON.stringify(this.$route.params)
       param.template = this.bookmark.book.template
       param.series_name = this.bookmark.book.title
       param.description = this.description

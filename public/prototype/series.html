@@ -1,4 +1,4 @@
-<div class="content {{ dir }}">
+<div class="content" dir="{{ language.rldir }}">
   <link rel="stylesheet" href="/content/ZZ/styles/cardGLOBAL.css" />
   <link rel="stylesheet" href="{{ book.style }}" />
   <div id="nav">
@@ -14,7 +14,7 @@
     </a>
   </div>
   <!-- ready for offline --->
-  <p id="offline-ready">{{ download_ready }}</p>
+  <p class="{{ language.rldir }}" id="offline-ready">{{ download_ready }}</p>
   <!-- title --->
   <h2>{{ book.title }}</h2>
   <div>{{ book.description }}</div>
@@ -23,7 +23,7 @@
   <!-- chapters --->
   [[chapters]]
   <div>
-    <p class="button ">
+    <p class="button  {{ language.rldir }}">
       <button id="offline-request" class="cache-series">
         {{ download_now }}
       </button>

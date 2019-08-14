@@ -9,6 +9,7 @@ green #1ca0a6
 --color-back:  #f0555a;
 --color-up:#f38832;
 --color-forward: #1ca0a6;
+--color-background: #efefef;
 }
 p{
     text-align: left;
@@ -116,7 +117,14 @@ display:inline;
 text-align:left;
 
 }
-
+div.lesson-subtitle {
+  bottom: 0;
+  color:var(--color-black);
+  font-size: 30px;
+  line-height: 30px;
+  margin-left: 45px;
+  position: absolute;
+  }
 
 
 div.note-forward{
@@ -153,7 +161,8 @@ color:  var(--color-up);
 h2.lookforward{
 color:  var(--color-forward);
 }
-img.lesson-icon{
+img.lesson-icon,
+img.journey-read{
 height:30px;
 width:30px;
 }
@@ -234,6 +243,11 @@ ul.ol-up,
 ul.ol-forward{
     list-style: none;
 }
+ul.nodot {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
 
 sup, 
 versenum,
@@ -257,3 +271,13 @@ img.book {
   .book {
     text-align: left;
   }
+  div.bible {
+    background-color: var(--color-background);
+    line-height: 25px;
+    margin-left: 0;
+    margin-right: 0;
+    padding-bottom: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 20px;
+}

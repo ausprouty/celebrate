@@ -316,12 +316,7 @@ p.rtl {
   direction: rtl;
   text-align: right;
 }
-div.lesson {
-  margin-bottom: 30px;
-  margin-top: 30px;
-  position: relative;
-  text-align: left;
-}
+
 .notpublished {
   background-color: yellow;
 }
@@ -394,6 +389,12 @@ margin-top: 30px;
 position: relative;
 text-align:left;
 }
+div.lesson.rtl {
+  margin-bottom: 30px;
+  margin-top: 30px;
+  position: relative;
+  text-align:right;
+  }
 div.lesson-subtitle {
 bottom: 0;
 color:var(--color-black);
@@ -402,7 +403,7 @@ line-height: 30px;
 margin-left: 45px;
 position: absolute;
 }
-div.lesson-subtitle-rtl {
+div.lesson-subtitle.rtl {
 bottom: 0;
 color: var(--color-black);
 font-size: 30px;
@@ -423,6 +424,12 @@ margin-right: 20px;
 vertical-align: middle;
 width: 30px;
 }
+img.lesson-icon.rtl {
+  height: 30px;
+  margin-right: 20px;
+  vertical-align: middle;
+  width: 30px;
+  }
 .myfriends-poetry-top-rtl,
 .myfriends-bible-rtl{
   text-align:right;
@@ -446,18 +453,7 @@ color: var(--color-red);
 font-size: 20px;
 padding-bottom: 20px;
 }
-img.book {
-width: 25%;
-}
-div.book {
-vertical-align: top;
-width: 70%;
-font-size: 24px;
-float: right;
-}
-.book {
-text-align: left;
-}
+
 div.footer{
   text-align: center;
   font-family: Arial;
