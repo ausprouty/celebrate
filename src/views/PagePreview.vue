@@ -217,4 +217,7 @@ export default {
   padding-left: 0px;
   padding-right: 20px;
 }
+li.rtl {
+  text-align: right;
+}
 </style>

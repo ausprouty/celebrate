@@ -50,12 +50,8 @@ body {
 .cache-series {
   background-color: var(--color-up);
 }
-.nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: 60px;
-}
+
+
 .preview {
   background-color: white;
 }

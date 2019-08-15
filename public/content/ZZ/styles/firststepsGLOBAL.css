@@ -14,6 +14,10 @@ green #1ca0a6
 p{
     text-align: left;
 }
+.rtl {
+  direction: rtl;
+  text-align: right;
+}
 
 .bible{
 color:#000;
@@ -50,8 +54,13 @@ color:var(--color-forward);
 .color-up{
 color:var(--color-up);;
 }
+.yellow,
 .color-yellow{
 color:  var(--color-up);
+}
+.rtl{
+  direction:rtl;
+  text-align: right;
 }
 .text-conclusion{
 font-style: italic;
@@ -87,6 +96,12 @@ div.lesson {
     position: relative;
     text-align:left;
 }
+div.lesson.rtl {
+  margin-bottom: 30px;
+  margin-top: 30px;
+  position: relative;
+  text-align:right;
+  }
 div.lesson-lookback{
 font-size: 24px;
 line-height: 24px;
@@ -124,7 +139,15 @@ div.lesson-subtitle {
   line-height: 30px;
   margin-left: 45px;
   position: absolute;
-  }
+}
+div.lesson-subtitle.rtl {
+  bottom: 0;
+  color: var(--color-black);
+  font-size: 30px;
+  line-height: 30px;
+  margin-right: 65px;
+  position: absolute;
+}
 
 
 div.note-forward{
@@ -139,7 +162,7 @@ margin-top:40px;
 
 
 div.rtl{
-margin-right:55px;
+margin-right:0px;
 }
 
 h1{
@@ -162,15 +185,18 @@ h2.lookforward{
 color:  var(--color-forward);
 }
 img.lesson-icon,
+img.study,
 img.journey-read{
 height:30px;
 width:30px;
 }
-img.lesson-point{
+img.lesson-point,
+img.point{
 padding-right: 10px;
 height:15px;
 width:15px;
 }
+
 img.large_point,
 img.lesson-point-large{
 padding-right: 10px;
@@ -216,6 +242,9 @@ color: var(--color-up);
 }
 li.forward:before{
 color: var(--color-forward);
+}
+li.rtl{
+  text-align: right;
 }
 ol.ol-back{
 color: var(--color-back);

@@ -14,6 +14,7 @@ export const pageMixin = {
       loading: false,
       loaded: null,
       navigation_title: null,
+      need_template: false,
       pageText: '',
       publish: false,
       publish_date: null,
@@ -58,6 +59,7 @@ export const pageMixin = {
             : 'ZZ/styles/myfriendsGLOBAL.css'
           css.replace('/', '@')
           this.$route.params.cssFORMATTED = css
+          this.need_template = true;
           this.$router.push({
             name: 'editPage',
             params: this.$route.params
@@ -82,6 +84,7 @@ export const pageMixin = {
         } else {
           this.pageText =
             'No text found.  It would be faster if you created a template'
+          this.need_template = true;
           this.loaded = true
           this.loading = false
         }

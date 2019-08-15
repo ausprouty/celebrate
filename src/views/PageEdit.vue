@@ -33,32 +33,47 @@
             </div>
           </div>
         </div>
-
         <h1 v-if="this.bookmark.page.count">
           {{ this.bookmark.page.count }}. {{ this.bookmark.page.title }}
         </h1>
         <h1 v-else>{{ this.bookmark.page.title }}</h1>
-        <div v-if="this.request_passage">
+        <div v-if="this.need_template">
           <div class="form">
-            <BaseInput
+            <BaseSelect
               v-model="reference"
-              label="Passage to Insert"
+              label="Template to Use"
               type="text"
               placeholder
               class="field"
             />
           </div>
-          <button class="button green" @click="insertPassage">
-            InsertPassage
+          <button class="button green" @click="insertTemplate">
+            Insertm Template
           </button>
         </div>
-        <p>
-          <vue-ckeditor v-model="pageText" :config="config" />
-        </p>
-        <div class="version">
-          <p class="version">Version 1.01</p>
+        <div>
+          <div v-if="this.request_passage">
+            <div class="form">
+              <BaseInput
+                v-model="reference"
+                label="Passage to Insert"
+                type="text"
+                placeholder
+                class="field"
+              />
+            </div>
+            <button class="button green" @click="insertPassage">
+              Insert Passage
+            </button>
+          </div>
+          <p>
+            <vue-ckeditor v-model="pageText" :config="config" />
+          </p>
+          <div class="version">
+            <p class="version">Version 1.01</p>
+          </div>
+          <button class="button red" @click="saveForm">Save Changes</button>
         </div>
-        <button class="button red" @click="saveForm">Save Changes</button>
       </div>
       <div v-if="!this.authorized">
         <p>
