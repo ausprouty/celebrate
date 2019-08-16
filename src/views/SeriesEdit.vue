@@ -11,12 +11,13 @@
         {{ this.$route.params.language_iso }}
       </h1>
       <div class="form">
-        <span>Series Description:</span>
-        <br />
-        <textarea
+        <BaseTextarea
           v-model="description"
-          placeholder="add multiple lines"
-        ></textarea>
+          label="Series Description:"
+          type="text"
+          placeholder
+          class="field"
+        />
       </div>
       <div class="form">
         <BaseInput
@@ -85,7 +86,7 @@
                 </p>
               </template>
 
-              <BaseInput
+              <BaseTextarea
                 v-model="chapter.description.$model"
                 label="Description:"
                 type="text"

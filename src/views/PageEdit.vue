@@ -39,11 +39,12 @@
         <h1 v-else>{{ this.bookmark.page.title }}</h1>
         <div v-if="this.need_template">
           <div class="form">
-            <BaseSelect 
-             v-model="page_template"
-             label="Templates:" 
-             :options="templates" 
-             class="field" />
+            <BaseSelect
+              v-model="page_template"
+              label="Templates:"
+              :options="templates"
+              class="field"
+            />
           </div>
           <button class="button green" @click="loadTemplate">
             Insert Template
@@ -207,6 +208,7 @@ export default {
       }
     },
     async loadTemplate() {
+      console.log ('in Load Template')
       this.authorized = this.authorize('write', this.$route.params.country_code)
       this.loading = false
       this.loaded = true
@@ -285,7 +287,6 @@ export default {
       if (this.pageText.includes('[')) {
         this.request_passage = true
       }
-      console.log('Got page')
       console.log('I am about to authorize to write')
       this.authorized = this.authorize('write', this.$route.params.country_code)
       console.log('css')

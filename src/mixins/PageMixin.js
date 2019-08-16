@@ -42,6 +42,8 @@ export const pageMixin = {
         this.rldir = this.bookmark.language.rldir
         // get page content
         var response = await ContentService.getPage(this.$route.params)
+        console.log ('response from getPage')
+        console.log (response)
         // has this page been prototyped or published?
         if (response.data.content.recnum) {
           this.recnum = response.data.content.recnum
