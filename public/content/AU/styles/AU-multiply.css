@@ -4,9 +4,9 @@
     --color-blue: #1ca0a6;
     --color-background:#efefef;
     --color-version: blue;
-    --color-back:black;
-    --color-up: black;
-    --color-forward:black
+    --color-back: #f0555a;
+    --color-up:#f38832;
+    --color-forward: #1ca0a6;
     ;
     }
     .back{

@@ -82,6 +82,14 @@ export const pageMixin = {
           this.loaded = true
           this.loading = false
         } else {
+           //get templates
+          var param = {}
+          param.route = JSON.stringify(this.$route.params)
+          param.filter = true
+          var template = await AuthorService.getTemplates(param)
+          if (typeof template !== 'undefined') {
+            this.templates = template
+          }
           this.pageText =
             'No text found.  It would be faster if you created a template'
           this.need_template = true;

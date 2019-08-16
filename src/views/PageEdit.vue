@@ -39,16 +39,14 @@
         <h1 v-else>{{ this.bookmark.page.title }}</h1>
         <div v-if="this.need_template">
           <div class="form">
-            <BaseSelect
-              v-model="reference"
-              label="Template to Use"
-              type="text"
-              placeholder
-              class="field"
-            />
+            <BaseSelect 
+             v-model="page_template"
+             label="Templates:" 
+             :options="templates" 
+             class="field" />
           </div>
-          <button class="button green" @click="insertTemplate">
-            Insertm Template
+          <button class="button green" @click="loadTemplate">
+            Insert Template
           </button>
         </div>
         <div>
@@ -110,6 +108,7 @@ export default {
       authorized: false,
       request_passage: false,
       reference: null,
+      templates: [],
       content: {
         recnum: '',
         version: '',
@@ -211,8 +210,13 @@ export default {
       this.authorized = this.authorize('write', this.$route.params.country_code)
       this.loading = false
       this.loaded = true
-      if (this.bookmark.book.template) {
-        this.$route.params.template = this.bookmark.book.template
+      if (this.bookmark.book.template || this.page_template) {
+        if (this.bookmark.book.template) {
+          this.$route.params.template = this.bookmark.book.template
+        }
+        if (this.page_template) {
+          this.$route.params.template = this.page_template
+        }
         console.log('looking for template')
         console.log(this.$route.params)
         var res = await AuthorService.getTemplate(this.$route.params)
