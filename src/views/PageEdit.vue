@@ -127,7 +127,7 @@ export default {
       },
       config: {
         extraPlugins: ['bidi', 'uploadimage', 'uploadwidget', 'clipboard'],
-        extraAllowedContent: ['*(*)[id]', 'ol[*]', 'span[*]'],
+        extraAllowedContent: ['*(*)[id]', 'ol[*]', 'span[*]', 'align[*]'],
         contentsCss: '/content/' + this.$route.params.css,
         stylesSet: this.$route.params.styles_set,
         templates_replaceContent: false,
@@ -163,8 +163,7 @@ export default {
             name: 'paragraph',
             groups: ['list', 'indent', 'blocks', 'align', 'bidi', 'paragraph']
           },
-          { name: 'colors', groups: ['colors'] },
-          { name: 'about', groups: ['about'] }
+          { name: 'colors', groups: ['colors'] }
         ],
         height: 600,
         removeButtons:
@@ -208,7 +207,7 @@ export default {
       }
     },
     async loadTemplate() {
-      console.log ('in Load Template')
+      console.log('in Load Template')
       this.authorized = this.authorize('write', this.$route.params.country_code)
       this.loading = false
       this.loaded = true
@@ -265,7 +264,7 @@ export default {
     console.log('before Create')
     console.log(this.$route.params)
     var ok = false
-    var styleSets = ['compass', 'firststeps', 'fsteps', 'myfriends', 'multiply']
+    var styleSets = ['compass', 'firststeps', 'myfriends', 'multiply']
     this.$route.params.styles_set = 'unknown'
     var arrayLength = styleSets.length
     for (var i = 0; i < arrayLength; i++) {

@@ -1,171 +1,362 @@
-{		
-	"series" :"life",
-	"language" : "urd",
-	"css" : "myfriends.css",
+{
+
+	"series": "life",
+
+	"language": "urd",
+
+	"css": "myfriends.css",
+
 	"version": "1.01",
-	"description":"یہاں پر چند خاکےہیں جو آپ کی اور آپ کے دوستوں کی دریافت کرنے میں مدد دیں گے جو خُدا کو ہر روز کے مسائل کے بارے کہنا ہے۔ ایک چنیں جو آپ کودلچسپ لگتا ہے  اور ایک یا دو دوستوں کے ساتھ گفتگو کے لۓ 15 سے 30 منٹ تک مقرر کریں۔",
+
+	"description": "یہاں پر چند خاکےہیں جو آپ کی اور آپ کے دوستوں کی دریافت کرنے میں مدد دیں گے جو خُدا کو ہر روز کے مسائل کے بارے کہنا ہے۔ ایک چنیں جو آپ کودلچسپ لگتا ہے  اور ایک یا دو دوستوں کے ساتھ گفتگو کے لۓ 15 سے 30 منٹ تک مقرر کریں۔",
+
 	"chapters": [
-		
-		{"id": 1,
-			"title" :  "پیسہ کتنا اہم ہے ؟    ",
-			"description" :"",
-			"verses" : "Luke 18:18-30",
+
+
+
+		{
+			"id": 1,
+
+			"title": "پیسہ کتنا اہم ہے ؟    ",
+
+			"description": "",
+
+			"verses": "Luke 18:18-30",
+
 			"count": 1,
-			"filename" : "life201"
+
+			"filename": "life201"
+
 		},
-		{"id": 2,
-			"title" :  " کس طرح سے موازنہ سے آزاد ہونا ہے ",
-			"description" :"",
-			"verses" : "Luke 18:9-17",
+
+		{
+			"id": 2,
+
+			"title": " کس طرح سے موازنہ سے آزاد ہونا ہے ",
+
+			"description": "",
+
+			"verses": "Luke 18:9-17",
+
 			"count": 2,
-			"filename" : "life202"
+
+			"filename": "life202"
+
 		},
-		{"id": 3,
-			"title" :  "ملاپ",
-			"description" :"",
-			"verses" : "Matthew 18:21-35",
+
+		{
+			"id": 3,
+
+			"title": "ملاپ",
+
+			"description": "",
+
+			"verses": "Matthew 18:21-35",
+
 			"count": 3,
-			"filename" : "life203"
+
+			"filename": "life203"
+
 		},
-		{"id": 4,
-			"title" :  "دوسروں سے کس طرح کا سلوک کرنا چاہئیے  ",
-			"description" :"",
-			"verses" : "Luke 10:29-37",
+
+		{
+			"id": 4,
+
+			"title": "دوسروں سے کس طرح کا سلوک کرنا چاہئیے  ",
+
+			"description": "",
+
+			"verses": "Luke 10:29-37",
+
 			"count": 4,
-			"filename" : "life204"
+
+			"filename": "life204"
+
 		},
-		{"id": 5,
-			"title" :  "حساب سے آزادی   ",
-			"description" :"",
-			"verses" : "John 8:3-11",
+
+		{
+			"id": 5,
+
+			"title": "حساب سے آزادی   ",
+
+			"description": "",
+
+			"verses": "John 8:3-11",
+
 			"count": 5,
-			"filename" : "life205"
+
+			"filename": "life205"
+
 		},
-		{"id": 6,
-			"title" :  "معافی",
-			"description" :"",
-			"verses" : "<bdo dir="rtl">متّی<bdo> 18:21-35",
+
+		{
+			"id": 6,
+
+			"title": "معافی",
+
+			"description": "",
+
+			"verses": "متّی<bdo> 18:21-35",
+
 			"count": 6,
-			"filename" : "life206"
+
+			"filename": "life206"
+
 		},
-		{"id": 7,
-			"title" :  "اپنے دُشمنوں سے کیسا سلوک کرنا ہے ",
-			"description" :"",
-			"verses" : "Luke 6:27-36",
+
+		{
+			"id": 7,
+
+			"title": "اپنے دُشمنوں سے کیسا سلوک کرنا ہے ",
+
+			"description": "",
+
+			"verses": "Luke 6:27-36",
+
 			"count": 7,
-			"filename" : "life207"
+
+			"filename": "life207"
+
 		},
-		{"id": 8,
-			"title" :  " لڑائی سے  کیسے نپٹانا ہے  ",
-			"description" :"",
-			"verses" : "Matthew 5:21-26",
+
+		{
+			"id": 8,
+
+			"title": " لڑائی سے  کیسے نپٹانا ہے  ",
+
+			"description": "",
+
+			"verses": "Matthew 5:21-26",
+
 			"count": 8,
-			"filename" : "life208"
+
+			"filename": "life208"
+
 		},
-		{"id": 9,
-			"title" :  "غریب",
-			"description" :"",
-			"verses" : "Matthew 25:33-46",
+
+		{
+			"id": 9,
+
+			"title": "غریب",
+
+			"description": "",
+
+			"verses": "Matthew 25:33-46",
+
 			"count": 9,
-			"filename" : "life209"
+
+			"filename": "life209"
+
 		},
-		{"id": 10,
-			"title" :  "آپ کی زِندگی میں کس کی اہمیت ہے؟",
-			"description" :"",
-			"verses" : "Matthew 6:19-33",
+
+		{
+			"id": 10,
+
+			"title": "آپ کی زِندگی میں کس کی اہمیت ہے؟",
+
+			"description": "",
+
+			"verses": "Matthew 6:19-33",
+
 			"count": 10,
-			"filename" : "life210"
+
+			"filename": "life210"
+
 		},
-		{"id": 11,
-			"title" :  "میں پہلے سے ہی کافی اچھا ہیوں",
-			"description" :"",
-			"verses" : "Luke 18:9-14",
+
+		{
+			"id": 11,
+
+			"title": "میں پہلے سے ہی کافی اچھا ہیوں",
+
+			"description": "",
+
+			"verses": "Luke 18:9-14",
+
 			"count": 11,
-			"filename" : "life211"
+
+			"filename": "life211"
+
 		},
-		{"id": 12,
-			"title" :  "خود",
-			"description" :"",
-			"verses" : "Mark 10:18-27",
+
+		{
+			"id": 12,
+
+			"title": "خود",
+
+			"description": "",
+
+			"verses": "Mark 10:18-27",
+
 			"count": 12,
-			"filename" : "life212"
+
+			"filename": "life212"
+
 		},
-		{"id": 13,
-			"title" :  "عقلمندی سے پیسہ لگائیں",
-			"description" :"",
-			"verses" : "Matthew 25:14-30",
+
+		{
+			"id": 13,
+
+			"title": "عقلمندی سے پیسہ لگائیں",
+
+			"description": "",
+
+			"verses": "Matthew 25:14-30",
+
 			"count": 13,
-			"filename" : "life213"
+
+			"filename": "life213"
+
 		},
-		{"id": 14,
-			"title" :  "کلام جو ہم بولتے ہیں ",
-			"description" :"",
-			"verses" : "Matthew 15:1-20",
+
+		{
+			"id": 14,
+
+			"title": "کلام جو ہم بولتے ہیں ",
+
+			"description": "",
+
+			"verses": "Matthew 15:1-20",
+
 			"count": 14,
-			"filename" : "life214"
+
+			"filename": "life214"
+
 		},
-		{"id": 15,
-			"title" :  "ہم کیا رکھتے ہیں ",
-			"description" :"",
-			"verses" : "Luke 16:19-31",
+
+		{
+			"id": 15,
+
+			"title": "ہم کیا رکھتے ہیں ",
+
+			"description": "",
+
+			"verses": "Luke 16:19-31",
+
 			"count": 15,
-			"filename" : "life215"
+
+			"filename": "life215"
+
 		},
-		{"id": 16,
-			"title" :  "ہمارا مالک کون ہے؟",
-			"description" :"",
-			"verses" : "Luke 16:1-15",
+
+		{
+			"id": 16,
+
+			"title": "ہمارا مالک کون ہے؟",
+
+			"description": "",
+
+			"verses": "Luke 16:1-15",
+
 			"count": 16,
-			"filename" : "life216"
+
+			"filename": "life216"
+
 		},
-		{"id": 17,
-			"title" :  "کیا ہیں زور دینا  چاہیئے؟",
-			"description" :"",
-			"verses" : "Matthew 6:25-34",
+
+		{
+			"id": 17,
+
+			"title": "کیا ہیں زور دینا  چاہیئے؟",
+
+			"description": "",
+
+			"verses": "Matthew 6:25-34",
+
 			"count": 17,
-			"filename" : "life217"
+
+			"filename": "life217"
+
 		},
-		{"id": 18,
-			"title" :  "قبولیت",
-			"description" :"",
-			"verses" : "Luke 15:11-32",
+
+		{
+			"id": 18,
+
+			"title": "قبولیت",
+
+			"description": "",
+
+			"verses": "Luke 15:11-32",
+
 			"count": 18,
-			"filename" : "life218"
+
+			"filename": "life218"
+
 		},
-		{"id": 19,
-			"title" :  "میں معاملات کے بارے میں کیا بات کرتا ہوں ",
-			"description" :"",
-			"verses" : "Matthew 12:33-37",
+
+		{
+			"id": 19,
+
+			"title": "میں معاملات کے بارے میں کیا بات کرتا ہوں ",
+
+			"description": "",
+
+			"verses": "Matthew 12:33-37",
+
 			"count": 19,
-			"filename" : "life219"
+
+			"filename": "life219"
+
 		},
-		{"id": 20,
-			"title" :  "زندگی کے لئے  بنیادیں رکھنا  ",
-			"description" :"",
-			"verses" : "Matthew 7:24-27",
+
+		{
+			"id": 20,
+
+			"title": "زندگی کے لئے  بنیادیں رکھنا  ",
+
+			"description": "",
+
+			"verses": "Matthew 7:24-27",
+
 			"count": 20,
-			"filename" : "life220"
+
+			"filename": "life220"
+
 		},
-		{"id": 21,
-			"title" :  "خُدا کی طرف آپ کا کیا ردِ عمل  ہے؟  ",
-			"description" :"",
-			"verses" : "Matthew 13:1-9",
+
+		{
+			"id": 21,
+
+			"title": "خُدا کی طرف آپ کا کیا ردِ عمل  ہے؟  ",
+
+			"description": "",
+
+			"verses": "Matthew 13:1-9",
+
 			"count": 21,
-			"filename" : "life221"
+
+			"filename": "life221"
+
 		},
-		{"id": 22,
-			"title" :  " ایمان کیسا ہے ؟ ",
-			"description" :"",
-			"verses" : "Mark 4:26-34",
+
+		{
+			"id": 22,
+
+			"title": " ایمان کیسا ہے ؟ ",
+
+			"description": "",
+
+			"verses": "Mark 4:26-34",
+
 			"count": 22,
-			"filename" : "life222"
+
+			"filename": "life222"
+
 		},
-		{"id": 23,
-			"title" :  "میرا زندگی میں مقصد کیا ہے؟",
-			"description" :"",
-			"verses" : "Mark 4:26-34",
+
+		{
+			"id": 23,
+
+			"title": "میرا زندگی میں مقصد کیا ہے؟",
+
+			"description": "",
+
+			"verses": "Mark 4:26-34",
+
 			"count": 23,
-			"filename" : "life223"
+
+			"filename": "life223"
+
 		}
-]
+	]
 }

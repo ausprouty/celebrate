@@ -133,7 +133,7 @@ export default {
     this.$route.params.cssFORMATTED = 'AU-styles-multiply.css'
     console.log(this.$route.params)
     var ok = false
-    var styleSets = ['compass', 'firststeps', 'fsteps', 'myfriends', 'multiply']
+    var styleSets = ['compass', 'firststeps', 'firststeps', 'myfriends', 'multiply']
     this.$route.params.styles_set = 'unknown'
     var arrayLength = styleSets.length
     for (var i = 0; i < arrayLength; i++) {

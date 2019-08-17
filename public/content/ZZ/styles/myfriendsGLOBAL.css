@@ -51,7 +51,9 @@ body {
   background-color: var(--color-up);
 }
 
-
+.center{
+  text-align: center
+ }
 .preview {
   background-color: white;
 }
@@ -385,6 +387,7 @@ margin-top: 30px;
 position: relative;
 text-align:left;
 }
+div.myfriends-lesson-rtl,
 div.lesson.rtl {
   margin-bottom: 30px;
   margin-top: 30px;
@@ -399,6 +402,7 @@ line-height: 30px;
 margin-left: 45px;
 position: absolute;
 }
+div.myfriends-lesson-subtitle-rtl,
 div.lesson-subtitle.rtl {
 bottom: 0;
 color: var(--color-black);
@@ -420,6 +424,7 @@ margin-right: 20px;
 vertical-align: middle;
 width: 30px;
 }
+img.myfriend-lesson-rtl-icon,
 img.lesson-icon.rtl {
   height: 30px;
   margin-right: 20px;
