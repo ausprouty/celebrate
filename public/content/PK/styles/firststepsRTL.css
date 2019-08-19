@@ -1,0 +1,255 @@
+/*colours{
+yellow: #ffc80f
+red: var(--color-back)
+orange: var(--color-up)
+green var(--color-forward)
+}
+*/
+:root {
+    --color-back: black;
+    --color-up:black;
+    --color-forward: var(--color-forward);
+    }
+    p{
+        text-align: left;
+    }
+    
+    .bible{
+    color:#000;
+    }
+    .bible-container{
+    padding-top: 15px;
+    padding-bottom: 30px;
+    background-color: #efefef;
+    padding-left: 10px;
+    padding-right: 10px;
+    direction:rtl;
+    text-align:right;
+    }
+    .conclusion,
+    .key,
+    .notes,
+    .pray,
+    .read,
+    .bold,
+    .statement
+    {
+    font-weight: bold;
+    text-align: right;
+    }
+    .conclusion{
+    padding-top:15px;
+    font-size: 2em;
+    
+    }
+    .color-back{
+    color: var(--color-back);
+    }
+    .color-forward{
+    color:var(--color-forward);
+    }
+    .color-up{
+    color:var(--color-up);;
+    }
+    .color-yellow{
+    color: var(--color-up);
+    }
+    .text-conclusion{
+    font-style: italic;
+    text-align: left
+    }
+    .top{
+    padding-top: 20px;
+    
+    }
+    .versenum{
+    vertical-align: super;
+    font-size:55%;
+    color: var(--color-foward);
+    padding-left:0px;
+    padding-right:3px;
+    font-variant-position:super;
+    }
+    a.readmore{
+    color: var(--color-up);
+    }
+    div.fsteps{
+    font-size :18px;
+    color:var(--color-forward);
+    font-weight:bold;
+    line-height: 30px;
+    margin-left:55px;
+    bottom:10px;
+    
+    }
+    div.lesson {
+        margin-bottom: 30px;
+        margin-top: 30px;
+        position: relative;
+        text-align:right;
+    }
+    div.lesson-lookback{
+    font-size: 24px;
+    line-height: 24px;
+    margin-left:30px;
+    position:absolute;
+    color: var(--color-back);
+    display:inline;
+    text-align:right;
+    
+    }
+    div.lesson-lookup{
+    font-size: 24px;
+    line-height: 24px;
+    margin-left:30px;
+    position:absolute;
+    color: var(--color-up);
+    display:inline;
+    text-align:right;
+    
+    }
+    div.lesson-lookforward{
+    font-size: 24px;
+    line-height: 24px;
+    margin-left:30px;
+    position:absolute;
+    color: var(--color-forward);
+    display:inline;
+    text-align:right;
+    
+    }
+    
+    
+    
+    div.note-forward{
+    padding-top:15px;
+    padding-bottom:75px;
+    padding-left:15px;
+    padding-right:15px;
+    }
+    div.readmore{
+    margin-top:40px;
+    }
+    
+    
+    div.rtl{
+    margin-right:55px;
+    }
+    
+    h1{
+    color:black;
+    display:none;
+    }
+    
+    h2{
+    color: #376e8a;
+    font-size: 2em;
+    margin-left:0px;
+    }
+    h2.lookback{
+    color: var(--color-back);
+    }
+    h2.lookup{
+    color: var(--color-up);
+    }
+    h2.lookforward{
+    color: var(--color-forward);
+    }
+    img.lesson-icon{
+    height:30px;
+    width:30px;
+    margin-left: 20px;
+    }
+    img.lesson-point{
+    padding-left: 10px;
+    height:15px;
+    width:15px;
+    }
+    img.large_point,
+    img.lesson-point-large{
+    padding-left: 10px;
+    height:30px;
+    width:30px;
+    }
+    img.read{
+    height:30px;
+    width:30px;
+    padding-left: 10px;
+    }
+    
+    img.next{
+    width:"100%";
+    max-width:300px;
+    }
+    li{
+    padding-left:16px;
+    }
+    li.back:before,
+    li.up:before,
+    li.forward:before{
+    content:'•';
+    padding-right: 8px;
+    color:black;
+    font-size:24px;
+    }
+    li.rtl.back:before,
+    li.rtl.up:before,
+    li.rtl.forward:before{
+    content:'•';
+    padding-left: 8px;
+    font-size:24px;
+    }
+    li.back:before{
+    color:var(--color-back);
+    }
+    li.up:before{
+    color:var(--color-up);
+    }
+    li.forward:before{
+    color:var(--color-forward);
+    }
+    ol.ol-back{
+    color:var(--color-back);
+    padding-left:30px;
+    }
+    ol.ol-up{
+    color:var(--color-up);
+    padding-left:30px;
+    }
+    ol.ol-forward{
+    color:var(--color-forward);
+    padding-left:30px;
+    }
+    p.read{
+    text-align:right;
+    margin-bottom: 24px;
+    font-size:1.2em;
+    line-height:1.4;
+    }
+    p.rtl{
+    text-align:right;
+    }
+    ul.ol-back,
+    ul.ol-up,
+    ul.ol-forward{
+        list-style: none;
+    }
+    
+    sup,
+    sup.versenum{
+        color:var(--color-forward);
+        font-size:55%;
+        padding-right:2px;
+         padding-left: 3px;
+    }
+    ol, 
+    li, 
+    p, 
+    h1, h2, h3, h4, h5, h6
+    .lesson, 
+    .lesson-icon, 
+    .lesson-subtitle{
+
+        direction:rtl;
+        text-align:right;
+    }

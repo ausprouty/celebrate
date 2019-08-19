@@ -109,7 +109,7 @@ export default {
       console.log('is letters')
       var obj = {}
       obj.file = params.file
-      obj.countryCode = params.countryCode
+      obj.country_code = params.country_code
       obj.token = store.state.user.token
       var contentForm = this.toFormData(obj)
       apiSECURE.post(
@@ -322,7 +322,7 @@ export default {
       if (code.length == 2) {
         if (this.isFilename(code)) {
           var obj = {}
-          obj.countryCode = code
+          obj.country_code = code
           obj.token = store.state.user.token
           var contentForm = this.toFormData(obj)
           apiSECURE.post(

@@ -55,7 +55,7 @@
             <div class="form">
               <BaseInput
                 v-model="reference"
-                label="Passage to Insert"
+                label="Passage to Insert into  [PassageLocation]"
                 type="text"
                 placeholder
                 class="field"
@@ -64,6 +64,7 @@
             <button class="button green" @click="insertPassage">
               Insert Passage
             </button>
+           
           </div>
           <p>
             <vue-ckeditor v-model="pageText" :config="config" />
@@ -192,6 +193,7 @@ export default {
       console.log(bible)
       if (typeof bible !== 'undefined') {
         console.log('I am replacing text')
+
         var temp = this.pageText.replace('[BibleText]', bible.data.content.text)
         console.log('temp')
         console.log(temp)
@@ -200,7 +202,13 @@ export default {
           '"readmore" href="' + bible.data.content.link + '"'
         )
         temp = temp2.replace('[BibleReference]', bible.data.content.reference)
-        this.pageText = temp.replace('[REPLACE LINK]', '')
+        temp2 = temp.replace('[REPLACE LINK]', '')
+        var bible_block =
+          bible.data.content.text +
+          '<p><a class="readmore" href="' +
+          bible.data.content.link +
+          '">Read More</a></p>'
+        this.pageText = temp2.replace('[PassageLocation]', bible_block)
         //console.log('This is result of replace')
         //console.log(this.pageText)
         this.request_passage = false

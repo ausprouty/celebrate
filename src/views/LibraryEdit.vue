@@ -195,7 +195,7 @@
                 type="file"
                 v-bind:id="book.title.$model"
                 ref="style"
-                v-on:change="handleStyleUpload(book.title.$model)"
+                v-on:change="handleStyleUpload(book.code.$model)"
               />
             </label>
 
@@ -213,7 +213,7 @@
                 type="file"
                 v-bind:id="book.title.$model"
                 ref="template"
-                v-on:change="handleTemplateUpload(book.title.$model)"
+                v-on:change="handleTemplateUpload(book.code.$model)"
               />
             </label>
             <template v-if="template_error">
