@@ -6,7 +6,8 @@
   </div>
 </template>
 <script>
-import AuthorService from '@/services/AuthorService.js'
+
+import PrototypeService from '@/services/PrototypeService.js'
 import BibleService from '@/services/BibleService.js'
 import { mapState } from 'vuex'
 import { bookMarkMixin } from '@/mixins/BookmarkMixin.js'
@@ -22,7 +23,7 @@ export default {
       bible: null
     }
   },
-  async created() {
+  async Xcreated() {
     this.authorized = this.authorize('write', 'countries')
     if (this.authorized) {
       var params = {}
@@ -36,6 +37,18 @@ export default {
       this.link = response.data.link
       this.bible = response.data.bible
       this.passage_name = response.data.passage_name
+    }
+  },
+  async created() {
+    this.authorized = this.authorize('write', 'countries')
+    if (this.authorized) {
+      var params = {}
+      params.recnum = 387
+      params.library_code = 'friends'
+      
+      var response = await PrototypeService.publish('bookmark', params)
+      console.log(response)
+      
     }
   }
 }

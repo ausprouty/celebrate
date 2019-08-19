@@ -83,6 +83,18 @@ p.footer{
 td.icon2{
     text-align:center;
 }
+table.social{
+    width:100%;
+    margin-top: 30px;
+}
+td.social{
+    width:25%;
+    text-align:center;
+}
+img.social{
+    height: 60px;
+    width: 60px;
+}
 a{
     color:#999999;
     text-decoration:none;

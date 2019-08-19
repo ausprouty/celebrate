@@ -16,7 +16,7 @@ export default {
     var action = null
     params.my_uid = store.state.user.uid
     params.token = store.state.user.token
-    params.bookmark = JSON.stringify(store.state.bookmark)
+   // params.bookmark = JSON.stringify(store.state.bookmark)
 
     console.log('publish')
     console.log(params)
