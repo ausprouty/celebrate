@@ -1,5 +1,9 @@
 <template>
   <div class="preview" v-bind:dir="this.rldir">
+     <link
+        rel="stylesheet"
+        v-bind:href="'/content/' + this.bookmark.book.style"
+      />
     <NavBar />
     <div class="loading" v-if="loading">Loading...</div>
     <div class="error" v-if="error">There was an error... {{ this.error }}</div>

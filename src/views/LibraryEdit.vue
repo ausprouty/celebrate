@@ -25,6 +25,13 @@
           />
           <br />
         </div>
+        <h2>Library Setup</h2>
+        <div>
+          <input type="checkbox" id="checkbox" v-model="replace_header" />
+          <label for="checkbox">
+            <p>Image replaces Navigation Header</p>
+          </label>
+        </div>
         <BaseSelect
           label="Image:"
           :options="images"
@@ -43,6 +50,28 @@
           />
         </label>
       </div>
+
+      <div>
+        <BaseSelect
+          label="Library Style Sheet:"
+          :options="styles"
+          v-model="style"
+          class="field"
+        />
+        <template v-if="style_error">
+          <p class="errorMessage">Only .css files may be uploaded</p>
+        </template>
+
+        <label>
+          Add new stylesheet&nbsp;&nbsp;&nbsp;&nbsp;
+          <input
+            type="file"
+            v-bind:id="style"
+            ref="style"
+            v-on:change="handleStyleUpload(library.style)"
+          />
+        </label>
+      </div>
       <div>
         <hr />
         <h2>Preliminary Text</h2>
@@ -51,7 +80,7 @@
         </p>
       </div>
       <hr />
-      <h2>Library Items</h2>
+      <h2>Books</h2>
       <div>
         <button class="button" @click="publishAll">
           Select ALL to publish?
@@ -139,7 +168,7 @@
               <br />
             </div>
             <BaseSelect
-              label="Image:"
+              label="Book Image:"
               :options="images"
               v-model="book.image.$model"
               class="field"
@@ -180,7 +209,7 @@
           </div>
           <div>
             <BaseSelect
-              label="Style Sheet:"
+              label="Book and Chapters Style Sheet:"
               :options="styles"
               v-model="book.style.$model"
               class="field"
@@ -355,7 +384,7 @@ export default {
       required,
       $each: {
         id: { required },
-        code: { },
+        code: {},
         title: { required },
         style: {},
         image: { required },
@@ -452,7 +481,7 @@ export default {
                 this.$v.books.$each[i].$model.image = code + type
               }
             }
-            this.saveForm()
+            this.saveForm('stay')
             this.showForm()
           }
         }
@@ -473,7 +502,7 @@ export default {
           console.log(params)
           AuthorService.imageStore(params, checkfile[0])
           this.header_image = code
-          this.saveForm()
+          this.saveForm('stay')
           this.showForm()
         }
       }
@@ -543,7 +572,7 @@ export default {
         }
       }
     },
-    async saveForm() {
+    async saveForm(action = null) {
       try {
         // create index files
         var check = ''
@@ -566,6 +595,8 @@ export default {
         output.books = this.books
         output.image = this.image
         output.text = this.text
+        output.style = this.style
+        output.replace_header = this.replace_header
         var valid = ContentService.validate(output)
         this.content.text = JSON.stringify(valid)
         this.$route.params.filename = this.$route.params.library_code
@@ -576,7 +607,7 @@ export default {
         console.log('we are about to create content')
         console.log(this.content)
         var response = await AuthorService.createContentData(this.content)
-        if (response.data.error != true) {
+        if (response.data.error != true && action != 'stay') {
           this.$router.push({
             name: 'previewLibrary',
             params: {
@@ -614,7 +645,7 @@ export default {
         var img = await AuthorService.getImages(param)
 
         if (typeof img !== 'undefined') {
-           img.push('')
+          img.push('')
           this.images = img.sort()
         }
         // get folders

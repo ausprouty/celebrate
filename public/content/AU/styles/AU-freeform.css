@@ -88,7 +88,7 @@ table.social{
     margin-top: 30px;
 }
 td.social{
-    width:25%;
+    width:33%;
     text-align:center;
 }
 img.social{
@@ -108,7 +108,7 @@ div.iframe-container{
     position: relative;
   }
    
-  .iframe-container iframe {
+.iframe-container iframe {
      border: 0;
      height: 100%;
      left: 10px;
@@ -116,9 +116,30 @@ div.iframe-container{
      position: absolute;
      top: 0;
      width: 95%;
-  }
+}
    
   /* 4x3 Aspect Ratio */
-  .iframe-container-4x3 {
+.iframe-container-4x3 {
     padding-top: 75%;
-  }
+}
+
+.-shadow {
+}
+div.app-link{
+    margin: 0 auto;  
+}
+
+.app-card {    
+    background-color: white;  
+    margin: 0 auto;  
+}
+img.book-large{
+    width:80%;
+    display: block;
+    margin-left: auto;
+     margin-right: auto;
+}
+img.app-img-header {
+  
+    padding-bottom: 40px;
+}

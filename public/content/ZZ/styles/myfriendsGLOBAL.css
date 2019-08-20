@@ -11,10 +11,17 @@
 }
 #app {
   box-sizing: border-box;
-  width: 90%;
-  max-width: 640px;
+  width: 100%;
+  background-color: #efefef;
   padding: 0px 0px 0px 0px;
   margin: 0 auto;
+}
+div.content{
+  width:95%;
+  max-width:640px;
+  background-color:white;
+  margin: 0 auto;
+ 
 }
 #offline-ready {
   color:  var(--color-up);

@@ -11,6 +11,7 @@
       X
     </div>
     <form @submit.prevent="saveForm">
+      <h2>Language Details</h2>
       <BaseInput
         v-model="language.name.$model"
         label="Language Name (as you want your audience to see it)"
@@ -50,7 +51,14 @@
           Language ISO is required
         </p>
       </template>
-
+      <BaseSelect
+        label="Text Direction"
+        :options="direction"
+        v-model="language.rldir.$model"
+        class="field"
+      />
+      <hr />
+      <h2>Content Location</h2>
       <div v-if="language.iso.$model">
         <BaseSelect
           label="Content Folder"
@@ -73,6 +81,8 @@
           </p>
         </template>
       </div>
+      <hr />
+      <h2>Images</h2>
       <div v-if="language.folder.$model">
         <BaseSelect
           label="Library Image Folder"
@@ -97,14 +107,10 @@
         </template>
         <input type="checkbox" id="checkbox" v-model="language.titles.$model" />
         <label for="checkbox">
-          <p>Images contain Titles</p>
+          <p>Book images contain Titles</p>
         </label>
-        <BaseSelect
-          label="Text Direction"
-          :options="direction"
-          v-model="language.rldir.$model"
-          class="field"
-        />
+        <hr />
+
         <div>
           <input
             type="checkbox"
@@ -115,6 +121,33 @@
             <h2>Custom Library Index?</h2>
           </label>
         </div>
+        <hr />
+
+        <h2>Common Terms</h2>
+        <BaseInput
+          v-model="language.download.$model"
+          label="Download for offline use"
+          type="text"
+          placeholder
+          class="field"
+        />
+        <BaseInput
+          v-model="language.download_ready.$model"
+          label="Ready for offline use"
+          type="text"
+          placeholder
+          class="field"
+        />
+        <BaseInput
+          v-model="language.read_more.$model"
+          label="Read More"
+          type="text"
+          placeholder
+          class="field"
+        />
+        <hr />
+
+        <h2>Bible</h2>
         <div>
           <br />Old Testament:
           <select v-model="language.bible_ot.$model">

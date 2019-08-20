@@ -74,6 +74,15 @@ export const libraryMixin = {
           this.image = response.data.content.text.image
             ? response.data.content.text.image
             : 'journey.jpg'
+          this.replace_header = response.data.content.text.replace_header
+            ? response.data.content.text.replace_header
+            : null
+          this.style = response.data.content.text.style
+            ? response.data.content.text.style
+            : null
+          this.style = response.data.content.text.style
+            ? response.data.content.text.style
+            : null
           this.text = response.data.content.text.text
             ? response.data.content.text.text
             : ''
