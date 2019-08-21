@@ -1,4 +1,34 @@
 
+/* 
+STructural Elements
+*/
+
+#app {
+  box-sizing: border-box;
+  width: 100%;
+  background-color: #fff6de;
+  padding: 0px 0px 0px 0px;
+  margin: 0 auto;
+}
+div.content{
+  width:95%;
+  max-width:640px;
+  background-color:white;
+  margin: 0 auto;
+ 
+}
+div.app-link{
+  width:90%;
+  padding-top:10px;
+  margin: 0 auto;
+}
+
+.container{
+  background-color: white
+}
+/* 
+Navigation Area
+*/
 #nav{
   max-width: 640px;
   margin: 0 auto;
@@ -45,17 +75,11 @@ div.nav.share{
   float:left;
   width:10%;
 }
-div.app-link{
-  width:90%;
-  padding-top:10px;
-  margin: 0 auto;
-}
-.content{
-  background-color: white;
-}
-.container{
-  background-color: white
-}
+/*  
+Download Commands
+
+*/
+
 .center{
   text-align: center
 }
@@ -79,4 +103,57 @@ p#offline-ready {
   color: #ffffff;
   font-size: 20px;
   text-decoration: none;
+}
+/*
+Languages
+*/
+.languages{
+  text-align: center;
+  font-family: Arial;
+  color: #999999;
+  letter-spacing: 0.1em;
+  font-size:18pt;
+}
+img.languages{
+  width : 80%;
+  max-width: 400;
+}
+div.languages{
+  text-align: center;
+  margin-top: 48px;
+}
+a.no_underline {
+  color: #999999;
+  text-decoration: none;
+}
+
+/*
+Footer
+*/
+div.footer{
+  margin-top:96px;
+}
+div.footer{
+  text-align: center;
+  font-family: Arial;
+  padding-bottom: 75px;
+}
+p.footer{
+  text-align: center;
+}
+
+/*
+Social
+*/
+table.social{
+    width:100%;
+    margin-top: 30px;
+}
+td.social{
+    width:33%;
+    text-align:center;
+}
+img.social{
+    height: 60px;
+    width: 60px;
 }

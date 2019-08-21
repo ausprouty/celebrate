@@ -2,8 +2,12 @@
   <link rel="stylesheet" href="/content/ZZ/styles/cardGLOBAL.css" />
   <link rel="stylesheet" href="{{ book.style }}" />
   [[nav]]
-  <div>
-    <img src="{{ book.image }}" class="app-series-header" />
+  <div class="app-link">
+    <a class="card-link" href="{{ link }}">
+      <div class="app-card -shadow">
+        <img src="{{ book.image }}" class="app-img-header" />
+      </div>
+    </a>
   </div>
   <!-- ready for offline --->
   <p class="{{ language.rldir }}" id="offline-ready">{{ download_ready }}</p>
@@ -15,7 +19,7 @@
   <!-- chapters --->
   [[chapters]]
   <div>
-    <p class="button center">
+    <p class="button  {{ language.rldir }}">
       <button
         id="offline-request"
         class="cache-series"
@@ -33,4 +37,5 @@
     </div>
   </div>
   {{ footer }}
+
 </div>

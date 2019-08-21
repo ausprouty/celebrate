@@ -1,38 +1,7 @@
 <div class="content {{ dir }}">
   <link rel="stylesheet" href="{{ card.style }}" />
   <link rel="stylesheet" href="{{ book.style }}" />
-  <div id="nav">
-      <div class= "nav return">
-      <a class="card-link" href="{{ link }}">
-        <img src="/images/menu/back.png" class="nav return" />
-      </a>
-      </div>
-      <div class ="nav logo">
-          <a class="card-link" href="/content/index.html">
-            <img src="/images/menu/myfriends.png" class="nav logo" />
-        </a>
-      </div>
-      <div class = "nav languages"> 
-        <a class="card-link" href="/content/languages.html">
-          <img src="/images/menu/languages.png" class="nav languages" />
-        </a>
-      </div>
-       <div class= "nav share">
-          <a class="card-link" href="/content/share.html">
-            <img src="/images/menu/share.png" class="nav share" />
-          </a>
-       </div>
-    </div>
-  <div class="app-link">
-    <a class="card-link" href="{{ link }}">
-      <div class="app-card -shadow">
-        <img src="{{ navigation.image }}" class="book" />
-        <div class="book">
-          <span class="title">{{ navigation.title }}</span>
-        </div>
-      </div>
-    </a>
-  </div>
+  [[nav]]
   {{ page.title_and_image }}
   <p>
     {{ page.text }}
@@ -40,4 +9,5 @@
   <div class="version">
     <p class="version">Version {{ version }}</p>
   </div>
+  {{ footer }}
 </div>

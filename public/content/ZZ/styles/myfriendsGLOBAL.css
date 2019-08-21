@@ -9,20 +9,8 @@
   --color-up: #f38832;
   --color-forward: #1ca0a6;
 }
-#app {
-  box-sizing: border-box;
-  width: 100%;
-  background-color: #efefef;
-  padding: 0px 0px 0px 0px;
-  margin: 0 auto;
-}
-div.content{
-  width:95%;
-  max-width:640px;
-  background-color:white;
-  margin: 0 auto;
- 
-}
+
+
 #offline-ready {
   color:  var(--color-up);
 }
@@ -58,9 +46,7 @@ body {
   background-color: var(--color-up);
 }
 
-.center{
-  text-align: center
- }
+
 .preview {
   background-color: white;
 }
@@ -73,7 +59,7 @@ h1,h3,h4,h5,h6 {
   font-family: 'Montserrat', sans-serif;
 }
 h1 {
-  font-size: 24px;
+  font-size: 36px;
   font-weight: 700;
   color: red;
 }
