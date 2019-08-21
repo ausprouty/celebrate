@@ -1,58 +1,82 @@
+
+#nav{
+  max-width: 640px;
+  margin: 0 auto;
+  background-color: white;
+}
 .nav {
-    justify-content: space-between;
-    align-items: center;
-    height: 60px;
-  }
-  img.nav.return{
-    width: 30px;
-    height: 30px;
-    padding-left: 0px;
-  }
-  img.nav.logo{
-    padding-left: 0px;
-    padding-right: 0px;
-    max-width:220px;
-    
-  }
-  img.nav.languages{
-    width:30px;
-    height:30px;
-  }
-  img.nav.share{
-   
-    width:30px;
-    height:30px;
-    padding-right: 0px;
-    padding-left: 5px;
-  }
-  #nav{
-    height:60px;
-    background-color: white;
-  }
-  div.nav.return{
-    padding-top: 10px;
-    float:left;
-    width:10%;
-  
-  }
-  div.nav.logo{
-    width:70%;
-    float:left;
-    text-align:center;
-  }
-  div.nav.languages,
-  div.nav.share{
-    padding-top: 10px;
-    float:left;
-    width:10%;
-  
-  }
-  .content{
-    background-color: white;
-  }
-  .container{
-    background-color: white
-  }
-  .center{
-    text-align: center
-   }
+  justify-content: space-between;
+  align-items: center;
+   background-color: white;
+}
+img.nav.return{
+  width: 30px;
+  height: 30px;
+  padding-left: 0px;
+}
+img.nav.logo{
+  padding-left: 0px;
+  padding-right: 0px;
+  max-width:220px;
+}
+img.nav.languages{
+  width:30px;
+  height:30px;
+}
+img.nav.share{
+  width:30px;
+  height:30px;
+  padding-right: 0px;
+  padding-left: 5px;
+}
+div.nav.return{
+  padding-top: 10px;
+  float:left;
+  width:10%;
+}
+div.nav.logo{
+  width:70%;
+  float:left;
+  text-align:center;
+}
+div.nav.languages,
+div.nav.share{
+  padding-top: 10px;
+  float:left;
+  width:10%;
+}
+div.app-link{
+  width:90%;
+  padding-top:10px;
+  margin: 0 auto;
+}
+.content{
+  background-color: white;
+}
+.container{
+  background-color: white
+}
+.center{
+  text-align: center
+}
+p#offline-ready {
+    color: #de1e25;
+    text-align: center;
+    font-size: 80%;
+    visibility: hidden;
+}
+.cache-series {
+  background: #de1e25;
+  background-image: -webkit-linear-gradient(top, #de1e25, #de1e25);
+  background-image: -moz-linear-gradient(top, #de1e25, #de1e25);
+  background-image: -ms-linear-gradient(top, #de1e25, #de1e25);
+  background-image: -o-linear-gradient(top, #de1e25, #de1e25);
+  background-image: linear-gradient(to bottom, #de1e25, #de1e25);
+  -webkit-border-radius: 28;
+  -moz-border-radius: 28;
+  border-radius: 28px;
+  font-family: Arial;
+  color: #ffffff;
+  font-size: 20px;
+  text-decoration: none;
+}
