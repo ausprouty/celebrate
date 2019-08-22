@@ -15,9 +15,9 @@
       <div v-if="this.authorized">
         <h1>Library</h1>
         <div>
-          <draggable v-model="library">
+          <draggable v-model="books">
             <transition-group>
-              <div v-for="book in library" :key="book.id" :book="book">
+              <div v-for="book in books" :key="book.id" :book="book">
                 <div class="shadow-card -shadow">
                   <img
                     v-bind:src="appDir.icons + 'move2red.png'"
@@ -52,7 +52,7 @@ import { libraryMixin } from '@/mixins/LibraryMixin.js'
 import { authorMixin } from '@/mixins/AuthorMixin.js'
 export default {
   mixins: [bookMarkMixin, libraryMixin, authorMixin],
-  props: ['country_code', 'language_iso'],
+  props: ['country_code', 'language_iso', 'library_code'],
   computed: mapState(['bookmark', 'appDir', 'cssURL', 'standard']),
   components: {
     NavBar,
@@ -82,7 +82,7 @@ export default {
     async saveForm() {
       try {
         var output = {}
-        output.books = this.library
+        output.books = this.books
         output.image = this.image
         output.text = this.text
         var valid = ContentService.validate(output)
@@ -90,8 +90,6 @@ export default {
         var route = this.$route.params
         route.filename = this.$route.params.library_code
         this.content.route = JSON.stringify(route)
-          ? this.$route.params.library_code
-          : 'library'
         this.content.filetype = 'json'
         this.$store.dispatch('newBookmark', 'clear')
         var response = await AuthorService.createContentData(this.content)
