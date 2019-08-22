@@ -171,13 +171,16 @@ export default {
     }
     return folders
   },
-  async getFoldersLanguage() {
+  async getContentFoldersForLanguage(language) {
     var folders = []
     var params = {}
+    params.language_iso = language
     params.token = store.state.user.token
+    console.log ('getContentFoldersForLanguage')
+    console.log (params)
     var contentForm = this.toFormData(params)
     let response = await apiSELECT.post(
-      'AuthorApi.php?page=get&action=getFoldersLanguage',
+      'AuthorApi.php?page=getContentFoldersForLanguage&action=getContentFoldersForLanguage',
       contentForm
     )
     //console.log(response)

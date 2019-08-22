@@ -251,12 +251,12 @@ export default {
         checkfile = this.$refs.file[i]['files']
         if (checkfile.length == 1) {
           // console.log(checkfile)
-          //  console.log(checkfile[0])
+          console.log(checkfile[0])
           var type = AuthorService.typeImage(checkfile[0])
           if (type) {
             var params = {}
             params.directory = 'images/country'
-            params.name = code
+            params.rename = code
             AuthorService.imageStore(params, checkfile[0])
 
             for (i = 0; i < arrayLength; i++) {
@@ -264,15 +264,16 @@ export default {
               if (checkfile.code.$model == code) {
                 this.$v.countries.$each[i].$model.image = 'default.png'
                 this.$v.countries.$each[i].$model.image = code + type
-                console.log(' I reset ' + i)
+                console.log(' I reset ' + i + 'to' + code + type)
                 console.log(this.$v.countries.$each)
               }
             }
           }
         }
       }
+      this.saveForm('stay')
     },
-    async saveForm() {
+    async saveForm(action) {
       // this.$v.$touch()
       // if (!this.$v.$invalid) {
       try {
@@ -286,10 +287,13 @@ export default {
         this.content.filetype = 'json'
         console.log(this.content)
         var response = await AuthorService.createContentData(this.content)
-        if (response.data.error != true) {
+        if (response.data.error != true && action != 'stay') {
           this.$router.push({
             name: 'previewCountries'
           })
+        }
+        if (response.data.error != true && action == 'stay') {
+          this.showForm()
         } else {
           this.error = true
           this.loaded = false
@@ -301,19 +305,22 @@ export default {
         this.loaded = false
         this.error_message = error
       }
+    },
+    async showForm() {
+      try {
+        this.authorized = this.authorize('write', 'countries')
+        console.log('Authorized: ' + this.authorized)
+        await this.getCountries()
+      } catch (error) {
+        console.log('There was an error in CountriesEdit.vue:', error) // Logs out the error
+      }
     }
   },
   beforeCreate() {
     this.$route.params.version = 'latest'
   },
   async created() {
-    try {
-      this.authorized = this.authorize('write', 'countries')
-      console.log('Authorized: ' + this.authorized)
-      await this.getCountries()
-    } catch (error) {
-      console.log('There was an error in CountriesEdit.vue:', error) // Logs out the error
-    }
+    this.showForm()
   }
 }
 </script>

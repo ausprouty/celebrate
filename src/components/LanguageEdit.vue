@@ -66,7 +66,6 @@
           v-model="language.folder.$model"
           class="field"
           :class="{ error: language.folder.$error }"
-          @blur="language.folder.$touch()"
         />
         <div>
           <p>
@@ -205,17 +204,23 @@ export default {
     }
   },
   methods: {
+    foldersFilter() {
+      console.log('I want to filter folders')
+    },
     deleteLanguageForm(index) {
       this.languages.splice(index, 1)
     },
-    forceLowerISO(value) {
-      var change = this.$v.languages.$model
-      var arrayLength = change.length
-      for (var i = 0; i < arrayLength; i++) {
-        var checkfile = this.$v.languages.$model[i]
-        if (checkfile.iso == value) {
-          this.$v.languages.$each[i].$model.iso = value.toLowerCase()
-        }
+    async forceLowerISO(value) {
+      this.language.$model.iso = value.toLowerCase()
+      if (this.language.$model.iso.length > 2) {
+        console.log(
+          'I am ready to find folders for ' + this.language.$model.iso
+        )
+        this.content_folders = await AuthorService.getContentFoldersForLanguage(
+          this.language.$model.iso
+        )
+        this.nt = await this.getBibleVersions(this.language.$model.iso, 'NT')
+        this.ot = await this.getBibleVersions(this.language.$model.iso, 'OT')
       }
     },
     async setupImageFolder(iso) {
@@ -229,7 +234,9 @@ export default {
         if (checkfile.iso == iso) {
           this.$v.languages.$each[i].$model.image_dir = iso
           console.log(checkfile)
-          this.image_folders = await AuthorService.getFoldersImages()
+          var res = await AuthorService.getFoldersImages()
+          console.log (res)
+          this.image_folders = res
         }
       }
     },
@@ -247,7 +254,9 @@ export default {
         if (checkfile.iso == iso) {
           this.$v.languages.$each[i].$model.image_dir = iso.toLowerCase()
           console.log(checkfile)
-          this.content_folders = await AuthorService.getFoldersLanguage()
+          this.content_folders = await AuthorService.getContentFoldersForLanguage(
+            iso
+          )
         }
       }
     }
@@ -257,15 +266,20 @@ export default {
     // see https://vue-select.org/guide/values.html#transforming-selections
     this.image_folders = await AuthorService.getFoldersImages()
     // console.log(this.image_folders)
-    this.content_folders = await AuthorService.getFoldersLanguage()
+    this.content_folders = await AuthorService.getContentFoldersForLanguage()
     // console.log(this.content_folders)
-    this.ot = await this.getBibleVersions(this.language.iso.$model, 'OT')
-    console.log('OT')
-    console.log(this.ot)
-    this.nt = await this.getBibleVersions(this.language.iso.$model, 'NT')
-
-    console.log('NT')
-    console.log(this.nt)
+    this.ot = null
+    this.nt = null
+    if (typeof this.language.$model.iso !== 'undefined') {
+      if (this.language.$model.iso != null) {
+        this.ot = await this.getBibleVersions(this.language.$model.iso, 'OT')
+        console.log('OT')
+        console.log(this.ot)
+        this.nt = await this.getBibleVersions(this.language.$model.iso, 'NT')
+        console.log('NT')
+        console.log(this.nt)
+      }
+    }
   }
 }
 </script>

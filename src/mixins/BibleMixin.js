@@ -8,15 +8,17 @@ export const bibleMixin = {
           language_iso: language_iso,
           testament: testament
         }
-        var response = await BibleService.getBibleVersions(params)
-        console.log('response from Bible versions')
-        console.log(response)
-        if (response.data.content !== false) {
-          versions = response.data.content
-          console.log('versions')
-          console.log(versions)
+        if (language_iso.length >2){
+          var response = await BibleService.getBibleVersions(params)
+          console.log('response from Bible versions')
+          console.log(response)
+          if (response.data.content !== false) {
+            versions = response.data.content
+            console.log('versions')
+            console.log(versions)
+          }
+          return versions
         }
-        return versions
       } catch (error) {
         console.log(
           'BIBLE MIXIN -- There was an error finding Bible Versions:',

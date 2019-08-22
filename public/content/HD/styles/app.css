@@ -1,0 +1,166 @@
+
+/* 
+STructural Elements
+*/
+
+#app {
+  box-sizing: border-box;
+  width: 100%;
+  background-color: #fff6de;
+  padding: 0px 0px 0px 0px;
+  margin: 0 auto;
+}
+div.content{
+  width:95%;
+  max-width:640px;
+  background-color:white;
+  margin: 0 auto;
+ 
+}
+div.app-link{
+  width:90%;
+  padding-top:10px;
+  margin: 0 auto;
+}
+
+.container{
+  background-color: white
+}
+/* 
+Navigation Area
+*/
+#nav{
+  max-width: 640px;
+  margin: 0 auto;
+  background-color: white;
+}
+.nav {
+  justify-content: space-between;
+  align-items: center;
+   background-color: white;
+}
+img.nav.return{
+  width: 30px;
+  height: 30px;
+  padding-left: 0px;
+}
+img.nav.logo{
+  padding-left: 0px;
+  padding-right: 0px;
+  max-width:220px;
+}
+img.nav.languages{
+  width:30px;
+  height:30px;
+}
+img.nav.share{
+  width:30px;
+  height:30px;
+  padding-right: 0px;
+  padding-left: 5px;
+}
+div.nav.return{
+  padding-top: 10px;
+  float:left;
+  width:10%;
+}
+div.nav.logo{
+  width:70%;
+  float:left;
+  text-align:center;
+}
+div.nav.languages,
+div.nav.share{
+  padding-top: 10px;
+  float:left;
+  width:10%;
+}
+/*  
+Download Commands
+
+*/
+
+.center{
+  text-align: center
+}
+p#offline-ready {
+    color: #de1e25;
+    text-align: center;
+    font-size: 80%;
+    visibility: hidden;
+}
+.cache-series {
+  background: #de1e25;
+  background-image: -webkit-linear-gradient(top, #de1e25, #de1e25);
+  background-image: -moz-linear-gradient(top, #de1e25, #de1e25);
+  background-image: -ms-linear-gradient(top, #de1e25, #de1e25);
+  background-image: -o-linear-gradient(top, #de1e25, #de1e25);
+  background-image: linear-gradient(to bottom, #de1e25, #de1e25);
+  -webkit-border-radius: 28;
+  -moz-border-radius: 28;
+  border-radius: 28px;
+  font-family: Arial;
+  color: #ffffff;
+  font-size: 20px;
+  text-decoration: none;
+}
+/*
+Languages
+*/
+.languages{
+  text-align: center;
+  font-family: Arial;
+  color: #999999;
+  letter-spacing: 0.1em;
+  font-size:18pt;
+}
+img.languages{
+  width : 80%;
+  max-width: 400;
+}
+div.languages{
+  text-align: center;
+  margin-top: 48px;
+}
+a.no_underline {
+  color: #999999;
+  text-decoration: none;
+}
+
+/*
+Footer
+*/
+div.footer{
+  margin-top:96px;
+}
+div.footer{
+  text-align: center;
+  font-family: Arial;
+  padding-bottom: 75px;
+}
+p.footer{
+  text-align: center;
+}
+
+/*
+Social
+*/
+table.social{
+    width:100%;
+    margin-top: 30px;
+}
+td.social{
+    width:33%;
+    text-align:center;
+}
+img.social{
+    height: 60px;
+    width: 60px;
+}
+
+
+hr {
+  box-sizing: content-box;
+  height: 3px;
+  overflow: visible;
+}

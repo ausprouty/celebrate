@@ -3,9 +3,7 @@
     <NavBar />
 
     <div class="loading" v-if="loading">Loading...</div>
-    <div class="error" v-if="error">
-      There was an error... {{ this.error_message }}
-    </div>
+    <div class="error" v-if="error">There was an error... {{ this.error_message }}</div>
     <div class="content" v-if="loaded">
       <div v-if="this.authorized">
         <h1>Languages for {{ this.$route.params.country_code }}</h1>
@@ -30,26 +28,20 @@
         <br />
         <hr />
         <div>
-          <button class="button" @click="publishAll">
-            Select ALL to publish?
-          </button>
+          <button class="button" @click="publishAll">Select ALL to publish?</button>
           <LanguageEdit
             v-for="language in $v.languages.$each.$iter"
             :key="language.id"
             :language="language"
           />
-          <button class="button" @click="addNewLanguageForm">
-            New Language
-          </button>
+          <button class="button" @click="addNewLanguageForm">New Language</button>
         </div>
         <div v-if="!$v.$anyError">
           <button class="button red" @click="saveForm">Save Changes</button>
         </div>
         <div v-if="$v.$anyError">
           <button class="button grey">Disabled</button>
-          <p v-if="$v.$anyError" class="errorMessage">
-            Please fill out the required field(s).
-          </p>
+          <p v-if="$v.$anyError" class="errorMessage">Please fill out the required field(s).</p>
         </div>
       </div>
       <div v-if="!this.authorized">
@@ -94,9 +86,9 @@ export default {
         image_dir: null,
         titles: null,
         lrdir: null,
-        custom:null,
+        custom: null,
         download: 'Download for offline use',
-        download_ready:'Ready for offline use',
+        download_ready: 'Ready for offline use',
         read_more: 'Read More',
         bible_nt: null,
         bible_ot: null,
@@ -114,10 +106,10 @@ export default {
         iso: { required },
         folder: { required },
         image_dir: { required },
-        custom:{},
-        download:{},
-        download_ready:{},
-        read_more:{},
+        custom: {},
+        download: {},
+        download_ready: {},
+        read_more: {},
         bible_nt: {},
         bible_ot: {},
         titles: {},
@@ -198,9 +190,9 @@ export default {
       this.authorized = this.authorize('write', this.$route.params.country_code)
       console.log('this authorized')
       if (this.authorized) {
-        //  this.image_folders = await AuthorService.getFoldersImages()
+        //   this.image_folders = await AuthorService.getFoldersImages()
         //  console.log(this.image_folders)
-        //  this.content_folders = await AuthorService.getFoldersLanguage()
+        //  this.content_folders = await AuthorService.getContentFoldersForLanguage()
         //  console.log(this.content_folders)
         await this.getLanguages(this.$route.params)
       }

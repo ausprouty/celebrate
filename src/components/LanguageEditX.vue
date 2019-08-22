@@ -208,7 +208,7 @@ export default {
         if (checkfile.iso == iso) {
           this.$v.languages.$each[i].$model.image_dir = iso.toLowerCase()
           console.log(checkfile)
-          this.content_folders = await AuthorService.getFoldersLanguage()
+          this.content_folders = await AuthorService.getContentFoldersForLanguage()
         }
       }
     }
@@ -218,7 +218,7 @@ export default {
     // see https://vue-select.org/guide/values.html#transforming-selections
     this.image_folders = await AuthorService.getFoldersImages()
     // console.log(this.image_folders)
-    this.content_folders = await AuthorService.getFoldersLanguage()
+    this.content_folders = await AuthorService.getContentFoldersForLanguage()
     // console.log(this.content_folders)
     this.ot = await this.getBibleVersions(this.language.iso.$model, 'OT')
     console.log('OT')
