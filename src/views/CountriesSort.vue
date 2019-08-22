@@ -102,7 +102,7 @@ export default {
       console.log('Authorized: ' + this.authorized)
       await this.getCountries()
     } catch (error) {
-      console.log('There was an error in Countries.vue:', error) // Logs out the error
+      console.log('There was an error in CountriesSort.vue:', error) // Logs out the error
     }
   }
 }

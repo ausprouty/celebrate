@@ -157,3 +157,10 @@ img.social{
     height: 60px;
     width: 60px;
 }
+
+
+hr {
+  box-sizing: content-box;
+  height: 3px;
+  overflow: visible;
+}

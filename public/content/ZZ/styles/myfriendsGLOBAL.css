@@ -83,11 +83,7 @@ h6 {
   font-size: 14px;
   font-weight: 700;
 }
-hr {
-  box-sizing: content-box;
-  height: 0;
-  overflow: visible;
-}
+
 b,
 strong {
   font-weight: bolder;

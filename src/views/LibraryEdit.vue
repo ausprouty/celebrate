@@ -33,7 +33,7 @@
           </label>
         </div>
         <BaseSelect
-          label="Image:"
+          label="Libary Image:"
           :options="images"
           v-model="image"
           class="field"
@@ -467,20 +467,23 @@ export default {
       for (i = 0; i < arrayLength; i++) {
         checkfile = this.$refs.image[i]['files']
         if (checkfile.length == 1) {
-          // console.log(checkfile)
-          //  console.log(checkfile[0])
+          console.log(checkfile)
+          console.log(checkfile[0])
           var type = AuthorService.typeImage(checkfile[0])
           if (type) {
             var params = {}
             params.directory = 'content/' + this.bookmark.language.image_dir
             params.name = code
             AuthorService.imageStore(params, checkfile[0])
+            // now update data on form
+
             for (i = 0; i < arrayLength; i++) {
               checkfile = this.$v.books.$each[i]
               if (checkfile.$model.book == code) {
                 this.$v.books.$each[i].$model.image = code + type
               }
             }
+
             this.saveForm('stay')
             this.showForm()
           }
@@ -501,7 +504,9 @@ export default {
           params.name = code
           console.log(params)
           AuthorService.imageStore(params, checkfile[0])
-          this.header_image = code
+          var filename = checkfile[0].name
+          console.log ('setting this image to ' + filename)
+          this.image = filename
           this.saveForm('stay')
           this.showForm()
         }
@@ -616,7 +621,8 @@ export default {
               library_code: this.$route.params.library_code
             }
           })
-        } else {
+        }
+        if (response.data.error == true) {
           this.error = true
           this.loaded = false
           this.error_message = response.data.message
@@ -679,7 +685,7 @@ export default {
                 ].code = this.bookmark.library.books[i].name
               }
             }
-            console.log(this.bookmark.library.books[i].code)
+            //console.log(this.bookmark.library.books[i].code)
             if (!this.booklist.includes(this.bookmark.library.books[i].code)) {
               this.booklist.push(this.bookmark.library.books[i].code)
             }
