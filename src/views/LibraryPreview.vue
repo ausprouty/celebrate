@@ -66,7 +66,8 @@ export default {
       write: false,
       publish: false,
       prototype_text: 'Prototype',
-      back: 'country'
+      back: 'country',
+      format:{}
     }
   },
   methods: {

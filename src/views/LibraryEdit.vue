@@ -56,6 +56,7 @@
           >
             X
           </div>
+          <h2>Name and Code</h2>
           <div>
             <BaseInput
               v-model="book.id.$model"
@@ -116,41 +117,38 @@
             </button>
           </div>
           <div v-if="images">
-            <div v-if="book.image.$model">
-              <img
-                v-bind:src="
-                  appDir.library + image_dir + '/' + book.image.$model
-                "
-                class="book"
-              />
+            <div>
+              <h3>Book Image:</h3>
+              <div v-if="book.image.$model">
+              <img v-bind:src="book.image.$model.image" class="book" />
               <br />
             </div>
-            <BaseSelect
-              label="Book Image:"
-              :options="images"
-              v-model="book.image.$model"
-              class="field"
-              :class="{ error: book.image.$error }"
-              @mousedown="book.image.$touch()"
-            />
-            <template v-if="book.image.$error">
-              <p v-if="!book.image.required" class="errorMessage">
-                Image is required
-              </p>
-            </template>
-          </div>
-          <div v-if="image_permission">
-            <label>
-              Add new Image&nbsp;&nbsp;&nbsp;&nbsp;
-              <input
-                type="file"
-                v-bind:id="book.code.$model"
-                ref="image"
-                v-on:change="handleImageUpload(book.code.$model)"
-              />
-            </label>
+              <v-select
+                :options="images"
+                label="title"
+                v-model="book.image.$model"
+              >
+                <template slot="option" slot-scope="option">
+                  <img :src="option.image" />
+                  {{ option.title }}
+                </template>
+              </v-select>
+            </div>
+            <div v-if="image_permission">
+              <label>
+                Add new Image&nbsp;&nbsp;&nbsp;&nbsp;
+                <input
+                  type="file"
+                  v-bind:id="book.code.$model"
+                  ref="image"
+                  v-on:change="handleImageUpload(book.code.$model)"
+                />
+              </label>
+            </div>
+            
           </div>
           <div>
+            <h3>Format and Styling:</h3>
             <BaseSelect
               label="Format:"
               :options="formats"
@@ -245,6 +243,9 @@ import NavBar from '@/components/NavBarAdmin.vue'
 import LibraryFormatTemplate from '@/components/LibraryFormatTemplate.vue'
 import ContentService from '@/services/ContentService.js'
 import AuthorService from '@/services/AuthorService.js'
+import vSelect from 'vue-select'
+// see https://stackoverflow.com/questions/55479380/adding-images-to-vue-select-dropdown
+import '@/assets/css/vueSelect.css'
 
 import './ckeditor/index.js'
 import VueCkeditor from 'vue-ckeditor2'
@@ -258,13 +259,15 @@ export default {
   components: {
     NavBar,
     LibraryFormatTemplate,
-    VueCkeditor
+    VueCkeditor,
+    'v-select': vSelect
   },
   props: ['country_code', 'language_iso', 'library_code'],
   computed: mapState(['bookmark', 'appDir', 'cssURL', 'standard']),
   data() {
     return {
       formats: ['page', 'series'],
+      book_images: [],
       images: [],
       folders: [],
       styles: [],
@@ -588,12 +591,8 @@ export default {
         )
         // get images
 
-        var img = await AuthorService.getImages(param)
+        this.images = await this.getImages(this.bookmark.language.image_dir)
 
-        if (typeof img !== 'undefined') {
-          img.push('')
-          this.images = img.sort()
-        }
         // get folders
 
         var folder = await AuthorService.getFoldersContent(param)
@@ -680,5 +679,10 @@ export default {
 
 .float-right {
   text-align: right;
+}
+
+img {
+  width: 50%;
+  max-width: 200px;
 }
 </style>

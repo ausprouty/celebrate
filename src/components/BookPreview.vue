@@ -5,19 +5,16 @@
       v-bind:class="{ notpublished: !book.publish }"
     >
       <div v-if="!this.bookmark.language.titles">
-        <img
-          v-bind:src="appDir.library + this.image_dir + '/' + book.image"
-          class="book"
-        />
+        <img v-bind:src="book.image.image" class="book" />
         <div class="book" v-bind:class="this.bookmark.language.rldir">
-          <span class="title" v-bind:class="this.bookmark.language.rldir">{{
-            book.title
-          }}</span>
+          <span class="title" v-bind:class="this.bookmark.language.rldir">
+            {{ book.title }}
+          </span>
         </div>
       </div>
       <div v-if="this.bookmark.language.titles">
         <img
-          v-bind:src="appDir.library + this.image_dir + '/' + book.image"
+          v-bind:src="appDir.library + this.image_dir + '/' + book.image.image"
           class="something"
         />
       </div>

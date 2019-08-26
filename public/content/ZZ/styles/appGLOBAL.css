@@ -24,6 +24,13 @@ div.app-link{
   padding-top:10px;
   margin: 0 auto;
 }
+div.chapter_number {
+  display: inline;
+  float:left;
+  padding-right:10px;
+ padding-bottom:80px;
+}
+
 
 .container{
   background-color: white

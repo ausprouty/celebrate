@@ -93,13 +93,14 @@ import '@/assets/css/vueSelect.css'
 import AuthorService from '@/services/AuthorService.js'
 import { bookMarkMixin } from '@/mixins/BookmarkMixin.js'
 import { authorMixin } from '@/mixins/AuthorMixin.js'
+import { libraryMixin } from '@/mixins/LibraryMixin.js'
 
 export default {
   props: {
     format: Object
   },
   computed: mapState(['appDir']),
-  mixins: [bookMarkMixin, authorMixin],
+  mixins: [bookMarkMixin, authorMixin, libraryMixin],
   components: {
     'v-select': vSelect
   },
@@ -133,8 +134,8 @@ export default {
           var filename = checkfile[0].name
           console.log('setting this image to ' + filename)
           this.image = filename
-       //   this.saveForm('stay')
-        //  this.showForm()
+          //   this.saveForm('stay')
+          //  this.showForm()
         }
       }
     },
@@ -155,34 +156,10 @@ export default {
           var filename = checkfile[0].name
           console.log('setting this image to ' + filename)
           this.back_button = filename
-         // this.saveForm('stay')
-         // this.showForm()
+          // this.saveForm('stay')
+          // this.showForm()
         }
       }
-    },
-
-    async getImages(directory) {
-      // get images for library header
-      var options = []
-      var param = {}
-      param.route = JSON.stringify(this.$route.params)
-      param.image_dir = directory
-      var img = await AuthorService.getImages(param)
-      if (typeof img !== 'undefined') {
-        // img.push('')
-        img = img.sort()
-        var length = img.length
-        var i = 0
-        for (i = 0; i < length; i++) {
-          var formatted = {}
-          formatted.title = img[i]
-          formatted.image = '/content/' + directory + '/' + img[i]
-          options.push(formatted)
-        }
-      }
-      console.log('from getImages for ' + directory)
-      console.log(options)
-      return options
     }
   },
   async created() {

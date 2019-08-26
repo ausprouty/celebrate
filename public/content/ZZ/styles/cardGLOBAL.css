@@ -116,3 +116,6 @@ div.chapter-description {
 h1.list_header{
  line-height:4;
 }
+div.float left{
+  float:left;
+}

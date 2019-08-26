@@ -1,8 +1,8 @@
 import ContentService from '@/services/ContentService.js'
+import AuthorService from '@/services/AuthorService.js'
 export const libraryMixin = {
   data() {
     return {
-      format:{},
       library: [
         {
           id: '',
@@ -75,9 +75,13 @@ export const libraryMixin = {
             : response.data.content.text // from legacy data
           if (typeof response.data.content.text.format != 'undefined') {
             this.format = response.data.content.text.format
+            if (typeof this.format.image.image == 'undefined'){
+              this.format.image.image = this.image
+              this.format.image.title = 'Unknown'
+            }
           } else {
             // we have legacy data
-            console.log ('we have legacy data')
+            console.log('we have legacy data')
             this.format.image = response.data.content.text.image
               ? response.data.content.text.image
               : 'journey.jpg'
@@ -90,6 +94,10 @@ export const libraryMixin = {
               : null
             this.format.back_button = null
           }
+          
+
+
+
           this.text = response.data.content.text.text
             ? response.data.content.text.text
             : ''
@@ -119,6 +127,29 @@ export const libraryMixin = {
         this.newLibrary()
         console.log('There was an error in LibraryMixin:', error) // Logs out the error
       }
+    },
+    async getImages(directory) {
+      // get images for library header
+      var options = []
+      var param = {}
+      param.route = JSON.stringify(this.$route.params)
+      param.image_dir = directory
+      var img = await AuthorService.getImages(param)
+      if (typeof img !== 'undefined') {
+        // img.push('')
+        img = img.sort()
+        var length = img.length
+        var i = 0
+        for (i = 0; i < length; i++) {
+          var formatted = {}
+          formatted.title = img[i]
+          formatted.image = '/content/' + directory + '/' + img[i]
+          options.push(formatted)
+        }
+      }
+      console.log('from getImages for ' + directory)
+      console.log(options)
+      return options
     },
     async getLibraryIndex() {
       this.error = this.loaded = null
