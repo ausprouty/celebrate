@@ -29,6 +29,26 @@ const apiIMAGE = axios.create({
 })
 // I want to export a JSON.stringified of response.data.content.text
 export default {
+  async bookmark(params) {
+    params.my_uid = store.state.user.uid
+    params.token = store.state.user.token
+    console.log('params for bookmark')
+    console.log(params)
+    var contentForm = this.toFormData(params)
+    var res = await apiSECURE.post(
+      'AuthorApi.php?page=bookmark&action=bookmark',
+      contentForm
+    )
+    console.log('response for bookmark')
+    console.log(res.data.content)
+    if (res.error != true) {
+      store.dispatch('updateAllBookmarks', res.data.content)
+    } else {
+      store.dispatch('newBookmark', null)
+    }
+
+    return res.data.content
+  },
   createContentData(params) {
     var d = new Date()
     params.edit_date = d.getTime()
@@ -176,8 +196,8 @@ export default {
     var params = {}
     params.language_iso = language
     params.token = store.state.user.token
-    console.log ('getContentFoldersForLanguage')
-    console.log (params)
+    console.log('getContentFoldersForLanguage')
+    console.log(params)
     var contentForm = this.toFormData(params)
     let response = await apiSELECT.post(
       'AuthorApi.php?page=getContentFoldersForLanguage&action=getContentFoldersForLanguage',

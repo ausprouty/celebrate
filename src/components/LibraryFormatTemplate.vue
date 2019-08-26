@@ -133,8 +133,8 @@ export default {
           var filename = checkfile[0].name
           console.log('setting this image to ' + filename)
           this.image = filename
-          this.saveForm('stay')
-          this.showForm()
+       //   this.saveForm('stay')
+        //  this.showForm()
         }
       }
     },
@@ -155,8 +155,8 @@ export default {
           var filename = checkfile[0].name
           console.log('setting this image to ' + filename)
           this.back_button = filename
-          this.saveForm('stay')
-          this.showForm()
+         // this.saveForm('stay')
+         // this.showForm()
         }
       }
     },

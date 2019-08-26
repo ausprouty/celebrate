@@ -539,6 +539,8 @@ export default {
         var output = {}
         output.books = this.books
         output.format = this.format
+        console.log('output.format')
+        console.log(output.format)
         output.text = this.text
         var valid = ContentService.validate(output)
         this.content.text = JSON.stringify(valid)

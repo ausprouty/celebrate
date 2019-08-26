@@ -67,6 +67,30 @@ export default new Vuex.Store({
       console.log('STORE - NEW BOOKMARK    ')
       state.bookmark = {}
     },
+    UPDATE_ALL_BOOKMARKS(state, value) {
+      console.log('STORE - UPDATE ALL BOOKMARKS    ')
+      state.bookmark = {}
+      if (typeof value.country != 'undefined') {
+        state.bookmark.country = value.country
+      }
+      if (typeof value.language != 'undefined') {
+        state.bookmark.language = value.language
+      }
+      if (typeof value.library != 'undefined') {
+        state.bookmark.library = value.library
+      }
+      if (typeof value.series != 'undefined') {
+        state.bookmark.series = value.series
+      }
+      if (typeof value.book != 'undefined') {
+        state.bookmark.book = value.book
+      }
+      if (typeof value.page != 'undefined') {
+        state.bookmark.page = value.page
+      }
+      console.log('state.bookmark')
+      console.log(state.bookmark)
+    },
     SET_BOOKMARK(state, [mark, value]) {
       switch (mark) {
         case 'country':
@@ -144,6 +168,10 @@ export default new Vuex.Store({
     }
   },
   actions: {
+    updateAllBookmarks({ commit }, value) {
+      console.log('cleared bookmark')
+      commit('UPDATE_ALL_BOOKMARKS', value)
+    },
     newBookmark({ commit }, value) {
       console.log('cleared bookmark')
       commit('UNSET_BOOKMARK', [value])

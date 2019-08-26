@@ -15,6 +15,8 @@ div.content{
   max-width:640px;
   background-color:white;
   margin: 0 auto;
+  padding-left:10px;
+  padding-right:10px;
  
 }
 div.app-link{
@@ -166,4 +168,8 @@ hr {
   box-sizing: content-box;
   height: 3px;
   overflow: visible;
+}
+ol.rtl{
+    list-style-type:arabic-indic;
+  
 }

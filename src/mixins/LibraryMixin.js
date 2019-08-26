@@ -77,6 +77,7 @@ export const libraryMixin = {
             this.format = response.data.content.text.format
           } else {
             // we have legacy data
+            console.log ('we have legacy data')
             this.format.image = response.data.content.text.image
               ? response.data.content.text.image
               : 'journey.jpg'
@@ -87,6 +88,7 @@ export const libraryMixin = {
             this.format.style = response.data.content.text.style
               ? response.data.content.text.style
               : null
+            this.format.back_button = null
           }
           this.text = response.data.content.text.text
             ? response.data.content.text.text

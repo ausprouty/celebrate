@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import { mapState } from 'vuex'
 import ContentService from '@/services/ContentService.js'
+import AuthorService from '@/services/AuthorService.js'
 import PrototypeService from '@/services/PrototypeService.js'
 Vue.use(Vuex)
 
@@ -12,7 +13,22 @@ export const bookMarkMixin = {
     async UnsetBookmarks() {
       return this.$store.dispatch('unsetBookmark', ['country'])
     },
-    async CheckBookmarks(route) {
+    async CheckBookmarks(route){
+      try {
+        var bookmark = await AuthorService.bookmark(route)
+        console.log ('bookmark')
+        console.log (bookmark)
+      } catch (error) {
+        console.log(
+          'BOOKMARK MIXIN -- There was an error setting bookmarks:',
+          error
+        ) // Logs out the error
+        this.error = error.toString() + 'BOOKMARK MIXIN --CheckBookmarks'
+        return bookmark
+      }
+
+    },
+    async XCheckBookmarks(route) {
       console.log('BOOKMARK MIXIN started')
       console.log(route)
       try {
