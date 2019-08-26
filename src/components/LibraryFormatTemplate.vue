@@ -1,31 +1,25 @@
 <template>
   <div class="app-card -shadow">
     <h2>Library Setup</h2>
-     <div>
+    <div>
       <h3>Library Image</h3>
-      <v-select :options="options" label="title">
+      <v-select :options="images" label="title" v-model="format.image">
         <template slot="option" slot-scope="option">
           <img :src="option.image" />
+          {{ option.title }}
         </template>
       </v-select>
     </div>
     <div>
-      <input type="checkbox" id="checkbox" v-model="format.replace_header" />
+      <input type="checkbox" id="checkbox" v-model="format.no_ribbon" />
       <label for="checkbox">
-        <p>Image replaces Navigation Header</p>
+        <p>Image contains back button image</p>
       </label>
     </div>
-   
+
     <br />
     <br />
-    <div>
-      <BaseSelect
-        label="Libary Image:"
-        :options="images"
-        v-model="format.image"
-        class="field"
-      />
-    </div>
+
     <div v-if="image_permission">
       <label>
         Add new Image&nbsp;&nbsp;&nbsp;&nbsp;
@@ -62,23 +56,22 @@
       </label>
     </div>
     <div>
-      <br />
-      <br />
-      <BaseSelect
-        label="Back Button for Chapters:"
-        :options="images"
+      <p>Back Button for Chapters</p>
+      <v-select
+        :options="back_buttons"
+        label="title"
         v-model="format.back_button"
-        class="field"
-      />
+      >
+        <template slot="option" slot-scope="option">
+          <img :src="option.image" />
+          {{ option.title }}
+        </template>
+      </v-select>
     </div>
+
     <div v-if="image_permission">
       <div v-if="format.back_button">
-        <img
-          v-bind:src="
-            appDir.library + image_dir + '/' + this.format.back_button
-          "
-          class="header"
-        />
+        <img v-bind:src="option.image" class="header" />
       </div>
       <label>
         Add new Image&nbsp;&nbsp;&nbsp;&nbsp;
@@ -95,26 +88,31 @@
 <script>
 import vSelect from 'vue-select'
 // see https://stackoverflow.com/questions/55479380/adding-images-to-vue-select-dropdown
-
+import { mapState } from 'vuex'
 import '@/assets/css/vueSelect.css'
 import AuthorService from '@/services/AuthorService.js'
 import { bookMarkMixin } from '@/mixins/BookmarkMixin.js'
 import { authorMixin } from '@/mixins/AuthorMixin.js'
 
 export default {
-  props: {},
+  props: {
+    format: Object
+  },
+  computed: mapState(['appDir']),
   mixins: [bookMarkMixin, authorMixin],
   components: {
     'v-select': vSelect
   },
   data() {
     return {
-      format: {},
       images: [],
+      image_dir: null,
       image_permission: false,
       styles: [],
       style_error: false,
-      options: []
+      option: [],
+      options: [],
+      back_buttons: []
     }
   },
   methods: {
@@ -161,6 +159,30 @@ export default {
           this.showForm()
         }
       }
+    },
+
+    async getImages(directory) {
+      // get images for library header
+      var options = []
+      var param = {}
+      param.route = JSON.stringify(this.$route.params)
+      param.image_dir = directory
+      var img = await AuthorService.getImages(param)
+      if (typeof img !== 'undefined') {
+        // img.push('')
+        img = img.sort()
+        var length = img.length
+        var i = 0
+        for (i = 0; i < length; i++) {
+          var formatted = {}
+          formatted.title = img[i]
+          formatted.image = '/content/' + directory + '/' + img[i]
+          options.push(formatted)
+        }
+      }
+      console.log('from getImages for ' + directory)
+      console.log(options)
+      return options
     }
   },
   async created() {
@@ -174,36 +196,19 @@ export default {
       'write',
       param.image_dir.substring(0, 1)
     )
-    // get styles
+    // get styles, images and back_buttons
     var style = await AuthorService.getStyles(param)
     if (typeof style !== 'undefined') {
       this.styles = style
     }
-    // get images
-    this.options = []
-    var img = await AuthorService.getImages(param)
-
-    if (typeof img !== 'undefined') {
-      img.push('')
-      this.images = img.sort()
-      var length = img.length
-
-      var i = 0
-      for (i = 0; i < length; i++) {
-        var formatted = {}
-        formatted.title = img[i]
-        formatted.image = '/content/' + param.image_dir + '/' + img[i]
-
-        this.options.push(formatted)
-        //console.log(pictures)
-      }
-    }
+    this.images = await this.getImages(this.bookmark.language.image_dir)
+    this.back_buttons = await this.getImages('ZZ/images/ribbons')
   }
 }
 </script>
 <style scoped>
 img {
   width: 50%;
-  max-width:200px;
+  max-width: 200px;
 }
 </style>

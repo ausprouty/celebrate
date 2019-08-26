@@ -68,10 +68,6 @@ padding: 6px 10px;
 text-align: center;
 text-transform: uppercase;
 }
-h1{
-color: var(--color-red);
-
-}
 sup,
 .versenum {
 color: var(--color-blue);
@@ -112,8 +108,8 @@ h1 {
 color:var(--color-red);
 display: inline;
 font-weight: bold;
-padding-left: 25px;
-text-align: center;
+
+
 }
 img.lesson-icon {
 height: 30px;

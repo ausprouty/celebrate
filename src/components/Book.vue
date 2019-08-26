@@ -3,21 +3,20 @@
     <div class="app-link" v-on:click="showPage(book)">
       <div class="app-card -shadow">
         <div v-if="!this.bookmark.language.titles">
-        <img
-          v-bind:src="appDir.library + this.image_dir + '/' + book.image"
-          class="book"
-        />
-        <div class="book">
-          <span class="title">{{ book.title }}</span>
+          <img
+            v-bind:src="appDir.library + this.image_dir + '/' + book.image"
+            class="book"
+          />
+          <div class="book">
+            <span class="title">{{ book.title }}</span>
+          </div>
         </div>
-      </div>
-       <div v-if="this.bookmark.language.titles">
-        <img
-          v-bind:src="appDir.library + this.image_dir + '/' + book.image"
-          class="something"
-        />
-      </div>
-    </div>
+        <div v-if="this.bookmark.language.titles">
+          <img
+            v-bind:src="appDir.library + this.image_dir + '/' + book.image"
+            class="something"
+          />
+        </div>
       </div>
     </div>
   </div>
@@ -56,7 +55,7 @@ export default {
             country_code: this.bookmark.country.code,
             language_iso: this.bookmark.language.iso,
             library_code: 'TODO',
-            folder_name: this.book.code,
+            folder_name: this.book.code
           }
         })
       } else {

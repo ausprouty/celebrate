@@ -1,9 +1,9 @@
 <template>
   <div class="preview" v-bind:dir="this.rldir">
-     <link
-        rel="stylesheet"
-        v-bind:href="'/content/' + this.bookmark.book.style"
-      />
+    <link
+      rel="stylesheet"
+      v-bind:href="'/content/' + this.bookmark.book.style"
+    />
     <NavBar />
     <div class="loading" v-if="loading">Loading...</div>
     <div class="error" v-if="error">There was an error... {{ this.error }}</div>
@@ -23,10 +23,7 @@
       </div>
       <hr class="border" />
       <a v-bind:href="this.back">
-        <img
-          v-bind:src="appDir.library + this.image_dir + '/' + this.image"
-          class="app-img-header"
-        />
+        <img v-bind:src="this.format.image.image" class="app-img-header" />
       </a>
       <div>
         <span v-html="text"></span>

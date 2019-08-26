@@ -157,6 +157,9 @@ img.social{
     height: 60px;
     width: 60px;
 }
+img.header{
+  width:100%;
+}
 
 
 hr {

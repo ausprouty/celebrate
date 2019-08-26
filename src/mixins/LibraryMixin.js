@@ -2,6 +2,7 @@ import ContentService from '@/services/ContentService.js'
 export const libraryMixin = {
   data() {
     return {
+      format:{},
       library: [
         {
           id: '',
@@ -68,26 +69,30 @@ export const libraryMixin = {
         console.log('Library Data obtained:')
         console.log(response.data.content.text)
         if (response.data.content.text) {
+          // divide response into three component parts
           this.books = response.data.content.text.books
             ? response.data.content.text.books
             : response.data.content.text // from legacy data
-          this.image = response.data.content.text.image
-            ? response.data.content.text.image
-            : 'journey.jpg'
-          this.replace_header = response.data.content.text.replace_header
-            ? response.data.content.text.replace_header
-            : null
-          this.style = response.data.content.text.style
-            ? response.data.content.text.style
-            : null
-          this.style = response.data.content.text.style
-            ? response.data.content.text.style
-            : null
+          if (typeof response.data.content.text.format != 'undefined') {
+            this.format = response.data.content.text.format
+          } else {
+            // we have legacy data
+            this.format.image = response.data.content.text.image
+              ? response.data.content.text.image
+              : 'journey.jpg'
+            this.format.replace_header = response.data.content.text
+              .replace_header
+              ? response.data.content.text.replace_header
+              : null
+            this.format.style = response.data.content.text.style
+              ? response.data.content.text.style
+              : null
+          }
           this.text = response.data.content.text.text
             ? response.data.content.text.text
             : ''
-          console.log('this.books')
-          console.log(this.books)
+          console.log('this.format')
+          console.log(this.format)
           if (response.data.content.recnum) {
             this.recnum = response.data.content.recnum
             this.publish_date = response.data.content.publish_date

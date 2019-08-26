@@ -19,67 +19,25 @@
       <div v-if="this.authorized">
         <h1>Library</h1>
         <div v-if="images">
-          <img
-            v-bind:src="appDir.library + image_dir + '/' + this.image"
-            class="header"
-          />
+          <img v-bind:src="this.format.image.image" class="header" />
           <br />
         </div>
-        <h2>Library Setup</h2>
-        <div>
-          <input type="checkbox" id="checkbox" v-model="replace_header" />
-          <label for="checkbox">
-            <p>Image replaces Navigation Header</p>
-          </label>
-        </div>
-        <BaseSelect
-          label="Libary Image:"
-          :options="images"
-          v-model="image"
-          class="field"
-        />
-      </div>
-      <div v-if="image_permission">
-        <label>
-          Add new Image&nbsp;&nbsp;&nbsp;&nbsp;
-          <input
-            type="file"
-            v-bind:id="image"
-            ref="imageHeader"
-            v-on:change="handleHeaderUpload(image)"
-          />
-        </label>
-      </div>
+        <br />
+        <br />
 
-      <div>
-        <BaseSelect
-          label="Library Style Sheet:"
-          :options="styles"
-          v-model="style"
-          class="field"
-        />
-        <template v-if="style_error">
-          <p class="errorMessage">Only .css files may be uploaded</p>
-        </template>
+        <LibraryFormatTemplate v-bind:format="format" />
 
-        <label>
-          Add new stylesheet&nbsp;&nbsp;&nbsp;&nbsp;
-          <input
-            type="file"
-            v-bind:id="style"
-            ref="style"
-            v-on:change="handleStyleUpload(library.style)"
-          />
-        </label>
-      </div>
-      <div>
         <hr />
         <h2>Preliminary Text</h2>
+
         <p>
           <vue-ckeditor v-model="text" :config="config" />
         </p>
       </div>
+      <br />
       <hr />
+
+      <br />
       <h2>Books</h2>
       <div>
         <button class="button" @click="publishAll">
@@ -284,8 +242,10 @@
 
 <script>
 import NavBar from '@/components/NavBarAdmin.vue'
+import LibraryFormatTemplate from '@/components/LibraryFormatTemplate.vue'
 import ContentService from '@/services/ContentService.js'
 import AuthorService from '@/services/AuthorService.js'
+
 import './ckeditor/index.js'
 import VueCkeditor from 'vue-ckeditor2'
 import { mapState } from 'vuex'
@@ -297,6 +257,7 @@ export default {
   mixins: [bookMarkMixin, libraryMixin, authorMixin],
   components: {
     NavBar,
+    LibraryFormatTemplate,
     VueCkeditor
   },
   props: ['country_code', 'language_iso', 'library_code'],
@@ -490,28 +451,7 @@ export default {
         }
       }
     },
-    handleHeaderUpload(code) {
-      console.log('handleImageUpload: ' + code)
-      var checkfile = {}
-      checkfile = this.$refs.imageHeader['files']
-      if (checkfile.length == 1) {
-        console.log(checkfile)
-        console.log(checkfile[0])
-        var type = AuthorService.typeImage(checkfile[0])
-        if (type) {
-          var params = {}
-          params.directory = 'content/' + this.bookmark.language.image_dir
-          params.name = code
-          console.log(params)
-          AuthorService.imageStore(params, checkfile[0])
-          var filename = checkfile[0].name
-          console.log ('setting this image to ' + filename)
-          this.image = filename
-          this.saveForm('stay')
-          this.showForm()
-        }
-      }
-    },
+
     async handleStyleUpload(code) {
       console.log('code in handle Style:' + code)
       var checkfile = ''
@@ -598,10 +538,8 @@ export default {
         // update library file
         var output = {}
         output.books = this.books
-        output.image = this.image
+        output.format = this.format
         output.text = this.text
-        output.style = this.style
-        output.replace_header = this.replace_header
         var valid = ContentService.validate(output)
         this.content.text = JSON.stringify(valid)
         this.$route.params.filename = this.$route.params.library_code

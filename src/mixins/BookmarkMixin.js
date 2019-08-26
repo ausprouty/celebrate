@@ -20,8 +20,8 @@ export const bookMarkMixin = {
         await this.CheckBookmarkLanguageLibrary(route)
         await this.CheckBookmarkBookSeries(route)
         await this.CheckBookmarkPage(route)
-        //  console.log(this.bookmark)
-        //  console.log('BOOKMARK MIXIN --    FINISHED BOOKMARK')
+        console.log(this.bookmark)
+        console.log('BOOKMARK MIXIN --    FINISHED BOOKMARK')
         localStorage.setItem('bookmark', JSON.stringify(this.bookmark))
         return this.bookmark
       } catch (error) {
