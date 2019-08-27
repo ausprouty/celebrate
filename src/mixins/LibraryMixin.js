@@ -94,10 +94,6 @@ export const libraryMixin = {
               : null
             this.format.back_button = null
           }
-          
-
-
-
           this.text = response.data.content.text.text
             ? response.data.content.text.text
             : ''
@@ -177,6 +173,7 @@ export const libraryMixin = {
       console.log('text')
       console.log(text)
       this.pageText = text.page
+      this.style = text.style
       this.footerText = text.footer
       this.loaded = true
       this.loading = false

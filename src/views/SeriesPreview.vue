@@ -8,20 +8,22 @@
         <button class="button" @click="localPublish('live')">Publish</button>
       </div>
       <div v-if="this.prototype">
-        <button class="button" @click="localPublish('prototype')">{{ this.prototype_text }}</button>
+        <button class="button" @click="localPublish('prototype')">
+          {{ this.prototype_text }}
+        </button>
         <div v-if="this.prototype_series">
-          <button class="button" @click="localPublish('prototypeSeries')">Prototype Entire Series</button>
+          <button class="button" @click="localPublish('prototypeSeries')">
+            Prototype Entire Series
+          </button>
         </div>
       </div>
       <div>
-        <link rel="stylesheet" v-bind:href="'/content/' + this.style" />
+        <link rel="stylesheet" v-bind:href="this.style" />
         <div class="app-link">
           <div class="app-card -shadow">
             <img
               v-on:click="returnToIndex()"
-              v-bind:src="
-                appDir.library + this.image_dir + '/' + this.bookmark.book.image
-              "
+              v-bind:src="this.bookmark.book.image.image"
               class="app-img-header"
             />
           </div>
@@ -35,11 +37,17 @@
 
         <br />
 
-        <Chapter v-for="chapter in chapters" :key="chapter.id" :chapter="chapter" />
+        <Chapter
+          v-for="chapter in chapters"
+          :key="chapter.id"
+          :chapter="chapter"
+        />
       </div>
       <div>
         <p class="button">
-          <button id="offline-request" class="cache-series">{{ this.download_now }}</button>
+          <button id="offline-request" class="cache-series">
+            {{ this.download_now }}
+          </button>
         </p>
       </div>
       <div class="version">

@@ -28,7 +28,10 @@ div.chapter_number {
   display: inline;
   float:left;
   padding-right:10px;
- padding-bottom:80px;
+ padding-bottom:20px;
+}
+div.chapter_number.series {
+ padding-bottom:20px;
 }
 
 

@@ -17,15 +17,7 @@
         <div class="app-link">
           <div class="app-card -shadow">
             <div v-on:click="goBack()">
-              <img
-                v-bind:src="
-                  appDir.library +
-                    this.bookmark.language.image_dir +
-                    '/' +
-                    this.bookmark.book.image
-                "
-                class="book"
-              />
+              <img v-bind:src="this.bookmark.book.image.image" class="book" />
 
               <div class="book">
                 <span class="title">{{ this.bookmark.book.title }}</span>
@@ -64,7 +56,6 @@
             <button class="button green" @click="insertPassage">
               Insert Passage
             </button>
-           
           </div>
           <p>
             <vue-ckeditor v-model="pageText" :config="config" />

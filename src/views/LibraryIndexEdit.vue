@@ -21,7 +21,25 @@
           <vue-ckeditor v-model="pageText" :config="config" />
         </p>
         <hr />
-        <h2> Language Footer Text</h2>
+        <h2>Page Style</h2>
+        <BaseSelect :options="styles" v-model="style" class="field" />
+        <template v-if="style_error">
+          <p class="errorMessage">Only .css files may be uploaded</p>
+        </template>
+
+        <label>
+          Add new stylesheet&nbsp;&nbsp;&nbsp;&nbsp;
+          <input
+            type="file"
+            v-bind:id="style"
+            ref="style"
+            v-on:change="handleStyleUpload()"
+          />
+        </label>
+        <br />
+        <br />
+        <hr />
+        <h2>Language Footer Text</h2>
         <p>
           <vue-ckeditor v-model="footerText" :config="config" />
         </p>
@@ -152,11 +170,40 @@ export default {
         }
       }
     },
+    async handleStyleUpload(code) {
+      console.log('code in handle Style:' + code)
+      var checkfile = ''
+      var i = 0
+      var arrayLength = this.$refs.style.length
+      console.log(this.$refs.style)
+      for (i = 0; i < arrayLength; i++) {
+        checkfile = this.$refs.style[i]['files']
+        if (checkfile.length == 1) {
+          console.log(checkfile[0])
+          var type = AuthorService.typeStyle(checkfile[0])
+          if (type) {
+            console.log(checkfile)
+            var params = {}
+            params.file = checkfile[0]
+            params.country_code = this.$route.params.country_code
+            type = await AuthorService.createStyle(params)
+            var style = await AuthorService.getStyles(params)
+            if (style) {
+              this.styles = style
+              this.style_error = false
+            }
+          } else {
+            this.style_error = true
+          }
+        }
+      }
+    },
     async saveForm() {
       try {
         var text = {}
         text.page = ContentService.validate(this.pageText)
         text.footer = ContentService.validate(this.footerText)
+        text.style = this.style
         this.content.text = JSON.stringify(text)
         this.$route.params.filename = 'index'
         this.content.route = JSON.stringify(this.$route.params)
@@ -192,6 +239,7 @@ export default {
     this.$route.params.version = 'lastest'
     this.$route.params.filename = 'index'
     this.$route.params.css = 'AU/styles/AU-freeform.css'
+    this.$route.params.css = 'ZZ/styles/appGLOBAL.css'
     console.log('final params')
     console.log(this.$route.params)
   },
@@ -200,7 +248,14 @@ export default {
       console.log('in Created')
       console.log(this.$route)
       await this.getLibraryIndex()
-      
+      // get styles
+      var param = {}
+      param.route = JSON.stringify(this.$route.params)
+      var style = await AuthorService.getStyles(param)
+      if (typeof style !== 'undefined') {
+        this.styles = style
+      }
+
       this.authorized = this.authorize('write', 'world')
       this.publish = false
       if (this.recnum && !this.publish_date) {

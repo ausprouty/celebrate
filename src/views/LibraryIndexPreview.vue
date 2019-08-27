@@ -12,10 +12,9 @@
           {{ this.prototype_text }}
         </button>
       </div>
-      <link
-        rel="stylesheet"
-        v-bind:href="'/content/' + this.$route.params.css"
-      />
+      <link rel="stylesheet" href="/content/ZZ/styles/appGlobal.css" />
+      <link rel="stylesheet" v-bind:href="style" />
+
       <hr class="border" />
       <span v-html="pageText"></span>
       <br />
@@ -46,6 +45,11 @@ export default {
     NavBar
   },
   computed: mapState(['bookmark', 'appDir', 'cssURL']),
+  data() {
+    return {
+      style: 'unknown'
+    }
+  },
 
   methods: {
     editPage() {
@@ -66,7 +70,7 @@ export default {
       var params = {}
       var response = null
       params.recnum = this.recnum
-     // params.bookmark = JSON.stringify(this.bookmark)
+      // params.bookmark = JSON.stringify(this.bookmark)
       params.route = JSON.stringify(this.$route.params)
       if (location == 'prototype') {
         response = await PrototypeService.publish('libraryIndex', params)
@@ -88,7 +92,7 @@ export default {
     async localBookmark(recnum) {
       var param = {}
       param.recnum = recnum
-       param.library_code = this.$route.params.library_code
+      param.library_code = this.$route.params.library_code
       var bm = await PrototypeService.publish('bookmark', param)
       console.log('localBookmark')
       console.log(bm)
