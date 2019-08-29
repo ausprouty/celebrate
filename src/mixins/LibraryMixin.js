@@ -75,24 +75,44 @@ export const libraryMixin = {
             : response.data.content.text // from legacy data
           if (typeof response.data.content.text.format != 'undefined') {
             this.format = response.data.content.text.format
-            if (typeof this.format.image.image == 'undefined'){
+            if (typeof this.format.image.image == 'undefined') {
               this.format.image.image = this.image
               this.format.image.title = 'Unknown'
             }
           } else {
             // we have legacy data
             console.log('we have legacy data')
-            this.format.image = response.data.content.text.image
-              ? response.data.content.text.image
-              : 'journey.jpg'
-            this.format.replace_header = response.data.content.text
-              .replace_header
-              ? response.data.content.text.replace_header
-              : null
-            this.format.style = response.data.content.text.style
-              ? response.data.content.text.style
-              : null
-            this.format.back_button = null
+            this.format = {}
+            this.format.image = {}
+            this.format.image.title = 'FriendsHeader.png'
+            this.format.image.image =
+              '/content/' +
+              this.$route.params.country_code +
+              '/images/standard/FriendsHeader.png'
+            this.format.replace_header = true
+            console.log('set header')
+            this.format.style = '/content/ZZ/styles/myfriendsGLOBAL.css'
+            this.format.back_button = {}
+            this.format.back_button.title = 'back-ribbon-red.png'
+            this.format.back_button.image =
+              '/content/ZZ/images/ribbons/back-ribbon-red.png'
+            this.format.no_ribbon = true
+            // not clean up images for books
+            console.log('clean books')
+            console.log(this.books.length)
+            var length = this.books.length
+
+            for (var i = 0; i < length; i++) {
+              var image = {}
+              image.title = this.books[i].image
+              image.image =
+                '/content/' +
+                this.$route.params.country_code +
+                '/images/standard/' +
+                this.books[i].image
+              this.books[i].image = image
+              this.books[i].publish = true
+            }
           }
           this.text = response.data.content.text.text
             ? response.data.content.text.text

@@ -205,6 +205,10 @@ img.sortable {
   height: 30px;
   width: 30px;
 }
+img.image100{
+  width:50%;
+  max-width: 200px;
+}
 img.nav-icon {
   width: 100%;
   max-width: 650px;
@@ -293,6 +297,9 @@ select::ms-expand {
 }
 li {
   text-align: left;
+}
+ol.rtl{
+  list-style-type:arabic-indic;
 }
 label,  .bold {
   font-weight: bold;

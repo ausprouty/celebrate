@@ -138,8 +138,8 @@ export default {
         if (this.recnum) {
           this.localBookmark(this.recnum)
         }
-        this.back = '/preview/language/' + this.$route.params.country_code
-        if (this.$route.params.library_code) {
+        this.back = '/preview/languages/' + this.$route.params.country_code
+        if (this.$route.params.library_code != 'library') {
           this.back = '/preview/country/' + this.$route.params.country_code
         }
         this.readonly = this.authorize(

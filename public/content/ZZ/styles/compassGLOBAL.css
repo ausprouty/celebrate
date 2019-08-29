@@ -65,11 +65,18 @@ div.lesson-subtitle-rtl {
     margin-right: 65px;
     position: absolute;
 }
+img.study,
 img.lesson-icon {
     height: 30px;
     margin-right: 20px;
     vertical-align: middle;
     width: 30px;
+}
+img.study.rtl{
+    text-align:right;
+}
+div.lesson.rtl {
+    text-align: right;
 }
 h1{
     color: var(--color-red); 
@@ -92,16 +99,18 @@ sup,
     top: -0.5em;
     vertical-align: baseline;
 }
-
 img.book {
     width: 25%;
-  }
-  div.book {
+}
+div.book {
     vertical-align: top;
     width: 70%;
     font-size: 24px;
     float: right;
-  }
-  .book {
+}
+.book {
     text-align: left;
-  }
+}
+ol.rtl{
+    list-style-type:arabic-indic;
+}

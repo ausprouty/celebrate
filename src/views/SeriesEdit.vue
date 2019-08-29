@@ -19,24 +19,7 @@
           class="field"
         />
       </div>
-      <div class="form">
-        <BaseInput
-          v-model="download_now"
-          label="Download for offline use"
-          type="text"
-          placeholder
-          class="field"
-        />
-      </div>
-      <div class="form">
-        <BaseInput
-          v-model="download_ready"
-          label="Ready for offline use:"
-          type="text"
-          placeholder
-          class="field"
-        />
-      </div>
+     
 
       <br />
       <hr />

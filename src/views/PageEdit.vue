@@ -198,7 +198,9 @@ export default {
           bible.data.content.text +
           '<p><a class="readmore" href="' +
           bible.data.content.link +
-          '">Read More</a></p>'
+          '">' +
+          this.bookmark.language.read_more +
+          '</a></p>'
         this.pageText = temp2.replace('[PassageLocation]', bible_block)
         //console.log('This is result of replace')
         //console.log(this.pageText)

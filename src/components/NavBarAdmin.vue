@@ -42,19 +42,19 @@ export default {
           show: false
         },
         {
-          value: 'Preview Latest Countries',
+          value: 'Countries',
           link: 'countries',
           index: 1,
           show: false
         },
         {
-          value: 'Preview Latest Languages',
+          value: 'Languages',
           link: 'languages',
           index: 2,
           show: false
         },
         {
-          value: 'Preview Latest Library',
+          value: 'Library',
           link: 'library',
           index: 3,
           show: false
@@ -91,7 +91,7 @@ export default {
       if (this.bookmark.country.code) {
         this.menu[2].show = true
       }
-      if (this.bookmark.language.iso && this.bookmark.country.code) {
+      if (this.$route.params.language_iso && this.$route.params.country_code) {
         this.menu[3].show = true
       }
       this.menu[5].show = true

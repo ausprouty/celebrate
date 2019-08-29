@@ -42,8 +42,8 @@ export const pageMixin = {
         this.rldir = this.bookmark.language.rldir
         // get page content
         var response = await ContentService.getPage(this.$route.params)
-        console.log ('response from getPage')
-        console.log (response)
+        console.log('response from getPage')
+        console.log(response)
         // has this page been prototyped or published?
         if (response.data.content.recnum) {
           this.recnum = response.data.content.recnum
@@ -61,7 +61,7 @@ export const pageMixin = {
             : 'ZZ/styles/myfriendsGLOBAL.css'
           css.replace('/', '@')
           this.$route.params.cssFORMATTED = css
-          this.need_template = true;
+          this.need_template = true
           this.$router.push({
             name: 'editPage',
             params: this.$route.params
@@ -84,7 +84,7 @@ export const pageMixin = {
           this.loaded = true
           this.loading = false
         } else {
-           //get templates
+          //get templates
           var param = {}
           param.route = JSON.stringify(this.$route.params)
           param.filter = true
@@ -94,7 +94,7 @@ export const pageMixin = {
           }
           this.pageText =
             'No text found.  It would be faster if you created a template'
-          this.need_template = true;
+          this.need_template = true
           this.loaded = true
           this.loading = false
         }
@@ -109,7 +109,7 @@ export const pageMixin = {
         // image
         this.image_navigation = this.standard.image
         if (typeof this.bookmark.book !== 'undefined') {
-          this.image_navigation = this.bookmark.book.image
+          this.image_navigation = this.bookmark.book.image.image
         }
         //directory
         this.image_navigation_dir = this.standard.image_dir
@@ -123,7 +123,7 @@ export const pageMixin = {
         if (this.bookmark.language.titles) {
           this.show_navigation_title = false
         }
-        if (this.show_navigation_title){
+        if (this.show_navigation_title) {
           this.navigation_title = this.bookmark.book.title
         }
 
@@ -134,11 +134,11 @@ export const pageMixin = {
         // Set page title and/or image
         this.show_page_title = true
         if (this.bookmark.page.image) {
-          this.image_page = this.bookmark.page.image
+          this.image_page = this.bookmark.page.image.image
           this.image_page_class = 'something'
           this.image_page_dir =
-          this.bookmark.language.folder + '/' + this.bookmark.book.name
-         
+            this.bookmark.language.folder + '/' + this.bookmark.book.name
+
           this.show_page_title = false
           this.show_page_image = true
         }
@@ -149,14 +149,14 @@ export const pageMixin = {
       //
       if (this.bookmark.book.format == 'page') {
         console.log('I am looking at a page')
-        
+
         // image
         this.image_navigation = this.standard.image
-        if (typeof this.bookmark.library.image !== 'undefined') {
-          this.image_navigation = this.bookmark.library.image
+        if (typeof this.bookmark.library.format.image !== 'undefined') {
+          this.image_navigation = this.bookmark.library.format.image.image
         }
         //directory
-        this.image_navigation_dir = this.bookmark.language.image_dir
+
         // class
         this.image_navigation_class = 'book'
         // show title
@@ -167,9 +167,9 @@ export const pageMixin = {
           this.style = this.bookmark.book.style
         }
         // Set page title and/or image
-        this.image_page = this.bookmark.book.image
+        this.image_page = this.bookmark.book.image.image
         this.image_page_class = 'something'
-        this.image_page_dir = this.bookmark.language.image_dir
+        this.image_page_dir = ''
         this.show_page_image = true
         this.show_page_title = true
         this.show_navigation_title = true

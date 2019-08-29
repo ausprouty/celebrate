@@ -33,7 +33,7 @@
         </div>
         <div v-if="this.description">{{ this.description }}</div>
         <br />
-        <p id="offline-ready">{{ this.download_ready }}</p>
+        <p id="offline-ready">{{ this.bookmark.language.download_ready }}</p>
 
         <br />
 
@@ -46,7 +46,7 @@
       <div>
         <p class="button">
           <button id="offline-request" class="cache-series">
-            {{ this.download_now }}
+            {{ this.bookmark.language.download }}
           </button>
         </p>
       </div>

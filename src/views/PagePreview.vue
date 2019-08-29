@@ -17,7 +17,7 @@
         <div class="app-card -shadow">
           <div v-on:click="goBack()">
             <img
-              v-bind:src="this.image_navigation.image"
+              v-bind:src="this.image_navigation"
               v-bind:class="this.image_navigation_class"
             />
             <span
@@ -37,9 +37,7 @@
       </div>
       <div v-if="this.show_page_image">
         <img
-          v-bind:src="
-            appDir.library + this.image_page_dir + '/' + this.image_page
-          "
+          v-bind:src="this.image_page"
           v-bind:class="this.image_page_class"
         />
       </div>
