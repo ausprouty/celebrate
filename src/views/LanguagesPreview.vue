@@ -64,7 +64,7 @@ export default {
       readonly: false,
       write: false,
       publish: false,
-      prototype_text: 'Prototype',
+      prototype_text: 'Prototype Library and',
       more_languages: 'More Languages',
       choose_language: 'Choose Language'
     }

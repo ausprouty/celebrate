@@ -1,305 +1,113 @@
 <template>
-  <div>
-    <NavBar />
-
-    <div class="loading" v-if="loading">Loading...</div>
-    <div class="error" v-if="error">
-      There was an error... {{ this.error_message }}
+  <div id="nav" class="content" dir="ltr">
+    <div class="nav full">
+      <a class="card-link" href="/content/index.html">
+        <img src="/content/BR/images/standard/Friends.png" class="nav full" />
+      </a>
     </div>
-    <div class="content" v-if="loaded">
-      <div v-if="!this.authorized">
-        <p>
-          You have stumbled into a restricted page. Sorry I can not show it to
-          you now
-        </p>
-      </div>
-      <div v-if="this.authorized">
-        <div class="app-link">
+    <div></div>
+    <div>
+      <div class="app-link">
+        <a class="card-link" href="life/index.html">
           <div class="app-card -shadow">
-            <div v-on:click="goBack()">
-              <img
-                v-bind:src="
-                  appDir.library +
-                    this.bookmark.language.image_dir +
-                    '/' +
-                    this.bookmark.book.image
-                "
-                class="book"
-              />
-
-              <div class="book">
-                <span class="title">{{ this.bookmark.book.title }}</span>
+            <div>
+              <img src="/content/BR/images/standard/issues.jpg" class="book" />
+              <div class="book ltr">
+                <span class="title ltr">Problemas da vida</span>
               </div>
             </div>
           </div>
-        </div>
-        <h1 v-if="this.bookmark.page.count">
-          {{ this.bookmark.page.count }}. {{ this.bookmark.page.title }}
-        </h1>
-        <h1 v-else>{{ this.bookmark.page.title }}</h1>
-        <div v-if="this.need_template">
-          <div class="form">
-            <BaseSelect
-              v-model="page_template"
-              label="Templates:"
-              :options="templates"
-              class="field"
-            />
-          </div>
-          <button class="button green" @click="loadTemplate">
-            Insert Template
-          </button>
-        </div>
-        <div>
-          <div v-if="this.request_passage">
-            <div class="form">
-              <BaseInput
-                v-model="reference"
-                label="Passage to Insert"
-                type="text"
-                placeholder
-                class="field"
-              />
+        </a>
+      </div>
+      <div class="app-link">
+        <a class="card-link" href="basics/index.html">
+          <div class="app-card -shadow">
+            <div>
+              <img src="/content/BR/images/standard/basics.jpg" class="book" />
+              <div class="book ltr">
+                <span class="title ltr">Conversas Básicas</span>
+              </div>
             </div>
-            <button class="button green" @click="insertPassage">
-              Insert Passage
-            </button>
           </div>
-          <p>
-            <vue-ckeditor v-model="pageText" :config="config" />
-          </p>
-          <div class="version">
-            <p class="version">Version 1.01</p>
+        </a>
+      </div>
+      <div class="app-link">
+        <a class="card-link" href="pages/community.html">
+          <div class="app-card -shadow">
+            <div>
+              <img
+                src="/content/BR/images/standard/community.jpg"
+                class="book"
+              />
+              <div class="book ltr">
+                <span class="title ltr">Comunidade</span>
+              </div>
+            </div>
           </div>
-          <button class="button red" @click="saveForm">Save Changes</button>
-        </div>
+        </a>
       </div>
-      <div v-if="!this.authorized">
-        <p>
-          You need to
-          <a href="/login">login to make changes</a> here
-        </p>
+      <div class="app-link">
+        <a class="card-link" href="firststeps/index.html">
+          <div class="app-card -shadow">
+            <div>
+              <img
+                src="/content/BR/images/standard/firststeps.jpg"
+                class="book"
+              />
+              <div class="book ltr">
+                <span class="title ltr">Primeiros passos</span>
+              </div>
+            </div>
+          </div>
+        </a>
       </div>
-      <div></div>
+      <div class="app-link">
+        <a class="card-link" href="pages/about.html">
+          <div class="app-card -shadow">
+            <div>
+              <img src="/content/BR/images/standard/about.jpg" class="book" />
+              <div class="book ltr">
+                <span class="title ltr">Sobre</span>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+    <div class="version">
+      <p class="version">Version 0.8</p>
+    </div>
+    <hr />
+    <table class="social">
+      <tbody>
+        <tr>
+          <td class="social">
+            <a href="/content/languages.html">
+              <img class="social" src="/images/menu/languages.png" />
+            </a>
+          </td>
+          <td class="social">
+            <a href="https://www.facebook.com/myfriendsaustralia">
+              <img
+                class="social"
+                src="/content/AU/images/standard/Facebook.png"
+              />
+            </a>
+          </td>
+          <td class="social">
+            <a href="javascript:void(0);" onclick="share()">
+              <img class="social" src="/content/AU/images/standard/Share.png" />
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="footer">
+      <p class="footer">MyFriends</p>
+      <p class="footer">
+        <a class="footer" href="https://myfriends.life/">www.myfriends.life</a>
+      </p>
     </div>
   </div>
 </template>
-
-<script>
-import { mapState } from 'vuex'
-import ContentService from '@/services/ContentService.js'
-import AuthorService from '@/services/AuthorService.js'
-import BibleService from '@/services/BibleService.js'
-import NavBar from '@/components/NavBarAdmin.vue'
-import './ckeditor/index.js'
-import VueCkeditor from 'vue-ckeditor2'
-import { bookMarkMixin } from '@/mixins/BookmarkMixin.js'
-import { pageMixin } from '@/mixins/PageMixin.js'
-import { authorMixin } from '@/mixins/AuthorMixin.js'
-export default {
-  mixins: [bookMarkMixin, pageMixin, authorMixin],
-  props: ['country_code', 'language_iso', 'folder_name', 'filename'],
-  components: {
-    NavBar,
-    VueCkeditor
-  },
-  computed: mapState(['bookmark', 'appDir', 'cssURL']),
-  data() {
-    return {
-      authorized: false,
-      request_passage: false,
-      reference: null,
-      templates: [],
-      content: {
-        recnum: '',
-        version: '',
-        edit_date: '',
-        edit_uid: '',
-        publish_uid: '',
-        publish_date: '',
-        language_iso: '',
-        country_code: '',
-        folder: '',
-        filetype: '',
-        title: '',
-        filename: '',
-        text: ''
-      },
-      config: {
-        extraPlugins: ['bidi', 'uploadimage', 'uploadwidget', 'clipboard'],
-        extraAllowedContent: ['*(*)[id]', 'ol[*]', 'span[*]'],
-        contentsCss: '/content/' + this.$route.params.css,
-        stylesSet: this.$route.params.styles_set,
-        templates_replaceContent: false,
-        templates_files: [
-          '/templates/' + this.$route.params.styles_set + 'CKEDITOR.js'
-        ],
-        // Upload images to a CKFinder connector (note that the response type is set to JSON).
-        uploadUrl:
-          '/apps/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files&responseType=json',
-        // Configure your file manager integration. This example uses CKFinder 3 for PHP.
-        filebrowserBrowseUrl: '/apps/ckfinder/ckfinder.html',
-        filebrowserImageBrowseUrl: '/apps/ckfinder/ckfinder.html?type=Images',
-        filebrowserUploadUrl:
-          '/apps/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files',
-        filebrowserImageUploadUrl:
-          '/apps/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images',
-        toolbarGroups: [
-          { name: 'styles', groups: ['styles'] },
-          { name: 'basicstyles', groups: ['basicstyles', 'cleanup'] },
-          {
-            name: 'editing',
-            groups: ['find', 'selection', 'spellchecker', 'editing']
-          },
-          { name: 'links', groups: ['links'] },
-          { name: 'insert', groups: ['insert'] },
-          { name: 'forms', groups: ['forms'] },
-          { name: 'tools', groups: ['tools'] },
-          { name: 'document', groups: ['mode', 'document', 'doctools'] },
-          { name: 'clipboard', groups: ['clipboard', 'undo'] },
-          { name: 'others', groups: ['others'] },
-          '/',
-          {
-            name: 'paragraph',
-            groups: ['list', 'indent', 'blocks', 'align', 'bidi', 'paragraph']
-          },
-          { name: 'colors', groups: ['colors'] }
-        ],
-        height: 600,
-        removeButtons:
-          'About,Button,Checkbox,CreatePlaceholder,DocProps,Flash,Form,HiddenField,Iframe,NewPage,PageBreak,Preview,Print,Radio,Save,Scayt,Select,Smiley,SpecialChar,TextField,Textarea'
-      }
-    }
-  },
-  methods: {
-    goBack() {
-      window.history.back()
-    },
-    async insertPassage() {
-      var params = {}
-      params.language_iso = this.$route.params.language_iso
-      params.entry = this.reference
-      params.dbt = await BibleService.getDbtArray(params)
-      if (params.dbt.collection_code == 'OT') {
-        params.bid = this.bookmark.language.bible_ot
-      } else {
-        params.bid = this.bookmark.language.bible_nt
-      }
-      console.log('params for Get passage')
-      console.log(params)
-      var bible = await BibleService.getBiblePassage(params)
-      console.log('results of getBiblePassage')
-      console.log(bible)
-      if (typeof bible !== 'undefined') {
-        console.log('I am replacing text')
-        var temp = this.pageText.replace('[BibleText]', bible.data.content.text)
-        console.log('temp')
-        console.log(temp)
-        var temp2 = temp.replace(
-          '"readmore" href=""',
-          '"readmore" href="' + bible.data.content.link + '"'
-        )
-        temp = temp2.replace('[BibleReference]', bible.data.content.reference)
-        this.pageText = temp.replace('[REPLACE LINK]', '')
-        //console.log('This is result of replace')
-        //console.log(this.pageText)
-        this.request_passage = false
-      }
-    },
-    async loadTemplate() {
-      console.log('in Load Template')
-      this.authorized = this.authorize('write', this.$route.params.country_code)
-      this.loading = false
-      this.loaded = true
-      if (this.bookmark.book.template || this.page_template) {
-        if (this.bookmark.book.template) {
-          this.$route.params.template = this.bookmark.book.template
-        }
-        if (this.page_template) {
-          this.$route.params.template = this.page_template
-        }
-        console.log('looking for template')
-        console.log(this.$route.params)
-        var res = await AuthorService.getTemplate(this.$route.params)
-        console.log(res)
-        if (res) {
-          console.log('I found template')
-          this.request_passage = true
-          this.pageText = res
-        }
-      }
-    },
-    async saveForm() {
-      try {
-        this.content.text = ContentService.validate(this.pageText)
-        this.content.route = JSON.stringify(this.$route.params)
-        this.content.filetype = 'html'
-        var response = await AuthorService.createContentData(this.content)
-        this.$store.dispatch('newBookmark', 'clear')
-        if (response.data.error != true) {
-          this.$router.push({
-            name: 'previewPage',
-            params: {
-              country_code: this.$route.params.country_code,
-              language_iso: this.$route.params.language_iso,
-              library_code: this.$route.params.library_code,
-              folder_name: this.$route.params.folder_name,
-              filename: this.$route.params.filename
-            }
-          })
-        } else {
-          this.error = true
-          this.loaded = false
-          this.error_message = response.data.message
-        }
-      } catch (error) {
-        console.log('LIBRARY EDIT There was an error ', error)
-        this.error = true
-        this.loaded = false
-        this.error_message = error
-      }
-    }
-  },
-  async beforeCreate() {
-    console.log('before Create')
-    console.log(this.$route.params)
-    var ok = false
-    var styleSets = ['compass', 'firststeps', 'myfriends', 'multiply']
-    this.$route.params.styles_set = 'unknown'
-    var arrayLength = styleSets.length
-    for (var i = 0; i < arrayLength; i++) {
-      if (this.$route.params.cssFORMATTED.includes(styleSets[i])) {
-        this.$route.params.styles_set = styleSets[i]
-      }
-    }
-    this.$route.params.version = 'lastest'
-    var css = this.$route.params.cssFORMATTED
-    var clean = css.replace(/@/g, '/')
-    this.$route.params.css = clean
-    console.log('final params')
-    console.log(this.$route.params)
-  },
-  async created() {
-    try {
-      console.log('in Created')
-      await this.getPage(this.$route.params)
-      if (this.pageText.includes('[')) {
-        this.request_passage = true
-      }
-      console.log('I am about to authorize to write')
-      this.authorized = this.authorize('write', this.$route.params.country_code)
-      console.log('css')
-      console.log(this.bookmark.book.style)
-    } catch (error) {
-      console.log('There was an error in Page.vue:', error)
-      await this.loadTemplate()
-    }
-  }
-}
-</script>
-
-<style scoped>
-.float-right {
-  text-align: right;
-}
-</style>

@@ -351,6 +351,7 @@ export default {
     async showForm() {
       try {
         this.getSeries(this.$route.params)
+        console.log ('I got series')
         // get images
         var param = {}
         param.series_image_dir =

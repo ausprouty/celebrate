@@ -6,17 +6,14 @@
     <div class="error" v-if="error">There was an error... {{ this.error }}</div>
     <div class="content" v-if="loaded">
       <div v-if="this.publish">
-        <button class="button" @click="localPublish('live')">Publish</button>
+        <button class="button" @click="localPublish('live')">
+          {{ this.publish_text }}
+        </button>
       </div>
       <div v-if="this.prototype">
         <button class="button" @click="localPublish('prototype')">
           {{ this.prototype_text }}
         </button>
-        <div>
-          <button class="button" @click="localPublish('prototypeLibrary')">
-            Prototype Library and Books
-          </button>
-        </div>
       </div>
       <hr class="border" />
       <a v-bind:href="this.back">
@@ -65,9 +62,10 @@ export default {
       readonly: false,
       write: false,
       publish: false,
-      prototype_text: 'Prototype',
+      prototype_text: 'Prototype Library and Books',
+      publish_text: 'Publish Library and Books',
       back: 'country',
-      format:{}
+      format: {}
     }
   },
   methods: {
@@ -102,13 +100,10 @@ export default {
       params.route = JSON.stringify(this.$route.params)
 
       if (location == 'prototype') {
-        response = await PrototypeService.publish('library', params)
-      }
-      if (location == 'prototypeLibrary') {
         response = await PrototypeService.publish('libraryAndBooks', params)
       }
       if (location == 'live') {
-        response = await PublishService.publish('library', params)
+        response = await PublishService.publish('libraryAndBooks', params)
       }
       if (response['error']) {
         this.error = response['message']
@@ -140,7 +135,11 @@ export default {
         }
         this.back = '/preview/languages/' + this.$route.params.country_code
         if (this.$route.params.library_code != 'library') {
-          this.back = '/preview/country/' + this.$route.params.country_code
+          this.back =
+            '/preview/libraryIndex/' +
+            this.$route.params.country_code +
+            '/' +
+            this.$route.params.language_iso
         }
         this.readonly = this.authorize(
           'readonly',
@@ -159,14 +158,18 @@ export default {
             this.prototype_text = 'Prototype'
           }
         }
-        if (this.recnum && !this.publish_date && this.prototype_date) {
+        //  if (this.recnum && !this.publish_date && this.prototype_date) {
+        if (this.recnum && this.prototype_date) {
           this.publish = this.authorize(
             'publish',
             this.$route.params.country_code
           )
           if (this.publish) {
             this.prototype = true
-            this.prototype_text = 'Prototype Again'
+            this.prototype_text = 'Prototype Library and Books Again'
+          }
+          if (this.publish_date) {
+            this.publish_text = 'Publish Library and Books Again'
           }
         }
         // end authorization for prototype and publish

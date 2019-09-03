@@ -55,7 +55,7 @@ export default {
       config: {
         extraPlugins: ['bidi', 'uploadimage', 'uploadwidget', 'clipboard'],
         extraAllowedContent: 'ol(*)',
-        contentsCss: '/content/' + this.$route.params.css,
+        contentsCss:  this.$route.params.css,
         stylesSet: this.$route.params.styles_set,
         templates_replaceContent: false,
         templates_files: [

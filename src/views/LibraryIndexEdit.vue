@@ -80,6 +80,7 @@ export default {
   data() {
     return {
       authorized: false,
+      style_error:false,
       content: {
         recnum: '',
         version: '',
@@ -105,7 +106,7 @@ export default {
           'iframe'
         ],
         extraAllowedContent: ['*(*)[id]', 'ol[*]', 'iframe(*)'],
-        contentsCss: '/content/' + this.$route.params.css,
+        contentsCss:  this.$route.params.css,
         stylesSet: this.$route.params.styles_set,
         templates_replaceContent: false,
         templates_files: [

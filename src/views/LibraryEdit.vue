@@ -120,9 +120,9 @@
             <div>
               <h3>Book Image:</h3>
               <div v-if="book.image.$model">
-              <img v-bind:src="book.image.$model.image" class="book" />
-              <br />
-            </div>
+                <img v-bind:src="book.image.$model.image" class="book" />
+                <br />
+              </div>
               <v-select
                 :options="images"
                 label="title"
@@ -145,7 +145,6 @@
                 />
               </label>
             </div>
-            
           </div>
           <div>
             <h3>Format and Styling:</h3>
@@ -298,7 +297,7 @@ export default {
           'iframe'
         ],
         extraAllowedContent: ['*(*)[id]', 'ol[*]', 'iframe(*)'],
-        contentsCss: '/content/' + this.$route.params.css,
+        contentsCss: this.$route.params.css,
         stylesSet: this.$route.params.styles_set,
         templates_replaceContent: false,
         templates_files: [
@@ -423,7 +422,7 @@ export default {
     deleteBookForm(index) {
       this.books.splice(index, 1)
     },
-    handleImageUpload(code) {
+    async handleImageUpload(code) {
       console.log('handleImageUpload: ' + code)
       var checkfile = {}
       var i = 0
@@ -431,24 +430,31 @@ export default {
       for (i = 0; i < arrayLength; i++) {
         checkfile = this.$refs.image[i]['files']
         if (checkfile.length == 1) {
+          console.log('checkfile')
           console.log(checkfile)
           console.log(checkfile[0])
+          console.log(checkfile[0].name)
+          var filename = checkfile[0].name
           var type = AuthorService.typeImage(checkfile[0])
           if (type) {
             var params = {}
             params.directory = 'content/' + this.bookmark.language.image_dir
             params.name = code
-            AuthorService.imageStore(params, checkfile[0])
+            await AuthorService.imageStore(params, checkfile[0])
             // now update data on form
-
+            console.log('code is  ' + code)
             for (i = 0; i < arrayLength; i++) {
               checkfile = this.$v.books.$each[i]
-              if (checkfile.$model.book == code) {
-                this.$v.books.$each[i].$model.image = code + type
+              //              console.log('checkfile.$model.code: ' + checkfile.$model.code)
+              if (checkfile.$model.code == code) {
+                this.$v.books.$each[i].$model.image.title = filename
+                this.$v.books.$each[i].$model.image.image =
+                  '/' + params.directory + '/' + filename
+
+                console.log('trying to assign ' + filename)
               }
             }
-
-            this.saveForm('stay')
+            await this.saveForm('stay')
             this.showForm()
           }
         }
@@ -592,6 +598,7 @@ export default {
         // get images
 
         this.images = await this.getImages(this.bookmark.language.image_dir)
+        console.log(this.images)
 
         // get folders
 

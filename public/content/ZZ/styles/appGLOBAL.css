@@ -47,53 +47,26 @@ div.chapter_number.series {
 /* 
 Navigation Area
 */
+
 #nav{
   max-width: 640px;
+  width:100%;
   margin: 0 auto;
   background-color: white;
 }
+
 .nav {
   justify-content: space-between;
   align-items: center;
    background-color: white;
 }
-img.nav.return{
-  width: 30px;
-  height: 30px;
-  padding-left: 0px;
-}
-img.nav.logo{
-  padding-left: 0px;
-  padding-right: 0px;
-  max-width:220px;
-}
-img.nav.languages{
-  width:30px;
-  height:30px;
-}
-img.nav.share{
-  width:30px;
-  height:30px;
-  padding-right: 0px;
-  padding-left: 5px;
+.nav.full{
+  width:100%;
+  max-width: 620px;
+  margin: 0 auto;
 }
 
-div.nav.return{
-  padding-top: 10px;
-  float:left;
-  width:10%;
-}
-div.nav.logo{
-  width:70%;
-  float:left;
-  text-align:center;
-}
-div.nav.languages,
-div.nav.share{
-  padding-top: 10px;
-  float:left;
-  width:10%;
-}
+
 /*  
 Download Commands
 

@@ -76,7 +76,7 @@ export default {
   },
   created() {
     var scope = 'world'
-    if (this.$route.params.country_code) {
+    if (typeof this.$route.params.country_code != 'undefined') {
       scope = this.$route.params.country_code
     }
     this.authorized = this.authorize('read', scope)
@@ -88,7 +88,7 @@ export default {
     }
     if (this.authorized) {
       this.menu[1].show = true
-      if (this.bookmark.country.code) {
+      if (typeof this.$route.params.country_code  != 'undefined') {
         this.menu[2].show = true
       }
       if (this.$route.params.language_iso && this.$route.params.country_code) {

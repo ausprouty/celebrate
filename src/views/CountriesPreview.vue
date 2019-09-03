@@ -3,7 +3,7 @@
     <NavBar />
     <img v-bind:src="appDir.country + 'world.jpg'" class="app-img-header" />
     <div v-if="this.publish">
-      <button class="button" @click="localPublish('live')">Publish</button>
+      <button class="button" @click="localPublish('live')">  {{ this.publish_text }}</button>
     </div>
     <div v-if="this.prototype">
       <button class="button" @click="localPublish('prototype')">
@@ -47,7 +47,8 @@ export default {
     return {
       authorized: false,
       publish: false,
-      prototype_text: 'Prototype'
+      prototype_text: 'Prototype',
+      publish_text: 'Publish'
     }
   },
   computed: mapState(['appDir', 'user']),
@@ -114,13 +115,16 @@ export default {
             this.prototype_text = 'Prototype'
           }
         }
-        if (this.recnum && !this.publish_date && this.prototype_date) {
+        if (this.recnum && this.prototype_date) {
           console.log('I am checking to see if I can publish')
           this.publish = this.authorize('publish', 'world')
           if (this.publish) {
             console.log('I can publish and prototype again')
             this.prototype = true
             this.prototype_text = 'Prototype Again'
+            if (this.publish_date){
+               this.publish_text = 'Publish Again'
+            }
           }
         }
         // end authorization for prototype and publish

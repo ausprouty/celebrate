@@ -5,15 +5,13 @@
     <div class="error" v-if="error">There was an error...{{ this.error }}</div>
     <div class="content" v-if="loaded">
       <div v-if="this.publish">
-        <button class="button" @click="localPublish('live')">Publish</button>
+        <button class="button" @click="localPublish('live')">  {{ this.publish_text }}</button>
       </div>
       <div v-if="this.prototype">
-        <button class="button" @click="localPublish('prototype')">
-          {{ this.prototype_text }}
-        </button>
+        
         <div v-if="this.prototype_series">
           <button class="button" @click="localPublish('prototypeSeries')">
-            Prototype Entire Series
+              {{ this.prototype_text }}
           </button>
         </div>
       </div>
@@ -92,7 +90,8 @@ export default {
       readonly: false,
       write: false,
       publish: false,
-      prototype_text: 'Prototype',
+      prototype_text: 'Prototype Series and Chapters',
+       publish_text: 'Publish Series and Chapters',
       download_ready: '',
       download_now: '',
       description: '',
@@ -143,13 +142,10 @@ export default {
       //params.bookmark = JSON.stringify(this.bookmark)
       params.route = JSON.stringify(this.$route.params)
       if (location == 'prototype') {
-        response = await PrototypeService.publish('series', params)
-      }
-      if (location == 'prototypeSeries') {
         response = await PrototypeService.publish('seriesAndChapters', params)
       }
       if (location == 'live') {
-        response = await PublishService.publish('series', params)
+        response = await PublishService.publish('seriesAndChapters', params)
       }
       if (response['error']) {
         this.error = response['message']
@@ -174,16 +170,10 @@ export default {
     async loadView() {
       try {
         await this.getSeries(this.$route.params)
-        if (this.recnum) {
-          this.localBookmark(this.recnum)
-        }
-        if (
-          this.bookmark.series.length == 0 &&
-          this.$route.params.filename == 'first_steps'
-        ) {
-          await AuthorService.setupSeriesFirstSteps(this.$route.params)
-          await this.getSeries(this.$route.params)
-        }
+        //if (this.recnum) {
+        //  this.localBookmark(this.recnum)
+//}
+        
         this.series_image_dir =
           this.$route.params.country_code +
           '/' +
@@ -208,14 +198,18 @@ export default {
             this.prototype_text = 'Prototype'
           }
         }
-        if (this.recnum && !this.publish_date && this.prototype_date) {
+       // if (this.recnum && !this.publish_date && this.prototype_date) {
+         if (this.recnum && this.prototype_date) {
           this.publish = this.authorize(
             'publish',
             this.$route.params.country_code
           )
           if (this.publish) {
             this.prototype = true
-            this.prototype_text = 'Prototype Again'
+            this.prototype_text = 'Prototype Series and Chapters Again'
+          }
+          if (this.publish_date){
+            this.publish_text = 'Publish Series and Chapters Again'
           }
         }
         var params = {}
@@ -229,7 +223,7 @@ export default {
         this.loaded = true
         this.loading = false
       } catch (error) {
-        console.log('There was an error in SeriesEdit.vue:', error) // Logs out the error
+        console.log('There was an error in SeriesEdit.vUe:', error) // Logs out the error
       }
     }
   },

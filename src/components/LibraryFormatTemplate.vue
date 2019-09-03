@@ -160,26 +160,30 @@ export default {
           // this.showForm()
         }
       }
+    },
+    async showForm() {
+      await this.CheckBookmarks(this.$route.params)
+      var param = {}
+      param.route = JSON.stringify(this.$route.params)
+      param.image_dir = this.bookmark.language.image_dir
+
+      console.log('image dir: ' + param.image_dir.substring(0, 2))
+      this.image_permission = this.authorize(
+        'write',
+        param.image_dir.substring(0, 1)
+      )
+      // get styles, images and back_buttons
+      var style = await AuthorService.getStyles(param)
+      if (typeof style !== 'undefined') {
+        this.styles = style
+      }
+      this.images = await this.getImages(this.bookmark.language.image_dir)
+      this.back_buttons = await this.getImages('ZZ/images/ribbons')
     }
   },
-  async created() {
-    await this.CheckBookmarks(this.$route.params)
-    var param = {}
-    param.route = JSON.stringify(this.$route.params)
-    param.image_dir = this.bookmark.language.image_dir
 
-    console.log('image dir: ' + param.image_dir.substring(0, 2))
-    this.image_permission = this.authorize(
-      'write',
-      param.image_dir.substring(0, 1)
-    )
-    // get styles, images and back_buttons
-    var style = await AuthorService.getStyles(param)
-    if (typeof style !== 'undefined') {
-      this.styles = style
-    }
-    this.images = await this.getImages(this.bookmark.language.image_dir)
-    this.back_buttons = await this.getImages('ZZ/images/ribbons')
+  async created() {
+    await this.showForm()
   }
 }
 </script>

@@ -12,89 +12,78 @@ import store from '@/store/store.js'
 
 // I want to export a JSON.stringified of response.data.content.text
 export default {
-  publish(scope, params) {
-    console.log('publish')
-    console.log(params)
-    var response = null
+  async publish(scope, params) {
+    var action = null
     params.my_uid = store.state.user.uid
     params.token = store.state.user.token
+    // params.bookmark = JSON.stringify(store.state.bookmark)
+
+    console.log('publish')
+    console.log(params)
     switch (scope) {
+      case 'bookmark':
+        action = 'AuthorApi.php?page=bookmark&action=bookmark'
+        break
       case 'countries':
-        response = this.publishCountries(params)
+        action = 'AuthorApi.php?page=publishCountries&action=publishCountries'
+        break
+      case 'country':
+        action = 'AuthorApi.php?page=publishCountry&action=publishCountry'
         break
       case 'language':
-        response = this.publishLanguage(params)
+        action = 'AuthorApi.php?page=publish&action=publishLanguage'
+        break
+      case 'languages':
+        action = 'AuthorApi.php?page=publishLanguages&action=publishLanguages'
         break
       case 'library':
-        response = this.publishLibrary(params)
+        action = 'AuthorApi.php?page=publishLibrary&action=publishLibrary'
+        break
+      case 'libraryAndBooks':
+        action =
+          'AuthorApi.php?page=publishLibraryAndBooks&action=publishLibraryAndBooks'
+        break
+      case 'libraryIndex':
+        action =
+          'AuthorApi.php?page=publishLibraryIndex&action=publishLibraryIndex'
         break
       case 'series':
-        response = this.publishSeries(params)
+        action = 'AuthorApi.php?page=publishSeries&action=publishSeries'
+        break
+      case 'seriesAndChapters':
+        action =
+          'AuthorApi.php?page=publishSeriesAndChapters&action=publishSeriesAndChapters'
         break
       case 'page':
-        response = this.publishPage(params)
+        action = 'AuthorApi.php?page=publishPage&action=publishPage'
+        break
+      case 'readyTopublishCountry':
+        action =
+          'AuthorApi.php?page=readyTopublish&action=readyTopublishCountry'
+        break
+      case 'readyTopublishLanguage':
+        action =
+          'AuthorApi.php?page=readyTopublish&action=readyTopublishLanguage'
+        break
+      case 'readyTopublishLibrary':
+        action =
+          'AuthorApi.php?page=readyTopublish&action=readyTopublishLibrary'
+        break
+      case 'readyTopublishSeries':
+        action = 'AuthorApi.php?page=readyTopublish&action=readyTopublishSeries'
         break
       case 'default':
-        response = null
+        action = null
     }
+    console.log('action')
+    console.log(action)
+    var contentForm = this.toFormData(params)
+    var response = await apiSECURE.post(action, contentForm)
     console.log('result of publish')
     console.log(response)
     return response
   },
-  publishCountries(params) {
-    console.log('in publishCountries')
-    var contentForm = this.toFormData(params)
-    var response = apiSECURE.post(
-      'TestApi.php?page=publish&action=publishCountries',
-      contentForm
-    )
-    return response
-  },
-  publishLanguage(params) {
-    var contentForm = this.toFormData(params)
-    var response = apiSECURE.post(
-      'TestApi.php?page=publish&action=publishLanguage',
-      contentForm
-    )
-    return response
-  },
-  publishLibrary(params) {
-    var contentForm = this.toFormData(params)
-    var response = apiSECURE.post(
-      'AuthorApi.php?page=prototypeLibrary',
-      contentForm
-    )
-    return response
-  },
-  publishLibraryIndex(params) {
-    var contentForm = this.toFormData(params)
-    var response = apiSECURE.post(
-      'AuthorApi.php?page=prototypeLibraryIndex',
-      contentForm
-    )
-    return response
-  },
-  publishSeries(params) {
-    console.log('params in publish Series')
-    console.log(params)
-    var contentForm = this.toFormData(params)
-    var response = apiSECURE.post(
-      'AuthorApi.php?action=prototypeSeries',
-      contentForm
-    )
-    return response
-  },
-  publishPage(params) {
-    console.log('params in publish Page')
-    console.log(params)
-    var contentForm = this.toFormData(params)
 
-    var response = apiSECURE.post(
-      'TestApi.php?page=publish&action=publishPage',
-      contentForm
-    )
-    return response
-  },
   toFormData(obj) {
     var form_data = new FormData()
     for (var key in obj) {
@@ -102,7 +91,7 @@ export default {
     }
     // Display the key/value pairs
     for (var pair of form_data.entries()) {
-      // console.log(pair[0] + ', ' + pair[1])
+      //  console.log(pair[0] + ', ' + pair[1])
     }
     console.log(form_data)
     return form_data

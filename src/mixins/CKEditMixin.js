@@ -13,7 +13,7 @@ export const ckEditMixin = {
           'iframe'
         ],
         extraAllowedContent: ['*(*)[id]', 'ol[*]', 'iframe(*)'],
-        contentsCss: '/content/' + this.$route.params.css,
+        contentsCss: this.$route.params.css,
         stylesSet: this.$route.params.styles_set,
         templates_replaceContent: false,
         templates_files: [

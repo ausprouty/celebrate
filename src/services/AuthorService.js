@@ -40,8 +40,9 @@ export default {
       contentForm
     )
     console.log('response for bookmark')
-    console.log(res.data.content)
-    if (res.error != true) {
+    console.log(res.data)
+    
+    if (res.data.content) {
       store.dispatch('updateAllBookmarks', res.data.content)
     } else {
       store.dispatch('newBookmark', null)
