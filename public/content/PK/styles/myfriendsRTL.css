@@ -122,6 +122,9 @@ vertical-align: middle;
 width: 30px;
 
 }
+ol{
+    list-style-type:arabic-indic;
+}
 
 li.ltr{
 color:var(--color-red);

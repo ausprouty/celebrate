@@ -10,7 +10,7 @@
       <div v-if="this.prototype">
         
         <div v-if="this.prototype_series">
-          <button class="button" @click="localPublish('prototypeSeries')">
+          <button class="button" @click="localPublish('prototype')">
               {{ this.prototype_text }}
           </button>
         </div>

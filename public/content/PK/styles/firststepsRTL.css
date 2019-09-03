@@ -132,9 +132,7 @@ green var(--color-forward)
     }
     
     
-    div.rtl{
-    margin-right:55px;
-    }
+    
     
     h1{
     color:black;
@@ -207,6 +205,9 @@ green var(--color-forward)
     }
     li.forward:before{
     color:var(--color-forward);
+    }
+    ol{
+        list-style-type:arabic-indic;
     }
     ol.ol-back{
     color:var(--color-back);
