@@ -121,3 +121,19 @@ h1.list_header{
 div.float left{
   float:left;
 }
+
+@media only screen and (max-width: 500px) {
+  div.book,
+  div.chapter-title,
+  div.chapter,
+  div.card-names,
+  div.card_language {
+    font-size:12px;
+  }
+  .title{
+    font-size:16px;
+  }
+  .app-card {
+    padding: 5px;
+  }
+}

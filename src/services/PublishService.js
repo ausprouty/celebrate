@@ -36,6 +36,10 @@ export default {
       case 'languages':
         action = 'AuthorApi.php?page=publishLanguages&action=publishLanguages'
         break
+      case 'languagesAvailable':
+        action =
+          'AuthorApi.php?page=publishLanguagesAvailable&action=publishLanguagesAvailable'
+        break
       case 'library':
         action = 'AuthorApi.php?page=publishLibrary&action=publishLibrary'
         break

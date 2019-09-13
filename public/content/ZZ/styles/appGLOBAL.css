@@ -5,13 +5,12 @@ STructural Elements
 
 #app {
   box-sizing: border-box;
-  width: 100%;
+  width: 90%;
   background-color: #fff6de;
   padding: 0px 0px 0px 0px;
   margin: 0 auto;
 }
 div.content{
-  width:100%;
   max-width:620px;
   background-color:white;
   margin: 0 auto;

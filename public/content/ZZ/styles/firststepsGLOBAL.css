@@ -11,6 +11,12 @@ green #1ca0a6
 --color-forward: #1ca0a6;
 --color-background: #efefef;
 }
+:root {
+  --color-back:  black;
+  --color-up:black;
+  --color-forward: black;
+  --color-background: #efefef;
+  }
 p{
     text-align: left;
 }

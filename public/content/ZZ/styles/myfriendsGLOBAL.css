@@ -391,7 +391,8 @@ div.lesson.rtl {
   position: relative;
   text-align:right;
   }
-div.lesson-subtitle {
+div.lesson-subtitle,
+div.lesson-section {
 bottom: 0;
 color:var(--color-black);
 font-size: 30px;
@@ -463,4 +464,12 @@ p.footer{
 }
 div.float left{
   float:left;
+}
+@media only screen and (max-width: 500px) {
+  p.footer{
+    letter-spacing: 0.1em;
+  }
+  h1{
+    font-size: 24px;
+  }
 }

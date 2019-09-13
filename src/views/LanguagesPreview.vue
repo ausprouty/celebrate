@@ -5,7 +5,9 @@
     <div class="error" v-if="error">There was an error... {{ this.error }}</div>
     <div class="content" v-if="loaded">
       <div v-if="this.publish">
-        <button class="button" @click="localPublish('live')">Publish</button>
+        <button class="button" @click="localPublish('live')">
+          {{ this.publish_text }}
+        </button>
       </div>
       <div v-if="this.prototype">
         <button class="button" @click="localPublish('prototype')">
@@ -64,7 +66,8 @@ export default {
       readonly: false,
       write: false,
       publish: false,
-      prototype_text: 'Prototype Library and',
+      prototype_text: 'Prototype',
+      publish_text: 'Publish',
       more_languages: 'More Languages',
       choose_language: 'Choose Language'
     }
@@ -94,7 +97,7 @@ export default {
       var response = null
       var params = {}
       params.recnum = this.recnum
-     // params.bookmark = JSON.stringify(this.bookmark)
+      // params.bookmark = JSON.stringify(this.bookmark)
       params.route = JSON.stringify(this.$route.params)
       if (location == 'prototype') {
         response = await PrototypeService.publish('languages', params)
@@ -116,7 +119,7 @@ export default {
     async localBookmark(recnum) {
       var param = {}
       param.recnum = recnum
-       param.library_code = this.$route.params.library_code
+      param.library_code = this.$route.params.library_code
       var bm = await PrototypeService.publish('bookmark', param)
       console.log('localBookmark')
       console.log(bm)
@@ -144,7 +147,7 @@ export default {
             this.prototype_text = 'Prototype'
           }
         }
-        if (this.recnum && !this.publish_date && this.prototype_date) {
+        if (this.recnum && this.prototype_date) {
           this.publish = this.authorize(
             'publish',
             this.$route.params.country_code
@@ -152,6 +155,11 @@ export default {
           if (this.publish) {
             this.prototype = true
             this.prototype_text = 'Prototype Again'
+            if (this.publish_date) {
+              this.publish_text = 'Publish Again'
+            } else {
+              this.publish_text = 'Publish'
+            }
           }
         }
         // end authorization for prototype and publish

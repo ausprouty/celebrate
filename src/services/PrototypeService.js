@@ -38,13 +38,17 @@ export default {
         action =
           'AuthorApi.php?page=prototypeLanguages&action=prototypeLanguages'
         break
+      case 'languagesAvailable':
+        action =
+          'AuthorApi.php?page=prototypeLanguagesAvailable&action=prototypeLanguagesAvailable'
+        break
       case 'library':
         action = 'AuthorApi.php?page=prototypeLibrary&action=prototypeLibrary'
         break
-        case 'libraryAndBooks':
-          action =
-            'AuthorApi.php?page=prototypeLibraryAndBooks&action=prototypeLibraryAndBooks'
-          break
+      case 'libraryAndBooks':
+        action =
+          'AuthorApi.php?page=prototypeLibraryAndBooks&action=prototypeLibraryAndBooks'
+        break
       case 'libraryIndex':
         action =
           'AuthorApi.php?page=prototypeLibraryIndex&action=prototypeLibraryIndex'

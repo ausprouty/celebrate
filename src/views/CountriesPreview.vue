@@ -75,8 +75,10 @@ export default {
       params.route = JSON.stringify(this.$route.params)
       if (location == 'prototype') {
         response = await PrototypeService.publish('countries', params)
+        PrototypeService.publish('languages', params)
       } else {
         response = await PublishService.publish('countries', params)
+        PublishService.publish('languages', params)
       }
 
       if (response['error']) {
