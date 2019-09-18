@@ -6,7 +6,16 @@
       There was an error... {{ this.error_message }}
     </div>
     <div class="content" v-if="loaded">
-      <h1>Countries</h1>
+      <h1>
+        Countries
+        <a
+          target="_blank"
+          class="help"
+          href="/preview/page/HD/eng/library/help-1/countries_edit"
+        >
+          <img class="help-icon" src="/images/icons/help.png" />
+        </a>
+      </h1>
       <div
         v-for="(country, index) in $v.countries.$each.$iter"
         :key="country.code.$model"
@@ -57,12 +66,15 @@
               @blur="country.code.$touch()"
               @input="forceUpperCODE(country.code.$model)"
             />
+
+            <br />
+            <br />
             <div v-if="!country.code.$model">
               <p>
                 <a
                   target="a_blank"
                   href="https://en.wikipedia.org/wiki/List_of_ISO_3166_country_codes"
-                  >Reference File</a
+                  >Country Reference File</a
                 >
               </p>
             </div>
@@ -86,7 +98,7 @@
                 <a
                   target="a_blank"
                   href="https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes"
-                  >Reference File -- use 639-2/B</a
+                  >Language Reference File -- use 639-2/B</a
                 >
               </p>
             </div>

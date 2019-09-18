@@ -14,7 +14,13 @@
         </p>
       </div>
       <div v-if="this.authorized">
-        <h1>Languages for {{ this.$route.params.country_code }}</h1>
+        <h1>Languages for {{ this.$route.params.country_code }} <a
+            target="_blank"
+            class="help"
+            href="/preview/page/HD/eng/library/help-1/languages_sort"
+          >
+            <img class="help-icon" src="/images/icons/help.png" />
+          </a></h1>
         <div>
           <draggable v-model="languages">
             <transition-group>

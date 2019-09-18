@@ -3,14 +3,25 @@
     <NavBar />
     <img v-bind:src="appDir.country + 'world.jpg'" class="app-img-header" />
     <div v-if="this.publish">
-      <button class="button" @click="localPublish('live')">  {{ this.publish_text }}</button>
+      <button class="button" @click="localPublish('live')">
+        {{ this.publish_text }}
+      </button>
     </div>
     <div v-if="this.prototype">
       <button class="button" @click="localPublish('prototype')">
         {{ this.prototype_text }}
       </button>
     </div>
-    <h1>Select Country (Preview Mode)</h1>
+    <h1>
+      Select Country
+      <a
+        target="_blank"
+        class="help"
+        href="/preview/page/HD/eng/library/help-1/countries_select"
+      >
+        <img class="help-icon" src="/images/icons/help.png" />
+      </a>
+    </h1>
     <Country
       v-for="country in countries"
       :key="country.code"
@@ -124,8 +135,8 @@ export default {
             console.log('I can publish and prototype again')
             this.prototype = true
             this.prototype_text = 'Prototype Again'
-            if (this.publish_date){
-               this.publish_text = 'Publish Again'
+            if (this.publish_date) {
+              this.publish_text = 'Publish Again'
             }
           }
         }

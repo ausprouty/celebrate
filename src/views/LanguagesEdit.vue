@@ -6,7 +6,13 @@
     <div class="error" v-if="error">There was an error... {{ this.error_message }}</div>
     <div class="content" v-if="loaded">
       <div v-if="this.authorized">
-        <h1>Languages for {{ this.$route.params.country_code }}</h1>
+        <h1>Languages for {{ this.$route.params.country_code }} <a
+            target="_blank"
+            class="help"
+            href="/preview/page/HD/eng/library/help-1/languages_edit"
+          >
+            <img class="help-icon" src="/images/icons/help.png" />
+          </a></h1>
         <div class="form">
           <BaseInput
             v-model="choose_language"

@@ -173,7 +173,7 @@ button {
   border-radius: 6px;
   text-align: center;
   padding: 0 40px;
-  height: 36px;
+
 }
 .button.red {
   background-color: red;
@@ -471,5 +471,12 @@ div.float left{
   }
   h1{
     font-size: 24px;
+  }
+  div.lesson-subtitle, div.lesson-section {
+    font-size: 14px;
+    font-weight:700;
+  }
+  p,p.myfriends-gospel-text{
+    font-size:12pt;
   }
 }

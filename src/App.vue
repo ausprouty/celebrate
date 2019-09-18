@@ -18,7 +18,7 @@
   --color-forward: #1ca0a6;
 }
 #offline-ready {
-  color:  var(--color-up);
+  color: var(--color-up);
 }
 .cache-series {
   background-color: var(--color-up);
@@ -242,6 +242,10 @@ img.sortable {
   height: 30px;
   width: 30px;
 }
+img.screen-shot {
+  border-style:solid;
+  padding:10px;
+}
 label {
   color: rgba(0, 0, 0, 0.5);
   font-weight: 700;
@@ -363,6 +367,12 @@ img.app-img-header {
 
   text-decoration: none;
   font-weight: 100;
+}
+img.help-icon {
+  height: 30px;
+  width: 30px;
+  padding-left: 30px;
+  padding-right: 30px;
 }
 label,
 .bold {

@@ -28,7 +28,7 @@ export const seriesMixin = {
       error_message: null,
       prototype: false,
       prototype_date: null,
-      prototype_series:false,
+      prototype_series: false,
       publish: false,
       publish_date: null,
       download_now: 'Download for offline use',
@@ -60,16 +60,25 @@ export const seriesMixin = {
         this.loading = true
         var ok = await this.CheckBookmarks(params)
         var response = await ContentService.getSeries(params)
-        console.log('Series Data obtained')
-        console.log(response)
-        if (response.data.content.text) {
+
+        if (typeof response == 'undefined') {
+          console.log('No Series Data obtained')
+          this.chapters = []
+          this.description = null
+          this.loaded = true
+          this.loading = false
+          return
+        }
+        if (typeof response.data.content.text != 'undefined') {
+          console.log('Series Data obtained')
+          console.log(response)
           // latest data
-          if (response.data.content.recnum) {
+          if (typeof response.data.content.recnum != 'undefined') {
             this.recnum = response.data.content.recnum
             this.publish_date = response.data.content.publish_date
             this.prototype_date = response.data.content.prototype_date
           }
-         // this.seriesDetails = JSON.parse(response.data.content.text)
+          // this.seriesDetails = JSON.parse(response.data.content.text)
           this.seriesDetails = response.data.content.text
           console.log('Series Details')
           console.log(this.seriesDetails)

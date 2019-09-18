@@ -14,5 +14,13 @@ export default {
         encodeURIComponent(text + ' - ') +
         location.href
     }
+  },
+  facebook(){
+    var link = ''
+    link = 'https://facebook.com/339218283324109' //  website: 
+    //link = 'fb://profile/339218283324109' // IOS
+   // link = 'fb://page/339218283324109' // Adroid
+    window.open(link)
+
   }
 }

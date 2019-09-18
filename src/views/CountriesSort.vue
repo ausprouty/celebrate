@@ -5,7 +5,16 @@
     <div class="error" v-if="error">There was an error... {{ this.error }}</div>
     <div class="content" v-if="loaded">
       <div v-if="this.authorized">
-        <h1>Countries</h1>
+        <h1>
+          Countries
+          <a
+            target="_blank"
+            class="help"
+            href="/preview/page/HD/eng/library/help-1/countries_sort"
+          >
+            <img class="help-icon" src="/images/icons/help.png" />
+          </a>
+        </h1>
         <div>
           <draggable v-model="countries">
             <transition-group>
