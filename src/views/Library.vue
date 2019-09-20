@@ -1,21 +1,27 @@
 <template>
   <div>
-    <NavBar/>
+    <NavBar />
     <div class="loading" v-if="loading">Loading...</div>
-    <div class="error" v-if="error">There was an error... {{this.error}}</div>
+    <div class="error" v-if="error">There was an error... {{ this.error }}</div>
     <div class="content" v-if="loaded">
       <a v-bind:href="'/languages/' + this.bookmark.country.code">
-        <img v-bind:src="appDir.library +  this.image_dir +'/journey.jpg'" class="app-img-header">
+        <img
+          v-bind:src="appDir.library + this.image_dir + '/journey.jpg'"
+          class="app-img-header"
+        />
       </a>
-
-      <Book v-for="book in library" :key="book.title" :book="book"/>
+      <div>
+        <a href="/content/HD/images/standard/standard.zip"
+          >Download Standard Images to Edit</a
+        >
+      </div>
+      <Book v-for="book in library" :key="book.title" :book="book" />
       <div class="version">
         <p class="version">Version 1.01</p>
       </div>
     </div>
   </div>
 </template>
-
 
 <script>
 import Book from '@/components/Book.vue'

@@ -16,6 +16,13 @@
       <div v-if="this.authorized">
         <h1>
           {{ this.bookmark.language.name }} -- {{ this.bookmark.country.name }}
+           <a
+            target="_blank"
+            class="help"
+            href="/preview/page/HD/eng/library/help-1/library_index_edit"
+          >
+            <img class="help-icon" src="/images/icons/help.png" />
+          </a>
         </h1>
         <p>
           <vue-ckeditor v-model="pageText" :config="config" />

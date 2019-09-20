@@ -14,19 +14,22 @@
         </p>
       </div>
       <div v-if="this.authorized">
-        <h1>Languages for {{ this.$route.params.country_code }} <a
+        <h1>
+          Languages for {{ this.$route.params.country_code }}
+          <a
             target="_blank"
             class="help"
             href="/preview/page/HD/eng/library/help-1/languages_sort"
           >
             <img class="help-icon" src="/images/icons/help.png" />
-          </a></h1>
+          </a>
+        </h1>
         <div>
           <draggable v-model="languages">
             <transition-group>
               <div
                 v-for="language in languages"
-                :key="language.id"
+                :key="language.iso"
                 :language="language"
               >
                 <div class="shadow-card -shadow">
@@ -91,10 +94,15 @@ export default {
     },
     async saveForm() {
       try {
-        this.$store.dispatch('newBookmark', 'clear')
-        var valid = ContentService.validate(this.library)
+        var output = {}
+        output.languages = this.languages
+        output.more_languages = this.more_languages
+        output.choose_language = this.choose_language
+        console.log('output')
+        console.log(output)
+        var valid = ContentService.validate(output)
         this.content.text = JSON.stringify(valid)
-        this.content.filename = 'languages'
+        this.$route.params.filename = 'languages'
         this.content.filetype = 'json'
         this.content.route = JSON.stringify(this.$route.params)
         var response = await AuthorService.createContentData(this.content)

@@ -38,7 +38,7 @@
 </template>
 
 <script>
-import Vuex from 'vuex'
+
 import { mapState } from 'vuex'
 import NavBar from '@/components/NavBarAdmin.vue'
 import Country from '@/components/CountryPreview.vue'

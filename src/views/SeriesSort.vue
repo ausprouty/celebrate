@@ -29,7 +29,7 @@
             <transition-group>
               <div
                 v-for="chapter in chapters"
-                :key="chapter.id"
+                :key="chapter.title"
                 :book="chapter"
               >
                 <div class="shadow-card -shadow">

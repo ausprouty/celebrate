@@ -13,7 +13,16 @@
       </div>
 
       <div v-if="this.authorized">
-        <h1>Library</h1>
+        <h1>
+          Library
+          <a
+            target="_blank"
+            class="help"
+            href="/preview/page/HD/eng/library/help-1/library_sort"
+          >
+            <img class="help-icon" src="/images/icons/help.png" />
+          </a>
+        </h1>
         <div>
           <draggable v-model="books">
             <transition-group>
@@ -83,7 +92,7 @@ export default {
       try {
         var output = {}
         output.books = this.books
-        output.image = this.image
+        output.format = this.format
         output.text = this.text
         var valid = ContentService.validate(output)
         this.content.text = JSON.stringify(valid)

@@ -10,7 +10,7 @@
       <option
         v-for="option in options"
         :value="option"
-        :key="option.id"
+        :key="option"
         :selected="option === value"
         >{{ option }}</option
       >

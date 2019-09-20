@@ -15,11 +15,19 @@
           {{ this.prototype_text }}
         </button>
       </div>
+       <a
+            target="_blank"
+            class="help"
+            href="/preview/page/HD/eng/library/help-1/library_preview"
+          >
+            <img class="help-icon" src="/images/icons/help.png" />
+          </a>
       <hr class="border" />
       <a v-bind:href="this.back">
         <img v-bind:src="this.format.image.image" class="app-img-header" />
       </a>
       <div>
+        
         <span v-html="text"></span>
       </div>
 

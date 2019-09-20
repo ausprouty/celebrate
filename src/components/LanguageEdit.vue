@@ -32,7 +32,7 @@
           <a
             target="a_blank"
             href="https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes"
-            >Reference File</a
+            >Language ISO Reference File</a
           >
         </p>
       </div>
@@ -101,7 +101,7 @@
         </div>
         <template v-if="language.image_dir.$error">
           <p v-if="!language.image_dir.required" class="errorMessage">
-            Menu directory is required
+            Image Folder is required
           </p>
         </template>
         <input type="checkbox" id="checkbox" v-model="language.titles.$model" />

@@ -21,13 +21,16 @@
         />
       </a>
 
-      <h1>{{ this.choose_language }} <a
-            target="_blank"
-            class="help"
-            href="/preview/page/HD/eng/library/help-1/languages_preview"
-          >
-            <img class="help-icon" src="/images/icons/help.png" />
-          </a></h1>
+      <h1>
+        {{ this.choose_language }}
+        <a
+          target="_blank"
+          class="help"
+          href="/preview/page/HD/eng/library/help-1/languages"
+        >
+          <img class="help-icon" src="/images/icons/help.png" />
+        </a>
+      </h1>
       <Language
         v-for="language in languages"
         :key="language.iso"

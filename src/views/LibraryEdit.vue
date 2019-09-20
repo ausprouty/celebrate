@@ -17,7 +17,16 @@
         </p>
       </div>
       <div v-if="this.authorized">
-        <h1>Library</h1>
+        <h1>
+          Library
+          <a
+            target="_blank"
+            class="help"
+            href="/preview/page/HD/eng/library/help-1/library_edit"
+          >
+            <img class="help-icon" src="/images/icons/help.png" />
+          </a>
+        </h1>
         <div v-if="images">
           <img v-bind:src="this.format.image.image" class="header" />
           <br />
@@ -500,16 +509,15 @@ export default {
         if (checkfile.length == 1) {
           console.log(' i is ' + i)
           console.log(checkfile[0])
-          var book = this.library[i]
           var type = AuthorService.typeTemplate(checkfile[0])
           if (type) {
             console.log('type ok')
             console.log(checkfile)
             var params = {}
-            params.filename = checkfile[0]
+            params.file = checkfile[0]
             params.country_code = this.$route.params.country_code
             params.language_iso = this.$route.params.language_iso
-            params.folder_name = book.folder
+            params.folder_name = code
             console.log(params)
             type = await AuthorService.createTemplate(params)
             if (type) {
@@ -548,8 +556,6 @@ export default {
         var output = {}
         output.books = this.books
         output.format = this.format
-        console.log('output.format')
-        console.log(output.format)
         output.text = this.text
         var valid = ContentService.validate(output)
         this.content.text = JSON.stringify(valid)
@@ -686,10 +692,5 @@ export default {
 
 .float-right {
   text-align: right;
-}
-
-img {
-  width: 50%;
-  max-width: 200px;
 }
 </style>

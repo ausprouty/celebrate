@@ -14,7 +14,13 @@
       </div>
       <link rel="stylesheet" href="/content/ZZ/styles/appGlobal.css" />
       <link rel="stylesheet" v-bind:href="style" />
-
+ <a
+            target="_blank"
+            class="help"
+            href="/preview/page/HD/eng/library/help-1/library_index_preview"
+          >
+            <img class="help-icon" src="/images/icons/help.png" />
+          </a>
       <hr class="border" />
       <span v-html="pageText"></span>
       <br />

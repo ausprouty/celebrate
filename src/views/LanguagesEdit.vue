@@ -3,16 +3,21 @@
     <NavBar />
 
     <div class="loading" v-if="loading">Loading...</div>
-    <div class="error" v-if="error">There was an error... {{ this.error_message }}</div>
+    <div class="error" v-if="error">
+      There was an error... {{ this.error_message }}
+    </div>
     <div class="content" v-if="loaded">
       <div v-if="this.authorized">
-        <h1>Languages for {{ this.$route.params.country_code }} <a
+        <h1>
+          Languages for {{ this.$route.params.country_code }}
+          <a
             target="_blank"
             class="help"
             href="/preview/page/HD/eng/library/help-1/languages_edit"
           >
             <img class="help-icon" src="/images/icons/help.png" />
-          </a></h1>
+          </a>
+        </h1>
         <div class="form">
           <BaseInput
             v-model="choose_language"
@@ -34,20 +39,26 @@
         <br />
         <hr />
         <div>
-          <button class="button" @click="publishAll">Select ALL to publish?</button>
+          <button class="button" @click="publishAll">
+            Select ALL to publish?
+          </button>
           <LanguageEdit
             v-for="language in $v.languages.$each.$iter"
             :key="language.id"
             :language="language"
           />
-          <button class="button" @click="addNewLanguageForm">New Language</button>
+          <button class="button" @click="addNewLanguageForm">
+            New Language
+          </button>
         </div>
         <div v-if="!$v.$anyError">
           <button class="button red" @click="saveForm">Save Changes</button>
         </div>
         <div v-if="$v.$anyError">
           <button class="button grey">Disabled</button>
-          <p v-if="$v.$anyError" class="errorMessage">Please fill out the required field(s).</p>
+          <p v-if="$v.$anyError" class="errorMessage">
+            Please fill out the required field(s).
+          </p>
         </div>
       </div>
       <div v-if="!this.authorized">
@@ -162,8 +173,9 @@ export default {
         var valid = ContentService.validate(output)
         this.content.text = JSON.stringify(valid)
         this.$route.params.filename = 'languages'
-        this.content.route = JSON.stringify(this.$route.params)
         this.content.filetype = 'json'
+        this.content.route = JSON.stringify(this.$route.params)
+       
         console.log('going to directory languages')
         console.log(this.content)
         AuthorService.createDirectoryLanguages(this.content)
