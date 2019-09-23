@@ -7,8 +7,14 @@
     </div>
     <div class="content" v-if="loaded">
       <h1>
-        Series for {{ this.$route.params.country_code }} in
-        {{ this.$route.params.language_iso }}
+        {{ this.bookmark.book.title }}
+        <a
+          target="_blank"
+          class="help"
+          href="/preview/page/HD/eng/library/help-1/seriesedit"
+        >
+          <img class="help-icon" src="/images/icons/help.png" />
+        </a>
       </h1>
       <div class="form">
         <BaseTextarea
@@ -19,7 +25,6 @@
           class="field"
         />
       </div>
-     
 
       <br />
       <hr />
@@ -351,7 +356,7 @@ export default {
     async showForm() {
       try {
         this.getSeries(this.$route.params)
-        console.log ('I got series')
+        console.log('I got series')
         // get images
         var param = {}
         param.series_image_dir =

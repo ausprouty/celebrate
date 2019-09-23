@@ -5,17 +5,25 @@
     <div class="error" v-if="error">There was an error...{{ this.error }}</div>
     <div class="content" v-if="loaded">
       <div v-if="this.publish">
-        <button class="button" @click="localPublish('live')">  {{ this.publish_text }}</button>
+        <button class="button" @click="localPublish('live')">
+          {{ this.publish_text }}
+        </button>
       </div>
       <div v-if="this.prototype">
-        
         <div v-if="this.prototype_series">
           <button class="button" @click="localPublish('prototype')">
-              {{ this.prototype_text }}
+            {{ this.prototype_text }}
           </button>
         </div>
       </div>
       <div>
+        <a
+              target="_blank"
+              class="help"
+              href="/preview/page/HD/eng/library/help-1/series_preview"
+            >
+              <img class="help-icon" src="/images/icons/help.png" />
+            </a>
         <link rel="stylesheet" v-bind:href="this.style" />
         <div class="app-link">
           <div class="app-card -shadow">
@@ -26,8 +34,11 @@
             />
           </div>
         </div>
+          
         <div v-if="!bookmark.language.titles">
-          <h2>{{ bookmark.book.title }}</h2>
+          <h2>
+            {{ bookmark.book.title }}
+          </h2>
         </div>
         <div v-if="this.description">{{ this.description }}</div>
         <br />
@@ -91,7 +102,7 @@ export default {
       write: false,
       publish: false,
       prototype_text: 'Prototype Series and Chapters',
-       publish_text: 'Publish Series and Chapters',
+      publish_text: 'Publish Series and Chapters',
       download_ready: '',
       download_now: '',
       description: '',
@@ -172,8 +183,8 @@ export default {
         await this.getSeries(this.$route.params)
         //if (this.recnum) {
         //  this.localBookmark(this.recnum)
-//}
-        
+        //}
+
         this.series_image_dir =
           this.$route.params.country_code +
           '/' +
@@ -198,8 +209,8 @@ export default {
             this.prototype_text = 'Prototype'
           }
         }
-       // if (this.recnum && !this.publish_date && this.prototype_date) {
-         if (this.recnum && this.prototype_date) {
+        // if (this.recnum && !this.publish_date && this.prototype_date) {
+        if (this.recnum && this.prototype_date) {
           this.publish = this.authorize(
             'publish',
             this.$route.params.country_code
@@ -208,7 +219,7 @@ export default {
             this.prototype = true
             this.prototype_text = 'Prototype Series and Chapters Again'
           }
-          if (this.publish_date){
+          if (this.publish_date) {
             this.publish_text = 'Publish Series and Chapters Again'
           }
         }

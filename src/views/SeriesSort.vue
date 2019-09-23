@@ -14,17 +14,18 @@
         </p>
       </div>
       <div v-if="this.authorized">
-        <h1>Series for {{ this.$route.params.country_code }}</h1>
+        <h1>
+           Sort {{ this.bookmark.book.title }}
+          <a
+            target="_blank"
+            class="help"
+            href="/preview/page/HD/eng/library/help-1/series_sort"
+          >
+            <img class="help-icon" src="/images/icons/help.png" />
+          </a>
+        </h1>
         <div class="form">
-          <span>Series Description:</span>
-          <br />
-          <textarea
-            v-model="seriesDetails.description"
-            placeholder="add multiple lines"
-          ></textarea>
-        </div>
-        <div>
-          <button class="button" @click="addNewChapterForm">New Chapter</button>
+         
           <draggable v-model="chapters">
             <transition-group>
               <div
