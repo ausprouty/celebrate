@@ -27,8 +27,26 @@
         </div>
         <h1 v-if="this.bookmark.page.count">
           {{ this.bookmark.page.count }}. {{ this.bookmark.page.title }}
+          <a
+            target="_blank"
+            class="help"
+            href="/preview/page/HD/eng/library/help-1/page_edit"
+          >
+            <img class="help-icon" src="/images/icons/help.png" />
+          </a>
         </h1>
-        <h1 v-else>{{ this.bookmark.page.title }}</h1>
+
+        <h1 v-else>
+          {{ this.bookmark.page.title }}
+          <a
+            target="_blank"
+            class="help"
+            href="/preview/page/HD/eng/library/help-1/page_edit"
+          >
+            <img class="help-icon" src="/images/icons/help.png" />
+          </a>
+        </h1>
+
         <div v-if="this.need_template">
           <div class="form">
             <BaseSelect
@@ -118,9 +136,25 @@ export default {
         text: ''
       },
       config: {
-        extraPlugins: ['bidi', 'uploadimage', 'uploadwidget', 'clipboard'],
-        extraAllowedContent: ['*(*)[id]', 'ol[*]', 'span[*]', 'align[*]'],
-        contentsCss:  this.$route.params.css,
+        extraPlugins: [
+          'bidi',
+          'uploadimage',
+          'iframe',
+          'uploadwidget',
+          'clipboard',
+          'videoembed',
+          'templates'
+        ],
+        extraAllowedContent: [
+          '*(*)[id]',
+          'ol[*]',
+          'span[*]',
+          'align[*]',
+          'webkitallowfullscreen',
+          'mozallowfullscreen',
+          'allowfullscreen'
+        ],
+        contentsCss: this.$route.params.css,
         stylesSet: this.$route.params.styles_set,
         templates_replaceContent: false,
         templates_files: [
@@ -157,9 +191,9 @@ export default {
           },
           { name: 'colors', groups: ['colors'] }
         ],
-        height: 600,
-        removeButtons:
-          'About,Button,Checkbox,CreatePlaceholder,DocProps,Flash,Form,HiddenField,Iframe,NewPage,PageBreak,Preview,Print,Radio,Save,Scayt,Select,Smiley,SpecialChar,TextField,Textarea'
+        height: 600
+        // removeButtons:
+        //   'About,Button,Checkbox,CreatePlaceholder,DocProps,Flash,Form,HiddenField,Iframe,NewPage,PageBreak,Preview,Print,Radio,Save,Scayt,Select,Smiley,SpecialChar,TextField,Textarea'
       }
     }
   },

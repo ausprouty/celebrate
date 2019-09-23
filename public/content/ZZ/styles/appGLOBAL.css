@@ -194,3 +194,25 @@ img.screen-shot{
   border-style:solid;
   padding:10px;
 }
+div.iframe-container{
+  align-content: center;
+}
+.iframe-container {
+  overflow: hidden;
+  padding-top: 56.25%;
+  position: relative;
+}
+ 
+.iframe-container iframe {
+   border: 0;
+   height: 100%;
+   left: 10px;
+   right:10px;
+   position: absolute;
+   top: 0;
+   width: 95%;
+}
+ 
+/* 4x3 Aspect Ratio */
+.iframe-container-4x3 {
+  padding-top: 75%;
