@@ -10,7 +10,7 @@
           <a
             target="_blank"
             class="help"
-            href="https://prototype.myfriends.network/content/HD/eng/help-1/countries_sort"
+            href="https://prototype.myfriends.network/content/HD/eng/help-1/countries_sort.html"
           >
             <img class="help-icon" src="/images/icons/help.png" />
           </a>

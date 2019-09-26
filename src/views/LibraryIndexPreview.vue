@@ -5,7 +5,9 @@
     <div class="error" v-if="error">There was an error... {{ this.error }}</div>
     <div class="content" v-if="loaded">
       <div v-if="this.publish">
-        <button class="button" @click="localPublish('live')"> {{ this.publish_text }}</button>
+        <button class="button" @click="localPublish('live')">
+          {{ this.publish_text }}
+        </button>
       </div>
       <div v-if="this.prototype">
         <button class="button" @click="localPublish('prototype')">
@@ -14,13 +16,13 @@
       </div>
       <link rel="stylesheet" href="/content/ZZ/styles/appGlobal.css" />
       <link rel="stylesheet" v-bind:href="style" />
- <a
-            target="_blank"
-            class="help"
-            href="https://prototype.myfriends.network/content/HD/eng/help-1/library_index_preview"
-          >
-            <img class="help-icon" src="/images/icons/help.png" />
-          </a>
+      <a
+        target="_blank"
+        class="help"
+        href="https://prototype.myfriends.network/content/HD/eng/help-1/library_index_preview.html"
+      >
+        <img class="help-icon" src="/images/icons/help.png" />
+      </a>
       <hr class="border" />
       <span v-html="pageText"></span>
       <br />
@@ -126,7 +128,7 @@ export default {
             this.prototype_text = 'Prototype'
           }
         }
-        if (this.recnum  && this.prototype_date) {
+        if (this.recnum && this.prototype_date) {
           this.publish = this.authorize(
             'publish',
             this.$route.params.country_code
@@ -134,8 +136,8 @@ export default {
           if (this.publish) {
             this.prototype = true
             this.prototype_text = 'Prototype Again'
-            if (this.publish_date){
-               this.publish_text = 'Publish Again'
+            if (this.publish_date) {
+              this.publish_text = 'Publish Again'
             }
           }
         }

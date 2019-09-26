@@ -18,12 +18,12 @@
       </div>
       <div>
         <a
-              target="_blank"
-              class="help"
-              href="https://prototype.myfriends.network/content/HD/eng/help-1/series_preview"
-            >
-              <img class="help-icon" src="/images/icons/help.png" />
-            </a>
+          target="_blank"
+          class="help"
+          href="https://prototype.myfriends.network/content/HD/eng/help-1/series_preview.html"
+        >
+          <img class="help-icon" src="/images/icons/help.png" />
+        </a>
         <link rel="stylesheet" v-bind:href="this.style" />
         <div class="app-link">
           <div class="app-card -shadow">
@@ -34,11 +34,9 @@
             />
           </div>
         </div>
-          
+
         <div v-if="!bookmark.language.titles">
-          <h2>
-            {{ bookmark.book.title }}
-          </h2>
+          <h2>{{ bookmark.book.title }}</h2>
         </div>
         <div v-if="this.description">{{ this.description }}</div>
         <br />

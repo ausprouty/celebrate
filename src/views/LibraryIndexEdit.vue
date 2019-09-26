@@ -16,10 +16,11 @@
       <div v-if="this.authorized">
         <h1>
           {{ this.bookmark.language.name }} -- {{ this.bookmark.country.name }}
-           <a
+          <a
             target="_blank"
             class="help"
-            href="https://prototype.myfriends.network/content/HD/eng/help-1/library_index_edit"
+            href="https://prototype.myfriends.network/content/HD/eng/help-1/library_index_preview.html"
+
           >
             <img class="help-icon" src="/images/icons/help.png" />
           </a>
@@ -87,7 +88,7 @@ export default {
   data() {
     return {
       authorized: false,
-      style_error:false,
+      style_error: false,
       content: {
         recnum: '',
         version: '',
@@ -113,7 +114,7 @@ export default {
           'iframe'
         ],
         extraAllowedContent: ['*(*)[id]', 'ol[*]', 'iframe(*)'],
-        contentsCss:  this.$route.params.css,
+        contentsCss: this.$route.params.css,
         stylesSet: this.$route.params.styles_set,
         templates_replaceContent: false,
         templates_files: [

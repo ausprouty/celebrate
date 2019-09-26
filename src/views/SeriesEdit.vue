@@ -11,7 +11,7 @@
         <a
           target="_blank"
           class="help"
-          href="https://prototype.myfriends.network/content/HD/eng/help-1/seriesedit"
+          href="https://prototype.myfriends.network/content/HD/eng/help-1/series_edit.html"
         >
           <img class="help-icon" src="/images/icons/help.png" />
         </a>

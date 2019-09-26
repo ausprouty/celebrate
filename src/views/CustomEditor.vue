@@ -29,13 +29,23 @@ export default {
     return {
       config: {
         extraPlugins: [
-          'bidi',
+           'bidi',
           'uploadimage',
+          'iframe',
           'uploadwidget',
           'clipboard',
-          'videoembed'
+          'videoembed',
+          'templates'
         ],
-        extraAllowedContent: ['*(*)[id]', 'ol[*]'],
+        extraAllowedContent: [
+          '*(*)[id]',
+          'ol[*]',
+          'span[*]',
+          'align[*]',
+          'webkitallowfullscreen',
+          'mozallowfullscreen',
+          'allowfullscreen'
+        ],
         contentsCss:  this.$route.params.css,
         stylesSet: this.$route.params.styles_set,
         templates_replaceContent: false,

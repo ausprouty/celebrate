@@ -17,7 +17,7 @@
       <a
         target="_blank"
         class="help"
-        href="https://prototype.myfriends.network/content/HD/eng/help-1/countries_select"
+        href="https://prototype.myfriends.network/content/HD/eng/help-1/countries_select.html"
       >
         <img class="help-icon" src="/images/icons/help.png" />
       </a>
@@ -38,7 +38,6 @@
 </template>
 
 <script>
-
 import { mapState } from 'vuex'
 import NavBar from '@/components/NavBarAdmin.vue'
 import Country from '@/components/CountryPreview.vue'
