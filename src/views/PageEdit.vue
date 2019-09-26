@@ -30,7 +30,7 @@
           <a
             target="_blank"
             class="help"
-            href="http://prototype.myfriends.network/content/HD/eng/help-1/page_edit"
+            href="https://prototype.myfriends.network/content/HD/eng/help-1/page_edit"
           >
             <img class="help-icon" src="/images/icons/help.png" />
           </a>
@@ -41,7 +41,7 @@
           <a
             target="_blank"
             class="help"
-            href="http://prototype.myfriends.network/content/HD/eng/help-1/page_edit"
+            href="https://prototype.myfriends.network/content/HD/eng/help-1/page_edit"
           >
             <img class="help-icon" src="/images/icons/help.png" />
           </a>

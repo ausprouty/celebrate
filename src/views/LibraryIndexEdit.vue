@@ -19,7 +19,7 @@
            <a
             target="_blank"
             class="help"
-            href="http://prototype.myfriends.network/content/HD/eng/help-1/library_index_edit"
+            href="https://prototype.myfriends.network/content/HD/eng/help-1/library_index_edit"
           >
             <img class="help-icon" src="/images/icons/help.png" />
           </a>

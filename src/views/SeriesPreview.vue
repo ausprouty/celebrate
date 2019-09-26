@@ -20,7 +20,7 @@
         <a
               target="_blank"
               class="help"
-              href="http://prototype.myfriends.network/content/HD/eng/help-1/series_preview"
+              href="https://prototype.myfriends.network/content/HD/eng/help-1/series_preview"
             >
               <img class="help-icon" src="/images/icons/help.png" />
             </a>
