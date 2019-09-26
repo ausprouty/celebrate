@@ -19,7 +19,7 @@
           <a
             target="_blank"
             class="help"
-            href="/preview/page/HD/eng/library/help-1/series_sort"
+            href="http://prototype.myfriends.network/content/HD/eng/help-1/series_sort"
           >
             <img class="help-icon" src="/images/icons/help.png" />
           </a>

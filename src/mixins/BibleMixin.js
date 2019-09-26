@@ -8,7 +8,7 @@ export const bibleMixin = {
           language_iso: language_iso,
           testament: testament
         }
-        if (language_iso.length >2){
+        if (language_iso.length > 2) {
           var response = await BibleService.getBibleVersions(params)
           console.log('response from Bible versions')
           console.log(response)

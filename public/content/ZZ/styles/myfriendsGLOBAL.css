@@ -1,11 +1,11 @@
 
 :root {
   --color-black: black;
-  --color-red: red;
+  --color-red: #de1e25;
   --color-blue: blue;
   --color-background: #efefef;
   --color-version: rgb(110, 107, 241);
-  --color-back: #f0555a;
+  --color-back: #de1e25;
   --color-up: #f38832;
   --color-forward: #1ca0a6;
 }
@@ -95,10 +95,11 @@ small {
   font-size: 80%;
 }
 .error {
-  border: 1px solid red;
+  border: 1px solid  var(--color-red);
 }
 .errorMessage {
-  color: red;
+  color:var(--color-red);
+
 }
 .eyebrow {
   font-size: 20px;
@@ -176,7 +177,7 @@ button {
 
 }
 .button.red {
-  background-color: red;
+  background-color:var(--color-red);;
   height: 48px;
 }
 .button.grey {

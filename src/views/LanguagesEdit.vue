@@ -13,7 +13,7 @@
           <a
             target="_blank"
             class="help"
-            href="/preview/page/HD/eng/library/help-1/languages_edit"
+            href="http://prototype.myfriends.network/content/HD/eng/help-1/languages_edit"
           >
             <img class="help-icon" src="/images/icons/help.png" />
           </a>

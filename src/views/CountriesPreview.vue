@@ -17,7 +17,7 @@
       <a
         target="_blank"
         class="help"
-        href="/preview/page/HD/eng/library/help-1/countries_select"
+        href="http://prototype.myfriends.network/content/HD/eng/help-1/countries_select"
       >
         <img class="help-icon" src="/images/icons/help.png" />
       </a>

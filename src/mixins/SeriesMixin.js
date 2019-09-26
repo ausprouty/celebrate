@@ -58,7 +58,7 @@ export const seriesMixin = {
         console.log(params)
         this.error = this.loaded = null
         this.loading = true
-        var ok = await this.CheckBookmarks(params)
+        await this.CheckBookmarks(params)
         var response = await ContentService.getSeries(params)
 
         if (typeof response == 'undefined') {
