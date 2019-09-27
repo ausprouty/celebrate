@@ -185,7 +185,7 @@ export default new Router({
       props: false
     },
     {
-      path: '/custom/:css',
+      path: '/custom/:css/:dir',
       name: 'custom',
       component: Custom,
       props: true

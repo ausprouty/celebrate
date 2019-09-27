@@ -24,7 +24,7 @@ export default {
     NavBar,
     VueCkeditor
   },
-  props: ['css'],
+  props: ['css', 'dir'],
   data() {
     return {
       config: {
