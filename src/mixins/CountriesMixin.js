@@ -1,4 +1,5 @@
 import ContentService from '@/services/ContentService.js'
+import { bookMarkMixin } from '@/mixins/BookmarkMixin.js'
 export const countriesMixin = {
   data() {
     return {
@@ -39,6 +40,7 @@ export const countriesMixin = {
       }
     }
   },
+  mixins: [bookMarkMixin],
   methods: {
     async getCountries() {
       try {
