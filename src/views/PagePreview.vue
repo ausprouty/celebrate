@@ -5,7 +5,9 @@
     <div class="error" v-if="error">There was an error... {{ this.error }}</div>
     <div class="content" v-if="loaded">
       <div v-if="this.publish">
-        <button class="button" @click="localPublish('live')"> {{ this.publish_text }}</button>
+        <button class="button" @click="localPublish('live')">
+          {{ this.publish_text }}
+        </button>
       </div>
       <div v-if="this.prototype">
         <button class="button" @click="localPublish('prototype')">
@@ -62,8 +64,9 @@ import NavBar from '@/components/NavBarAdmin.vue'
 import { bookMarkMixin } from '@/mixins/BookmarkMixin.js'
 import { pageMixin } from '@/mixins/PageMixin.js'
 import { authorMixin } from '@/mixins/AuthorMixin.js'
+import { publishMixin } from '@/mixins/PublishMixin.js'
 export default {
-  mixins: [bookMarkMixin, pageMixin, authorMixin],
+  mixins: [bookMarkMixin, pageMixin, authorMixin, publishMixin],
   props: ['country_code', 'language_iso', 'folder_name', 'filename'],
   components: {
     NavBar
@@ -72,7 +75,7 @@ export default {
   data() {
     return {
       prototype_text: 'Prototype',
-       publish_text: 'Publish'
+      publish_text: 'Publish'
     }
   },
   methods: {
@@ -161,30 +164,32 @@ export default {
         this.read = this.authorize('read', this.$route.params.country_code)
         this.write = this.authorize('write', this.$route.params.country_code)
         // authorize for prototype and publish
-        this.publish = false
         this.prototype = false
-        if (this.recnum && !this.prototype_date) {
+        this.publish = false
+        if (this.recnum) {
           this.prototype = this.authorize(
-            'publish',
+            'prototype',
             this.$route.params.country_code
           )
           if (this.prototype) {
-            this.prototype_text = 'Prototype'
+            if (!this.prototype_date) {
+              this.prototype_text = 'Prototype'
+            } else {
+              this.prototype_text = 'Prototype  Again'
+            }
+          }
+          if (this.prototype_date) {
+            this.publish = this.mayPublishPage()
+            if (this.publish) {
+              if (this.publish_date) {
+                this.publish_text = 'Publish  Again'
+              } else {
+                this.publish_text = 'Publish '
+              }
+            }
           }
         }
-        if (this.recnum &&  this.prototype_date) {
-          this.publish = this.authorize(
-            'publish',
-            this.$route.params.country_code
-          )
-          if (this.publish) {
-            this.prototype = true
-            this.prototype_text = 'Prototype Again'
-          }
-          if (this.publish_date){
-            this.publish_text = 'Publish Again'
-          }
-        }
+
         // end authorization for prototype and publish
       } catch (error) {
         console.log('There was an error in Page.vue:', error) // Logs out the error

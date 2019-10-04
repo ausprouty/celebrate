@@ -56,8 +56,9 @@ import PublishService from '@/services/PublishService.js'
 import { bookMarkMixin } from '@/mixins/BookmarkMixin.js'
 import { libraryMixin } from '@/mixins/LibraryMixin.js'
 import { authorMixin } from '@/mixins/AuthorMixin.js'
+import { publishMixin } from '@/mixins/PublishMixin.js'
 export default {
-  mixins: [bookMarkMixin, libraryMixin, authorMixin],
+  mixins: [bookMarkMixin, libraryMixin, authorMixin, publishMixin],
   props: ['country_code', 'language_iso', 'library_code'],
   computed: mapState(['bookmark', 'appDir', 'cssURL', 'standard']),
   components: {
@@ -154,33 +155,32 @@ export default {
         )
         this.write = this.authorize('write', this.$route.params.country_code)
         // authorize for prototype and publish
-        this.publish = false
         this.prototype = false
-        if (this.recnum && !this.prototype_date) {
+        this.publish = false
+        if (this.recnum) {
           this.prototype = this.authorize(
-            'publish',
+            'prototype',
             this.$route.params.country_code
           )
           if (this.prototype) {
-            this.prototype_text = 'Prototype'
+            if (!this.prototype_date) {
+              this.prototype_text = 'Prototype Library and Books'
+            } else {
+              this.prototype_text = 'Prototype Library and Books Again'
+            }
+          }
+          if (this.prototype_date) {
+            this.publish = this.mayPublishLibrary()
+            if (this.publish) {
+              if (this.publish_date) {
+                this.publish_text = 'Publish Library and Books Again'
+              } else {
+                this.publish_text = 'Publish Library and Books'
+              }
+            }
           }
         }
-        //  if (this.recnum && !this.publish_date && this.prototype_date) {
-        if (this.recnum && this.prototype_date) {
-          this.publish = this.authorize(
-            'publish',
-            this.$route.params.country_code
-          )
-          if (this.publish) {
-            this.prototype = true
-            this.prototype_text = 'Prototype Library and Books Again'
-          }
-          if (this.publish_date) {
-            this.publish_text = 'Publish Library and Books Again'
-          }
-        }
-        // end authorization for prototype and publish
-
+        // end of Prototype and Publish
         this.loaded = true
         this.loading = false
       } catch (error) {
