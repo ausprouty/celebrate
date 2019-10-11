@@ -1,5 +1,7 @@
+const apiURL = process.env.VUE_APP_URL;
+
 const apiSECURE = axios.create({
-  baseURL: 'https://create.myfriends.network/',
+  baseURL: apiURL,
   withCredentials: false, // This is the default
   crossDomain: true,
   headers: {

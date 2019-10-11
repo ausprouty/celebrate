@@ -30,7 +30,7 @@ export default {
       config: {
         extraPlugins: [
            'bidi',
-          'uploadimage',
+          // 'uploadimage',
           'iframe',
           'uploadwidget',
           'clipboard',
@@ -52,16 +52,9 @@ export default {
         templates_files: [
           '/templates/' + this.$route.params.styles_set + 'CKEDITOR.js'
         ],
-        // Upload images to a CKFinder connector (note that the response type is set to JSON).
-        uploadUrl:
-          '/apps/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files&responseType=json',
         // Configure your file manager integration. This example uses CKFinder 3 for PHP.
-        filebrowserBrowseUrl: '/apps/ckfinder/ckfinder.html',
-        filebrowserImageBrowseUrl: '/apps/ckfinder/ckfinder.html?type=Images',
-        filebrowserUploadUrl:
-          '/apps/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files',
-        filebrowserImageUploadUrl:
-          '/apps/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images',
+        filebrowserBrowseUrl: process.env.VUE_APP_URL + 'ckfinder/ckfinder.html',
+        filebrowserUploadUrl: process.env.VUE_APP_URL + 'ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files',
         toolbarGroups: [
           { name: 'styles', groups: ['styles'] },
           { name: 'basicstyles', groups: ['basicstyles', 'cleanup'] },

@@ -1,8 +1,10 @@
 import axios from 'axios'
 import store from '@/store/store.js'
 
+const apiURL = process.env.VUE_APP_URL;
+
 const apiSELECT = axios.create({
-  baseURL: 'https://create.myfriends.network/',
+  baseURL: apiURL,
   withCredentials: false, // This is the default
   crossDomain: true,
   headers: {
@@ -11,7 +13,7 @@ const apiSELECT = axios.create({
   }
 })
 const apiSECURE = axios.create({
-  baseURL: 'https://create.myfriends.network/',
+  baseURL: apiURL,
   withCredentials: false, // This is the default
   crossDomain: true,
   headers: {
@@ -20,7 +22,7 @@ const apiSECURE = axios.create({
   }
 })
 const apiIMAGE = axios.create({
-  baseURL: 'https://create.myfriends.network/',
+  baseURL: apiURL,
   withCredentials: false, // This is the default
   crossDomain: true,
   headers: {

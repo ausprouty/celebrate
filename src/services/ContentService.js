@@ -1,5 +1,8 @@
 import axios from 'axios'
 import AuthorService from '@/services/AuthorService.js'
+
+const apiURL = process.env.VUE_APP_URL;
+
 const apiContent = axios.create({
   //baseURL: `http://edit.myfriends.network`,
   // baseURL: `http://localhost:8080`,
@@ -14,7 +17,7 @@ const apiContent = axios.create({
 
 const apiMYSQL = axios.create({
   //baseURL: 'http://localhost:8000/myfriends/',
-  baseURL: 'https://create.myfriends.network/',
+  baseURL: apiURL,
   withCredentials: false, // This is the default
   crossDomain: true,
   headers: {
