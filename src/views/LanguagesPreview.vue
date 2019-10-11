@@ -63,8 +63,9 @@ import { mapState } from 'vuex'
 import { bookMarkMixin } from '@/mixins/BookmarkMixin.js'
 import { languageMixin } from '@/mixins/LanguageMixin.js'
 import { authorMixin } from '@/mixins/AuthorMixin.js'
+import { publishMixin } from '@/mixins/PublishMixin.js'
 export default {
-  mixins: [bookMarkMixin, languageMixin, authorMixin],
+  mixins: [bookMarkMixin, languageMixin, authorMixin, publishMixin],
   props: ['country_code'],
   components: {
     Language,
@@ -75,6 +76,7 @@ export default {
       readonly: false,
       write: false,
       publish: false,
+      publishable: false,
       prototype_text: 'Prototype',
       publish_text: 'Publish',
       more_languages: 'More Languages',
@@ -137,7 +139,7 @@ export default {
       try {
         await this.getLanguages(this.$route.params)
         if (this.recnum) {
-          this.localBookmark(this.recnum)
+          await this.localBookmark(this.recnum)
         }
         this.readonly = this.authorize(
           'readonly',
@@ -145,29 +147,28 @@ export default {
         )
         this.write = this.authorize('write', this.$route.params.country_code)
         // authorize for prototype and publish
-        this.publish = false
         this.prototype = false
-        if (this.recnum && !this.prototype_date) {
+        this.publish = false
+        if (this.recnum) {
           this.prototype = this.authorize(
-            'publish',
+            'prototype',
             this.$route.params.country_code
           )
           if (this.prototype) {
-            this.prototype_text = 'Prototype'
-          }
-        }
-        if (this.recnum && this.prototype_date) {
-          this.publish = this.authorize(
-            'publish',
-            this.$route.params.country_code
-          )
-          if (this.publish) {
-            this.prototype = true
-            this.prototype_text = 'Prototype Again'
-            if (this.publish_date) {
-              this.publish_text = 'Publish Again'
+            if (!this.prototype_date) {
+              this.prototype_text = 'Prototype'
             } else {
-              this.publish_text = 'Publish'
+              this.prototype_text = 'Prototype Again'
+            }
+          }
+          if (this.prototype_date) {
+            this.publish = this.mayPublishLanguages()
+            if (this.publish) {
+              if (this.publish_date) {
+                this.publish_text = 'Publish Again'
+              } else {
+                this.publish_text = 'Publish'
+              }
             }
           }
         }

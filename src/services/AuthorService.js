@@ -34,16 +34,15 @@ export default {
   async bookmark(params) {
     params.my_uid = store.state.user.uid
     params.token = store.state.user.token
-    console.log('params for bookmark')
-    console.log(params)
+    // console.log('params for bookmark')
+    // console.log(params)
     var contentForm = this.toFormData(params)
     var res = await apiSECURE.post(
       'AuthorApi.php?page=bookmark&action=bookmark',
       contentForm
     )
-    console.log('response for bookmark')
-    console.log(res.data)
-    
+    // console.log('response for bookmark')
+    //console.log(res.data)
     if (res.data.content) {
       store.dispatch('updateAllBookmarks', res.data.content)
     } else {
@@ -178,6 +177,19 @@ export default {
   },
 
   ////////////////////////////////////////////////
+  async deleteUser(params) {
+    params.token = store.state.user.token
+    console.log('params sent to deleteUser')
+    console.log(params)
+    var contentForm = this.toFormData(params)
+    let response = await apiSELECT.post(
+      'AuthorApi.php?page=deleteUser&action=deleteUser',
+      contentForm
+    )
+    console.log('response from  deleteUser')
+    console.log(response)
+    return response
+  },
   async getFoldersContent(params) {
     //console.log('getFolders')
     var folders = []
@@ -294,6 +306,36 @@ export default {
       templates.sort()
     }
     return templates
+  },
+  async getUser(params) {
+    params.token = store.state.user.token
+    console.log('params sent to getUsers')
+    console.log(params)
+    var contentForm = this.toFormData(params)
+    let res = await apiSELECT.post(
+      'AuthorApi.php?page=getUser&action=getUser',
+      contentForm
+    )
+    console.log('response from  getUsers')
+    console.log(res)
+    let response = JSON.parse(res.data.content)
+    console.log(response)
+    return response
+  },
+  async getUsers(params) {
+    params.token = store.state.user.token
+    console.log('params sent to getUsers')
+    console.log(params)
+    var contentForm = this.toFormData(params)
+    let res = await apiSELECT.post(
+      'AuthorApi.php?page=getUsers&action=getUsers',
+      contentForm
+    )
+    console.log('response from  getUsers')
+    console.log(res)
+    let response = JSON.parse(res.data.content)
+    console.log(response)
+    return response
   },
 
   isFilename(s) {
@@ -474,5 +516,18 @@ export default {
     //    }
     //console.log(form_data)
     return form_data
-  }
+  },
+  async updateUser(params) {
+    params.token = store.state.user.token
+    console.log('params sent to deleteUser')
+    console.log(params)
+    var contentForm = this.toFormData(params)
+    let response = await apiSELECT.post(
+      'AuthorApi.php?page=updateUser&action=updateUser',
+      contentForm
+    )
+    console.log('response from  updateUsers')
+    console.log(response)
+    return response
+  },
 }

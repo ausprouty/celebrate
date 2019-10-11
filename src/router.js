@@ -33,6 +33,10 @@ import Upload from './views/Upload.vue'
 import Debug from './views/Debug.vue'
 import Prototype from './views/Prototype.vue'
 
+import Users from './views/Users.vue'
+import User from './views/User.vue'
+
+
 // for CKFinder
 
 //edit.myfriends.network/preview
@@ -170,6 +174,18 @@ export default new Router({
       name: 'login',
       component: Login,
       props: false
+    },
+    {
+      path: '/users',
+      name: 'users',
+      component: Users,
+      props: false
+    },
+    {
+      path: '/user/:uid',
+      name: 'user',
+      component: User,
+      props: true
     },
     {
       path: '/debug/',

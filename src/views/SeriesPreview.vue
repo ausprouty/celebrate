@@ -10,11 +10,9 @@
         </button>
       </div>
       <div v-if="this.prototype">
-        <div v-if="this.prototype_series">
-          <button class="button" @click="localPublish('prototype')">
-            {{ this.prototype_text }}
-          </button>
-        </div>
+        <button class="button" @click="localPublish('prototype')">
+          {{ this.prototype_text }}
+        </button>
       </div>
       <div>
         <a
@@ -86,8 +84,9 @@ import NavBar from '@/components/NavBarAdmin.vue'
 import { bookMarkMixin } from '@/mixins/BookmarkMixin.js'
 import { seriesMixin } from '@/mixins/SeriesMixin.js'
 import { authorMixin } from '@/mixins/AuthorMixin.js'
+import { publishMixin } from '@/mixins/PublishMixin.js'
 export default {
-  mixins: [bookMarkMixin, seriesMixin, authorMixin],
+  mixins: [bookMarkMixin, seriesMixin, authorMixin, publishMixin],
   props: ['country_code', 'language_iso', 'library_code', 'folder_name'],
   computed: mapState(['bookmark', 'appDir']),
   components: {
@@ -196,38 +195,32 @@ export default {
         this.write = this.authorize('write', this.$route.params.country_code)
 
         // authorize for prototype and publish
-        this.publish = false
         this.prototype = false
-        if (this.recnum && !this.prototype_date) {
+        this.publish = false
+        if (this.recnum) {
           this.prototype = this.authorize(
-            'publish',
+            'prototype',
             this.$route.params.country_code
           )
           if (this.prototype) {
-            this.prototype_text = 'Prototype'
+            if (!this.prototype_date) {
+              this.prototype_text = 'Prototype Series and Chapters'
+            } else {
+              this.prototype_text = 'Prototype Series and Chapters Again'
+            }
+          }
+          if (this.prototype_date) {
+            this.publish = this.mayPublishSeries()
+            if (this.publish) {
+              if (this.publish_date) {
+                this.publish_text = 'Publish Series and Chapters Again'
+              } else {
+                this.publish_text = 'Publish Series and Chapters'
+              }
+            }
           }
         }
-        // if (this.recnum && !this.publish_date && this.prototype_date) {
-        if (this.recnum && this.prototype_date) {
-          this.publish = this.authorize(
-            'publish',
-            this.$route.params.country_code
-          )
-          if (this.publish) {
-            this.prototype = true
-            this.prototype_text = 'Prototype Series and Chapters Again'
-          }
-          if (this.publish_date) {
-            this.publish_text = 'Publish Series and Chapters Again'
-          }
-        }
-        var params = {}
-        params.recnum = this.recnum
-        this.prototype_series = await PrototypeService.publish(
-          'readyToPrototypeSeries',
-          params
-        )
-        // end authorization for prototype and publish
+        // end of Prototype and Publish
 
         this.loaded = true
         this.loading = false

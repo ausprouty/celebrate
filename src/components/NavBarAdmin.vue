@@ -60,7 +60,7 @@ export default {
           show: false
         },
         {
-          value: 'Register Editor',
+          value: 'Editors',
           link: 'register',
           index: 4,
           show: false

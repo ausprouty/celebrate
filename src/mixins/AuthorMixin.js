@@ -21,6 +21,12 @@ export const authorMixin = {
         var included = false
         included = scope.includes(code)
         //console.log('included ' + included)
+        if (reason == 'publish'){
+          return included
+        }
+        if (reason == 'prototype'){
+          return included
+        }
         if (reason == 'write') {
           return included
         }
