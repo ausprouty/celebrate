@@ -29,7 +29,7 @@ export default {
     return {
       config: {
         extraPlugins: [
-           'bidi',
+          'bidi',
           // 'uploadimage',
           'iframe',
           'uploadwidget',
@@ -46,15 +46,19 @@ export default {
           'mozallowfullscreen',
           'allowfullscreen'
         ],
-        contentsCss:  this.$route.params.css,
+        contentsCss: this.$route.params.css,
         stylesSet: this.$route.params.styles_set,
         templates_replaceContent: false,
         templates_files: [
           '/templates/' + this.$route.params.styles_set + 'CKEDITOR.js'
         ],
         // Configure your file manager integration. This example uses CKFinder 3 for PHP.
-        filebrowserBrowseUrl: process.env.VUE_APP_URL + 'ckfinder/ckfinder.html',
-        filebrowserUploadUrl: process.env.VUE_APP_URL + 'ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files',
+        filebrowserBrowseUrl:
+          process.env.VUE_APP_URL + 'ckfinder/ckfinder.html',
+        filebrowserUploadUrl:
+          process.env.VUE_APP_URL +
+          'ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files',
+          // end Configuration
         toolbarGroups: [
           { name: 'styles', groups: ['styles'] },
           { name: 'basicstyles', groups: ['basicstyles', 'cleanup'] },
