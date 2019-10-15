@@ -1,0 +1,17 @@
+From AuthorApi
+$p[] = 
+parameters:
+country_code = ES
+token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNDIiLCJleHAiOjE1Njk4MzIxODgsImlzcyI6ImNyZWF0ZS5teWZyaWVuZHMubmV0d29yayIsImlhdCI6MTU2OTQ3MjE4OH0.SuXxLiQs_2AQseFy2uLC2rA2XemIAYWmHHQeX0D_OYk
+end of parameters
+finished post loop
+Action: setupCountry
+Page: setup.php
+I am adding page
+action is setupCountry
+setupCountry
+copy templates
+
+
+HERE IS JSON_ENCODE OF DATA THAT IS NOT ESCAPED
+[]

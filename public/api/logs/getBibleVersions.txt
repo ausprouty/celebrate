@@ -1,0 +1,70 @@
+From AuthorApi
+$p[] = 
+parameters:
+language_iso = eng
+testament = NT
+my_uid = 42
+token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNDIiLCJleHAiOjE1Njk4Mzg2MjMsImlzcyI6ImNyZWF0ZS5teWZyaWVuZHMubmV0d29yayIsImlhdCI6MTU2OTQ3ODYyM30.GGjonbX1u001_eOvDpFmU-kFpsdcfJsSJSe16tzl-nU
+end of parameters
+finished post loop
+Action: getBibleVersions
+Page: bibleVersions.php
+I am adding page
+action is getBibleVersions
+SELECT bid, volume_name FROM dbm_bible WHERE language_iso = 'eng'
+        AND (collection_code = 'NT' OR collection_code = 'FU')
+        AND (source = 'dbt'  OR source = 'bible_gateway') AND text = 'Y'
+        ORDER BY volume_name
+2001 English Standard
+21st Century King James Version
+American Standard Version
+Amplified Bible
+Common English Bible
+Complete Jewish Bible
+Contemporary English Version
+Darby Translation
+Douay-Rheims 1899 American Edition
+Easy-to-Read Version
+English Standard Version
+English Standard Version Anglicised
+English Version for the Deaf
+Expanded Bible
+GOD'S WORD Translation
+Good News Translation
+Holman Christian Standard Bible
+J.B. Phillips New Testament
+King James
+King James Version
+Knox Bible
+Lexham English Bible
+Mounce Reverse-Interlinear New Testament
+New American Standard Bible
+New Century Version
+New English Translation (NET Bible)
+New International Reader's Version
+New International Reader's Version
+New International Version
+New International Version - UK
+New International Version 1984
+New King James Version
+New Life Version
+New Living Translation
+New Revised Standard Version
+New Revised Standard Version Catholic Edition
+New Revised Standard Version, Anglicised
+New Revised Standard Version, Anglicised Catholic 
+Orthodox Jewish Bible
+Revised Standard Version
+Revised Standard Version Catholic Edition
+The Message
+Today's New International Version
+Today's New International Version
+World English Bible
+Worldwide English (New Testament)
+Wycliffe Bible
+Young's Literal Translation
+Young's Literal Translation
+
+
+HERE IS JSON_ENCODE OF DATA THAT IS NOT ESCAPED
+{"content":[{"bid":"284","volume_name":"2001 English Standard"},{"bid":"1232","volume_name":"21st Century King James Version"},{"bid":"1233","volume_name":"American Standard Version"},{"bid":"1234","volume_name":"Amplified Bible"},{"bid":"1235","volume_name":"Common English Bible"},{"bid":"1236","volume_name":"Complete Jewish Bible"},{"bid":"1237","volume_name":"Contemporary English Version"},{"bid":"1238","volume_name":"Darby Translation"},{"bid":"1239","volume_name":"Douay-Rheims 1899 American Edition"},{"bid":"1394","volume_name":"Easy-to-Read Version"},{"bid":"1241","volume_name":"English Standard Version"},{"bid":"1242","volume_name":"English Standard Version Anglicised"},{"bid":"287","volume_name":"English Version for the Deaf"},{"bid":"1243","volume_name":"Expanded Bible"},{"bid":"1244","volume_name":"GOD'S WORD Translation"},{"bid":"1245","volume_name":"Good News Translation"},{"bid":"1246","volume_name":"Holman Christian Standard Bible"},{"bid":"1247","volume_name":"J.B. Phillips New Testament"},{"bid":"291","volume_name":"King James"},{"bid":"1248","volume_name":"King James Version"},{"bid":"1249","volume_name":"Knox Bible"},{"bid":"1250","volume_name":"Lexham English Bible"},{"bid":"1252","volume_name":"Mounce Reverse-Interlinear New Testament"},{"bid":"1253","volume_name":"New American Standard Bible"},{"bid":"1254","volume_name":"New Century Version"},{"bid":"1255","volume_name":"New English Translation (NET Bible)"},{"bid":"1410","volume_name":"New International Reader's Version"},{"bid":"1256","volume_name":"New International Reader's Version"},{"bid":"1257","volume_name":"New International Version"},{"bid":"1259","volume_name":"New International Version - UK"},{"bid":"1258","volume_name":"New International Version 1984"},{"bid":"1260","volume_name":"New King James Version"},{"bid":"1261","volume_name":"New Life Version"},{"bid":"1262","volume_name":"New Living Translation"},{"bid":"1263","volume_name":"New Revised Standard Version"},{"bid":"1266","volume_name":"New Revised Standard Version Catholic Edition"},{"bid":"1264","volume_name":"New Revised Standard Version, Anglicised"},{"bid":"1265","volume_name":"New Revised Standard Version, Anglicised Catholic "},{"bid":"1267","volume_name":"Orthodox Jewish Bible"},{"bid":"1268","volume_name":"Revised Standard Version"},{"bid":"1269","volume_name":"Revised Standard Version Catholic Edition"},{"bid":"1251","volume_name":"The Message"},{"bid":"1270","volume_name":"Today's New International Version"},{"bid":"1424","volume_name":"Today's New International Version"},{"bid":"295","volume_name":"World English Bible"},{"bid":"1271","volume_name":"Worldwide English (New Testament)"},{"bid":"1272","volume_name":"Wycliffe Bible"},{"bid":"1273","volume_name":"Young's Literal Translation"},{"bid":"1427","volume_name":"Young's Literal Translation"}],"error":false}

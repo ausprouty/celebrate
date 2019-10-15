@@ -1,0 +1,13 @@
+From AuthorApi
+$p[] = 
+parameters:
+username = Dmytro
+password = Kiselov
+end of parameters
+finished post loop
+Action: login
+authorized
+
+
+HERE IS JSON_ENCODE OF DATA THAT IS NOT ESCAPED
+{"content":{"0":"50","uid":"50","1":"$2y$10$P64gukhGfh0un\/XsBqWr.uRIf7SWiP29VIQaaaL0CoSCv2EWilsG2","password":null,"2":"Dmytro","firstname":"Dmytro","3":"Kiselov","lastname":"Kiselov","4":"*","countries":"*"},"token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNTAiLCJleHAiOjE1NzAzOTQ1NDcsImlzcyI6ImNyZWF0ZS5teWZyaWVuZHMubmV0d29yayIsImlhdCI6MTU3MDAzNDU0N30.2NCu4PE-KwsCDqKA8cOYIM5FkSeYDnQGEKeeiTDzAg4"}

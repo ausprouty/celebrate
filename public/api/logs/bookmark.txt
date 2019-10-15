@@ -1,0 +1,25 @@
+From AuthorApi
+$p[] = 
+parameters:
+recnum = 2309
+library_code = undefined
+my_uid = 50
+token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNTAiLCJleHAiOjE1NzAzOTQ1NDcsImlzcyI6ImNyZWF0ZS5teWZyaWVuZHMubmV0d29yayIsImlhdCI6MTU3MDAzNDU0N30.2NCu4PE-KwsCDqKA8cOYIM5FkSeYDnQGEKeeiTDzAg4
+end of parameters
+finished post loop
+Action: bookmark
+Page: bookmark.php
+I am adding page
+action is bookmark
+library_code undefined
+
+recnum is 2309
+b[country_code] is 
+b[language_iso] is 
+b[folder_name] is 
+b[filename] countries
+
+
+
+HERE IS JSON_ENCODE OF DATA THAT IS NOT ESCAPED
+{"content":null}

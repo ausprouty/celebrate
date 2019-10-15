@@ -1,0 +1,18 @@
+From AuthorApi
+$p[] = 
+parameters:
+series_image_dir = AU/eng/life
+image_dir = AU/images/standard
+token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNDIiLCJleHAiOjE1Njk4Mzg2MjMsImlzcyI6ImNyZWF0ZS5teWZyaWVuZHMubmV0d29yayIsImlhdCI6MTU2OTQ3ODYyM30.GGjonbX1u001_eOvDpFmU-kFpsdcfJsSJSe16tzl-nU
+end of parameters
+finished post loop
+Action: getImages
+Page: get.php
+I am adding page
+action is getImages
+in get Images
+dir:../edit//content/AU/images/standard
+
+
+HERE IS JSON_ENCODE OF DATA THAT IS NOT ESCAPED
+{"message":"Images found","content":"[\"Header.png\",\"MeetJesus.png\",\"about.jpg\",\"OtherLanguagesBottom.png\",\"Multiply.png\",\"WithFriends.png\",\"Basics.png\",\"LifePrinciples.png\",\"friends.png\",\"community.jpg\",\"MeetHeader.png\",\"MeetIcon.png\",\"Share.png\",\"Satisfied.png\",\"firststeps.jpg\",\"back-ribbon-blue.png\",\"HeaderWithFriends.png\",\"OtherLanguagesTop.png\",\"TheFour.png\",\"FriendsIcon.png\",\"OpeningLogo.png\",\"Facebook.png\",\"journey.jpg\",\"compass.jpg\",\"Instagram.png\",\"Compass.png\",\"issues.jpg\",\"FriendsHeader.png\",\"Help.jpg\",\"Zap.png\",\"basics.jpg\",\"meet.png\",\"celebrate.jpg\",\"back-ribbon-red.png\"]","error":false}

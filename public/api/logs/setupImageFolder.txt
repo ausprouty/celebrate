@@ -1,0 +1,17 @@
+From AuthorApi
+$p[] = 
+parameters:
+languageNAME = eng
+country_code = AU
+token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNDIiLCJleHAiOjE1NjkxNDU3NTEsImlzcyI6ImNyZWF0ZS5teWZyaWVuZHMubmV0d29yayIsImlhdCI6MTU2ODc4NTc1MX0.kY9ijmPbzwJGHGTbkwGuQYZIDAtmH-nI6AG_P6LUad0
+end of parameters
+finished post loop
+Action: setupImageFolder
+Page: setup.php
+I am adding page
+action is setupImageFolder
+language_iso not set
+
+
+HERE IS JSON_ENCODE OF DATA THAT IS NOT ESCAPED
+[]

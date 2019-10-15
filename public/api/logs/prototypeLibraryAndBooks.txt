@@ -1,0 +1,55 @@
+From AuthorApi
+$p[] = 
+parameters:
+recnum = 2219
+route = {"country_code":"HD","language_iso":"eng","version":"latest","library_code":"library","my_uid":"42","token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNDIiLCJleHAiOjE1Njk4Mzg2MjMsImlzcyI6ImNyZWF0ZS5teWZyaWVuZHMubmV0d29yayIsImlhdCI6MTU2OTQ3ODYyM30.GGjonbX1u001_eOvDpFmU-kFpsdcfJsSJSe16tzl-nU"}
+my_uid = 42
+token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNDIiLCJleHAiOjE1Njk4Mzg2MjMsImlzcyI6ImNyZWF0ZS5teWZyaWVuZHMubmV0d29yayIsImlhdCI6MTU2OTQ3ODYyM30.GGjonbX1u001_eOvDpFmU-kFpsdcfJsSJSe16tzl-nU
+end of parameters
+finished post loop
+
+
+
+
+set by route
+country_code:HD
+language_iso:eng
+library_code:library
+folder_name:
+filename:
+
+
+Action: prototypeLibraryAndBooks
+Page: prototypeLibraryAndBooks.php
+I am adding page
+action is prototypeLibraryAndBooks
+
+
+ prototypeLibraryAndBooks
+{"recnum":"2219","route":"{\"country_code\":\"HD\",\"language_iso\":\"eng\",\"version\":\"latest\",\"library_code\":\"library\",\"my_uid\":\"42\",\"token\":\"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNDIiLCJleHAiOjE1Njk4Mzg2MjMsImlzcyI6ImNyZWF0ZS5teWZyaWVuZHMubmV0d29yayIsImlhdCI6MTU2OTQ3ODYyM30.GGjonbX1u001_eOvDpFmU-kFpsdcfJsSJSe16tzl-nU\"}","my_uid":"42","token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNDIiLCJleHAiOjE1Njk4Mzg2MjMsImlzcyI6ImNyZWF0ZS5teWZyaWVuZHMubmV0d29yayIsImlhdCI6MTU2OTQ3ODYyM30.GGjonbX1u001_eOvDpFmU-kFpsdcfJsSJSe16tzl-nU","version":"0.8","debug":"\n\n prototypeLibraryAndBooks\n","country_code":"HD","language_iso":"eng","library_code":"library","folder_name":null,"filename":null}
+In prototypeLibrary 
+SELECT * FROM content 
+        WHERE  country_code = 'HD'  
+        AND language_iso = 'eng' 
+        AND folder_name = '' AND filename = 'library' 
+        ORDER BY recnum DESC LIMIT 1
+2219{"books":[{"id":"1","code":"help-1","title":"Getting Started","style":"/content/ZZ/styles/myfriendsGLOBAL.css","image":{"title":"Help.jpg","image":"/content/ZZ/images/GLOBAL/Help.jpg"},"format":"series","template":"HelpTemplate.html","publish":true},{"id":6,"book":"about","folder":"myfriends","format":"page","image":{"title":"about.jpg","image":"/content/HD/images/standard/about.jpg"},"page":"community","style":"ZZ/styles/myfriends.css","title":"About MyFriends","template":"myfriends/about.html","publish":false}],"format":{"image":{"title":"Help.jpg","image":"/content/ZZ/images/GLOBAL/Help.jpg"},"replace_header":true,"style":"/content/HD/styles/myfriends.css","back_button":{"title":"back-ribbon-red.png","image":"/content/ZZ/images/ribbons/back-ribbon-red.png"},"no_ribbon":true},"text":"<h1>This is your help desk.</h1>\n\n<p>You can reach Bob Prouty in several&nbsp;ways:</p>\n\n<p><strong>email: bob.prouty@powertochange.org.au </strong></p>\n\n<p>[ I only read emails once a day -- usually 9 am Sydney time]</p>\n\n<p><strong>skype: ausprouty</strong></p>\n\n<p>[my computer automatically answers, so if you don&#39;t hear my voice it means I am not in]</p>\n\n<p><strong>phone: +61 415337706</strong></p>\n\n<p><strong>phone: +503 616 4604 </strong>[connects to Skype]</p>\n\n<p>&nbsp;</p>\n\n<p>&nbsp;</p>\n\n<p>&nbsp;</p>\n"}
+style is set 
+/content/HD/styles/myfriends.css
+No ribbon In prototypeLibrary 
+UPDATE content 
+        SET prototype_date = '1569486720', prototype_uid = '42'
+        WHERE country_code = 'HD' 
+        AND language_iso = 'eng' 
+        AND folder_name = ''
+        AND prototype_date IS NULL
+
+
+ Books Parameter AFTER prototypeLibrary
+{"help-1":{"id":"1","code":"help-1","title":"Getting Started","style":"\/content\/ZZ\/styles\/myfriendsGLOBAL.css","image":{"title":"Help.jpg","image":"\/content\/ZZ\/images\/GLOBAL\/Help.jpg"},"format":"series","template":"HelpTemplate.html","publish":true,"library_code":"library"},"":{"id":6,"book":"about","folder":"myfriends","format":"page","image":{"title":"about.jpg","image":"\/content\/HD\/images\/standard\/about.jpg"},"page":"community","style":"ZZ\/styles\/myfriends.css","title":"About MyFriends","template":"myfriends\/about.html","publish":false,"library_code":"library"}}
+count is 1
+count is 2
+
+
+HERE IS JSON_ENCODE OF DATA THAT IS NOT ESCAPED
+{"recnum":null,"route":"{\"country_code\":\"HD\",\"language_iso\":\"eng\",\"version\":\"latest\",\"library_code\":\"library\",\"my_uid\":\"42\",\"token\":\"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNDIiLCJleHAiOjE1Njk4Mzg2MjMsImlzcyI6ImNyZWF0ZS5teWZyaWVuZHMubmV0d29yayIsImlhdCI6MTU2OTQ3ODYyM30.GGjonbX1u001_eOvDpFmU-kFpsdcfJsSJSe16tzl-nU\"}","my_uid":"42","token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNDIiLCJleHAiOjE1Njk4Mzg2MjMsImlzcyI6ImNyZWF0ZS5teWZyaWVuZHMubmV0d29yayIsImlhdCI6MTU2OTQ3ODYyM30.GGjonbX1u001_eOvDpFmU-kFpsdcfJsSJSe16tzl-nU","version":"0.8","country_code":"HD","language_iso":"eng","library_code":"library","folder_name":"help-1","filename":null,"language_dir":"..\/prototype\/content\/HD\/eng\/","books":{"help-1":{"id":"1","code":"help-1","title":"Getting Started","style":"\/content\/ZZ\/styles\/myfriendsGLOBAL.css","image":{"title":"Help.jpg","image":"\/content\/ZZ\/images\/GLOBAL\/Help.jpg"},"format":"series","template":"HelpTemplate.html","publish":true,"library_code":"library"},"":{"id":6,"book":"about","folder":"myfriends","format":"page","image":{"title":"about.jpg","image":"\/content\/HD\/images\/standard\/about.jpg"},"page":"community","style":"ZZ\/styles\/myfriends.css","title":"About MyFriends","template":"myfriends\/about.html","publish":false,"library_code":"library"}}}

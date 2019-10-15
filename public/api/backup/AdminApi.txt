@@ -1,0 +1,46 @@
+if($crud == 'update'){
+ 
+	
+	$sql = "UPDATE content SET 
+		(
+			recnum = '$recnum',
+			version = 1,
+			edit_date = time(),
+			edit_uid =  1
+			publish_uid = 1 ,
+			publish_date = time(),
+			language_iso = '$language_iso',
+			country_iso = '$country_iso',
+			folder = '$folder',
+			filetype = '$filetype',
+			title = '$title',
+			filename = '$filename',
+			text = '$text',
+		)  
+		WHERE  recnum='$recnum'";
+		
+	$query = $conn->query($sql);
+ 
+	if($query){
+		$out['message'] = "Content Updated Successfully";
+	}
+	else{
+		$out['error'] = true;
+		$out['message'] = "Could not update Content";
+	}
+ 
+}
+ 
+if($crud == 'delete'){
+	$sql = "delete from content where recnum ='$recnum' LIMIT 1";
+	$query = $conn->query($sql);
+ 
+	if($query){
+		$out['message'] = "Content Deleted Successfully";
+	}
+	else{
+		$out['error'] = true;
+		$out['message'] = "Could not delete Content";
+	}
+ 
+}

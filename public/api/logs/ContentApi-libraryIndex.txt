@@ -1,0 +1,54 @@
+Content API Post
+scope = libraryIndex
+parameters:
+country_code = AU
+language_iso = eng
+version = latest
+css = AU/styles/AU-freeform.css
+my_uid = 
+token = 
+In getLatestContent
+Case is libraryIndex
+SELECT * FROM content 
+                WHERE country_code = 'AU'
+                AND language_iso = 'eng'
+                AND folder_name = '' 
+                AND filename = 'index' 
+                ORDER BY recnum DESC LIMIT 1
+0
+recnum
+1
+version
+2
+edit_date
+3
+edit_uid
+4
+prototype_uid
+5
+prototype_date
+6
+publish_uid
+7
+publish_date
+8
+language_iso
+9
+country_code
+10
+folder_name
+11
+filetype
+12
+title
+13
+filename
+14
+text
+
+
+
+2820
+
+HERE IS JSON_ENCODE OF DATA
+{"debug":"In getLatestContent\nCase is libraryIndex\nSELECT * FROM content \n                WHERE country_code = 'AU'\n                AND language_iso = 'eng'\n                AND folder_name = '' \n                AND filename = 'index' \n                ORDER BY recnum DESC LIMIT 1\n","content":{"recnum":"2171","version":"0.8","edit_date":"1568517828","edit_uid":"42","prototype_uid":"42","prototype_date":"1568517847","publish_uid":"42","publish_date":"1569322477","language_iso":"eng","country_code":"AU","folder_name":"","filetype":"html","title":"","filename":"index","text":{"page":"<div id=\"header\">\n<div class=\"center\">&nbsp;<\/div>\n\n<p><img class=\"header\" src=\"\/content\/AU\/images\/standard\/OpeningLogo.png\" \/><\/p>\n\n<hr \/><\/div>\n\n<div>What is MyFriends all about?&nbsp; Watch this video and discover an exciting way to meet Jesus with your friends.<\/div>\n\n<div class=\"iframe-container\"><iframe src=\"https:\/\/player.vimeo.com\/video\/203053296\"><\/iframe><\/div>\n\n<hr \/>\n<div class=\"icons\">\n<p class=\"center\">Here are two sets of outlines for discussions that you can have with friends<\/p>\n\n<p>&nbsp;<\/p>\n\n<table>\n\t<tbody>\n\t\t<tr>\n\t\t\t<td class=\"icon2\"><a href=\"\/preview\/library\/AU\/eng\/meet.html\"><img class=\"icon\" src=\"\/content\/AU\/images\/standard\/MeetIcon.png\" \/> <\/a><\/td>\n\t\t\t<td class=\"icon2\"><a href=\"\/preview\/library\/AU\/eng\/friends.html\"><img class=\"icon\" src=\"\/content\/AU\/images\/standard\/FriendsIcon.png\" \/> <\/a><\/td>\n\t\t<\/tr>\n\t<\/tbody>\n<\/table>\n<\/div>\n","footer":"<div class=\"languages\" id=\"languages\"><a class=\"no_underline\" href=\"\/content\/languages.html\"><img class=\"languages\" src=\"\/content\/AU\/images\/standard\/OtherLanguagesTop.png\" \/><br \/>\nOTHER LANGUAGES <img class=\"languages\" src=\"\/content\/AU\/images\/standard\/OtherLanguagesBottom.png\" \/> <\/a><\/div>\n\n<table class=\"social\">\n\t<tbody>\n\t\t<tr>\n\t\t\t<td class=\"social\"><a href=\"https:\/\/www.instagram.com\/myfriendsaustralia\/\"><img class=\"social\" src=\"\/content\/AU\/images\/standard\/Instagram.png\" \/> <\/a><\/td>\n\t\t\t<td class=\"social\"><a href=\"javascript:void(0);\" onclick=\"facebook(339218283324109)\"><img class=\"social\" src=\"\/content\/AU\/images\/standard\/Facebook.png\" \/> <\/a><\/td>\n\t\t\t<td class=\"social\"><a href=\"javascript:void(0);\" onclick=\"share()\"><img class=\"social\" src=\"\/content\/AU\/images\/standard\/Share.png\" \/><\/a><\/td>\n\t\t<\/tr>\n\t<\/tbody>\n<\/table>\n\n<div class=\"footer\">\n<p class=\"footer\">MyFriends<\/p>\n\n<p class=\"footer\"><a class=\"no_underline\" href=\"https:\/\/powertochange.org.au\/church-movements\/myfriends\">powertochange.org.au<\/a><\/p>\n<\/div>\n","style":"\/content\/AU\/styles\/AU-freeform.css"}}}

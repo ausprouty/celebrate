@@ -1,0 +1,23 @@
+From AuthorApi
+$p[] = 
+parameters:
+authorizer = 52
+firstname = Bob
+lastname = Prouty
+countries = *
+username = bobp
+password = Ruth1987
+token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNTIiLCJleHAiOjE1NzAzNjIzNzAsImlzcyI6ImNyZWF0ZS5teWZyaWVuZHMubmV0d29yayIsImlhdCI6MTU3MDAwMjM3MH0.O1GS1sgSMxMioncAdcYd2Hg_W68C9he3BAJJYLmVJPw
+end of parameters
+finished post loop
+Action: registerUser
+Page: register.php
+I am adding page
+action is registerUser
+Register User
+SELECT countries FROM members WHERE uid = '52' LIMIT 1
+SELECT uid FROM members WHERE username = 'bobp' LIMIT 1
+
+
+HERE IS JSON_ENCODE OF DATA THAT IS NOT ESCAPED
+{"message":"Username already in use","error":true}

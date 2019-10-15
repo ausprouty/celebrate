@@ -1,0 +1,241 @@
+From AuthorApi
+$p[] = 
+parameters:
+recnum = 2309
+route = {"version":"latest","my_uid":"50","token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNTAiLCJleHAiOjE1NzAzODk3MTIsImlzcyI6ImNyZWF0ZS5teWZyaWVuZHMubmV0d29yayIsImlhdCI6MTU3MDAyOTcxMn0.AkbSWjOcaYoI44uCy-48tTblb3JJsLULtucS5LzosoM"}
+my_uid = 50
+token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNTAiLCJleHAiOjE1NzAzODk3MTIsImlzcyI6ImNyZWF0ZS5teWZyaWVuZHMubmV0d29yayIsImlhdCI6MTU3MDAyOTcxMn0.AkbSWjOcaYoI44uCy-48tTblb3JJsLULtucS5LzosoM
+end of parameters
+finished post loop
+
+
+
+
+set by route
+country_code:
+language_iso:
+library_code:
+folder_name:
+filename:
+
+
+Action: publishCountries
+Page: publishCountries.php
+I am adding page
+action is publishCountries
+in publisheCountries
+SELECT * FROM content  
+        WHERE  recnum = "2309"
+<div class="app-link">
+  <a class="card-link" href="{{ link }}">
+    <div class="shadow-card -shadow">
+      <img src="{{ country.image }}" class="flag" />
+      <div class="card-names">
+        <span class="card-name">{{ country.name }}</span>
+        <br />
+        <span class="card-name-english">{{ country.english }}</span>
+      </div>
+    </div>
+  </a>
+</div>
+
+AU
+BR
+DE
+CN
+EG
+ET
+ES
+FR
+IN
+PK
+CH
+LK
+US
+ZZ
+HD
+<div class="app-link">
+  <a class="card-link" href="/content/AU/eng/index.html">
+    <div class="shadow-card -shadow">
+      <img src="/images/country/AU.png" class="flag" />
+      <div class="card-names">
+        <span class="card-name">Australia</span>
+        <br />
+        <span class="card-name-english">Australia</span>
+      </div>
+    </div>
+  </a>
+</div>
+<div class="app-link">
+  <a class="card-link" href="/content/BR/por/index.html">
+    <div class="shadow-card -shadow">
+      <img src="/images/country/BR.png" class="flag" />
+      <div class="card-names">
+        <span class="card-name">Brasil</span>
+        <br />
+        <span class="card-name-english">Brazil</span>
+      </div>
+    </div>
+  </a>
+</div>
+<div class="app-link">
+  <a class="card-link" href="/content/DE/deu/index.html">
+    <div class="shadow-card -shadow">
+      <img src="/images/country/DE.png" class="flag" />
+      <div class="card-names">
+        <span class="card-name">Deutschland</span>
+        <br />
+        <span class="card-name-english">Germany</span>
+      </div>
+    </div>
+  </a>
+</div>
+<div class="app-link">
+  <a class="card-link" href="/content/CN/cmn/index.html">
+    <div class="shadow-card -shadow">
+      <img src="/images/country/CN.png" class="flag" />
+      <div class="card-names">
+        <span class="card-name">中华人民共和国</span>
+        <br />
+        <span class="card-name-english">China</span>
+      </div>
+    </div>
+  </a>
+</div>
+<div class="app-link">
+  <a class="card-link" href="/content/EG/arb/index.html">
+    <div class="shadow-card -shadow">
+      <img src="/images/country/EG.png" class="flag" />
+      <div class="card-names">
+        <span class="card-name">مصر</span>
+        <br />
+        <span class="card-name-english">Egypt</span>
+      </div>
+    </div>
+  </a>
+</div>
+<div class="app-link">
+  <a class="card-link" href="/content/ET/languages.html">
+    <div class="shadow-card -shadow">
+      <img src="/images/country/ET.png" class="flag" />
+      <div class="card-names">
+        <span class="card-name">ኢትዮጵያ</span>
+        <br />
+        <span class="card-name-english">Ethiopia</span>
+      </div>
+    </div>
+  </a>
+</div>
+<div class="app-link">
+  <a class="card-link" href="/content/ES/spa/index.html">
+    <div class="shadow-card -shadow">
+      <img src="/images/country/ES.png" class="flag" />
+      <div class="card-names">
+        <span class="card-name">España</span>
+        <br />
+        <span class="card-name-english">Spain</span>
+      </div>
+    </div>
+  </a>
+</div>
+<div class="app-link">
+  <a class="card-link" href="/content/FR/fra/index.html">
+    <div class="shadow-card -shadow">
+      <img src="/images/country/FR.png" class="flag" />
+      <div class="card-names">
+        <span class="card-name">France</span>
+        <br />
+        <span class="card-name-english"></span>
+      </div>
+    </div>
+  </a>
+</div>
+<div class="app-link">
+  <a class="card-link" href="/content/IN/hin/index.html">
+    <div class="shadow-card -shadow">
+      <img src="/images/country/IN.png" class="flag" />
+      <div class="card-names">
+        <span class="card-name"> Bhārat</span>
+        <br />
+        <span class="card-name-english">India</span>
+      </div>
+    </div>
+  </a>
+</div>
+<div class="app-link">
+  <a class="card-link" href="/content/PK/urd/index.html">
+    <div class="shadow-card -shadow">
+      <img src="/images/country/PK.png" class="flag" />
+      <div class="card-names">
+        <span class="card-name">پاکستان</span>
+        <br />
+        <span class="card-name-english">Pakistan</span>
+      </div>
+    </div>
+  </a>
+</div>
+<div class="app-link">
+  <a class="card-link" href="/content/CH/deu/index.html">
+    <div class="shadow-card -shadow">
+      <img src="/images/country/CH.png" class="flag" />
+      <div class="card-names">
+        <span class="card-name">Schweiz</span>
+        <br />
+        <span class="card-name-english">Switzerland</span>
+      </div>
+    </div>
+  </a>
+</div>
+<div class="app-link">
+  <a class="card-link" href="/content/LK/tam/index.html">
+    <div class="shadow-card -shadow">
+      <img src="/images/country/LK.png" class="flag" />
+      <div class="card-names">
+        <span class="card-name">இலங்கை</span>
+        <br />
+        <span class="card-name-english">Sri Lanka</span>
+      </div>
+    </div>
+  </a>
+</div>
+<div class="app-link">
+  <a class="card-link" href="/content/US/eng/index.html">
+    <div class="shadow-card -shadow">
+      <img src="/images/country/US.png" class="flag" />
+      <div class="card-names">
+        <span class="card-name">United States</span>
+        <br />
+        <span class="card-name-english"></span>
+      </div>
+    </div>
+  </a>
+</div>
+<div class="app-link">
+  <a class="card-link" href="/content/ZZ/cmn/index.html">
+    <div class="shadow-card -shadow">
+      <img src="/images/country/UN.jpg" class="flag" />
+      <div class="card-names">
+        <span class="card-name">Other</span>
+        <br />
+        <span class="card-name-english"></span>
+      </div>
+    </div>
+  </a>
+</div>
+<div class="app-link">
+  <a class="card-link" href="/content/HD/languages.html">
+    <div class="shadow-card -shadow">
+      <img src="/images/country/HD.jpg" class="flag" />
+      <div class="card-names">
+        <span class="card-name">Help Desk</span>
+        <br />
+        <span class="card-name-english"></span>
+      </div>
+    </div>
+  </a>
+</div>
+
+
+
+HERE IS JSON_ENCODE OF DATA THAT IS NOT ESCAPED
+{"recnum":"2309","route":"{\"version\":\"latest\",\"my_uid\":\"50\",\"token\":\"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNTAiLCJleHAiOjE1NzAzODk3MTIsImlzcyI6ImNyZWF0ZS5teWZyaWVuZHMubmV0d29yayIsImlhdCI6MTU3MDAyOTcxMn0.AkbSWjOcaYoI44uCy-48tTblb3JJsLULtucS5LzosoM\"}","my_uid":"50","token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNTAiLCJleHAiOjE1NzAzODk3MTIsImlzcyI6ImNyZWF0ZS5teWZyaWVuZHMubmV0d29yayIsImlhdCI6MTU3MDAyOTcxMn0.AkbSWjOcaYoI44uCy-48tTblb3JJsLULtucS5LzosoM","version":"0.8","country_code":null,"language_iso":null,"library_code":null,"folder_name":null,"filename":null}

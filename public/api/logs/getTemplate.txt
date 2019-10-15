@@ -1,0 +1,55 @@
+From AuthorApi
+$p[] = 
+parameters:
+country_code = HD
+language_iso = eng
+library_code = library
+folder_name = help-1
+filename = page_edit
+version = lastest
+my_uid = 42
+token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNDIiLCJleHAiOjE1Njk4Mzg2MjMsImlzcyI6ImNyZWF0ZS5teWZyaWVuZHMubmV0d29yayIsImlhdCI6MTU2OTQ3ODYyM30.GGjonbX1u001_eOvDpFmU-kFpsdcfJsSJSe16tzl-nU
+cssFORMATTED = ZZ/styles/myfriendsGLOBAL.css
+template = HelpTemplate.html
+styles_set = myfriends
+css = ZZ/styles/myfriendsGLOBAL.css
+end of parameters
+finished post loop
+Action: getTemplate
+Page: get.php
+I am adding page
+action is getTemplate
+ template is HelpTemplate.html
+ destination is ../edit/content/HD/eng/page_edit
+Template copied
+<p>Text</p>
+
+
+
+<p><img alt="" class="screen-shot" src="/content/HD/eng/help-1/languages-1.png" /></p>
+
+<p>&nbsp;</p>
+<p><img alt="" class="screen-shot" src="/content/HD/eng/help-1/languages-2.png" /></p>
+
+<p>&nbsp;</p>
+<p><img alt="" class="screen-shot" src="/content/HD/eng/help-1/languages-3.png" /></p>
+
+<p>&nbsp;</p>
+<p><img alt="" class="screen-shot" src="/content/HD/eng/help-1/languages-4.png" /></p>
+
+<p>&nbsp;</p>
+<p><img alt="" class="screen-shot" src="/content/HD/eng/help-1/languages-5.png" /></p>
+
+<p>&nbsp;</p>
+<p><img alt="" class="screen-shot" src="/content/HD/eng/help-1/languages-6.png" /></p>
+
+<p>&nbsp;</p>
+<p><img alt="" class="screen-shot" src="/content/HD/eng/help-1/languages-7.png" /></p>
+
+<p>&nbsp;</p>
+
+
+
+
+HERE IS JSON_ENCODE OF DATA THAT IS NOT ESCAPED
+{"message":"Template copied","content":"<p>Text<\/p>\r\n\r\n\r\n\r\n<p><img alt=\"\" class=\"screen-shot\" src=\"\/content\/HD\/eng\/help-1\/languages-1.png\" \/><\/p>\r\n\r\n<p>&nbsp;<\/p>\r\n<p><img alt=\"\" class=\"screen-shot\" src=\"\/content\/HD\/eng\/help-1\/languages-2.png\" \/><\/p>\r\n\r\n<p>&nbsp;<\/p>\r\n<p><img alt=\"\" class=\"screen-shot\" src=\"\/content\/HD\/eng\/help-1\/languages-3.png\" \/><\/p>\r\n\r\n<p>&nbsp;<\/p>\r\n<p><img alt=\"\" class=\"screen-shot\" src=\"\/content\/HD\/eng\/help-1\/languages-4.png\" \/><\/p>\r\n\r\n<p>&nbsp;<\/p>\r\n<p><img alt=\"\" class=\"screen-shot\" src=\"\/content\/HD\/eng\/help-1\/languages-5.png\" \/><\/p>\r\n\r\n<p>&nbsp;<\/p>\r\n<p><img alt=\"\" class=\"screen-shot\" src=\"\/content\/HD\/eng\/help-1\/languages-6.png\" \/><\/p>\r\n\r\n<p>&nbsp;<\/p>\r\n<p><img alt=\"\" class=\"screen-shot\" src=\"\/content\/HD\/eng\/help-1\/languages-7.png\" \/><\/p>\r\n\r\n<p>&nbsp;<\/p>\r\n\r\n","error":false}

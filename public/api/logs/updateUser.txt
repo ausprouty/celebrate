@@ -1,0 +1,22 @@
+From AuthorApi
+$p[] = 
+parameters:
+firstname = Bob
+lastname = Prouty
+countries = *
+username = bobp
+uid = 55
+password = Ruth1987
+member_uid = 55
+authorizer = 52
+token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNTIiLCJleHAiOjE1NzAzNjIzNzAsImlzcyI6ImNyZWF0ZS5teWZyaWVuZHMubmV0d29yayIsImlhdCI6MTU3MDAwMjM3MH0.O1GS1sgSMxMioncAdcYd2Hg_W68C9he3BAJJYLmVJPw
+end of parameters
+finished post loop
+Action: updateUser
+Page: updateUser.php
+I am adding page
+action is updateUser
+
+
+HERE IS JSON_ENCODE OF DATA THAT IS NOT ESCAPED
+{"content":"updated"}

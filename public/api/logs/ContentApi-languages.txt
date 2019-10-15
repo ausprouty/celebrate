@@ -1,0 +1,51 @@
+Content API Post
+scope = languages
+parameters:
+country_code = AU
+version = latest
+my_uid = 50
+token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNTAiLCJleHAiOjE1NzAzODk3MTIsImlzcyI6ImNyZWF0ZS5teWZyaWVuZHMubmV0d29yayIsImlhdCI6MTU3MDAyOTcxMn0.AkbSWjOcaYoI44uCy-48tTblb3JJsLULtucS5LzosoM
+In getLatestContent
+Case is languages
+SELECT * from content 
+                WHERE country_code = 'AU'
+                AND filename = 'languages' 
+                AND folder_name = ''
+                ORDER BY recnum DESC LIMIT 1
+0
+recnum
+1
+version
+2
+edit_date
+3
+edit_uid
+4
+prototype_uid
+5
+prototype_date
+6
+publish_uid
+7
+publish_date
+8
+language_iso
+9
+country_code
+10
+folder_name
+11
+filetype
+12
+title
+13
+filename
+14
+text
+
+
+
+922
+
+HERE IS JSON_ENCODE OF DATA
+{"debug":"In getLatestContent\nCase is languages\nSELECT * from content \n                WHERE country_code = 'AU'\n                AND filename = 'languages' \n                AND folder_name = ''\n                ORDER BY recnum DESC LIMIT 1\n","content":{"recnum":"1531","version":"0.8","edit_date":"1566447198","edit_uid":"42","prototype_uid":"42","prototype_date":"1568333579","publish_uid":null,"publish_date":"1568334884","language_iso":"","country_code":"AU","folder_name":"","filetype":"json","title":"","filename":"languages","text":{"languages":[{"id":null,"folder":"AU\/eng","iso":"eng","name":"English","image_dir":"AU\/images\/standard","bible_ot":"1257","bible_nt":"1257","titles":true,"rldir":"ltr","publish":true,"custom":true,"download":"Download for offline use","download_ready":"Ready for offline use","read_more":"Read More"}],"more_languages":"More Languages","choose_language":"Choose Language"}}}

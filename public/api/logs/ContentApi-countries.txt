@@ -1,0 +1,48 @@
+Content API Post
+scope = countries
+parameters:
+version = latest
+my_uid = 50
+token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNTAiLCJleHAiOjE1NzAzOTQ1NDcsImlzcyI6ImNyZWF0ZS5teWZyaWVuZHMubmV0d29yayIsImlhdCI6MTU3MDAzNDU0N30.2NCu4PE-KwsCDqKA8cOYIM5FkSeYDnQGEKeeiTDzAg4
+In getLatestContent
+Case is countries
+SELECT * FROM content 
+                WHERE filename = "countries"
+                ORDER BY recnum DESC LIMIT 1
+0
+recnum
+1
+version
+2
+edit_date
+3
+edit_uid
+4
+prototype_uid
+5
+prototype_date
+6
+publish_uid
+7
+publish_date
+8
+language_iso
+9
+country_code
+10
+folder_name
+11
+filetype
+12
+title
+13
+filename
+14
+text
+
+
+
+3392
+
+HERE IS JSON_ENCODE OF DATA
+{"debug":"In getLatestContent\nCase is countries\nSELECT * FROM content \n                WHERE filename = \"countries\"\n                ORDER BY recnum DESC LIMIT 1\n","content":{"recnum":"2309","version":"0.8","edit_date":"1569483158","edit_uid":"42","prototype_uid":"42","prototype_date":"1569483165","publish_uid":"50","publish_date":"1570029719","language_iso":"","country_code":"","folder_name":"","filetype":"json","title":"","filename":"countries","text":[{"code":"AU","english":"Australia","name":"Australia","index":"index-AU","image":"AU.png","publish":"true","custom":true,"language":"eng","website":"powertochange.org.au","url":"https:\/\/powertochange.org.au\/church-movements\/myfriends"},{"name":"Brasil","english":"Brazil","code":"BR","language":"por","index":null,"custome":null,"image":"BR.png","publish":true,"website":"www.myfriends.life","url":"https:\/\/myfriends.life\/"},{"code":"DE","english":"Germany","name":"Deutschland","index":"index-DE","image":"DE.png","publish":true,"language":"deu","custom":false,"website":"www.myfriends.life","url":"https:\/\/myfriends.life\/"},{"code":"CN","english":"China","name":"中华人民共和国","index":"index-CN","image":"CN.png","publish":true,"language":"zhs","custom":false,"website":"www.myfriends.life","url":"https:\/\/myfriends.life\/"},{"name":"مصر","english":"Egypt","code":"EG","language":"ara","index":null,"custome":null,"image":"EG.png","publish":true,"website":"www.myfriends.life","url":"https:\/\/myfriends.life\/"},{"name":"ኢትዮጵያ","english":"Ethiopia","code":"ET","language":"amh","index":null,"custome":null,"image":"ET.png","publish":true,"website":"www.myfriends.life","url":"https:\/\/myfriends.life\/"},{"code":"ES","english":"Spain","name":"España","index":"index-ES","image":"ES.png","publish":true,"language":"spa","website":"www.myfriends.life","url":"https:\/\/myfriends.life\/"},{"name":"France","english":"","code":"FR","language":"fra","index":null,"custome":null,"image":"FR.png","publish":true,"website":"www.myfriends.life","url":"https:\/\/myfriends.life\/"},{"name":" Bhārat","english":"India","code":"IN","language":"hin","index":null,"custome":null,"image":"IN.png","publish":true,"website":"www.myfriends.life","url":"https:\/\/myfriends.life\/"},{"name":"پاکستان","english":"Pakistan","code":"PK","language":"urd","index":null,"custome":null,"image":"PK.png","publish":true,"website":"www.myfriends.life","url":"https:\/\/myfriends.life\/"},{"code":"CH","english":"Switzerland","name":"Schweiz","index":"index-CH","image":"CH.png","publish":true,"language":"deu","custom":false,"website":"www.myfriends.life","url":"https:\/\/myfriends.life\/"},{"name":"இலங்கை","english":"Sri Lanka","code":"LK","language":"tam","index":null,"custome":null,"image":"LK.png","publish":true,"website":"www.myfriends.life","url":"https:\/\/myfriends.life\/"},{"code":"US","english":"","name":"United States","index":"index-US","image":"US.png","publish":true,"language":"eng","website":"www.myfriends.life","url":"https:\/\/myfriends.life\/"},{"code":"ZZ","english":"","name":"Other","index":"index-AU","image":"UN.jpg","publish":true,"language":"eng","website":"www.myfriends.life","url":"https:\/\/myfriends.life\/"},{"name":"Help Desk","english":"","code":"HD","language":"eng","website":null,"url":null,"index":null,"custom":null,"image":"HD.jpg","publish":true}]}}

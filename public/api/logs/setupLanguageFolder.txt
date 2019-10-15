@@ -1,0 +1,18 @@
+From AuthorApi
+$p[] = 
+parameters:
+language_iso = eng
+country_code = AU
+token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNDIiLCJleHAiOjE1NjkyNDg3MzQsImlzcyI6ImNyZWF0ZS5teWZyaWVuZHMubmV0d29yayIsImlhdCI6MTU2ODg4ODczNH0.qa8IxbjkIyglXjAXHElYr6qx-7A_obKOBeDYqOqshQo
+end of parameters
+finished post loop
+Action: setupLanguageFolder
+Page: setup.php
+I am adding page
+action is setupLanguageFolder
+setupLanguageFolder
+copy templates
+
+
+HERE IS JSON_ENCODE OF DATA THAT IS NOT ESCAPED
+[]

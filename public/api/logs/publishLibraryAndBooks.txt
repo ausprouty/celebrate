@@ -1,0 +1,57 @@
+From AuthorApi
+$p[] = 
+parameters:
+recnum = 2261
+route = {"country_code":"AU","language_iso":"eng","library_code":"friends","version":"latest","my_uid":"42","token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNDIiLCJleHAiOjE1Njk4MzIxODgsImlzcyI6ImNyZWF0ZS5teWZyaWVuZHMubmV0d29yayIsImlhdCI6MTU2OTQ3MjE4OH0.SuXxLiQs_2AQseFy2uLC2rA2XemIAYWmHHQeX0D_OYk"}
+my_uid = 42
+token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNDIiLCJleHAiOjE1Njk4MzIxODgsImlzcyI6ImNyZWF0ZS5teWZyaWVuZHMubmV0d29yayIsImlhdCI6MTU2OTQ3MjE4OH0.SuXxLiQs_2AQseFy2uLC2rA2XemIAYWmHHQeX0D_OYk
+end of parameters
+finished post loop
+
+
+
+
+set by route
+country_code:AU
+language_iso:eng
+library_code:friends
+folder_name:
+filename:
+
+
+Action: publishLibraryAndBooks
+Page: publishLibraryAndBooks.php
+I am adding page
+action is publishLibraryAndBooks
+
+
+ publishLibraryAndBooks
+{"recnum":"2261","route":"{\"country_code\":\"AU\",\"language_iso\":\"eng\",\"library_code\":\"friends\",\"version\":\"latest\",\"my_uid\":\"42\",\"token\":\"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNDIiLCJleHAiOjE1Njk4MzIxODgsImlzcyI6ImNyZWF0ZS5teWZyaWVuZHMubmV0d29yayIsImlhdCI6MTU2OTQ3MjE4OH0.SuXxLiQs_2AQseFy2uLC2rA2XemIAYWmHHQeX0D_OYk\"}","my_uid":"42","token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNDIiLCJleHAiOjE1Njk4MzIxODgsImlzcyI6ImNyZWF0ZS5teWZyaWVuZHMubmV0d29yayIsImlhdCI6MTU2OTQ3MjE4OH0.SuXxLiQs_2AQseFy2uLC2rA2XemIAYWmHHQeX0D_OYk","version":"0.8","debug":"\n\n publishLibraryAndBooks\n","country_code":"AU","language_iso":"eng","library_code":"friends","folder_name":null,"filename":null}
+In publishLibrary 
+SELECT text FROM content 
+        WHERE  country_code = 'AU'  
+        AND language_iso = 'eng' 
+        AND folder_name = '' AND filename = 'friends' 
+        AND prototype_date IS NOT NULL
+        ORDER BY recnum DESC LIMIT 1
+No ribbon In prototypeLibrary 
+Using template for bookImage 
+UPDATE content 
+        SET publish_date = '1569477934', publish_uid = '42'
+        WHERE country_code = 'AU' 
+        AND language_iso = 'eng' 
+        AND folder_name = ''
+        AND prototype_date IS NOT NULL
+        AND publish_date IS NULL
+
+
+ Books Parameter AFTER publishtypeLibrary
+{"life":{"id":1,"name":"life","title":"Life Principles","image":{"title":"LifePrinciples.png","image":"\/content\/AU\/images\/standard\/LifePrinciples.png"},"format":"series","style":"\/content\/ZZ\/styles\/myfriendsGLOBAL.css","publish":true,"code":"life","library_code":"friends"},"basics":{"id":2,"name":"basics","title":"Basic Conversations","image":{"title":"Basics.png","image":"\/content\/AU\/images\/standard\/Basics.png"},"format":"series","style":"\/content\/ZZ\/styles\/myfriendsGLOBAL.css","publish":true,"code":"basics","library_code":"friends"},"multiply":{"id":"3","name":"multiply","title":"Multiply","image":{"title":"Multiply.png","image":"\/content\/AU\/images\/standard\/Multiply.png"},"format":"series","style":"\/content\/ZZ\/styles\/myfriendsGLOBAL.css","publish":true,"code":"multiply","library_code":"friends"},"compass":{"id":"4","name":"compass","title":"Compass","style":"\/content\/ZZ\/styles\/myfriendsGLOBAL.css","image":{"title":"Compass.png","image":"\/content\/AU\/images\/standard\/Compass.png"},"format":"series","template":"","publish":true,"code":"compass","library_code":"friends"}}
+count is 1
+count is 2
+count is 3
+count is 4
+
+
+HERE IS JSON_ENCODE OF DATA THAT IS NOT ESCAPED
+{"recnum":"667","route":"{\"country_code\":\"AU\",\"language_iso\":\"eng\",\"library_code\":\"friends\",\"version\":\"latest\",\"my_uid\":\"42\",\"token\":\"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNDIiLCJleHAiOjE1Njk4MzIxODgsImlzcyI6ImNyZWF0ZS5teWZyaWVuZHMubmV0d29yayIsImlhdCI6MTU2OTQ3MjE4OH0.SuXxLiQs_2AQseFy2uLC2rA2XemIAYWmHHQeX0D_OYk\"}","my_uid":"42","token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNDIiLCJleHAiOjE1Njk4MzIxODgsImlzcyI6ImNyZWF0ZS5teWZyaWVuZHMubmV0d29yayIsImlhdCI6MTU2OTQ3MjE4OH0.SuXxLiQs_2AQseFy2uLC2rA2XemIAYWmHHQeX0D_OYk","version":"0.8","country_code":"AU","language_iso":"eng","library_code":"friends","folder_name":"compass","filename":null,"books":{"life":{"id":1,"name":"life","title":"Life Principles","image":{"title":"LifePrinciples.png","image":"\/content\/AU\/images\/standard\/LifePrinciples.png"},"format":"series","style":"\/content\/ZZ\/styles\/myfriendsGLOBAL.css","publish":true,"code":"life","library_code":"friends"},"basics":{"id":2,"name":"basics","title":"Basic Conversations","image":{"title":"Basics.png","image":"\/content\/AU\/images\/standard\/Basics.png"},"format":"series","style":"\/content\/ZZ\/styles\/myfriendsGLOBAL.css","publish":true,"code":"basics","library_code":"friends"},"multiply":{"id":"3","name":"multiply","title":"Multiply","image":{"title":"Multiply.png","image":"\/content\/AU\/images\/standard\/Multiply.png"},"format":"series","style":"\/content\/ZZ\/styles\/myfriendsGLOBAL.css","publish":true,"code":"multiply","library_code":"friends"},"compass":{"id":"4","name":"compass","title":"Compass","style":"\/content\/ZZ\/styles\/myfriendsGLOBAL.css","image":{"title":"Compass.png","image":"\/content\/AU\/images\/standard\/Compass.png"},"format":"series","template":"","publish":true,"code":"compass","library_code":"friends"}}}

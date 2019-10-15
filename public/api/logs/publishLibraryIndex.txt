@@ -1,0 +1,27 @@
+From AuthorApi
+$p[] = 
+parameters:
+recnum = 2171
+route = {"country_code":"AU","language_iso":"eng","version":"latest","css":"AU/styles/AU-freeform.css","my_uid":"42","token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNDIiLCJleHAiOjE1Njg4MDU4NzEsImlzcyI6ImNyZWF0ZS5teWZyaWVuZHMubmV0d29yayIsImlhdCI6MTU2ODQ0NTg3MX0.3qIUNf_vPXBwZkKG2v_wTfz2J_uuWPNFo4BT0eqP0Ow"}
+my_uid = 42
+token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNDIiLCJleHAiOjE1Njg4MDU4NzEsImlzcyI6ImNyZWF0ZS5teWZyaWVuZHMubmV0d29yayIsImlhdCI6MTU2ODQ0NTg3MX0.3qIUNf_vPXBwZkKG2v_wTfz2J_uuWPNFo4BT0eqP0Ow
+end of parameters
+finished post loop
+
+
+
+
+set by route
+country_code:AU
+language_iso:eng
+library_code:
+folder_name:
+filename:
+
+
+Action: publishLibraryIndex
+Page: publishLibraryIndex.php
+NOT AUTHORIED
+
+HERE IS JSON_ENCODE OF DATA THAT IS NOT ESCAPED
+[]

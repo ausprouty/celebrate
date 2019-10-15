@@ -1,0 +1,29 @@
+From AuthorApi
+$p[] = 
+parameters:
+route = {"country_code":"AU","language_iso":"eng","library_code":"friends","version":"lastest","styles_set":"myfriends","filename":"index","css":"AU/styles/AU-freeform.css","my_uid":"42","token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNDIiLCJleHAiOjE1Njk4Mzg2MjMsImlzcyI6ImNyZWF0ZS5teWZyaWVuZHMubmV0d29yayIsImlhdCI6MTU2OTQ3ODYyM30.GGjonbX1u001_eOvDpFmU-kFpsdcfJsSJSe16tzl-nU"}
+image_dir = AU/images/standard
+token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNDIiLCJleHAiOjE1Njk4Mzg2MjMsImlzcyI6ImNyZWF0ZS5teWZyaWVuZHMubmV0d29yayIsImlhdCI6MTU2OTQ3ODYyM30.GGjonbX1u001_eOvDpFmU-kFpsdcfJsSJSe16tzl-nU
+end of parameters
+finished post loop
+
+
+
+
+set by route
+country_code:AU
+language_iso:eng
+library_code:friends
+folder_name:
+filename:index
+
+
+Action: getFoldersContent
+Page: get.php
+I am adding page
+action is getFoldersContent
+../edit/content/AU/eng
+
+
+HERE IS JSON_ENCODE OF DATA THAT IS NOT ESCAPED
+{"content":"[\"multiply\",\"like\",\"steps\",\"basics\",\"compass\",\"life\",\"pages\"]"}

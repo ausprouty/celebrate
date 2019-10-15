@@ -1,0 +1,149 @@
+From AuthorApi
+$p[] = 
+parameters:
+recnum = 
+version = 
+edit_date = 1569486692030
+edit_uid = 
+publish_uid = 
+publish_date = 
+language_iso = 
+country_code = 
+folder = 
+filetype = html
+title = 
+filename = 
+text = <div class="lesson"><img class="lesson-icon" src="/images/sharing-life.png" />
+<div class="lesson-subtitle">SHARE</div>
+</div>
+
+<div class="ol">
+<ol class="ltr">
+	<li>What has been going well for you this week?</li>
+	<li>What has been difficult for you this past week?</li>
+	<li>Have you experienced God this week?</li>
+	<li>How can we help you with your needs?</li>
+	<li>What would you like prayer for?</li>
+</ol>
+</div>
+
+<div class="lesson"><img class="lesson-icon" src="/images/review.png" />
+<div class="lesson-subtitle">REVIEW</div>
+</div>
+
+<div class="ol">
+<ol class="ltr" start="6">
+	<li>What have you put into practice since our last meeting?</li>
+	<li>Were you able to share a God experience with anyone? Did you pray with them?</li>
+</ol>
+</div>
+
+<div class="lesson"><img class="lesson-icon" src="/images/bible-study.png" />
+<div class="lesson-subtitle">READ</div>
+</div>
+
+<div class="ol">
+<ol class="ltr" start="8">
+	<li>Read the passage aloud twice.</li>
+	<li>Have one person retell the passage in their own words with the group&rsquo;s help.</li>
+	<li>Was there anything missed or added?</li>
+</ol>
+</div>
+
+<div id="bible">
+<div class="bible">
+<p class="reference">Luke 18:18-30</p>
+
+<p><sup>18</sup>A certain ruler asked him, &ldquo;Good teacher, what must I do to inherit eternal life?&rdquo;</p>
+
+<p><sup>19</sup>&ldquo;Why do you call me good?&rdquo; Jesus answered. &ldquo;No one is good&mdash;except God alone.<sup> 20&nbsp; </sup>You know the commandments: &lsquo;You shall not commit adultery, you shall not murder, you shall not steal, you shall not give false testimony, honor your father and mother.&rsquo;&rdquo;</p>
+
+<p><sup>21</sup>&ldquo;All these I have kept since I was a boy,&rdquo; he said.</p>
+
+<p><sup>22</sup>When Jesus heard this, he said to him, &ldquo;You still lack one thing. Sell everything you have and give to the poor, and you will have treasure in heaven. Then come, follow me.&rdquo;</p>
+
+<p><sup>23</sup>When he heard this, he became very sad, because he was very wealthy.<sup> 24&nbsp; </sup>Jesus looked at him and said, &ldquo;How hard it is for the rich to enter the kingdom of God!<sup>25</sup>Indeed, it is easier for a camel to go through the eye of a needle than for someone who is rich to enter the kingdom of God.&rdquo;</p>
+
+<p><sup>26</sup>Those who heard this asked, &ldquo;Who then can be saved?&rdquo;</p>
+
+<p><sup>27</sup>Jesus replied, &ldquo;What is impossible with man is possible with God.&rdquo;</p>
+
+<p><sup>28</sup>Peter said to him, &ldquo;We have left all we had to follow you!&rdquo;</p>
+
+<p><sup>29</sup>&ldquo;Truly I tell you,&rdquo; Jesus said to them, &ldquo;no one who has left home or wife or brothers or sisters or parents or children for the sake of the kingdom of God<sup> 30&nbsp; </sup>will fail to receive many times as much in this age, and in the age to come eternal life.&rdquo;</p>
+<br />
+<a class="readmore" href="https://biblegateway.com/passage/?search=Luke%2018:18-30&amp;version=NIV">Read More </a><br />
+&nbsp;</div>
+</div>
+
+<div class="lesson"><img class="lesson-icon" src="/images/discover.png" />
+<div class="lesson-subtitle">DISCOVER</div>
+</div>
+
+<div class="ol">
+<ol class="ltr" start="11">
+	<li>What stands out for you in this passage?</li>
+	<li>What do you like and what bothers you in this passage?</li>
+	<li>What does this passage tell you about Jesus, God and people?</li>
+	<li>What does this passage say about money?</li>
+</ol>
+</div>
+
+<div class="lesson"><img class="lesson-icon" src="/images/challenges.png" />
+<div class="lesson-subtitle">APPLY</div>
+</div>
+
+<div class="ol">
+<ol class="ltr" start="15">
+	<li>What are some possible ways a person could apply this passage? Is there:
+	<ul>
+		<li>A behaviour to change?</li>
+		<li>A promise to claim?</li>
+		<li>An example to follow?</li>
+		<li>A command to obey?</li>
+	</ul>
+	</li>
+	<li>Ask God what He wants you to do in response to the passage.</li>
+	<li>Share this with the group</li>
+	<li>Who will you share this passage with? How could you introduce it?</li>
+</ol>
+</div>
+
+<div id="background_note">&nbsp;</div>
+
+route = {"country_code":"AU","language_iso":"eng","library_code":"friends","folder_name":"life","filename":"life201","cssFORMATTED":"@content@ZZ@styles@myfriendsGLOBAL.css","styles_set":"myfriends","version":"lastest","css":"/content/ZZ/styles/myfriendsGLOBAL.css","my_uid":"42","token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNDIiLCJleHAiOjE1Njk4Mzg2MjMsImlzcyI6ImNyZWF0ZS5teWZyaWVuZHMubmV0d29yayIsImlhdCI6MTU2OTQ3ODYyM30.GGjonbX1u001_eOvDpFmU-kFpsdcfJsSJSe16tzl-nU"}
+my_uid = 42
+token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNDIiLCJleHAiOjE1Njk4Mzg2MjMsImlzcyI6ImNyZWF0ZS5teWZyaWVuZHMubmV0d29yayIsImlhdCI6MTU2OTQ3ODYyM30.GGjonbX1u001_eOvDpFmU-kFpsdcfJsSJSe16tzl-nU
+end of parameters
+finished post loop
+
+
+
+
+set by route
+country_code:AU
+language_iso:eng
+library_code:friends
+folder_name:life
+filename:life201
+
+
+Action: createContent
+Page: create.php
+I am adding page
+action is createContent
+
+
+
+
+
+createContent
+INSERT into content (version,edit_date,edit_uid,language_iso,
+			country_code,folder_name,filetype,title,filename,text) values 
+			('0.8','1569486692','42','eng',
+			'AU','life','html','','life201','<div class=\"lesson\"><img class=\"lesson-icon\" src=\"/images/sharing-life.png\" />\n<div class=\"lesson-subtitle\">SHARE</div>\n</div>\n\n<div class=\"ol\">\n<ol class=\"ltr\">\n	<li>What has been going well for you this week?</li>\n	<li>What has been difficult for you this past week?</li>\n	<li>Have you experienced God this week?</li>\n	<li>How can we help you with your needs?</li>\n	<li>What would you like prayer for?</li>\n</ol>\n</div>\n\n<div class=\"lesson\"><img class=\"lesson-icon\" src=\"/images/review.png\" />\n<div class=\"lesson-subtitle\">REVIEW</div>\n</div>\n\n<div class=\"ol\">\n<ol class=\"ltr\" start=\"6\">\n	<li>What have you put into practice since our last meeting?</li>\n	<li>Were you able to share a God experience with anyone? Did you pray with them?</li>\n</ol>\n</div>\n\n<div class=\"lesson\"><img class=\"lesson-icon\" src=\"/images/bible-study.png\" />\n<div class=\"lesson-subtitle\">READ</div>\n</div>\n\n<div class=\"ol\">\n<ol class=\"ltr\" start=\"8\">\n	<li>Read the passage aloud twice.</li>\n	<li>Have one person retell the passage in their own words with the group&rsquo;s help.</li>\n	<li>Was there anything missed or added?</li>\n</ol>\n</div>\n\n<div id=\"bible\">\n<div class=\"bible\">\n<p class=\"reference\">Luke 18:18-30</p>\n\n<p><sup>18</sup>A certain ruler asked him, &ldquo;Good teacher, what must I do to inherit eternal life?&rdquo;</p>\n\n<p><sup>19</sup>&ldquo;Why do you call me good?&rdquo; Jesus answered. &ldquo;No one is good&mdash;except God alone.<sup> 20&nbsp; </sup>You know the commandments: &lsquo;You shall not commit adultery, you shall not murder, you shall not steal, you shall not give false testimony, honor your father and mother.&rsquo;&rdquo;</p>\n\n<p><sup>21</sup>&ldquo;All these I have kept since I was a boy,&rdquo; he said.</p>\n\n<p><sup>22</sup>When Jesus heard this, he said to him, &ldquo;You still lack one thing. Sell everything you have and give to the poor, and you will have treasure in heaven. Then come, follow me.&rdquo;</p>\n\n<p><sup>23</sup>When he heard this, he became very sad, because he was very wealthy.<sup> 24&nbsp; </sup>Jesus looked at him and said, &ldquo;How hard it is for the rich to enter the kingdom of God!<sup>25</sup>Indeed, it is easier for a camel to go through the eye of a needle than for someone who is rich to enter the kingdom of God.&rdquo;</p>\n\n<p><sup>26</sup>Those who heard this asked, &ldquo;Who then can be saved?&rdquo;</p>\n\n<p><sup>27</sup>Jesus replied, &ldquo;What is impossible with man is possible with God.&rdquo;</p>\n\n<p><sup>28</sup>Peter said to him, &ldquo;We have left all we had to follow you!&rdquo;</p>\n\n<p><sup>29</sup>&ldquo;Truly I tell you,&rdquo; Jesus said to them, &ldquo;no one who has left home or wife or brothers or sisters or parents or children for the sake of the kingdom of God<sup> 30&nbsp; </sup>will fail to receive many times as much in this age, and in the age to come eternal life.&rdquo;</p>\n<br />\n<a class=\"readmore\" href=\"https://biblegateway.com/passage/?search=Luke%2018:18-30&amp;version=NIV\">Read More </a><br />\n&nbsp;</div>\n</div>\n\n<div class=\"lesson\"><img class=\"lesson-icon\" src=\"/images/discover.png\" />\n<div class=\"lesson-subtitle\">DISCOVER</div>\n</div>\n\n<div class=\"ol\">\n<ol class=\"ltr\" start=\"11\">\n	<li>What stands out for you in this passage?</li>\n	<li>What do you like and what bothers you in this passage?</li>\n	<li>What does this passage tell you about Jesus, God and people?</li>\n	<li>What does this passage say about money?</li>\n</ol>\n</div>\n\n<div class=\"lesson\"><img class=\"lesson-icon\" src=\"/images/challenges.png\" />\n<div class=\"lesson-subtitle\">APPLY</div>\n</div>\n\n<div class=\"ol\">\n<ol class=\"ltr\" start=\"15\">\n	<li>What are some possible ways a person could apply this passage? Is there:\n	<ul>\n		<li>A behaviour to change?</li>\n		<li>A promise to claim?</li>\n		<li>An example to follow?</li>\n		<li>A command to obey?</li>\n	</ul>\n	</li>\n	<li>Ask God what He wants you to do in response to the passage.</li>\n	<li>Share this with the group</li>\n	<li>Who will you share this passage with? How could you introduce it?</li>\n</ol>\n</div>\n\n<div id=\"background_note\">&nbsp;</div>\n')
+Content Added Successfully
+
+
+HERE IS JSON_ENCODE OF DATA THAT IS NOT ESCAPED
+{"message":"Content Added Successfully"}

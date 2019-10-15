@@ -1,0 +1,30 @@
+From AuthorApi
+$p[] = 
+parameters:
+recnum = 2310
+route = {"country_code":"AU","language_iso":"eng","library_code":"friends","folder_name":"life","filename":"life201","version":"latest","my_uid":"42","token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNDIiLCJleHAiOjE1Njk4Mzg2MjMsImlzcyI6ImNyZWF0ZS5teWZyaWVuZHMubmV0d29yayIsImlhdCI6MTU2OTQ3ODYyM30.GGjonbX1u001_eOvDpFmU-kFpsdcfJsSJSe16tzl-nU"}
+my_uid = 42
+token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNDIiLCJleHAiOjE1Njk4Mzg2MjMsImlzcyI6ImNyZWF0ZS5teWZyaWVuZHMubmV0d29yayIsImlhdCI6MTU2OTQ3ODYyM30.GGjonbX1u001_eOvDpFmU-kFpsdcfJsSJSe16tzl-nU
+end of parameters
+finished post loop
+
+
+
+
+set by route
+country_code:AU
+language_iso:eng
+library_code:friends
+folder_name:life
+filename:life201
+
+
+Action: prototypePage
+Page: prototypePage.php
+I am adding page
+action is prototypePage
+This is a series
+
+
+HERE IS JSON_ENCODE OF DATA THAT IS NOT ESCAPED
+{"recnum":"2310","route":"{\"country_code\":\"AU\",\"language_iso\":\"eng\",\"library_code\":\"friends\",\"folder_name\":\"life\",\"filename\":\"life201\",\"version\":\"latest\",\"my_uid\":\"42\",\"token\":\"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNDIiLCJleHAiOjE1Njk4Mzg2MjMsImlzcyI6ImNyZWF0ZS5teWZyaWVuZHMubmV0d29yayIsImlhdCI6MTU2OTQ3ODYyM30.GGjonbX1u001_eOvDpFmU-kFpsdcfJsSJSe16tzl-nU\"}","my_uid":"42","token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNDIiLCJleHAiOjE1Njk4Mzg2MjMsImlzcyI6ImNyZWF0ZS5teWZyaWVuZHMubmV0d29yayIsImlhdCI6MTU2OTQ3ODYyM30.GGjonbX1u001_eOvDpFmU-kFpsdcfJsSJSe16tzl-nU","version":"0.8","country_code":"AU","language_iso":"eng","library_code":"friends","folder_name":"life","filename":"life201","selected_css":"\/content\/ZZ\/styles\/myfriendsGLOBAL.css","files_in_page":{"\/content\/ZZ\/styles\/cardGLOBAL.css":"\/content\/ZZ\/styles\/cardGLOBAL.css","\/content\/ZZ\/styles\/myfriendsGLOBAL.css":"\/content\/ZZ\/styles\/myfriendsGLOBAL.css","\/content\/ZZ\/images\/ribbons\/back-ribbon-red.png":"\/content\/ZZ\/images\/ribbons\/back-ribbon-red.png","\/content\/AU\/images\/standard\/OtherLanguagesTop.png":"\/content\/AU\/images\/standard\/OtherLanguagesTop.png","\/content\/AU\/images\/standard\/OtherLanguagesBottom.png":"\/content\/AU\/images\/standard\/OtherLanguagesBottom.png","\/content\/AU\/images\/standard\/Instagram.png":"\/content\/AU\/images\/standard\/Instagram.png","\/content\/AU\/images\/standard\/Facebook.png":"\/content\/AU\/images\/standard\/Facebook.png","\/content\/AU\/images\/standard\/Share.png":"\/content\/AU\/images\/standard\/Share.png"}}

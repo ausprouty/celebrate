@@ -1,0 +1,164 @@
+From AuthorApi
+$p[] = 
+parameters:
+recnum = 2309
+route = {"version":"latest","my_uid":"42","token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNDIiLCJleHAiOjE1Njk4MzIxODgsImlzcyI6ImNyZWF0ZS5teWZyaWVuZHMubmV0d29yayIsImlhdCI6MTU2OTQ3MjE4OH0.SuXxLiQs_2AQseFy2uLC2rA2XemIAYWmHHQeX0D_OYk"}
+my_uid = 42
+token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNDIiLCJleHAiOjE1Njk4MzIxODgsImlzcyI6ImNyZWF0ZS5teWZyaWVuZHMubmV0d29yayIsImlhdCI6MTU2OTQ3MjE4OH0.SuXxLiQs_2AQseFy2uLC2rA2XemIAYWmHHQeX0D_OYk
+end of parameters
+finished post loop
+
+
+
+
+set by route
+country_code:
+language_iso:
+library_code:
+folder_name:
+filename:
+
+
+Action: prototypeLanguages
+Page: prototypeLanguages.php
+I am adding page
+action is prototypeLanguages
+prototypeLanguages 
+SELECT * FROM content 
+        WHERE  country_code = '' 
+         AND filename = 'languages' 
+        ORDER BY recnum DESC LIMIT 1
+../prototype/content//languages.html
+
+
+
+
+
+prototypeLanguages 
+SELECT * FROM content 
+                WHERE filename = 'countries'  
+                AND prototype_date != '' 
+                ORDER BY recnum DESC LIMIT 1
+Data for Country Flags
+[{"code":"AU","english":"Australia","name":"Australia","index":"index-AU","image":"AU.png","publish":"true","custom":true,"language":"eng","website":"powertochange.org.au","url":"https://powertochange.org.au/church-movements/myfriends"},{"name":"Brasil","english":"Brazil","code":"BR","language":"por","index":null,"custome":null,"image":"BR.png","publish":true,"website":"www.myfriends.life","url":"https://myfriends.life/"},{"code":"DE","english":"Germany","name":"Deutschland","index":"index-DE","image":"DE.png","publish":true,"language":"deu","custom":false,"website":"www.myfriends.life","url":"https://myfriends.life/"},{"code":"CN","english":"China","name":"中华人民共和国","index":"index-CN","image":"CN.png","publish":true,"language":"zhs","custom":false,"website":"www.myfriends.life","url":"https://myfriends.life/"},{"name":"مصر","english":"Egypt","code":"EG","language":"ara","index":null,"custome":null,"image":"EG.png","publish":true,"website":"www.myfriends.life","url":"https://myfriends.life/"},{"name":"ኢትዮጵያ","english":"Ethiopia","code":"ET","language":"amh","index":null,"custome":null,"image":"ET.png","publish":true,"website":"www.myfriends.life","url":"https://myfriends.life/"},{"code":"ES","english":"Spain","name":"España","index":"index-ES","image":"ES.png","publish":true,"language":"spa","website":"www.myfriends.life","url":"https://myfriends.life/"},{"name":"France","english":"","code":"FR","language":"fra","index":null,"custome":null,"image":"FR.png","publish":true,"website":"www.myfriends.life","url":"https://myfriends.life/"},{"name":" Bhārat","english":"India","code":"IN","language":"hin","index":null,"custome":null,"image":"IN.png","publish":true,"website":"www.myfriends.life","url":"https://myfriends.life/"},{"name":"پاکستان","english":"Pakistan","code":"PK","language":"urd","index":null,"custome":null,"image":"PK.png","publish":true,"website":"www.myfriends.life","url":"https://myfriends.life/"},{"code":"CH","english":"Switzerland","name":"Schweiz","index":"index-CH","image":"CH.png","publish":true,"language":"deu","custom":false,"website":"www.myfriends.life","url":"https://myfriends.life/"},{"name":"இலங்கை","english":"Sri Lanka","code":"LK","language":"tam","index":null,"custome":null,"image":"LK.png","publish":true,"website":"www.myfriends.life","url":"https://myfriends.life/"},{"code":"US","english":"","name":"United States","index":"index-US","image":"US.png","publish":true,"language":"eng","website":"www.myfriends.life","url":"https://myfriends.life/"},{"code":"ZZ","english":"","name":"Other","index":"index-AU","image":"UN.jpg","publish":true,"language":"eng","website":"www.myfriends.life","url":"https://myfriends.life/"},{"name":"Help Desk","english":"","code":"HD","language":"eng","website":null,"url":null,"index":null,"custom":null,"image":"HD.jpg","publish":true}]
+
+US
+SELECT * FROM content 
+            WHERE  country_code = 'US' 
+            AND filename = 'languages'  AND prototype_date != '' 
+            ORDER BY recnum DESC LIMIT 1
+{"languages":[{"id":null,"folder":"US/eng","iso":"eng","name":"English","image_dir":"US/images/standard","titles":true,"rldir":"ltr","publish":true,"download":"Download for offline use","download_ready":"Ready for offline use","read_more":" Read More","bible_ot":"1257","bible_nt":"1257"}],"more_languages":"More Languages","choose_language":"Choose Language"}
+../images/country/US.png is flag for US 
+DE
+SELECT * FROM content 
+            WHERE  country_code = 'DE' 
+            AND filename = 'languages'  AND prototype_date != '' 
+            ORDER BY recnum DESC LIMIT 1
+{"languages":[{"id":null,"folder":"DE/deu","iso":"deu","name":"Deutsch","image_dir":"DE/images/standard","titles":true,"rldir":"ltr","publish":true,"bible_ot":"1227","bible_nt":"1227","download_ready":"Offline verfügbar","download":"Offline verfügbar machen","read_more":"Jeder liest den Text für sich"}],"more_languages":"Weitere Sprachen","choose_language":"Sprache wählen"}
+../images/country/DE.png is flag for DE 
+ZZ
+SELECT * FROM content 
+            WHERE  country_code = 'ZZ' 
+            AND filename = 'languages'  AND prototype_date != '' 
+            ORDER BY recnum DESC LIMIT 1
+{"languages":[{"id":null,"folder":"ZZ/cmn","iso":"cmn","name":"Chinese","image_dir":"CN/images/standard","titles":true,"rldir":"ltr","publish":true,"bible_ot":"1358","bible_nt":"1358","download":"保存以供离线使用","download_ready":"可供离线使用","read_more":"阅读更多"}],"more_languages":"More Languages","choose_language":"Choose Language"}
+../images/country/UN.jpg is flag for ZZ 
+CH
+SELECT * FROM content 
+            WHERE  country_code = 'CH' 
+            AND filename = 'languages'  AND prototype_date != '' 
+            ORDER BY recnum DESC LIMIT 1
+{"languages":[{"id":null,"folder":"CH/deu","iso":"deu","name":"Deutsch","image_dir":"CH/images/standard","titles":true,"rldir":"ltr","publish":true,"download":"Offline verfügbar machen","download_ready":"Offline verfügbar","read_more":"Jeder liest den Text für sich","bible_ot":"1227","bible_nt":"1227"}],"more_languages":"Weitere Sprachen","choose_language":"Sprache wählen"}
+../images/country/CH.png is flag for CH 
+ES
+SELECT * FROM content 
+            WHERE  country_code = 'ES' 
+            AND filename = 'languages'  AND prototype_date != '' 
+            ORDER BY recnum DESC LIMIT 1
+{"languages":[{"id":null,"folder":"ES/spa","iso":"spa","name":"español","image_dir":"ES/images/standard","titles":true,"rldir":"ltr","publish":true,"download_ready":"Listo para uso sin internet","download":"Guardar para uso sin internet","read_more":"LEE MAS","bible_ot":"1285","bible_nt":"1285"}],"more_languages":"Más idiomas","choose_language":"Elige lengua"}
+../images/country/ES.png is flag for ES 
+AU
+SELECT * FROM content 
+            WHERE  country_code = 'AU' 
+            AND filename = 'languages'  AND prototype_date != '' 
+            ORDER BY recnum DESC LIMIT 1
+{"languages":[{"id":null,"folder":"AU/eng","iso":"eng","name":"English","image_dir":"AU/images/standard","bible_ot":"1257","bible_nt":"1257","titles":true,"rldir":"ltr","publish":true,"custom":true,"download":"Download for offline use","download_ready":"Ready for offline use","read_more":"Read More"}],"more_languages":"More Languages","choose_language":"Choose Language"}
+../images/country/AU.png is flag for AU 
+CN
+SELECT * FROM content 
+            WHERE  country_code = 'CN' 
+            AND filename = 'languages'  AND prototype_date != '' 
+            ORDER BY recnum DESC LIMIT 1
+{"languages":[{"id":null,"folder":"CN/cmn","iso":"cmn","name":"中文","image_dir":"CN/images/standard","titles":true,"rldir":"ltr","publish":true,"bible_ot":"1358","bible_nt":"1359","download":"保存以供离线使用","download_ready":"可供离线使用","read_more":"阅读更多"}],"more_languages":"更多语言","choose_language":"选择语言"}
+../images/country/CN.png is flag for CN 
+FR
+SELECT * FROM content 
+            WHERE  country_code = 'FR' 
+            AND filename = 'languages'  AND prototype_date != '' 
+            ORDER BY recnum DESC LIMIT 1
+{"languages":[{"id":null,"folder":"FR/fra","iso":"fra","name":"Français","image_dir":"FR/images/standard","titles":true,"rldir":"ltr","publish":true,"download":"Télécharger pour une utilisation hors ligne","download_ready":"Prêt pour une utilisation hors ligne","read_more":"LIRE LA SUITE","bible_ot":"1289","bible_nt":"1289"}],"more_languages":"Plus de langues","choose_language":"Choisissez la langue"}
+../images/country/FR.png is flag for FR 
+BR
+SELECT * FROM content 
+            WHERE  country_code = 'BR' 
+            AND filename = 'languages'  AND prototype_date != '' 
+            ORDER BY recnum DESC LIMIT 1
+{"languages":[{"id":null,"folder":"BR/por","iso":"por","name":"portugues","image_dir":"BR/images/standard","titles":true,"rldir":"ltr","publish":"868","bible_ot":"1330","bible_nt":"1330","download_ready":"Pronto para usar offline","download":"Faça download para usar offline","read_more":"Ler mais "}],"more_languages":"Mais Idiomas","choose_language":"Escolha o idioma"}
+../images/country/BR.png is flag for BR 
+ET
+SELECT * FROM content 
+            WHERE  country_code = 'ET' 
+            AND filename = 'languages'  AND prototype_date != '' 
+            ORDER BY recnum DESC LIMIT 1
+{"languages":[{"id":null,"folder":"ET/amh","iso":"amh","name":"ተጨማሪ ቋንቋዎች","image_dir":"ET/images/standard","titles":true,"rldir":"ltr","publish":true,"download":"ያለ መረጃ መረብ/ ኢንተርኔት ለማውረድ  የተዘጋጀ","download_ready":" ያለ መረጃ መረብ / ኢንተርኔት ለመጠቀም የተዘጋጀ","read_more":"ተጨማሪ ያንብቡ።"},{"id":null,"folder":"ET/gaz","iso":"gaz","name":"Afaan Oromoo","image_dir":"ET/images/standard","titles":true,"rldir":"ltr","publish":true,"download_ready":"Qophii Saaphana interneetii cufaadhaan  interneeta fayyadamuu","download":"Saaphana interneetaa malee interneeta  buufachuu","read_more":"Bal’inaan Dubbisi"}],"more_languages":"ተጨማሪ ቋንቋዎች","choose_language":"ቋንቋ ይምረጡ"}
+../images/country/ET.png is flag for ET 
+EG
+SELECT * FROM content 
+            WHERE  country_code = 'EG' 
+            AND filename = 'languages'  AND prototype_date != '' 
+            ORDER BY recnum DESC LIMIT 1
+{"languages":[{"id":null,"folder":"EG/arb","iso":"arb","name":"عربى","image_dir":"EG/images/standard","titles":true,"rldir":"rtl","publish":true,"bible_ot":"52","bible_nt":"50","download_ready":"جاهز للاستخدام في وضع عدم الاتصال","download":"حفظ للاستخدام في وضع عدم الاتصال","read_more":"قراءة المزيد"}],"more_languages":"المزيد من اللغات","choose_language":"اختر اللغة"}
+../images/country/EG.png is flag for EG 
+IN
+SELECT * FROM content 
+            WHERE  country_code = 'IN' 
+            AND filename = 'languages'  AND prototype_date != '' 
+            ORDER BY recnum DESC LIMIT 1
+{"languages":[{"id":null,"folder":"IN/hin","iso":"hin","name":"हिन्दी भाषा","image_dir":"IN/images/standard","titles":true,"rldir":"ltr","publish":true,"bible_ot":"1298","bible_nt":"1298","download":"ऑफ़लाइन उपयोग के लिए डाउनलोड करें","download_ready":"ऑफ़लाइन उपयोग के लिए तैयार है","read_more":"और पढो"},{"id":null,"folder":"IN/hinr","iso":"hinr","name":"Hindi","image_dir":"IN/images/standard","titles":null,"rldir":"ltr","publish":false,"bible_ot":"1298","bible_nt":"1298"}],"more_languages":"अधिक भाषाएँ","choose_language":"भाषा चुनें"}
+../images/country/IN.png is flag for IN 
+PK
+SELECT * FROM content 
+            WHERE  country_code = 'PK' 
+            AND filename = 'languages'  AND prototype_date != '' 
+            ORDER BY recnum DESC LIMIT 1
+{"languages":[{"id":null,"folder":"PK/urd","iso":"urd","name":"اردو","image_dir":"PK/images/standard","titles":true,"rldir":"rtl","publish":true,"bible_ot":"1353","bible_nt":"1353","download":"آف لائن استعمال کیلئے ڈاؤن لوڈ کریں<","download_ready":"آف لائن استعمال کے لئے تیار ہے","read_more":"زیادہ پڑھو"}],"more_languages":"مزید زبانیں","choose_language":"زبان منتخب کریں"}
+../images/country/PK.png is flag for PK 
+LK
+SELECT * FROM content 
+            WHERE  country_code = 'LK' 
+            AND filename = 'languages'  AND prototype_date != '' 
+            ORDER BY recnum DESC LIMIT 1
+{"languages":[{"id":null,"folder":"LK/tam","iso":"tam","name":"தமிழ்","image_dir":"LK/images/standard","titles":true,"rldir":"ltr","publish":true,"bible_ot":"1346","bible_nt":"1346","download":"ஆஃப்லைன் பயன்பாட்டிற்கு பதிவிறக்கவும்","download_ready":"ஆஃப்லைன் பயன்பாட்டிற்கு தயாராக உள்ளது","read_more":"அதிகமாக வாசியுங்கள்"}],"more_languages":"மேலும் மொழிகள்","choose_language":"மொழியைத் தேர்வுசெய்க"}
+../images/country/LK.png is flag for LK 
+HD
+SELECT * FROM content 
+            WHERE  country_code = 'HD' 
+            AND filename = 'languages'  AND prototype_date != '' 
+            ORDER BY recnum DESC LIMIT 1
+<p>Here you will find a list of languages which are under the control of this country.</p>
+
+<p>If the language is highlighted in GREEN it means that this language is using a CUSTOM Library Index.</p>
+
+<p><img alt="" class="screen-shot" src="/content/HD/eng/help-1/languages-1.png" /></p>
+
+<p>&nbsp;</p>
+
+<p>If the language is highlighted in GREY it means this language is using the STANDARD Library Index.</p>
+
+<p><img alt="" class="screen-shot" src="/content/HD/eng/help-1/languages-2.png" /></p>
+
+$text->languages not found for HD
+
+
+HERE IS JSON_ENCODE OF DATA THAT IS NOT ESCAPED
+{"recnum":"2309","route":"{\"version\":\"latest\",\"my_uid\":\"42\",\"token\":\"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNDIiLCJleHAiOjE1Njk4MzIxODgsImlzcyI6ImNyZWF0ZS5teWZyaWVuZHMubmV0d29yayIsImlhdCI6MTU2OTQ3MjE4OH0.SuXxLiQs_2AQseFy2uLC2rA2XemIAYWmHHQeX0D_OYk\"}","my_uid":"42","token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNDIiLCJleHAiOjE1Njk4MzIxODgsImlzcyI6ImNyZWF0ZS5teWZyaWVuZHMubmV0d29yayIsImlhdCI6MTU2OTQ3MjE4OH0.SuXxLiQs_2AQseFy2uLC2rA2XemIAYWmHHQeX0D_OYk","version":"0.8","country_code":null,"language_iso":null,"library_code":null,"folder_name":null,"filename":null,"country_dir":"..\/prototype\/content\/\/","error":true}

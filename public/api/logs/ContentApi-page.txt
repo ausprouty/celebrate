@@ -1,0 +1,56 @@
+Content API Post
+scope = page
+parameters:
+country_code = AU
+language_iso = eng
+library_code = friends
+folder_name = compass
+filename = session416
+version = latest
+my_uid = 50
+token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNTAiLCJleHAiOjE1NzAyNDMyNjQsImlzcyI6ImNyZWF0ZS5teWZyaWVuZHMubmV0d29yayIsImlhdCI6MTU2OTg4MzI2NH0.cN5HnR0irOYrjIq1avrbstO8Mw74RJ-b8wyoTz59GUE
+In getLatestContent
+Case is page
+SELECT * from content 
+                WHERE country_code = 'AU'
+                AND language_iso = 'eng'
+                AND folder_name = 'compass'
+                AND  filename = 'session416'
+                ORDER BY recnum DESC LIMIT 1
+0
+recnum
+1
+version
+2
+edit_date
+3
+edit_uid
+4
+prototype_uid
+5
+prototype_date
+6
+publish_uid
+7
+publish_date
+8
+language_iso
+9
+country_code
+10
+folder_name
+11
+filetype
+12
+title
+13
+filename
+14
+text
+
+
+
+7584
+
+HERE IS JSON_ENCODE OF DATA
+{"debug":"In getLatestContent\nCase is page\nSELECT * from content \n                WHERE country_code = 'AU'\n                AND language_iso = 'eng'\n                AND folder_name = 'compass'\n                AND  filename = 'session416'\n                ORDER BY recnum DESC LIMIT 1\n","content":{"recnum":"417","version":"0.8","edit_date":"1564724996","edit_uid":"11","prototype_uid":"11","prototype_date":"1564724996","publish_uid":"42","publish_date":"1569380335","language_iso":"eng","country_code":"AU","folder_name":"compass","filetype":"","title":"","filename":"session416","text":"<html>\r\n  <div class=\"lesson\">\r\n    <img class=\"lesson-icon\" src=\"\/images\/compass\/sharing-life.png\" \/>\r\n    <div class=\"lesson-subtitle\">FLASHBACK<\/div>\r\n  <\/div>\r\n  <ol class=\"ltr\">\r\n    <li>What did you experience with God this week?<\/li>\r\n    <li>\r\n      In the last few days, did you have the opportunity to share an experience\r\n      with God with someone close to you that doesn’t know Jesus yet? Or could\r\n      you pray for them or help them practically?\r\n    <\/li>\r\n    <li>Do you need God‘s help in an area of your life?<\/li>\r\n  <\/ol>\r\n  <p class=\"ltr\">\r\n    ▶ Pray together: Give thanks for your experiences, ask God for help where\r\n    you need it.\r\n  <\/p>\r\n  <p class=\"ltr\">\r\n    ▶ Pray together to learn new things about God and that your relationship\r\n    with God deepens and gets stronger.\r\n  <\/p>\r\n  <div class=\"lesson\">\r\n    <img class=\"lesson-icon\" src=\"\/images\/compass\/bible-study.png\" \/>\r\n    <div class=\"lesson-subtitle\">BIBLE STUDY<\/div>\r\n  <\/div>\r\n  <ol class=\"ltr\" start=\"4\">\r\n    <li>Read the passage silently. What words or phrases stick out?<\/li>\r\n    <li>One person reads the passage out loud.<\/li>\r\n    <li>\r\n      One person retells the passage in his\/her own words (Bibles closed).\r\n    <\/li>\r\n    <li>If necessary, the others complement what was said (Bibles closed).<\/li>\r\n  <\/ol>\r\n  <hr \/>\r\n  <div class=\"bible\">\r\n    <p class=\"reference\">Matthew 9:20-22, 27-29<\/p>\r\n    <p class=\"bible\">\r\n      <sup>20<\/sup>\r\n      <span>\r\n        Just then a woman who had been subject to bleeding for twelve years came\r\n        up behind him and touched the edge of his cloak.\r\n      <\/span>\r\n      <sup>21<\/sup>\r\n      <span>\r\n        She said to herself, “If I only touch his cloak, I will be healed.”\r\n      <\/span>\r\n    <\/p>\r\n    <p class=\"bible\">\r\n      <sup>22<\/sup>Jesus turned and saw her. “Take heart, daughter,” he said,\r\n      “your faith has healed you.” And the woman was healed at that moment.\r\n    <\/p>\r\n    <p class=\"bible\">\r\n      <sup>27<\/sup>\r\n      <span>\r\n        As Jesus went on from there, two blind men followed him, calling out,\r\n        “Have mercy on us, Son of David!”\r\n      <\/span>\r\n    <\/p>\r\n    <p class=\"bible\">\r\n      <sup>28<\/sup>When he had gone indoors, the blind men came to him, and he\r\n      asked them, “Do you believe that I am able to do this?”\r\n    <\/p>\r\n    <p class=\"bible\">“Yes, Lord,” they replied.<\/p>\r\n    <p class=\"bible\">\r\n      <sup>29<\/sup>Then he touched their eyes and said, “According to your faith\r\n      let it be done to you”;\r\n    <\/p>\r\n\r\n    <p class=\"bible\">\r\n      <a\r\n        class=\"bible-readmore\"\r\n        href=\"https:\/\/biblegateway.com\/passage\/?search=Matthew%209:27-29&amp;version=TNIV\"\r\n      >\r\n        Read More\r\n      <\/a>\r\n      <br \/>\r\n      <br \/>\r\n    <\/p>\r\n  <\/div>\r\n  <br \/>\r\n  <hr \/>\r\n  <br \/>\r\n  <ol class=\"ltr\" start=\"8\">\r\n    <li>Everyone by themselves:<\/li>\r\n    <ul class=\"arrows\">\r\n      <li>\r\n        What words or phrases stick out now? Are there any differences to what\r\n        you noticed before?\r\n      <\/li>\r\n      <li>Why do you feel drawn to those words or phrases?<\/li>\r\n      <li>What could God be telling you?<\/li>\r\n      <li>What can you learn about mankind?<\/li>\r\n    <\/ul>\r\n    <li>Share in the group.<\/li>\r\n  <\/ol>\r\n  <br \/>\r\n  <br \/>\r\n  <div class=\"lesson\">\r\n    <img class=\"lesson-icon\" src=\"\/images\/compass\/challenges.png\" \/>\r\n    <div class=\"lesson-subtitle\">SPECIFIC QUESTIONS & ACTION STEPS<\/div>\r\n  <\/div>\r\n  <ol start=\"10\">\r\n    <li>\r\n      What can we learn about faith from the woman and the two blind men?&nbsp;\r\n    <\/li>\r\n    <li>\r\n      God reacts to your faith. For what situation or area in your life do you\r\n      need faith?\r\n    <\/li>\r\n    <li>\r\n      To have faith also means to act. Where does the Holy Spirit encou&shy;rage\r\n      you to take steps of faith?\r\n    <\/li>\r\n    <li>Note this down and then share in groups of two or three.<\/li>\r\n  <\/ol>\r\n  <p>\r\n    ▶&nbsp;You can pray the following prayer: “Thank you, dear Heavenly Father,\r\n    that You have given me Your Holy Spirit, who teaches me to trust and have\r\n    faith. Forgive me, where I trusted my experiences more than Your Word and\r\n    thus have acted in unbelief. Train me so I can grow in faith. I want to\r\n    learn to see things from Your perspective in every situation, to focus on\r\n    what happens in the spiritual realm and not the visible realm. Help me to\r\n    understand Your Word and Your perspective more and more.”\r\n  <\/p>\r\n  <div class=\"lesson\">\r\n    <img class=\"lesson-icon\" src=\"\/images\/compass\/background.png\" \/>\r\n    <div class=\"lesson-subtitle\">SCRIPTURE COMMENTS<\/div>\r\n  <\/div>\r\n  <p>\r\n    Faith means that we accept and proclaim what God thinks about a situation\r\n    and what is possible for him. Because to have faith means to know that the\r\n    visible realm – our limitations, experiences, sorrows – are not the only\r\n    reality. The spiritual realm is the place where the script for your life is\r\n    written. The visible realm is only what happens on the screen. Abraham\r\n    showed us what faith is. He had to wait a really long time before he could\r\n    have a son. All aspects of Abraham’s and Sarah’s lives had long been\r\n    indicating that they would not be able get a son. But Abraham persisted and\r\n    put his trust in God and His promise.\r\n  <\/p>\r\n  <p>\r\n    To us, God’s Word, the written and living Word (Jesus), is the crucial tool\r\n    for us to grow in faith. Because it transmits the real truth about...\r\n  <\/p>\r\n  <ul>\r\n    <li>\r\n      …what God is like – He for whom everything is possible, who fights for us,\r\n      who hears the cries of our hearts (Psalm 34:7), our provider, prince of\r\n      peace, doctor, shelter, wisdom, beginning and the end, and so on.\r\n    <\/li>\r\n    <li>\r\n      …and what he did for us – we are accepted, loved, his children, envoys, he\r\n      made us kings and priests, and so on.\r\n    <\/li>\r\n  <\/ul>\r\n  <p>Steps to faith:<\/p>\r\n  <ol>\r\n    <li>God’s Word: Know who God is and what He did for us.<\/li>\r\n    <li>\r\n      Prayer: Proclaim this over you or a situation you’re in (“Heavenly Father,\r\n      you are…” and “in your eyes, I am…”).\r\n    <\/li>\r\n  <\/ol>\r\n  <p>\r\n    Remember. If we hear God’s word (even from our own lips) and hold on to it\r\n    perseveringly, it will bring fruit. It will release faith for God’s plans in\r\n    our lives (Romans 10:14; Luke 8:15).\r\n  <\/p>\r\n  <br \/>\r\n  <br \/>\r\n<\/html>\r\n"}}

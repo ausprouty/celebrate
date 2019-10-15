@@ -1,0 +1,15 @@
+From AuthorApi
+$p[] = 
+parameters:
+language_iso = eng
+token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNDIiLCJleHAiOjE1Njk4Mzg2MjMsImlzcyI6ImNyZWF0ZS5teWZyaWVuZHMubmV0d29yayIsImlhdCI6MTU2OTQ3ODYyM30.GGjonbX1u001_eOvDpFmU-kFpsdcfJsSJSe16tzl-nU
+end of parameters
+finished post loop
+Action: getContentFoldersForLanguage
+Page: getContentFoldersForLanguage.php
+I am adding page
+action is getContentFoldersForLanguage
+
+
+HERE IS JSON_ENCODE OF DATA THAT IS NOT ESCAPED
+{"message":"Language folders found","content":"[\"AU\/eng\",\"HD\/eng\",\"US\/eng\",\"ZZ\/eng\"]","error":false}

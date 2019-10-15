@@ -1,0 +1,51 @@
+From AuthorApi
+$p[] = 
+parameters:
+recnum = 667
+my_uid = 50
+token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNTAiLCJleHAiOjE1NzAyNDMyNjQsImlzcyI6ImNyZWF0ZS5teWZyaWVuZHMubmV0d29yayIsImlhdCI6MTU2OTg4MzI2NH0.cN5HnR0irOYrjIq1avrbstO8Mw74RJ-b8wyoTz59GUE
+end of parameters
+finished post loop
+Action: readyToPrototypeSeries
+Page: readyToPrototype.php
+I am adding page
+action is readyToPrototypeSeries
+readytoPrototypeSeries 
+session401 ready
+session402 ready
+session403 ready
+session404 ready
+session405 ready
+session406 ready
+session407 ready
+session408 ready
+session409 ready
+session410 ready
+session411 ready
+session412 ready
+session413 ready
+session414 ready
+session415 ready
+session416 ready
+session417 ready
+session418 ready
+session419 ready
+session420 ready
+session421 ready
+session422 ready
+session423 ready
+session424 ready
+session425 ready
+session426 ready
+session427 ready
+session428 ready
+session429 ready
+session430 ready
+session431 ready
+session432 ready
+session433 ready
+session434 ready
+
+
+HERE IS JSON_ENCODE OF DATA THAT IS NOT ESCAPED
+{"error":false,"data":true,"message":""}

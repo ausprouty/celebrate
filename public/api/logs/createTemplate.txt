@@ -1,0 +1,18 @@
+From AuthorApi
+$p[] = 
+parameters:
+country_code = HD
+language_iso = eng
+folder_name = help-1
+token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNDIiLCJleHAiOjE1NjkxNDU3NTEsImlzcyI6ImNyZWF0ZS5teWZyaWVuZHMubmV0d29yayIsImlhdCI6MTU2ODc4NTc1MX0.kY9ijmPbzwJGHGTbkwGuQYZIDAtmH-nI6AG_P6LUad0
+end of parameters
+finished post loop
+Action: createTemplate
+Page: create.php
+I am adding page
+action is createTemplate
+createTemplate
+
+
+HERE IS JSON_ENCODE OF DATA THAT IS NOT ESCAPED
+{"error":false,"message":"Style Saved"}

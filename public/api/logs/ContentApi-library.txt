@@ -1,0 +1,54 @@
+Content API Post
+scope = library
+parameters:
+country_code = BR
+language_iso = por
+version = latest
+library_code = library
+my_uid = 
+token = 
+In getLatestContent
+Case is library
+SELECT * from content 
+                WHERE country_code = 'BR'
+                AND language_iso = 'por'
+                AND folder_name = '' 
+                AND filename = 'library'
+                ORDER BY recnum DESC LIMIT 1
+0
+recnum
+1
+version
+2
+edit_date
+3
+edit_uid
+4
+prototype_uid
+5
+prototype_date
+6
+publish_uid
+7
+publish_date
+8
+language_iso
+9
+country_code
+10
+folder_name
+11
+filetype
+12
+title
+13
+filename
+14
+text
+
+
+
+2167
+
+HERE IS JSON_ENCODE OF DATA
+{"debug":"In getLatestContent\nCase is library\nSELECT * from content \n                WHERE country_code = 'BR'\n                AND language_iso = 'por'\n                AND folder_name = '' \n                AND filename = 'library'\n                ORDER BY recnum DESC LIMIT 1\n","content":{"recnum":"2027","version":"0.8","edit_date":"1567410357","edit_uid":"42","prototype_uid":"42","prototype_date":"1567410360","publish_uid":"42","publish_date":"1567476207","language_iso":"por","country_code":"BR","folder_name":"","filetype":"json","title":"","filename":"library","text":{"books":[{"id":1,"title":"Problemas da vida","style":"\/content\/ZZ\/styles\/myfriendsGLOBAL.css","image":{"title":"por-Life.png","image":"\/content\/BR\/images\/standard\/por-Life.png"},"format":"series","instructions":"","code":"life","publish":true,"template":"life\/life.html"},{"id":2,"title":"Conversas Básicas","style":"\/content\/ZZ\/styles\/myfriendsGLOBAL.css","image":{"title":"por-Basics.png","image":"\/content\/BR\/images\/standard\/por-Basics.png"},"format":"series","instructions":"","code":"basics","publish":true},{"id":3,"title":"Comunidade","page":"community","style":"\/content\/ZZ\/styles\/myfriendsGLOBAL.css","image":{"title":"por-Community.png","image":"\/content\/BR\/images\/standard\/por-Community.png"},"format":"page","code":"community","publish":true},{"id":4,"title":"Primeiros passos","style":"\/content\/ZZ\/styles\/firststepsGLOBAL.css","image":{"title":"por-Steps.png","image":"\/content\/BR\/images\/standard\/por-Steps.png"},"format":"series","instructions":"","code":"firststeps","publish":true},{"id":6,"title":"Sobre","page":"community","style":"\/content\/ZZ\/styles\/myfriendsGLOBAL.css","image":{"title":"por-About.png","image":"\/content\/BR\/images\/standard\/por-About.png"},"format":"page","code":"about","publish":true}],"format":{"image":{"title":"Friends.png","image":"\/content\/BR\/images\/standard\/Friends.png"},"replace_header":true,"style":"\/content\/ZZ\/styles\/myfriendsGLOBAL.css","back_button":{"title":"Back Button Dark.png","image":"\/content\/ZZ\/images\/ribbons\/Back Button Dark.png"},"no_ribbon":true},"text":""}}}

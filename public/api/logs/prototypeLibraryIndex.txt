@@ -1,0 +1,30 @@
+From AuthorApi
+$p[] = 
+parameters:
+recnum = 2171
+route = {"country_code":"AU","language_iso":"eng","version":"latest","css":"AU/styles/AU-freeform.css","my_uid":"42","token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNDIiLCJleHAiOjE1Njk2ODE4MzUsImlzcyI6ImNyZWF0ZS5teWZyaWVuZHMubmV0d29yayIsImlhdCI6MTU2OTMyMTgzNX0.4n5YATw2V9Z_Y-GgYKG6O2GGEsyHtwZj8jjVxcJSpKg"}
+my_uid = 42
+token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNDIiLCJleHAiOjE1Njk2ODE4MzUsImlzcyI6ImNyZWF0ZS5teWZyaWVuZHMubmV0d29yayIsImlhdCI6MTU2OTMyMTgzNX0.4n5YATw2V9Z_Y-GgYKG6O2GGEsyHtwZj8jjVxcJSpKg
+end of parameters
+finished post loop
+
+
+
+
+set by route
+country_code:AU
+language_iso:eng
+library_code:
+folder_name:
+filename:
+
+
+Action: prototypeLibraryIndex
+Page: prototypeLibraryIndex.php
+I am adding page
+action is prototypeLibraryIndex
+in prototypeLibraryIndex
+
+
+HERE IS JSON_ENCODE OF DATA THAT IS NOT ESCAPED
+{"recnum":"2171","route":"{\"country_code\":\"AU\",\"language_iso\":\"eng\",\"version\":\"latest\",\"css\":\"AU\/styles\/AU-freeform.css\",\"my_uid\":\"42\",\"token\":\"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNDIiLCJleHAiOjE1Njk2ODE4MzUsImlzcyI6ImNyZWF0ZS5teWZyaWVuZHMubmV0d29yayIsImlhdCI6MTU2OTMyMTgzNX0.4n5YATw2V9Z_Y-GgYKG6O2GGEsyHtwZj8jjVxcJSpKg\"}","my_uid":"42","token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNDIiLCJleHAiOjE1Njk2ODE4MzUsImlzcyI6ImNyZWF0ZS5teWZyaWVuZHMubmV0d29yayIsImlhdCI6MTU2OTMyMTgzNX0.4n5YATw2V9Z_Y-GgYKG6O2GGEsyHtwZj8jjVxcJSpKg","version":"0.8","country_code":"AU","language_iso":"eng","library_code":null,"folder_name":null,"filename":null}

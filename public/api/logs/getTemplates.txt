@@ -1,0 +1,30 @@
+From AuthorApi
+$p[] = 
+parameters:
+route = {"country_code":"AU","language_iso":"eng","library_code":"friends","version":"lastest","styles_set":"myfriends","filename":"index","css":"AU/styles/AU-freeform.css","my_uid":"42","token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNDIiLCJleHAiOjE1Njk4Mzg2MjMsImlzcyI6ImNyZWF0ZS5teWZyaWVuZHMubmV0d29yayIsImlhdCI6MTU2OTQ3ODYyM30.GGjonbX1u001_eOvDpFmU-kFpsdcfJsSJSe16tzl-nU"}
+image_dir = AU/images/standard
+token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNDIiLCJleHAiOjE1Njk4Mzg2MjMsImlzcyI6ImNyZWF0ZS5teWZyaWVuZHMubmV0d29yayIsImlhdCI6MTU2OTQ3ODYyM30.GGjonbX1u001_eOvDpFmU-kFpsdcfJsSJSe16tzl-nU
+end of parameters
+finished post loop
+
+
+
+
+set by route
+country_code:AU
+language_iso:eng
+library_code:friends
+folder_name:
+filename:index
+
+
+Action: getTemplates
+Page: get.php
+I am adding page
+action is getTemplates
+getTemplates
+../edit/content/AU/eng/templates/
+
+
+HERE IS JSON_ENCODE OF DATA THAT IS NOT ESCAPED
+{"message":"Templates found","error":false,"content":"[\"multiply\/1multiply.html\",\"about.html\",\"community.html\",\"celebrate.html\",\"basics\/basics103.html\",\"basics\/basics108.html\",\"basics\/basics104.html\",\"basics\/basics.json\",\"basics\/basics109.html\",\"basics\/basics110.html\",\"basics\/basics101.html\",\"basics\/basics.html\",\"basics\/basics106.html\",\"basics\/basics105.html\",\"basics\/basics102.html\",\"basics\/basics107.html\",\"gospel.html\",\"tips.html\",\"compass\/compass.html\",\"life\/life.html\",\"first_steps\/satisfied.html\",\"first_steps\/step4.html\",\"first_steps\/step1.html\",\"first_steps\/first_steps.json\",\"first_steps\/step2.html\",\"first_steps\/step5.html\",\"first_steps\/intro.html\",\"first_steps\/next.html\",\"first_steps\/tips.html\",\"first_steps\/step6.html\",\"first_steps\/step7.html\",\"first_steps\/step3.html\"]"}

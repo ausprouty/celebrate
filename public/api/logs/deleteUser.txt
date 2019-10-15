@@ -1,0 +1,17 @@
+From AuthorApi
+$p[] = 
+parameters:
+authorizer = 52
+member_uid = 54
+member_username = bobp
+token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNTIiLCJleHAiOjE1NzAzNjIzNzAsImlzcyI6ImNyZWF0ZS5teWZyaWVuZHMubmV0d29yayIsImlhdCI6MTU3MDAwMjM3MH0.O1GS1sgSMxMioncAdcYd2Hg_W68C9he3BAJJYLmVJPw
+end of parameters
+finished post loop
+Action: deleteUser
+Page: deleteUser.php
+I am adding page
+action is deleteUser
+
+
+HERE IS JSON_ENCODE OF DATA THAT IS NOT ESCAPED
+{"content":"deleted"}

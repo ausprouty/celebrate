@@ -1,0 +1,2 @@
+[02-Oct-2019 15:21:59 UTC] PHP Notice:  Trying to get property 'languages' of non-object in /home/vx5ui10wb4ln/public_html/create/publishCountries.php on line 83
+[02-Oct-2019 15:21:59 UTC] PHP Warning:  Invalid argument supplied for foreach() in /home/vx5ui10wb4ln/public_html/create/publishCountries.php on line 83

@@ -1,0 +1,34 @@
+From AuthorApi
+$p[] = 
+parameters:
+token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNDIiLCJleHAiOjE1Njk4Mzg2MjMsImlzcyI6ImNyZWF0ZS5teWZyaWVuZHMubmV0d29yayIsImlhdCI6MTU2OTQ3ODYyM30.GGjonbX1u001_eOvDpFmU-kFpsdcfJsSJSe16tzl-nU
+end of parameters
+finished post loop
+Action: getFoldersImages
+Page: get.php
+I am adding page
+action is getFoldersImages
+getFolders
+root direcgtory exists
+../edit/content/EG/images
+../edit/content/images/images
+../edit/content/AU/images
+../edit/content/ET/images
+../edit/content/templates/images
+../edit/content/styles/images
+../edit/content/BR/images
+../edit/content/FR/images
+../edit/content/IN/images
+../edit/content/CN/images
+../edit/content/DE/images
+../edit/content/HD/images
+../edit/content/US/images
+../edit/content/ES/images
+../edit/content/PK/images
+../edit/content/CH/images
+../edit/content/LK/images
+../edit/content/ZZ/images
+
+
+HERE IS JSON_ENCODE OF DATA THAT IS NOT ESCAPED
+{"message":"Language folders found","content":"[\"EG\/images\/standard\",\"AU\/images\/standard\",\"ET\/images\/standard\",\"BR\/images\/standard\",\"FR\/images\/standard\",\"IN\/images\/standard\",\"CN\/images\/standard\",\"DE\/images\/standard\",\"HD\/images\/standard\",\"US\/images\/standard\",\"ES\/images\/standard\",\"PK\/images\/standard\",\"CH\/images\/standard\",\"LK\/images\/standard\",\"ZZ\/images\/ethiopian\",\"ZZ\/images\/europe\",\"ZZ\/images\/ribbons\",\"ZZ\/images\/latin-america\",\"ZZ\/images\/india\",\"ZZ\/images\/GLOBAL\",\"ZZ\/images\/middle-east\",\"ZZ\/images\/china\",\"ZZ\/images\/standard\"]","error":false}

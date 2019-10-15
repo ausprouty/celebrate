@@ -1,0 +1,29 @@
+From AuthorApi
+$p[] = 
+parameters:
+route = {"country_code":"AU","language_iso":"eng","library_code":"friends","version":"lastest","styles_set":"myfriends","filename":"index","css":"AU/styles/AU-freeform.css","my_uid":"42","token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNDIiLCJleHAiOjE1NjkyNDYyMTIsImlzcyI6ImNyZWF0ZS5teWZyaWVuZHMubmV0d29yayIsImlhdCI6MTU2ODg4NjIxMn0.cUkm2FdWZGBNSPkgswV71X2UUOv-Qg4pqCUTG8ZIjlw","folder_name":"multiply"}
+token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNDIiLCJleHAiOjE1NjkyNDYyMTIsImlzcyI6ImNyZWF0ZS5teWZyaWVuZHMubmV0d29yayIsImlhdCI6MTU2ODg4NjIxMn0.cUkm2FdWZGBNSPkgswV71X2UUOv-Qg4pqCUTG8ZIjlw
+end of parameters
+finished post loop
+
+
+
+
+set by route
+country_code:AU
+language_iso:eng
+library_code:friends
+folder_name:multiply
+filename:index
+
+
+Action: createSeriesIndex
+Page: create.php
+I am adding page
+action is createSeriesIndex
+createSeriesIndex
+index: ../edit/content/AU/eng/multiply/index.html
+
+
+HERE IS JSON_ENCODE OF DATA THAT IS NOT ESCAPED
+[]

@@ -1,0 +1,52 @@
+From AuthorApi
+$p[] = 
+parameters:
+recnum = 1862
+route = {"country_code":"BR","language_iso":"por","library_code":"library","folder_name":"life","version":"latest","my_uid":"42","token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNDIiLCJleHAiOjE1Njg5NzQ0OTgsImlzcyI6ImNyZWF0ZS5teWZyaWVuZHMubmV0d29yayIsImlhdCI6MTU2ODYxNDQ5OH0.0TSC6oOil8z8UwKZ6hc4K2E2fee4qPInNJLS2vTV9E0"}
+my_uid = 42
+token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNDIiLCJleHAiOjE1Njg5NzQ0OTgsImlzcyI6ImNyZWF0ZS5teWZyaWVuZHMubmV0d29yayIsImlhdCI6MTU2ODYxNDQ5OH0.0TSC6oOil8z8UwKZ6hc4K2E2fee4qPInNJLS2vTV9E0
+end of parameters
+finished post loop
+
+
+
+
+set by route
+country_code:BR
+language_iso:por
+library_code:library
+folder_name:life
+filename:
+
+
+Action: publishSeriesAndChapters
+Page: publishSeriesAndChapters.php
+I am adding page
+action is publishSeriesAndChapters
+This is a series
+This is a series
+This is a series
+This is a series
+This is a series
+This is a series
+This is a series
+This is a series
+This is a series
+This is a series
+This is a series
+This is a series
+This is a series
+This is a series
+This is a series
+This is a series
+This is a series
+This is a series
+This is a series
+This is a series
+This is a series
+This is a series
+This is a series
+
+
+HERE IS JSON_ENCODE OF DATA THAT IS NOT ESCAPED
+{"recnum":"1862","route":"{\"country_code\":\"BR\",\"language_iso\":\"por\",\"library_code\":\"library\",\"folder_name\":\"life\",\"version\":\"latest\",\"my_uid\":\"42\",\"token\":\"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNDIiLCJleHAiOjE1Njg5NzQ0OTgsImlzcyI6ImNyZWF0ZS5teWZyaWVuZHMubmV0d29yayIsImlhdCI6MTU2ODYxNDQ5OH0.0TSC6oOil8z8UwKZ6hc4K2E2fee4qPInNJLS2vTV9E0\"}","my_uid":"42","token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNDIiLCJleHAiOjE1Njg5NzQ0OTgsImlzcyI6ImNyZWF0ZS5teWZyaWVuZHMubmV0d29yayIsImlhdCI6MTU2ODYxNDQ5OH0.0TSC6oOil8z8UwKZ6hc4K2E2fee4qPInNJLS2vTV9E0","version":"0.8","country_code":"BR","language_iso":"por","library_code":"library","folder_name":"life","filename":null,"files_json":"[{\"url\":\"\/content\/BR\/por\/life\/files.json\"},\n{\"url\":\"\/content\/BR\/por\/life\/life201.html\"},\n{\"url\":\"\/content\/BR\/por\/life\/life202.html\"},\n{\"url\":\"\/content\/BR\/por\/life\/life203.html\"},\n{\"url\":\"\/content\/BR\/por\/life\/life204.html\"},\n{\"url\":\"\/content\/BR\/por\/life\/life205.html\"},\n{\"url\":\"\/content\/BR\/por\/life\/life206.html\"},\n{\"url\":\"\/content\/BR\/por\/life\/life207.html\"},\n{\"url\":\"\/content\/BR\/por\/life\/life208.html\"},\n{\"url\":\"\/content\/BR\/por\/life\/life209.html\"},\n{\"url\":\"\/content\/BR\/por\/life\/life210.html\"},\n{\"url\":\"\/content\/BR\/por\/life\/life211.html\"},\n{\"url\":\"\/content\/BR\/por\/life\/life212.html\"},\n{\"url\":\"\/content\/BR\/por\/life\/life213.html\"},\n{\"url\":\"\/content\/BR\/por\/life\/life214.html\"},\n{\"url\":\"\/content\/BR\/por\/life\/life215.html\"},\n{\"url\":\"\/content\/BR\/por\/life\/life216.html\"},\n{\"url\":\"\/content\/BR\/por\/life\/life217.html\"},\n{\"url\":\"\/content\/BR\/por\/life\/life218.html\"},\n{\"url\":\"\/content\/BR\/por\/life\/life219.html\"},\n{\"url\":\"\/content\/BR\/por\/life\/life220.html\"},\n{\"url\":\"\/content\/BR\/por\/life\/life221.html\"},\n{\"url\":\"\/content\/BR\/por\/life\/life222.html\"},\n{\"url\":\"\/content\/BR\/por\/life\/life223.html\"},\n","data":"Finished"}

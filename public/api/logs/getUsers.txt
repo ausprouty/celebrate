@@ -1,0 +1,15 @@
+From AuthorApi
+$p[] = 
+parameters:
+scope = *
+token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNTIiLCJleHAiOjE1NzAzNjIzNzAsImlzcyI6ImNyZWF0ZS5teWZyaWVuZHMubmV0d29yayIsImlhdCI6MTU3MDAwMjM3MH0.O1GS1sgSMxMioncAdcYd2Hg_W68C9he3BAJJYLmVJPw
+end of parameters
+finished post loop
+Action: getUsers
+Page: getUsers.php
+I am adding page
+action is getUsers
+
+
+HERE IS JSON_ENCODE OF DATA THAT IS NOT ESCAPED
+{"content":"[{ \"firstname\": \"Bob\", \"lastname\": \"Prouty\", \"countries\": \"*\", \"uid\": \"55\"},{ \"firstname\": \"Dmytro\", \"lastname\": \"Kiselov\", \"countries\": \"*\", \"uid\": \"50\"},{ \"firstname\": \"Dmytro\", \"lastname\": \"Kiselov\", \"countries\": \"*\", \"uid\": \"51\"},{ \"firstname\": \"Jurg\", \"lastname\": \"Schaufelberge\", \"countries\": \"*\", \"uid\": \"49\"},{ \"firstname\": \"Ruth\", \"lastname\": \"Prouty\", \"countries\": \"*\", \"uid\": \"52\"},{ \"firstname\": \"Sarina\", \"lastname\": \"Sherring\", \"countries\": \"|AU|\", \"uid\": \"14\"},{ \"firstname\": \"Stauffer\", \"lastname\": \"Yannik\", \"countries\": \"|DE|CH|\", \"uid\": \"45\"}]"}
