@@ -4,9 +4,10 @@
  define("PASS", "ugWwRPb5ljRFeubJ");
  define("DATABASE_CONTENT", "new_journey");
  define("DATABASE_BIBLE", "new_dbm_common");
+ define("DATABASE_PORT", 9306);
  
  function sqlBible($sql){
-    $conn = new mysqli(HOST, USER, PASS, DATABASE_BIBLE);
+    $conn = new mysqli(HOST, USER, PASS, DATABASE_BIBLE, DATABASE_PORT;
     if ($conn->connect_error) {
         die("Connection has failed: " . $conn->connect_error);
     }
@@ -18,7 +19,7 @@
     }
  }
  function sqlBibleMany($sql){
-    $conn = new mysqli(HOST, USER, PASS, DATABASE_BIBLE);
+    $conn = new mysqli(HOST, USER, PASS, DATABASE_BIBLE, DATABASE_PORT);
     if ($conn->connect_error) {
         die("Connection has failed: " . $conn->connect_error);
     }
@@ -29,7 +30,7 @@
  }
 
 function sqlArray($sql, $update = NULL){
-    $conn = new mysqli(HOST, USER, PASS, DATABASE_CONTENT);
+    $conn = new mysqli(HOST, USER, PASS, DATABASE_CONTENT, DATABASE_PORT);
     if ($conn->connect_error) {
         die("Connection has failed: " . $conn->connect_error);
     }
@@ -53,7 +54,7 @@ function sqlArray($sql, $update = NULL){
     }
 }
 function sqlDelete($sql){
-    $conn = new mysqli(HOST, USER, PASS, DATABASE_CONTENT);
+    $conn = new mysqli(HOST, USER, PASS, DATABASE_CONTENT, DATABASE_PORT);
     if ($conn->connect_error) {
         die("Connection has failed: " . $conn->connect_error);
     }
@@ -62,7 +63,7 @@ function sqlDelete($sql){
     return;
 }
 function sqlInsert($sql){
-    $conn = new mysqli(HOST, USER, PASS, DATABASE_CONTENT);
+    $conn = new mysqli(HOST, USER, PASS, DATABASE_CONTENT, DATABASE_PORT);
     if ($conn->connect_error) {
         die("Connection has failed: " . $conn->connect_error);
     }
@@ -71,7 +72,7 @@ function sqlInsert($sql){
     return;
 }
 function sqlMany($sql){
-    $conn = new mysqli(HOST, USER, PASS, DATABASE_CONTENT);
+    $conn = new mysqli(HOST, USER, PASS, DATABASE_CONTENT, DATABASE_PORT);
     if ($conn->connect_error) {
         die("Connection has failed: " . $conn->connect_error);
     }
@@ -81,7 +82,7 @@ function sqlMany($sql){
     return $output;
 }
 function sqlText($sql, $update = NULL){
-    $conn = new mysqli(HOST, USER, PASS, DATABASE_CONTENT);
+    $conn = new mysqli(HOST, USER, PASS, DATABASE_CONTENT, DATABASE_PORT);
     if ($conn->connect_error) {
         die("Connection has failed: " . $conn->connect_error);
     }
@@ -111,7 +112,7 @@ function objectFromRecnum($recnum){
     if ($recnum){
         $sql = "SELECT * FROM content 
             WHERE  recnum = $recnum  LIMIT 1";
-        $conn = new mysqli(HOST, USER, PASS, DATABASE_CONTENT);
+        $conn = new mysqli(HOST, USER, PASS, DATABASE_CONTENT, DATABASE_PORT);
         if ($conn->connect_error) {
             die("Connection has failed: " . $conn->connect_error);
         }

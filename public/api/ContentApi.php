@@ -20,7 +20,7 @@ $text = NULL;
 
 
 $debug .= 'parameters:' . "\n";
-$conn = new mysqli(HOST, USER, PASS, DATABASE_CONTENT);
+$conn = new mysqli(HOST, USER, PASS, DATABASE_CONTENT, DATABASE_PORT);
 foreach ($_POST as $param_name => $param_value) {
     $$param_name =  $conn->real_escape_string($param_value);
     if ($$param_name == 'null'){

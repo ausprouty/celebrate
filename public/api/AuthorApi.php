@@ -124,6 +124,7 @@ if(isset($_SERVER['HTTP_ORIGIN'])) {
    if($origin == 'http://edit.myfriends.network' 
 	OR $origin == 'https://edit.myfriends.network' 
 	OR $origin == 'http://192.168.56.1:8080' 
+	OR $origin == 'http://10.1.1.4:8080' 
 	OR $origin == 'http://192.168.43.204:8080'
 	OR $origin == 'http://localhost:8080' 
 	OR $origin == 'http://prototype.hereslife.info') {
