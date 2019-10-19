@@ -24,7 +24,7 @@ function prototypeLibrary($p){
         $temp = 'bookImage.html';
         //$p['debug'] .= 'Using template for bookImage '. "\n";
     }
-    $book_template = file_get_contents('../edit/prototype/' . $temp);
+    $book_template = file_get_contents(ROOT_EDIT .  'prototype/' . $temp);
     //$p['debug'] .= $book_template . "\n";
     // find library names
     $sql = "SELECT DISTINCT filename  FROM content 
@@ -50,7 +50,7 @@ function prototypeLibrary($p){
             //$p['debug'] .= $sql. "\n";
             $data = sqlArray($sql);
             $text = json_decode($data['text']);
-            $body = file_get_contents('../edit/prototype/library.html');
+            $body = file_get_contents(ROOT_EDIT .  'prototype/library.html');
             //$p['debug'] .= $body . "\n";
             if (isset($text->image)){
                 $img =  '/content/'. $bookmark['language']->image_dir .'/' . $text->image;

@@ -19,7 +19,7 @@ function publishLanguagesAvailable($p){
     $countries_array = json_decode($data['text']);
    // $footer = prototypeLanguageFooter($p);
     // get main template
-     $main_template = $book_template = file_get_contents('../edit/prototype/languagesAvailable.html');
+     $main_template = $book_template = file_get_contents(ROOT_EDIT .  'prototype/languagesAvailable.html');
     //
     //find prototype countries data
     //
@@ -72,7 +72,7 @@ function publishLanguagesAvailable($p){
 
     }
     // get language template
-    $sub_template = file_get_contents('../edit/prototype/languageAvailable.html');
+    $sub_template = file_get_contents(ROOT_EDIT .  'prototype/languageAvailable.html');
     $placeholders = array(
         '{{ link }}',
         '{{ country.image }}',

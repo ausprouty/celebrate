@@ -3,7 +3,7 @@
 include_once('bookmark.php');
 
     
-function _addHeader($p){
+function _addPrototypeHeader($p){
     $header = ROOT_EDIT. 'prototype/header.html';
     if (file_exists($header)){
         return file_get_contents ($header);
@@ -12,7 +12,7 @@ function _addHeader($p){
         return '';
     }
 }
-function _addFooter($p){
+function _addPrototypeFooter($p){
     $footer = ROOT_EDIT. 'prototype/footer.html';
     if (file_exists($footer)){
         return file_get_contents ($footer);
@@ -25,7 +25,7 @@ function _addFooter($p){
 function publishFiles( $scope , $p, $fname, $text, $standard_css, $selected_css){
     
     // start with header
-    $output = _addHeader($p);
+    $output = _addPrototypeHeader($p);
     //$p['debug'] .= "\n". 'publishFiles' . "\n";
     $out['debug'] = 'publishFiles : ' . $fname .  "\n";
     $placeholders = array(
@@ -42,7 +42,7 @@ function publishFiles( $scope , $p, $fname, $text, $standard_css, $selected_css)
     // insert text
     $output .= $text;
     // append footer
-    $output .= _addFooter($p);
+    $output .= _addPrototypeFooter($p);
     // copy all images and styles to the prototype directory
     $response = prototypeCopyImagesAndStyles($output, $scope);
     if (isset($response['debug'])){

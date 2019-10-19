@@ -25,12 +25,12 @@ function publishCountries($p){
     // create page
     //
     // get main template and do some replacing
-    $main_template = file_get_contents('../edit/prototype/countries.html');
+    $main_template = file_get_contents(ROOT_EDIT .  'prototype/countries.html');
     $placeholders = '{{ version }}';
     $replace = $p['version'];
     $main_template = str_replace($placeholders, $replace, $main_template);
     // get sub template and do some replacing
-    $sub_template = file_get_contents('../edit/prototype/country.html');
+    $sub_template = file_get_contents(ROOT_EDIT .  'prototype/country.html');
     $p['debug'] .=  $sub_template . "\n";
     $countries = json_decode($data['text']);
     $country_template = ''; 

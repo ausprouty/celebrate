@@ -4,10 +4,10 @@
  define("PASS", "ugWwRPb5ljRFeubJ");
  define("DATABASE_CONTENT", "new_journey");
  define("DATABASE_BIBLE", "new_dbm_common");
- define("DATABASE_PORT", 9306);
+ define("DATABASE_PORT", 3306);
  
  function sqlBible($sql){
-    $conn = new mysqli(HOST, USER, PASS, DATABASE_BIBLE, DATABASE_PORT;
+    $conn = new mysqli(HOST, USER, PASS, DATABASE_BIBLE, DATABASE_PORT);
     if ($conn->connect_error) {
         die("Connection has failed: " . $conn->connect_error);
     }

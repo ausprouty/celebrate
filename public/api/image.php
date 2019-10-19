@@ -12,7 +12,7 @@ function imageStore($p){
     
 	if ($_FILES['file']['type'] == 'image/png' || $_FILES['file']['type'] == 'image/jpeg'|| $_FILES['file']['type'] == 'image/gif'){
    
-		$dir = ROOT_EDIT. $p['directory'];  // ROOT_EDIT = '../edit/'
+		$dir = ROOT_EDIT. $p['directory'];  // ROOT_EDIT = ROOT_EDIT .  ''
 		$out['debug'] .= 'directory: '. $dir . "\n";
 		if (!file_exists($dir)){
 			dirMake ($dir);

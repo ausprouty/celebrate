@@ -209,7 +209,9 @@ export default {
               this.prototype_text = 'Prototype Series and Chapters Again'
             }
           }
+          console.log ('this prototype date is ' + this.prototype_date)
           if (this.prototype_date) {
+             console.log ('I am checking for mayPublishSeries')
             this.publish = this.mayPublishSeries()
             if (this.publish) {
               if (this.publish_date) {

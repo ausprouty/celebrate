@@ -5,20 +5,20 @@ require_once ('vendor/autoload.php');
 require_once ('sql.php');
 use ReallySimpleJWT\Token;
 define("VERSION", '0.8');
-define("ROOT_EDIT", '../edit/');
-define("ROOT_PROTOTYPE", '../prototype/');
-define("ROOT_PUBLISH", '../mfjourney/');
-define("ROOT_PROTOTYPE_CONTENT", '../prototype/content/');
-define("ROOT_PUBLISH_CONTENT", '../mfjourney/content/');
-define("ROOT_PROTOTYPE_IMAGES", '../prototype/images/');
-define("ROOT_PUBLISH_IMAGES", '../mfjourney/images/');
+define("ROOT_EDIT", '../../edit/');
+define("ROOT_PROTOTYPE", '../../prototype/');
+define("ROOT_PUBLISH", '../../mfjourney/');
+define("ROOT_PROTOTYPE_CONTENT", '../../prototype/content/');
+define("ROOT_PUBLISH_CONTENT", '../../mfjourney/content/');
+define("ROOT_PROTOTYPE_IMAGES", '../../prototype/images/');
+define("ROOT_PUBLISH_IMAGES", '../../mfjourney/images/');
 define("STANDARD_CSS", '/content/ZZ/styles/myfriendsGLOBAL.css');
 define("STANDARD_CARD_CSS",'/content/ZZ/styles/cardGLOBAL.css');
 define("DEFAULT_BACK_RIBBON", 'ZZ/images/ribbons/back-ribbon-red.png');
 
 // assign variables
 $secret = 'sJeSuST423*&';
-$dir_web = '/home/vx5ui10wb4ln/public_html/create/';
+$dir_web = '/home/vx5ui10wb4ln/public_html/edit/api/';
 $out = array(); 
 $debug = 'From AuthorApi'. "\n";
 $debug .= '$p[] = ' . "\n";

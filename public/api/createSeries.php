@@ -15,9 +15,9 @@ function createSeries($p, $data){
     //$p['debug'] .= isset($bm['debug']) ? $bm['debug'] : null;
     //$p['debug'] .= 'Bookmark is '.  json_encode($bookmark) . "\n";
     // replace placeholders in template
-    $this_template = file_get_contents('../edit/prototype/series.html');
+    $this_template = file_get_contents(ROOT_EDIT .  'prototype/series.html');
     // insert nav bar
-    $nav = file_get_contents('../edit/prototype/navRibbon.html');
+    $nav = file_get_contents(ROOT_EDIT .  'prototype/navRibbon.html');
     $this_template = str_replace('[[nav]]', $nav, $this_template);
     //set placeholders
     $placeholders = array(
@@ -77,8 +77,8 @@ function createSeries($p, $data){
     //
     // get chapter template
     //
-    $chapterText_template = file_get_contents('../edit/prototype/chapterText.html');
-    $chapterImage_template = file_get_contents('../edit/prototype/chapterImage.html');
+    $chapterText_template = file_get_contents(ROOT_EDIT .  'prototype/chapterText.html');
+    $chapterImage_template = file_get_contents(ROOT_EDIT .  'prototype/chapterImage.html');
     $placeholders = array(
         '{{ link }}',
         '{{ language.rldir }}',

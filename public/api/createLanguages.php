@@ -9,7 +9,7 @@ function createLanguages($p, $data){
         return $out;
     }
      // replace placeholders in template
-    $main_template = $book_template = file_get_contents('../edit/prototype/languages.html');
+    $main_template = $book_template = file_get_contents(ROOT_EDIT .  'prototype/languages.html');
     $placeholders = array(
         '{{ choose_language }}', 
         '{{ more_languages }}', 
@@ -22,7 +22,7 @@ function createLanguages($p, $data){
     );
     $main_template = str_replace($placeholders, $replace, $main_template);
     // get chapter template
-    $sub_template = file_get_contents('../edit/prototype/language.html');
+    $sub_template = file_get_contents(ROOT_EDIT .  'prototype/language.html');
     $placeholders = array(
         '{{ link }}',
         '{{ language.name }}',

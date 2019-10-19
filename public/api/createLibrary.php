@@ -16,7 +16,7 @@ function createLibrary($p, $text) {
     //
     // get template for library and fill in library details
     //
-    $body = file_get_contents('../edit/prototype/library.html');
+    $body = file_get_contents(ROOT_EDIT .  'prototype/library.html');
     //
     //  Format Navigation area;
     //
@@ -29,7 +29,7 @@ function createLibrary($p, $text) {
     }
     else{
         $p['debug'] .= 'Ribbon In prototypeLibrary '. "\n";
-        $nav = file_get_contents('../edit/prototype/navRibbon.html');
+        $nav = file_get_contents(ROOT_EDIT .  'prototype/navRibbon.html');
         $ribbon = isset($text->format->back_button)?$text->format->back_button->image : DEFAULT_BACK_RIBBON ;
     } 
     $body = str_replace('[[nav]]',$nav, $body);
@@ -77,7 +77,7 @@ function createLibrary($p, $text) {
         $temp = 'bookImage.html';
         $p['debug'] .= 'Using template for bookImage '. "\n";
     }
-    $book_template = file_get_contents('../edit/prototype/' . $temp);
+    $book_template = file_get_contents(ROOT_EDIT .  'prototype/' . $temp);
     // 
     //  replace for values in book templage for each book
     //

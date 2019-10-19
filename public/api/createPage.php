@@ -18,9 +18,9 @@ function createPage($p, $data){
     }
     if ($bookmark['book']->format == 'series'){
         $p['debug'] .= 'This is a series' . "\n";
-        $this_template = file_get_contents('../edit/prototype/pageInSeries.html');
+        $this_template = file_get_contents(ROOT_EDIT .  'prototype/pageInSeries.html');
         // insert nav bar and set ribbon value and link value
-        $nav = file_get_contents('../edit/prototype/navRibbon.html');
+        $nav = file_get_contents(ROOT_EDIT .  'prototype/navRibbon.html');
         $this_template = str_replace('[[nav]]', $nav, $this_template);
         $ribbon = isset($bookmark['library']->format->back_button) ? $bookmark['library']->format->back_button->image : DEFAULT_BACK_RIBBON;
         $link_value =  '/content/'. $bookmark['language']->folder . '/'. $data['folder_name'].'/index.html';
@@ -55,9 +55,9 @@ function createPage($p, $data){
     // values for page that is not part of a series
     if ($bookmark['book']->format == 'page'){
         $p['debug'] .= 'This is a page' . "\n";
-        $this_template = file_get_contents('../edit/prototype/page.html');
+        $this_template = file_get_contents(ROOT_EDIT .  'prototype/page.html');
          // insert nav bar
-         $nav = file_get_contents('../edit/prototype/navRibbon.html');
+         $nav = file_get_contents(ROOT_EDIT .  'prototype/navRibbon.html');
          $this_template = str_replace('[[nav]]', $nav, $this_template);
          $ribbon = isset($bookmark['library']->format->back_button->image) ? $bookmark['library']->format->back_button->image : DEFAULT_BACK_RIBBON;
        

@@ -16,15 +16,18 @@ export const publishMixin = {
         return false
       }
     },
-    mayPublishSeies() {
+    mayPublishSeries() {
+      console.log('mayPublishSeries called')
       if (!this.authorize('publish', this.$route.params.country_code)) {
+        console.log('mayPublishSeries returned false')
         return false
       }
       if (
         this.bookmark.country.publish &&
         this.bookmark.language.publish &&
-        this.bookmark.series.publish
+        this.bookmark.book.publish
       ) {
+        console.log('mayPublishSeries returned true')
         return true
       } else {
         return false
@@ -37,7 +40,7 @@ export const publishMixin = {
       if (
         this.bookmark.country.publish &&
         this.bookmark.language.publish &&
-        this.bookmark.series.publish &&
+        this.bookmark.book.publish &&
         this.bookmark.page.publish
       ) {
         return true

@@ -1,5 +1,5 @@
 <?php
-require_once ('protype.php');
+require_once ('prototype.php');
 
 function publishWrite($p, $fname, $text, $standard_css, $selected_css){
     if (!isset($p['debug'])){

@@ -41,7 +41,7 @@ function debugSeriesCrawlX ($p){
     }
     $output = new stdClass();
     $out = [];
-    $edit_root = '../edit/content';
+    $edit_root = ROOT_EDIT .  'content';
     $out['debug'] = 'in debugCrawl' . "\n";
     $countries = folderArray($edit_root);
     foreach ($countries as $country){
@@ -101,7 +101,7 @@ function debugLibraryCrawl ($p){
     }
     $output = new stdClass();
     $out = [];
-    $edit_root = '../edit/content';
+    $edit_root = ROOT_EDIT .  'content';
     $out['debug'] = 'in debugCrawl' . "\n";
     $countries = folderArray($edit_root);
     foreach ($countries as $country){

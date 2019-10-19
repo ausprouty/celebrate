@@ -8,7 +8,7 @@ function setupCountry($p){
 		return $out;
 	}
 	
-	$setup_directory = '../edit/content/ZZ/' ;
+	$setup_directory = ROOT_EDIT .  'content/ZZ/' ;
 	$country_directory = ROOT_EDIT. 'content/'. $p['country_code'] .'/';
 	if (!file_exists($country_directory)){
 		dirMake($country_directory);
