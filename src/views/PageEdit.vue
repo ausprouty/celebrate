@@ -164,21 +164,15 @@ export default {
         // https://ckeditor.com/docs/ckfinder/ckfinder3-php/howto.html#howto_private_folders
         filebrowserBrowseUrl:
           process.env.VUE_APP_URL + 'ckfinder/ckfinder.html',
-        //filebrowserImageUploadUrl:
-        //  process.env.VUE_APP_URL +
-        //  'ckfinder/core/connector/php/connector.php?command=QuickUpload&currentFolder=' +
-        //  this.languageDirectory,
+
         //filebrowserUploadUrl:
         //  process.env.VUE_APP_URL +
         // 'ckfinder/core/connector/php/connector.php?command=QuickUpload&type=File&currentFolder=' +
         // this.languageDirectory,
 
-        // filebrowserImageUploadUrl:
-        //   process.env.VUE_APP_URL +
-        //   'ckfinder/core/connector/php/connector.php?command=QuickUpload',
         filebrowserUploadUrl:
           process.env.VUE_APP_URL +
-          'ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images',
+          'ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images&currentFolder=bob',
 
         // end Configuration
         toolbarGroups: [
