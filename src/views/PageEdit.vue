@@ -164,15 +164,10 @@ export default {
         // https://ckeditor.com/docs/ckfinder/ckfinder3-php/howto.html#howto_private_folders
         filebrowserBrowseUrl:
           process.env.VUE_APP_URL + 'ckfinder/ckfinder.html',
-
-        //filebrowserUploadUrl:
-        //  process.env.VUE_APP_URL +
-        // 'ckfinder/core/connector/php/connector.php?command=QuickUpload&type=File&currentFolder=' +
-        // this.languageDirectory,
-
         filebrowserUploadUrl:
           process.env.VUE_APP_URL +
-          'ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images&currentFolder=bob',
+          'ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images&currentFolder=' +
+          this.languageDirectory,
 
         // end Configuration
         toolbarGroups: [
@@ -216,17 +211,17 @@ export default {
       } else {
         params.bid = this.bookmark.language.bible_nt
       }
-      console.log('params for Get passage')
-      console.log(params)
+      //console.log('params for Get passage')
+     // console.log(params)
       var bible = await BibleService.getBiblePassage(params)
-      console.log('results of getBiblePassage')
-      console.log(bible)
+     // console.log('results of getBiblePassage')
+     // console.log(bible)
       if (typeof bible !== 'undefined') {
-        console.log('I am replacing text')
+        //console.log('I am replacing text')
 
         var temp = this.pageText.replace('[BibleText]', bible.data.content.text)
-        console.log('temp')
-        console.log(temp)
+       // console.log('temp')
+       // console.log(temp)
         var temp2 = temp.replace(
           '"readmore" href=""',
           '"readmore" href="' + bible.data.content.link + '"'
@@ -247,7 +242,7 @@ export default {
       }
     },
     async loadTemplate() {
-      console.log('in Load Template')
+      //console.log('in Load Template')
       this.authorized = this.authorize('write', this.$route.params.country_code)
       this.loading = false
       this.loaded = true
@@ -258,12 +253,12 @@ export default {
         if (this.page_template) {
           this.$route.params.template = this.page_template
         }
-        console.log('looking for template')
-        console.log(this.$route.params)
+       // console.log('looking for template')
+       // console.log(this.$route.params)
         var res = await AuthorService.getTemplate(this.$route.params)
-        console.log(res)
+       // console.log(res)
         if (res) {
-          console.log('I found template')
+         // console.log('I found template')
           this.request_passage = true
           this.pageText = res
         }
@@ -301,18 +296,17 @@ export default {
     }
   },
   async beforeCreate() {
-    console.log('before Create')
-    console.log(this.$route.params)
+    //console.log('before Create')
+    //console.log(this.$route.params)
     // set directory for custom images
     //see https://ckeditor.com/docs/ckfinder/ckfinder3-php/integration.html
     this.languageDirectory =
-      '/content/' +
       this.$route.params.country_code +
       '/' +
       this.$route.params.language_iso +
       '/images/custom'
-    console.log('this.languageDirectory')
-    console.log(this.languageDirectory)
+   // console.log('this.languageDirectory')
+   // console.log(this.languageDirectory)
     // set style for ckeditor
     var styleSets = ['compass', 'firststeps', 'myfriends', 'multiply']
     this.$route.params.styles_set = 'unknown'
@@ -326,20 +320,20 @@ export default {
     var css = this.$route.params.cssFORMATTED
     var clean = css.replace(/@/g, '/')
     this.$route.params.css = clean
-    console.log('final params')
-    console.log(this.$route.params)
+   // console.log('final params')
+   // console.log(this.$route.params)
   },
   async created() {
     try {
-      console.log('in Created')
+      //console.log('in Created')
       await this.getPage(this.$route.params)
       if (this.pageText.includes('[')) {
         this.request_passage = true
       }
-      console.log('I am about to authorize to write')
+     // console.log('I am about to authorize to write')
       this.authorized = this.authorize('write', this.$route.params.country_code)
-      console.log('css')
-      console.log(this.bookmark.book.style)
+      //console.log('css')
+      //console.log(this.bookmark.book.style)
     } catch (error) {
       console.log('There was an error in Page.vue:', error)
       await this.loadTemplate()

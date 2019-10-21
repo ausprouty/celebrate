@@ -120,16 +120,16 @@ export default {
         templates_files: [
           '/templates/' + this.$route.params.styles_set + 'CKEDITOR.js'
         ],
-        // Upload images to a CKFinder connector (note that the response type is set to JSON).
-        uploadUrl:
-          '/apps/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files&responseType=json',
-       // Configure your file manager integration. This example uses CKFinder 3 for PHP.
+        // Configure your file manager integration. This example uses CKFinder 3 for PHP.
+        // https://ckeditor.com/docs/ckfinder/ckfinder3-php/howto.html#howto_private_folders
         filebrowserBrowseUrl:
           process.env.VUE_APP_URL + 'ckfinder/ckfinder.html',
         filebrowserUploadUrl:
           process.env.VUE_APP_URL +
-          'ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files',
-          // end Configuration
+          'ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images&currentFolder=' +
+          this.languageDirectory,
+
+        // end Configuration
         toolbarGroups: [
           { name: 'styles', groups: ['styles'] },
           { name: 'basicstyles', groups: ['basicstyles', 'cleanup'] },
@@ -242,12 +242,19 @@ export default {
     }
   },
   async beforeCreate() {
+    
     console.log('before Create in Country')
-    console.log(this.$route.params)
+     console.log(this.$route.params)
+    // set directory for custom images
+    //see https://ckeditor.com/docs/ckfinder/ckfinder3-php/integration.html
+    this.languageDirectory =
+      this.$route.params.country_code +
+      '/' +
+      this.$route.params.language_iso +
+      '/images/custom'
     this.$route.params.styles_set = 'myfriends'
     this.$route.params.version = 'lastest'
     this.$route.params.filename = 'index'
-    this.$route.params.css = 'AU/styles/AU-freeform.css'
     this.$route.params.css = 'ZZ/styles/appGLOBAL.css'
     console.log('final params')
     console.log(this.$route.params)

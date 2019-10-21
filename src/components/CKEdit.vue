@@ -28,12 +28,15 @@ export default {
           '/templates/' + this.$route.params.styles_set + 'CKEDITOR.js'
         ],
         // Configure your file manager integration. This example uses CKFinder 3 for PHP.
+        // https://ckeditor.com/docs/ckfinder/ckfinder3-php/howto.html#howto_private_folders
         filebrowserBrowseUrl:
           process.env.VUE_APP_URL + 'ckfinder/ckfinder.html',
         filebrowserUploadUrl:
           process.env.VUE_APP_URL +
-          'ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files',
-          // end Configuration
+          'ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images&currentFolder=' +
+          this.languageDirectory,
+
+        // end Configuration
         toolbarGroups: [
           { name: 'styles', groups: ['styles'] },
           { name: 'basicstyles', groups: ['basicstyles', 'cleanup'] },

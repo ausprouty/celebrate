@@ -312,13 +312,16 @@ export default {
         templates_files: [
           '/templates/' + this.$route.params.styles_set + 'CKEDITOR.js'
         ],
-       // Configure your file manager integration. This example uses CKFinder 3 for PHP.
+      // Configure your file manager integration. This example uses CKFinder 3 for PHP.
+        // https://ckeditor.com/docs/ckfinder/ckfinder3-php/howto.html#howto_private_folders
         filebrowserBrowseUrl:
           process.env.VUE_APP_URL + 'ckfinder/ckfinder.html',
         filebrowserUploadUrl:
           process.env.VUE_APP_URL +
-          'ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files',
-          // end Configuration
+          'ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images&currentFolder=' +
+          this.languageDirectory,
+
+        // end Configuration
         toolbarGroups: [
           { name: 'styles', groups: ['styles'] },
           { name: 'basicstyles', groups: ['basicstyles', 'cleanup'] },
@@ -664,6 +667,13 @@ export default {
   beforeCreate() {
     console.log('before Create')
     console.log(this.$route.params)
+    // set directory for custom images
+    //see https://ckeditor.com/docs/ckfinder/ckfinder3-php/integration.html
+    this.languageDirectory =
+      this.$route.params.country_code +
+      '/' +
+      this.$route.params.language_iso +
+      '/images/custom'
     this.$route.params.version = 'latest'
     if (!this.$route.params.library_code) {
       this.$route.params.library_code = 'library'
