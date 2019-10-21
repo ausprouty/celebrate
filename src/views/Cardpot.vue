@@ -1,113 +1,185 @@
-<template>
-  <div id="nav" class="content" dir="ltr">
-    <div class="nav full">
-      <a class="card-link" href="/content/index.html">
-        <img src="/content/BR/images/standard/Friends.png" class="nav full" />
-      </a>
-    </div>
-    <div></div>
-    <div>
-      <div class="app-link">
-        <a class="card-link" href="life/index.html">
-          <div class="app-card -shadow">
-            <div>
-              <img src="/content/BR/images/standard/issues.jpg" class="book" />
-              <div class="book ltr">
-                <span class="title ltr">Problemas da vida</span>
-              </div>
-            </div>
-          </div>
-        </a>
-      </div>
-      <div class="app-link">
-        <a class="card-link" href="basics/index.html">
-          <div class="app-card -shadow">
-            <div>
-              <img src="/content/BR/images/standard/basics.jpg" class="book" />
-              <div class="book ltr">
-                <span class="title ltr">Conversas Básicas</span>
-              </div>
-            </div>
-          </div>
-        </a>
-      </div>
-      <div class="app-link">
-        <a class="card-link" href="pages/community.html">
-          <div class="app-card -shadow">
-            <div>
-              <img
-                src="/content/BR/images/standard/community.jpg"
-                class="book"
-              />
-              <div class="book ltr">
-                <span class="title ltr">Comunidade</span>
-              </div>
-            </div>
-          </div>
-        </a>
-      </div>
-      <div class="app-link">
-        <a class="card-link" href="firststeps/index.html">
-          <div class="app-card -shadow">
-            <div>
-              <img
-                src="/content/BR/images/standard/firststeps.jpg"
-                class="book"
-              />
-              <div class="book ltr">
-                <span class="title ltr">Primeiros passos</span>
-              </div>
-            </div>
-          </div>
-        </a>
-      </div>
-      <div class="app-link">
-        <a class="card-link" href="pages/about.html">
-          <div class="app-card -shadow">
-            <div>
-              <img src="/content/BR/images/standard/about.jpg" class="book" />
-              <div class="book ltr">
-                <span class="title ltr">Sobre</span>
-              </div>
-            </div>
-          </div>
-        </a>
-      </div>
-    </div>
-    <div class="version">
-      <p class="version">Version 0.8</p>
-    </div>
-    <hr />
-    <table class="social">
-      <tbody>
-        <tr>
-          <td class="social">
-            <a href="/content/languages.html">
-              <img class="social" src="/images/menu/languages.png" />
-            </a>
-          </td>
-          <td class="social">
-            <a href="https://www.facebook.com/myfriendsaustralia">
-              <img
-                class="social"
-                src="/content/AU/images/standard/Facebook.png"
-              />
-            </a>
-          </td>
-          <td class="social">
-            <a href="javascript:void(0);" onclick="share()">
-              <img class="social" src="/content/AU/images/standard/Share.png" />
-            </a>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+<?php
 
-    <div class="footer">
-      <p class="footer">MyFriends</p>
-      <p class="footer">
-        <a class="footer" href="https://myfriends.life/">www.myfriends.life</a>
-      </p>
-    </div>
-  </div>
-</template>
+/*
+ * CKFinder Configuration File
+ *
+ * For the official documentation visit https://ckeditor.com/docs/ckfinder/ckfinder3-php/
+ */
+
+/*============================ PHP Error Reporting ====================================*/
+// https://ckeditor.com/docs/ckfinder/ckfinder3-php/debugging.html
+
+// Production
+error_reporting(E_ALL & ~E_DEPRECATED & ~E_STRICT);
+ini_set('display_errors', 0);
+
+// Development
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
+/*============================ General Settings =======================================*/
+// https://ckeditor.com/docs/ckfinder/ckfinder3-php/configuration.html
+
+$config = array();
+$config['debug'] = true;
+
+/*============================ Enable PHP Connector HERE ==============================*/
+// https://ckeditor.com/docs/ckfinder/ckfinder3-php/configuration.html#configuration_options_authentication
+
+$config['authentication'] = function () {
+    return true;
+};
+
+/*============================ License Key ============================================*/
+// https://ckeditor.com/docs/ckfinder/ckfinder3-php/configuration.html#configuration_options_licenseKey
+
+$config['licenseName'] = '';
+$config['licenseKey']  = '';
+
+/*============================ CKFinder Internal Directory ============================*/
+// https://ckeditor.com/docs/ckfinder/ckfinder3-php/configuration.html#configuration_options_privateDir
+
+$config['privateDir'] = array(
+    'backend' => 'default',
+    'tags'   => '.ckfinder/tags',
+    'logs'   => '.ckfinder/logs',
+    'cache'  => '.ckfinder/cache',
+    'thumbs' => '.ckfinder/cache/thumbs',
+);
+
+/*============================ Images and Thumbnails ==================================*/
+// https://ckeditor.com/docs/ckfinder/ckfinder3-php/configuration.html#configuration_options_images
+
+$config['images'] = array(
+    'maxWidth'  => 1600,
+    'maxHeight' => 1200,
+    'quality'   => 80,
+    'sizes' => array(
+        'small'  => array('width' => 480, 'height' => 320, 'quality' => 80),
+        'medium' => array('width' => 600, 'height' => 480, 'quality' => 80),
+        'large'  => array('width' => 800, 'height' => 600, 'quality' => 80)
+    )
+);
+
+/*=================================== Backends ========================================*/
+// https://ckeditor.com/docs/ckfinder/ckfinder3-php/configuration.html#configuration_options_backends
+
+$config['backends'][] = array(
+    'name'         => 'default',
+    'adapter'      => 'local',
+   // 'baseUrl'      => '/api/ckfinder/userfiles/',
+    'baseUrl'  =>'/content/images/',
+   //  'baseUrl' => '/download.php?currentFolder=',
+    //'root' => 'https:\/\/edit.myfriends.network',  // 'root'         => '', // Can be used to explicitly set the CKFinder user files directory.
+    'chmodFiles'   => 0777,
+    'chmodFolders' => 0755,
+    'filesystemEncoding' => 'UTF-8',
+);
+
+/*================================ Resource Types =====================================*/
+// https://ckeditor.com/docs/ckfinder/ckfinder3-php/configuration.html#configuration_options_resourceTypes
+
+$config['defaultResourceTypes'] = '';
+
+$config['resourceTypes'][] = array(
+    'name'              => 'Files', // Single quotes not allowed.
+    'directory'         => 'files',
+    'maxSize'           => 0,
+    'allowedExtensions' => 'avi,bmp,csv,doc,docx,fla,flv,mid,mov,mp3,mp4,mpc,mpeg,mpg,pdf,ppt,pptx,pxd,qt,ram,,rm,rmi,rmvb,rtf,sdc,sitd,swf,sxc,sxw,vsd,wav,wma,wmv,xls,xlsx',
+    'deniedExtensions'  => '',
+    'backend'           => 'default'
+);
+
+$config['resourceTypes'][] = array(
+    'name'              => 'Images',
+    'directory'         => 'images',
+    'maxSize'           => 0,
+    'allowedExtensions' => 'bmp,gif,jpeg,jpg,png,tif,tiff',
+    'deniedExtensions'  => '',
+    'backend'           => 'default'
+);
+
+/*================================ Access Control =====================================*/
+// https://ckeditor.com/docs/ckfinder/ckfinder3-php/configuration.html#configuration_options_roleSessionVar
+
+$config['roleSessionVar'] = 'CKFinder_UserRole';
+
+// https://ckeditor.com/docs/ckfinder/ckfinder3-php/configuration.html#configuration_options_accessControl
+$config['accessControl'][] = array(
+    'role'                => '*',
+    'resourceType'        => '*',
+    'folder'              => '/',
+
+    'FOLDER_VIEW'         => true,
+    'FOLDER_CREATE'       => true,
+    'FOLDER_RENAME'       => true,
+    'FOLDER_DELETE'       => true,
+
+    'FILE_VIEW'           => true,
+    'FILE_CREATE'         => true,
+    'FILE_RENAME'         => true,
+    'FILE_DELETE'         => true,
+
+    'IMAGE_RESIZE'        => true,
+    'IMAGE_RESIZE_CUSTOM' => true
+);
+
+
+/*================================ Other Settings =====================================*/
+// https://ckeditor.com/docs/ckfinder/ckfinder3-php/configuration.html
+
+$config['overwriteOnUpload'] = false;
+$config['checkDoubleExtension'] = true;
+$config['disallowUnsafeCharacters'] = false;
+$config['secureImageUploads'] = true;
+$config['checkSizeAfterScaling'] = true;
+$config['htmlExtensions'] = array('html', 'htm', 'xml', 'js');
+$config['hideFolders'] = array('.*', 'CVS', '__thumbs');
+$config['hideFiles'] = array('.*');
+$config['forceAscii'] = false;
+$config['xSendfile'] = false;
+
+// https://ckeditor.com/docs/ckfinder/ckfinder3-php/configuration.html#configuration_options_debug
+$config['debug'] = false;
+
+/*==================================== Plugins ========================================*/
+// https://ckeditor.com/docs/ckfinder/ckfinder3-php/configuration.html#configuration_options_plugins
+
+$config['pluginsDirectory'] = __DIR__ . '/plugins';
+$config['plugins'] = array();
+
+/*================================ Cache settings =====================================*/
+// https://ckeditor.com/docs/ckfinder/ckfinder3-php/configuration.html#configuration_options_cache
+
+$config['cache'] = array(
+    'imagePreview' => 24 * 3600,
+    'thumbnails'   => 24 * 3600 * 365,
+    'proxyCommand' => 0
+);
+
+/*============================ Temp Directory settings ================================*/
+// https://ckeditor.com/docs/ckfinder/ckfinder3-php/configuration.html#configuration_options_tempDirectory
+
+$config['tempDirectory'] = sys_get_temp_dir();
+
+/*============================ Session Cause Performance Issues =======================*/
+// https://ckeditor.com/docs/ckfinder/ckfinder3-php/configuration.html#configuration_options_sessionWriteClose
+
+$config['sessionWriteClose'] = true;
+
+/*================================= CSRF protection ===================================*/
+// https://ckeditor.com/docs/ckfinder/ckfinder3-php/configuration.html#configuration_options_csrfProtection
+
+$config['csrfProtection'] = true;
+
+/*===================================== Headers =======================================*/
+// https://ckeditor.com/docs/ckfinder/ckfinder3-php/configuration.html#configuration_options_headers
+
+$config['headers'] = array(
+    'Access-Control-Allow-Origin' => '*'
+);
+
+/*============================== End of Configuration =================================*/
+
+// Config must be returned - do not change it.
+return $config;

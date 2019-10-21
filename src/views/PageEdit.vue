@@ -161,12 +161,26 @@ export default {
           '/templates/' + this.$route.params.styles_set + 'CKEDITOR.js'
         ],
         // Configure your file manager integration. This example uses CKFinder 3 for PHP.
+        // https://ckeditor.com/docs/ckfinder/ckfinder3-php/howto.html#howto_private_folders
         filebrowserBrowseUrl:
           process.env.VUE_APP_URL + 'ckfinder/ckfinder.html',
+        //filebrowserImageUploadUrl:
+        //  process.env.VUE_APP_URL +
+        //  'ckfinder/core/connector/php/connector.php?command=QuickUpload&currentFolder=' +
+        //  this.languageDirectory,
+        //filebrowserUploadUrl:
+        //  process.env.VUE_APP_URL +
+        // 'ckfinder/core/connector/php/connector.php?command=QuickUpload&type=File&currentFolder=' +
+        // this.languageDirectory,
+
+        // filebrowserImageUploadUrl:
+        //   process.env.VUE_APP_URL +
+        //   'ckfinder/core/connector/php/connector.php?command=QuickUpload',
         filebrowserUploadUrl:
           process.env.VUE_APP_URL +
           'ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files',
-          // end Configuration
+
+        // end Configuration
         toolbarGroups: [
           { name: 'styles', groups: ['styles'] },
           { name: 'basicstyles', groups: ['basicstyles', 'cleanup'] },
@@ -295,7 +309,17 @@ export default {
   async beforeCreate() {
     console.log('before Create')
     console.log(this.$route.params)
-    var ok = false
+    // set directory for custom images
+    //see https://ckeditor.com/docs/ckfinder/ckfinder3-php/integration.html
+    this.languageDirectory =
+      '/content/' +
+      this.$route.params.country_code +
+      '/' +
+      this.$route.params.language_iso +
+      '/images/custom'
+    console.log('this.languageDirectory')
+    console.log(this.languageDirectory)
+    // set style for ckeditor
     var styleSets = ['compass', 'firststeps', 'myfriends', 'multiply']
     this.$route.params.styles_set = 'unknown'
     var arrayLength = styleSets.length

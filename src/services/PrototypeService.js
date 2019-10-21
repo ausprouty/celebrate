@@ -1,5 +1,4 @@
-
-const apiURL = process.env.VUE_APP_URL;
+const apiURL = process.env.VUE_APP_URL
 
 const apiSECURE = axios.create({
   baseURL: apiURL,
@@ -19,10 +18,10 @@ export default {
     var action = null
     params.my_uid = store.state.user.uid
     params.token = store.state.user.token
-   // params.bookmark = JSON.stringify(store.state.bookmark)
+    // params.bookmark = JSON.stringify(store.state.bookmark)
 
-    console.log('publish')
-    console.log(params)
+    //console.log('publish')
+    //console.log(params)
     switch (scope) {
       case 'bookmark':
         action = 'AuthorApi.php?page=bookmark&action=bookmark'
@@ -85,12 +84,12 @@ export default {
       case 'default':
         action = null
     }
-    console.log('action')
-    console.log(action)
+    //console.log('action')
+    //console.log(action)
     var contentForm = this.toFormData(params)
     var response = await apiSECURE.post(action, contentForm)
-    console.log('result of publish')
-    console.log(response)
+    //console.log('result of publish')
+    //console.log(response)
     return response
   },
 
@@ -100,10 +99,10 @@ export default {
       form_data.append(key, obj[key])
     }
     // Display the key/value pairs
-    for (var pair of form_data.entries()) {
-      //  console.log(pair[0] + ', ' + pair[1])
-    }
-    console.log(form_data)
+    //for (var pair of form_data.entries()) {
+    //  console.log(pair[0] + ', ' + pair[1])
+    // }
+    //console.log(form_data)
     return form_data
   }
 }

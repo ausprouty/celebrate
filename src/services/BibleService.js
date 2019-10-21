@@ -14,14 +14,14 @@ export default {
   async getBibleVersions(params) {
     params.my_uid = store.state.user.uid
     params.token = store.state.user.token
-    console.log('params in getBibles')
-    console.log(params)
+    //   console.log('params in getBibles')
+    //  console.log(params)
     var contentForm = this.toFormData(params)
     var result = await apiSELECT.post(
       'AuthorApi.php?page=bibleVersions&action=getBibleVersions',
       contentForm
     )
-    console.log(result)
+    //  console.log(result)
     return result
   },
 
@@ -41,15 +41,15 @@ export default {
   */
     params.my_uid = store.state.user.uid
     params.token = store.state.user.token
-    console.log('params in getDbtArray')
-    console.log(params)
+    //   console.log('params in getDbtArray')
+    //   console.log(params)
     var contentForm = this.toFormData(params)
     var res = await apiSELECT.post(
       'AuthorApi.php?page=bibleDbtArray&action=createBibleDbtArrayFromPassage',
       contentForm
     )
-    console.log('response in getDbtArray')
-    console.log(res)
+    //  console.log('response in getDbtArray')
+    //  console.log(res)
     if (typeof res.data.content !== 'undefined') {
       return res.data.content
     } else {
@@ -74,15 +74,15 @@ export default {
 
     params.my_uid = store.state.user.uid
     params.token = store.state.user.token
-    console.log('params in getBiblePassage')
-    console.log(params)
+    //   console.log('params in getBiblePassage')
+    //    console.log(params)
     var contentForm = this.toFormData(params)
     var res = await apiSELECT.post(
       'AuthorApi.php?page=bibleGetPassage&action=bibleGetPassage',
       contentForm
     )
-    console.log('response from getBiblePassage')
-    console.log (res)
+    //   console.log('response from getBiblePassage')
+    //   console.log (res)
     // I want the whole response so I can see any errors.
     return res
   },
