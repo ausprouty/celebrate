@@ -178,7 +178,7 @@ export default {
         //   'ckfinder/core/connector/php/connector.php?command=QuickUpload',
         filebrowserUploadUrl:
           process.env.VUE_APP_URL +
-          'ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files',
+          'ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images',
 
         // end Configuration
         toolbarGroups: [
