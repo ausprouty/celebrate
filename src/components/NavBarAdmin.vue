@@ -66,9 +66,15 @@ export default {
           show: false
         },
         {
+          value: 'Admin',
+          link: 'admin',
+          index: 5,
+          show: false
+        },
+        {
           value: 'Logout',
           link: 'logout',
-          index: 5,
+          index: 6,
           show: false
         }
       ]
@@ -81,23 +87,24 @@ export default {
     }
     this.authorized = this.authorize('read', scope)
     this.administrator = this.authorize('register', scope)
-    console.log ('I finished authorization')
+    console.log('I finished authorization')
     var arrayLength = this.menu
     for (var i = 0; i < arrayLength; i++) {
       this.menu[i].show = false
     }
     if (this.authorized) {
       this.menu[1].show = true
-      if (typeof this.$route.params.country_code  != 'undefined') {
+      if (typeof this.$route.params.country_code != 'undefined') {
         this.menu[2].show = true
       }
       if (this.$route.params.language_iso && this.$route.params.country_code) {
         this.menu[3].show = true
       }
-      this.menu[5].show = true
+      this.menu[6].show = true
     }
     if (this.administrator) {
       this.menu[4].show = true
+      this.menu[5].show = true
     }
     if (!this.authorized) {
       this.menu[0].show = true

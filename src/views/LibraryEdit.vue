@@ -312,7 +312,7 @@ export default {
         templates_files: [
           '/templates/' + this.$route.params.styles_set + 'CKEDITOR.js'
         ],
-      // Configure your file manager integration. This example uses CKFinder 3 for PHP.
+        // Configure your file manager integration. This example uses CKFinder 3 for PHP.
         // https://ckeditor.com/docs/ckfinder/ckfinder3-php/howto.html#howto_private_folders
         filebrowserBrowseUrl:
           process.env.VUE_APP_URL + 'ckfinder/ckfinder.html',
@@ -642,11 +642,14 @@ export default {
               this.booklist.push(this.bookmark.library.books[i].code)
             }
           }
-        }
-        if (typeof this.booklist !== 'undefined' && this.booklist.length > 0) {
-          this.booklist.sort()
-        }
 
+          if (
+            typeof this.booklist !== 'undefined' &&
+            this.booklist.length > 0
+          ) {
+            this.booklist.sort()
+          }
+        }
         if (!this.image) {
           this.image = this.$route.params.library_code + '.png'
         }

@@ -18,6 +18,7 @@
             <img class="help-icon" src="/images/icons/help.png" />
           </a>
         </h1>
+        <h2>Common Terms</h2>
         <div class="form">
           <BaseInput
             v-model="choose_language"

@@ -225,6 +225,26 @@ export default {
     }
     return folders
   },
+  async getCurrentBooks() {
+    var params = {}
+    params.token = store.state.user.token
+    var contentForm = this.toFormData(params)
+    let response = await apiSELECT.post(
+      'AuthorApi.php?page=getCurrentBooks&action=getCurrentBooks',
+      contentForm
+    )
+    return response
+  },
+  async getCurrentLanguages() {
+    var params = {}
+    params.token = store.state.user.token
+    var contentForm = this.toFormData(params)
+    let response = await apiSELECT.post(
+      'AuthorApi.php?page=getCurrentLanguages&action=getCurrentLanguages',
+      contentForm
+    )
+    return response
+  },
   async getFoldersImages() {
     var folders = []
     var params = {}

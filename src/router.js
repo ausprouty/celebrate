@@ -27,12 +27,12 @@ import Template from './views/Template.vue'
 
 import Login from './views/Login.vue'
 import Register from './views/Register.vue'
-import Custom from './views/CustomEditor.vue'
+
 import Validate from './views/Validate.vue'
 import Upload from './views/Upload.vue'
 import Debug from './views/Debug.vue'
 import Prototype from './views/Prototype.vue'
-
+import Admin from './views/Admin.vue'
 import Users from './views/Users.vue'
 import User from './views/User.vue'
 
@@ -201,9 +201,9 @@ export default new Router({
       props: false
     },
     {
-      path: '/custom/:css/:dir',
-      name: 'custom',
-      component: Custom,
+      path: '/admin',
+      name: 'admin',
+      component: Admin,
       props: true
     },
     {
