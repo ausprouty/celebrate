@@ -85,7 +85,9 @@ export default {
           response.scope = res.data.content.countries
           response.uid = res.data.content.uid
           response.token = res.data.token
-
+          response.expires = res.data.content.expires * 1000
+          var date = new Date()
+          response.now = date.getTime()
           this.$store.dispatch('loginUser', [response])
           this.$router.push({
             name: 'previewCountries'

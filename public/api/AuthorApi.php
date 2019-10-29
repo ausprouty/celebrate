@@ -16,6 +16,7 @@ define("STANDARD_CSS", '/content/ZZ/styles/myfriendsGLOBAL.css');
 define("STANDARD_CARD_CSS",'/content/ZZ/styles/cardGLOBAL.css');
 define("DEFAULT_BACK_RIBBON", 'ZZ/images/ribbons/back-ribbon-red.png');
 
+
 // assign variables
 $secret = 'sJeSuST423*&';
 $dir_web = '/home/vx5ui10wb4ln/public_html/edit/api/';
@@ -63,15 +64,17 @@ if (isset($_GET['page'])){
 if ($action == 'login'){
     $sql = "SELECT uid,password,firstname, lastname, countries FROM members 
         WHERE username = '". $p['username'] . "' LIMIT 1";
-    $content = sqlArray($sql);
+	$content = sqlArray($sql);
+	
     $hash = $content['password'];
     if (password_verify($p['password'], $hash)) {
         $userId = $content['uid'];
-        $expiration = time() + 360000;
+		$expiration = time() + 360000;
+		$content['expires'] = $expiration;
         $secret = 'sJeSuST423*&';
         $issuer = 'create.myfriends.network';
         $token = Token::create($userId, $secret, $expiration, $issuer);
-        $content['password'] = null;
+		$content['password'] = null;
         $out['content'] = $content;
         $out['token'] = $token;
         $debug .= 'authorized' . "\n";

@@ -61,7 +61,7 @@
           <div
             class="float-right"
             style="cursor:pointer"
-            @click="deleteBookForm(index)"
+            @click="deleteBookForm(id)"
           >
             X
           </div>
@@ -428,8 +428,10 @@ export default {
         }
       })
     },
-    deleteBookForm(index) {
-      this.books.splice(index, 1)
+    deleteBookForm(id) {
+      console.log('Deleting id ' + id)
+      this.books.splice(id, 1)
+      console.log(this.books)
     },
     async handleImageUpload(code) {
       console.log('handleImageUpload: ' + code)

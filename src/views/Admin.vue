@@ -52,6 +52,8 @@ export default {
       var param = {}
       param.source = this.source
       param.destination = this.destination
+      this.destination = ''
+      this.source = ''
       await AuthorService.copyBook(param)
     }
   },

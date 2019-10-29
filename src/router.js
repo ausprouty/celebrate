@@ -22,6 +22,7 @@ import SeriesSort from './views/SeriesSort.vue'
 
 import PageEdit from './views/PageEdit.vue'
 import PagePreview from './views/PagePreview.vue'
+import PageCompare from './views/PageCompare.vue'
 
 import Template from './views/Template.vue'
 
@@ -57,6 +58,13 @@ export default new Router({
       path: '/',
       name: 'home',
       component: CountriesPreview
+    },
+    {
+      path:
+        '/compare/page/:country_code/:language_iso/:library_code/:folder_name/:filename/:cssFORMATTED',
+      name: 'comparePage',
+      component: PageCompare,
+      props: true
     },
 
     {

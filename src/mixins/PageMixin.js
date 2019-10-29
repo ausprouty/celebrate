@@ -63,7 +63,7 @@ export const pageMixin = {
           this.$route.params.cssFORMATTED = css
           this.need_template = true
           this.$router.push({
-            name: 'editPage',
+            name: 'comparePage',
             params: this.$route.params
           })
         }

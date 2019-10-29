@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import { mapState } from 'vuex'
+import { timeout } from 'q'
 Vue.use(Vuex)
 
 export const authorMixin = {
@@ -10,6 +11,18 @@ export const authorMixin = {
       if (typeof code == 'undefined') {
         return false
       }
+
+      if (typeof this.user.expires == 'undefined') {
+        this.$router.push({ name: 'login' })
+      }
+      // check if expired
+      var date = new Date()
+      var timestamp = date.getTime()
+      if (this.user.expires < timestamp) {
+        this.$router.push({ name: 'login' })
+      }
+
+      // check authority
       var scope = this.user.scope
       if (scope == '*') {
         if (reason != 'readonly') {
@@ -21,10 +34,10 @@ export const authorMixin = {
         var included = false
         included = scope.includes(code)
         //console.log('included ' + included)
-        if (reason == 'publish'){
+        if (reason == 'publish') {
           return included
         }
-        if (reason == 'prototype'){
+        if (reason == 'prototype') {
           return included
         }
         if (reason == 'write') {
@@ -39,6 +52,5 @@ export const authorMixin = {
       }
       return false
     }
-   
   }
 }

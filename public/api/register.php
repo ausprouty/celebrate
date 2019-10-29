@@ -18,7 +18,7 @@ function registerUser($p){
                 $out['debug'] .= $hash. "\n";
                 $sql = "INSERT INTO members ( username, password,firstname, lastname, countries) VALUES
                     ('". $p['username'] . "','" . $hash . "','". 
-                    $p['firstname'] . "','". $p['lastname'] . "','" . $p['countries'] . "')";
+                    $p['firstname'] . "','". $p['lastname'] . "','" . $p['scope'] . "')";
                 
                 $out['debug'] .= $sql. "\n";
                 sqlInsert($sql);

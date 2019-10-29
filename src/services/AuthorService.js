@@ -51,6 +51,12 @@ export default {
 
     return res.data.content
   },
+  async copyBook(params) {
+    params.my_uid = store.state.user.uid
+    params.token = store.state.user.token
+    var contentForm = this.toFormData(params)
+    return apiSECURE.post('AuthorApi.php?page=sql&action=copyBook', contentForm)
+  },
   createContentData(params) {
     var d = new Date()
     params.edit_date = d.getTime()
