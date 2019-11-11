@@ -2,7 +2,10 @@
 require_once ('prototypeORpublish.php');
 require_once ('publishLanguagesAvailable.php');
 require_once ('createLanguages.php');
-// this updates Languages for a given country AND also updates the Languges Available for the site
+//
+// this updates Languages for a given country 
+//  AND also updates the Languges Available for the site
+//
 function publishLanguages($p){
     $p['debug'] .= 'In publishLanguages '. "\n";
     $selected_css = 'ZZ/styles/cardGLOBAL.css';

@@ -59,9 +59,12 @@ body {
 #app {
   box-sizing: border-box;
   width: 90%;
-  max-width: 640px;
+
   padding: 0px 0px 0px 0px;
   margin: 0 auto;
+}
+.content {
+  max-width: 640px;
 }
 hr {
   box-sizing: content-box;
@@ -243,8 +246,8 @@ img.sortable {
   width: 30px;
 }
 img.screen-shot {
-  border-style:solid;
-  padding:10px;
+  border-style: solid;
+  padding: 10px;
 }
 label {
   color: rgba(0, 0, 0, 0.5);

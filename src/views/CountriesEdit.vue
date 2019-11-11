@@ -118,7 +118,7 @@
             />
 
             <div v-if="!country.image.$model">
-              <p class="errorMessage">Upload Country Flag</p>
+              <p class="errorMessage">Upload Country Flag (300px wide)</p>
             </div>
 
             <div v-if="country.image.$model">

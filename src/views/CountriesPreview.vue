@@ -57,8 +57,8 @@ export default {
     return {
       authorized: false,
       publish: false,
-      prototype_text: 'Prototype',
-      publish_text: 'Publish'
+      prototype_text: 'Prototype Languages',
+      publish_text: 'Publish Languages'
     }
   },
   computed: mapState(['appDir', 'user']),
@@ -84,10 +84,12 @@ export default {
       //params.bookmark = JSON.stringify(this.bookmark)
       params.route = JSON.stringify(this.$route.params)
       if (location == 'prototype') {
-        response = await PrototypeService.publish('countries', params)
+        // TODO: Add this back in when we can publicize more than one country
+        //response = await PrototypeService.publish('countries', params)
         PrototypeService.publish('languages', params)
       } else {
-        response = await PublishService.publish('countries', params)
+        // TODO: Add this back in when we can publicize more than one country
+        //response = await PublishService.publish('countries', params)
         PublishService.publish('languages', params)
       }
 
@@ -124,7 +126,7 @@ export default {
         if (this.recnum && !this.prototype_date) {
           this.prototype = this.authorize('publish', 'world')
           if (this.prototype) {
-            this.prototype_text = 'Prototype'
+            this.prototype_text = 'Prototype Languages'
           }
         }
         if (this.recnum && this.prototype_date) {
@@ -133,9 +135,9 @@ export default {
           if (this.publish) {
             console.log('I can publish and prototype again')
             this.prototype = true
-            this.prototype_text = 'Prototype Again'
+            this.prototype_text = 'Prototype Languages Again'
             if (this.publish_date) {
-              this.publish_text = 'Publish Again'
+              this.publish_text = 'Publish Languages Again'
             }
           }
         }

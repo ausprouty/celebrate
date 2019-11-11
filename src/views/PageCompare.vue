@@ -1,13 +1,12 @@
 <template>
   <div>
     <NavBar />
-     <link href="{{this.$route.params.css}}"  rel="stylesheet" >
 
     <div class="loading" v-if="loading">Loading...</div>
     <div class="error" v-if="error">
       There was an error... {{ this.error_message }}
     </div>
-    <div class="content" v-if="loaded">
+    <div class="compare" v-if="loaded">
       <div v-if="!this.authorized">
         <p>
           You have stumbled into a restricted page. Sorry I can not show it to
@@ -15,6 +14,7 @@
         </p>
       </div>
       <div v-if="this.authorized">
+        <link rel="stylesheet" v-bind:href="this.bookmark.book.style" />
         <div class="app-link">
           <div class="app-card -shadow">
             <div v-on:click="goBack()">
@@ -79,7 +79,15 @@
           <div class="text-edit">
             <vue-ckeditor v-model="pageText" :config="config" />
           </div>
-          <div class="text-compare" v-html="this.compareText"></div>
+          <div class="text-compare">
+            <BaseSelect
+              label="Comparing"
+              :options="comparisons"
+              v-model="comparing"
+              class="field"
+            />
+            <div v-html="this.compareText"></div>
+          </div>
           <div class="footer">
             <div class="version">
               <p class="version">Version 1.01</p>
@@ -139,6 +147,7 @@ export default {
         text: ''
       },
       compareText: 'this is my text to show you',
+      comparisons: [],
       config: {
         extraPlugins: [
           'bidi',
@@ -195,7 +204,7 @@ export default {
           },
           { name: 'colors', groups: ['colors'] }
         ],
-        height: 600
+        height: 1200
         // removeButtons:
         //   'About,Button,Checkbox,CreatePlaceholder,DocProps,Flash,Form,HiddenField,Iframe,NewPage,PageBreak,Preview,Print,Radio,Save,Scayt,Select,Smiley,SpecialChar,TextField,Textarea'
       }
@@ -357,13 +366,17 @@ export default {
 .float-right {
   text-align: right;
 }
+
+#app {
+  width: 80%;
+}
 div.text-edit {
   float: left;
   width: 50%;
 }
 div.text-compare {
   float: right;
-  width: 30%;
+  width: 40%;
 }
 div.footer {
   width: 100%;
