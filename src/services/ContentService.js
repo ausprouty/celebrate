@@ -1,7 +1,7 @@
 import axios from 'axios'
 import AuthorService from '@/services/AuthorService.js'
 
-const apiURL = process.env.VUE_APP_URL;
+const apiURL = process.env.VUE_APP_URL
 
 const apiContent = axios.create({
   //baseURL: `http://edit.myfriends.network`,
@@ -166,7 +166,7 @@ export default {
   },
   async getLibraryIndex(params) {
     console.log('in getLibraryIndex of Content Service')
-    console.log (params)
+    console.log(params)
     var found = false
     var response = {}
     var contentForm = this.toFormData(params)
@@ -244,7 +244,9 @@ export default {
         console.log(response.data.content.text)
 
         return response
-      } catch (error) {}
+      } catch (error) {
+        console.log('Not able to get series')
+      }
     }
   },
 

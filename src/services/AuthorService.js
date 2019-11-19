@@ -32,39 +32,26 @@ const apiIMAGE = axios.create({
 // I want to export a JSON.stringified of response.data.content.text
 export default {
   async bookmark(params) {
-    params.my_uid = store.state.user.uid
-    params.token = store.state.user.token
-    // console.log('params for bookmark')
-    // console.log(params)
-    var contentForm = this.toFormData(params)
+    var contentForm = this.toAuthorizedFormData(params)
     var res = await apiSECURE.post(
       'AuthorApi.php?page=bookmark&action=bookmark',
       contentForm
     )
-    // console.log('response for bookmark')
-    //console.log(res.data)
     if (res.data.content) {
       store.dispatch('updateAllBookmarks', res.data.content)
     } else {
       store.dispatch('newBookmark', null)
     }
-
     return res.data.content
   },
   async copyBook(params) {
-    params.my_uid = store.state.user.uid
-    params.token = store.state.user.token
-    var contentForm = this.toFormData(params)
+    var contentForm = this.toAuthorizedFormData(params)
     return apiSECURE.post('AuthorApi.php?page=sql&action=copyBook', contentForm)
   },
   createContentData(params) {
     var d = new Date()
     params.edit_date = d.getTime()
-    params.my_uid = store.state.user.uid
-    params.token = store.state.user.token
-    //console.log('params in Create Content')
-    //console.log(params)
-    var contentForm = this.toFormData(params)
+    var contentForm = this.toAuthorizedFormData(params)
     //console.log('about to create content')
     return apiSECURE.post(
       'AuthorApi.php?page=create&action=createContent',
@@ -72,8 +59,7 @@ export default {
     )
   },
   createContentFolder(params) {
-    params.token = store.state.user.token
-    var contentForm = this.toFormData(params)
+    var contentForm = this.toAuthorizedFormData(params)
     apiSECURE.post(
       'AuthorApi.php?page=create&action=createContentFolder',
       contentForm
@@ -96,7 +82,7 @@ export default {
         //console.log('Creating language directory for ' + code)
         obj.code = code
         obj.token = store.state.user.token
-        var contentForm = this.toFormData(obj)
+        var contentForm = this.toAuthorizedFormData(obj)
         apiSECURE.post(
           'AuthorApi.php?page=create&action=createDirectoryLanguages',
           contentForm
@@ -112,7 +98,7 @@ export default {
       obj.language_iso = language
       obj.country_code = country
       obj.token = store.state.user.token
-      var contentForm = this.toFormData(obj)
+      var contentForm = this.toAuthorizedFormData(obj)
       apiSECURE.post(
         'AuthorApi.php?page=create&action=createDirectoryMenu',
         contentForm
@@ -120,10 +106,7 @@ export default {
     }
   },
   async createSeriesIndex(params) {
-    // console.log('createSeriesIndex')
-    // console.log(params)
-    params.token = store.state.user.token
-    var contentForm = this.toFormData(params)
+    var contentForm = this.toAuthorizedFormData(params)
     apiSECURE.post(
       'AuthorApi.php?page=create&action=createSeriesIndex',
       contentForm
@@ -131,15 +114,8 @@ export default {
   },
 
   async createStyle(params) {
-    //  console.log('createStyle')
-    // console.log(params)
     if (this.isFilename(params.file.name)) {
-      // console.log('is letters')
-      var obj = {}
-      obj.file = params.file
-      obj.country_code = params.country_code
-      obj.token = store.state.user.token
-      var contentForm = this.toFormData(obj)
+      var contentForm = this.toAuthorizedFormData(params)
       apiSECURE.post(
         'AuthorApi.php?page=create&action=createStyle',
         contentForm
@@ -149,19 +125,8 @@ export default {
     }
   },
   async createTemplate(params) {
-    //console.log('create Template')
-    //console.log(params)
-    //console.log('params.file.name')
-    //console.log(params.file.name)
     if (this.isFilename(params.file.name)) {
-      // console.log('is letters')
-      var obj = {}
-      obj.file = params.file
-      obj.country_code = params.country_code
-      obj.language_iso = params.language_iso
-      obj.folder_name = params.folder_name
-      obj.token = store.state.user.token
-      var contentForm = this.toFormData(obj)
+      var contentForm = this.toAuthorizedFormData(params)
       apiSECURE.post(
         'AuthorApi.php?page=create&action=createTemplate',
         contentForm
@@ -175,19 +140,14 @@ export default {
   /////////////////////////////////////////////////
   async debug(params) {
     console.log('debug')
-    params.token = store.state.user.token
-    params.my_uid = store.state.user.uid
-    var contentForm = this.toFormData(params)
+    var contentForm = this.toAuthorizedFormData(params)
     var action = 'AuthorApi.php?page=debug&action=' + params.action
     apiSECURE.post(action, contentForm)
   },
 
   ////////////////////////////////////////////////
   async deleteUser(params) {
-    params.token = store.state.user.token
-    //  console.log('params sent to deleteUser')
-    //  console.log(params)
-    var contentForm = this.toFormData(params)
+    var contentForm = this.toAuthorizedFormData(params)
     let response = await apiSELECT.post(
       'AuthorApi.php?page=deleteUser&action=deleteUser',
       contentForm
@@ -196,11 +156,24 @@ export default {
     //  console.log(response)
     return response
   },
+  async getComparisons(params) {
+    var contentForm = this.toAuthorizedFormData(params)
+    let response = await apiSELECT.post(
+      'AuthorApi.php?page=getComparisons&action=getComparisons',
+      contentForm
+    )
+    console.log(response)
+    if (response.data.content) {
+      var options = response.data.content
+      console.log('Comparison options')
+      console.log(options)
+    }
+    return options
+  },
   async getFoldersContent(params) {
     //console.log('getFolders')
     var folders = []
-    params.token = store.state.user.token
-    var contentForm = this.toFormData(params)
+    var contentForm = this.toAuthorizedFormData(params)
     let response = await apiSELECT.post(
       'AuthorApi.php?page=get&action=getFoldersContent',
       contentForm
@@ -216,10 +189,7 @@ export default {
     var folders = []
     var params = {}
     params.language_iso = language
-    params.token = store.state.user.token
-    // console.log('getContentFoldersForLanguage')
-    // console.log(params)
-    var contentForm = this.toFormData(params)
+    var contentForm = this.toAuthorizedFormData(params)
     let response = await apiSELECT.post(
       'AuthorApi.php?page=getContentFoldersForLanguage&action=getContentFoldersForLanguage',
       contentForm
@@ -233,8 +203,7 @@ export default {
   },
   async getCurrentBooks() {
     var params = {}
-    params.token = store.state.user.token
-    var contentForm = this.toFormData(params)
+    var contentForm = this.toAuthorizedFormData(params)
     let response = await apiSELECT.post(
       'AuthorApi.php?page=getCurrentBooks&action=getCurrentBooks',
       contentForm
@@ -243,8 +212,7 @@ export default {
   },
   async getCurrentLanguages() {
     var params = {}
-    params.token = store.state.user.token
-    var contentForm = this.toFormData(params)
+    var contentForm = this.toAuthorizedFormData(params)
     let response = await apiSELECT.post(
       'AuthorApi.php?page=getCurrentLanguages&action=getCurrentLanguages',
       contentForm
@@ -254,8 +222,7 @@ export default {
   async getFoldersImages() {
     var folders = []
     var params = {}
-    params.token = store.state.user.token
-    var contentForm = this.toFormData(params)
+    var contentForm = this.toAuthorizedFormData(params)
     let response = await apiSELECT.post(
       'AuthorApi.php?page=get&action=getFoldersImages',
       contentForm
@@ -267,16 +234,12 @@ export default {
     return folders
   },
   async getImages(params) {
-    var images = []
-    params.token = store.state.user.token
-    // console.log('get Images')
-    // console.log(params)
-    var contentForm = this.toFormData(params)
+    var contentForm = this.toAuthorizedFormData(params)
     let response = await apiSELECT.post(
       'AuthorApi.php?page=get&action=getImages',
       contentForm
     )
-
+    var images = []
     if (response.data.content) {
       images = JSON.parse(response.data.content)
     }
@@ -285,9 +248,7 @@ export default {
 
   async getStyles(params) {
     var styles = []
-    // console.log('getStyles')
-    params.token = store.state.user.token
-    var contentForm = this.toFormData(params)
+    var contentForm = this.toAuthorizedFormData(params)
     let response = await apiSELECT.post(
       'AuthorApi.php?page=get&action=getStyles',
       contentForm
@@ -300,10 +261,7 @@ export default {
     return styles
   },
   async getTemplate(params) {
-    params.token = store.state.user.token
-    // console.log('params sent to getTemplate')
-    // console.log(params)
-    var contentForm = this.toFormData(params)
+    var contentForm = this.toAuthorizedFormData(params)
     let response = await apiSELECT.post(
       'AuthorApi.php?page=get&action=getTemplate',
       contentForm
@@ -314,30 +272,19 @@ export default {
   },
   async getTemplates(params) {
     var templates = []
-    // console.log('getTemplates')
-    params.token = store.state.user.token
-    // console.log('getTemplates')
-    //  console.log(params)
-    var contentForm = this.toFormData(params)
+    var contentForm = this.toAuthorizedFormData(params)
     let response = await apiSELECT.post(
       'AuthorApi.php?page=get&action=getTemplates',
       contentForm
     )
-    // console.log('get Templates')
-    // console.log(response)
     if (response.data.content) {
-      //    console.log('about to parse templates')
       templates = JSON.parse(response.data.content)
-      //    console.log('did parse templates')
       templates.sort()
     }
     return templates
   },
   async getUser(params) {
-    params.token = store.state.user.token
-    //   console.log('params sent to getUsers')
-    //   console.log(params)
-    var contentForm = this.toFormData(params)
+    var contentForm = this.toAuthorizedFormData(params)
     let res = await apiSELECT.post(
       'AuthorApi.php?page=getUser&action=getUser',
       contentForm
@@ -349,18 +296,12 @@ export default {
     return response
   },
   async getUsers(params) {
-    params.token = store.state.user.token
-    //   console.log('params sent to getUsers')
-    //   console.log(params)
-    var contentForm = this.toFormData(params)
+    var contentForm = this.toAuthorizedFormData(params)
     let res = await apiSELECT.post(
       'AuthorApi.php?page=getUsers&action=getUsers',
       contentForm
     )
-    //  console.log('response from  getUsers')
-    //  console.log(res)
     let response = JSON.parse(res.data.content)
-    //    console.log(response)
     return response
   },
 
@@ -372,7 +313,7 @@ export default {
   },
 
   async login(params) {
-    var contentForm = this.toFormData(params)
+    var contentForm = this.toAuthorizedFormData(params)
     let response = await apiSELECT.post(
       'AuthorApi.php?action=login',
       contentForm
@@ -380,27 +321,18 @@ export default {
     return response
   },
   async prototype(params) {
-    //   console.log('prototype')
-    //   console.log(params)
-    params.token = store.state.user.token
-    var contentForm = this.toFormData(params)
+    var contentForm = this.toAuthorizedFormData(params)
     var action =
       'AuthorApi.php?page=prototype&action=prototype' + params.actionCODE
     apiSECURE.post(action, contentForm)
   },
   async publish(params) {
-    //   console.log('publish')
-    //   console.log(params)
-    params.token = store.state.user.token
-    var contentForm = this.toFormData(params)
+    var contentForm = this.toAuthorizedFormData(params)
     var action = 'AuthorApi.php?page=publish&action=publish' + params.actionCODE
     apiSECURE.post(action, contentForm)
   },
   async registerUser(params) {
-    //   console.log('registerUser')
-    //   console.log(params)
-    params.token = store.state.user.token
-    var contentForm = this.toFormData(params)
+    var contentForm = this.toAuthorizedFormData(params)
     var response = await apiSELECT.post(
       'AuthorApi.php?page=register&action=registerUser',
       contentForm
@@ -415,10 +347,9 @@ export default {
       code = countries[i].code
       if (code.length == 2) {
         if (this.isFilename(code)) {
-          var obj = {}
-          obj.country_code = code
-          obj.token = store.state.user.token
-          var contentForm = this.toFormData(obj)
+          var params = {}
+          params.country_code = code
+          var contentForm = this.toAuthorizedFormData(params)
           apiSECURE.post(
             'AuthorApi.php?page=setup&action=setupCountry',
             contentForm
@@ -429,13 +360,11 @@ export default {
   },
   setupLanguageFolder(country, language) {
     if (this.isFilename(language)) {
-      var obj = {}
-      obj.language_iso = language
-      obj.country_code = country
-      obj.token = store.state.user.token
-      //    console.log('setupLanguageFolder')
-      //   console.log(obj)
-      var contentForm = this.toFormData(obj)
+      var params = {}
+      params.language_iso = language
+      params.country_code = country
+      params.token = store.state.user.token
+      var contentForm = this.toAuthorizedFormData(params)
       apiSECURE.post(
         'AuthorApi.php?page=setup&action=setupLanguageFolder',
         contentForm
@@ -444,11 +373,10 @@ export default {
   },
   setupImageFolder(country, language) {
     if (this.isFilename(language)) {
-      var obj = {}
-      obj.languageNAME = language
-      obj.country_code = country
-      obj.token = store.state.user.token
-      var contentForm = this.toFormData(obj)
+      var params = {}
+      params.languageNAME = language
+      params.country_code = country
+      var contentForm = this.toAuthorizedFormData(params)
       apiSECURE.post(
         'AuthorApi.php?page=setup&action=setupImageFolder',
         contentForm
@@ -456,11 +384,7 @@ export default {
     }
   },
   async setupSeries(params, file) {
-    //   console.log('setup Series')
-    //   console.log(params)
-    //   console.log(file)
-    params.token = store.state.user.token
-    var contentForm = this.toFormData(params)
+    var contentForm = this.toAuthorizedFormData(params)
     contentForm.append('file', file)
     //  console.log(contentForm)
     return apiIMAGE.post(
@@ -469,21 +393,14 @@ export default {
     )
   },
   async setupSeriesFirstSteps(params) {
-    //   console.log('createSeriesFirstSteps')
-    //   console.log(params)
-    params.token = store.state.user.token
-    var contentForm = this.toFormData(params)
+    var contentForm = this.toAuthorizedFormData(params)
     apiSECURE.post(
       'AuthorApi.php?page=setup&action=setupSeriesFirstSteps',
       contentForm
     )
   },
   async imageStore(params, image) {
-    //  console.log('Store Image')
-    //  console.log(params)
-    //  console.log(image)
-    params.token = store.state.user.token
-    var contentForm = this.toFormData(params)
+    var contentForm = this.toAuthorizedFormData(params)
     contentForm.append('file', image)
     //  console.log(contentForm)
     return apiIMAGE.post(
@@ -531,10 +448,12 @@ export default {
     return type
   },
 
-  toFormData(obj) {
+  toAuthorizedFormData(params) {
+    params.my_uid = store.state.user.uid
+    params.token = store.state.user.token
     var form_data = new FormData()
-    for (var key in obj) {
-      form_data.append(key, obj[key])
+    for (var key in params) {
+      form_data.append(key, params[key])
     }
     // Display the key/value pairs
     //   for (var pair of form_data.entries()) {
@@ -544,16 +463,11 @@ export default {
     return form_data
   },
   async updateUser(params) {
-    params.token = store.state.user.token
-    //   console.log('params sent to deleteUser')
-    //   console.log(params)
-    var contentForm = this.toFormData(params)
+    var contentForm = this.toAuthorizedFormData(params)
     let response = await apiSELECT.post(
       'AuthorApi.php?page=updateUser&action=updateUser',
       contentForm
     )
-    //  console.log('response from  updateUsers')
-    //   console.log(response)
     return response
   }
 }

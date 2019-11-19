@@ -12,11 +12,7 @@ const apiSELECT = axios.create({
 })
 export default {
   async getBibleVersions(params) {
-    params.my_uid = store.state.user.uid
-    params.token = store.state.user.token
-    //   console.log('params in getBibles')
-    //  console.log(params)
-    var contentForm = this.toFormData(params)
+    var contentForm = this.toAuthorizedBibleFormData(params)
     var result = await apiSELECT.post(
       'AuthorApi.php?page=bibleVersions&action=getBibleVersions',
       contentForm
@@ -39,11 +35,7 @@ export default {
       'collection_code' => 'OT' ,
      );
   */
-    params.my_uid = store.state.user.uid
-    params.token = store.state.user.token
-    //   console.log('params in getDbtArray')
-    //   console.log(params)
-    var contentForm = this.toFormData(params)
+    var contentForm = this.toAuthorizedBibleFormData(params)
     var res = await apiSELECT.post(
       'AuthorApi.php?page=bibleDbtArray&action=createBibleDbtArrayFromPassage',
       contentForm
@@ -72,11 +64,9 @@ export default {
 
   */
 
-    params.my_uid = store.state.user.uid
-    params.token = store.state.user.token
     //   console.log('params in getBiblePassage')
     //    console.log(params)
-    var contentForm = this.toFormData(params)
+    var contentForm = this.toAuthorizedBibleFormData(params)
     var res = await apiSELECT.post(
       'AuthorApi.php?page=bibleGetPassage&action=bibleGetPassage',
       contentForm
@@ -86,10 +76,12 @@ export default {
     // I want the whole response so I can see any errors.
     return res
   },
-  toFormData(obj) {
+  toAuthorizedBibleFormData(params) {
+    params.my_uid = store.state.user.uid
+    params.token = store.state.user.token
     var form_data = new FormData()
-    for (var key in obj) {
-      form_data.append(key, obj[key])
+    for (var key in params) {
+      form_data.append(key, params[key])
     }
     // Display the key/value pairs
     //   for (var pair of form_data.entries()) {

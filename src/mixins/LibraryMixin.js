@@ -66,9 +66,9 @@ export const libraryMixin = {
         // console.log(this.$route.params)
         await this.CheckBookmarks(this.$route.params)
         var response = await ContentService.getLibrary(this.$route.params)
-        console.log (this.bookmark)
-        console.log (response)
-        if (this.bookmark.library.books == null ){
+        console.log(this.bookmark)
+        console.log(response)
+        if (this.bookmark.library.books == null) {
           this.bookmark.library.books = response.data.content.text
         }
         console.log('Library Data obtained:')

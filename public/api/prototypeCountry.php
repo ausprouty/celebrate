@@ -1,6 +1,6 @@
 <?php
 
-require_once ('prototype.php');
+require_once ('prototypeORpublish.php');
 
 function prototypeCountry($p){
     $p['debug'] = 'in prototypeCountry' . "\n";

@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import { mapState } from 'vuex'
-import { timeout } from 'q'
+//import { timeout } from 'q'
 Vue.use(Vuex)
 
 export const authorMixin = {

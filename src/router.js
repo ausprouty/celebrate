@@ -37,7 +37,6 @@ import Admin from './views/Admin.vue'
 import Users from './views/Users.vue'
 import User from './views/User.vue'
 
-
 // for CKFinder
 
 //edit.myfriends.network/preview

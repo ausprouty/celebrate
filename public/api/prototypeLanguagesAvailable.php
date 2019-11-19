@@ -13,9 +13,9 @@ function prototypeLanguagesAvailable($p){
                 AND prototype_date != '' 
                 ORDER BY recnum DESC LIMIT 1";
     $data = sqlArray($sql);
-    $p['debug'] .= $sql . "\n";
-    $p['debug'] .= 'Data for Country Flags' . "\n";
-    $p['debug'] .= $data['text']. "\n\n";
+    //$p['debug'] .= $sql . "\n";
+    //$p['debug'] .= 'Data for Country Flags' . "\n";
+    //$p['debug'] .= $data['text']. "\n\n";
     $countries_array = json_decode($data['text']);
    // $footer = prototypeLanguageFooter($p);
     // get main template
@@ -28,20 +28,19 @@ function prototypeLanguagesAvailable($p){
         AND country_code != '' ";
     $query = sqlMany($sql);
     while($country = $query->fetch_array()){
-        $p['debug'] .= $country['country_code']. "\n";
+       // $p['debug'] .= $country['country_code']. "\n";
         // get prototyped languages from each prototyped country
         $sql = "SELECT * FROM content 
             WHERE  country_code = '". $country['country_code'] ."' 
             AND filename = 'languages'  AND prototype_date != '' 
             ORDER BY recnum DESC LIMIT 1";
-        $p['debug'] .= $sql. "\n";
+        //$p['debug'] .= $sql. "\n";
         $data = sqlArray($sql);
-        $p['debug'] .= $data['text']. "\n";
+        //$p['debug'] .= $data['text']. "\n";
         $text = json_decode($data['text']);
         if (!isset($text->languages)){
             $p['debug'] .= '$text->languages not found for ' . $country['country_code']. "\n";
             $p['error'] = true;
-            return $p;
         }
         // look for flag
 

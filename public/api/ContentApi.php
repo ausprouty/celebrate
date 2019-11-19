@@ -4,8 +4,12 @@ require_once ('sql.php');
 
 $p = array();
 $debug = 'Content API Post' . "\n";
+if (!$_GET['scope']){
+    die;
+}
 
 $p['scope'] = $_GET['scope'];
+
 $debug .= 'scope = ' . $p['scope'] . "\n";
 
 $out = array();

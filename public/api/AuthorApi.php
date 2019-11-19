@@ -21,11 +21,13 @@ define("DEFAULT_BACK_RIBBON", 'ZZ/images/ribbons/back-ribbon-red.png');
 $secret = 'sJeSuST423*&';
 $dir_web = '/home/vx5ui10wb4ln/public_html/edit/api/';
 $out = array(); 
-$debug = 'From AuthorApi'. "\n";
+$debug = 'Using AuthorApi'. "\n";
+$debug .= 'Called from ' . $_SERVER['HTTP_ORIGIN'] . "\n";
 $debug .= '$p[] = ' . "\n";
 $debug .= 'parameters:' . "\n";
  foreach ($_POST as $param_name => $param_value) {
-    $$param_name = $param_value;
+	$$param_name = $param_value;
+	$p[$param_name] =  $param_value;
 	$debug .= $param_name . ' = ' . $param_value. "\n";
 }
 $debug .= 'end of parameters' . "\n";
@@ -60,6 +62,7 @@ $debug .= 'Action: '. $action . "\n";
 if (isset($_GET['page'])){
 	$debug .=  'Page: ' . $_GET['page'] . '.php'. "\n";
 }
+
 // login routine
 if ($action == 'login'){
     $sql = "SELECT uid,password,firstname, lastname, countries FROM members 

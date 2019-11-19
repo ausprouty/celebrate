@@ -80,12 +80,31 @@
             <vue-ckeditor v-model="pageText" :config="config" />
           </div>
           <div class="text-compare">
-            <BaseSelect
-              label="Comparing"
-              :options="comparisons"
-              v-model="comparing"
-              class="field"
-            />
+            <v-select
+              label="country_name"
+              :options="comparison_countries"
+              v-model="comparison_country"
+            ></v-select>
+            <v-select
+              label="language_name"
+              :options="comparison_languages"
+              v-model="comparison_language"
+            ></v-select>
+            <v-select
+              label="book_title"
+              :options="comparison_books"
+              v-model="comparison_book"
+            ></v-select>
+            <v-select
+              label="chapter_title"
+              :options="comparison_chapters"
+              v-model="comparison_chapter"
+            ></v-select>
+            <v-select
+              label="version_title"
+              :options="comparison_versions"
+              v-model="comparison_version"
+            ></v-select>
             <div v-html="this.compareText"></div>
           </div>
           <div class="footer">
@@ -114,6 +133,8 @@ import BibleService from '@/services/BibleService.js'
 import NavBar from '@/components/NavBarAdmin.vue'
 import './ckeditor/index.js'
 import VueCkeditor from 'vue-ckeditor2'
+import vSelect from 'vue-select'
+import '@/assets/css/vueSelect.css'
 import { bookMarkMixin } from '@/mixins/BookmarkMixin.js'
 import { pageMixin } from '@/mixins/PageMixin.js'
 import { authorMixin } from '@/mixins/AuthorMixin.js'
@@ -122,7 +143,8 @@ export default {
   props: ['country_code', 'language_iso', 'folder_name', 'filename'],
   components: {
     NavBar,
-    VueCkeditor
+    VueCkeditor,
+    'v-select': vSelect
   },
   computed: mapState(['bookmark', 'appDir', 'cssURL']),
   data() {
@@ -147,7 +169,18 @@ export default {
         text: ''
       },
       compareText: 'this is my text to show you',
-      comparisons: [],
+      comparison_countries: [],
+      comparison_country: null,
+      comparison_languages: [],
+      comparison_language: null,
+      comparison_books: [],
+      comparison_book: null,
+      comparison_chapters: [],
+      comparison_chapter: null,
+      comparison_versions: [],
+      comparison_version: null,
+      languages: [],
+      series: [],
       config: {
         extraPlugins: [
           'bidi',
@@ -214,7 +247,23 @@ export default {
     goBack() {
       window.history.back()
     },
+    async getComparisons(params = this.$route.params) {
+      var response = await AuthorService.getComparisons(params)
+      console.log('getComparison response')
+      console.log(response)
+      this.comparison_countries = response['countries']['countries']
+      this.comparison_country = response['countries']['country']
+      this.comparison_languages = response['languages']['languages']
+      this.comparison_language = response['languages']['language']
+      this.comparison_books = response['books']['books']
+      this.comparison_book = response['books']['book']
+      this.comparison_chapters = response['chapters']['chapters']
+      this.comparison_chapter = response['chapters']['chapter']
+      this.comparison_versions = response['versions']['versions']
+      this.comparison_version = response['versions']['version']
+    },
     async getPageToCompare(params = this.$route.params) {
+      this.comparisons = this.getComparisons(params)
       params.other_country_code = 'AU'
       var response = await ContentService.getPage(params)
       console.log(response)

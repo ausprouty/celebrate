@@ -12,11 +12,11 @@ export const bookMarkMixin = {
     async UnsetBookmarks() {
       return this.$store.dispatch('unsetBookmark', ['country'])
     },
-    async CheckBookmarks(route){
+    async CheckBookmarks(route) {
       try {
         var bookmark = await AuthorService.bookmark(route)
-        console.log ('bookmark')
-        console.log (bookmark)
+        console.log('bookmark')
+        console.log(bookmark)
       } catch (error) {
         console.log(
           'BOOKMARK MIXIN -- There was an error setting bookmarks:',
@@ -25,7 +25,6 @@ export const bookMarkMixin = {
         this.error = error.toString() + 'BOOKMARK MIXIN --CheckBookmarks'
         return bookmark
       }
-
     },
     async XCheckBookmarks(route) {
       console.log('BOOKMARK MIXIN started')

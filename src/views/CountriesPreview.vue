@@ -86,11 +86,11 @@ export default {
       if (location == 'prototype') {
         // TODO: Add this back in when we can publicize more than one country
         //response = await PrototypeService.publish('countries', params)
-        PrototypeService.publish('languages', params)
+        PrototypeService.publish('languagesAvailable', params)
       } else {
         // TODO: Add this back in when we can publicize more than one country
         //response = await PublishService.publish('countries', params)
-        PublishService.publish('languages', params)
+        PublishService.publish('languagesAvailable', params)
       }
 
       if (response['error']) {
