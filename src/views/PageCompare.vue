@@ -3,126 +3,125 @@
     <NavBar />
 
     <div class="loading" v-if="loading">Loading...</div>
-    <div class="error" v-if="error">
-      There was an error... {{ this.error_message }}
-    </div>
+    <div class="error" v-if="error">There was an error... {{ this.error_message }}</div>
     <div class="compare" v-if="loaded">
       <div v-if="!this.authorized">
-        <p>
-          Almost ready
-        </p>
+        <p>Almost ready</p>
       </div>
       <div v-if="this.authorized">
-        <div class = "left_column">
-        <link rel="stylesheet" v-bind:href="this.bookmark.book.style" />
-        <div class="app-link">
-          <div class="app-card -shadow">
-            <div v-on:click="goBack()">
-              <img v-bind:src="this.bookmark.book.image.image" class="book" />
+        <div class="left_column">
+          <link rel="stylesheet" v-bind:href="this.bookmark.book.style" />
+          <div class="select-top">
+            <div class="app-link-small">
+              <div class="app-card -shadow">
+                <div v-on:click="goBack()">
+                  <img v-bind:src="this.bookmark.book.image.image" class="book" />
 
-              <div class="book">
-                <span class="title">{{ this.bookmark.book.title }}</span>
+                  <div class="book">
+                    <span class="title">{{ this.bookmark.book.title }}</span>
+                  </div>
+                </div>
               </div>
             </div>
+            <div class="compare-select">
+              <h1>Comparing</h1>
+              <v-select
+                label="country_name"
+                :options="comparison_countries"
+                :disabled="this.block_selection"
+                v-model="comparison_country"
+                v-on:change="getNewComparisons('country')"
+              ></v-select>
+              <v-select
+                label="language_name"
+                :options="comparison_languages"
+                :disabled="this.block_selection"
+                v-model="comparison_language"
+                v-on:change="getNewComparisons('language')"
+              ></v-select>
+              <v-select
+                label="library_name"
+                :options="comparison_libraries"
+                :disabled="this.block_selection"
+                v-model="comparison_library"
+                v-on:change="getNewComparisons('library')"
+              ></v-select>
+              <v-select
+                label="book_title"
+                :options="comparison_books"
+                :disabled="this.block_selection"
+                v-model="comparison_book"
+                v-on:change="getNewComparisons('book')"
+              ></v-select>
+              <v-select
+                label="chapter_title"
+                :options="comparison_chapters"
+                :disabled="this.block_selection"
+                v-model="comparison_chapter"
+                v-on:change="getNewComparisons('chapter')"
+              ></v-select>
+              <v-select
+                label="version_title"
+                :options="comparison_versions"
+                :disabled="this.block_selection"
+                v-model="comparison_version"
+                v-on:change="getNewComparisons('version')"
+              ></v-select>
+            </div>
           </div>
-        </div>
-        <h1 v-if="this.bookmark.page.count">
-          {{ this.bookmark.page.count }}. {{ this.bookmark.page.title }}
-          <a
-            target="_blank"
-            class="help"
-            href="https://prototype.myfriends.network/content/HD/eng/help-1/page_edit.html"
-          >
-            <img class="help-icon" src="/images/icons/help.png" />
-          </a>
-        </h1>
+          <div class = "editable-text">
+          <h1 v-if="this.bookmark.page.count">
+            {{ this.bookmark.page.count }}. {{ this.bookmark.page.title }}
+            <a
+              target="_blank"
+              class="help"
+              href="https://prototype.myfriends.network/content/HD/eng/help-1/page_edit.html"
+            >
+              <img class="help-icon" src="/images/icons/help.png" />
+            </a>
+          </h1>
 
-        <h1 v-else>
-          {{ this.bookmark.page.title }}
-          <a
-            target="_blank"
-            class="help"
-            href="https://prototype.myfriends.network/content/HD/eng/help-1/page_edit.html"
-          >
-            <img class="help-icon" src="/images/icons/help.png" />
-          </a>
-        </h1>
+          <h1 v-else>
+            {{ this.bookmark.page.title }}
+            <a
+              target="_blank"
+              class="help"
+              href="https://prototype.myfriends.network/content/HD/eng/help-1/page_edit.html"
+            >
+              <img class="help-icon" src="/images/icons/help.png" />
+            </a>
+          </h1>
 
-        <div v-if="this.need_template">
-          <div class="form">
-            <BaseSelect
-              v-model="page_template"
-              label="Templates:"
-              :options="templates"
-              class="field"
-            />
-          </div>
-          <button class="button green" @click="loadTemplate">
-            Insert Template
-          </button>
-        </div>
-        <div>
-          <div v-if="this.request_passage">
+          <div v-if="this.need_template">
             <div class="form">
-              <BaseInput
-                v-model="reference"
-                label="Passage to Insert into  [PassageLocation]"
-                type="text"
-                placeholder
+              <BaseSelect
+                v-model="page_template"
+                label="Templates:"
+                :options="templates"
                 class="field"
               />
             </div>
-            <button class="button green" @click="insertPassage">
-              Insert Passage
-            </button>
+            <button class="button green" @click="loadTemplate">Insert Template</button>
           </div>
-          <div class="text-edit">
-            <vue-ckeditor v-model="pageText" :config="config" />
+          <div>
+            <div v-if="this.request_passage">
+              <div class="form">
+                <BaseInput
+                  v-model="reference"
+                  label="Passage to Insert into  [PassageLocation]"
+                  type="text"
+                  placeholder
+                  class="field"
+                />
+              </div>
+              <button class="button green" @click="insertPassage">Insert Passage</button>
+            </div>
+            <div class="text-edit">
+              <vue-ckeditor v-model="pageText" :config="config" />
+            </div>
           </div>
           </div>
           <div class="text-compare">
-            <v-select
-              label="country_name"
-              :options="comparison_countries"
-              :disabled="this.block_selection"
-              v-model="comparison_country"
-              v-on:change="getNewComparisons('country')"
-            ></v-select>
-            <v-select
-              label="language_name"
-              :options="comparison_languages"
-              :disabled="this.block_selection"
-              v-model="comparison_language"
-              v-on:change="getNewComparisons('language')"
-            ></v-select>
-            <v-select
-              label="library_name"
-              :options="comparison_libraries"
-              :disabled="this.block_selection"
-              v-model="comparison_library"
-              v-on:change="getNewComparisons('library')"
-            ></v-select>
-            <v-select
-              label="book_title"
-              :options="comparison_books"
-              :disabled="this.block_selection"
-              v-model="comparison_book"
-              v-on:change="getNewComparisons('book')"
-            ></v-select>
-            <v-select
-              label="chapter_title"
-              :options="comparison_chapters"
-              :disabled="this.block_selection"
-              v-model="comparison_chapter"
-              v-on:change="getNewComparisons('chapter')"
-            ></v-select>
-            <v-select
-              label="version_title"
-              :options="comparison_versions"
-              :disabled="this.block_selection"
-              v-model="comparison_version"
-              v-on:change="getNewComparisons('version')"
-            ></v-select>
             <div v-html="this.compareText"></div>
           </div>
           <div class="footer">
@@ -519,13 +518,12 @@ export default {
       this.mounted = false
       this.comparison_previous = {}
       console.log('mounted is now false')
-       this.authorized = this.authorize('write', this.$route.params.country_code)
+      this.authorized = this.authorize('write', this.$route.params.country_code)
       await this.getPage(this.$route.params)
       if (this.pageText.includes('[')) {
         this.request_passage = true
       }
       await this.getComparisons(this.$route.params)
-     
     } catch (error) {
       console.log('There was an error in Page.vue:', error)
       await this.loadTemplate()
@@ -547,14 +545,25 @@ export default {
 #app {
   width: 80%;
 }
-div.text-edit
- {
+div.text-edit,
+div.app-link-small {
   float: left;
   width: 50%;
 }
-div.text-compare {
+.app-card{
+  height:300px;
+}
+div.text-compare,
+div.compare-select {
   float: right;
   width: 40%;
+}
+div.text-compare{
+  padding-top:100px;
+}
+div.editable-text{
+  display:block;
+  clear:right;
 }
 div.footer {
   width: 100%;
