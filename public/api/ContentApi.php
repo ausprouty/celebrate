@@ -1,5 +1,6 @@
 <?php
 require_once ('getLatestContent.php');
+require_once ('getContentByRecnum.php');
 require_once ('sql.php');
 
 $p = array();
@@ -18,6 +19,7 @@ $language_iso = NULL;
 $library_code = NULL;
 $folder_name = NULL;
 $filetype = NULL;
+$recnum = NULL;
 $title = NULL;
 $filename = NULL;
 $text = NULL;
@@ -44,8 +46,15 @@ $p['language_iso'] = isset($r['language_iso'] )? $r['language_iso'] : $language_
 $p['library_code'] = isset($r['library_code']) ? $r['library_code'] : $library_code;
 $p['folder_name'] = isset($r['folder_name']) ? $r['folder_name'] : $folder_name;
 $p['filename'] = isset($r['filename']) ? $r['filename'] : $filename;
+$p['recnum'] = isset($r['recnum']) ? $r['recnum'] : $recnum;
+if ($p['recnum'] != null){
+    
+    $out = getContentbyRecnum($p);
+}
+else{
+    $out = getLatestContent($p);
+}
 
-$out = getLatestContent($p);
 if (isset($out['debug'])){
     $debug .= $out['debug'];
 }

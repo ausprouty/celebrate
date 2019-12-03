@@ -9,11 +9,11 @@
     <div class="compare" v-if="loaded">
       <div v-if="!this.authorized">
         <p>
-          You have stumbled into a restricted page. Sorry I can not show it to
-          you now
+          Almost ready
         </p>
       </div>
       <div v-if="this.authorized">
+        <div class = "left_column">
         <link rel="stylesheet" v-bind:href="this.bookmark.book.style" />
         <div class="app-link">
           <div class="app-card -shadow">
@@ -79,31 +79,49 @@
           <div class="text-edit">
             <vue-ckeditor v-model="pageText" :config="config" />
           </div>
+          </div>
           <div class="text-compare">
             <v-select
               label="country_name"
               :options="comparison_countries"
+              :disabled="this.block_selection"
               v-model="comparison_country"
+              v-on:change="getNewComparisons('country')"
             ></v-select>
             <v-select
               label="language_name"
               :options="comparison_languages"
+              :disabled="this.block_selection"
               v-model="comparison_language"
+              v-on:change="getNewComparisons('language')"
+            ></v-select>
+            <v-select
+              label="library_name"
+              :options="comparison_libraries"
+              :disabled="this.block_selection"
+              v-model="comparison_library"
+              v-on:change="getNewComparisons('library')"
             ></v-select>
             <v-select
               label="book_title"
               :options="comparison_books"
+              :disabled="this.block_selection"
               v-model="comparison_book"
+              v-on:change="getNewComparisons('book')"
             ></v-select>
             <v-select
               label="chapter_title"
               :options="comparison_chapters"
+              :disabled="this.block_selection"
               v-model="comparison_chapter"
+              v-on:change="getNewComparisons('chapter')"
             ></v-select>
             <v-select
               label="version_title"
               :options="comparison_versions"
+              :disabled="this.block_selection"
               v-model="comparison_version"
+              v-on:change="getNewComparisons('version')"
             ></v-select>
             <div v-html="this.compareText"></div>
           </div>
@@ -151,6 +169,7 @@ export default {
     return {
       authorized: false,
       request_passage: false,
+      mounted: false,
       reference: null,
       templates: [],
       content: {
@@ -168,11 +187,17 @@ export default {
         filename: '',
         text: ''
       },
+      block_count: 0,
+      block_selection: false,
+      comparison_in_progress: false,
+      comparison_previous: [],
       compareText: 'this is my text to show you',
       comparison_countries: [],
       comparison_country: null,
       comparison_languages: [],
       comparison_language: null,
+      comparison_libraries: [],
+      comparison_library: null,
       comparison_books: [],
       comparison_book: null,
       comparison_chapters: [],
@@ -247,27 +272,124 @@ export default {
     goBack() {
       window.history.back()
     },
-    async getComparisons(params = this.$route.params) {
+    async sleep(ms) {
+      return new Promise(resolve => setTimeout(resolve, ms))
+    },
+    async getComparisons(params) {
+      this.block_selection = true
       var response = await AuthorService.getComparisons(params)
-      console.log('getComparison response')
+
+      console.log('getComparisons response')
       console.log(response)
+      this.getPageToCompare(response['params'])
+      this.comparison_previous = response['params']
       this.comparison_countries = response['countries']['countries']
       this.comparison_country = response['countries']['country']
       this.comparison_languages = response['languages']['languages']
       this.comparison_language = response['languages']['language']
+      this.comparison_libraries = response['library']['libraries']
+      this.comparison_library = response['library']['library']
       this.comparison_books = response['books']['books']
       this.comparison_book = response['books']['book']
       this.comparison_chapters = response['chapters']['chapters']
       this.comparison_chapter = response['chapters']['chapter']
       this.comparison_versions = response['versions']['versions']
       this.comparison_version = response['versions']['version']
+      await this.sleep(1000)
+      this.block_selection = false
     },
-    async getPageToCompare(params = this.$route.params) {
-      this.comparisons = this.getComparisons(params)
-      params.other_country_code = 'AU'
-      var response = await ContentService.getPage(params)
-      console.log(response)
-      this.compareText = response.data.content.text
+    getNewComparisons(scope) {
+      // this keeps the onchange from occuring until after all values are loaded from the last change
+      if (
+        this.block_selection == true ||
+        this.mounted == false ||
+        this.block_count < 6
+      ) {
+        if (this.loading == true) {
+          console.log('I blocked getNewComparison because we not yet mounted')
+        }
+        if (this.block_selection == true) {
+          console.log(
+            'I blocked getNewComparison because block_selection is true'
+          )
+        }
+        if (this.block_count < 6) {
+          console.log(
+            'I blocked getNewComparison because count was ' + this.block_count
+          )
+          this.block_count = this.block_count + 1
+        }
+        return
+      }
+      var params = this.comparison_previous
+      console.log('I allowed getNewComparison for ' + scope)
+      this.block_selection = true
+      var empty = ''
+
+      switch (scope) {
+        case 'country':
+          console.log(this.comparison_country)
+          params.country_code = this.comparison_country.country_code
+            ? this.comparison_country.country_code
+            : this.$route.params.country_code
+          params.recnum = null
+          this.block_count = 1
+          break
+        case 'language':
+          console.log(this.comparison_language)
+          params.language_iso = this.comparison_language.language_iso
+            ? this.comparison_language.language_iso
+            : this.$route.params.language_iso
+          params.recnum = null
+          this.block_count = 2
+          break
+        case 'library':
+          console.log(this.comparison_library.library_code)
+          params.library_code = this.comparison_library.library_code
+            ? this.comparison_library.library_code
+            : this.$route.params.library_code
+          params.recnum = null
+          this.block_count = 3
+          break
+        case 'book':
+          console.log(this.comparison_book)
+          params.folder_name = this.comparison_book.book_code
+            ? this.comparison_book.book_code
+            : this.$route.params.folder_name
+          params.filename = null
+          params.recnum = null
+          this.block_count = 4
+          break
+        case 'chapter':
+          console.log(this.comparison_chapter)
+          params.filename = this.comparison_chapter.chapter_filename
+            ? this.comparison_chapter.chapter_filename
+            : this.$route.params.filename
+          params.recnum = null
+          this.block_count = 5
+          break
+        case 'version':
+          console.log(this.comparison_version.version_recnum)
+          params.recnum = this.comparison_version.version_recnum
+            ? this.comparison_version.version_recnum
+            : empty
+          this.block_count = 6
+          break
+      }
+      console.log('getNewComparisons')
+      console.log(params)
+      this.getComparisons(params)
+    },
+    async getPageToCompare(params) {
+      console.log('in getPageToCompare')
+      console.log(params)
+      if (params.folder_name != null) {
+        var response = await ContentService.getPageDatabase(params)
+        console.log(response)
+        this.compareText = response.data.content.text
+      } else {
+        this.compareText = 'Continue Selection Process'
+      }
     },
     async insertPassage() {
       var params = {}
@@ -393,20 +515,26 @@ export default {
   },
   async created() {
     try {
-      // get page to comptare
-
-      this.getPageToCompare()
-      //get page to edit
+      this.block_selection = true
+      this.mounted = false
+      this.comparison_previous = {}
+      console.log('mounted is now false')
+       this.authorized = this.authorize('write', this.$route.params.country_code)
       await this.getPage(this.$route.params)
       if (this.pageText.includes('[')) {
         this.request_passage = true
       }
-
-      this.authorized = this.authorize('write', this.$route.params.country_code)
+      await this.getComparisons(this.$route.params)
+     
     } catch (error) {
       console.log('There was an error in Page.vue:', error)
       await this.loadTemplate()
     }
+  },
+  mounted() {
+    this.mounted = true
+    this.block_selection = false
+    console.log('mounted is now true')
   }
 }
 </script>
@@ -419,7 +547,8 @@ export default {
 #app {
   width: 80%;
 }
-div.text-edit {
+div.text-edit
+ {
   float: left;
   width: 50%;
 }

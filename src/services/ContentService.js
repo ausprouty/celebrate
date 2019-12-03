@@ -297,6 +297,23 @@ export default {
       return response
     }
   },
+  async getPageDatabase(params) {
+    console.log('getPageDatabase params:')
+    console.log(params)
+
+    var response = {}
+    response.data = {}
+    response.data.content = {}
+    var contentForm = this.toFormData(params)
+    response = await apiMYSQL.post('ContentApi.php?scope=page', contentForm)
+    if (response.data.content) {
+      response.source = 'data'
+      return response
+    }
+    response.source = 'notfound'
+    response.data.content = '<p>Not Found</p>'
+    return response
+  },
   validate(entry) {
     var clean = entry
 
