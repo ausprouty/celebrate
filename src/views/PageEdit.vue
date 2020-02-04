@@ -143,7 +143,10 @@ export default {
           'uploadwidget',
           'clipboard',
           'videoembed',
-          'templates'
+          'templates',
+          'panelbutton',
+          'floatpanel',
+          'colorbutton'
         ],
         extraAllowedContent: [
           '*(*)[id]',

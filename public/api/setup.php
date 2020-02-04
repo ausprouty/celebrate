@@ -119,6 +119,7 @@ function setupSeries($p){
 		plus html for each file in input using the template supplied
 	
 	*/
+	$index_text = '';
 	$out['debug'] = 'setupLanguageFolder'. "\n";
 	if (!isset($p['folder_name'])){
 		$out['debug'] = 'folder_name not set'."\n";
@@ -134,11 +135,11 @@ function setupSeries($p){
 	
 	$destination = ROOT_EDIT.'content/'. $p['country_code'] .'/'. $p['language_iso'] .'/'. $p['folder_name'];
 	
-	$out['debug'] = 'entered setupSeries for template' . $template_file;
+	$out['debug'] = 'entered setupSeries for template' . $template_file . "\n";
 	if ($_FILES['file']['error'] == UPLOAD_ERR_OK               //checks for errors
       && is_uploaded_file($_FILES['file']['tmp_name'])) { //checks that file is uploaded
 		$text =  file_get_contents($_FILES['file']['tmp_name']); 
-		$out['debug'] .= $text;
+		$out['debug'] .= $text . "\n";
 		$index_text = '{
 		"series" :"'. $p['series_name'] . '",
 	"language" : "'. $p['language_iso'] . '",
@@ -146,8 +147,11 @@ function setupSeries($p){
 	"chapters": [';
 		$lines = explode("\n", $text);
 		$i = 0;
+		$out['debug'] .=  "\n\nLines\n";
 		foreach ($lines as $line){
+			$out['debug'] .=  $line. "\n";
 			$item = explode ("\t", $line);
+
 			if (count($item) >= 7){
 				$chapter_number = $item[0];
 				$chapter_title = $item[1];
@@ -166,26 +170,24 @@ function setupSeries($p){
 				if (!strpos($chapter_filename, '.html')){
 					$chapter_filename .= '.html';
 				}
-				// create text
-				//$new_text = $template_text;
-				//$fh = fopen($destination . '/'. $series_filename, 'w');
-				//fwrite($fh, $new_text);
-				//fclose($fh);
-				//update index
 				$index_text .= '
 {
 "id": '. $i . ',
 "title": "'. $chapter_title . '",
-"desciption": "'. $chapter_description . '",
+"description": "'. $chapter_description . '",
 "count": '. $chapter_number .',
 "filename": "'. substr($chapter_filename, 0, -5) .'",
 "image": "'. $chapter_image . '",
 "publish": "'. $chapter_publish. '"	 
 },';
             $i++;
-		    }
+			}
+			else{
+				$out['debug'] .=  "Line has less then 7 elements\n";
+
+			}
 		}
-		$index_text = substr($index_text,0, -1) . ']}';
+		$index_text = substr($index_text, 0, -1) . ']}';
 		$out['debug'] .= $index_text . "\n";
 		$fh = fopen($destination . '/index.json', 'w');
 		if ($fh !== null){

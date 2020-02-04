@@ -21,7 +21,6 @@
     "liveserver": "^0.1.20",
     "lodash": "^4.17.15",
     "pug-plain-loader": "^1.0.0",
-    "register-service-worker": "^1.5.2",
     "save": "^2.4.0",
     "vue": "^2.5.22",
     "vue-ckeditor2": "^2.1.5",

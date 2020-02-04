@@ -1,0 +1,239 @@
+{
+		"series" :"Elämänohjeet",
+	"language" : "fin",
+	"description":"undefined",
+	"chapters": [
+{
+"id": 0,
+"title": "TEE SOVINTO ",
+"desciption": "",
+"count": 1,
+"filename": "life101",
+"image": "",
+"publish": "1"	 
+},
+{
+"id": 1,
+"title": "AVIORIKOS ",
+"desciption": "",
+"count": 2,
+"filename": "life102",
+"image": "",
+"publish": "1"	 
+},
+{
+"id": 2,
+"title": "VALAT ",
+"desciption": "",
+"count": 3,
+"filename": "life103",
+"image": "",
+"publish": "1"	 
+},
+{
+"id": 3,
+"title": "ENEMM&Auml;N KUIN PYYDET&Auml;&Auml;N ",
+"desciption": "",
+"count": 4,
+"filename": "life104",
+"image": "",
+"publish": "1"	 
+},
+{
+"id": 4,
+"title": "RAKASTA VIHAMIEHI&Auml;SI ",
+"desciption": "",
+"count": 5,
+"filename": "life105",
+"image": "",
+"publish": "1"	 
+},
+{
+"id": 5,
+"title": "OLE T&Auml;YDELLINEN ",
+"desciption": "",
+"count": 6,
+"filename": "life106",
+"image": "",
+"publish": "1"	 
+},
+{
+"id": 6,
+"title": "AARTEET TAIVAASSA ",
+"desciption": "",
+"count": 7,
+"filename": "life107",
+"image": "",
+"publish": "1"	 
+},
+{
+"id": 7,
+"title": "&Auml;L&Auml; TUOMITSE ",
+"desciption": "",
+"count": 8,
+"filename": "life108",
+"image": "",
+"publish": "1"	 
+},
+{
+"id": 8,
+"title": "EI HELMI&Auml; SIOILLE ",
+"desciption": "",
+"count": 9,
+"filename": "life109",
+"image": "",
+"publish": "1"	 
+},
+{
+"id": 9,
+"title": "PYYD&Auml;, ETSI, KOLKUTA",
+"desciption": "",
+"count": 10,
+"filename": "life110",
+"image": "",
+"publish": "1"	 
+},
+{
+"id": 10,
+"title": "KULTAINEN S&Auml;&Auml;NT&Ouml; ",
+"desciption": "",
+"count": 11,
+"filename": "life111",
+"image": "",
+"publish": "1"	 
+},
+{
+"id": 11,
+"title": "KAKSI PORTTIA ",
+"desciption": "",
+"count": 12,
+"filename": "life112",
+"image": "",
+"publish": "1"	 
+},
+{
+"id": 12,
+"title": "OIKEAT JA V&Auml;&Auml;R&Auml;T PROFEETAT ",
+"desciption": "",
+"count": 13,
+"filename": "life113",
+"image": "",
+"publish": "1"	 
+},
+{
+"id": 13,
+"title": "OLE VIISAS JA VIATON ",
+"desciption": "",
+"count": 14,
+"filename": "life114",
+"image": "",
+"publish": "1"	 
+},
+{
+"id": 14,
+"title": "KIELL&Auml; ITSESI ",
+"desciption": "",
+"count": 15,
+"filename": "life115",
+"image": "",
+"publish": "1"	 
+},
+{
+"id": 15,
+"title": "FARISEUSTEN JA SADDUKEUSTEN HAPATE ",
+"desciption": "",
+"count": 16,
+"filename": "life116",
+"image": "",
+"publish": "1"	 
+},
+{
+"id": 16,
+"title": "SYNNIN K&Auml;SITTELEMINEN SEURAKUNNAN SIS&Auml;LL&Auml; ",
+"desciption": "",
+"count": 17,
+"filename": "life117",
+"image": "",
+"publish": "1"	 
+},
+{
+"id": 17,
+"title": "KARTA AHNEUTTA ",
+"desciption": "",
+"count": 18,
+"filename": "life118",
+"image": "",
+"publish": "1"	 
+},
+{
+"id": 18,
+"title": "ANNA ANTEEKSI ",
+"desciption": "",
+"count": 19,
+"filename": "life119",
+"image": "",
+"publish": "1"	 
+},
+{
+"id": 19,
+"title": "KUNNIOITA AVIOLIITTOA",
+"desciption": "",
+"count": 20,
+"filename": "life120",
+"image": "",
+"publish": "1"	 
+},
+{
+"id": 20,
+"title": "OLE PALVELIJA ",
+"desciption": "",
+"count": 21,
+"filename": "life121",
+"image": "",
+"publish": "1"	 
+},
+{
+"id": 21,
+"title": "KYSYMYS VEROISTA ",
+"desciption": "",
+"count": 22,
+"filename": "life122",
+"image": "",
+"publish": "1"	 
+},
+{
+"id": 22,
+"title": "RAKKAUDEN KAKSOISK&Auml;SKY ",
+"desciption": "",
+"count": 23,
+"filename": "life123",
+"image": "",
+"publish": "1"	 
+},
+{
+"id": 23,
+"title": "VALVO JA RUKOILE ",
+"desciption": "",
+"count": 24,
+"filename": "life124",
+"image": "",
+"publish": "1"	 
+},
+{
+"id": 24,
+"title": "OTA MINUN IKEENI ",
+"desciption": "",
+"count": 25,
+"filename": "life125",
+"image": "",
+"publish": "1"	 
+},
+{
+"id": 25,
+"title": "SEURAA MINUA ",
+"desciption": "",
+"count": 26,
+"filename": "life126",
+"image": "",
+"publish": "1"	 
+}]}

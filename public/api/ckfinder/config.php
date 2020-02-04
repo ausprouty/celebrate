@@ -144,7 +144,7 @@ $config['debug'] = true;
 // https://ckeditor.com/docs/ckfinder/ckfinder3-php/configuration.html#configuration_options_plugins
 
 $config['pluginsDirectory'] = __DIR__ . '/plugins';
-$config['plugins'] = array();
+$config['plugins'] = array('colorbutton');
 
 /*================================ Cache settings =====================================*/
 // https://ckeditor.com/docs/ckfinder/ckfinder3-php/configuration.html#configuration_options_cache

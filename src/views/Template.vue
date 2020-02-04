@@ -1,17 +1,20 @@
 <template>
   <div>
-    <NavBar/>
+    <NavBar />
 
     <div class="loading" v-if="loading">Loading...</div>
-    <div class="error" v-if="error">There was an error... {{this.error_message}}</div>
+    <div class="error" v-if="error">There was an error... {{ this.error_message }}</div>
     <div class="content" v-if="loaded">
       <div v-if="!this.authorized">
-        <p>You have stumbled into a restricted page. Sorry I can not show it to you now</p>
+        <p>
+          You have stumbled into a restricted page. Sorry I can not show it to
+          you now
+        </p>
       </div>
       <div v-if="this.authorized">
         <h1>Create Template</h1>
         <p>
-          <vue-ckeditor v-model="pageText" :config="config"/>
+          <vue-ckeditor v-model="pageText" :config="config" />
         </p>
         <div class="version">
           <p class="version">Version 1.01</p>
@@ -29,7 +32,6 @@
   </div>
 </template>
 
-
 <script>
 import { mapState } from 'vuex'
 import ContentService from '@/services/ContentService.js'
@@ -42,7 +44,7 @@ import { pageMixin } from '@/mixins/PageMixin.js'
 import { authorMixin } from '@/mixins/AuthorMixin.js'
 export default {
   mixins: [bookMarkMixin, pageMixin, authorMixin],
-  props: ['country_code', 'language_iso'],
+  props: ['country_code', 'language_iso', 'template', 'cssFORMATTED' ],
   components: {
     NavBar,
     VueCkeditor
@@ -55,13 +57,13 @@ export default {
       config: {
         extraPlugins: ['bidi', 'uploadimage', 'uploadwidget', 'clipboard'],
         extraAllowedContent: 'ol(*)',
-        contentsCss:  this.$route.params.css,
+        contentsCss: this.$route.params.css,
         stylesSet: this.$route.params.styles_set,
         templates_replaceContent: false,
         templates_files: [
           '/templates/' + this.$route.params.styles_set + 'CKEDITOR.js'
         ],
-      // Configure your file manager integration. This example uses CKFinder 3 for PHP.
+        // Configure your file manager integration. This example uses CKFinder 3 for PHP.
         // https://ckeditor.com/docs/ckfinder/ckfinder3-php/howto.html#howto_private_folders
         filebrowserBrowseUrl:
           process.env.VUE_APP_URL + 'ckfinder/ckfinder.html',
@@ -103,7 +105,15 @@ export default {
     goBack() {
       window.history.back()
     },
-
+    async loadTemplate() {
+      console.log('looking for template')
+      var res = await AuthorService.getTemplate(this.$route.params)
+      console.log(res)
+      if (res) {
+        console.log('I found template')
+        this.pageText = res
+      }
+    },
     async saveForm() {
       try {
         this.content.text = ContentService.validate(this.pageText)
@@ -117,7 +127,7 @@ export default {
           params: {
             country_code: this.$route.params.country_code,
             language_iso: this.$route.params.language_iso,
-            library_code: this.$route.params.library_code,
+            library_code: this.$route.params.library_code
           }
         })
       } catch (error) {
@@ -133,7 +143,13 @@ export default {
     this.$route.params.cssFORMATTED = 'AU-styles-multiply.css'
     console.log(this.$route.params)
     var ok = false
-    var styleSets = ['compass', 'firststeps', 'firststeps', 'myfriends', 'multiply']
+    var styleSets = [
+      'compass',
+      'firststeps',
+      'firststeps',
+      'myfriends',
+      'multiply'
+    ]
     this.$route.params.styles_set = 'unknown'
     var arrayLength = styleSets.length
     for (var i = 0; i < arrayLength; i++) {
@@ -152,6 +168,7 @@ export default {
   async created() {
     try {
       this.authorized = this.authorize('write', this.$route.params.country_code)
+      await this.loadTemplate()
       this.loaded = true
       this.loading = false
     } catch (error) {
@@ -160,8 +177,6 @@ export default {
   }
 }
 </script>
-
-
 
 <style scoped>
 .float-right {

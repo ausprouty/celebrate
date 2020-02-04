@@ -156,7 +156,7 @@ function getStyles($p){
 }
 // use country and language
 // this looks for template in the language/templates directory
-// copies it into  $p['filename'] 
+// copies it into  $p['filename']  -not any more
 // and then returns as content
 // todo: why are we copying?
 function getTemplate($p){
@@ -175,7 +175,7 @@ function getTemplate($p){
 	$destination = $language_dir . '/'. $p['filename'];
 	$out['debug'] .=' destination is '. $destination. "\n";
 	if (file_exists($template)){
-		copy ($template, $destination);
+		//copy ($template, $destination);
 		$out['message'] = "Template copied";
 		$out['debug'] .= "Template copied". "\n";
 		$out['debug'].= file_get_contents($template) . "\n";

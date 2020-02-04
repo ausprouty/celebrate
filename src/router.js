@@ -171,7 +171,7 @@ export default new Router({
       props: true
     },
     {
-      path: '/template/:country_code/:language_iso',
+      path: '/template/:country_code/:language_iso/:template',
       name: 'createTemplate',
       component: Template,
       props: true
