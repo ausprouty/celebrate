@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@tinymce/tinymce-vue": "^1.1.2",
-    "acorn": "^6.3.0",
+    "acorn": "^6.4.1",
     "acorn-dynamic-import": "^4.0.0",
     "ajv": "^5.0.0",
     "axios": "^0.18.1",
