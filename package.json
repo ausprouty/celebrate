@@ -17,7 +17,7 @@
     "axios-debug": "0.0.4",
     "cache-loader": "^2.0.1",
     "ckeditor": "^4.12.1",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "liveserver": "^0.1.20",
     "lodash": "^4.17.15",
     "pug-plain-loader": "^1.0.0",
