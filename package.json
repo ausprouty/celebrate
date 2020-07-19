@@ -19,7 +19,7 @@
     "ckeditor": "^4.12.1",
     "jquery": "^3.4.1",
     "liveserver": "^0.1.20",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.19",
     "pug-plain-loader": "^1.0.0",
     "save": "^2.4.0",
     "vue": "^2.5.22",
